@@ -31,7 +31,10 @@
             </div>
         </div>
         <div>
-            <img src="{{ !empty($settings['about_image']) ? asset('storage/'.$settings['about_image']) : 'https://picsum.photos/700/500?random=10' }}"
+            @php
+                $aboutImgFallback = !empty($settings['hero_bg_image']) ? asset('storage/'.$settings['hero_bg_image']) : (!empty($settings['breadcrumb_bg']) ? asset('storage/'.$settings['breadcrumb_bg']) : asset('images/og-default.jpg'));
+            @endphp
+            <img src="{{ !empty($settings['about_image']) ? asset('storage/'.$settings['about_image']) : $aboutImgFallback }}"
                  alt="Tim CV. Karya Perdana Teknik - Workshop Crane & Hoist" loading="lazy"
                  style="width:100%;height:460px;object-fit:cover;border:1px solid #27272A;">
         </div>

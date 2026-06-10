@@ -70,7 +70,7 @@
         .hero-bg {
             position: absolute;
             inset: 0;
-            background-image: url('{{ !empty($settings["hero_bg_image"]) ? asset("storage/" . $settings["hero_bg_image"]) : "https://picsum.photos/1920/1080?random=1" }}');
+            background-image: url('{{ !empty($settings["hero_bg_image"]) ? asset("storage/" . $settings["hero_bg_image"]) : (!empty($settings["breadcrumb_bg"]) ? asset("storage/" . $settings["breadcrumb_bg"]) : asset("images/og-default.jpg")) }}');
             background-size: cover;
             background-position: center;
             transform: scale(1.04);
