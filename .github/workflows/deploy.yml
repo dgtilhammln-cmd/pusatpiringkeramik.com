@@ -18,7 +18,7 @@ jobs:
 
     - name: Create tar of changed app files (exclude vendor, node_modules, .env)
       run: |
-        tar -czf deploy_patch.tar.gz \
+        tar -czf /tmp/deploy_patch.tar.gz \
           --exclude='.git' \
           --exclude='.github' \
           --exclude='vendor' \
@@ -37,7 +37,7 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         username: ${{ secrets.SSH_USERNAME }}
         password: ${{ secrets.SSH_PASSWORD }}
-        source: "deploy_patch.tar.gz"
+        source: "/tmp/deploy_patch.tar.gz"
         target: "/home/u664715641/"
         timeout: 120s
 
