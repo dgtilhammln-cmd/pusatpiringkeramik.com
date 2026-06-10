@@ -1,6 +1,45 @@
+# ==========================================
+# Robots.txt for CV. Karya Perdana Teknik
+# ==========================================
+
+# Secara default, izinkan SEMUA bot (termasuk Googlebot, Bingbot, Yahoo)
 User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /admin/
+Disallow: /*?*sort=
+Disallow: /*?*filter=
 
+# ==========================================
+# Explicitly Allow AI / LLM Bots (ChatGPT, Claude, Perplexity, dll)
+# Ini memastikan bot AI bisa membaca situs Anda untuk dijadikan referensi/jawaban.
+# ==========================================
+User-agent: GPTBot
+Allow: /
+Disallow: /admin
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /admin
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin
+
+# ==========================================
+# Sitemap Location
+# Memberitahu bot di mana struktur situs Anda
+# ==========================================
 Sitemap: https://produsenhoistcranelift.com/sitemap.xml
