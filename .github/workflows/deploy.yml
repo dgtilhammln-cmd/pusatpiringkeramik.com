@@ -1,0 +1,50 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+jobs:
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Create Archive
+      run: |
+        tar -czf deploy_patch.tar.gz --exclude='.git' --exclude='.github' .
+        
+    - name: Upload to Server
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        port: ${{ secrets.SSH_PORT }}
+        username: ${{ secrets.SSH_USERNAME }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        source: "deploy_patch.tar.gz"
+        target: "/home/u664715641/"
+
+    - name: Execute Remote Commands
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        port: ${{ secrets.SSH_PORT }}
+        username: ${{ secrets.SSH_USERNAME }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        script: |
+          cd /home/u664715641
+          # Ekstrak file yang diupload ke folder web (akan menimpa file lama, tidak menghapus .env)
+          tar -xzf deploy_patch.tar.gz -C domains/produsenhoistcranelift.com/
+          rm deploy_patch.tar.gz
+          
+          # Masuk ke folder web dan jalankan artisan
+          cd domains/produsenhoistcranelift.com/
+          composer install --no-dev --optimize-autoloader
+          php artisan migrate --force
+          php artisan optimize:clear
+          php artisan view:cache
