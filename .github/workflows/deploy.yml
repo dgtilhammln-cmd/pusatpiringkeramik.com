@@ -29,7 +29,9 @@ jobs:
           --exclude='storage/framework/cache' \
           --exclude='storage/framework/sessions' \
           --exclude='storage/framework/views' \
-          .
+          . || true
+        # Verify the archive was actually created
+        ls -lh deploy_patch.tar.gz
 
     - name: Upload tar to Hostinger via SCP
       uses: appleboy/scp-action@master
