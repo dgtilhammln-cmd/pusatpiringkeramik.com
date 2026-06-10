@@ -1072,20 +1072,4 @@
           </section>
     @endif
 
-    {{-- ═══ FAQ JSON-LD SCHEMA ═══ --}}
-    @if($article->faqs && count($article->faqs) > 0)
-    @push('scripts')
-    @php
-        $faqItems = [];
-        foreach($article->faqs as $f) {
-            if (!empty($f['q'])) {
-                $faqItems[] = ['@type'=>'Question','name'=>$f['q'],'acceptedAnswer'=>['@type'=>'Answer','text'=>$f['a']??'']];
-            }
-        }
-        $faqLd = ['@context'=>'https://schema.org','@type'=>'FAQPage','mainEntity'=>$faqItems];
-    @endphp
-    <script type="application/ld+json">{!! json_encode($faqLd, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES) !!}</script>
-    @endpush
-    @endif
-
 @endsection

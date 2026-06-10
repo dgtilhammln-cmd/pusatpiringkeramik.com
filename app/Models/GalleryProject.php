@@ -46,7 +46,7 @@ class GalleryProject extends Model
 
     public function getImageUrlAttribute(): string
     {
-        return $this->image ? asset('storage/'.$this->image) : 'https://picsum.photos/800/600?random='.$this->id;
+        return $this->image ? asset('storage/'.$this->image) : (\App\Models\Setting::get('logo') ? asset('storage/'.\App\Models\Setting::get('logo')) : asset('images/og-default.jpg'));
     }
     public function getOgImageUrlAttribute(): string
     {
