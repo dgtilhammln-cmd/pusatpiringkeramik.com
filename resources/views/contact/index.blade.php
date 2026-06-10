@@ -94,7 +94,7 @@
                     </div>
                     <div>
                         <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#25D366;margin-bottom:0.375rem;">{{ $w->label }}</div>
-                        <a href="{{ $w->wa_url }}" target="_blank" rel="noopener" data-track="wa" style="font-size:1rem;font-weight:600;color:#fff;text-decoration:none;">{{ $w->nomor_wa }}</a>
+                        <button onclick="openOrderModal('Halaman Kontak')" data-track="wa" style="background:none;border:none;cursor:pointer;padding:0;font-size:1rem;font-weight:600;color:#fff;text-decoration:none;">{{ $w->nomor_wa }}</button>
                     </div>
                 </div>
                 @endforeach

@@ -113,9 +113,9 @@
                     </button>
                     @php $wa = \App\Models\WaSetting::primary(); @endphp
                     @if($wa)
-                    <a href="{{ $wa->wa_url }}" target="_blank" rel="noopener" class="btn-outline" style="width:100%;justify-content:center;text-align:center;">
+                    <button onclick="openOrderModal('Galeri: {{ addslashes($project->title) }}')" class="btn-outline" style="width:100%;justify-content:center;text-align:center;">
                         Konsultasi via WhatsApp
-                    </a>
+                    </button>
                     @endif
                 </div>
             </div>

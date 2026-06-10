@@ -44,4 +44,62 @@ class AdminLeadController extends Controller
         $lead->delete();
         return back()->with('success', 'Lead dihapus.');
     }
+
+    public function export(Request $request)
+    {
+        $query = Lead::latest();
+
+        if ($request->filled('start_date')) {
+            $query->whereDate('created_at', '>=', $request->start_date);
+        }
+        if ($request->filled('end_date')) {
+            $query->whereDate('created_at', '<=', $request->end_date);
+        }
+
+        $leads = $query->get();
+
+        $filename = 'leads-kpt-' . now()->format('Ymd-His') . '.csv';
+
+        $headers = [
+            'Content-Type'        => 'text/csv; charset=UTF-8',
+            'Content-Disposition' => "attachment; filename=\"{$filename}\"",
+        ];
+
+        $callback = function () use ($leads) {
+            $handle = fopen('php://output', 'w');
+            // BOM untuk Excel agar karakter Indonesia tampil benar
+            fwrite($handle, "\xEF\xBB\xBF");
+
+            // Header row
+            fputcsv($handle, [
+                'ID', 'Nama', 'Perusahaan', 'Email', 'Telepon/WA',
+                'Produk Diminati', 'Pesan/Kebutuhan',
+                'Sumber', 'URL Halaman', 'Status', 'Catatan',
+                'Perangkat', 'IP Address', 'Tanggal Masuk',
+            ]);
+
+            foreach ($leads as $lead) {
+                fputcsv($handle, [
+                    $lead->id,
+                    $lead->name,
+                    $lead->company ?? '',
+                    $lead->email ?? '',
+                    $lead->phone,
+                    $lead->product ?? '',
+                    $lead->message ?? '',
+                    $lead->source ?? 'Website',
+                    $lead->page_url ?? '',
+                    $lead->status_label,
+                    $lead->notes ?? '',
+                    $lead->device_type ?? '',
+                    $lead->ip_address ?? '',
+                    $lead->created_at->format('d/m/Y H:i'),
+                ]);
+            }
+
+            fclose($handle);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
 }

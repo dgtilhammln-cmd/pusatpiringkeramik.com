@@ -40,7 +40,7 @@ class LeadController extends Controller
 
         // Save lead
         $lead = Lead::create(array_merge($validated, [
-            'source'      => 'request_order',
+            'source'      => $request->input('source', 'Website'),
             'page_url'    => $request->header('Referer'),
             'ip_address'  => $request->ip(),
             'device_type' => \App\Models\AnalyticsEvent::detectDevice($request->userAgent() ?? ''),

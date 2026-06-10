@@ -20,6 +20,7 @@
         {{-- Form --}}
         <form id="order-form" style="padding:1.75rem 2rem 2rem;display:flex;flex-direction:column;gap:1.125rem;">
             @csrf
+            <input type="hidden" name="source" id="order-source" value="Website">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
                 <div>
                     <label class="form-label" for="order-name">Nama Lengkap <span style="color:#FFD700;">*</span></label>
@@ -70,8 +71,10 @@
 </div>
 
 <script>
-function openOrderModal() {
+function openOrderModal(source = 'Website') {
     const o = document.getElementById('order-modal-overlay');
+    const sourceInput = document.getElementById('order-source');
+    if (sourceInput) sourceInput.value = source;
     o.classList.add('active');
     document.body.style.overflow = 'hidden';
     setTimeout(() => document.getElementById('order-name')?.focus(), 300);
