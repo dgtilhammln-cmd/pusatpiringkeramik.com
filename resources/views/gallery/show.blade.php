@@ -113,7 +113,7 @@
                     </button>
                     @php $wa = \App\Models\WaSetting::primary(); @endphp
                     @if($wa)
-                    <button onclick="openOrderModal('Galeri: {{ addslashes($project->title) }}')" class="btn-outline" style="width:100%;justify-content:center;text-align:center;">
+                    <button onclick="openOrderModal('Galeri: {{ addslashes($item->title) }}')" class="btn-outline" style="width:100%;justify-content:center;text-align:center;">
                         Konsultasi via WhatsApp
                     </button>
                     @endif
