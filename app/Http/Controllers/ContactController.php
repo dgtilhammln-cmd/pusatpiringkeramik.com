@@ -11,7 +11,7 @@ class ContactController extends Controller
     public function index()
     {
         $settings = Setting::getAllAsArray();
-        $waList   = WaSetting::active()->ordered()->get();
+        $wa       = WaSetting::primary();
 
         $seo = [
             'title'       => 'Hubungi Kami | CV. Karya Perdana Teknik - Konsultasi Crane & Hoist',
@@ -37,7 +37,7 @@ class ContactController extends Controller
             ])->toArray(),
         ]);
 
-        return view('contact.index', compact('settings', 'waList', 'seo', 'faq', 'schema'));
+        return view('contact.index', compact('settings', 'wa', 'seo', 'faq', 'schema'));
     }
 
     public function send(Request $request)
