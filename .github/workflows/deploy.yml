@@ -16,11 +16,12 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Create tar of changed app files (exclude vendor, node_modules, .env)
+    - name: Create tar (exclude output file itself to avoid 'file changed' error)
       run: |
-        tar -czf /tmp/deploy_patch.tar.gz \
+        tar -czf deploy_patch.tar.gz \
           --exclude='.git' \
           --exclude='.github' \
+          --exclude='./deploy_patch.tar.gz' \
           --exclude='vendor' \
           --exclude='node_modules' \
           --exclude='.env' \
@@ -37,9 +38,10 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         username: ${{ secrets.SSH_USERNAME }}
         password: ${{ secrets.SSH_PASSWORD }}
-        source: "/tmp/deploy_patch.tar.gz"
+        source: "deploy_patch.tar.gz"
         target: "/home/u664715641/"
         timeout: 120s
+        strip_components: 0
 
     - name: Extract & Clear Cache on Server
       uses: appleboy/ssh-action@master
@@ -52,15 +54,15 @@ jobs:
         script: |
           set -e
           cd /home/u664715641
-          
+
           # Extract ke folder web (tanpa menimpa .env dan vendor)
           tar -xzf deploy_patch.tar.gz -C domains/produsenhoistcranelift.com/ 2>&1
           rm -f deploy_patch.tar.gz
-          
+
           # Clear cache & rebuild view cache
           cd domains/produsenhoistcranelift.com/
           php artisan migrate --force 2>&1
           php artisan optimize:clear 2>&1
           php artisan view:cache 2>&1
-          
-          echo "✅ Deploy selesai!"
+
+          echo "Deploy selesai!"
