@@ -27,11 +27,15 @@ class AdminAnalyticsController extends Controller
             ? \Carbon\Carbon::parse($request->input('to'))->endOfDay()
             : now()->endOfDay();
 
-        $types = ['pageview', 'wa_click', 'phone_click', 'email_click'];
+        $types = ['pageview', 'wa_click'];
         $summary = [];
         foreach ($types as $type) {
             $summary[$type] = AnalyticsEvent::ofType($type)->whereBetween('created_at', [$from, $to])->count();
         }
+
+        $leadsCount = \App\Models\Lead::whereBetween('created_at', [$from, $to])->count();
+        $summary['leads'] = $leadsCount;
+        $summary['ctr'] = $summary['pageview'] > 0 ? round(($leadsCount / $summary['pageview']) * 100, 2) : 0;
 
         // Daily chart
         $daily = AnalyticsEvent::ofType('pageview')
