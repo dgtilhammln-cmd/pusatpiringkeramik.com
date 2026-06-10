@@ -15,7 +15,7 @@ $newLeadsCount = \App\Models\Lead::where('status','new')->count();
     <h1 style="font-size:1.375rem;font-weight:800;color:#fff;margin:0 0 .25rem;letter-spacing:-.02em;">Overview</h1>
     <p style="font-size:.8125rem;color:var(--text3,#7A7A8A);margin:0;">Ringkasan data website CV. Karya Perdana Teknik</p>
   </div>
-  <form method="GET" action="{{ route('admin.dashboard.index') }}" style="display: flex; gap: 0.5rem; align-items: center;">
+  <form method="GET" action="{{ route('admin.dashboard') }}" style="display: flex; gap: 0.5rem; align-items: center;">
     <input type="date" name="start_date" value="{{ $start_date ?? '' }}" style="padding: 0.5rem; font-size: 0.8rem; background: #161618; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; color: #fff; font-family: inherit;">
     <span style="color: rgba(255,255,255,0.5);">s/d</span>
     <input type="date" name="end_date" value="{{ $end_date ?? '' }}" style="padding: 0.5rem; font-size: 0.8rem; background: #161618; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; color: #fff; font-family: inherit;">

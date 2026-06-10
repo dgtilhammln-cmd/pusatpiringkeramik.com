@@ -47,8 +47,14 @@
         content: '';
         position: absolute;
         bottom: 0; left: 0; right: 0;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, var(--c-border2) 30%, var(--c-border2) 70%, transparent);
+        height: 80px;
+        background: linear-gradient(to bottom, transparent, #0a0a0a);
+        z-index: 1;
+    }
+
+    /* Override page-hero::before inside sv-hero (already handled by sv-hero::after) */
+    .page-hero.sv-hero::before {
+        display: none;
     }
 
     .sv-hero-inner {
@@ -354,7 +360,7 @@
 {{-- Removed duplicate font import --}}
 
 {{-- ═══ HERO ═══ --}}
-<section class="sv-hero">
+<section class="page-hero sv-hero">
     <div class="sv-hero-inner">
 
         {{-- Breadcrumb --}}

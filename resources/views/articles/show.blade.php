@@ -1072,4 +1072,30 @@
           </section>
     @endif
 
+    {{-- ═══ FAQ JSON-LD SCHEMA ═══ --}}
+    @if($article->faqs && count($article->faqs) > 0)
+    @push('scripts')
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            @foreach($article->faqs as $i => $faq)
+            @if(!empty($faq['q']))
+            {
+                "@type": "Question",
+                "name": {{ json_encode($faq['q']) }},
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": {{ json_encode($faq['a'] ?? '') }}
+                }
+            }{{ !$loop->last && !empty($article->faqs[$loop->index + 1]['q'] ?? '') ? ',' : '' }}
+            @endif
+            @endforeach
+        ]
+    }
+    </script>
+    @endpush
+    @endif
+
 @endsection
