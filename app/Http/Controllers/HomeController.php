@@ -19,7 +19,7 @@ class HomeController extends Controller
         $gallery      = GalleryProject::active()->ordered()->limit(8)->get();
         $articles     = Article::published()->latest()->limit(3)->get();
         $clients      = Client::active()->ordered()->get();
-        $testimonials = Testimonial::active()->ordered()->get();
+        $testimonials = Testimonial::active()->ordered()->get()->unique('name');
         $wa           = WaSetting::primary();
 
         $seo = [

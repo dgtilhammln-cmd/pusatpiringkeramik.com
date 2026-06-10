@@ -39,15 +39,12 @@
             background-position: center center !important;
             position: relative;
         }
-        /* Dark overlay - kiri lebih gelap untuk keterbacaan teks */
+        /* Dark overlay - 50% opacity penuh agar foto terlihat jelas */
         .page-hero::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(105deg,
-                rgba(0,0,0,0.88) 0%,
-                rgba(0,0,0,0.75) 50%,
-                rgba(0,0,0,0.45) 100%);
+            background: rgba(0,0,0, 0.5);
             z-index: 0;
         }
         /* Bottom fade agar tidak ada garis cacat */

@@ -59,14 +59,28 @@ class ServiceController extends Controller
         ];
 
         $schema = json_encode([
-            '@context'    => 'https://schema.org',
-            '@type'       => 'Product',
-            'name'        => $service->name,
-            'description' => $service->short_desc,
-            'url'         => route('services.show', $slug),
-            'brand'       => ['@type' => 'Brand', 'name' => 'CV. Karya Perdana Teknik'],
-            'offers'      => ['@type' => 'Offer', 'availability' => 'https://schema.org/InStock', 'priceCurrency' => 'IDR', 'seller' => ['@type' => 'Organization', 'name' => 'CV. Karya Perdana Teknik']],
-        ]);
+            [
+                '@context'    => 'https://schema.org',
+                '@type'       => 'Product',
+                'name'        => $service->name,
+                'description' => $service->short_desc,
+                'url'         => route('services.show', $slug),
+                'brand'       => ['@type' => 'Brand', 'name' => 'CV. Karya Perdana Teknik'],
+                'offers'      => ['@type' => 'Offer', 'availability' => 'https://schema.org/InStock', 'priceCurrency' => 'IDR', 'seller' => ['@type' => 'Organization', 'name' => 'CV. Karya Perdana Teknik']],
+            ],
+            [
+                '@context'   => 'https://schema.org',
+                '@type'      => 'FAQPage',
+                'mainEntity' => collect($faq)->map(fn($item) => [
+                    '@type'          => 'Question',
+                    'name'           => $item['q'],
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text'  => $item['a']
+                    ]
+                ])->toArray()
+            ]
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 
         return view('services.show', compact('service', 'settings', 'wa', 'related', 'seo', 'faq', 'schema'));
     }

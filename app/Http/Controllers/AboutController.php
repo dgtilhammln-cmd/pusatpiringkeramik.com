@@ -11,7 +11,7 @@ class AboutController extends Controller
     public function index()
     {
         $settings     = Setting::getAllAsArray();
-        $testimonials = Testimonial::active()->ordered()->get();
+        $testimonials = Testimonial::active()->ordered()->get()->unique('name');
         $clients      = Client::active()->ordered()->get();
 
         $seo = [
