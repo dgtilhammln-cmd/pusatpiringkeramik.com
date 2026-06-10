@@ -32,7 +32,7 @@
         </div>
         <div>
             @php
-                $aboutImgFallback = !empty($settings['hero_bg_image']) ? asset('storage/'.$settings['hero_bg_image']) : (!empty($settings['breadcrumb_bg']) ? asset('storage/'.$settings['breadcrumb_bg']) : asset('images/og-default.jpg'));
+                $aboutImgFallback = !empty($settings['logo']) ? asset('storage/'.$settings['logo']) : asset('images/logo.png');
             @endphp
             <img src="{{ !empty($settings['about_image']) ? asset('storage/'.$settings['about_image']) : $aboutImgFallback }}"
                  alt="Tim CV. Karya Perdana Teknik - Workshop Crane & Hoist" loading="lazy"
