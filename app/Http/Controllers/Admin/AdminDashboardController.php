@@ -13,21 +13,38 @@ use Carbon\Carbon;
 
 class AdminDashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $now  = now();
-        $from = $now->copy()->subDays(29)->startOfDay();
-        $to   = $now->copy()->endOfDay();
+        
+        $start_date = $request->input('start_date');
+        $end_date   = $request->input('end_date');
+        
+        if ($start_date && $end_date) {
+            $from = Carbon::parse($start_date)->startOfDay();
+            $to   = Carbon::parse($end_date)->endOfDay();
+        } else {
+            $from = $now->copy()->subDays(29)->startOfDay();
+            $to   = $now->copy()->endOfDay();
+        }
 
-        // Analytics stats (30 days)
+        // Calculate days diff for chart
+        $daysDiff = $from->diffInDays($to);
+        if ($daysDiff > 60) $daysDiff = 60; // Limit chart labels
+
+        $visitorCount = AnalyticsEvent::ofType('pageview')->whereBetween('created_at',[$from,$to])->count();
+        $waClicks     = AnalyticsEvent::ofType('wa_click')->whereBetween('created_at',[$from,$to])->count();
+        $leadsCount   = Lead::whereBetween('created_at',[$from,$to])->count();
+        $ctr          = $visitorCount > 0 ? round(($leadsCount / $visitorCount) * 100, 2) : 0;
+
         $stats = [
-            'pageviews'    => AnalyticsEvent::ofType('pageview')->whereBetween('created_at',[$from,$to])->count(),
-            'wa_clicks'    => AnalyticsEvent::ofType('wa_click')->whereBetween('created_at',[$from,$to])->count(),
-            'phone_clicks' => AnalyticsEvent::ofType('phone_click')->whereBetween('created_at',[$from,$to])->count(),
-            'email_clicks' => AnalyticsEvent::ofType('email_click')->whereBetween('created_at',[$from,$to])->count(),
+            'visitor' => $visitorCount,
+            'wa_click'=> $waClicks,
+            'leads'   => $leadsCount,
+            'ctr'     => $ctr,
         ];
 
-        // Leads daily chart (30 days)
+        // Leads daily chart
         $leadsChart = Lead::whereBetween('created_at',[$from,$to])
             ->selectRaw('DATE(created_at) as date, COUNT(*) as count')
             ->groupBy('date')->orderBy('date')
@@ -35,9 +52,9 @@ class AdminDashboardController extends Controller
 
         $labels = [];
         $values = [];
-        for ($i = 29; $i >= 0; $i--) {
-            $date     = $now->copy()->subDays($i)->format('Y-m-d');
-            $labels[] = $now->copy()->subDays($i)->format('d/m');
+        for ($i = $daysDiff; $i >= 0; $i--) {
+            $date     = $to->copy()->subDays($i)->format('Y-m-d');
+            $labels[] = $to->copy()->subDays($i)->format('d/m');
             $values[] = $leadsChart[$date] ?? 0;
         }
 
@@ -58,6 +75,6 @@ class AdminDashboardController extends Controller
         // Recent leads
         $recentLeads = Lead::orderByDesc('created_at')->limit(8)->get();
 
-        return view('admin.dashboard.index', compact('stats','labels','values','topPages','counts','recentLeads'));
+        return view('admin.dashboard.index', compact('stats','labels','values','topPages','counts','recentLeads','start_date','end_date'));
     }
 }

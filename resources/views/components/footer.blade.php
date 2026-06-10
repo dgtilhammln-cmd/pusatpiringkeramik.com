@@ -16,7 +16,7 @@ Data: ambil dari Setting model langsung di sini
         border-top: 1px solid rgba(255, 255, 255, 0.06);
         position: relative;
         overflow: hidden;
-        font-family: 'Montserrat', 'Plus Jakarta Sans', sans-serif;
+        font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
     /* shimmer top line */

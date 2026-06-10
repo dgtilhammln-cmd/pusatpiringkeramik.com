@@ -135,6 +135,14 @@
                 <p style="font-size:0.75rem;color:rgba(255,255,255,0.3);margin:0.5rem 0 0;">Akan otomatis dikompresi ke WebP. Gunakan gambar landscape minimal 1920×1080px.</p>
             </div>
             <div>
+                <label class="form-label">Background Image Breadcrumb (Sub-halaman)</label>
+                @if(!empty($settings['breadcrumb_bg']))
+                <div style="margin-bottom:0.75rem;border-radius:4px;overflow:hidden;"><img src="{{ asset('storage/'.$settings['breadcrumb_bg']) }}" style="height:120px;width:100%;object-fit:cover;" alt="Breadcrumb BG"></div>
+                @endif
+                <input type="file" name="breadcrumb_bg" class="form-input" accept="image/*" style="padding:0.5rem;">
+                <p style="font-size:0.75rem;color:rgba(255,255,255,0.3);margin:0.5rem 0 0;">Gambar header untuk halaman Layanan, Artikel, dll.</p>
+            </div>
+            <div>
                 <label class="form-label">About Image</label>
                 @if(!empty($settings['about_image']))
                 <div style="margin-bottom:0.75rem;border-radius:4px;overflow:hidden;"><img src="{{ asset('storage/'.$settings['about_image']) }}" style="height:120px;width:100%;object-fit:cover;" alt="About"></div>

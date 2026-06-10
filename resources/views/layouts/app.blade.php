@@ -29,6 +29,31 @@
     {{-- Favicon --}}
     <link rel="icon" type="image/png" href="{{ asset('favicon.ico') }}">
 
+    {{-- Breadcrumb / Page Hero Background --}}
+    @php $breadcrumbBg = \App\Models\Setting::get('breadcrumb_bg'); @endphp
+    @if($breadcrumbBg)
+    <style>
+        .page-hero {
+            background-image: url('{{ asset('storage/'.$breadcrumbBg) }}') !important;
+            background-size: cover !important;
+            background-position: center !important;
+            position: relative;
+        }
+        /* Add overlay so text remains readable */
+        .page-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.95) 100%);
+            z-index: 0;
+        }
+        .page-hero > div {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+    @endif
+
     @stack('styles')
 </head>
 <body>
