@@ -7,13 +7,13 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <title>@yield('title','Dashboard') | KPT Admin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 @stack('styles')
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--yellow:#FFD700;--bg:#0F0F0F;--bg2:#161618;--bg3:#1E1E22;--border:rgba(255,255,255,.07);--text1:#FFFFFF;--text2:#E0E0E0;--text3:#7A7A8A}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text1);min-height:100vh;display:flex}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text1);min-height:100vh;display:flex}
 
 /* SIDEBAR */
 #sidebar{width:240px;min-height:100vh;background:#0A0A0C;border-right:1px solid var(--border);position:fixed;top:0;left:0;z-index:200;display:flex;flex-direction:column;transition:transform .3s ease}

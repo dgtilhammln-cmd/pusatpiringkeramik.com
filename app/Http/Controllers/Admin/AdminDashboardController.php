@@ -10,6 +10,7 @@ use App\Models\GalleryProject;
 use App\Models\Client;
 use App\Models\Lead;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class AdminDashboardController extends Controller
 {

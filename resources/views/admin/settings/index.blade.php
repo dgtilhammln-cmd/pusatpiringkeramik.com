@@ -10,7 +10,7 @@
 <div style="display:flex;gap:0.25rem;margin-bottom:2rem;border-bottom:1px solid rgba(255,255,255,0.07);padding-bottom:0;flex-wrap:wrap;">
     @foreach(['general'=>'⚙️ Umum','seo'=>'🔍 SEO','hero'=>'🏠 Hero','contact'=>'📞 Kontak','social'=>'🔗 Sosial','legal'=>'📋 Legalitas'] as $tab=>$label)
     <button type="button" onclick="switchTab('{{ $tab }}')" id="tab-btn-{{ $tab }}"
-            style="padding:0.625rem 1.125rem;font-size:0.875rem;font-weight:600;border:none;background:transparent;cursor:pointer;color:rgba(255,255,255,0.4);border-bottom:2px solid transparent;transition:all 0.2s;font-family:'Plus Jakarta Sans',sans-serif;margin-bottom:-1px;">
+            style="padding:0.625rem 1.125rem;font-size:0.875rem;font-weight:600;border:none;background:transparent;cursor:pointer;color:rgba(255,255,255,0.4);border-bottom:2px solid transparent;transition:all 0.2s;font-family:'Montserrat',sans-serif;margin-bottom:-1px;">
         {{ $label }}
     </button>
     @endforeach
