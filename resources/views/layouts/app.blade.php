@@ -36,20 +36,36 @@
         .page-hero {
             background-image: url('{{ asset('storage/'.$breadcrumbBg) }}') !important;
             background-size: cover !important;
-            background-position: center !important;
+            background-position: center center !important;
             position: relative;
         }
-        /* Add overlay so text remains readable */
+        /* Dark overlay - kiri lebih gelap untuk keterbacaan teks */
         .page-hero::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.95) 100%);
+            background: linear-gradient(105deg,
+                rgba(0,0,0,0.88) 0%,
+                rgba(0,0,0,0.75) 50%,
+                rgba(0,0,0,0.45) 100%);
             z-index: 0;
         }
-        .page-hero > div {
-            position: relative;
+        /* Bottom fade agar tidak ada garis cacat */
+        .page-hero::after {
+            content: "";
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, #0a0a0a);
             z-index: 1;
+            pointer-events: none;
+        }
+        /* Semua child harus di atas overlay */
+        .page-hero > div,
+        .page-hero .sv-hero-inner,
+        .page-hero .article-hero-inner {
+            position: relative;
+            z-index: 2;
         }
     </style>
     @endif
