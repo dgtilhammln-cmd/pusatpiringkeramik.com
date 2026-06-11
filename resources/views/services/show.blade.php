@@ -15,16 +15,16 @@
         *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --c-bg: #FFFFFF;
-            --c-surface: #F8FAFC;
-            --c-card: #F1F5F9;
+            --c-bg: #080808;
+            --c-surface: #101010;
+            --c-card: #161618;
             --c-border:  rgba(255,255,255,0.07);
             --c-border2: rgba(255,255,255,0.12);
-            --c-text:    #e8e8e8;
-            --c-muted:   #666670;
+            --c-text:    #FFFFFF;
+            --c-muted:   #A0A0A8;
             --c-dim:     #3a3a42;
-            --c-accent:  #0EA5E9;
-            --c-accent2: #F5A623;
+            --c-accent:  #FFD700;
+            --c-accent2: #E6C200;
             --c-white:   #ffffff;
             --radius-sm: 8px;
             --radius-md: 14px;
