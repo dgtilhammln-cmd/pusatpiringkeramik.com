@@ -72,6 +72,9 @@
 
 <script>
 function openOrderModal(source = 'Website') {
+    if (typeof trackEvent === 'function') {
+        trackEvent('wa_click');
+    }
     const o = document.getElementById('order-modal-overlay');
     const sourceInput = document.getElementById('order-source');
     if (sourceInput) sourceInput.value = source;

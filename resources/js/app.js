@@ -23,6 +23,7 @@ async function trackEvent(type, url = window.location.href) {
     try {
         await fetch(`/track/${type}`, {
             method: 'POST',
+            keepalive: true,
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': csrfToken,
