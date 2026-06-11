@@ -7,7 +7,65 @@ $totalLeads    = \App\Models\Lead::count();
 $todayLeads    = \App\Models\Lead::whereDate('created_at',today())->count();
 $monthLeads    = \App\Models\Lead::whereMonth('created_at',now()->month)->count();
 $newLeadsCount = \App\Models\Lead::where('status','new')->count();
+
+$hour = now()->timezone('Asia/Jakarta')->format('H');
+if ($hour < 11) { $greeting = 'pagi'; }
+elseif ($hour < 15) { $greeting = 'siang'; }
+elseif ($hour < 18) { $greeting = 'sore'; }
+else { $greeting = 'malam'; }
+
+$quotes = [
+    "Pertumbuhan berawal dari tekad untuk terus melangkah, satu pencapaian setiap harinya.",
+    "Setiap tantangan adalah anak tangga menuju kesuksesan perusahaan yang lebih besar.",
+    "Inovasi hari ini adalah pondasi kokoh untuk kejayaan esok hari.",
+    "Kolaborasi dan dedikasi adalah kunci utama menuju pertumbuhan tanpa batas.",
+    "Tidak ada hasil gemilang tanpa kerja keras dan sinergi bersama.",
+    "Terus bergerak maju, karena potensi perusahaan kita tidak memiliki batas akhir.",
+    "Keberhasilan besar dimulai dari langkah-langkah kecil yang konsisten.",
+    "Jadilah pelopor perubahan, ciptakan standar baru dalam industri kita.",
+    "Fokus pada kualitas akan selalu membawa kita pada kuantitas kesuksesan.",
+    "Visi yang jelas dan kerja keras akan mewujudkan masa depan gemilang.",
+    "Jadikan setiap masalah sebagai peluang untuk berkembang lebih pesat.",
+    "Ketekunan hari ini adalah jaminan kemakmuran perusahaan di masa depan.",
+    "Kita membangun lebih dari sekadar bisnis; kita membangun mahakarya.",
+    "Pertumbuhan sejati terjadi ketika kita melampaui batas zona nyaman.",
+    "Energi positif dan kerja cerdas adalah katalisator pertumbuhan kita.",
+    "Perubahan adalah satu-satunya konstanta; beradaptasi adalah kunci untuk menang.",
+    "Tetap fokus pada tujuan, dan biarkan hasil kerja keras kita yang berbicara.",
+    "Visi besar membutuhkan eksekusi yang konsisten dan semangat tak pantang menyerah.",
+    "Jangan pernah berhenti berinovasi, karena dunia terus bergerak maju.",
+    "Kesuksesan adalah perjalanan, bukan tujuan akhir; mari terus bertumbuh.",
+    "Setiap pelanggan yang puas adalah fondasi dari kerajaan bisnis kita.",
+    "Keunggulan bukanlah tindakan sesekali, melainkan kebiasaan kita sehari-hari.",
+    "Bersama-sama kita kuat, bersama-sama kita menembus batas ketidakmungkinan.",
+    "Pemimpin sejati menciptakan peluang pertumbuhan di setiap kondisi.",
+    "Percaya pada proses, kerja keras kita akan berbuah manis pada waktunya.",
+    "Jangan takut mencoba hal baru; di sanalah tersembunyi inovasi terbesar.",
+    "Kunci keberhasilan adalah fokus pada solusi, bukan pada masalah.",
+    "Mari tingkatkan standar kita dan tunjukkan pada dunia apa yang kita bisa.",
+    "Kemajuan kecil setiap hari akan menghasilkan pencapaian masif di akhir tahun.",
+    "Teruslah melangkah, sejarah kejayaan perusahaan ini sedang kita tulis bersama."
+];
+$dayOfYear = now()->timezone('Asia/Jakarta')->dayOfYear;
+$dailyQuote = $quotes[$dayOfYear % count($quotes)];
+$adminName = session('admin_name', 'Administrator');
 @endphp
+
+{{-- Welcome Box --}}
+<div style="background:linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(255,215,0,0.02) 100%); border: 1px solid rgba(255,215,0,0.2); border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 2rem; position: relative; overflow: hidden;">
+  <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%); border-radius: 50%;"></div>
+  <div style="position: absolute; bottom: -20px; right: 10%; width: 100px; height: 100px; background: radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 70%); border-radius: 50%;"></div>
+  
+  <div style="position: relative; z-index: 1;">
+    <h2 style="font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0 0 0.5rem; display: flex; align-items: center; gap: 0.6rem; letter-spacing:-0.02em;">
+      <svg width="22" height="22" fill="none" stroke="var(--yellow)" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+      Selamat {{ $greeting }}, {{ $adminName }} <span style="color:var(--yellow);">- CV. Karya Perdana Teknik</span>
+    </h2>
+    <p style="font-size: 0.85rem; color: var(--text2); margin: 0; line-height: 1.6; font-style: italic; max-width: 800px; font-weight: 500;">
+      "{{ $dailyQuote }}"
+    </p>
+  </div>
+</div>
 
 {{-- Page Header --}}
 <div style="margin-bottom:1.5rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
