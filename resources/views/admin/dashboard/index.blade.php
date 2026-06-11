@@ -16,12 +16,35 @@ $newLeadsCount = \App\Models\Lead::where('status','new')->count();
     <p style="font-size:.8125rem;color:var(--text3,#7A7A8A);margin:0;">Ringkasan data website CV. Karya Perdana Teknik</p>
   </div>
   <form method="GET" action="{{ route('admin.dashboard') }}" style="display: flex; gap: 0.5rem; align-items: center;">
-    <input type="date" name="start_date" value="{{ $start_date ?? '' }}" style="padding: 0.5rem; font-size: 0.8rem; background: #161618; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; color: #fff; font-family: inherit;">
+    <input type="date" id="dash-start" name="start_date" value="{{ $start_date ?? '' }}" style="padding: 0.5rem; font-size: 0.8rem; background: #161618; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; color: #fff; font-family: inherit;">
     <span style="color: rgba(255,255,255,0.5);">s/d</span>
-    <input type="date" name="end_date" value="{{ $end_date ?? '' }}" style="padding: 0.5rem; font-size: 0.8rem; background: #161618; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; color: #fff; font-family: inherit;">
+    <input type="date" id="dash-end" name="end_date" value="{{ $end_date ?? '' }}" style="padding: 0.5rem; font-size: 0.8rem; background: #161618; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; color: #fff; font-family: inherit;">
     <button type="submit" class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Filter</button>
+    <div style="border-left: 1px solid rgba(255,255,255,0.1); margin: 0 0.25rem; height: 30px;"></div>
+    <button type="button" onclick="downloadReport('xls')" class="btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem; border-color: #25D366; color: #25D366;" onmouseover="this.style.background='rgba(37,211,102,0.1)'" onmouseout="this.style.background='transparent'">↓ XLS</button>
+    <button type="button" onclick="downloadReport('pdf')" class="btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem; border-color: #EF4444; color: #EF4444;" onmouseover="this.style.background='rgba(239,68,68,0.1)'" onmouseout="this.style.background='transparent'">↓ PDF</button>
   </form>
 </div>
+<div style="font-size:0.75rem; color:var(--text3,#7A7A8A); margin-top:-1rem; margin-bottom:1.5rem; text-align:right;">
+  *Silakan filter periode tanggal terlebih dahulu sebelum men-download laporan.
+</div>
+
+<script>
+function downloadReport(format) {
+    const start = document.getElementById('dash-start').value;
+    const end = document.getElementById('dash-end').value;
+    if(!start || !end) {
+        alert('Mohon isi rentang tanggal (s/d) lalu klik Filter terlebih dahulu!');
+        return;
+    }
+    const url = `/admin/analytics/export/${format}?start_date=${start}&end_date=${end}`;
+    if(format === 'pdf') {
+        window.open(url, '_blank');
+    } else {
+        window.location.href = url;
+    }
+}
+</script>
 
 {{-- STAT CARDS ROW --}}
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem;">

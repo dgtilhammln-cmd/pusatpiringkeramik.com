@@ -3,17 +3,32 @@
 @section('page-title','Analytics & Statistik')
 @section('content')
 
-{{-- Period Selector --}}
+<div style="margin-bottom:1.5rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
+  <div>
+    <h1 style="font-size:1.375rem;font-weight:800;color:#fff;margin:0 0 .25rem;letter-spacing:-.02em;">Analytics & Statistik</h1>
+    <p style="font-size:.8125rem;color:var(--text3,#7A7A8A);margin:0;">Laporan performa website dan konversi Leads</p>
+  </div>
+  <div style="display: flex; gap: 0.5rem; align-items: center;">
+    <input type="date" id="date-from" style="padding: 0.5rem; font-size: 0.8rem; background: #161618; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; color: #fff; font-family: inherit;">
+    <span style="color: rgba(255,255,255,0.5);">s/d</span>
+    <input type="date" id="date-to" style="padding: 0.5rem; font-size: 0.8rem; background: #161618; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; color: #fff; font-family: inherit;">
+    <button onclick="loadCustomData()" class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Filter</button>
+    
+    <div style="border-left: 1px solid rgba(255,255,255,0.1); margin: 0 0.25rem; height: 30px;"></div>
+    
+    <button onclick="downloadReport('xls')" class="btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem; border-color: #25D366; color: #25D366;" onmouseover="this.style.background='rgba(37,211,102,0.1)'" onmouseout="this.style.background='transparent'">↓ XLS</button>
+    <button onclick="downloadReport('pdf')" class="btn-outline" style="padding: 0.5rem 1rem; font-size: 0.8rem; border-color: #EF4444; color: #EF4444;" onmouseover="this.style.background='rgba(239,68,68,0.1)'" onmouseout="this.style.background='transparent'">↓ PDF</button>
+  </div>
+</div>
+<div style="font-size:0.75rem; color:var(--text3,#7A7A8A); margin-top:-1rem; margin-bottom:1.5rem; text-align:right;">
+  *Silakan filter periode tanggal terlebih dahulu sebelum men-download laporan.
+</div>
+
 <div style="display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap;align-items:center;">
-    <span style="font-size:0.8125rem;color:#A1A1AA;font-weight:600;">Periode:</span>
+    <span style="font-size:0.8125rem;color:#A1A1AA;font-weight:600;">Periode Cepat:</span>
     @foreach(['7'=>'7 Hari','30'=>'30 Hari','365'=>'1 Tahun'] as $p=>$l)
-    <button onclick="loadData('{{ $p }}')" id="btn-{{ $p }}" style="padding:0.375rem 0.875rem;font-size:0.8125rem;font-weight:600;border:1px solid #27272A;background:{{ $p==='30'?'#F5A623':'transparent' }};color:{{ $p==='30'?'#000':'#A1A1AA' }};cursor:pointer;transition:all 0.2s;">{{ $l }}</button>
+    <button onclick="loadData('{{ $p }}')" id="btn-{{ $p }}" style="padding:0.375rem 0.875rem;font-size:0.8125rem;font-weight:600;border:1px solid #27272A;background:{{ $p==='30'?'#FFD700':'transparent' }};color:{{ $p==='30'?'#000':'#A1A1AA' }};border-radius:4px;cursor:pointer;transition:all 0.2s;">{{ $l }}</button>
     @endforeach
-    <span style="margin: 0 0.5rem; color:#A1A1AA;">|</span>
-    <input type="date" id="date-from" style="padding: 0.375rem; font-size: 0.8rem; background: transparent; border: 1px solid #27272A; color: #fff; font-family: inherit;">
-    <span style="color: #A1A1AA;">s/d</span>
-    <input type="date" id="date-to" style="padding: 0.375rem; font-size: 0.8rem; background: transparent; border: 1px solid #27272A; color: #fff; font-family: inherit;">
-    <button onclick="loadCustomData()" style="padding:0.375rem 0.875rem;font-size:0.8125rem;font-weight:600;border:none;background:#3B82F6;color:#fff;cursor:pointer;transition:all 0.2s;">Filter Custom</button>
 </div>
 
 {{-- Summary Cards --}}
@@ -128,6 +143,21 @@ function renderData(data) {
 
 // Load on page init
 loadData('30');
+
+function downloadReport(format) {
+    const start = document.getElementById('date-from').value;
+    const end = document.getElementById('date-to').value;
+    if(!start || !end) {
+        alert('Mohon isi rentang tanggal (s/d) lalu klik Filter terlebih dahulu!');
+        return;
+    }
+    const url = `/admin/analytics/export/${format}?start_date=${start}&end_date=${end}`;
+    if(format === 'pdf') {
+        window.open(url, '_blank');
+    } else {
+        window.location.href = url;
+    }
+}
 </script>
 @endpush
 @endsection

@@ -67,6 +67,8 @@ Route::prefix('admin')->group(function () {
 
         Route::get('/analytics', [AdminAnalyticsController::class, 'index'])->name('admin.analytics');
         Route::get('/analytics/data', [AdminAnalyticsController::class, 'data'])->name('admin.analytics.data');
+        Route::get('/analytics/export/xls', [AdminAnalyticsController::class, 'exportXls'])->name('admin.analytics.export_xls');
+        Route::get('/analytics/export/pdf', [AdminAnalyticsController::class, 'exportPdf'])->name('admin.analytics.export_pdf');
 
         Route::get('/settings', [AdminSettingsController::class, 'index'])->name('admin.settings');
         Route::post('/settings', [AdminSettingsController::class, 'update'])->name('admin.settings.update');
