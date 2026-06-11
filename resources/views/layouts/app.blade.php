@@ -74,6 +74,9 @@
     @endif
 
     @stack('styles')
+
+    {{-- Custom Head Scripts (e.g. GTM, Analytics) --}}
+    {!! \App\Models\Setting::get('head_scripts') !!}
 </head>
 <body>
 
@@ -101,5 +104,8 @@
 
 
     @stack('scripts')
+
+    {{-- Custom Body Scripts (e.g. Chat Widgets) --}}
+    {!! \App\Models\Setting::get('body_scripts') !!}
 </body>
 </html>
