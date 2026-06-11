@@ -32,6 +32,12 @@ class AdminLeadController extends Controller
         return back()->with('success', 'Status lead diperbarui.');
     }
 
+    public function markAllRead()
+    {
+        Lead::where('status', 'new')->update(['status' => 'contacted']);
+        return back()->with('success', 'Semua notifikasi baru telah ditandai sebagai dibaca.');
+    }
+
     public function updateNote(Request $request, Lead $lead)
     {
         $request->validate(['notes' => 'nullable|max:2000']);

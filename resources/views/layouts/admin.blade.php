@@ -195,12 +195,46 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text1)
       <a href="{{ route('admin.settings') }}" class="topbar-icon-btn" title="Pengaturan">
         <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
       </a>
-      @if($newLeads > 0)
-      <a href="{{ route('admin.leads.index') }}" class="topbar-icon-btn" title="{{ $newLeads }} lead baru" style="position:relative;">
-        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
-        <span style="position:absolute;top:-3px;right:-3px;background:var(--yellow);color:#000;font-size:.5rem;font-weight:900;width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;">{{ $newLeads }}</span>
-      </a>
-      @endif
+      @php
+        $newLeadsCount = \App\Models\Lead::where('status', 'new')->count();
+        $recentLeads = \App\Models\Lead::where('status', 'new')->latest()->take(5)->get();
+      @endphp
+      <div style="position:relative;" id="notif-container">
+        <button class="topbar-icon-btn" title="{{ $newLeadsCount }} lead baru" style="position:relative;border:1px solid var(--border);" onclick="toggleNotif(event)">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
+          @if($newLeadsCount > 0)
+          <span style="position:absolute;top:-3px;right:-3px;background:var(--yellow);color:#000;font-size:.5rem;font-weight:900;width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;">{{ $newLeadsCount }}</span>
+          @endif
+        </button>
+
+        <div id="notif-dropdown" style="display:none;position:absolute;top:calc(100% + .5rem);right:0;width:320px;background:#161618;border:1px solid var(--border);border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,.5);z-index:999;flex-direction:column;">
+          <div style="padding:1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+            <strong style="font-size:.875rem;">Notifikasi Baru</strong>
+            @if($newLeadsCount > 0)
+            <form action="{{ route('admin.leads.mark_read') }}" method="POST" style="margin:0;">
+              @csrf
+              <button type="submit" style="background:none;border:none;color:var(--yellow);font-size:.75rem;cursor:pointer;font-weight:600;font-family:inherit;">Tandai Semua Dibaca</button>
+            </form>
+            @endif
+          </div>
+          <div style="max-height:300px;overflow-y:auto;">
+            @if($newLeadsCount > 0)
+              @foreach($recentLeads as $lead)
+                <a href="{{ route('admin.leads.show', $lead) }}" style="display:block;padding:.875rem 1rem;border-bottom:1px solid var(--border);text-decoration:none;transition:background .2s;" onmouseover="this.style.background='rgba(255,215,0,0.05)'" onmouseout="this.style.background='none'">
+                  <div style="font-size:.8125rem;color:#fff;font-weight:600;">{{ $lead->name }}</div>
+                  <div style="font-size:.7rem;color:var(--text3);margin-top:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                    {{ $lead->product ?? 'Inquiry Baru' }}
+                  </div>
+                  <div style="font-size:.65rem;color:var(--yellow);margin-top:.375rem;">{{ $lead->created_at->diffForHumans() }}</div>
+                </a>
+              @endforeach
+            @else
+              <div style="padding:2rem 1rem;text-align:center;color:var(--text3);font-size:.8125rem;">Tidak ada notifikasi baru.</div>
+            @endif
+          </div>
+          <a href="{{ route('admin.leads.index') }}" style="display:block;padding:.75rem;text-align:center;font-size:.75rem;color:#fff;text-decoration:none;border-top:1px solid var(--border);background:rgba(255,255,255,.02);font-weight:500;" onmouseover="this.style.color='var(--yellow)'" onmouseout="this.style.color='#fff'">Lihat Semua Leads</a>
+        </div>
+      </div>
       <div class="avatar">{{ strtoupper(substr(session('admin_name','A'),0,1)) }}</div>
     </div>
   </header>
@@ -233,6 +267,17 @@ function sbSearch(q){
     l.style.display=l.textContent.toLowerCase().includes(q)?'flex':'none';
   });
 }
+function toggleNotif(e) {
+  e.stopPropagation();
+  const dropdown = document.getElementById('notif-dropdown');
+  dropdown.style.display = dropdown.style.display === 'none' ? 'flex' : 'none';
+}
+window.addEventListener('click', function(e) {
+  const dropdown = document.getElementById('notif-dropdown');
+  if (dropdown && !e.target.closest('#notif-container')) {
+    dropdown.style.display = 'none';
+  }
+});
 </script>
 </body>
 </html>
