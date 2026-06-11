@@ -25,7 +25,7 @@
         --c-accent:  #FFD700;
         --c-accent2: #F5A623;
         --c-white:   #ffffff;
-        --font: 'Plus Jakarta Sans', sans-serif;
+        --font: 'Montserrat', sans-serif;
         --ease: cubic-bezier(0.25,0.46,0.45,0.94);
         --nav-h: 64px;
         --top-h: 36px;
@@ -535,7 +535,7 @@
                 <div class="nav-logo-badge">
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <rect width="40" height="40" rx="4" fill="#FFD700"/>
-                        <text x="20" y="27" font-family="'Plus Jakarta Sans',sans-serif" font-size="13" font-weight="900" fill="#000" text-anchor="middle">KPT</text>
+                        <text x="20" y="27" font-family="'Montserrat',sans-serif" font-size="13" font-weight="900" fill="#000" text-anchor="middle">KPT</text>
                     </svg>
                 </div>
             @endif

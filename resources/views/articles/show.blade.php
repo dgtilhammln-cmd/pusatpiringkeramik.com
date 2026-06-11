@@ -24,7 +24,7 @@
       --radius-sm: 8px;
       --radius-md: 14px;
       --radius-lg: 22px;
-      --font:      'Plus Jakarta Sans', sans-serif;
+      --font:      'Montserrat', sans-serif;
       --ease:      cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 

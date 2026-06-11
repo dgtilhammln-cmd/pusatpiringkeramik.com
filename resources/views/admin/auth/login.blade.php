@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Admin | CV. Karya Perdana Teknik</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     @if(file_exists(public_path('build/assets')) && count(glob(public_path('build/assets/*.css'))) > 0)
         @vite(['resources/css/app.css'])
     @else
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @endif
-    <style>body{font-family:'Plus Jakarta Sans',sans-serif;background:#0A0A0A;color:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;}</style>
+    <style>body{font-family:'Montserrat',sans-serif;background:#0A0A0A;color:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;}</style>
 </head>
 <body>
 <div style="width:100%;max-width:420px;padding:1.5rem;">

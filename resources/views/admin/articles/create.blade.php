@@ -63,7 +63,7 @@
       <button type="button" id="html-btn" onclick="toggleHtml()" style="padding:.25rem .625rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.4);border-radius:3px;cursor:pointer;font-size:.75rem;font-family:monospace;">HTML</button>
     </div>
     <div id="editor" contenteditable="true"
-         style="min-height:420px;padding:1.25rem;color:#D4D4D8;font-size:.9375rem;line-height:1.9;outline:none;font-family:'Plus Jakarta Sans',sans-serif;"
+         style="min-height:420px;padding:1.25rem;color:#D4D4D8;font-size:.9375rem;line-height:1.9;outline:none;font-family:'Montserrat',sans-serif;"
          oninput="syncContent()">{!! old('content',$a?->content) !!}</div>
     <textarea id="html-editor" name="content" style="display:none;width:100%;min-height:420px;padding:1.25rem;color:#D4D4D8;font-size:.8rem;line-height:1.65;font-family:'Fira Code',monospace;background:transparent;border:none;outline:none;resize:vertical;">{{ old('content',$a?->content) }}</textarea>
   </div>

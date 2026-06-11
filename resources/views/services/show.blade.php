@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
-    {{-- Google Fonts: Plus Jakarta Sans --}}
+    {{-- Google Fonts: Montserrat --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <style>
         /* ═══════════════════════════════════════
@@ -29,7 +29,7 @@
             --radius-sm: 8px;
             --radius-md: 14px;
             --radius-lg: 22px;
-            --font: 'Inter','Plus Jakarta Sans', sans-serif;
+            --font: 'Inter','Montserrat', sans-serif;
             --ease: cubic-bezier(0.25,0.46,0.45,0.94);
         }
 

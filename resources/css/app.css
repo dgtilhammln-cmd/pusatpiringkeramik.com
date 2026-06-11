@@ -2,14 +2,14 @@
    CV. Karya Perdana Teknik — Main Stylesheet v2
    Design System: Modern Industrial Premium
    Primary: #FFD700 (True Yellow) | Dark: #080808
-   Font: Plus Jakarta Sans
+   Font: Montserrat
    ================================================ */
 
 /* ================================================
    CSS VARIABLES
    ================================================ */
 :root {
-  --font-jakarta: "Plus Jakarta Sans", sans-serif;
+  --font-jakarta: "Montserrat", sans-serif;
 
   /* Brand Colors */
   --yellow:       #FFD700;

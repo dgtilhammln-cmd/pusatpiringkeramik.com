@@ -31,7 +31,7 @@
 
   {{-- Visual editor --}}
   <div id="{{ $edId }}" contenteditable="true"
-       style="min-height:{{ $height ?? '320px' }};padding:1.125rem;color:#D4D4D8;font-size:.9375rem;line-height:1.85;outline:none;font-family:'Plus Jakarta Sans',sans-serif;"
+       style="min-height:{{ $height ?? '320px' }};padding:1.125rem;color:#D4D4D8;font-size:.9375rem;line-height:1.85;outline:none;font-family:'Montserrat',sans-serif;"
        oninput="document.getElementById('{{ $haId }}').value=this.innerHTML;"
   >{!! $value ?? '' !!}</div>
 
