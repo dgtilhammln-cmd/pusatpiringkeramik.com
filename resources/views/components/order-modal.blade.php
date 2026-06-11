@@ -71,10 +71,20 @@
 </div>
 
 <script>
+async function trackModalWaClick() {
+    try {
+        const token = document.querySelector('meta[name="csrf-token"]')?.content;
+        await fetch('/track/wa_click', {
+            method: 'POST',
+            keepalive: true,
+            headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': token },
+            body: JSON.stringify({ url: window.location.href })
+        });
+    } catch(e) {}
+}
+
 function openOrderModal(source = 'Website') {
-    if (typeof trackEvent === 'function') {
-        trackEvent('wa_click');
-    }
+    trackModalWaClick();
     const o = document.getElementById('order-modal-overlay');
     const sourceInput = document.getElementById('order-source');
     if (sourceInput) sourceInput.value = source;
