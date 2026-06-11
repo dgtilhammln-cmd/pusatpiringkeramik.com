@@ -662,21 +662,6 @@
                 </div>
             </div>
 
-            {{-- Produk lainnya --}}
-            @if($related->count())
-                <div class="sidebar-card">
-                    <div class="sidebar-card-title">Produk Lainnya</div>
-                    @foreach($related as $r)
-                        <a href="{{ route('services.show', $r->slug) }}" class="related-item">
-                            <svg class="related-arrow" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                                <polyline points="9 18 15 12 9 6"/>
-                            </svg>
-                            {{ $r->name }}
-                        </a>
-                    @endforeach
-                </div>
-            @endif
-
         </aside>
     </div>
 
