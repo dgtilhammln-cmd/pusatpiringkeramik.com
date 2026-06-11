@@ -9,6 +9,12 @@
     {{-- SEO Component --}}
     @include('components.seo')
 
+    {{-- Favicon --}}
+    @php $favicon = \App\Models\Setting::get('favicon') ? asset('storage/'.\App\Models\Setting::get('favicon')) : asset('favicon.ico'); @endphp
+    <link rel="icon" type="image/x-icon" href="{{ $favicon }}">
+    <link rel="shortcut icon" href="{{ $favicon }}">
+    <link rel="apple-touch-icon" href="{{ $favicon }}">
+
     {{-- Google Fonts: Montserrat --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
