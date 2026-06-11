@@ -15,21 +15,21 @@
         *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --c-bg:      #0a0a0a;
-            --c-surface: #111113;
-            --c-card:    #161618;
+            --c-bg: #FFFFFF;
+            --c-surface: #F8FAFC;
+            --c-card: #F1F5F9;
             --c-border:  rgba(255,255,255,0.07);
             --c-border2: rgba(255,255,255,0.12);
             --c-text:    #e8e8e8;
             --c-muted:   #666670;
             --c-dim:     #3a3a42;
-            --c-accent:  #FFD700;
+            --c-accent:  #0EA5E9;
             --c-accent2: #F5A623;
             --c-white:   #ffffff;
             --radius-sm: 8px;
             --radius-md: 14px;
             --radius-lg: 22px;
-            --font: 'Plus Jakarta Sans', sans-serif;
+            --font: 'Inter','Plus Jakarta Sans', sans-serif;
             --ease: cubic-bezier(0.25,0.46,0.45,0.94);
         }
 
@@ -356,6 +356,78 @@
 
         .related-item:hover .related-arrow { transform: translateX(3px); }
 
+        /* Related Products Grid (Bottom) */
+        .related-grid-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--c-card);
+            border: 1px solid var(--c-border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: border-color 0.3s, transform 0.3s var(--ease);
+        }
+
+        .related-grid-card:hover {
+            border-color: var(--c-border2);
+            transform: translateY(-4px);
+        }
+
+        .related-grid-img {
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            border-bottom: 1px solid var(--c-border);
+        }
+
+        .related-grid-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+            transition: opacity 0.3s, transform 0.5s var(--ease);
+        }
+
+        .related-grid-card:hover img {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        .related-grid-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .related-grid-title {
+            font-size: 1rem;
+            color: var(--c-white);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-grid-desc {
+            font-size: 0.8rem;
+            color: var(--c-muted);
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 1.25rem;
+        }
+
+        .related-grid-link {
+            margin-top: auto;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--c-accent);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
         /* ═══════════════════════════════════════
            FAQ SECTION
         ═══════════════════════════════════════ */
@@ -539,11 +611,10 @@
 
             <div class="hero-ctas-service" style="margin-top:2rem;display:flex;gap:0.875rem;flex-wrap:wrap;">
                 @if($wa)
-                    <a href="{{ $wa->buildUrl($service->name) }}" target="_blank" rel="noopener"
-                       class="btn-primary" data-track="wa">
+                    <button onclick="openOrderModal('Konsultasi Produk: {{ addslashes($service->name) }}')" class="btn-primary" data-track="wa">
                         <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
                         Konsultasi Produk Ini
-                    </a>
+                    </button>
                 @endif
                 <a href="{{ route('services') }}" class="btn-ghost">← Semua Produk</a>
             </div>
@@ -557,7 +628,7 @@
         <div>
             <div class="service-img-wrap">
                 <img src="{{ $service->image_url }}"
-                     alt="{{ $service->name }} - CV. Karya Perdana Teknik"
+                     alt="{{ $service->name }} - Cyclevent"
                      loading="lazy">
             </div>
 
@@ -610,6 +681,34 @@
     </div>
 
 
+    {{-- ═══ RELATED SERVICES GRID ═══ --}}
+    @if($related->count())
+    <section class="related-section" data-aos="fade-up" style="padding: 4rem 1.5rem; background: var(--c-bg); border-top: 1px solid var(--c-border);">
+        <div style="max-width: 1280px; margin: 0 auto;">
+            <div class="s-label">Eksplorasi</div>
+            <h2 class="s-title" style="margin-bottom: 2.5rem; font-size: clamp(1.5rem, 2.5vw, 2rem);">Produk & Layanan <strong>Lainnya</strong></h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+                @foreach($related as $r)
+                <a href="{{ route('services.show', $r->slug) }}" class="related-grid-card">
+                    <div class="related-grid-img">
+                        <img src="{{ $r->image_url }}" alt="{{ $r->name }}" loading="lazy">
+                    </div>
+                    <div class="related-grid-content">
+                        <h3 class="related-grid-title">{{ $r->name }}</h3>
+                        <p class="related-grid-desc">{{ $r->short_desc }}</p>
+                        <div class="related-grid-link">
+                            Lihat Detail
+                            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+                        </div>
+                    </div>
+                </a>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
+
     {{-- ═══ CTA BANNER ═══ --}}
     <section class="cta-section" data-aos="fade-up">
         <div class="cta-glow"></div>
@@ -621,10 +720,10 @@
             </div>
             <div class="cta-btns">
                 @if($wa)
-                    <a href="{{ $wa->wa_url }}" target="_blank" rel="noopener" class="btn-primary" data-track="wa">
+                    <button onclick="openOrderModal('Konsultasi Layanan: {{ addslashes($service->name) }}')" class="btn-primary" data-track="wa">
                         <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
                         WhatsApp Sekarang
-                    </a>
+                    </button>
                 @endif
                 <a href="tel:+623199171407" class="btn-ghost" data-track="phone">
                     <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
