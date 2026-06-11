@@ -80,6 +80,24 @@ class ServiceController extends Controller
                     'price'         => '1000000',
                     'availability'  => 'https://schema.org/InStock',
                     'seller'        => ['@type' => 'Organization', 'name' => 'CV. Karya Perdana Teknik'],
+                    'shippingDetails' => [
+                        '@type' => 'OfferShippingDetails',
+                        'shippingRate' => ['@type' => 'MonetaryAmount', 'value' => '0', 'currency' => 'IDR'],
+                        'shippingDestination' => ['@type' => 'DefinedRegion', 'addressCountry' => 'ID'],
+                        'deliveryTime' => [
+                            '@type' => 'ShippingDeliveryTime',
+                            'handlingTime' => ['@type' => 'QuantitativeValue', 'minValue' => '1', 'maxValue' => '3', 'unitCode' => 'd'],
+                            'transitTime' => ['@type' => 'QuantitativeValue', 'minValue' => '1', 'maxValue' => '7', 'unitCode' => 'd']
+                        ]
+                    ],
+                    'hasMerchantReturnPolicy' => [
+                        '@type' => 'MerchantReturnPolicy',
+                        'applicableCountry' => 'ID',
+                        'returnPolicyCategory' => 'https://schema.org/MerchantReturnFiniteReturnWindow',
+                        'merchantReturnDays' => '30',
+                        'returnMethod' => 'https://schema.org/ReturnByMail',
+                        'returnFees' => 'https://schema.org/FreeReturn'
+                    ]
                 ],
             ],
             [
