@@ -25,7 +25,7 @@ class HomeController extends Controller
         $seo = [
             'title'       => $settings['meta_title_home'] ?? 'Hoist Crane Lift Specialist | CV. Karya Perdana Teknik Gresik',
             'description' => $settings['meta_desc_home'] ?? 'CV. Karya Perdana Teknik - Spesialis Overhead Crane, Chain Hoist, Wire Rope Hoist & Cargo Lift. Melayani seluruh Indonesia. Hubungi: 081331148731',
-            'og_image'    => !empty($settings['og_image_default']) ? asset('storage/'.$settings['og_image_default']) : asset('images/og-default.jpg'),
+            'og_image'    => !empty($settings['logo']) ? asset('storage/'.$settings['logo']) : asset('favicon.ico'),
         ];
 
         return view('home.index', compact('settings', 'services', 'gallery', 'articles', 'clients', 'testimonials', 'wa', 'seo'));

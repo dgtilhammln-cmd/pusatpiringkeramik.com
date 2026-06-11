@@ -13,7 +13,7 @@
     $canonical      = preg_replace('#^https?://[^/]+#', $appUrl, $rawCanonical);
 
     // OG Image — make absolute using app.url
-    $defaultOg      = $appUrl . '/images/og-default.jpg';
+    $defaultOg      = \App\Models\Setting::get('logo') ? $appUrl . '/storage/' . ltrim(\App\Models\Setting::get('logo'), '/') : $appUrl . '/favicon.ico';
     $rawOg          = $seoData['og_image'] ?? $defaultOg;
     $ogImage        = preg_match('#^https?://#', $rawOg)
                         ? preg_replace('#^https?://[^/]+#', $appUrl, $rawOg)
