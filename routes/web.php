@@ -75,6 +75,7 @@ Route::prefix('admin')->group(function () {
 
         // Leads
         Route::get('/leads/export', [AdminLeadController::class, 'export'])->name('admin.leads.export');
+        Route::get('/leads/export-pdf', [AdminLeadController::class, 'exportPdf'])->name('admin.leads.export_pdf');
         Route::get('/leads', [AdminLeadController::class, 'index'])->name('admin.leads.index');
         Route::get('/leads/{lead}', [AdminLeadController::class, 'show'])->name('admin.leads.show');
         Route::post('/leads/{lead}/status', [AdminLeadController::class, 'updateStatus'])->name('admin.leads.status');
