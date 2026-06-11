@@ -221,11 +221,15 @@ body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text1)
             @if($newLeadsCount > 0)
               @foreach($recentLeads as $lead)
                 <a href="{{ route('admin.leads.show', $lead) }}" style="display:block;padding:.875rem 1rem;border-bottom:1px solid var(--border);text-decoration:none;transition:background .2s;" onmouseover="this.style.background='rgba(255,215,0,0.05)'" onmouseout="this.style.background='none'">
+                  <div style="font-size:.75rem;color:var(--yellow);font-weight:700;margin-bottom:.25rem;letter-spacing:0.02em;">LEADS MASUK: {{ strtoupper($lead->source ?? 'WEBSITE') }}</div>
                   <div style="font-size:.8125rem;color:#fff;font-weight:600;">{{ $lead->name }}</div>
                   <div style="font-size:.7rem;color:var(--text3);margin-top:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
-                    {{ $lead->product ?? 'Inquiry Baru' }}
+                    Produk: {{ $lead->product ?? 'Inquiry Umum' }}
                   </div>
-                  <div style="font-size:.65rem;color:var(--yellow);margin-top:.375rem;">{{ $lead->created_at->diffForHumans() }}</div>
+                  <div style="font-size:.65rem;color:var(--text2);margin-top:.5rem;display:flex;align-items:center;gap:.375rem;">
+                    <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    {{ \Carbon\Carbon::parse($lead->created_at)->locale('id')->translatedFormat('d F Y, H:i') }} WIB
+                  </div>
                 </a>
               @endforeach
             @else
