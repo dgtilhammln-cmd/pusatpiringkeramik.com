@@ -52,18 +52,25 @@ $adminName = session('admin_name', 'Administrator');
 @endphp
 
 {{-- Welcome Box --}}
-<div style="background:linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(255,215,0,0.02) 100%); border: 1px solid rgba(255,215,0,0.2); border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 2rem; position: relative; overflow: hidden;">
-  <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%); border-radius: 50%;"></div>
-  <div style="position: absolute; bottom: -20px; right: 10%; width: 100px; height: 100px; background: radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 70%); border-radius: 50%;"></div>
+<div style="background: linear-gradient(135deg, #1A1A1D 0%, #111112 100%); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 1.5rem 2rem; margin-bottom: 2rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+  <!-- Decorative Background -->
+  <div style="position: absolute; top: -50px; left: -50px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%); border-radius: 50%;"></div>
   
-  <div style="position: relative; z-index: 1;">
-    <h2 style="font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0 0 0.5rem; display: flex; align-items: center; gap: 0.6rem; letter-spacing:-0.02em;">
-      <svg width="22" height="22" fill="none" stroke="var(--yellow)" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-      Selamat {{ $greeting }}, {{ $adminName }} <span style="color:var(--yellow);">- CV. Karya Perdana Teknik</span>
+  <div style="flex: 1; min-width: 250px; position: relative; z-index: 1;">
+    <h2 style="font-size: 1.25rem; font-weight: 800; color: #fff; margin: 0 0 0.5rem; display: flex; align-items: center; gap: 0.6rem; letter-spacing: -0.01em;">
+      <!-- Target Icon -->
+      <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+      Selamat {{ $greeting }}, {{ $adminName }} <span style="color:var(--text3);font-weight:600;font-size:0.9em;">- CV. Karya Perdana Teknik</span>
     </h2>
-    <p style="font-size: 0.85rem; color: var(--text2); margin: 0; line-height: 1.6; font-style: italic; max-width: 800px; font-weight: 500;">
+    <p style="font-size: 0.85rem; color: var(--text2); margin: 0; line-height: 1.6; font-style: italic; max-width: 750px; font-weight: 400;">
       "{{ $dailyQuote }}"
     </p>
+  </div>
+
+  <!-- Realtime Widget (Apple Watch Style) -->
+  <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 1rem 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 160px; position: relative; z-index: 1; backdrop-filter: blur(10px); box-shadow: inset 0 2px 10px rgba(255,255,255,0.02);">
+    <div id="realtime-time" style="font-size: 1.75rem; font-weight: 900; color: #fff; letter-spacing: 0.05em; font-family: monospace;">00:00:00</div>
+    <div id="realtime-date" style="font-size: 0.65rem; color: var(--text3); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem;">HARI, 00 BLN 0000</div>
   </div>
 </div>
 
@@ -238,6 +245,28 @@ function downloadReport(format) {
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
+// Realtime Clock Widget
+function updateClock() {
+    const now = new Date();
+    
+    // Time
+    const h = String(now.getHours()).padStart(2, '0');
+    const m = String(now.getMinutes()).padStart(2, '0');
+    const s = String(now.getSeconds()).padStart(2, '0');
+    document.getElementById('realtime-time').textContent = `${h}:${m}:${s}`;
+    
+    // Date
+    const days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+    const months = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agt','Sep','Okt','Nov','Des'];
+    const day = days[now.getDay()];
+    const date = now.getDate();
+    const month = months[now.getMonth()];
+    const year = now.getFullYear();
+    document.getElementById('realtime-date').textContent = `${day}, ${date} ${month} ${year}`;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
 Chart.defaults.color='#7A7A8A';
 Chart.defaults.borderColor='rgba(255,255,255,.06)';
 new Chart(document.getElementById('leads-chart'),{
