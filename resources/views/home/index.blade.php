@@ -1,7 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-
+    @push('styles')
+        @if(isset($heroSlides) && $heroSlides->count() > 0)
+            <link rel="preload" as="image" href="{{ asset('storage/' . $heroSlides->first()->image) }}">
+        @elseif(!empty($settings['hero_main_image']))
+            <link rel="preload" as="image" href="{{ asset('storage/' . $settings['hero_main_image']) }}">
+        @endif
+    @endpush
     {{-- ════════════════════════════════════════════════
       HOME PAGE — Cyclevent Turbine Ventilator
       PT. Hiranatha Makmur Sukses | www.cyclevent.com
