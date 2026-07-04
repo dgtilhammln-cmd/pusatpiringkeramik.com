@@ -939,7 +939,7 @@
         @endif
         <div class="cv-hero-grid">
             {{-- Left Column --}}
-            <div class="cv-hero-left" data-aos="fade-up">
+            <div class="cv-hero-left">
                 <div class="cv-hero-badge">{{ $settings['hero_headline'] ?? 'Turbine Ventilator' }}</div>
                 <h1 class="cv-hero-title">
                     Sirkulasi Udara<br>
@@ -967,7 +967,7 @@
             </div>
 
             {{-- Center Column --}}
-            <div class="cv-hero-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="cv-hero-center">
                 @if(isset($heroSlides) && $heroSlides->count() > 0)
                     <div class="swiper hero-swiper">
                         <div class="swiper-wrapper">
@@ -996,7 +996,7 @@
             </div>
 
             {{-- Right Column --}}
-            <div class="cv-hero-right" data-aos="fade-left" data-aos-delay="200">
+            <div class="cv-hero-right">
                 <h2 class="cv-hero-r-title">Eksplorasi<br>Solusi Kami</h2>
                 <div class="cv-hero-r-desc">Dari pabrik berskala besar hingga rumah tinggal, solusi ventilasi kami selalu tepat guna.</div>
                 <div class="cv-hero-r-card">
@@ -2335,6 +2335,17 @@
         .cv-cities-grid { grid-template-columns: repeat(2, 1fr); }
         .cv-coverage-glass-box { padding: 2rem 1.5rem; margin-top: 3rem; }
     }
+    .cv-coverage-map-wrapper {
+        position: relative;
+        width: 100%;
+        margin-top: -6rem;
+    }
+    @media (max-width: 1024px) {
+        .cv-coverage-map-wrapper { margin-top: -2rem; }
+    }
+    @media (max-width: 640px) {
+        .cv-coverage-map-wrapper { margin-top: 1rem; }
+    }
     </style>
 
     {{-- ════ COVERAGE (PREMIUM REDESIGN) ════ --}}
@@ -2395,7 +2406,7 @@
         {{-- MAP: from admin upload --}}
         @php $coverageMap = \App\Models\Setting::get('coverage_map'); @endphp
         @if($coverageMap)
-            <div style="position:relative; width:100%; margin-top:-6rem;">
+            <div class="cv-coverage-map-wrapper">
                 <img src="{{ asset('storage/'.$coverageMap) }}" alt="Peta Jangkauan Indonesia"
                      style="display:block; width:100%; height:auto;" loading="lazy">
             </div>
