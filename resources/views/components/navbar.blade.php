@@ -140,7 +140,7 @@
         background: rgba(14,165,233,0.07);
     }
     .pill-link.active {
-        background: #0EA5E9;
+        background: #0369a1;
         color: #fff;
         font-weight: 600;
     }
@@ -169,12 +169,12 @@
     }
     .pill-btn-outline:hover { background: rgba(0,0,0,0.04); }
     .pill-btn-solid {
-        background: #0EA5E9;
+        background: #0369a1;
         color: #fff;
         box-shadow: 0 2px 10px rgba(14,165,233,0.28);
     }
     .pill-btn-solid:hover {
-        background: #0284C7;
+        background: #075985;
         transform: translateY(-1px);
         box-shadow: 0 4px 16px rgba(14,165,233,0.35);
     }
@@ -257,7 +257,7 @@
 
 {{-- ── Mobile Drawer ── --}}
 <div id="mobile-drawer" style="position:fixed;inset:0;background:rgba(255,255,255,0.98);backdrop-filter:blur(16px);z-index:9999;display:flex;flex-direction:column;padding:2rem;transform:translateX(100%);transition:transform 0.4s cubic-bezier(0.22,1,0.36,1);">
-    <button onclick="document.getElementById('mobile-drawer').classList.remove('open')" style="position:absolute;top:1.25rem;right:1.25rem;background:transparent;border:none;color:#475569;cursor:pointer;">
+    <button aria-label="Tutup Menu" onclick="document.getElementById('mobile-drawer').classList.remove('open')" style="position:absolute;top:1.25rem;right:1.25rem;background:transparent;border:none;color:#475569;cursor:pointer;">
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
     <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:2.5rem;">

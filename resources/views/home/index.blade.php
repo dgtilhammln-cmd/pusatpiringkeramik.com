@@ -7,7 +7,9 @@
       PT. Hiranatha Makmur Sukses | www.cyclevent.com
     ════════════════════════════════════════════════ --}}
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /></noscript>
     <style>
     /* ── NEW HERO ────────────────────────────────── */
     .cv-hero-modern {
@@ -69,7 +71,7 @@
         border-radius: 999px;
         font-size: 0.7rem;
         font-weight: 600;
-        color: #0EA5E9;
+        color: #0369a1;
         box-shadow: 0 2px 12px rgba(0,0,0,0.04);
         margin-bottom: 1.25rem;
         letter-spacing: 0.04em;
@@ -145,7 +147,7 @@
         flex-wrap: wrap;
     }
     .cv-btn-solid {
-        background: #0EA5E9;
+        background: #0369a1;
         color: #fff;
         padding: 0.75rem 1.75rem;
         border-radius: 999px;
@@ -156,7 +158,7 @@
         box-shadow: 0 4px 14px rgba(14,165,233,0.25);
         white-space: nowrap;
     }
-    .cv-btn-solid:hover { background: #0284C7; transform: translateY(-2px); }
+    .cv-btn-solid:hover { background: #075985; transform: translateY(-2px); }
     .cv-btn-outline {
         background: #fff;
         color: #0EA5E9;
@@ -2777,7 +2779,7 @@
 
 @include('components.lightbox-assets')
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         if(document.querySelector('.hero-swiper')) {
