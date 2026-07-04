@@ -91,7 +91,7 @@
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
           Edit
         </a>
-        <a href="{{ route('gallery.show',$item->slug) }}" target="_blank" title="Preview"
+        <a href="{{ $item->image_url }}" target="_blank" title="Preview"
            style="display:flex;align-items:center;justify-content:center;width:38px;height:38px;background:rgba(139,92,246,0.08);border-radius:10px;color:#8B5CF6;text-decoration:none;transition:all .2s;"
            onmouseover="this.style.background='rgba(139,92,246,0.18)'" onmouseout="this.style.background='rgba(139,92,246,0.08)'">
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>

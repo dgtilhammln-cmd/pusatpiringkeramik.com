@@ -2151,7 +2151,7 @@
 
                 <div class="cv-gallery-grid-v2">
                     @foreach($gallery->take(6) as $item)
-                        <a href="{{ route('gallery.show', $item->slug) }}" class="cv-gallery-card-v2" data-aos="fade-up">
+                        <a href="{{ asset('storage/' . $item->image) }}" class="cv-gallery-card-v2 glightbox" data-gallery="home-gallery" data-title="{{ $item->title }}" data-description="{{ $item->client }}">
                             @if($item->image)
                                 <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->alt_text ?? $item->title }}" class="cv-gallery-img-v2" loading="lazy">
                             @else
