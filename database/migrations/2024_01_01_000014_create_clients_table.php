@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('logo')->nullable();
+            $table->string('alt_text')->nullable();
             $table->string('city')->nullable();
             $table->string('industry')->nullable();
             $table->integer('order')->default(0);
