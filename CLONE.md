@@ -132,6 +132,8 @@ php artisan view:cache
 
 ---
 
+---
+
 ## Tahap 7: Fitur-Fitur Lanjutan & Dokumentasi
 
 Website ini dilengkapi dengan berbagai fitur *custom* canggih yang dirancang khusus untuk meningkatkan performa marketing dan pengelolaan admin. Berikut adalah panduannya:
@@ -151,11 +153,106 @@ Website ini dilengkapi dengan berbagai fitur *custom* canggih yang dirancang khu
 ### 3. SEO & Structured Data (JSON-LD)
 - Website menggunakan arsitektur SEO tingkat lanjut dengan *Structured Data* untuk Product (Layanan) dan Article.
 - Secara otomatis *schema.org* JSON-LD akan merender informasi harga, rating, *return policy*, dan ketersediaan, yang membantu Google memunculkan cuplikan kaya (Rich Snippets).
+- Halaman produk dilengkapi **FAQ Schema** (JSON-LD FAQPage) untuk meningkatkan kemungkinan muncul di fitur FAQ Google.
 
 ### 4. Custom Pagination & Tampilan Dinamis
 - Jika Anda mengubah warna "Base Color" di pengaturan Admin (misalnya menjadi kuning `#F5A623`), tidak hanya tombol dan *border* yang berubah, tetapi navigasi paginasi (Pagination) dan efek *hover* juga akan secara otomatis menyesuaikan warna baru tersebut.
 
 ---
 
+## Tahap 8: Menghubungkan ke Git & GitHub
+
+Melakukan version control dengan Git sangat disarankan agar setiap perubahan kode bisa dilacak dan di-*rollback* jika terjadi kesalahan.
+
+### Setup Pertama Kali
+
+```bash
+# 1. Konfigurasi identitas (sekali saja)
+git config --global user.name "Nama Anda"
+git config --global user.email "email@anda.com"
+
+# 2. Staging semua file
+git add .
+
+# 3. Commit pertama
+git commit -m "feat: initial commit - HVM Digital website"
+
+# 4. Hubungkan ke repository GitHub
+git branch -M main
+git remote add origin https://github.com/username/nama-repo.git
+git push -u origin main
+```
+
+### Push Update Selanjutnya
+
+```bash
+git add .
+git commit -m "fix: deskripsi perubahan"
+git push
+```
+
+> **Catatan Keamanan:** File `.env` sudah ada di `.gitignore` sehingga konfigurasi database dan secret key **TIDAK** akan ikut terupload ke GitHub.
+
+---
+
+## Tahap 9: Deploy ke Hostinger (Shared Hosting)
+
+Metode yang digunakan adalah **pemisahan core Laravel dan public_html** untuk keamanan maksimal.
+
+### Struktur Folder di Server
+```
+home/
+├── core-web/          ← Semua file Laravel (kecuali /public)
+│   ├── app/
+│   ├── bootstrap/
+│   ├── vendor/
+│   ├── .env           ← File konfigurasi (AMAN, tidak bisa diakses publik)
+│   └── ...
+└── public_html/       ← Hanya isi dari folder /public
+    ├── index.php
+    ├── .htaccess
+    └── storage → (symlink ke core-web/storage/app/public)
+```
+
+### Langkah Deploy
+
+1. **Upload** semua file (kecuali `node_modules`) ke folder `core-web` via File Manager.
+2. **Pindahkan** semua isi folder `core-web/public/` ke `public_html/`.
+3. **Edit** `public_html/index.php`, ubah path:
+   ```php
+   // Sebelum:
+   require __DIR__.'/../vendor/autoload.php';
+   // Sesudah:
+   require __DIR__.'/../core-web/vendor/autoload.php';
+
+   // Sebelum:
+   $app = require_once __DIR__.'/../bootstrap/app.php';
+   // Sesudah:
+   $app = require_once __DIR__.'/../core-web/bootstrap/app.php';
+   ```
+4. **Buat database** di hPanel → MySQL Databases, lalu update `.env` di `core-web`.
+5. **Buat symlink storage** dengan mengunjungi URL `/buat-symlink` (buat route sementara).
+
+---
+
+## Changelog Pembaruan UI/UX
+
+Berikut adalah daftar perubahan desain yang telah dilakukan:
+
+| Area | Perubahan |
+|---|---|
+| **Admin Gallery Create/Edit** | Rombak total ke card layout premium (white card, blue icon, field focus blue) |
+| **Notifikasi Admin** | Redesign menjadi "Pusat Notifikasi" — clean minimalist, tab Hari Ini/Minggu Ini/Sebelumnya yang bisa diklik |
+| **Loading Login/Logout** | Rombak dari dark mode menjadi light mode premium dengan animasi bounce logo biru |
+| **Footer Publik** | Warna seragam dengan breadcrumb (#F8FAFC), hapus warna merah, ikon hover biru |
+| **Halaman Produk (Mobile)** | Fix horizontal overflow — tambah `min-width:0` pada grid column + `overflow:hidden` |
+| **Hero Homepage (Mobile)** | Fix konten mepet ke header — tambah `padding-top` responsif di breakpoint 768px/480px |
+| **FAQ Section** | Dipindah ke bawah Spesifikasi dengan styling tabel identik + JSON-LD schema |
+| **Footer Watermark** | Link hvmdigital.id diarahkan ke halaman jasa website |
+| **SEO Dashboard Admin** | Teks persuasif "Tampil teratas saat buyer cari produk = peluang deal lebih besar" |
+
+---
+
 ### Selesai! 🎉
 Website baru telah berhasil diluncurkan dengan fitur *lead tracking* dan SEO optimal tanpa jejak dari nama perusahaan yang lama.
+
