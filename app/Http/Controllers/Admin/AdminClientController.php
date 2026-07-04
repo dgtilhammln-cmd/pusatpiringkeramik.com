@@ -27,6 +27,7 @@ class AdminClientController extends Controller
             'name'      => 'required|max:200',
             'city'      => 'nullable|max:100',
             'industry'  => 'nullable|max:100',
+            'alt_text'  => 'nullable|max:200',
             'logo'      => 'nullable|image|max:2048',
             'order'     => 'integer|min:0',
             'is_active' => 'boolean',
@@ -35,7 +36,7 @@ class AdminClientController extends Controller
         $validated['is_active'] = $request->boolean('is_active', true);
 
         if ($request->hasFile('logo')) {
-            $validated['logo'] = $this->storeWebPSquare($request->file('logo'), 'clients', 200);
+            $validated['logo'] = $this->storeWebP($request->file('logo'), 'clients', 400, 200);
         }
 
         Client::create($validated);
@@ -53,6 +54,7 @@ class AdminClientController extends Controller
             'name'      => 'required|max:200',
             'city'      => 'nullable|max:100',
             'industry'  => 'nullable|max:100',
+            'alt_text'  => 'nullable|max:200',
             'logo'      => 'nullable|image|max:2048',
             'order'     => 'integer|min:0',
             'is_active' => 'boolean',
@@ -62,7 +64,7 @@ class AdminClientController extends Controller
 
         if ($request->hasFile('logo')) {
             $this->deleteStorageFile($client->logo);
-            $validated['logo'] = $this->storeWebPSquare($request->file('logo'), 'clients', 200);
+            $validated['logo'] = $this->storeWebP($request->file('logo'), 'clients', 400, 200);
         }
 
         $client->update($validated);

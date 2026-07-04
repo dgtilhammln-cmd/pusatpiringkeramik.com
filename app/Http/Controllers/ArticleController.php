@@ -16,11 +16,11 @@ class ArticleController extends Controller
         $appUrl     = rtrim(config('app.url'), '/');
 
         $seo = [
-            'title'       => 'Artikel & Tips Crane, Hoist & Lift Industri | CV. Karya Perdana Teknik',
-            'description' => 'Artikel informatif tentang overhead crane, chain hoist, cargo lift, dan tips maintenance peralatan angkat angkut dari spesialis di Gresik Jawa Timur.',
-            'og_image'    => $appUrl.'/images/og-default.jpg',
+            'title'       => $settings['meta_title_articles'] ?? 'Artikel & Tips Sistem Sirkulasi Udara | Blog Cyclevent',
+            'description' => $settings['meta_desc_articles'] ?? 'Kumpulan artikel informatif tentang sistem ventilasi industri, cara memilih turbine ventilator yang tepat, dan tips menjaga sirkulasi udara bangunan.',
+            'og_image'    => !empty($settings['og_image_default']) ? $appUrl.'/storage/'.$settings['og_image_default'] : (!empty($settings['logo']) ? $appUrl.'/storage/'.$settings['logo'] : $appUrl.'/images/og-default.jpg'),
             'canonical'   => route('articles'),
-            'keywords'    => 'artikel crane, tips hoist, maintenance crane, overhead crane indonesia, cargo lift',
+            'keywords'    => $settings['meta_keywords_articles'] ?? 'artikel ventilasi, tips sirkulasi udara, manfaat turbine ventilator, blog cyclevent, cara pasang ventilator atap',
         ];
 
         $breadcrumbs = [
@@ -48,7 +48,7 @@ class ArticleController extends Controller
         // OG image — absolute URL using app.url
         $ogImg = $article->og_image
             ? $appUrl.'/storage/'.$article->og_image
-            : ($article->image ? $appUrl.'/storage/'.$article->image : $appUrl.'/images/og-default.jpg');
+            : ($article->image ? $appUrl.'/storage/'.$article->image : (!empty($settings['og_image_default']) ? $appUrl.'/storage/'.$settings['og_image_default'] : $appUrl.'/images/og-default.jpg'));
 
         // Fix reading time from actual word count
         $wordCount  = str_word_count(strip_tags($article->content ?? ''));
@@ -64,7 +64,7 @@ class ArticleController extends Controller
             // Article-specific OG
             'article_published' => $article->published_at?->toIso8601String(),
             'article_modified'  => $article->updated_at->toIso8601String(),
-            'article_author'    => $article->author ?? 'Tim Karya Perdana Teknik',
+            'article_author'    => $article->author ?? 'Tim Cyclevent',
             'article_section'   => $article->category ?? 'Artikel',
         ];
 
@@ -89,12 +89,12 @@ class ArticleController extends Controller
             'articleSection'   => $article->category ?? 'Artikel',
             'inLanguage'       => 'id-ID',
             'author'           => [
-                '@type' => 'Person',
-                'name'  => $article->author ?? 'Tim Karya Perdana Teknik',
+                '@type' => 'Organization',
+                'name'  => $article->author ?? 'Tim Cyclevent',
             ],
             'publisher'        => [
                 '@type'  => 'Organization',
-                'name'   => 'CV. Karya Perdana Teknik',
+                'name'   => 'Cyclevent',
                 '@id'    => $appUrl.'/#organization',
                 'logo'   => ['@type' => 'ImageObject', 'url' => $appUrl.'/images/logo.png'],
             ],

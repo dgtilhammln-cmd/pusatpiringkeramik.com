@@ -1,5 +1,5 @@
 {{--
-    SEO Component — CV. Karya Perdana Teknik
+    SEO Component — Cyclevent
     Variables (semua optional): $seo[], $schema, $breadcrumbs[]
 --}}
 @php
@@ -19,27 +19,34 @@
                         ? preg_replace('#^https?://[^/]+#', $appUrl, $rawOg)
                         : $appUrl . '/' . ltrim($rawOg, '/');
 @endphp
-<title>{{ $seoData['title'] ?? 'Hoist Crane Lift Specialist | CV. Karya Perdana Teknik Gresik' }}</title>
-<meta name="description" content="{{ $seoData['description'] ?? 'CV. Karya Perdana Teknik - Spesialis Overhead Crane, Chain Hoist, Wire Rope Hoist & Cargo Lift. Melayani seluruh Indonesia.' }}">
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<meta name="keywords" content="{{ $seoData['keywords'] ?? 'hoist crane surabaya, overhead crane gresik, jual crane jawa timur, cargo lift sidoarjo, maintenance crane indonesia, chain hoist, wire rope hoist, jib crane fabrikasi, lift barang industri, spesialis crane angkat angkut' }}">
+<title>{{ $seoData['title'] ?? 'Turbine Ventilator Specialist | Cyclevent' }}</title>
+<meta name="description" content="{{ $seoData['description'] ?? 'Cyclevent - Spesialis Turbine Ventilator Non-Electric berkualitas. Melayani pengadaan dan instalasi di seluruh Indonesia.' }}">
+@php
+    $robotsDirective = $seoData['robots'] ?? 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+@endphp
+<meta name="robots" content="{{ $robotsDirective }}">
+<meta name="keywords" content="{{ $seoData['keywords'] ?? 'turbine ventilator, ventilator atap non listrik, jual turbine ventilator jakarta, harga turbine ventilator, exhaust atap pabrik, ventilasi udara pabrik, cyclevent' }}">
 <link rel="canonical" href="{{ $canonical }}">
+
+@if(\App\Models\Setting::get('google_search_console'))
+    {!! \App\Models\Setting::get('google_search_console') !!}
+@endif
 
 {{-- Open Graph --}}
 <meta property="og:type"         content="{{ $seoData['og_type'] ?? 'website' }}">
-<meta property="og:title"        content="{{ $seoData['title'] ?? 'CV. Karya Perdana Teknik' }}">
-<meta property="og:description"  content="{{ $seoData['description'] ?? 'Spesialis Hoist, Crane & Cargo Lift Indonesia' }}">
+<meta property="og:title"        content="{{ $seoData['title'] ?? 'Cyclevent' }}">
+<meta property="og:description"  content="{{ $seoData['description'] ?? 'Spesialis Turbine Ventilator Indonesia' }}">
 <meta property="og:image"        content="{{ $ogImage }}">
 <meta property="og:image:width"  content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt"    content="{{ $seoData['title'] ?? 'CV. Karya Perdana Teknik' }}">
+<meta property="og:image:alt"    content="{{ $seoData['title'] ?? 'Cyclevent' }}">
 <meta property="og:url"          content="{{ $canonical }}">
-<meta property="og:site_name"    content="CV. Karya Perdana Teknik">
+<meta property="og:site_name"    content="Cyclevent">
 <meta property="og:locale"       content="id_ID">
 
 {{-- Twitter Card --}}
 <meta name="twitter:card"        content="summary_large_image">
-<meta name="twitter:title"       content="{{ $seoData['title'] ?? 'CV. Karya Perdana Teknik' }}">
+<meta name="twitter:title"       content="{{ $seoData['title'] ?? 'Cyclevent' }}">
 <meta name="twitter:description" content="{{ $seoData['description'] ?? '' }}">
 <meta name="twitter:image"       content="{{ $ogImage }}">
 
@@ -47,15 +54,15 @@
 @if(!empty($seoData['article_published']))
 <meta property="article:published_time" content="{{ $seoData['article_published'] }}">
 <meta property="article:modified_time"  content="{{ $seoData['article_modified'] ?? $seoData['article_published'] }}">
-<meta property="article:author"         content="{{ $seoData['article_author'] ?? 'CV. Karya Perdana Teknik' }}">
+<meta property="article:author"         content="{{ $seoData['article_author'] ?? 'Cyclevent' }}">
 <meta property="article:section"        content="{{ $seoData['article_section'] ?? 'Artikel' }}">
 @endif
 
 {{-- Geo (local SEO) --}}
-<meta name="geo.region"    content="ID-JI">
-<meta name="geo.placename" content="Gresik, Jawa Timur, Indonesia">
-<meta name="geo.position"  content="-7.1583;112.6515">
-<meta name="ICBM"          content="-7.1583, 112.6515">
+<meta name="geo.region"    content="ID-JK">
+<meta name="geo.placename" content="Jakarta Barat, DKI Jakarta, Indonesia">
+<meta name="geo.position"  content="-6.1683;106.7588">
+<meta name="ICBM"          content="-6.1683, 106.7588">
 
 {{-- Font preload --}}
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,25 +73,25 @@ $lbSchema = json_encode([
     '@context'      => 'https://schema.org',
     '@type'         => 'LocalBusiness',
     '@id'           => $appUrl . '/#organization',
-    'name'          => 'CV. Karya Perdana Teknik',
-    'alternateName' => 'KPT Crane',
-    'description'   => 'Spesialis Hoist, Crane System & Cargo Lift. Melayani pengadaan, instalasi, fabrikasi & maintenance di seluruh Indonesia.',
+    'name'          => 'Cyclevent',
+    'alternateName' => 'PT. Hiranatha Makmur Sukses',
+    'description'   => 'Spesialis Turbine Ventilator Non-Electric. Melayani pengadaan dan instalasi di seluruh Indonesia.',
     'url'           => $appUrl,
     'telephone'     => '+62-81331148731',
-    'email'         => 'karyaperdanateknik@gmail.com',
+    'email'         => 'cyclevent@gmail.com',
     'image'         => $ogImage,
     'priceRange'    => '$$',
     'openingHours'  => 'Mo-Sa 08:00-17:00',
     'areaServed'    => 'Indonesia',
     'address'       => [
         '@type'           => 'PostalAddress',
-        'streetAddress'   => 'Pergudangan Legundi Business Park Blok D-11',
-        'addressLocality' => 'Gresik',
-        'addressRegion'   => 'Jawa Timur',
-        'postalCode'      => '61177',
+        'streetAddress'   => 'Jl. Peta Selatan Ruko Kalideres Megah Blok A11',
+        'addressLocality' => 'Jakarta Barat',
+        'addressRegion'   => 'DKI Jakarta',
+        'postalCode'      => '11840',
         'addressCountry'  => 'ID',
     ],
-    'geo'           => ['@type'=>'GeoCoordinates','latitude'=>'-7.1583','longitude'=>'112.6515'],
+    'geo'           => ['@type'=>'GeoCoordinates','latitude'=>'-6.1683','longitude'=>'106.7588'],
     'contactPoint'  => [
         '@type'             => 'ContactPoint',
         'telephone'         => '+62-81331148731',

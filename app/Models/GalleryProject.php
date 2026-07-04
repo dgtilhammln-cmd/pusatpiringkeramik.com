@@ -54,15 +54,15 @@ class GalleryProject extends Model
     }
     public function getAltTextAttribute($v): string
     {
-        return $v ?: $this->title.' - CV. Karya Perdana Teknik';
+        return $v ?: $this->title.' - Cyclevent';
     }
     public function getMetaTitleAttribute($v): string
     {
-        return $v ?: $this->title.' | Galeri CV. Karya Perdana Teknik';
+        return $v ?: $this->title.' | Galeri Cyclevent';
     }
     public function getMetaDescAttribute($v): string
     {
-        return $v ?: 'Proyek '.$this->title.' oleh CV. Karya Perdana Teknik di '.($this->location ?: 'Indonesia').'.';
+        return $v ?: 'Proyek '.$this->title.' oleh Cyclevent di '.($this->location ?: 'Indonesia').'.';
     }
     public function getUrlAttribute(): string
     {

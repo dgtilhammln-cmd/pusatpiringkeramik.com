@@ -1,58 +1,61 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Company Profile - CV. Karya Perdana Teknik
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Selamat datang di repository sistem Company Profile **CV. Karya Perdana Teknik**. Website ini dirancang khusus untuk mempresentasikan profil perusahaan, layanan, galeri, dan artikel, dilengkapi dengan fitur pelacakan *leads* (calon klien) secara cerdas yang terintegrasi dengan WhatsApp.
 
-## About Laravel
+**Developer:** Ilhammaulana | HVM Digital  
+**Versi:** 1.0.0  
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Fitur Utama
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 1. Desain Premium & Responsif
+- **Apple Widget UI Aesthetics:** Panel admin dirancang menggunakan gaya desain ala *Apple Widget* (radius melengkung elegan, *glassmorphism*, dan *drop-shadow* lembut).
+- **Tipografi Modern:** Menggunakan perpaduan *Plus Jakarta Sans* dan *Montserrat* (Tipis) yang memberikan kesan profesional, premium, dan mudah dibaca.
+- **Micro-Animations:** Transisi halus pada setiap *hover* elemen, tombol, dan navigasi (AOS Animation).
+- **Dynamic Theming:** Tema warna utama, warna aksen, dan background hero dapat diubah langsung melalui halaman admin.
 
-## Learning Laravel
+### 2. Panel Admin Canggih
+- **Dashboard Analitik:** Melacak metrik pengunjung secara akurat (Visitor, Leads WhatsApp, dan CTR) berdasarkan filter rentang tanggal.
+- **Rich Text Editor:** Editor konten artikel dan layanan terintegrasi dengan fitur **Native Image Upload** (mengunggah dan menyisipkan gambar dengan format WebP tanpa reload, tanpa plugin pihak ketiga).
+- **Manajemen Lengkap:** Sistem CRUD (*Create, Read, Update, Delete*) lengkap untuk Artikel, Layanan, Galeri, dan Pengaturan.
+- **Konfigurasi Super Fleksibel:** Pengaturan kontak, SEO (Title, Description, Keyword, Meta Image), Teks Berjalan (*Running Text*), Logo, dan Sosial Media sepenuhnya dapat dikelola dari Panel Admin tanpa menyentuh kode.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 3. Sistem Tracking WhatsApp (Lead Interceptor)
+- **Event Delegation Interceptor:** Semua klik yang mengarah ke tautan WhatsApp (`wa.me`, `api.whatsapp.com`, dll) di seluruh penjuru website akan otomatis dicegat secara pintar.
+- **Pop-up Form Leads:** Pengunjung wajib mengisi form mini (opsional/wajib sesuai konfigurasi) sebelum diarahkan ke chat WhatsApp admin.
+- **Konversi Otomatis:** Data yang dimasukkan akan terekam di database sebagai "Leads", memungkinkan perusahaan menghitung efektivitas *call-to-action* (CTR).
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 4. SEO & Kinerja (Performance)
+- Optimalisasi Meta Tags (Open Graph, Twitter Cards, Canonical URL) secara dinamis.
+- Kompresi gambar otomatis ke format WebP menggunakan GD Library.
+- Caching pada route, view, dan config untuk kecepatan loading maksimum.
+- Tersedia halaman khusus Error (404 Not Found & 500 Internal Error) yang terintegrasi dengan *layout* utama website.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+## 🛠 Teknologi yang Digunakan
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+Website ini dibangun di atas pondasi arsitektur modern yang kuat dan teruji:
+- **Backend:** Laravel 11 (PHP 8.2+)
+- **Database:** SQLite / MySQL (Fleksibel melalui `.env`)
+- **Frontend Engine:** Blade Templating
+- **Styling:** Vanilla CSS (CSS Variables) + TailwindCSS (Optional build)
+- **Javascript:** Vanilla JS (ES6) + AJAX Fetch API
+- **Image Processing:** Native PHP GD Library (Konversi ke WebP)
 
-```bash
-composer require laravel/boost --dev
+---
 
-php artisan boost:install
-```
+## 🔐 Keamanan & Standar Pengodean
+- Perlindungan dari serangan XSS (Cross-Site Scripting) menggunakan *escaping* Blade (`{{ }}`).
+- Perlindungan form dari serangan CSRF menggunakan token `@csrf`.
+- Validasi ketat pada setiap permintaan (*Form Request Validation*) di sisi server.
+- Proteksi route Admin dengan Middleware `auth`.
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## 📞 Hubungi Pengembang
+Jika Anda membutuhkan bantuan modifikasi lebih lanjut, instalasi, atau penambahan fitur khusus, silakan hubungi pengembang:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Ilhammaulana | HVM Digital**  
+Website: [hvmdigital.id](https://hvmdigital.id)

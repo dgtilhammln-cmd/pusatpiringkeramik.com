@@ -77,7 +77,7 @@ class Article extends Model
 
     public function getMetaTitleAttribute($value): string
     {
-        return $value ?: Str::limit($this->title, 55) . ' | CV. Karya Perdana Teknik';
+        return $value ?: Str::limit($this->title, 55) . ' | Cyclevent';
     }
 
     public function getMetaDescAttribute($value): string
@@ -114,7 +114,8 @@ class Article extends Model
     public function getTocAttribute(): array
     {
         if (!$this->show_toc || !$this->content) return [];
-        preg_match_all('/<h([23])[^>]*id=["\']?([^"\'>\s]+)["\']?[^>]*>(.*?)<\/h[23]>/i', $this->content, $matches, PREG_SET_ORDER);
+        $contentWithIds = $this->content_with_toc_ids;
+        preg_match_all('/<h([23])[^>]*id=["\']?([^"\'>\s]+)["\']?[^>]*>(.*?)<\/h[23]>/i', $contentWithIds, $matches, PREG_SET_ORDER);
         $toc = [];
         foreach ($matches as $m) {
             $toc[] = [

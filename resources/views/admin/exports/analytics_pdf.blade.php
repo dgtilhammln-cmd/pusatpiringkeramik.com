@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Laporan Analytics - CV. Karya Perdana Teknik</title>
+    <title>Laporan Analytics - Cyclevent</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
         
@@ -92,7 +92,7 @@
             width: 200px;
             margin: 20px auto;
             padding: 12px 20px;
-            background: #FFD700;
+            background: var(--yellow);
             color: #000;
             text-align: center;
             font-weight: 700;
@@ -112,7 +112,7 @@
 
 <div class="header">
     <h1>Laporan Analytics Website</h1>
-    <p>CV. Karya Perdana Teknik</p>
+    <p>Cyclevent</p>
 </div>
 
 <div class="info-box">

@@ -24,7 +24,7 @@ class LeadController extends Controller
         $wa = WaSetting::primary();
 
         // Build WA message
-        $msg = "Halo CV. Karya Perdana Teknik,\n\n";
+        $msg = "Halo Cyclevent,\n\n";
         $msg .= "Nama: {$validated['name']}\n";
         if (!empty($validated['company'])) $msg .= "Perusahaan: {$validated['company']}\n";
         if (!empty($validated['email']))   $msg .= "Email: {$validated['email']}\n";
@@ -40,11 +40,16 @@ class LeadController extends Controller
 
         // Save lead
         $lead = Lead::create(array_merge($validated, [
-            'source'      => $request->input('source', 'Website'),
-            'page_url'    => $request->header('Referer'),
-            'ip_address'  => $request->ip(),
-            'device_type' => \App\Models\AnalyticsEvent::detectDevice($request->userAgent() ?? ''),
-            'wa_number'   => $nomor,
+            'source'       => $request->input('source', 'Website'),
+            'page_url'     => $request->header('Referer'),
+            'ip_address'   => $request->ip(),
+            'device_type'  => \App\Models\AnalyticsEvent::detectDevice($request->userAgent() ?? ''),
+            'wa_number'    => $nomor,
+            'utm_source'   => $request->session()->get('utm_source'),
+            'utm_medium'   => $request->session()->get('utm_medium'),
+            'utm_campaign' => $request->session()->get('utm_campaign'),
+            'utm_term'     => $request->session()->get('utm_term'),
+            'utm_content'  => $request->session()->get('utm_content'),
         ]));
 
         // Track analytics

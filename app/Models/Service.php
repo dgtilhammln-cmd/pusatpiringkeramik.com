@@ -9,14 +9,18 @@ use Illuminate\Support\Str;
 class Service extends Model
 {
     protected $fillable = [
-        'name', 'slug', 'short_desc', 'description', 'image', 'og_image',
+        'name', 'slug', 'short_desc', 'description', 'image', 'brochure', 'og_image', 'gallery',
+        'specifications', 'faqs',
         'icon', 'order', 'is_active',
         'meta_title', 'meta_desc', 'meta_keywords',
     ];
 
     protected $casts = [
-        'is_active' => 'boolean',
-        'order'     => 'integer',
+        'is_active'      => 'boolean',
+        'order'          => 'integer',
+        'gallery'        => 'array',
+        'specifications' => 'array',
+        'faqs'           => 'array',
     ];
 
     protected static function boot()
@@ -40,9 +44,19 @@ class Service extends Model
     {
         return $this->og_image ? asset('storage/'.$this->og_image) : $this->image_url;
     }
+    public function getGalleryUrlsAttribute(): array
+    {
+        $urls = [];
+        if (is_array($this->gallery)) {
+            foreach ($this->gallery as $img) {
+                $urls[] = asset('storage/' . $img);
+            }
+        }
+        return $urls;
+    }
     public function getMetaTitleAttribute($v): string
     {
-        return $v ?: $this->name . ' | CV. Karya Perdana Teknik';
+        return $v ?: $this->name . ' | Cyclevent';
     }
     public function getMetaDescAttribute($v): string
     {

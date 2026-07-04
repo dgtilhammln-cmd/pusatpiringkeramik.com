@@ -14,17 +14,18 @@ class ContactController extends Controller
         $wa       = WaSetting::primary();
 
         $seo = [
-            'title'       => 'Hubungi Kami | CV. Karya Perdana Teknik - Konsultasi Crane & Hoist',
-            'description' => 'Hubungi CV. Karya Perdana Teknik untuk konsultasi overhead crane, chain hoist & cargo lift. WA: 081331148731. Alamat: Pergudangan Legundi Business Park, Gresik.',
-            'og_image'    => asset('images/og-default.jpg'),
+            'title'       => $settings['meta_title_contact'] ?? 'Hubungi Kami | Cyclevent - Spesialis Turbine Ventilator',
+            'description' => $settings['meta_desc_contact'] ?? 'Hubungi Cyclevent untuk konsultasi dan pemasangan Turbine Ventilator & Sistem Ventilasi. Respon cepat, survei gratis, dan garansi resmi pabrik.',
+            'keywords'    => $settings['meta_keywords_contact'] ?? 'kontak cyclevent, hubungi cyclevent, pasang turbine ventilator',
+            'og_image'    => !empty($settings['og_image_default']) ? asset('storage/'.$settings['og_image_default']) : (!empty($settings['logo']) ? asset('storage/'.$settings['logo']) : asset('images/og-default.jpg')),
             'canonical'   => route('contact'),
         ];
 
         $faq = [
-            ['q' => 'Di mana lokasi CV. Karya Perdana Teknik?', 'a' => 'Kami berlokasi di Pergudangan Legundi Business Park Blok D-11, Legundi - Gresik - Jawa Timur.'],
-            ['q' => 'Apakah konsultasi gratis?', 'a' => 'Ya, kami menyediakan konsultasi gratis. Hubungi kami melalui WhatsApp atau telepon untuk diskusi kebutuhan Anda.'],
-            ['q' => 'Apakah ada layanan survei lokasi?', 'a' => 'Ya, kami menyediakan layanan survei lokasi sebelum pemasangan untuk memastikan solusi yang tepat.'],
-            ['q' => 'Berapa lama proses pengiriman dan instalasi?', 'a' => 'Tergantung jenis produk dan lokasi. Kami berkomitmen pada jadwal yang telah disepakati bersama.'],
+            ['q' => 'Di mana lokasi utama Cyclevent?', 'a' => 'Kami berlokasi di Surabaya, namun melayani pengiriman dan pemasangan Turbine Ventilator ke seluruh wilayah Indonesia.'],
+            ['q' => 'Apakah konsultasi ventilasi gratis?', 'a' => 'Ya, kami menyediakan konsultasi gratis. Tim ahli kami akan membantu menghitung kebutuhan sirkulasi udara untuk bangunan Anda.'],
+            ['q' => 'Apakah ada layanan survei lokasi?', 'a' => 'Ya, kami melayani survei lokasi secara langsung untuk menentukan jumlah dan tipe ventilator yang paling optimal untuk bangunan Anda.'],
+            ['q' => 'Berapa lama proses pemasangan ventilator?', 'a' => 'Proses instalasi sangat bergantung pada jumlah unit dan tingkat kesulitan atap. Namun, tim teknisi kami sangat berpengalaman untuk menyelesaikan dengan cepat dan rapi.'],
         ];
 
         $schema = json_encode([
@@ -56,6 +57,6 @@ class ContactController extends Controller
             'page_title' => 'Contact Form - ' . $validated['name'],
         ]);
 
-        return back()->with('success', 'Pesan Anda berhasil dikirim! Tim kami akan menghubungi Anda segera. Atau langsung WhatsApp kami di 081331148731.');
+        return back()->with('success', 'Pesan Anda berhasil dikirim! Tim kami akan menghubungi Anda segera. Atau langsung chat via WhatsApp untuk respon lebih cepat.');
     }
 }

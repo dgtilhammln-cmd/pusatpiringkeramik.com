@@ -10,6 +10,7 @@ class Lead extends Model
         'name', 'company', 'email', 'phone', 'product', 'message',
         'source', 'page_url', 'ip_address', 'device_type',
         'status', 'notes', 'wa_number',
+        'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
     ];
 
     public function getStatusLabelAttribute(): string
@@ -30,6 +31,18 @@ class Lead extends Model
             'closed'    => '#22C55E',
             default     => '#A1A1AA',
         };
+    }
+
+    public function getWaCustomerAttribute(): ?string
+    {
+        if (!$this->phone) return null;
+        $phone = preg_replace('/[^0-9]/', '', $this->phone);
+        if (str_starts_with($phone, '0')) {
+            $phone = '62' . substr($phone, 1);
+        } elseif (str_starts_with($phone, '8')) {
+            $phone = '62' . $phone;
+        }
+        return $phone;
     }
 
     public function scopeNew($query)      { return $query->where('status', 'new'); }

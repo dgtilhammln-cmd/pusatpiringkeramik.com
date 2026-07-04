@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\GalleryProject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 
 class AdminGalleryController extends Controller
 {
@@ -48,7 +49,7 @@ class AdminGalleryController extends Controller
         $v['is_featured']  = $request->boolean('is_featured', false);
         $v['order']        = $v['order'] ?? 0;
 
-        if (empty($v['alt_text'])) $v['alt_text'] = $v['title'].' - CV. Karya Perdana Teknik';
+        if (empty($v['alt_text'])) $v['alt_text'] = $v['title'].' - Cyclevent';
 
         // Slug
         $slug = Str::slug(!empty($v['slug']) ? $v['slug'] : $v['title']);
@@ -62,6 +63,7 @@ class AdminGalleryController extends Controller
             : $this->storeOgWebP($request->file('image'), 'gallery/og');
 
         GalleryProject::create($v);
+        Cache::forget('home_gallery');
         return redirect()->route('admin.gallery.index')->with('success', 'Foto proyek berhasil ditambahkan.');
     }
 
@@ -115,6 +117,7 @@ class AdminGalleryController extends Controller
         }
 
         $gallery->update($v);
+        Cache::forget('home_gallery');
         return redirect()->route('admin.gallery.index')->with('success', 'Foto proyek berhasil diperbarui.');
     }
 
@@ -123,6 +126,7 @@ class AdminGalleryController extends Controller
         $this->deleteStorageFile($gallery->image);
         $this->deleteStorageFile($gallery->og_image);
         $gallery->delete();
+        Cache::forget('home_gallery');
         return back()->with('success', 'Foto proyek berhasil dihapus.');
     }
 }

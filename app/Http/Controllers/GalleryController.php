@@ -15,10 +15,12 @@ class GalleryController extends Controller
         $settings   = Setting::getAllAsArray();
 
         $seo = [
-            'title'     => 'Galeri Proyek Crane & Lift | CV. Karya Perdana Teknik',
-            'description'=> 'Dokumentasi proyek pemasangan overhead crane, chain hoist, cargo lift & gantry crane di berbagai industri di Jawa Timur dan seluruh Indonesia.',
-            'og_image'  => asset('images/og-default.jpg'),
-            'canonical' => route('gallery'),
+            'title'      => $settings['meta_title_gallery'] ?? 'Galeri Proyek Crane & Lift | Cyclevent',
+            'description'=> $settings['meta_desc_gallery'] ?? 'Dokumentasi proyek pemasangan overhead crane, chain hoist, cargo lift & gantry crane di berbagai industri di Jawa Timur dan seluruh Indonesia.',
+            'keywords'   => $settings['meta_keywords_gallery'] ?? 'galeri hoist crane, proyek crane surabaya, pemasangan cargo lift',
+            'og_image'   => !empty($settings['og_image_default']) ? asset('storage/'.$settings['og_image_default']) : (!empty($settings['logo']) ? asset('storage/'.$settings['logo']) : asset('images/og-default.jpg')),
+            'canonical'  => route('gallery'),
+            'robots'     => 'noindex, nofollow',
         ];
 
         return view('gallery.index', compact('gallery', 'categories', 'category', 'settings', 'seo'));
@@ -41,9 +43,10 @@ class GalleryController extends Controller
         $seo = [
             'title'      => $item->meta_title,
             'description'=> $item->meta_desc,
-            'og_image'   => $item->og_image_url,
+            'og_image'   => $item->og_image_url ?: (!empty($settings['og_image_default']) ? asset('storage/'.$settings['og_image_default']) : asset('images/og-default.jpg')),
             'canonical'  => route('gallery.show', $slug),
             'og_type'    => 'article',
+            'robots'     => 'noindex, nofollow',
         ];
 
         $schema = json_encode([
@@ -54,7 +57,7 @@ class GalleryController extends Controller
             'contentUrl'  => $item->image_url,
             'url'         => route('gallery.show', $slug),
             'datePublished'=> $item->created_at->toIso8601String(),
-            'author'      => ['@type' => 'Organization', 'name' => 'CV. Karya Perdana Teknik'],
+            'author'      => ['@type' => 'Organization', 'name' => 'Cyclevent'],
             'about'       => [
                 '@type'    => 'CreativeWork',
                 'name'     => $item->title,

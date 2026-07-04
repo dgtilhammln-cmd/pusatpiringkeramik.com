@@ -13,6 +13,29 @@ class AdminAnalyticsController extends Controller
         return view('admin.analytics.index');
     }
 
+    public function realtime()
+    {
+        $since = now()->subMinutes(60);
+        $active = AnalyticsEvent::ofType('pageview')
+            ->where('created_at', '>=', $since)
+            ->count();
+
+        $locations = AnalyticsEvent::ofType('pageview')
+            ->where('created_at', '>=', $since)
+            ->whereNotNull('country')
+            ->distinct('country')
+            ->orderByDesc('created_at')
+            ->limit(5)
+            ->pluck('country')
+            ->unique()
+            ->values();
+
+        return response()->json([
+            'active'    => $active,
+            'locations' => $locations,
+        ]);
+    }
+
     public function data(Request $request)
     {
         $period = $request->input('period', '30');
@@ -37,20 +60,37 @@ class AdminAnalyticsController extends Controller
         $summary['leads'] = $leadsCount;
         $summary['ctr'] = $summary['pageview'] > 0 ? round(($leadsCount / $summary['pageview']) * 100, 2) : 0;
 
-        // Daily chart
+        // Daily chart pageviews
         $daily = AnalyticsEvent::ofType('pageview')
             ->whereBetween('created_at', [$from, $to])
             ->selectRaw('DATE(created_at) as date, COUNT(*) as count')
             ->groupBy('date')->orderBy('date')
             ->pluck('count', 'date');
 
+        // Daily chart wa clicks
+        $waDaily = AnalyticsEvent::ofType('wa_click')
+            ->whereBetween('created_at', [$from, $to])
+            ->selectRaw('DATE(created_at) as date, COUNT(*) as count')
+            ->groupBy('date')->orderBy('date')
+            ->pluck('count', 'date');
+
+        // Daily chart leads
+        $leadsDaily = \App\Models\Lead::whereBetween('created_at', [$from, $to])
+            ->selectRaw('DATE(created_at) as date, COUNT(*) as count')
+            ->groupBy('date')->orderBy('date')
+            ->pluck('count', 'date');
+
         $days   = (int) $from->diffInDays($to) + 1;
         $labels = [];
-        $values = [];
+        $visitorValues = [];
+        $waValues = [];
+        $leadsValues = [];
         for ($i = 0; $i < $days; $i++) {
             $date     = $from->copy()->addDays($i)->format('Y-m-d');
             $labels[] = $from->copy()->addDays($i)->format('d/m');
-            $values[] = $daily[$date] ?? 0;
+            $visitorValues[] = $daily[$date] ?? 0;
+            $waValues[] = $waDaily[$date] ?? 0;
+            $leadsValues[] = $leadsDaily[$date] ?? 0;
         }
 
         // Device breakdown
@@ -69,12 +109,25 @@ class AdminAnalyticsController extends Controller
             ->limit(10)
             ->get();
 
+        // Top Locations
+        $locations = AnalyticsEvent::ofType('pageview')
+            ->whereBetween('created_at', [$from, $to])
+            ->whereNotNull('country')
+            ->selectRaw('country, COUNT(*) as count')
+            ->groupBy('country')
+            ->orderByDesc('count')
+            ->limit(10)
+            ->pluck('count', 'country');
+
         return response()->json([
             'summary'   => $summary,
             'labels'    => $labels,
-            'values'    => $values,
+            'visitorValues' => $visitorValues,
+            'waValues'      => $waValues,
+            'leadsValues'   => $leadsValues,
             'devices'   => $devices,
             'top_pages' => $topPages,
+            'locations' => $locations,
         ]);
     }
 
@@ -100,7 +153,7 @@ class AdminAnalyticsController extends Controller
             ->selectRaw('DATE(created_at) as date, COUNT(*) as count')
             ->groupBy('date')->pluck('count', 'date');
 
-        $filename = "Laporan_KPT_{$from->format('Ymd')}_{$to->format('Ymd')}.csv";
+        $filename = "Laporan_Cyclevent_{$from->format('Ymd')}_{$to->format('Ymd')}.csv";
 
         $headers = [
             "Content-type"        => "text/csv",

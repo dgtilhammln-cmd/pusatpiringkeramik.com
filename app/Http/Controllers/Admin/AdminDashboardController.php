@@ -51,12 +51,30 @@ class AdminDashboardController extends Controller
             ->groupBy('date')->orderBy('date')
             ->pluck('count','date');
 
+        // Visitor daily chart
+        $visitorChart = AnalyticsEvent::ofType('pageview')
+            ->whereBetween('created_at',[$from,$to])
+            ->selectRaw('DATE(created_at) as date, COUNT(*) as count')
+            ->groupBy('date')->orderBy('date')
+            ->pluck('count','date');
+
+        // WA click daily chart
+        $waChart = AnalyticsEvent::ofType('wa_click')
+            ->whereBetween('created_at',[$from,$to])
+            ->selectRaw('DATE(created_at) as date, COUNT(*) as count')
+            ->groupBy('date')->orderBy('date')
+            ->pluck('count','date');
+
         $labels = [];
         $values = [];
+        $visitorValues = [];
+        $waValues = [];
         for ($i = $daysDiff; $i >= 0; $i--) {
             $date     = $to->copy()->subDays($i)->format('Y-m-d');
             $labels[] = $to->copy()->subDays($i)->format('d/m');
             $values[] = $leadsChart[$date] ?? 0;
+            $visitorValues[] = $visitorChart[$date] ?? 0;
+            $waValues[] = $waChart[$date] ?? 0;
         }
 
         // Top pages
@@ -76,6 +94,6 @@ class AdminDashboardController extends Controller
         // Recent leads
         $recentLeads = Lead::orderByDesc('created_at')->limit(8)->get();
 
-        return view('admin.dashboard.index', compact('stats','labels','values','topPages','counts','recentLeads','start_date','end_date'));
+        return view('admin.dashboard.index', compact('stats','labels','values','visitorValues','waValues','topPages','counts','recentLeads','start_date','end_date'));
     }
 }
