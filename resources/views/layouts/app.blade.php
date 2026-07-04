@@ -43,11 +43,17 @@
     <link rel="dns-prefetch" href="https://unpkg.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
-    {{-- App CSS --}}
+    {{-- App CSS (Inlined for 99+ Lighthouse Score) --}}
     @if(file_exists(public_path('build/assets')) && count(glob(public_path('build/assets/*.css'))) > 0)
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @else
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        @if(file_exists(public_path('css/app.css')))
+            <style>
+                {!! file_get_contents(public_path('css/app.css')) !!}
+            </style>
+        @else
+            <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        @endif
     @endif
 
     {{-- Dynamic Theme Colors --}}
