@@ -965,14 +965,14 @@
                         <div class="swiper-wrapper">
                             @foreach($heroSlides as $slide)
                                 <div class="swiper-slide hero-swiper-slide">
-                                    <img src="{{ asset('storage/' . $slide->image) }}" alt="{{ $slide->title }}" class="cv-hero-img-main">
+                                    <img src="{{ asset('storage/' . $slide->image) }}" alt="{{ $slide->title }}" class="cv-hero-img-main" width="800" height="800" fetchpriority="high">
                                 </div>
                             @endforeach
                         </div>
                         <div class="swiper-pagination hero-swiper-pagination"></div>
                     </div>
                 @elseif(!empty($settings['hero_main_image']))
-                    <img src="{{ asset('storage/' . $settings['hero_main_image']) }}" alt="Turbine Ventilator" class="cv-hero-img-main">
+                    <img src="{{ asset('storage/' . $settings['hero_main_image']) }}" alt="Turbine Ventilator" class="cv-hero-img-main" width="800" height="800" fetchpriority="high">
                 @else
                     <div style="width:100%;height:100%;background:linear-gradient(135deg,#e2e8f0,#cbd5e1);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem;color:#94a3b8;">
                         <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
@@ -993,7 +993,7 @@
                 <div class="cv-hero-r-desc">Dari pabrik berskala besar hingga rumah tinggal, solusi ventilasi kami selalu tepat guna.</div>
                 <div class="cv-hero-r-card">
                     @if(!empty($settings['hero_secondary_image']))
-                        <img src="{{ asset('storage/' . $settings['hero_secondary_image']) }}" alt="Instalasi" class="cv-hero-img-sec">
+                        <img src="{{ asset('storage/' . $settings['hero_secondary_image']) }}" alt="Instalasi" class="cv-hero-img-sec" width="600" height="600" loading="lazy">
                     @else
                         <div style="width:100%;height:100%;background:linear-gradient(135deg,#e2e8f0,#cbd5e1);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem;color:#94a3b8;">
                             <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
@@ -1092,7 +1092,7 @@
                 {{-- Card 3: Image Background --}}
                 <div class="ab-card ab-card-image" data-aos="fade-up" data-aos-delay="200">
                     @if(!empty($settings['about_c3_image']))
-                        <img src="{{ asset('storage/' . $settings['about_c3_image']) }}" alt="About" class="ab-card-img">
+                        <img src="{{ asset('storage/' . $settings['about_c3_image']) }}" alt="About" class="ab-card-img" width="400" height="400" loading="lazy">
                     @else
                         <div style="position:absolute; inset:0; background:linear-gradient(135deg, #cbd5e1, #94a3b8);"></div>
                     @endif
