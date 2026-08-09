@@ -888,8 +888,8 @@ function updateCounter(el, cntId) {
 switchTab('general');
 </script>
 <script>
-// Use jsDelivr CDN (mirrors emsifa/api-wilayah-indonesia, more reliable globally)
-const API_BASE = 'https://cdn.jsdelivr.net/gh/emsifa/api-wilayah-indonesia@master/api';
+// Gunakan API Wilayah.id (berbasis cahyadsn/wilayah)
+const API_BASE = 'https://wilayah.id/api';
 const savedProvince = @json($settings['address_province'] ?? '');
 const savedCity     = @json($settings['address_city'] ?? '');
 const savedDistrict = @json($settings['address_district'] ?? '');
@@ -897,47 +897,50 @@ const savedDistrict = @json($settings['address_district'] ?? '');
 async function loadProvinsi() {
     try {
         const res  = await fetch(`${API_BASE}/provinces.json`);
-        const data = await res.json();
+        const json = await res.json();
+        const data = json.data;
         const sel  = document.getElementById('s-address_province');
         data.forEach(p => {
             const opt = document.createElement('option');
-            opt.value = p.id;
+            opt.value = p.code;
             opt.textContent = p.name;
-            if (p.name === savedProvince || p.id === savedProvince) opt.selected = true;
+            if (p.name === savedProvince || p.code === savedProvince) opt.selected = true;
             sel.appendChild(opt);
         });
         if (sel.value) loadKabupaten(sel.value, true);
     } catch(e) { console.warn('Gagal load provinsi:', e); }
 }
 
-async function loadKabupaten(provinceId, initial = false) {
+async function loadKabupaten(provinceCode, initial = false) {
     try {
-        const res  = await fetch(`${API_BASE}/regencies/${provinceId}.json`);
-        const data = await res.json();
+        const res  = await fetch(`${API_BASE}/regencies/${provinceCode}.json`);
+        const json = await res.json();
+        const data = json.data;
         const sel  = document.getElementById('s-address_city');
         sel.innerHTML = '<option value="">-- Pilih Kota --</option>';
         data.forEach(c => {
             const opt = document.createElement('option');
-            opt.value = c.id;
+            opt.value = c.code;
             opt.textContent = c.name;
-            if (c.name === savedCity || c.id === savedCity) opt.selected = true;
+            if (c.name === savedCity || c.code === savedCity) opt.selected = true;
             sel.appendChild(opt);
         });
         if (initial && sel.value) loadKecamatan(sel.value, true);
     } catch(e) { console.warn('Gagal load kabupaten:', e); }
 }
 
-async function loadKecamatan(cityId, initial = false) {
+async function loadKecamatan(cityCode, initial = false) {
     try {
-        const res  = await fetch(`${API_BASE}/districts/${cityId}.json`);
-        const data = await res.json();
+        const res  = await fetch(`${API_BASE}/districts/${cityCode}.json`);
+        const json = await res.json();
+        const data = json.data;
         const sel  = document.getElementById('s-address_district');
         sel.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
         data.forEach(d => {
             const opt = document.createElement('option');
-            opt.value = d.id;
+            opt.value = d.code;
             opt.textContent = d.name;
-            if (d.name === savedDistrict || d.id === savedDistrict) opt.selected = true;
+            if (d.name === savedDistrict || d.code === savedDistrict) opt.selected = true;
             sel.appendChild(opt);
         });
     } catch(e) { console.warn('Gagal load kecamatan:', e); }
