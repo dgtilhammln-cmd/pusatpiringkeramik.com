@@ -248,6 +248,57 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
 
 {{-- ======== TAB: UMUM ======== --}}
 <div id="tab-general" class="tab-section">
+
+  {{-- ━━━ IDENTITAS PERUSAHAAN ━━━ --}}
+  <div style="background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 4px 15px rgba(0,0,0,0.03);border-radius:10px;padding:1.5rem;margin-bottom:1.25rem;">
+    <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;">
+      <svg width="14" height="14" fill="none" stroke="#0EA5E9" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+      <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0EA5E9;">Identitas Perusahaan</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+      <div>
+        <label class="form-label" for="s-company_name">Nama Perusahaan</label>
+        <input type="text" name="company_name" id="s-company_name" class="form-input" value="{{ $settings['company_name'] ?? '' }}" placeholder="PT Bintang Energy Surabaya">
+        <p style="font-size:.7rem;color:#94A3B8;margin:.375rem 0 0;">Tampil di footer, halaman about, sitemap, dan seluruh halaman website.</p>
+      </div>
+      <div>
+        <label class="form-label" for="s-company_tagline">Tagline / Slogan</label>
+        <input type="text" name="company_tagline" id="s-company_tagline" class="form-input" value="{{ $settings['company_tagline'] ?? '' }}" placeholder="Distributor Cat Industrial Terpercaya">
+      </div>
+      <div>
+        <label class="form-label" for="s-address_street">Alamat Jalan</label>
+        <input type="text" name="address_street" id="s-address_street" class="form-input" value="{{ $settings['address_street'] ?? '' }}" placeholder="Jl. Tanjung Pinang No. 15">
+      </div>
+      <div>
+        <label class="form-label" for="s-address_province">Provinsi</label>
+        <select name="address_province" id="s-address_province" class="form-input" onchange="loadKabupaten(this.value)">
+          <option value="">-- Pilih Provinsi --</option>
+        </select>
+      </div>
+      <div>
+        <label class="form-label" for="s-address_city">Kota / Kabupaten</label>
+        <select name="address_city" id="s-address_city" class="form-input" onchange="loadKecamatan(this.value)">
+          <option value="">-- Pilih Kota --</option>
+        </select>
+      </div>
+      <div>
+        <label class="form-label" for="s-address_district">Kecamatan</label>
+        <select name="address_district" id="s-address_district" class="form-input">
+          <option value="">-- Pilih Kecamatan --</option>
+        </select>
+      </div>
+      <div>
+        <label class="form-label" for="s-address_postal">Kode Pos</label>
+        <input type="text" name="address_postal" id="s-address_postal" class="form-input" value="{{ $settings['address_postal'] ?? '' }}" placeholder="60177" maxlength="5" style="max-width:160px;">
+      </div>
+      <div>
+        <label class="form-label" for="s-address_full">Alamat Lengkap (Preview)</label>
+        <textarea name="address_full" id="s-address_full" class="form-input" rows="2" placeholder="Alamat lengkap otomatis terisi">{{ $settings['address_full'] ?? '' }}</textarea>
+        <p style="font-size:.7rem;color:#94A3B8;margin:.375rem 0 0;">Terisi otomatis saat Anda simpan, atau Anda bisa edit manual di sini.</p>
+      </div>
+    </div>
+  </div>
+
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem;">
     {{-- Logo --}}
     <div style="background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 4px 15px rgba(0,0,0,0.03);border-radius:10px;padding:1.5rem;">
@@ -835,6 +886,85 @@ function updateCounter(el, cntId) {
     document.getElementById(cntId).textContent = el.value.length;
 }
 switchTab('general');
+</script>
+<script>
+// ── WILAYAH INDONESIA API ──────────────────────────────────────
+const API_BASE = 'https://emsifa.github.io/api-wilayah-indonesia/api';
+const savedProvince = @json($settings['address_province'] ?? '');
+const savedCity     = @json($settings['address_city'] ?? '');
+const savedDistrict = @json($settings['address_district'] ?? '');
+
+async function loadProvinsi() {
+    try {
+        const res  = await fetch(`${API_BASE}/provinces.json`);
+        const data = await res.json();
+        const sel  = document.getElementById('s-address_province');
+        data.forEach(p => {
+            const opt = document.createElement('option');
+            opt.value = p.id;
+            opt.textContent = p.name;
+            if (p.name === savedProvince || p.id === savedProvince) opt.selected = true;
+            sel.appendChild(opt);
+        });
+        if (sel.value) loadKabupaten(sel.value, true);
+    } catch(e) { console.warn('Gagal load provinsi:', e); }
+}
+
+async function loadKabupaten(provinceId, initial = false) {
+    try {
+        const res  = await fetch(`${API_BASE}/regencies/${provinceId}.json`);
+        const data = await res.json();
+        const sel  = document.getElementById('s-address_city');
+        sel.innerHTML = '<option value="">-- Pilih Kota --</option>';
+        data.forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c.id;
+            opt.textContent = c.name;
+            if (c.name === savedCity || c.id === savedCity) opt.selected = true;
+            sel.appendChild(opt);
+        });
+        if (initial && sel.value) loadKecamatan(sel.value, true);
+    } catch(e) { console.warn('Gagal load kabupaten:', e); }
+}
+
+async function loadKecamatan(cityId, initial = false) {
+    try {
+        const res  = await fetch(`${API_BASE}/districts/${cityId}.json`);
+        const data = await res.json();
+        const sel  = document.getElementById('s-address_district');
+        sel.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
+        data.forEach(d => {
+            const opt = document.createElement('option');
+            opt.value = d.id;
+            opt.textContent = d.name;
+            if (d.name === savedDistrict || d.id === savedDistrict) opt.selected = true;
+            sel.appendChild(opt);
+        });
+    } catch(e) { console.warn('Gagal load kecamatan:', e); }
+}
+
+// Auto-compose address_full when user changes fields
+function composeAddress() {
+    const street   = document.getElementById('s-address_street')?.value || '';
+    const district = document.getElementById('s-address_district')?.options[document.getElementById('s-address_district').selectedIndex]?.text || '';
+    const city     = document.getElementById('s-address_city')?.options[document.getElementById('s-address_city').selectedIndex]?.text || '';
+    const province = document.getElementById('s-address_province')?.options[document.getElementById('s-address_province').selectedIndex]?.text || '';
+    const postal   = document.getElementById('s-address_postal')?.value || '';
+    const parts    = [street, district, city, province, postal].filter(v => v && v !== '-- Pilih Provinsi --' && v !== '-- Pilih Kota --' && v !== '-- Pilih Kecamatan --');
+    if (parts.length > 1) {
+        document.getElementById('s-address_full').value = parts.join(', ');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadProvinsi();
+    ['s-address_street','s-address_province','s-address_city','s-address_district','s-address_postal'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('change', composeAddress);
+        if (el && id === 's-address_street') el.addEventListener('input', composeAddress);
+        if (el && id === 's-address_postal') el.addEventListener('input', composeAddress);
+    });
+});
 </script>
 <style>
 @keyframes fadeIn { from { opacity:0; transform:translateY(-5px); } to { opacity:1; transform:translateY(0); } }

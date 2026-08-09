@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use App\Models\Article;
-use App\Models\GalleryProject;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class SitemapController extends Controller
@@ -13,12 +13,19 @@ class SitemapController extends Controller
     {
         $services = Service::active()->ordered()->get(['slug', 'name', 'updated_at']);
         $articles = Article::published()->latest()->get(['slug', 'title', 'updated_at']);
+
+        // Dynamic company info from settings
+        $companyName    = Setting::get('company_name', config('app.name', 'Website'));
+        $companyTagline = Setting::get('company_tagline', '');
+        $addressFull    = Setting::get('address_full', '');
+        $siteUrl        = url('/');
+
         $staticPages = [
-            ['url' => route('home'),     'label' => 'Beranda',        'priority' => '1.0', 'changefreq' => 'weekly',  'lastmod' => now()->toDateString()],
-            ['url' => route('about'),    'label' => 'Tentang Kami',   'priority' => '0.8', 'changefreq' => 'monthly', 'lastmod' => now()->toDateString()],
-            ['url' => route('products'), 'label' => 'Produk',         'priority' => '0.9', 'changefreq' => 'weekly',  'lastmod' => now()->toDateString()],
-            ['url' => route('articles'), 'label' => 'Artikel',        'priority' => '0.8', 'changefreq' => 'daily',   'lastmod' => now()->toDateString()],
-            ['url' => route('contact'),  'label' => 'Kontak',         'priority' => '0.7', 'changefreq' => 'monthly', 'lastmod' => now()->toDateString()],
+            ['url' => route('home'),     'label' => 'Beranda',      'priority' => '1.0', 'changefreq' => 'weekly',  'lastmod' => now()->toDateString()],
+            ['url' => route('about'),    'label' => 'Tentang Kami', 'priority' => '0.8', 'changefreq' => 'monthly', 'lastmod' => now()->toDateString()],
+            ['url' => route('products'), 'label' => 'Produk',       'priority' => '0.9', 'changefreq' => 'weekly',  'lastmod' => now()->toDateString()],
+            ['url' => route('articles'), 'label' => 'Artikel',      'priority' => '0.8', 'changefreq' => 'daily',   'lastmod' => now()->toDateString()],
+            ['url' => route('contact'),  'label' => 'Kontak',       'priority' => '0.7', 'changefreq' => 'monthly', 'lastmod' => now()->toDateString()],
         ];
 
         $serviceUrls = $services->map(fn($s) => [
@@ -39,13 +46,16 @@ class SitemapController extends Controller
 
         $urls = array_merge($staticPages, $serviceUrls, $articleUrls);
 
-        // If /sitemap is requested (HTML view)
+        // HTML view
         if ($request->is('sitemap')) {
-            return view('sitemap-html', compact('staticPages', 'serviceUrls', 'articleUrls', 'urls'));
+            return view('sitemap-html', compact(
+                'staticPages', 'serviceUrls', 'articleUrls', 'urls',
+                'companyName', 'companyTagline', 'addressFull', 'siteUrl'
+            ));
         }
 
-        // Default: return XML for crawlers
-        $content = view('sitemap', compact('urls'))->render();
+        // XML for crawlers — pass company name for schema
+        $content = view('sitemap', compact('urls', 'companyName', 'siteUrl'))->render();
         return response($content, 200)->header('Content-Type', 'application/xml');
     }
 }

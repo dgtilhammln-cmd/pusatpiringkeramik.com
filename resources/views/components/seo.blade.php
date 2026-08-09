@@ -8,6 +8,18 @@
     $breadcrumbData = $breadcrumbs ?? [];
     $appUrl         = rtrim(config('app.url'), '/');
 
+    // Dynamic company info from settings
+    $companyName    = \App\Models\Setting::get('company_name', config('app.name', 'PT Bintang Energy Surabaya'));
+    $companyTagline = \App\Models\Setting::get('company_tagline', '');
+    $addressStreet  = \App\Models\Setting::get('address_street', '');
+    $addressCity    = \App\Models\Setting::get('address_city', '');
+    $addressProvince= \App\Models\Setting::get('address_province', '');
+    $addressPostal  = \App\Models\Setting::get('address_postal', '');
+    $addressFull    = \App\Models\Setting::get('address_full', $addressStreet);
+    $companyPhone   = \App\Models\Setting::get('phone', \App\Models\Setting::get('whatsapp', ''));
+    $companyEmail   = \App\Models\Setting::get('email', '');
+    $siteDefaultTitle = $companyName . ($companyTagline ? ' — ' . $companyTagline : '');
+
     // Canonical — always use app.url, never localhost
     $rawCanonical   = $seoData['canonical'] ?? url()->current();
     $canonical      = preg_replace('#^https?://[^/]+#', $appUrl, $rawCanonical);
@@ -19,13 +31,13 @@
                         ? preg_replace('#^https?://[^/]+#', $appUrl, $rawOg)
                         : $appUrl . '/' . ltrim($rawOg, '/');
 @endphp
-<title>{{ $seoData['title'] ?? 'Turbine Ventilator Specialist | Cyclevent' }}</title>
-<meta name="description" content="{{ $seoData['description'] ?? 'Cyclevent - Spesialis Turbine Ventilator Non-Electric berkualitas. Melayani pengadaan dan instalasi di seluruh Indonesia.' }}">
+<title>{{ $seoData['title'] ?? $siteDefaultTitle }}</title>
+<meta name="description" content="{{ $seoData['description'] ?? $companyName . ' — ' . ($companyTagline ?: 'Distributor & Supplier Cat Industrial Indonesia.') }}">
 @php
     $robotsDirective = $seoData['robots'] ?? 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 @endphp
 <meta name="robots" content="{{ $robotsDirective }}">
-<meta name="keywords" content="{{ $seoData['keywords'] ?? 'turbine ventilator, ventilator atap non listrik, jual turbine ventilator jakarta, harga turbine ventilator, exhaust atap pabrik, ventilasi udara pabrik, cyclevent' }}">
+<meta name="keywords" content="{{ $seoData['keywords'] ?? '' }}">
 <link rel="canonical" href="{{ $canonical }}">
 
 @if(\App\Models\Setting::get('google_search_console'))
@@ -34,19 +46,19 @@
 
 {{-- Open Graph --}}
 <meta property="og:type"         content="{{ $seoData['og_type'] ?? 'website' }}">
-<meta property="og:title"        content="{{ $seoData['title'] ?? 'Cyclevent' }}">
-<meta property="og:description"  content="{{ $seoData['description'] ?? 'Spesialis Turbine Ventilator Indonesia' }}">
+<meta property="og:title"        content="{{ $seoData['title'] ?? $companyName }}">
+<meta property="og:description"  content="{{ $seoData['description'] ?? $companyTagline }}">
 <meta property="og:image"        content="{{ $ogImage }}">
 <meta property="og:image:width"  content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt"    content="{{ $seoData['title'] ?? 'Cyclevent' }}">
+<meta property="og:image:alt"    content="{{ $seoData['title'] ?? $companyName }}">
 <meta property="og:url"          content="{{ $canonical }}">
-<meta property="og:site_name"    content="Cyclevent">
+<meta property="og:site_name"    content="{{ $companyName }}">
 <meta property="og:locale"       content="id_ID">
 
 {{-- Twitter Card --}}
 <meta name="twitter:card"        content="summary_large_image">
-<meta name="twitter:title"       content="{{ $seoData['title'] ?? 'Cyclevent' }}">
+<meta name="twitter:title"       content="{{ $seoData['title'] ?? $companyName }}">
 <meta name="twitter:description" content="{{ $seoData['description'] ?? '' }}">
 <meta name="twitter:image"       content="{{ $ogImage }}">
 
@@ -54,7 +66,7 @@
 @if(!empty($seoData['article_published']))
 <meta property="article:published_time" content="{{ $seoData['article_published'] }}">
 <meta property="article:modified_time"  content="{{ $seoData['article_modified'] ?? $seoData['article_published'] }}">
-<meta property="article:author"         content="{{ $seoData['article_author'] ?? 'Cyclevent' }}">
+<meta property="article:author"         content="{{ $seoData['article_author'] ?? $companyName }}">
 <meta property="article:section"        content="{{ $seoData['article_section'] ?? 'Artikel' }}">
 @endif
 
@@ -73,31 +85,23 @@ $lbSchema = json_encode([
     '@context'      => 'https://schema.org',
     '@type'         => 'LocalBusiness',
     '@id'           => $appUrl . '/#organization',
-    'name'          => 'Cyclevent',
-    'alternateName' => 'PT. Hiranatha Makmur Sukses',
-    'description'   => 'Spesialis Turbine Ventilator Non-Electric. Melayani pengadaan dan instalasi di seluruh Indonesia.',
+    'name'          => $companyName,
+    'alternateName' => $companyName,
+    'description'   => $companyTagline ?: ('Distributor dan Supplier Cat Industrial Indonesia — ' . $companyName),
     'url'           => $appUrl,
-    'telephone'     => '+62-81331148731',
-    'email'         => 'cyclevent@gmail.com',
+    'telephone'     => $companyPhone ?: '',
+    'email'         => $companyEmail ?: '',
     'image'         => $ogImage,
     'priceRange'    => '$$',
     'openingHours'  => 'Mo-Sa 08:00-17:00',
     'areaServed'    => 'Indonesia',
     'address'       => [
         '@type'           => 'PostalAddress',
-        'streetAddress'   => 'Jl. Peta Selatan Ruko Kalideres Megah Blok A11',
-        'addressLocality' => 'Jakarta Barat',
-        'addressRegion'   => 'DKI Jakarta',
-        'postalCode'      => '11840',
+        'streetAddress'   => $addressStreet,
+        'addressLocality' => $addressCity,
+        'addressRegion'   => $addressProvince,
+        'postalCode'      => $addressPostal,
         'addressCountry'  => 'ID',
-    ],
-    'geo'           => ['@type'=>'GeoCoordinates','latitude'=>'-6.1683','longitude'=>'106.7588'],
-    'contactPoint'  => [
-        '@type'             => 'ContactPoint',
-        'telephone'         => '+62-81331148731',
-        'contactType'       => 'sales',
-        'areaServed'        => 'ID',
-        'availableLanguage' => 'Indonesian',
     ],
     'sameAs' => [$appUrl],
 ], JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE);
