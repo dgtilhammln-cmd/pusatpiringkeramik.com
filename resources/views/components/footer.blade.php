@@ -4,7 +4,10 @@
   www.cyclevent.com
 ══════════════════════════════════ --}}
 @php
-    $s   = \App\Models\Setting::getAllAsArray();
+    $s              = \App\Models\Setting::getAllAsArray();
+    $companyName    = $s['company_name'] ?? config('app.name');
+    $companyTagline = $s['company_tagline'] ?? '';
+    $addressFull    = $s['address_full'] ?? ($s['address_street'] ?? '');
     $svc = \App\Models\Service::where('is_active', true)->orderBy('order')->take(5)->get();
     $wa  = \App\Models\WaSetting::where('is_active', true)->first();
 @endphp
@@ -323,8 +326,10 @@
                     @endif
                 </div>
                 <div>
-                    <div class="cv-footer-v2-brand-name">Cyclevent</div>
-                    <div class="cv-footer-v2-brand-sub">Turbine Ventilator Non-Electric</div>
+                    <div class="cv-footer-v2-brand-name">{{ $companyName }}</div>
+                    @if($companyTagline)
+                    <div class="cv-footer-v2-brand-sub">{{ $companyTagline }}</div>
+                    @endif
                 </div>
             </a>
 
@@ -462,7 +467,7 @@
     <div class="cv-footer-v2-bottom-wrap">
         <div class="cv-footer-v2-bottom">
             <div class="cv-footer-v2-copy">
-                <strong>{{ $s['copyright'] ?? '© 2013–2025 PT. Hiranatha Makmur Sukses (Cyclevent)' }}</strong>. All rights reserved.
+                <strong>{{ $s['copyright'] ?? '© ' . date('Y') . ' ' . $companyName }}</strong>. All rights reserved.
             </div>
             <div class="cv-footer-v2-dev">
                 Built by <a href="https://hvmdigital.id/jasa-pembuatan-website-jakarta-murah" target="_blank" rel="noopener">HVM Digital</a>

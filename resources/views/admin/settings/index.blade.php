@@ -888,8 +888,8 @@ function updateCounter(el, cntId) {
 switchTab('general');
 </script>
 <script>
-// ── WILAYAH INDONESIA API ──────────────────────────────────────
-const API_BASE = 'https://emsifa.github.io/api-wilayah-indonesia/api';
+// Use jsDelivr CDN (mirrors emsifa/api-wilayah-indonesia, more reliable globally)
+const API_BASE = 'https://cdn.jsdelivr.net/gh/emsifa/api-wilayah-indonesia@master/api';
 const savedProvince = @json($settings['address_province'] ?? '');
 const savedCity     = @json($settings['address_city'] ?? '');
 const savedDistrict = @json($settings['address_district'] ?? '');
