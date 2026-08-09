@@ -25,13 +25,21 @@ class AdminHeroSlideController extends Controller
     {
         $validated = $request->validate([
             'title'       => 'required|max:200',
+            'subtitle'    => 'nullable|max:200',
             'description' => 'nullable|max:500',
+            'tags'        => 'nullable|max:500',
             'icon'        => 'nullable|max:50',
             'image'       => 'nullable|image|max:3072',
             'button_text' => 'nullable|max:100',
             'button_url'  => 'nullable|max:300',
             'order'       => 'integer|min:0',
             'is_active'   => 'boolean',
+            'stat_1_value'=> 'nullable|max:50',
+            'stat_1_label'=> 'nullable|max:100',
+            'stat_2_value'=> 'nullable|max:50',
+            'stat_2_label'=> 'nullable|max:100',
+            'stat_3_value'=> 'nullable|max:50',
+            'stat_3_label'=> 'nullable|max:100',
         ]);
 
         $validated['is_active'] = $request->boolean('is_active', true);
@@ -58,13 +66,21 @@ class AdminHeroSlideController extends Controller
     {
         $validated = $request->validate([
             'title'       => 'required|max:200',
+            'subtitle'    => 'nullable|max:200',
             'description' => 'nullable|max:500',
+            'tags'        => 'nullable|max:500',
             'icon'        => 'nullable|max:50',
             'image'       => 'nullable|image|max:3072',
             'button_text' => 'nullable|max:100',
             'button_url'  => 'nullable|max:300',
             'order'       => 'integer|min:0',
             'is_active'   => 'boolean',
+            'stat_1_value'=> 'nullable|max:50',
+            'stat_1_label'=> 'nullable|max:100',
+            'stat_2_value'=> 'nullable|max:50',
+            'stat_2_label'=> 'nullable|max:100',
+            'stat_3_value'=> 'nullable|max:50',
+            'stat_3_label'=> 'nullable|max:100',
         ]);
 
         $validated['is_active'] = $request->boolean('is_active', true);

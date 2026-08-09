@@ -7,7 +7,7 @@
 $SSH_HOST = "46.202.186.86"
 $SSH_PORT = "65002"
 $SSH_USER = "u664715641"
-$REMOTE_BASE = "/home/u664715641/domains/produsenhoistcranelift.com"
+$REMOTE_BASE = "/home/u664715641/domains/ptbinercoid.hvmdigital.id"
 $LOCAL_BASE = $PSScriptRoot
 
 Write-Host "🚀 Starting deploy to $SSH_HOST..." -ForegroundColor Cyan
@@ -47,7 +47,7 @@ Write-Host "⚙️  Running artisan commands on server..." -ForegroundColor Yell
 
 # ── 2. Run artisan migrate + cache clear ─────────────────
 $RemoteCommands = @"
-cd /home/u664715641/domains/produsenhoistcranelift.com
+cd /home/u664715641/domains/ptbinercoid.hvmdigital.id
 echo '--- Migrate ---'
 php artisan migrate --force
 echo '--- Clear caches ---'

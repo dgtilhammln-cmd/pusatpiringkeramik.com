@@ -5,7 +5,7 @@
 $SSH_HOST = "46.202.186.86"
 $SSH_PORT = "65002"
 $SSH_USER = "u664715641"
-$REMOTE_DIR = "/home/u664715641/domains/cyclevent.hvmdigital.id"
+$REMOTE_DIR = "/home/u664715641/domains/ptbinercoid.hvmdigital.id"
 $ZIP_FILE = "cyclevent_deploy.zip"
 
 Write-Host "📦 1. Membuat file ZIP dari project lokal..." -ForegroundColor Cyan

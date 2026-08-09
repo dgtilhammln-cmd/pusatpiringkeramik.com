@@ -18,37 +18,15 @@
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /></noscript>
     <style>
     /* ── NEW HERO ────────────────────────────────── */
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+
     .cv-hero-modern {
-        background-color: #F8FAFC;
-        min-height: 100vh;
-        padding-top: calc(46px + 2.5rem);
-        padding-bottom: 3rem;
-        display: flex;
-        align-items: center;
+        background-color: #FAFAFA;
+        padding-top: calc(80px + 3rem);
+        padding-bottom: 4rem;
         position: relative;
         overflow: hidden;
-    }
-    @media (max-width: 768px) {
-        .cv-hero-modern {
-            padding-top: calc(80px + 2.5rem);
-            padding-bottom: 2.5rem;
-            align-items: flex-start;
-        }
-    }
-    @media (max-width: 480px) {
-        .cv-hero-modern {
-            padding-top: calc(90px + 2rem);
-        }
-    }
-    .cv-hero-bg-layer {
-        position: absolute;
-        inset: 0;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        opacity: 0.18;
-        z-index: 0;
-        mix-blend-mode: multiply;
+        font-family: 'Outfit', sans-serif;
     }
     .cv-hero-grid {
         max-width: 1200px;
@@ -56,12 +34,16 @@
         padding: 0 1.5rem;
         width: 100%;
         display: grid;
-        grid-template-columns: 1fr 1.4fr 0.9fr;
-        gap: 2rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
         align-items: center;
         position: relative;
         z-index: 1;
     }
+    @media (max-width: 992px) {
+        .cv-hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    
     /* Left Column */
     .cv-hero-left {
         display: flex;
@@ -71,298 +53,174 @@
     .cv-hero-badge {
         display: inline-flex;
         align-items: center;
-        gap: 0.4rem;
-        background: #fff;
-        padding: 0.4rem 0.875rem;
-        border-radius: 999px;
-        font-size: 0.7rem;
+        gap: 0.75rem;
+        font-size: 0.85rem;
         font-weight: 600;
-        color: #0369a1;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-        margin-bottom: 1.25rem;
-        letter-spacing: 0.04em;
+        color: #64748b;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
     }
     .cv-hero-badge::before {
         content: '';
-        width: 5px; height: 5px;
-        border-radius: 50%;
-        background: #38BDF8;
+        width: 30px; height: 1.5px;
+        background: #ef4444; /* Red accent */
     }
     .cv-hero-title {
-        font-size: clamp(2rem, 3.2vw, 3.25rem);
-        font-weight: 400;
-        color: #1e293b;
-        line-height: 1.12;
-        margin-bottom: 1.25rem;
-        letter-spacing: -0.02em;
+        font-size: clamp(2.5rem, 4vw, 4rem);
+        font-weight: 300; /* Thin font */
+        color: #0f172a;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.03em;
     }
-    .cv-hero-pill-text {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.6rem;
-        background: #E0F2FE;
-        color: #0284C7;
-        padding: 0.2rem 1.25rem 0.2rem 0.4rem;
-        border-radius: 999px;
-        margin: 0.15rem 0;
-        font-weight: 500;
+    .cv-hero-title span {
+        font-weight: 700;
+        color: #ef4444; /* Red emphasis */
     }
-    .cv-hero-pill-icon {
-        width: 40px; height: 40px;
-        background: #0EA5E9;
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        color: #fff;
-        flex-shrink: 0;
-    }
-    .cv-hero-icons {
+    .cv-hero-tags {
         display: flex;
-        gap: 0.6rem;
-        margin-bottom: 1.25rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
     }
-    .cv-hero-icon-circle {
-        width: 38px; height: 38px;
-        background: #fff;
+    .cv-hero-tags span {
+        font-size: 0.85rem;
+        color: #475569;
+        font-weight: 400;
+        position: relative;
+        padding-right: 1rem;
+    }
+    .cv-hero-tags span:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px; height: 3px;
         border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        color: #0EA5E9;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+        background: #cbd5e1;
     }
     .cv-hero-desc {
-        font-size: 0.8125rem;
-        font-weight: 400;
+        font-size: 0.95rem;
+        font-weight: 300;
         color: #64748b;
-        line-height: 1.7;
-        margin-bottom: 1.75rem;
-        max-width: 95%;
-        position: relative;
-        padding-left: 1.25rem;
+        line-height: 1.8;
+        padding-left: 1.5rem;
+        border-left: 2px solid #ef4444; /* Red left border */
+        max-width: 90%;
     }
-    .cv-hero-desc::before {
-        content: '';
-        position: absolute;
-        left: 0; top: 0; bottom: 0;
-        width: 2px;
-        background: #cbd5e1;
-        border-radius: 2px;
-    }
-    .cv-hero-actions {
-        display: flex;
-        gap: 0.75rem;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-    .cv-btn-solid {
-        background: #0369a1;
-        color: #fff;
-        padding: 0.75rem 1.75rem;
-        border-radius: 999px;
-        font-weight: 600;
-        font-size: 0.85rem;
-        text-decoration: none;
-        transition: all 0.2s;
-        box-shadow: 0 4px 14px rgba(14,165,233,0.25);
-        white-space: nowrap;
-    }
-    .cv-btn-solid:hover { background: #075985; transform: translateY(-2px); }
-    .cv-btn-outline {
-        background: #fff;
-        color: #0EA5E9;
-        padding: 0.75rem 1.75rem;
-        border-radius: 999px;
-        font-weight: 600;
-        font-size: 0.85rem;
-        text-decoration: none;
-        transition: all 0.2s;
-        border: 1.5px solid rgba(14,165,233,0.2);
-        white-space: nowrap;
-    }
-    .cv-btn-outline:hover { background: #F0F9FF; }
 
-    /* Center Column */
-    .cv-hero-center {
+    /* Right Column (Image + Stats) */
+    .cv-hero-right {
         position: relative;
-        height: 520px;
-        border-radius: 28px;
-        overflow: hidden;
-        box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+        height: 100%;
+        min-height: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
     }
-    .cv-hero-img-main {
+    .cv-hero-img-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 550px;
+        height: 450px;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    .cv-hero-img {
         width: 100%; height: 100%;
         object-fit: cover;
     }
-    .hero-swiper { width:100%; height:100%; }
-    .hero-swiper-slide { width:100%; height:100%; }
-    .hero-swiper-pagination .swiper-pagination-bullet { background: #fff; opacity: 0.5; }
-    .hero-swiper-pagination .swiper-pagination-bullet-active { background: #38BDF8; opacity: 1; }
-    .cv-glass-badge {
+    .cv-hero-play-btn {
         position: absolute;
-        background: rgba(255,255,255,0.18);
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70px; height: 70px;
+        background: rgba(255,255,255,0.3);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255,255,255,0.35);
-        padding: 0.4rem 0.875rem;
-        border-radius: 999px;
-        color: #fff;
-        font-size: 0.7rem;
-        font-weight: 600;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.3rem;
-    }
-    .cv-glass-badge::before {
-        content: ''; width: 5px; height: 5px; border-radius: 50%; background: #38BDF8;
-    }
-    .cv-glass-card {
-        position: absolute;
-        bottom: 1.25rem;
-        right: 1.25rem;
-        background: rgba(15,23,42,0.7);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        border: 1px solid rgba(255,255,255,0.08);
-        padding: 1.25rem;
-        border-radius: 18px;
-        color: #fff;
-    }
-    .cv-glass-num { font-size: 2.25rem; font-weight: 300; line-height: 1; margin-bottom: 0.375rem; }
-    .cv-glass-text { font-size: 0.65rem; color: rgba(255,255,255,0.65); max-width: 110px; line-height: 1.4; }
-
-    /* Right Column */
-    .cv-hero-right {
-        display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
-    }
-    .cv-hero-r-title {
-        font-size: 1.5rem;
-        font-weight: 400;
-        color: #1e293b;
-        line-height: 1.2;
-    }
-    .cv-hero-r-desc {
-        font-size: 0.78rem;
-        font-weight: 400;
-        color: #64748b;
-        line-height: 1.6;
-    }
-    .cv-hero-r-card {
-        position: relative;
-        height: 260px;
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-    }
-    .cv-hero-img-sec {
-        width: 100%; height: 100%;
-        object-fit: cover;
-    }
-
-    /* ── MARQUEE CLIENTS BAR ──────────── */
-    .cv-clients-bar {
-        background: #F8FAFF;
-        border-top: 1px solid rgba(56,189,248,0.1);
-        border-bottom: 1px solid rgba(56,189,248,0.1);
-        padding: 1.5rem 0;
-        overflow: hidden;
-    }
-    .cv-clients-label {
-        font-size: 0.6875rem;
-        font-weight: 700;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: #94A3B8;
-        white-space: nowrap;
-        flex-shrink: 0;
-        padding-right: 2rem;
-    }
-    .cv-client-chip {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        background: #fff;
-        border: 1px solid rgba(56,189,248,0.15);
-        border-radius: 6px;
-        padding: 0.5rem 1.125rem;
-        font-size: 0.8rem;
-        font-weight: 500;
-        color: #334155;
-        white-space: nowrap;
-        margin: 0 0.5rem;
-    }
-    .cv-client-chip::before {
-        content: '';
-        width: 6px;
-        height: 6px;
+        border: 1px solid rgba(255,255,255,0.5);
         border-radius: 50%;
-        background: #38BDF8;
-        flex-shrink: 0;
+        display: flex; align-items: center; justify-content: center;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-decoration: none;
     }
-
-    /* ── EXPLAINER ────────────────────── */
-    .cv-explainer { background: var(--bg-1); }
-    .cv-explainer-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 5rem;
-        align-items: center;
+    .cv-hero-play-btn:hover {
+        background: rgba(255,255,255,0.5);
+        transform: translate(-50%, -50%) scale(1.1);
     }
-    .cv-explainer-steps {
+    
+    .cv-hero-stats-box {
+        position: absolute;
+        bottom: -2rem;
+        right: -2rem;
+        background: #ef4444; /* Red Stats Box */
+        color: #fff;
+        padding: 2.5rem;
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(239,68,68,0.3);
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
-        margin-top: 2rem;
+        z-index: 2;
     }
-    .cv-explainer-step {
+    @media (max-width: 768px) {
+        .cv-hero-stats-box {
+            position: relative;
+            bottom: 0; right: 0;
+            margin-top: -3rem;
+            width: 90%;
+            margin-left: auto; margin-right: auto;
+        }
+        .cv-hero-right { min-height: auto; }
+        .cv-hero-img-wrapper { height: 350px; }
+    }
+    .cv-stat-item {
         display: flex;
-        gap: 1.25rem;
-        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.25rem;
     }
-    .cv-step-num {
-        width: 40px; height: 40px;
-        background: linear-gradient(135deg, #0EA5E9, #38BDF8);
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.875rem;
-        font-weight: 900;
-        color: #fff;
-        flex-shrink: 0;
+    .cv-stat-val {
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1;
     }
-    .cv-step-title {
-        font-size: 0.9375rem;
+    .cv-stat-label {
+        font-size: 0.85rem;
         font-weight: 300;
-        color: var(--text-1);
-        margin-bottom: 0.25rem;
+        opacity: 0.9;
     }
-    .cv-step-desc {
-        font-size: 0.8125rem;
-        font-weight: 300;
-        color: var(--text-3);
-        line-height: 1.6;
-    }
-    .cv-explainer-visual {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .cv-explainer-card {
-        background: linear-gradient(135deg, #38BDF8, #0EA5E9);
-        border-radius: 20px;
-        padding: 2.5rem;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 24px 80px rgba(14,165,233,0.25);
-    }
-    .cv-explainer-card::before {
-        content: '';
+
+    /* Circular "Get in Touch" */
+    .cv-circular-text {
         position: absolute;
-        inset: 0;
-        background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(255,255,255,0.15) 0%, transparent 70%);
+        top: -2rem; right: 2rem;
+        width: 120px; height: 120px;
+        animation: rotateText 15s linear infinite;
+        z-index: 2;
     }
+    .cv-circular-text svg { width: 100%; height: 100%; fill: #0f172a; }
+    .cv-circular-center-btn {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px; height: 40px;
+        background: #ef4444;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        color: white;
+    }
+    @keyframes rotateText { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    /* Swiper customization */
+    .hero-swiper { width: 100%; padding-bottom: 2rem; }
+    .hero-swiper-pagination { bottom: 0 !important; }
+    .hero-swiper-pagination .swiper-pagination-bullet { background: #cbd5e1; opacity: 1; }
+    .hero-swiper-pagination .swiper-pagination-bullet-active { background: #ef4444; width: 24px; border-radius: 12px; }
 
     /* ── PRODUCTS ─────────────────────── */
     .cv-products { background: var(--bg-base); }
@@ -934,89 +792,127 @@
 
     {{-- ════ NEW MODERN HERO ════ --}}
     <section class="cv-hero-modern" id="home">
-        @if(!empty($settings['hero_bg_image']))
-            <div class="cv-hero-bg-layer" style="background-image:url('{{ asset('storage/' . $settings['hero_bg_image']) }}')"></div>
-        @endif
-        <div class="cv-hero-grid">
-            {{-- Left Column --}}
-            <div class="cv-hero-left">
-                <div class="cv-hero-badge">{{ $settings['hero_headline'] ?? 'Turbine Ventilator' }}</div>
-                <h1 class="cv-hero-title">
-                    Sirkulasi Udara<br>
-                    <span class="cv-hero-pill-text">
-                        <span class="cv-hero-pill-icon">
-                            {{-- Wind / Air icon --}}
-                            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>
-                        </span>
-                        Tanpa Listrik
-                    </span><br>
-                    Lebih Sejuk
-                </h1>
-                <div class="cv-hero-icons">
-                    <div class="cv-hero-icon-circle"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
-                    <div class="cv-hero-icon-circle"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
-                    <div class="cv-hero-icon-circle"><svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
-                </div>
-                <div class="cv-hero-desc">
-                    {{ $settings['hero_subheadline'] ?? 'Cyclevent menawarkan pendekatan efisien untuk sirkulasi udara bangunan, mengandalkan turbin bertenaga angin alami untuk membuang hawa panas dan menciptakan kenyamanan tanpa biaya listrik.' }}
-                </div>
-                <div class="cv-hero-actions">
-                    <a href="#produk" class="cv-btn-solid">{{ $settings['hero_cta_primary'] ?? 'Lihat Produk' }}</a>
-                    <a href="{{ route('about') }}" class="cv-btn-outline">{{ $settings['hero_cta_secondary'] ?? 'Tentang Kami' }}</a>
-                </div>
-            </div>
-
-            {{-- Center Column --}}
-            <div class="cv-hero-center">
+        
+        <div class="swiper hero-swiper">
+            <div class="swiper-wrapper">
                 @if(isset($heroSlides) && $heroSlides->count() > 0)
-                    <div class="swiper hero-swiper">
-                        <div class="swiper-wrapper">
-                            @foreach($heroSlides as $slide)
-                                <div class="swiper-slide hero-swiper-slide">
-                                    <img src="{{ asset('storage/' . $slide->image) }}" alt="{{ $slide->title }}" class="cv-hero-img-main" width="800" height="800" fetchpriority="high">
+                    @foreach($heroSlides as $slide)
+                    <div class="swiper-slide">
+                        <div class="cv-hero-grid">
+                            
+                            {{-- Left Column --}}
+                            <div class="cv-hero-left">
+                                @if($slide->subtitle)
+                                <div class="cv-hero-badge">{{ $slide->subtitle }}</div>
+                                @endif
+                                
+                                <h1 class="cv-hero-title">
+                                    {!! str_replace(['Structural Perfection', 'Innovation', 'structural perfection', 'innovation'], ['<span>Structural Perfection</span>', '<span>Innovation</span>', '<span>structural perfection</span>', '<span>innovation</span>'], nl2br(e($slide->title))) !!}
+                                </h1>
+                                
+                                @if($slide->tags)
+                                <div class="cv-hero-tags">
+                                    @foreach(explode(',', $slide->tags) as $tag)
+                                        <span>{{ trim($tag) }}</span>
+                                    @endforeach
                                 </div>
-                            @endforeach
+                                @endif
+                                
+                                @if($slide->description)
+                                <div class="cv-hero-desc">
+                                    {{ $slide->description }}
+                                </div>
+                                @endif
+                            </div>
+
+                            {{-- Right Column --}}
+                            <div class="cv-hero-right">
+                                
+                                {{-- Circular Get in Touch (hidden on mobile) --}}
+                                <div class="cv-circular-text d-none d-md-block" style="display:none;">
+                                    <svg viewBox="0 0 100 100">
+                                        <path d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" id="circle" fill="none"/>
+                                        <text><textPath href="#circle">GET IN TOUCH • GET IN TOUCH • </textPath></text>
+                                    </svg>
+                                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['wa_number'] ?? '') }}" target="_blank" class="cv-circular-center-btn">
+                                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                    </a>
+                                </div>
+
+                                <div class="cv-hero-img-wrapper">
+                                    @if($slide->image)
+                                        <img src="{{ asset('storage/' . $slide->image) }}" class="cv-hero-img" alt="{{ $slide->title }}">
+                                    @else
+                                        <div style="width:100%;height:100%;background:#e2e8f0;"></div>
+                                    @endif
+                                    
+                                    @if($slide->button_url)
+                                    <a href="{{ $slide->button_url }}" target="_blank" class="cv-hero-play-btn">
+                                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                    </a>
+                                    @endif
+                                </div>
+
+                                <div class="cv-hero-stats-box">
+                                    @if($slide->stat_1_value)
+                                    <div class="cv-stat-item">
+                                        <div class="cv-stat-val">{{ $slide->stat_1_value }}</div>
+                                        <div class="cv-stat-label">{{ $slide->stat_1_label }}</div>
+                                    </div>
+                                    @endif
+                                    @if($slide->stat_2_value)
+                                    <div class="cv-stat-item">
+                                        <div class="cv-stat-val">{{ $slide->stat_2_value }}</div>
+                                        <div class="cv-stat-label">{{ $slide->stat_2_label }}</div>
+                                    </div>
+                                    @endif
+                                    @if($slide->stat_3_value)
+                                    <div class="cv-stat-item">
+                                        <div class="cv-stat-val">{{ $slide->stat_3_value }}</div>
+                                        <div class="cv-stat-label">{{ $slide->stat_3_label }}</div>
+                                    </div>
+                                    @endif
+                                </div>
+                                
+                            </div>
+
                         </div>
-                        <div class="swiper-pagination hero-swiper-pagination"></div>
                     </div>
-                @elseif(!empty($settings['hero_main_image']))
-                    <img src="{{ asset('storage/' . $settings['hero_main_image']) }}" alt="Turbine Ventilator" class="cv-hero-img-main" width="800" height="800" fetchpriority="high">
+                    @endforeach
                 @else
-                    <div style="width:100%;height:100%;background:linear-gradient(135deg,#e2e8f0,#cbd5e1);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem;color:#94a3b8;">
-                        <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                        <span style="font-size:0.8rem;font-weight:600;">Upload Hero Image</span>
+                    {{-- Default slide if no slides exist --}}
+                    <div class="swiper-slide">
+                        <div class="cv-hero-grid">
+                            <div class="cv-hero-left">
+                                <div class="cv-hero-badge">Award-Winning Construction Excellence</div>
+                                <h1 class="cv-hero-title">Where <span>Innovation</span> Drives<br><span>Structural Perfection</span></h1>
+                                <div class="cv-hero-tags">
+                                    <span>General Construction Services</span>
+                                    <span>Concrete Work</span>
+                                    <span>Design and Planning</span>
+                                </div>
+                                <div class="cv-hero-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tambahkan slide di admin.</div>
+                            </div>
+                            <div class="cv-hero-right">
+                                <div class="cv-hero-img-wrapper">
+                                    <div style="width:100%;height:100%;background:#e2e8f0;"></div>
+                                </div>
+                                <div class="cv-hero-stats-box">
+                                    <div class="cv-stat-item">
+                                        <div class="cv-stat-val">640+</div>
+                                        <div class="cv-stat-label">Projects Completed</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 @endif
-                <div class="cv-glass-badge" style="top:1.5rem;left:1.5rem;">0 Watt Cost</div>
-                <div class="cv-glass-badge" style="bottom:7.5rem;left:1.5rem;">Garansi 15 Tahun</div>
-                <div class="cv-glass-card">
-                    <div class="cv-glass-num">{{ $settings['stat_years'] ?? '15' }}+</div>
-                    <div class="cv-glass-text">Tahun pengalaman & garansi produk</div>
-                </div>
             </div>
-
-            {{-- Right Column --}}
-            <div class="cv-hero-right">
-                <h2 class="cv-hero-r-title">Eksplorasi<br>Solusi Kami</h2>
-                <div class="cv-hero-r-desc">Dari pabrik berskala besar hingga rumah tinggal, solusi ventilasi kami selalu tepat guna.</div>
-                <div class="cv-hero-r-card">
-                    @if(!empty($settings['hero_secondary_image']))
-                        <img src="{{ asset('storage/' . $settings['hero_secondary_image']) }}" alt="Instalasi" class="cv-hero-img-sec" width="600" height="600" loading="lazy">
-                    @else
-                        <div style="width:100%;height:100%;background:linear-gradient(135deg,#e2e8f0,#cbd5e1);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem;color:#94a3b8;">
-                            <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                            <span style="font-size:.7rem;">Upload Hero Secondary Image</span>
-                        </div>
-                    @endif
-                    <div class="cv-glass-card" style="bottom:1rem;right:1rem;padding:1rem;">
-                        <div class="cv-glass-num" style="font-size:1.5rem;">{{ $settings['stat_clients'] ?? '500' }}</div>
-                        <div class="cv-glass-text">Klien puas di seluruh Indonesia</div>
-                    </div>
-                </div>
-            </div>
+            <div class="swiper-pagination hero-swiper-pagination"></div>
         </div>
     </section>
 
+    
     {{-- ════ PREMIUM CLIENTS BAR ════ --}}
     @if($clients->count())
         <section class="cv-clients-section">
