@@ -81,12 +81,28 @@ trait HandlesImageUpload
         if (!$img) {
             throw new \Exception("Gagal memproses gambar. Pastikan file valid.");
         }
-        $stream = fopen('php://temp', 'r+');
-        imagewebp($img, $stream, $quality);
-        rewind($stream);
-        $data = stream_get_contents($stream);
-        fclose($stream);
-        imagedestroy($img);
+        
+        $tempPath = storage_path('app/public/temp_' . uniqid() . '.webp');
+        
+        try {
+            // Try saving directly to a file path
+            $success = imagewebp($img, $tempPath, $quality);
+            if (!$success) {
+                throw new \Exception("imagewebp returned false.");
+            }
+            $data = file_get_contents($tempPath);
+        } catch (\Throwable $e) {
+            // Ultimate fallback to JPEG if WebP completely fails on this server
+            ob_start();
+            imagejpeg($img, null, $quality);
+            $data = ob_get_clean();
+        } finally {
+            if (file_exists($tempPath)) {
+                @unlink($tempPath);
+            }
+            imagedestroy($img);
+        }
+        
         return (string) $data;
     }
 
