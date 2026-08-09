@@ -482,7 +482,9 @@ www.cyclevent.com
                 </div>
                 <div class="cv-footer-v2-contact-text">
                     <span class="cv-footer-v2-contact-label">Telepon</span>
-                    <a href="tel:02122523334">021-22523334</a>
+                    @if(!empty($s['phone']))
+                        <a href="tel:{{ preg_replace('/[^0-9+]/', '', $s['phone']) }}">{{ $s['phone'] }}</a>
+                    @endif
                 </div>
             </div>
 
@@ -496,10 +498,9 @@ www.cyclevent.com
                 <div class="cv-footer-v2-contact-text">
                     <span class="cv-footer-v2-contact-label">WhatsApp</span>
                     @if($wa)
-                        <a href="javascript:void(0)" onclick="openOrderModal('Footer WA')"
-                            data-track="Footer WA">{{ $wa->nomor_wa }}</a>
-                    @else
-                        <a href="javascript:void(0)" onclick="openOrderModal('Footer WA')">0812-9656-5757</a>
+                        <a href="javascript:void(0)" onclick="openOrderModal('Footer WA')" data-track="Footer WA">{{ $wa->nomor_wa }}</a>
+                    @elseif(!empty($s['phone']))
+                        <a href="javascript:void(0)" onclick="openOrderModal('Footer WA')">{{ $s['phone'] }}</a>
                     @endif
                 </div>
             </div>
@@ -513,7 +514,9 @@ www.cyclevent.com
                 </div>
                 <div class="cv-footer-v2-contact-text">
                     <span class="cv-footer-v2-contact-label">Email</span>
-                    <a href="mailto:cyclevent.ventilator58@gmail.com">cyclevent.ventilator58@gmail.com</a>
+                    @if(!empty($s['email']))
+                        <a href="mailto:{{ $s['email'] }}">{{ $s['email'] }}</a>
+                    @endif
                 </div>
             </div>
 
@@ -526,7 +529,7 @@ www.cyclevent.com
                 </div>
                 <div class="cv-footer-v2-contact-text">
                     <span class="cv-footer-v2-contact-label">Jam Operasional</span>
-                    Senin – Sabtu, 08.00 – 18.00 WIB
+                    {{ $s['business_hours'] ?? 'Senin – Sabtu, 08.00 – 17.00 WIB' }}
                 </div>
             </div>
         </div>

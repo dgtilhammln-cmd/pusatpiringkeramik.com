@@ -374,10 +374,12 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
                 </div>
                 <div class="ct-info-body">
                     <div class="ct-info-label">Telepon</div>
-                    <a href="tel:{{ $settings['phone'] ?? '031-99171407' }}" class="ct-info-value" data-track="phone">
-                        {{ $settings['phone'] ?? '031 - 9917 1407' }}
+                    @if(!empty($settings['phone']))
+                    <a href="tel:{{ preg_replace('/[^0-9+]/', '', $settings['phone']) }}" class="ct-info-value" data-track="phone">
+                        {{ $settings['phone'] }}
                     </a>
-                    <div class="ct-info-sub">Senin–Sabtu 08.00–17.00 WIB</div>
+                    @endif
+                    <div class="ct-info-sub">Senin–Sabtu {{ $settings['business_hours'] ?? '08.00–17.00 WIB' }}</div>
                 </div>
             </div>
 
@@ -388,9 +390,11 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
                 </div>
                 <div class="ct-info-body">
                     <div class="ct-info-label">Email</div>
-                    <a href="mailto:{{ $settings['email'] ?? 'info@cyclevent.id' }}" class="ct-info-value" data-track="email">
-                        {{ $settings['email'] ?? 'info@cyclevent.id' }}
+                    @if(!empty($settings['email']))
+                    <a href="mailto:{{ $settings['email'] }}" class="ct-info-value" data-track="email">
+                        {{ $settings['email'] }}
                     </a>
+                    @endif
                     <div class="ct-info-sub">Balasan dalam 1×24 jam</div>
                 </div>
             </div>
