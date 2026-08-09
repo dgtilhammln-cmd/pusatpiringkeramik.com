@@ -32,7 +32,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        height: 45%;
+        height: 25%;
         background-color: #0A1930; /* Navy Blue */
         z-index: 0;
     }
@@ -82,28 +82,23 @@
     }
     .cv-hero-title span {
         font-weight: 700;
-        color: #DC2626; /* Red emphasis */
+        /* Removed red color to inherit Navy */
     }
     
     /* Static Logo Badge */
     .cv-static-logo-badge {
-        width: 100px; height: 100px;
+        width: 160px; height: auto;
         position: relative;
         flex-shrink: 0;
-        border-radius: 50%;
-        background: #ffffff;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         display: flex; align-items: center; justify-content: center;
-        overflow: hidden;
-        border: 1px solid rgba(0,0,0,0.05);
     }
     .cv-static-logo-badge img {
-        width: 60%;
+        width: 100%;
         height: auto;
         object-fit: contain;
     }
     .cv-static-logo-badge .cv-text-logo {
-        font-size: 0.9rem;
+        font-size: 1.1rem;
         font-weight: 900;
         color: #0EA5E9;
     }

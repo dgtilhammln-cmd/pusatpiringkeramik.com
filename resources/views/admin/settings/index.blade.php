@@ -453,22 +453,6 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
 <div id="tab-hero" class="tab-section" style="display:none;">
   <div style="display:flex;flex-direction:column;gap:1.25rem;">
 
-    {{-- Hero Text --}}
-    <div style="background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 4px 15px rgba(0,0,0,0.03);border-radius:10px;padding:1.5rem;">
-      <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;">
-        <svg width="14" height="14" fill="none" stroke="#0EA5E9" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0EA5E9;">Teks Hero Section</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-        @foreach(['hero_headline'=>'Headline Utama (Judul Besar)','hero_subheadline'=>'Sub-headline (Kalimat Pendukung)','hero_cta_primary'=>'Teks Tombol Utama','hero_cta_secondary'=>'Teks Tombol Sekunder'] as $key=>$label)
-        <div>
-          <label class="form-label" for="s-{{ $key }}">{{ $label }}</label>
-          <input type="text" name="{{ $key }}" id="s-{{ $key }}" class="form-input" value="{{ $settings[$key] ?? '' }}">
-        </div>
-        @endforeach
-      </div>
-    </div>
-
     {{-- Images --}}
     <div style="background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 4px 15px rgba(0,0,0,0.03);border-radius:10px;padding:1.5rem;">
       <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;">
@@ -477,9 +461,6 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;">
         @foreach([
-          'hero_bg_image' => 'Background Hero (Gambar paling belakang, default putih)',
-          'hero_main_image' => 'Hero Main Image (Tengah)',
-          'hero_secondary_image' => 'Hero Secondary Image (Kanan)',
           'breadcrumb_bg' => 'Header Sub-halaman (Layanan, Artikel, dll)',
           'about_image'   => 'Foto About / Profile (Lama)',
         ] as $imgKey => $imgLabel)
