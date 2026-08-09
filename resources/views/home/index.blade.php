@@ -17,38 +17,45 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'" />
     <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /></noscript>
     <style>
-    /* ── NEW HERO ────────────────────────────────── */
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
-
+        /* ── NEW HERO ────────────────────────────────── */
     .cv-hero-modern {
         background-color: #FAFAFA;
         padding-top: calc(80px + 3rem);
-        padding-bottom: 4rem;
+        padding-bottom: 2rem;
         position: relative;
         overflow: hidden;
-        font-family: 'Outfit', sans-serif;
+        font-family: var(--font);
     }
+    
+    .cv-hero-bg-block {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 45%;
+        background-color: #0A1930; /* Navy Blue */
+        z-index: 0;
+    }
+    
     .cv-hero-grid {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 1.5rem;
         width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
-        align-items: center;
         position: relative;
         z-index: 1;
     }
-    @media (max-width: 992px) {
-        .cv-hero-grid { grid-template-columns: 1fr; gap: 2rem; }
-    }
     
-    /* Left Column */
-    .cv-hero-left {
+    /* Top Section */
+    .cv-hero-top {
         display: flex;
-        flex-direction: column;
+        justify-content: space-between;
         align-items: flex-start;
+        margin-bottom: 2rem;
+        position: relative;
+    }
+    .cv-hero-top-left {
+        max-width: 75%;
     }
     .cv-hero-badge {
         display: inline-flex;
@@ -58,76 +65,96 @@
         font-weight: 600;
         color: #64748b;
         margin-bottom: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.02em;
     }
     .cv-hero-badge::before {
         content: '';
-        width: 30px; height: 1.5px;
-        background: #ef4444; /* Red accent */
+        width: 25px; height: 1.5px;
+        background: #DC2626; /* Red accent */
     }
     .cv-hero-title {
-        font-size: clamp(2.5rem, 4vw, 4rem);
-        font-weight: 300; /* Thin font */
-        color: #0f172a;
+        font-size: clamp(2.5rem, 3.8vw, 4rem);
+        font-weight: 800; 
+        color: #0A1930; /* Navy Blue */
         line-height: 1.1;
-        margin-bottom: 1.5rem;
-        letter-spacing: -0.03em;
+        letter-spacing: -0.02em;
+        margin: 0;
     }
     .cv-hero-title span {
-        font-weight: 700;
-        color: #ef4444; /* Red emphasis */
+        color: #DC2626; /* Red emphasis */
+    }
+    
+    /* Circular "Get in Touch" */
+    .cv-circular-text {
+        width: 100px; height: 100px;
+        position: relative;
+        flex-shrink: 0;
+        animation: rotateText 15s linear infinite;
+    }
+    .cv-circular-text svg { width: 100%; height: 100%; fill: #0A1930; }
+    .cv-circular-center-btn {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        width: 34px; height: 34px;
+        background: #0A1930;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        color: white;
+        z-index: 2;
+    }
+    .cv-circular-center-btn svg { width:16px; height:16px; fill:none; stroke:white; stroke-width: 2; }
+    
+    @keyframes rotateText { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    
+    /* Middle Section */
+    .cv-hero-mid {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 3rem;
     }
     .cv-hero-tags {
         display: flex;
         flex-wrap: wrap;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
+        gap: 0.5rem;
+        flex: 1;
+        padding-right: 2rem;
     }
     .cv-hero-tags span {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         color: #475569;
-        font-weight: 400;
-        position: relative;
-        padding-right: 1rem;
-    }
-    .cv-hero-tags span:not(:last-child)::after {
-        content: '';
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 3px; height: 3px;
-        border-radius: 50%;
-        background: #cbd5e1;
+        font-weight: 500;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        padding: 0.4rem 1rem;
+        border-radius: 50px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.02);
     }
     .cv-hero-desc {
         font-size: 0.95rem;
-        font-weight: 300;
+        font-weight: 400;
         color: #64748b;
-        line-height: 1.8;
+        line-height: 1.6;
         padding-left: 1.5rem;
-        border-left: 2px solid #ef4444; /* Red left border */
-        max-width: 90%;
+        border-left: 2px solid #DC2626; /* Red vertical line */
+        max-width: 400px;
     }
-
-    /* Right Column (Image + Stats) */
-    .cv-hero-right {
+    
+    /* Bottom Section */
+    .cv-hero-bottom {
         position: relative;
-        height: 100%;
-        min-height: 500px;
         display: flex;
         align-items: center;
-        justify-content: flex-end;
     }
     .cv-hero-img-wrapper {
         position: relative;
-        width: 100%;
-        max-width: 550px;
-        height: 450px;
+        width: 75%;
+        height: 400px;
         border-radius: 24px;
         overflow: hidden;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        z-index: 1;
     }
     .cv-hero-img {
         width: 100%; height: 100%;
@@ -148,80 +175,68 @@
         cursor: pointer;
         transition: all 0.3s;
         text-decoration: none;
+        z-index: 2;
     }
     .cv-hero-play-btn:hover {
         background: rgba(255,255,255,0.5);
         transform: translate(-50%, -50%) scale(1.1);
     }
-    
     .cv-hero-stats-box {
         position: absolute;
-        bottom: -2rem;
-        right: -2rem;
-        background: #ef4444; /* Red Stats Box */
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #DC2626; /* Red Stats Box */
         color: #fff;
         padding: 2.5rem;
         border-radius: 20px;
-        box-shadow: 0 15px 30px rgba(239,68,68,0.3);
+        box-shadow: 0 15px 30px rgba(220,38,38,0.3);
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
         z-index: 2;
-    }
-    @media (max-width: 768px) {
-        .cv-hero-stats-box {
-            position: relative;
-            bottom: 0; right: 0;
-            margin-top: -3rem;
-            width: 90%;
-            margin-left: auto; margin-right: auto;
-        }
-        .cv-hero-right { min-height: auto; }
-        .cv-hero-img-wrapper { height: 350px; }
+        min-width: 280px;
     }
     .cv-stat-item {
         display: flex;
         flex-direction: column;
-        gap: 0.25rem;
+        gap: 0.2rem;
     }
     .cv-stat-val {
-        font-size: 2rem;
-        font-weight: 700;
+        font-size: 2.2rem;
+        font-weight: 800;
         line-height: 1;
     }
     .cv-stat-label {
-        font-size: 0.85rem;
-        font-weight: 300;
+        font-size: 0.9rem;
+        font-weight: 400;
         opacity: 0.9;
     }
-
-    /* Circular "Get in Touch" */
-    .cv-circular-text {
+    
+    /* Sparkles */
+    .cv-sparkles {
         position: absolute;
-        top: -2rem; right: 2rem;
-        width: 120px; height: 120px;
-        animation: rotateText 15s linear infinite;
+        left: -30px;
+        top: 50px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
         z-index: 2;
     }
-    .cv-circular-text svg { width: 100%; height: 100%; fill: #0f172a; }
-    .cv-circular-center-btn {
-        position: absolute;
-        top: 50%; left: 50%;
-        transform: translate(-50%, -50%);
-        width: 40px; height: 40px;
-        background: #ef4444;
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        color: white;
+    .cv-sparkle {
+        color: #DC2626;
     }
-    @keyframes rotateText { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-    /* Swiper customization */
-    .hero-swiper { width: 100%; padding-bottom: 2rem; }
-    .hero-swiper-pagination { bottom: 0 !important; }
-    .hero-swiper-pagination .swiper-pagination-bullet { background: #cbd5e1; opacity: 1; }
-    .hero-swiper-pagination .swiper-pagination-bullet-active { background: #ef4444; width: 24px; border-radius: 12px; }
-
+    
+    @media (max-width: 992px) {
+        .cv-hero-top { flex-direction: column; gap: 1rem; }
+        .cv-hero-top-left { max-width: 100%; }
+        .cv-circular-text { position: absolute; top: 0; right: 0; }
+        .cv-hero-mid { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+        .cv-hero-desc { border-left: none; border-top: 2px solid #DC2626; padding-left: 0; padding-top: 1rem; }
+        .cv-hero-img-wrapper { width: 100%; }
+        .cv-hero-stats-box { position: relative; bottom: 0; right: 0; top: auto; transform: none; margin-top: -3rem; width: 90%; margin-left: auto; margin-right: auto; }
+        .cv-hero-bg-block { height: 15%; }
+    }
     /* ── PRODUCTS ─────────────────────── */
     .cv-products { background: var(--bg-base); }
     .cv-products-grid {
@@ -790,9 +805,9 @@
     }
     </style>
 
-    {{-- ════ NEW MODERN HERO ════ --}}
+        {{-- ════ NEW MODERN HERO ════ --}}
     <section class="cv-hero-modern" id="home">
-        
+        <div class="cv-hero-bg-block"></div>
         <div class="swiper hero-swiper">
             <div class="swiper-wrapper">
                 @if(isset($heroSlides) && $heroSlides->count() > 0)
@@ -800,23 +815,44 @@
                     <div class="swiper-slide">
                         <div class="cv-hero-grid">
                             
-                            {{-- Left Column --}}
-                            <div class="cv-hero-left">
-                                @if($slide->subtitle)
-                                <div class="cv-hero-badge">{{ $slide->subtitle }}</div>
-                                @endif
-                                
-                                <h1 class="cv-hero-title">
-                                    {!! str_replace(['Structural Perfection', 'Innovation', 'structural perfection', 'innovation'], ['<span>Structural Perfection</span>', '<span>Innovation</span>', '<span>structural perfection</span>', '<span>innovation</span>'], nl2br(e($slide->title))) !!}
-                                </h1>
-                                
-                                @if($slide->tags)
-                                <div class="cv-hero-tags">
-                                    @foreach(explode(',', $slide->tags) as $tag)
-                                        <span>{{ trim($tag) }}</span>
-                                    @endforeach
+                            {{-- Top Section --}}
+                            <div class="cv-hero-top">
+                                <div class="cv-hero-top-left">
+                                    @if($slide->subtitle)
+                                    <div class="cv-hero-badge">{{ $slide->subtitle }}</div>
+                                    @endif
+                                    
+                                    <h1 class="cv-hero-title">
+                                        {!! str_replace(['Structural Perfection', 'Innovation', 'structural perfection', 'innovation'], ['<span>Structural Perfection</span>', '<span>Innovation</span>', '<span>structural perfection</span>', '<span>innovation</span>'], nl2br(e($slide->title))) !!}
+                                    </h1>
                                 </div>
-                                @endif
+                                
+                                <div class="cv-circular-text d-none d-sm-block">
+                                    <svg viewBox="0 0 100 100">
+                                        <path d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" id="circle_{{ $loop->index }}" fill="none"/>
+                                        <text><textPath href="#circle_{{ $loop->index }}">GET IN TOUCH • GET IN TOUCH • </textPath></text>
+                                    </svg>
+                                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['wa_number'] ?? '') }}" target="_blank" class="cv-circular-center-btn">
+                                        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            {{-- Middle Section --}}
+                            <div class="cv-hero-mid">
+                                <div class="cv-hero-tags">
+                                    @if($slide->tags)
+                                        @foreach(explode(',', $slide->tags) as $tag)
+                                            <span>{{ trim($tag) }}</span>
+                                        @endforeach
+                                    @else
+                                        <span>General Construction Services</span>
+                                        <span>Concrete Work</span>
+                                        <span>Design and Planning</span>
+                                        <span>Civil Works</span>
+                                        <span>Pre-Construction</span>
+                                    @endif
+                                </div>
                                 
                                 @if($slide->description)
                                 <div class="cv-hero-desc">
@@ -825,20 +861,13 @@
                                 @endif
                             </div>
 
-                            {{-- Right Column --}}
-                            <div class="cv-hero-right">
-                                
-                                {{-- Circular Get in Touch (hidden on mobile) --}}
-                                <div class="cv-circular-text d-none d-md-block" style="display:none;">
-                                    <svg viewBox="0 0 100 100">
-                                        <path d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" id="circle" fill="none"/>
-                                        <text><textPath href="#circle">GET IN TOUCH • GET IN TOUCH • </textPath></text>
-                                    </svg>
-                                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['wa_number'] ?? '') }}" target="_blank" class="cv-circular-center-btn">
-                                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                                    </a>
+                            {{-- Bottom Section --}}
+                            <div class="cv-hero-bottom">
+                                <div class="cv-sparkles d-none d-md-flex">
+                                    <svg class="cv-sparkle" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2 8 8 2-8 2-2 8-2-8-8-2 8-2 2-8z"/></svg>
+                                    <svg class="cv-sparkle" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-left:20px;"><path d="M12 0l2 8 8 2-8 2-2 8-2-8-8-2 8-2 2-8z"/></svg>
                                 </div>
-
+                                
                                 <div class="cv-hero-img-wrapper">
                                     @if($slide->image)
                                         <img src="{{ asset('storage/' . $slide->image) }}" class="cv-hero-img" alt="{{ $slide->title }}">
@@ -854,24 +883,18 @@
                                 </div>
 
                                 <div class="cv-hero-stats-box">
-                                    @if($slide->stat_1_value)
                                     <div class="cv-stat-item">
-                                        <div class="cv-stat-val">{{ $slide->stat_1_value }}</div>
-                                        <div class="cv-stat-label">{{ $slide->stat_1_label }}</div>
+                                        <div class="cv-stat-val">{{ $slide->stat_1_value ?? '640+' }}</div>
+                                        <div class="cv-stat-label">{{ $slide->stat_1_label ?? 'Projects Completed' }}</div>
                                     </div>
-                                    @endif
-                                    @if($slide->stat_2_value)
                                     <div class="cv-stat-item">
-                                        <div class="cv-stat-val">{{ $slide->stat_2_value }}</div>
-                                        <div class="cv-stat-label">{{ $slide->stat_2_label }}</div>
+                                        <div class="cv-stat-val">{{ $slide->stat_2_value ?? '25+' }}</div>
+                                        <div class="cv-stat-label">{{ $slide->stat_2_label ?? 'Years of Experience' }}</div>
                                     </div>
-                                    @endif
-                                    @if($slide->stat_3_value)
                                     <div class="cv-stat-item">
-                                        <div class="cv-stat-val">{{ $slide->stat_3_value }}</div>
-                                        <div class="cv-stat-label">{{ $slide->stat_3_label }}</div>
+                                        <div class="cv-stat-val">{{ $slide->stat_3_value ?? '450+' }}</div>
+                                        <div class="cv-stat-label">{{ $slide->stat_3_label ?? 'Happy Customers' }}</div>
                                     </div>
-                                    @endif
                                 </div>
                                 
                             </div>
@@ -883,9 +906,17 @@
                     {{-- Default slide if no slides exist --}}
                     <div class="swiper-slide">
                         <div class="cv-hero-grid">
-                            <div class="cv-hero-left">
-                                <div class="cv-hero-badge">Award-Winning Construction Excellence</div>
-                                <h1 class="cv-hero-title">Where <span>Innovation</span> Drives<br><span>Structural Perfection</span></h1>
+                            <div class="cv-hero-top">
+                                <div class="cv-hero-top-left">
+                                    <div class="cv-hero-badge">Award-Winning Construction Excellence</div>
+                                    <h1 class="cv-hero-title">Where <span>Innovation</span> Drives<br><span>Structural Perfection</span></h1>
+                                </div>
+                                <div class="cv-circular-text d-none d-sm-block">
+                                    <svg viewBox="0 0 100 100"><path d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" id="circle_def" fill="none"/><text><textPath href="#circle_def">GET IN TOUCH • GET IN TOUCH • </textPath></text></svg>
+                                    <a href="#" class="cv-circular-center-btn"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                                </div>
+                            </div>
+                            <div class="cv-hero-mid">
                                 <div class="cv-hero-tags">
                                     <span>General Construction Services</span>
                                     <span>Concrete Work</span>
@@ -893,15 +924,10 @@
                                 </div>
                                 <div class="cv-hero-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tambahkan slide di admin.</div>
                             </div>
-                            <div class="cv-hero-right">
-                                <div class="cv-hero-img-wrapper">
-                                    <div style="width:100%;height:100%;background:#e2e8f0;"></div>
-                                </div>
+                            <div class="cv-hero-bottom">
+                                <div class="cv-hero-img-wrapper"><div style="width:100%;height:100%;background:#e2e8f0;"></div></div>
                                 <div class="cv-hero-stats-box">
-                                    <div class="cv-stat-item">
-                                        <div class="cv-stat-val">640+</div>
-                                        <div class="cv-stat-label">Projects Completed</div>
-                                    </div>
+                                    <div class="cv-stat-item"><div class="cv-stat-val">640+</div><div class="cv-stat-label">Projects Completed</div></div>
                                 </div>
                             </div>
                         </div>
@@ -912,7 +938,6 @@
         </div>
     </section>
 
-    
     {{-- ════ PREMIUM CLIENTS BAR ════ --}}
     @if($clients->count())
         <section class="cv-clients-section">
