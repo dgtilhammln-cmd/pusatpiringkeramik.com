@@ -78,11 +78,16 @@ trait HandlesImageUpload
      */
     private function gdEncodeWebP($img, int $quality): string
     {
-        ob_start();
-        imagewebp($img, null, $quality);
-        $data = ob_get_clean();
+        if (!$img) {
+            throw new \Exception("Gagal memproses gambar. Pastikan file valid.");
+        }
+        $stream = fopen('php://temp', 'r+');
+        imagewebp($img, $stream, $quality);
+        rewind($stream);
+        $data = stream_get_contents($stream);
+        fclose($stream);
         imagedestroy($img);
-        return $data;
+        return (string) $data;
     }
 
     /**
