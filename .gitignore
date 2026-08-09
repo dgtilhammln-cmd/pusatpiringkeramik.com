@@ -4,7 +4,7 @@
 /public/storage
 /public_html/storage
 /storage/*.key
-/vendor
+
 .env
 .env.backup
 .env.production
