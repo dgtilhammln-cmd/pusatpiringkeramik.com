@@ -138,11 +138,11 @@
         white-space: nowrap;
     }
     .pill-link:hover {
-        color: #0EA5E9;
-        background: rgba(14,165,233,0.07);
+        color: #0A1930;
+        background: rgba(10,25,48,0.07);
     }
     .pill-link.active {
-        background: #0369a1;
+        background: #0A1930;
         color: #fff;
         font-weight: 600;
     }
@@ -171,14 +171,14 @@
     }
     .pill-btn-outline:hover { background: rgba(0,0,0,0.04); }
     .pill-btn-solid {
-        background: #0369a1;
+        background: #0A1930;
         color: #fff;
-        box-shadow: 0 2px 10px rgba(14,165,233,0.28);
+        box-shadow: 0 2px 10px rgba(10,25,48,0.22);
     }
     .pill-btn-solid:hover {
-        background: #075985;
+        background: #1E3A5F;
         transform: translateY(-1px);
-        box-shadow: 0 4px 16px rgba(14,165,233,0.35);
+        box-shadow: 0 4px 16px rgba(10,25,48,0.32);
     }
 
     /* ── Mobile ── */
@@ -192,7 +192,7 @@
         justify-content: center;
         cursor: pointer;
         box-shadow: 0 4px 20px rgba(0,0,0,0.07);
-        color: #0EA5E9;
+        color: #0A1930;
         pointer-events: auto;
         animation: navDropIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
         animation-delay: 0.05s;
@@ -273,7 +273,7 @@
     </div>
     <nav style="display:flex;flex-direction:column;gap:1.25rem;">
         @foreach($navLinks as $link)
-            <a href="{{ $link['url'] }}" style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:600;color:{{ $currentUrl == $link['url'] ? '#0EA5E9' : '#1e293b' }};text-decoration:none;transition:color .2s;">
+            <a href="{{ $link['url'] }}" style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:600;color:{{ $currentUrl == $link['url'] ? '#0A1930' : '#1e293b' }};text-decoration:none;transition:color .2s;">
                 {{ $link['label'] }}
             </a>
         @endforeach
@@ -286,7 +286,7 @@
                     $waNumberMobile = '62' . substr($waNumberMobile, 1);
                 }
             @endphp
-            <a href="https://wa.me/{{ $waNumberMobile }}" target="_blank" style="display:block;background:#0EA5E9;color:#fff;text-align:center;padding:.875rem;border-radius:999px;font-family:'Montserrat',sans-serif;font-weight:600;text-decoration:none;box-shadow:0 4px 14px rgba(14,165,233,.3);">
+            <a href="https://wa.me/{{ $waNumberMobile }}" target="_blank" style="display:block;background:#0A1930;color:#fff;text-align:center;padding:.875rem;border-radius:999px;font-family:'Montserrat',sans-serif;font-weight:600;text-decoration:none;box-shadow:0 4px 14px rgba(10,25,48,.3);">
                 Hubungi Kami
             </a>
         @endif

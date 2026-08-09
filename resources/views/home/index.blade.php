@@ -70,17 +70,18 @@
         width: 25px; height: 1.5px;
         background: #DC2626; /* Red accent */
     }
-    .cv-hero-title {
+    .cv-hero-title,
+    h2.cv-hero-title {
         font-size: clamp(2.5rem, 3.8vw, 4rem);
-        font-weight: 500; 
+        font-weight: 500;
         color: #0A1930; /* Navy Blue */
         line-height: 1.1;
         letter-spacing: -0.02em;
         margin: 0;
     }
-    .cv-hero-title span {
+    .cv-hero-title span,
+    h2.cv-hero-title span {
         font-weight: 700;
-        /* Removed red color to inherit Navy */
     }
     
     /* Static Logo Badge (Just Image, No Pill) */
@@ -803,9 +804,15 @@
                                     <div class="cv-hero-badge">{{ $slide->subtitle }}</div>
                                     @endif
                                     
+                                    @if($loop->first)
                                     <h1 class="cv-hero-title">
                                         {!! str_replace(['Structural Perfection', 'Innovation', 'structural perfection', 'innovation'], ['<span>Structural Perfection</span>', '<span>Innovation</span>', '<span>structural perfection</span>', '<span>innovation</span>'], nl2br(e($slide->title))) !!}
                                     </h1>
+                                    @else
+                                    <h2 class="cv-hero-title">
+                                        {!! str_replace(['Structural Perfection', 'Innovation', 'structural perfection', 'innovation'], ['<span>Structural Perfection</span>', '<span>Innovation</span>', '<span>structural perfection</span>', '<span>innovation</span>'], nl2br(e($slide->title))) !!}
+                                    </h2>
+                                    @endif
                                 </div>
                                 
                                 <div class="cv-static-logo-badge d-none d-sm-inline-flex">
