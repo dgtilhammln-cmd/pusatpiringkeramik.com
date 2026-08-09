@@ -1,60 +1,42 @@
-# ══════════════════════════════════════════════════════════
-# Deploy Script (Git Pull) — PT Biner
-# Target: Hostinger
-# ══════════════════════════════════════════════════════════
+# ============================================================
+# DEPLOY SCRIPT — PT Biner (ptbinercoid.hvmdigital.id)
+# Cara pakai: .\deploy.ps1
+# Pastikan setup_github_ssh.ps1 sudah dijalankan sebelumnya!
+# ============================================================
 
-$SSH_HOST = "46.202.186.86"
-$SSH_PORT = "65002"
-$SSH_USER = "u664715641"
+$SSH_HOST   = "46.202.186.86"
+$SSH_PORT   = "65002"
+$SSH_USER   = "u664715641"
 $REMOTE_DIR = "/home/u664715641/domains/ptbinercoid.hvmdigital.id"
 
-Write-Host "🚀 Memulai deploy ke Hostinger via Git..." -ForegroundColor Cyan
+Write-Host "========================================" -ForegroundColor Cyan
+Write-Host " DEPLOY PT BINER — ptbinercoid.hvmdigital.id" -ForegroundColor Cyan
+Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 
-Write-Host "⚙️ Mengunggah file .env ke server..." -ForegroundColor Yellow
-& scp -P $SSH_PORT .env "${SSH_USER}@${SSH_HOST}:${REMOTE_DIR}/.env"
-
-$RemoteCommands = @"
-cd $REMOTE_DIR
-
-if [ ! -d ".git" ]; then
-    echo '--- 🚀 Menyiapkan Repository Git Pertama Kali ---'
-    git init
-    git remote add origin https://github.com/dgtilhammln-cmd/ptbiner.co.id.git
-    git fetch origin
-    
-    # Amankan file bawaan Hostinger agar tidak conflict saat checkout
-    if [ -f "public_html/default.php" ]; then
-        mv public_html/default.php public_html/default.php.bak
-    fi
-    
-    git checkout -f main
-else
-    echo '--- 📥 Mengambil update dari GitHub ---'
-    git fetch origin
-    git reset --hard origin/main
-fi
-
-echo '--- 📦 Install dependensi (jika ada) ---'
-composer install --no-dev --optimize-autoloader
-
-echo '--- 🗄️ Menjalankan Migration ---'
-php artisan migrate --force
-
-echo '--- 🧹 Membersihkan & Membangun Cache ---'
-php artisan optimize:clear
-php artisan config:cache
-php artisan view:cache
-
-echo '--- 🔐 Update Permissions ---'
-if [ -d "storage" ]; then
-    chmod -R 775 storage bootstrap/cache
-fi
-
-echo '✅ Deploy Selesai!'
-"@
-
-& ssh -p $SSH_PORT "${SSH_USER}@${SSH_HOST}" $RemoteCommands
+# Upload .env ke server
+Write-Host "[1/2] Upload file .env..." -ForegroundColor Yellow
+& scp -P $SSH_PORT ".env" "${SSH_USER}@${SSH_HOST}:${REMOTE_DIR}/.env"
 
 Write-Host ""
-Write-Host "🎉 Server berhasil diupdate!" -ForegroundColor Green
+Write-Host "[2/2] Deploy via Git + Artisan..." -ForegroundColor Yellow
+
+# Script bash yang dijalankan di server
+$script = "cd $REMOTE_DIR && " +
+    "git fetch origin && " +
+    "git reset --hard origin/main && " +
+    "composer install --no-dev --optimize-autoloader --quiet && " +
+    "php artisan migrate --force && " +
+    "php artisan optimize:clear && " +
+    "php artisan config:cache && " +
+    "php artisan view:cache && " +
+    "chmod -R 775 storage bootstrap/cache && " +
+    "echo 'DEPLOY SELESAI!'"
+
+& ssh -p $SSH_PORT "${SSH_USER}@${SSH_HOST}" $script
+
+Write-Host ""
+Write-Host "========================================" -ForegroundColor Green
+Write-Host " Deploy selesai!" -ForegroundColor Green
+Write-Host " Cek: https://ptbinercoid.hvmdigital.id" -ForegroundColor Green
+Write-Host "========================================" -ForegroundColor Green
