@@ -754,11 +754,6 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
           <p style="font-size:.7rem;color:#94A3B8;margin:.375rem 0 0;">Tampil di footer & halaman kontak</p>
         </div>
         <div style="grid-column:span 2;">
-          <label class="form-label" for="s-address">Alamat Lengkap Perusahaan</label>
-          <textarea name="address" id="s-address" class="form-input" rows="3" placeholder="Jl. ... No. ..., Kota, Provinsi">{{ $settings['address'] ?? '' }}</textarea>
-          <p style="font-size:.7rem;color:#94A3B8;margin:.375rem 0 0;">Tampil di footer & halaman kontak</p>
-        </div>
-        <div style="grid-column:span 2;">
           <label class="form-label" for="s-maps_embed">URL Google Maps Embed</label>
           <input type="text" name="maps_embed" id="s-maps_embed" class="form-input" value="{{ $settings['maps_embed'] ?? '' }}" placeholder="https://maps.google.com/maps?q=...&output=embed">
           <p style="font-size:.7rem;color:#94A3B8;margin:.375rem 0 0;">Buka Google Maps → Share → Embed a map → salin URL dari atribut src iframe-nya</p>
