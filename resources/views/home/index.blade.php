@@ -74,38 +74,39 @@
     }
     .cv-hero-title {
         font-size: clamp(2.5rem, 3.8vw, 4rem);
-        font-weight: 800; 
+        font-weight: 500; 
         color: #0A1930; /* Navy Blue */
         line-height: 1.1;
         letter-spacing: -0.02em;
         margin: 0;
     }
     .cv-hero-title span {
+        font-weight: 700;
         color: #DC2626; /* Red emphasis */
     }
     
-    /* Circular "Get in Touch" */
-    .cv-circular-text {
+    /* Static Logo Badge */
+    .cv-static-logo-badge {
         width: 100px; height: 100px;
         position: relative;
         flex-shrink: 0;
-        animation: rotateText 15s linear infinite;
-    }
-    .cv-circular-text svg { width: 100%; height: 100%; fill: #0A1930; }
-    .cv-circular-center-btn {
-        position: absolute;
-        top: 50%; left: 50%;
-        transform: translate(-50%, -50%);
-        width: 34px; height: 34px;
-        background: #0A1930;
         border-radius: 50%;
+        background: #ffffff;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         display: flex; align-items: center; justify-content: center;
-        color: white;
-        z-index: 2;
+        overflow: hidden;
+        border: 1px solid rgba(0,0,0,0.05);
     }
-    .cv-circular-center-btn svg { width:16px; height:16px; fill:none; stroke:white; stroke-width: 2; }
-    
-    @keyframes rotateText { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .cv-static-logo-badge img {
+        width: 60%;
+        height: auto;
+        object-fit: contain;
+    }
+    .cv-static-logo-badge .cv-text-logo {
+        font-size: 0.9rem;
+        font-weight: 900;
+        color: #0EA5E9;
+    }
     
     /* Middle Section */
     .cv-hero-mid {
@@ -230,7 +231,7 @@
     @media (max-width: 992px) {
         .cv-hero-top { flex-direction: column; gap: 1rem; }
         .cv-hero-top-left { max-width: 100%; }
-        .cv-circular-text { position: absolute; top: 0; right: 0; }
+        .cv-static-logo-badge { position: absolute; top: 0; right: 0; }
         .cv-hero-mid { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
         .cv-hero-desc { border-left: none; border-top: 2px solid #DC2626; padding-left: 0; padding-top: 1rem; }
         .cv-hero-img-wrapper { width: 100%; }
@@ -827,14 +828,12 @@
                                     </h1>
                                 </div>
                                 
-                                <div class="cv-circular-text d-none d-sm-block">
-                                    <svg viewBox="0 0 100 100">
-                                        <path d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" id="circle_{{ $loop->index }}" fill="none"/>
-                                        <text><textPath href="#circle_{{ $loop->index }}">GET IN TOUCH • GET IN TOUCH • </textPath></text>
-                                    </svg>
-                                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['wa_number'] ?? '') }}" target="_blank" class="cv-circular-center-btn">
-                                        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                                    </a>
+                                <div class="cv-static-logo-badge d-none d-sm-flex">
+                                    @if(!empty($settings['logo']))
+                                        <img src="{{ asset('storage/'.$settings['logo']) }}" alt="Logo">
+                                    @else
+                                        <span class="cv-text-logo">Cyclevent</span>
+                                    @endif
                                 </div>
                             </div>
                             
@@ -911,9 +910,12 @@
                                     <div class="cv-hero-badge">Award-Winning Construction Excellence</div>
                                     <h1 class="cv-hero-title">Where <span>Innovation</span> Drives<br><span>Structural Perfection</span></h1>
                                 </div>
-                                <div class="cv-circular-text d-none d-sm-block">
-                                    <svg viewBox="0 0 100 100"><path d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" id="circle_def" fill="none"/><text><textPath href="#circle_def">GET IN TOUCH • GET IN TOUCH • </textPath></text></svg>
-                                    <a href="#" class="cv-circular-center-btn"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                                <div class="cv-static-logo-badge d-none d-sm-flex">
+                                    @if(!empty($settings['logo']))
+                                        <img src="{{ asset('storage/'.$settings['logo']) }}" alt="Logo">
+                                    @else
+                                        <span class="cv-text-logo">Cyclevent</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="cv-hero-mid">
