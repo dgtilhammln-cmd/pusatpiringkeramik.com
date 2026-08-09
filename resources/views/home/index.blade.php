@@ -13,9 +13,7 @@
       PT. Hiranatha Makmur Sukses | www.cyclevent.com
     ════════════════════════════════════════════════ --}}
 
-    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /></noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         /* ── NEW HERO ────────────────────────────────── */
     .cv-hero-modern {
@@ -113,9 +111,12 @@
     .cv-hero-tags {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.5rem;
+        gap: 0.75rem;
         flex: 1;
         padding-right: 2rem;
+        justify-content: flex-start;
+        align-items: flex-start;
+        align-content: flex-start;
     }
     .cv-hero-tags span {
         font-size: 0.8rem;
@@ -2714,13 +2715,16 @@
 
 @include('components.lightbox-assets')
 
-<script defer src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         if(document.querySelector('.hero-swiper')) {
             new Swiper('.hero-swiper', {
                 loop: true,
                 effect: 'fade',
+                fadeEffect: {
+                    crossFade: true
+                },
                 autoplay: {
                     delay: 5000,
                     disableOnInteraction: false,
