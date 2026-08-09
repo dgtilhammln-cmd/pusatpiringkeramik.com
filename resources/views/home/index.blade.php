@@ -85,20 +85,41 @@
     
     /* Static Logo Badge */
     .cv-static-logo-badge {
-        width: 160px; height: auto;
-        position: relative;
         flex-shrink: 0;
-        display: flex; align-items: center; justify-content: center;
+        display: flex;
+        align-items: center;
+        gap: 0.875rem;
+        background: #ffffff;
+        border: 1.5px solid #E2E8F0;
+        border-radius: 12px;
+        padding: 0.625rem 1rem 0.625rem 0.625rem;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.06);
     }
     .cv-static-logo-badge img {
-        width: 100%;
-        height: auto;
+        height: 42px;
+        width: 42px;
         object-fit: contain;
+        flex-shrink: 0;
     }
-    .cv-static-logo-badge .cv-text-logo {
-        font-size: 1.1rem;
-        font-weight: 900;
-        color: #0EA5E9;
+    .cv-static-logo-badge-text {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+    }
+    .cv-static-logo-badge-name {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: #0F172A;
+        line-height: 1.2;
+        white-space: nowrap;
+    }
+    .cv-static-logo-badge-sub {
+        font-size: 0.65rem;
+        font-weight: 500;
+        color: #94A3B8;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        white-space: nowrap;
     }
     
     /* Middle Section */
@@ -142,60 +163,61 @@
     .cv-hero-bottom {
         position: relative;
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        align-items: stretch;
         width: 100%;
+        gap: 0;
     }
     .cv-hero-img-wrapper {
         position: relative;
         width: 100%;
-        height: 420px;
-        border-radius: 16px;
+        height: 380px;
+        border-radius: 16px 16px 0 0;
         overflow: hidden;
-        box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.18);
         z-index: 1;
     }
     .cv-hero-img {
         width: 100%; height: 100%;
         object-fit: cover;
     }
+    /* Stats row — horizontal strip under image */
     .cv-hero-stats-box {
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(15, 23, 42, 0.95);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255,255,255,0.05);
-        border-left: 4px solid #DC2626;
-        color: #ffffff;
-        padding: 2.5rem;
-        border-radius: 12px;
-        box-shadow: -10px 20px 40px rgba(0,0,0,0.4);
-        display: flex;
-        flex-direction: column;
-        gap: 1.75rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        background: #0A1930;
+        border-radius: 0 0 16px 16px;
+        overflow: hidden;
         z-index: 2;
-        min-width: 320px;
     }
     .cv-stat-item {
         display: flex;
         flex-direction: column;
-        gap: 0.25rem;
+        gap: 0.2rem;
+        padding: 1.25rem 1.5rem;
+        border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .cv-stat-item:last-child { border-right: none; }
+    .cv-stat-row {
+        display: flex;
+        align-items: baseline;
+        gap: 0.5rem;
     }
     .cv-stat-val {
-        font-size: 2.5rem;
+        font-size: 2rem;
         font-weight: 700;
         line-height: 1;
-        color: #ffffff !important;
+        color: #ffffff;
         margin: 0;
+        font-variant-numeric: tabular-nums;
     }
     .cv-stat-label {
-        font-size: 0.75rem;
-        font-weight: 600;
-        color: #94A3B8;
+        font-size: 0.65rem;
+        font-weight: 700;
+        color: rgba(255,255,255,0.35);
         text-transform: uppercase;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.1em;
+        margin-top: 0.15rem;
     }
     
     /* Sparkles */
@@ -215,11 +237,11 @@
     @media (max-width: 992px) {
         .cv-hero-top { flex-direction: column; gap: 1rem; }
         .cv-hero-top-left { max-width: 100%; }
-        .cv-static-logo-badge { position: absolute; top: 0; right: 0; }
+        .cv-static-logo-badge { display: none !important; }
         .cv-hero-mid { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
         .cv-hero-desc { border-left: none; border-top: 2px solid #DC2626; padding-left: 0; padding-top: 1rem; }
-        .cv-hero-img-wrapper { width: 100%; }
-        .cv-hero-stats-box { position: relative; bottom: 0; right: 0; top: auto; transform: none; margin-top: -3rem; width: 90%; margin-left: auto; margin-right: auto; }
+        .cv-hero-img-wrapper { width: 100%; border-radius: 16px 16px 0 0; }
+        .cv-hero-stats-box { grid-template-columns: 1fr 1fr 1fr; }
         .cv-hero-bg-block { height: 15%; }
     }
     /* ── PRODUCTS ─────────────────────── */
@@ -815,9 +837,13 @@
                                 <div class="cv-static-logo-badge d-none d-sm-flex">
                                     @if(!empty($settings['logo']))
                                         <img src="{{ asset('storage/'.$settings['logo']) }}" alt="Logo">
-                                    @else
-                                        <span class="cv-text-logo">Cyclevent</span>
                                     @endif
+                                    <div class="cv-static-logo-badge-text">
+                                        <div class="cv-static-logo-badge-name">{{ $settings['company_name'] ?? config('app.name') }}</div>
+                                        @if(!empty($settings['company_tagline']))
+                                        <div class="cv-static-logo-badge-sub">{{ $settings['company_tagline'] }}</div>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                             
@@ -850,7 +876,7 @@
                                     <svg class="cv-sparkle" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2 8 8 2-8 2-2 8-2-8-8-2 8-2 2-8z"/></svg>
                                     <svg class="cv-sparkle" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-left:20px;"><path d="M12 0l2 8 8 2-8 2-2 8-2-8-8-2 8-2 2-8z"/></svg>
                                 </div>
-                                
+
                                 <div class="cv-hero-img-wrapper">
                                     @if($slide->image)
                                         <img src="{{ asset('storage/' . $slide->image) }}" class="cv-hero-img" alt="{{ $slide->title }}">
@@ -861,30 +887,25 @@
 
                                 <div class="cv-hero-stats-box">
                                     <div class="cv-stat-item">
-                                        <div style="display:flex;align-items:center;gap:0.75rem;">
-                                            <svg width="28" height="28" fill="none" stroke="#DC2626" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                                        <div class="cv-stat-row">
                                             <div class="cv-stat-val">{{ $slide->stat_1_value ?? '640+' }}</div>
                                         </div>
                                         <div class="cv-stat-label">{{ $slide->stat_1_label ?? 'Projects Completed' }}</div>
                                     </div>
-                                    <div style="width:100%;height:1px;background:rgba(255,255,255,0.1);"></div>
                                     <div class="cv-stat-item">
-                                        <div style="display:flex;align-items:center;gap:0.75rem;">
-                                            <svg width="28" height="28" fill="none" stroke="#DC2626" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                        <div class="cv-stat-row">
                                             <div class="cv-stat-val">{{ $slide->stat_2_value ?? '25+' }}</div>
                                         </div>
                                         <div class="cv-stat-label">{{ $slide->stat_2_label ?? 'Years of Experience' }}</div>
                                     </div>
-                                    <div style="width:100%;height:1px;background:rgba(255,255,255,0.1);"></div>
                                     <div class="cv-stat-item">
-                                        <div style="display:flex;align-items:center;gap:0.75rem;">
-                                            <svg width="28" height="28" fill="none" stroke="#DC2626" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                                        <div class="cv-stat-row">
                                             <div class="cv-stat-val">{{ $slide->stat_3_value ?? '450+' }}</div>
                                         </div>
                                         <div class="cv-stat-label">{{ $slide->stat_3_label ?? 'Happy Customers' }}</div>
                                     </div>
                                 </div>
-                                
+
                             </div>
 
                         </div>
