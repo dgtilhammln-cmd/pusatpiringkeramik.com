@@ -83,42 +83,51 @@
         /* Removed red color to inherit Navy */
     }
     
-    /* Static Logo Badge */
+    /* Static Logo Badge (Pill Style) */
     .cv-static-logo-badge {
         flex-shrink: 0;
-        display: flex;
+        display: inline-flex;
         align-items: center;
         gap: 0.875rem;
         background: #ffffff;
-        border: 1.5px solid #E2E8F0;
-        border-radius: 12px;
-        padding: 0.625rem 1rem 0.625rem 0.625rem;
-        box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        border: 1.5px solid #F1F5F9;
+        border-radius: 50px;
+        padding: 0.35rem 1.25rem 0.35rem 0.35rem;
+        box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
     }
-    .cv-static-logo-badge img {
-        height: 42px;
-        width: 42px;
-        object-fit: contain;
+    .cv-static-logo-icon-wrap {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #F8FAFC;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         flex-shrink: 0;
+        padding: 6px;
+    }
+    .cv-static-logo-icon-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
     }
     .cv-static-logo-badge-text {
         display: flex;
         flex-direction: column;
-        gap: 1px;
+        gap: 0px;
     }
     .cv-static-logo-badge-name {
-        font-size: 0.8rem;
-        font-weight: 700;
-        color: #0F172A;
+        font-size: 1rem;
+        font-weight: 800;
+        color: #1E293B;
         line-height: 1.2;
+        letter-spacing: -0.01em;
         white-space: nowrap;
     }
     .cv-static-logo-badge-sub {
-        font-size: 0.65rem;
+        font-size: 0.85rem;
         font-weight: 500;
         color: #94A3B8;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
         white-space: nowrap;
     }
     
@@ -834,10 +843,14 @@
                                     </h1>
                                 </div>
                                 
-                                <div class="cv-static-logo-badge d-none d-sm-flex">
-                                    @if(!empty($settings['logo']))
-                                        <img src="{{ asset('storage/'.$settings['logo']) }}" alt="Logo">
-                                    @endif
+                                <div class="cv-static-logo-badge d-none d-sm-inline-flex">
+                                    <div class="cv-static-logo-icon-wrap">
+                                        @if(!empty($settings['logo']))
+                                            <img src="{{ asset('storage/'.$settings['logo']) }}" alt="Logo">
+                                        @else
+                                            <svg width="24" height="24" fill="none" stroke="#0EA5E9" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                        @endif
+                                    </div>
                                     <div class="cv-static-logo-badge-text">
                                         <div class="cv-static-logo-badge-name">{{ $settings['company_name'] ?? config('app.name') }}</div>
                                         @if(!empty($settings['company_tagline']))
