@@ -83,52 +83,17 @@
         /* Removed red color to inherit Navy */
     }
     
-    /* Static Logo Badge (Pill Style) */
+    /* Static Logo Badge (Just Image, No Pill) */
     .cv-static-logo-badge {
         flex-shrink: 0;
         display: inline-flex;
         align-items: center;
-        gap: 0.875rem;
-        background: #ffffff;
-        border: 1.5px solid #F1F5F9;
-        border-radius: 50px;
-        padding: 0.35rem 1.25rem 0.35rem 0.35rem;
-        box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
     }
-    .cv-static-logo-icon-wrap {
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        background: #F8FAFC;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        padding: 6px;
-    }
-    .cv-static-logo-icon-wrap img {
-        width: 100%;
-        height: 100%;
+    .cv-static-logo-badge img {
+        height: 60px; /* Besarkan ukuran sesuai request */
+        width: auto;
+        max-width: 250px;
         object-fit: contain;
-    }
-    .cv-static-logo-badge-text {
-        display: flex;
-        flex-direction: column;
-        gap: 0px;
-    }
-    .cv-static-logo-badge-name {
-        font-size: 1rem;
-        font-weight: 800;
-        color: #1E293B;
-        line-height: 1.2;
-        letter-spacing: -0.01em;
-        white-space: nowrap;
-    }
-    .cv-static-logo-badge-sub {
-        font-size: 0.85rem;
-        font-weight: 500;
-        color: #94A3B8;
-        white-space: nowrap;
     }
     
     /* Middle Section */
@@ -844,19 +809,9 @@
                                 </div>
                                 
                                 <div class="cv-static-logo-badge d-none d-sm-inline-flex">
-                                    <div class="cv-static-logo-icon-wrap">
-                                        @if(!empty($settings['logo']))
-                                            <img src="{{ asset('storage/'.$settings['logo']) }}" alt="Logo">
-                                        @else
-                                            <svg width="24" height="24" fill="none" stroke="#0EA5E9" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                                        @endif
-                                    </div>
-                                    <div class="cv-static-logo-badge-text">
-                                        <div class="cv-static-logo-badge-name">{{ $settings['company_name'] ?? config('app.name') }}</div>
-                                        @if(!empty($settings['company_tagline']))
-                                        <div class="cv-static-logo-badge-sub">{{ $settings['company_tagline'] }}</div>
-                                        @endif
-                                    </div>
+                                    @if(!empty($settings['logo']))
+                                        <img src="{{ asset('storage/'.$settings['logo']) }}" alt="{{ $settings['company_name'] ?? config('app.name') }}">
+                                    @endif
                                 </div>
                             </div>
                             
