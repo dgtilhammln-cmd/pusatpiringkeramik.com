@@ -888,23 +888,23 @@ function updateCounter(el, cntId) {
 switchTab('general');
 </script>
 <script>
-// Gunakan API Wilayah.id (berbasis cahyadsn/wilayah)
-const API_BASE = 'https://wilayah.id/api';
+// Gunakan API data-indonesia (ibnux) yang 100% reliable di hosting manapun (Raw GitHub)
+const API_BASE = 'https://ibnux.github.io/data-indonesia';
 const savedProvince = @json($settings['address_province'] ?? '');
 const savedCity     = @json($settings['address_city'] ?? '');
 const savedDistrict = @json($settings['address_district'] ?? '');
 
 async function loadProvinsi() {
     try {
-        const res  = await fetch(`${API_BASE}/provinces.json`);
-        const json = await res.json();
-        const data = json.data;
+        const res  = await fetch(`${API_BASE}/provinsi.json`);
+        const data = await res.json();
         const sel  = document.getElementById('s-address_province');
+        sel.innerHTML = '<option value="">-- Pilih Provinsi --</option>';
         data.forEach(p => {
             const opt = document.createElement('option');
-            opt.value = p.code;
-            opt.textContent = p.name;
-            if (p.name === savedProvince || p.code === savedProvince) opt.selected = true;
+            opt.value = p.id;
+            opt.textContent = p.nama;
+            if (p.nama === savedProvince || p.id === savedProvince) opt.selected = true;
             sel.appendChild(opt);
         });
         if (sel.value) loadKabupaten(sel.value, true);
@@ -913,16 +913,15 @@ async function loadProvinsi() {
 
 async function loadKabupaten(provinceCode, initial = false) {
     try {
-        const res  = await fetch(`${API_BASE}/regencies/${provinceCode}.json`);
-        const json = await res.json();
-        const data = json.data;
+        const res  = await fetch(`${API_BASE}/kabupaten/${provinceCode}.json`);
+        const data = await res.json();
         const sel  = document.getElementById('s-address_city');
         sel.innerHTML = '<option value="">-- Pilih Kota --</option>';
         data.forEach(c => {
             const opt = document.createElement('option');
-            opt.value = c.code;
-            opt.textContent = c.name;
-            if (c.name === savedCity || c.code === savedCity) opt.selected = true;
+            opt.value = c.id;
+            opt.textContent = c.nama;
+            if (c.nama === savedCity || c.id === savedCity) opt.selected = true;
             sel.appendChild(opt);
         });
         if (initial && sel.value) loadKecamatan(sel.value, true);
@@ -931,16 +930,15 @@ async function loadKabupaten(provinceCode, initial = false) {
 
 async function loadKecamatan(cityCode, initial = false) {
     try {
-        const res  = await fetch(`${API_BASE}/districts/${cityCode}.json`);
-        const json = await res.json();
-        const data = json.data;
+        const res  = await fetch(`${API_BASE}/kecamatan/${cityCode}.json`);
+        const data = await res.json();
         const sel  = document.getElementById('s-address_district');
         sel.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
         data.forEach(d => {
             const opt = document.createElement('option');
-            opt.value = d.code;
-            opt.textContent = d.name;
-            if (d.name === savedDistrict || d.code === savedDistrict) opt.selected = true;
+            opt.value = d.id;
+            opt.textContent = d.nama;
+            if (d.nama === savedDistrict || d.id === savedDistrict) opt.selected = true;
             sel.appendChild(opt);
         });
     } catch(e) { console.warn('Gagal load kecamatan:', e); }

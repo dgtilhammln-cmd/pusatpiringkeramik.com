@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@php
+    $addressFull = $settings['address_full'] ?? ($settings['address_street'] ?? '');
+@endphp
 @section('content')
 
 <style>
@@ -399,7 +402,7 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
                 </div>
                 <div class="ct-info-body">
                     <div class="ct-info-label">Alamat</div>
-                    <span class="ct-info-value" style="cursor:default;">{{ $settings['address'] ?? 'Pergudangan Legundi Business Park Blok D-11, Gresik - Jawa Timur' }}</span>
+                    <span class="ct-info-value" style="cursor:default;">{{ $addressFull ?: ($settings['address'] ?? 'Pergudangan Legundi Business Park Blok D-11, Gresik - Jawa Timur') }}</span>
                     <div class="ct-info-sub">Kunjungi kami dengan janji</div>
                 </div>
             </div>
