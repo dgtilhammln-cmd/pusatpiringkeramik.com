@@ -994,8 +994,8 @@
                 </div>
 
                 {{-- Dynamic Heading with Icons --}}
-                <h2 style="font-size:clamp(2rem, 4vw, 3.5rem); font-weight:700; line-height:1.15; letter-spacing:-0.03em; color:#0A1930;" class="about-premium-heading">
-                    {!! !empty($settings['about_heading']) ? $settings['about_heading'] : 'Solusi Cat <span class="ab-icon-blue" style="background:rgba(10,25,48,0.1); color:#0A1930;"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></span> Berkualitas Tinggi untuk <span class="ab-icon-green"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 3.18 1.66 6.02 4.14 7.69.41.27.68.73.68 1.22V22h8.36v-1.09c0-.49.27-.95.68-1.22 2.48-1.67 4.14-4.51 4.14-7.69 0-4.97-4.03-9-9-9zM12 18h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></span> Industri & Maritim' !!}
+                <h2 style="font-size:clamp(1.75rem, 3.5vw, 3rem); font-weight:500; line-height:1.15; letter-spacing:-0.02em; color:#0A1930;" class="about-premium-heading">
+                    {!! !empty($settings['about_heading']) ? $settings['about_heading'] : 'Solusi Cat <span class="ab-icon-dark-red"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></span> Berkualitas Tinggi untuk <span class="ab-icon-red"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 3.18 1.66 6.02 4.14 7.69.41.27.68.73.68 1.22V22h8.36v-1.09c0-.49.27-.95.68-1.22 2.48-1.67 4.14-4.51 4.14-7.69 0-4.97-4.03-9-9-9zM12 18h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></span> Industri & Maritim' !!}
                 </h2>
             </div>
 
@@ -1071,8 +1071,8 @@
     .about-premium-heading strong {
         font-weight: 600;
     }
-    .about-premium-heading .ab-icon-blue,
-    .about-premium-heading .ab-icon-green {
+    .about-premium-heading .ab-icon-dark-red,
+    .about-premium-heading .ab-icon-red {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -1083,13 +1083,13 @@
         margin: 0 0.1em;
         transform: translateY(-0.1em);
     }
-    .about-premium-heading .ab-icon-blue {
-        background: #0ea5e9; /* blue to match hero */
+    .about-premium-heading .ab-icon-dark-red {
+        background: #ca0000; /* dark red */
         color: #fff;
         padding: 0.2em;
     }
-    .about-premium-heading .ab-icon-green {
-        background: #10b981; /* accent color */
+    .about-premium-heading .ab-icon-red {
+        background: #ef4444; /* red */
         color: #fff;
         padding: 0.2em;
     }
