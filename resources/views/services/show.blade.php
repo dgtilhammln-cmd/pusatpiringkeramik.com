@@ -480,7 +480,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
         </nav>
 
         <div class="sh-label">Detail Produk</div>
-        <h1 class="sh-h1">Turbine Ventilator {{ $service->name }} Non-Electric</h1>
+        <h1 class="sh-h1">{{ $service->name }}</h1>
         @if($service->short_desc)
             <p class="sh-short-desc">{{ $service->short_desc }}</p>
         @endif
@@ -493,8 +493,13 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
     <div style="min-width:0;overflow:hidden;width:100%;">
         @php
             $imgs = [];
-            if ($service->image) $imgs[] = asset('storage/'.$service->image);
-            else $imgs[] = asset('images/service-default.jpg');
+            if ($service->image) {
+                $imgs[] = asset('storage/'.$service->image);
+            } elseif ($service->category && $service->category->image) {
+                $imgs[] = asset('storage/'.$service->category->image);
+            } else {
+                $imgs[] = asset('images/service-default.jpg');
+            }
             if (is_array($service->gallery)) {
                 foreach ($service->gallery as $g) $imgs[] = asset('storage/'.$g);
             }

@@ -1388,10 +1388,10 @@
 
         {{-- Header: Title left, description right --}}
         <div class="cv-catalog-header">
-            <h2 class="cv-catalog-title">Katalog Produk<br>Turbine Ventilator Kami</h2>
+            <h2 class="cv-catalog-title">Katalog Produk<br>Kami</h2>
             <div class="cv-catalog-right-info">
-                <p>Teknologi turbin ventilator non-electric terpercaya untuk berbagai skala bangunan di Indonesia.</p>
-                <small>Tersedia 5 ukuran — dari 18" hingga 42"</small>
+                <p>Solusi cat dan coating premium terpercaya untuk berbagai skala industri di Indonesia.</p>
+                <small>Tersedia berbagai varian dan spesifikasi</small>
             </div>
         </div>
 
@@ -1414,6 +1414,8 @@
                         <a href="{{ route('products.show', $product->slug) }}" class="cv-cat-card">
                             @if($product->image)
                                 <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" loading="lazy">
+                            @elseif($product->category && $product->category->image)
+                                <img src="{{ asset('storage/' . $product->category->image) }}" alt="{{ $product->name }}" loading="lazy">
                             @else
                                 <div class="cv-cat-card-placeholder">
                                     <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>

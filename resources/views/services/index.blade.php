@@ -384,6 +384,10 @@
                         <img src="{{ asset('storage/' . $service->image) }}"
                              alt="{{ $service->name }}"
                              loading="{{ $i < 6 ? 'eager' : 'lazy' }}">
+                    @elseif($service->category && $service->category->image)
+                        <img src="{{ asset('storage/' . $service->category->image) }}"
+                             alt="{{ $service->name }}"
+                             loading="{{ $i < 6 ? 'eager' : 'lazy' }}">
                     @else
                         <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#E2E8F0;color:#94A3B8;">
                             <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
