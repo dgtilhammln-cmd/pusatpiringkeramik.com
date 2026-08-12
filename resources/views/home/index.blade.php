@@ -989,15 +989,16 @@
             {{-- Section Header --}}
             <div style="text-align:center; max-width:800px; margin:0 auto 4rem;">
                 <div style="font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#64748b; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:center; gap:0.5rem;">
-                    <span style="width:4px; height:4px; background:#0ea5e9; border-radius:50%;"></span>
+                    <span style="width:4px; height:4px; background:#0A1930; border-radius:50%;"></span>
                     ABOUT US
                 </div>
 
                 {{-- Dynamic Heading with Icons --}}
-                <h2 style="font-size:clamp(2rem, 4vw, 3.5rem); font-weight:500; line-height:1.15; letter-spacing:-0.03em; color:#0f172a;" class="about-premium-heading">
-                    {!! $settings['about_heading'] ?? 'A global consulting partner dedicated to building <span class="ab-icon-blue"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></span> smarter and <span class="ab-icon-green"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 3.18 1.66 6.02 4.14 7.69.41.27.68.73.68 1.22V22h8.36v-1.09c0-.49.27-.95.68-1.22 2.48-1.67 4.14-4.51 4.14-7.69 0-4.97-4.03-9-9-9zM12 18h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></span> more adaptive' !!}
+                <h2 style="font-size:clamp(2rem, 4vw, 3.5rem); font-weight:700; line-height:1.15; letter-spacing:-0.03em; color:#0A1930;" class="about-premium-heading">
+                    {!! !empty($settings['about_heading']) ? $settings['about_heading'] : 'Solusi Cat <span class="ab-icon-blue" style="background:rgba(10,25,48,0.1); color:#0A1930;"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></span> Berkualitas Tinggi untuk <span class="ab-icon-green"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 3.18 1.66 6.02 4.14 7.69.41.27.68.73.68 1.22V22h8.36v-1.09c0-.49.27-.95.68-1.22 2.48-1.67 4.14-4.51 4.14-7.69 0-4.97-4.03-9-9-9zM12 18h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></span> Industri & Maritim' !!}
                 </h2>
             </div>
+
 
             {{-- 4 Cards Grid --}}
             <div class="about-cards-grid">
@@ -1005,14 +1006,14 @@
                 {{-- Card 1: Light Gray (Keywords pattern) --}}
                 <div class="ab-card ab-card-gray" data-aos="fade-up" data-aos-delay="0">
                     <div class="ab-card-bg-pattern">
-                        <span class="ab-chip" style="top:10%;left:5%;">Tanpa Listrik</span>
-                        <span class="ab-chip" style="top:15%;left:45%;">Bebas Perawatan</span>
-                        <span class="ab-chip" style="top:12%;left:80%;">0 Watt</span>
-                        <span class="ab-chip" style="top:35%;left:15%;">Anti Karat</span>
-                        <span class="ab-chip" style="top:38%;left:50%;">Sejuk Alami</span>
-                        <span class="ab-chip" style="top:60%;left:5%;">Tahan Lama</span>
-                        <span class="ab-chip" style="top:65%;left:40%;">Efisien</span>
-                        <span class="ab-chip" style="top:62%;left:75%;">Hemat Biaya</span>
+                        <span class="ab-chip" style="top:10%;left:5%;">Cat Industri</span>
+                        <span class="ab-chip" style="top:15%;left:45%;">Cat Kapal</span>
+                        <span class="ab-chip" style="top:12%;left:80%;">Anti Karat</span>
+                        <span class="ab-chip" style="top:35%;left:15%;">Tahan Cuaca</span>
+                        <span class="ab-chip" style="top:38%;left:50%;">High Quality</span>
+                        <span class="ab-chip" style="top:60%;left:5%;">Cat Jalan</span>
+                        <span class="ab-chip" style="top:65%;left:40%;">Protektif</span>
+                        <span class="ab-chip" style="top:62%;left:75%;">Warna Presisi</span>
                     </div>
                     <div class="ab-card-content">
                         <div class="ab-card-label">Pengalaman</div>
@@ -1020,13 +1021,13 @@
                     </div>
                 </div>
 
-                {{-- Card 2: Solid Accent (Blue) --}}
-                <div class="ab-card ab-card-accent" data-aos="fade-up" data-aos-delay="100">
+                {{-- Card 2: Solid Accent (Navy) --}}
+                <div class="ab-card ab-card-accent" data-aos="fade-up" data-aos-delay="100" style="background:#0A1930;">
                     <div class="ab-card-content" style="height: 100%; display: flex; flex-direction: column;">
                         <div class="ab-card-label" style="color:rgba(255,255,255,0.9);">Komitmen Kualitas</div>
                         <div class="ab-card-value" style="color:#ffffff;">100%</div>
                         <div class="ab-card-desc" style="margin-top:auto; color:rgba(255,255,255,0.9);">
-                            Memberikan solusi sirkulasi udara terbaik untuk industri.
+                            Memberikan solusi cat dan pelapis terbaik untuk industri Anda.
                         </div>
                     </div>
                 </div>
@@ -1040,9 +1041,9 @@
                     @endif
                     <div class="ab-card-overlay"></div>
                     <div class="ab-card-content" style="position:relative; z-index:2; height:100%; display:flex; flex-direction:column; justify-content:flex-end;">
-                        <div class="ab-card-value" style="color:#ffffff; margin-bottom:0.5rem;">120+</div>
+                        <div class="ab-card-value" style="color:#ffffff; margin-bottom:0.5rem;">500+</div>
                         <div class="ab-card-desc" style="color:rgba(255,255,255,0.9);">
-                            Proyek instalasi diselesaikan di seluruh Indonesia.
+                            Proyek suplai dan pengecatan diselesaikan di seluruh Indonesia.
                         </div>
                     </div>
                 </div>
@@ -1050,10 +1051,10 @@
                 {{-- Card 4: Light Gray --}}
                 <div class="ab-card ab-card-gray" data-aos="fade-up" data-aos-delay="300">
                     <div class="ab-card-content" style="height: 100%; display: flex; flex-direction: column;">
-                        <div class="ab-card-label">Produk Terjual</div>
-                        <div class="ab-card-value">10.000+</div>
+                        <div class="ab-card-label">Distribusi Produk</div>
+                        <div class="ab-card-value">1.000+</div>
                         <div class="ab-card-desc" style="margin-top:auto;">
-                            Unit ventilator terpasang di berbagai sektor industri.
+                            Ton cat terdistribusi ke berbagai sektor industri dan maritim.
                         </div>
                     </div>
                 </div>
