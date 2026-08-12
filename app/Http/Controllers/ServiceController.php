@@ -85,15 +85,6 @@ class ServiceController extends Controller
                 ? rtrim(config('app.url'), '/') . '/storage/' . $service->image
                 : rtrim(config('app.url'), '/') . '/images/og-default.jpg');
 
-        // Fallback FAQs if empty
-        if (empty($faq)) {
-            $faq = [
-                ['q' => 'Apakah Cyclevent Turbine Ventilator memerlukan listrik?', 'a' => 'Sama sekali tidak. Cyclevent beroperasi 100% menggunakan tenaga angin dan perbedaan tekanan udara, sehingga bebas biaya listrik selamanya.'],
-                ['q' => 'Berapa lama garansi yang diberikan?', 'a' => 'Kami memberikan garansi resmi untuk produk Cyclevent hingga 15 tahun, mencakup cacat material dan performa putaran mesin.'],
-                ['q' => 'Apakah materialnya tahan karat?', 'a' => 'Ya, Cyclevent terbuat dari material Alumunium atau Stainless Steel berkualitas tinggi yang tahan terhadap cuaca ekstrem dan karat.'],
-            ];
-        }
-
         $schema = json_encode([
             [
                 '@context'    => 'https://schema.org',

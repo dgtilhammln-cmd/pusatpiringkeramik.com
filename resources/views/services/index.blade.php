@@ -95,8 +95,11 @@
         padding: 0 1.5rem;
         display: flex; align-items: center; gap: 0.5rem;
         overflow-x: auto; scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        cursor: grab;
     }
-    .sv-filter-inner::-webkit-scrollbar { display: none; }
+    .sv-filter-inner:active { cursor: grabbing; }
     .sv-filter-tab {
         flex-shrink: 0;
         display: inline-flex; align-items: center; gap: 0.4rem;
