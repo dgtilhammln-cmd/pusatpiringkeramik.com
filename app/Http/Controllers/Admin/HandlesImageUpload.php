@@ -35,6 +35,7 @@ trait HandlesImageUpload
      */
     private function gdScaleDown($src, int $maxW, int $maxH)
     {
+        if (!$src) return false;
         $origW = imagesx($src);
         $origH = imagesy($src);
 
@@ -59,6 +60,7 @@ trait HandlesImageUpload
      */
     private function gdSquareCrop($src, int $size)
     {
+        if (!$src) return false;
         $w = imagesx($src);
         $h = imagesy($src);
         $side = min($w, $h);
@@ -111,7 +113,16 @@ trait HandlesImageUpload
      */
     protected function storeWebP(UploadedFile $file, string $folder, int $maxW = 1200, int $maxH = 800, int $quality = 88): string
     {
+        if (str_contains((string) $file->getMimeType(), 'svg')) {
+            $filename = $folder . '/' . Str::random(16) . '.svg';
+            Storage::disk('public')->put($filename, file_get_contents($file->getRealPath()));
+            return $filename;
+        }
+
         $img      = $this->gdLoad($file);
+        if (!$img) {
+            throw new \Exception("Format gambar tidak didukung atau file rusak.");
+        }
         $img      = $this->gdScaleDown($img, $maxW, $maxH);
         $webp     = $this->gdEncodeWebP($img, $quality);
         $filename = $folder . '/' . Str::random(16) . '.webp';
@@ -124,7 +135,16 @@ trait HandlesImageUpload
      */
     protected function storeWebPSquare(UploadedFile $file, string $folder, int $size = 200, int $quality = 88): string
     {
+        if (str_contains((string) $file->getMimeType(), 'svg')) {
+            $filename = $folder . '/' . Str::random(12) . '.svg';
+            Storage::disk('public')->put($filename, file_get_contents($file->getRealPath()));
+            return $filename;
+        }
+
         $img      = $this->gdLoad($file);
+        if (!$img) {
+            throw new \Exception("Format gambar tidak didukung atau file rusak.");
+        }
         $img      = $this->gdSquareCrop($img, $size);
         $webp     = $this->gdEncodeWebP($img, $quality);
         $filename = $folder . '/' . Str::random(12) . '.webp';
@@ -137,7 +157,16 @@ trait HandlesImageUpload
      */
     protected function storeOgWebP(UploadedFile $file, string $folder, int $quality = 85): string
     {
+        if (str_contains((string) $file->getMimeType(), 'svg')) {
+            $filename = $folder . '/og_' . Str::random(12) . '.svg';
+            Storage::disk('public')->put($filename, file_get_contents($file->getRealPath()));
+            return $filename;
+        }
+
         $img      = $this->gdLoad($file);
+        if (!$img) {
+            throw new \Exception("Format gambar tidak didukung atau file rusak.");
+        }
         $img      = $this->gdScaleDown($img, 1200, 630);
         $webp     = $this->gdEncodeWebP($img, $quality);
         $filename = $folder . '/og_' . Str::random(12) . '.webp';
