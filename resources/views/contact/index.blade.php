@@ -296,7 +296,7 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
             dengan Tim Ahli Kami
         </h1>
         <p class="sv-intro">
-            Kami siap membantu menemukan solusi ventilasi terbaik untuk bangunan Anda.
+            Kami siap membantu menemukan solusi cat dan pelapis terbaik untuk kebutuhan proyek Anda.
             Hubungi kami sekarang — respon cepat, gratis!
         </p>
     </div>
@@ -354,7 +354,7 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
                 </div>
                 <div class="ct-field">
                     <label class="ct-label">Pesan <span class="ct-required">*</span></label>
-                    <textarea name="message" class="ct-textarea" placeholder="Ceritakan kebutuhan Anda: jenis bangunan, luas atap, lokasi, jumlah unit yang dibutuhkan, dll." required>{{ old('message') }}</textarea>
+                    <textarea name="message" class="ct-textarea" placeholder="Ceritakan kebutuhan Anda: produk yang dicari, jenis industri, lokasi, dan volume yang dibutuhkan." required>{{ old('message') }}</textarea>
                     @error('message')<span class="ct-error">{{ $message }}</span>@enderror
                 </div>
                 <button type="submit" class="ct-submit">

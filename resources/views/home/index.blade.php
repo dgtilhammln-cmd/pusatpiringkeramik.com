@@ -1739,7 +1739,7 @@
             {{-- Section Header --}}
             <div class="cv-adv-header">
                 <div>
-                    <div class="cv-adv-section-label" style="color:#DC2626;">KEUNGGULAN</div>
+                    <div class="cv-adv-section-label">KEUNGGULAN</div>
                     <h2 class="cv-adv-section-title">Mengapa Pilih<br>CV. Bintang Energy Surabaya?</h2>
                 </div>
                 <p style="max-width:320px;font-size:0.875rem;color:#64748B;line-height:1.65;text-align:right;">
@@ -1825,7 +1825,7 @@
     <section class="cv-apps-premium" id="aplikasi">
         <div class="cv-apps-inner">
             <div class="cv-apps-header">
-                <div class="cv-adv-section-label" style="color:#DC2626;">APLIKASI</div>
+                <div class="cv-adv-section-label">APLIKASI</div>
                 <h2 class="cv-adv-section-title" style="margin-top:0.75rem;">Cocok untuk<br>Berbagai Industri</h2>
                 <p style="margin-top:1rem;font-size:0.875rem;color:#64748B;line-height:1.65;">
                     Produk pelapis dan cat CV. Bintang Energy Surabaya dirancang untuk melindungi beragam aset strategis di berbagai sektor.
@@ -2641,7 +2641,7 @@
                 SIAP MULAI?
             </div>
             <h2 class="cv-cta-title-v2" style="margin-top:1rem;">Dapatkan Konsultasi Gratis<br>& Penawaran Terbaik</h2>
-            <p class="cv-cta-desc-v2">Tim teknis CV. Bintang Energy Surabaya siap membantu Anda memilih ukuran ventilator yang tepat dan menghitung jumlah yang dibutuhkan untuk bangunan Anda.</p>
+            <p class="cv-cta-desc-v2">Tim kami siap membantu Anda memilih produk cat dan pelapis yang paling sesuai untuk kebutuhan industri dan proyek Anda.</p>
             
             <div class="cv-cta-buttons">
                 @if($wa)

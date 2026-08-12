@@ -388,7 +388,7 @@ body { background-color: var(--c-bg); font-family: var(--font); }
         </h1>
         <p class="sv-intro">
             Dokumentasi proyek pemasangan &amp; instalasi cat industri CV. Bintang Energy Surabaya
-            di berbagai industri, gudang, dan bangunan komersial seluruh Indonesia.
+            di berbagai sektor industri dan komersial di seluruh Indonesia.
         </p>
     </div>
 </section>
@@ -518,7 +518,7 @@ body { background-color: var(--c-bg); font-family: var(--font); }
         <h2 class="sv-cta-h2">Wujudkan Proyek<br>Ventilasi Anda Bersama Kami</h2>
         <p class="sv-cta-sub">
             Tim teknis CV. Bintang Energy Surabaya siap membantu merencanakan dan memasang sistem
-            ventilasi terbaik untuk bangunan Anda.
+            solusi cat dan pelapis terbaik untuk kebutuhan Anda.
         </p>
         <div class="sv-cta-btns">
             @php $wa = \App\Models\WaSetting::primary(); @endphp

@@ -710,7 +710,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
                     <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
                 </div>
                 <div class="sh-adv-title" style="margin-top:auto;">100% Anti Tampias Hujan</div>
-                <div class="sh-adv-desc">Desain khusus memastikan air hujan tidak masuk ke dalam bangunan dalam kondisi apapun.</div>
+                <div class="sh-adv-desc">Formula tahan cuaca dan anti korosi, dirancang khusus untuk kondisi ekstrem industri.</div>
             </div>
             {{-- Card 6: Iklim Tropis --}}
             <div class="sh-adv-card">
@@ -739,9 +739,9 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
     <div class="sh-app-inner">
         <div class="sh-app-header">
             <div class="cv-section-label">APLIKASI</div>
-            <h2 class="cv-section-title" style="margin-top:.75rem;">Cocok untuk<br>Berbagai Bangunan</h2>
-            <p style="margin-top:1rem; font-size:.875rem; color:var(--muted); line-height:1.65;">
-                CV. Bintang Energy Surabaya terbukti efektif di berbagai jenis bangunan — dari rumah tinggal hingga pabrik skala besar.
+            <h2 class="cv-section-title" style="margin-top:.75rem;">Cocok untuk<br>Berbagai Sektor Industri</h2>
+            <p style="margin-top:1rem;font-size:0.875rem;color:#64748B;line-height:1.65;font-family:var(--font);">
+                Produk cat dan pelapis CV. Bintang Energy Surabaya dirancang untuk melindungi berbagai aset industri, maritim, dan komersial.
             </p>
         </div>
         <div class="sh-app-grid">

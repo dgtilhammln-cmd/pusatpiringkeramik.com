@@ -1394,7 +1394,7 @@ body { background: var(--cv-bg); color: var(--cv-text); }
                 SIAP MULAI?
             </div>
             <h2 class="cv-cta-title-v2" style="margin-top:1rem;">Dapatkan Konsultasi Gratis<br>& Penawaran Terbaik</h2>
-            <p class="cv-cta-desc-v2">Tim teknis CV. Bintang Energy Surabaya siap membantu Anda memilih ukuran ventilator yang tepat dan menghitung jumlah yang dibutuhkan untuk bangunan Anda.</p>
+            <p class="cv-cta-desc-v2">Tim kami siap membantu Anda memilih produk cat dan pelapis yang paling sesuai untuk kebutuhan industri dan proyek Anda.</p>
             
             <div class="cv-cta-buttons">
                 @if($wa)

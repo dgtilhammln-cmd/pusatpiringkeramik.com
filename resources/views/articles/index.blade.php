@@ -410,7 +410,7 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
         <div class="ar-sidebar-card" style="background:var(--c-accent);border-color:var(--c-accent);" data-aos="fade-up" data-aos-delay="200">
             <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:rgba(255,255,255,0.8);margin-bottom:0.75rem;font-family:var(--font);">Konsultasi Gratis</div>
             <h3 style="font-size:1.125rem;font-weight:700;color:#fff;margin-bottom:0.75rem;line-height:1.3;font-family:var(--font);">Butuh Saran Ventilasi?</h3>
-            <p style="font-size:0.8125rem;color:rgba(255,255,255,0.85);line-height:1.6;margin-bottom:1.25rem;font-family:var(--font);">Tim teknis kami siap membantu memilih solusi terbaik untuk bangunan Anda.</p>
+            <p style="font-size:0.8125rem;color:rgba(255,255,255,0.85);line-height:1.6;margin-bottom:1.25rem;font-family:var(--font);">Tim kami siap membantu memilih produk cat terbaik untuk kebutuhan proyek Anda.</p>
             <a href="{{ route('contact') }}" style="display:inline-flex;align-items:center;gap:0.5rem;background:#fff;color:var(--c-accent);font-size:0.8125rem;font-weight:700;padding:0.75rem 1.5rem;border-radius:50px;text-decoration:none !important;font-family:var(--font);transition:opacity 0.2s;" onmouseover="this.style.opacity=0.9" onmouseout="this.style.opacity=1">
                 Hubungi Kami
                 <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
@@ -424,7 +424,7 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
     <div class="sv-cta-glow"></div>
     <div class="sv-cta-inner">
         <div class="sv-label" style="margin-bottom:1rem;">Siap Memulai?</div>
-        <h2 class="sv-cta-h2">Terapkan Tips Ventilasi<br>di Bangunan Anda</h2>
+        <h2 class="sv-cta-h2">Temukan Produk Cat<br>yang Tepat untuk Proyek Anda</h2>
         <p class="sv-cta-sub">Tim teknis CV. Bintang Energy Surabaya siap membantu menghitung kebutuhan dan memasang cat industri terbaik untuk proyek Anda.</p>
         <div class="sv-cta-btns">
             @php $wa = \App\Models\WaSetting::primary(); @endphp

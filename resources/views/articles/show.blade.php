@@ -712,7 +712,7 @@ a { text-decoration: none; color: inherit; }
             <div class="cv-adv-card-v2" data-aos="fade-up">
                 <div class="cv-adv-card-icon-wrap blue-bg"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
                 <div class="cv-adv-card-title" style="margin-top:auto;">100% Anti Tampias Hujan</div>
-                <div class="cv-adv-card-desc">Desain khusus memastikan air hujan tidak masuk ke dalam bangunan dalam kondisi apapun.</div>
+                <div class="cv-adv-card-desc">Formula tahan cuaca dan anti korosi, dirancang khusus untuk kondisi ekstrem industri.</div>
             </div>
             <div class="cv-adv-card-v2" data-aos="fade-up" data-aos-delay="80">
                 <div class="cv-adv-card-icon-wrap blue-bg"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
@@ -735,8 +735,8 @@ a { text-decoration: none; color: inherit; }
     <div class="cv-apps-inner">
         <div class="cv-apps-header">
             <div class="cv-adv-section-label">APLIKASI</div>
-            <h2 class="cv-adv-section-title" style="margin-top:0.75rem;">Cocok untuk<br>Berbagai Bangunan</h2>
-            <p style="margin-top:1rem;font-size:0.875rem;color:#64748B;line-height:1.65;font-family:var(--font);">CV. Bintang Energy Surabaya terbukti efektif di berbagai jenis bangunan — dari rumah tinggal hingga pabrik skala besar.</p>
+            <h2 class="cv-adv-section-title" style="margin-top:0.75rem;">Cocok untuk<br>Berbagai Sektor Industri</h2>
+            <p style="margin-top:1rem;font-size:0.875rem;color:#64748B;line-height:1.65;font-family:var(--font);">Produk cat dan pelapis CV. Bintang Energy Surabaya dirancang untuk melindungi berbagai aset industri, maritim, dan komersial.</p>
         </div>
         <div class="cv-apps-grid-v2">
             @foreach([
