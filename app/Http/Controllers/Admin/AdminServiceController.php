@@ -23,7 +23,8 @@ class AdminServiceController extends Controller
     public function store(Request $request)
     {
         $v = $request->validate([
-            'name'          => 'required|max:200',
+            'name'                 => 'required|max:200',
+            'service_category_id'  => 'nullable|exists:service_categories,id',
             'slug'          => 'nullable|max:200|regex:/^[a-z0-9\-]*$/',
             'short_desc'    => 'nullable|max:500',
             'description'   => 'nullable',

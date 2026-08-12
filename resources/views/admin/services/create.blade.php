@@ -44,7 +44,7 @@
           Slug (URL) <span style="font-weight:500;color:#94A3B8;font-size:.75rem;">— Kosongkan untuk otomatis</span>
         </label>
         <div style="display:flex;align-items:center;gap:0;border:1.5px solid #E4E7F0;border-radius:10px;overflow:hidden;background:#F8FAFC;transition:border-color .2s;" id="slug-wrapper">
-          <span style="padding:.75rem .875rem;font-size:.8rem;color:#94A3B8;background:#F1F5F9;border-right:1px solid #E4E7F0;white-space:nowrap;">/services/</span>
+          <span style="padding:.75rem .875rem;font-size:.8rem;color:#94A3B8;background:#F1F5F9;border-right:1px solid #E4E7F0;white-space:nowrap;">/product/</span>
           <input type="text" name="slug" id="svc-slug" value="{{ old('slug',$s?->slug) }}" pattern="[a-z0-9\-]*"
             style="flex:1;padding:.75rem .875rem;background:transparent;border:none;font-size:.9rem;color:#1E293B;font-family:inherit;outline:none;"
             onfocus="document.getElementById('slug-wrapper').style.borderColor='#3B82F6'" onblur="document.getElementById('slug-wrapper').style.borderColor='#E4E7F0'"
@@ -58,6 +58,22 @@
           onfocus="this.style.borderColor='#3B82F6';this.style.background='#fff'" onblur="this.style.borderColor='#E4E7F0';this.style.background='#F8FAFC'"
           placeholder="Deskripsi singkat tampil di halaman listing...">{{ old('short_desc',$s?->short_desc) }}</textarea>
       </div>
+
+      {{-- Category --}}
+      <div>
+        <label style="display:block;font-size:.8rem;font-weight:700;color:#374151;margin-bottom:.5rem;">Kategori Produk</label>
+        <select name="service_category_id"
+          style="width:100%;padding:.75rem 1rem;background:#F8FAFC;border:1.5px solid #E4E7F0;border-radius:10px;font-size:.9rem;color:#1E293B;font-family:inherit;outline:none;box-sizing:border-box;transition:border-color .2s;"
+          onfocus="this.style.borderColor='#3B82F6';this.style.background='#fff'" onblur="this.style.borderColor='#E4E7F0';this.style.background='#F8FAFC'">
+          <option value="">-- Tanpa Kategori --</option>
+          @foreach(\App\Models\ServiceCategory::orderBy('name')->get() as $cat)
+            <option value="{{ $cat->id }}" {{ old('service_category_id', $s?->service_category_id) == $cat->id ? 'selected' : '' }}>
+              {{ $cat->name }}
+            </option>
+          @endforeach
+        </select>
+      </div>
+
     </div>
   </div>
 
