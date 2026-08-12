@@ -39,7 +39,7 @@
       @foreach($services as $s)
       <tr style="border-bottom:1px solid #F8FAFC;transition:background .15s;" onmouseover="this.style.background='#FAFBFF'" onmouseout="this.style.background='transparent'">
         <td style="padding:1.25rem 1.5rem;">
-          <span style="font-size:.8rem;font-weight:700;color:#CBD5E1;">{{ str_pad($s->order,2,'0',STR_PAD_LEFT) }}</span>
+          <span style="font-size:.8rem;font-weight:700;color:#CBD5E1;">{{ $loop->iteration }}</span>
         </td>
         <td style="padding:1.25rem 1.5rem;">
           <img src="{{ $s->image_url }}" alt="{{ $s->name }}" style="width:60px;height:44px;object-fit:cover;border-radius:10px;border:1px solid #E4E7F0;">
@@ -72,7 +72,7 @@
             <a href="{{ route('admin.services.edit',$s) }}" title="Edit" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;background:rgba(59,130,246,0.08);border-radius:8px;color:#3B82F6;text-decoration:none;transition:all .2s;" onmouseover="this.style.background='rgba(59,130,246,0.16)'" onmouseout="this.style.background='rgba(59,130,246,0.08)'">
               <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
             </a>
-            <a href="{{ route('home') }}/services/{{ $s->slug }}" target="_blank" title="Lihat" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;background:rgba(139,92,246,0.08);border-radius:8px;color:#8B5CF6;text-decoration:none;transition:all .2s;" onmouseover="this.style.background='rgba(139,92,246,0.16)'" onmouseout="this.style.background='rgba(139,92,246,0.08)'">
+            <a href="{{ route('products.show', $s->slug) }}" target="_blank" title="Lihat" style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;background:rgba(139,92,246,0.08);border-radius:8px;color:#8B5CF6;text-decoration:none;transition:all .2s;" onmouseover="this.style.background='rgba(139,92,246,0.16)'" onmouseout="this.style.background='rgba(139,92,246,0.08)'">
               <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             </a>
             <form method="POST" action="{{ route('admin.services.destroy',$s) }}" onsubmit="return confirm('Hapus layanan ini? Tindakan tidak dapat dibatalkan.')">
