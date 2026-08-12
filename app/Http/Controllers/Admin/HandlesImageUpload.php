@@ -113,7 +113,10 @@ trait HandlesImageUpload
      */
     protected function storeWebP(UploadedFile $file, string $folder, int $maxW = 1200, int $maxH = 800, int $quality = 88): string
     {
-        if (str_contains((string) $file->getMimeType(), 'svg')) {
+        $mime = (string) $file->getMimeType();
+        $ext = strtolower($file->getClientOriginalExtension());
+        
+        if (str_contains($mime, 'svg') || $ext === 'svg') {
             $filename = $folder . '/' . Str::random(16) . '.svg';
             Storage::disk('public')->put($filename, file_get_contents($file->getRealPath()));
             return $filename;
@@ -135,7 +138,10 @@ trait HandlesImageUpload
      */
     protected function storeWebPSquare(UploadedFile $file, string $folder, int $size = 200, int $quality = 88): string
     {
-        if (str_contains((string) $file->getMimeType(), 'svg')) {
+        $mime = (string) $file->getMimeType();
+        $ext = strtolower($file->getClientOriginalExtension());
+        
+        if (str_contains($mime, 'svg') || $ext === 'svg') {
             $filename = $folder . '/' . Str::random(12) . '.svg';
             Storage::disk('public')->put($filename, file_get_contents($file->getRealPath()));
             return $filename;
