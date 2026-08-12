@@ -347,7 +347,7 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
                     <label class="ct-label">Produk yang Diminati</label>
                     <select name="product" class="ct-select">
                         <option value="">-- Pilih Produk --</option>
-                        @foreach(['Turbine Ventilator 12"','Turbine Ventilator 14"','Turbine Ventilator 18"','Turbine Ventilator 24"','Turbine Ventilator Stainless','Instalasi Ventilator','Konsultasi Ventilasi','Lainnya'] as $p)
+                        @foreach(['Cat Industri 12"','Cat Industri 14"','Cat Industri 18"','Cat Industri 24"','Cat Industri Stainless','Instalasi Ventilator','Konsultasi Ventilasi','Lainnya'] as $p)
                         <option value="{{ $p }}" {{ old('product')===$p?'selected':'' }}>{{ $p }}</option>
                         @endforeach
                     </select>
@@ -431,7 +431,7 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
             <iframe src="{{ $settings['maps_embed'] ?? 'https://maps.google.com/maps?q=-7.1583,112.6515&output=embed' }}"
                     allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
-                    title="Lokasi Cyclevent"></iframe>
+                    title="Lokasi PT Biner"></iframe>
         </div>
     </div>
 </section>

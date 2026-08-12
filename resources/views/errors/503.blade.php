@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Layanan Tidak Tersedia — 503 | Cyclevent')
+@section('title', 'Layanan Tidak Tersedia — 503 | PT Biner')
 @section('content')
 
 <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -1,7 +1,7 @@
 {{-- ═══════════════════════════════════
-FOOTER COMPONENT — Cyclevent (Jangkauan-Style)
+FOOTER COMPONENT — PT Biner (Jangkauan-Style)
 PT. Hiranatha Makmur Sukses
-www.cyclevent.com
+www.ptbiner.co.id
 ══════════════════════════════════ --}}
 @php
     $s = \App\Models\Setting::getAllAsArray();
@@ -357,7 +357,7 @@ www.cyclevent.com
                     @if($logo)
                         <img src="{{ asset('storage/' . $logo) }}" alt="Logo">
                     @else
-                        <span style="font-weight:900;color:#0EA5E9;font-size:1rem;">Cyclevent</span>
+                        <span style="font-weight:900;color:#0EA5E9;font-size:1rem;">PT Biner</span>
                     @endif
                 </div>
                 <div>
@@ -369,7 +369,7 @@ www.cyclevent.com
             </a>
 
             <p class="cv-footer-v2-tagline">
-                {{ $s['footer_desc'] ?? 'Produsen Turbine Ventilator Non-Electric #1 di Indonesia. Berdiri sejak 2013, melayani ribuan pelanggan dari Sabang sampai Merauke.' }}
+                {{ $s['footer_desc'] ?? 'Produsen Cat Industri Non-Electric #1 di Indonesia. Berdiri sejak 2013, melayani ribuan pelanggan dari Sabang sampai Merauke.' }}
             </p>
 
             <div class="cv-footer-v2-badges">
@@ -411,7 +411,7 @@ www.cyclevent.com
                         </svg>
                     </a>
                 @endif
-                <a href="mailto:cyclevent.ventilator58@gmail.com" class="cv-footer-v2-social-btn" title="Email">
+                <a href="mailto:info@ptbiner.co.id" class="cv-footer-v2-social-btn" title="Email">
                     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                         <polyline points="22,6 12,12 2,6" />

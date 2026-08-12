@@ -16,11 +16,11 @@ class ArticleController extends Controller
         $appUrl     = rtrim(config('app.url'), '/');
 
         $seo = [
-            'title'       => $settings['meta_title_articles'] ?? 'Artikel & Tips Sistem Sirkulasi Udara | Blog Cyclevent',
-            'description' => $settings['meta_desc_articles'] ?? 'Kumpulan artikel informatif tentang sistem ventilasi industri, cara memilih turbine ventilator yang tepat, dan tips menjaga sirkulasi udara bangunan.',
+            'title'       => $settings['meta_title_articles'] ?? 'Artikel & Tips Sistem Sirkulasi Udara | Blog PT Biner',
+            'description' => $settings['meta_desc_articles'] ?? 'Kumpulan artikel informatif tentang sistem ventilasi industri, cara memilih cat industri yang tepat, dan tips menjaga sirkulasi udara bangunan.',
             'og_image'    => !empty($settings['og_image_default']) ? $appUrl.'/storage/'.$settings['og_image_default'] : (!empty($settings['logo']) ? $appUrl.'/storage/'.$settings['logo'] : $appUrl.'/images/og-default.jpg'),
             'canonical'   => route('articles'),
-            'keywords'    => $settings['meta_keywords_articles'] ?? 'artikel ventilasi, tips sirkulasi udara, manfaat turbine ventilator, blog cyclevent, cara pasang ventilator atap',
+            'keywords'    => $settings['meta_keywords_articles'] ?? 'artikel ventilasi, tips sirkulasi udara, manfaat cat industri, blog ptbiner, cara pasang ventilator atap',
         ];
 
         $breadcrumbs = [
@@ -64,7 +64,7 @@ class ArticleController extends Controller
             // Article-specific OG
             'article_published' => $article->published_at?->toIso8601String(),
             'article_modified'  => $article->updated_at->toIso8601String(),
-            'article_author'    => $article->author ?? 'Tim Cyclevent',
+            'article_author'    => $article->author ?? 'Tim PT Biner',
             'article_section'   => $article->category ?? 'Artikel',
         ];
 
@@ -90,11 +90,11 @@ class ArticleController extends Controller
             'inLanguage'       => 'id-ID',
             'author'           => [
                 '@type' => 'Organization',
-                'name'  => $article->author ?? 'Tim Cyclevent',
+                'name'  => $article->author ?? 'Tim PT Biner',
             ],
             'publisher'        => [
                 '@type'  => 'Organization',
-                'name'   => 'Cyclevent',
+                'name'   => 'PT Biner',
                 '@id'    => $appUrl.'/#organization',
                 'logo'   => ['@type' => 'ImageObject', 'url' => $appUrl.'/images/logo.png'],
             ],

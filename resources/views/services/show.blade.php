@@ -557,9 +557,9 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
         {{-- FAQ Table --}}
         @php
             $faqs = is_array($service->faqs) && !empty($service->faqs) ? $service->faqs : [
-                ['q' => 'Apakah Cyclevent Turbine Ventilator memerlukan listrik?', 'a' => 'Sama sekali tidak. Cyclevent beroperasi 100% menggunakan tenaga angin dan perbedaan tekanan udara, sehingga bebas biaya listrik selamanya.'],
-                ['q' => 'Berapa lama garansi yang diberikan?', 'a' => 'Kami memberikan garansi resmi untuk produk Cyclevent hingga 15 tahun, mencakup cacat pabrik dan performa putaran mesin.'],
-                ['q' => 'Apakah materialnya tahan karat?', 'a' => 'Ya, Cyclevent terbuat dari material Alumunium atau Stainless Steel berkualitas tinggi yang tahan terhadap cuaca ekstrem dan karat.']
+                ['q' => 'Apakah melayani pengiriman ke seluruh Indonesia?', 'a' => 'Ya, kami melayani pengiriman produk ke seluruh wilayah Indonesia menggunakan ekspedisi darat maupun laut yang terpercaya dan berasuransi.'],
+                ['q' => 'Apakah produk yang dijual resmi dan original?', 'a' => 'Tentu saja. Semua produk yang kami sediakan adalah 100% original, resmi dari pabrik, dan dilengkapi dengan jaminan kualitas.'],
+                ['q' => 'Apakah melayani pembelian untuk skala proyek besar?', 'a' => 'Sangat bisa. Kami siap mensuplai kebutuhan cat dan pelapis dalam jumlah besar untuk keperluan industri, manufaktur, maupun maritim.']
             ];
         @endphp
         @if(count($faqs) > 0)
@@ -662,7 +662,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
         <div class="sh-adv-header">
             <div>
                 <div class="cv-section-label">KEUNGGULAN</div>
-                <h2 class="cv-section-title" style="margin-top:.75rem;">Mengapa Pilih<br>Cyclevent?</h2>
+                <h2 class="cv-section-title" style="margin-top:.75rem;">Mengapa Pilih<br>PT Biner?</h2>
             </div>
             <p class="sh-adv-header-desc">Didesain untuk iklim tropis Indonesia, dibuktikan oleh ratusan proyek dari Sabang sampai Merauke.</p>
         </div>
@@ -741,7 +741,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
             <div class="cv-section-label">APLIKASI</div>
             <h2 class="cv-section-title" style="margin-top:.75rem;">Cocok untuk<br>Berbagai Bangunan</h2>
             <p style="margin-top:1rem; font-size:.875rem; color:var(--muted); line-height:1.65;">
-                Cyclevent terbukti efektif di berbagai jenis bangunan — dari rumah tinggal hingga pabrik skala besar.
+                PT Biner terbukti efektif di berbagai jenis bangunan — dari rumah tinggal hingga pabrik skala besar.
             </p>
         </div>
         <div class="sh-app-grid">
@@ -755,7 +755,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
                     ],
                     [
                         'title' => 'Pabrik & Gudang',
-                        'desc' => 'Sebagai ventilator atap pabrik, turbine ventilator mampu menghilangkan udara panas, debu, dan partikel berbahaya secara otomatis tanpa listrik, cocok sebagai exhaust fan pabrik.',
+                        'desc' => 'Sebagai ventilator atap pabrik, cat industri mampu menghilangkan udara panas, debu, dan partikel berbahaya secara otomatis tanpa listrik, cocok sebagai exhaust fan pabrik.',
                         'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/></svg>',
                         'img' => !empty($settings['app_img_pabrik']) ? asset('storage/'.$settings['app_img_pabrik']) : asset('images/placeholder-app.jpg')
                     ],

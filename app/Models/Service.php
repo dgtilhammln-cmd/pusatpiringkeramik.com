@@ -61,7 +61,7 @@ class Service extends Model
     }
     public function getMetaTitleAttribute($v): string
     {
-        return $v ?: $this->name . ' | Cyclevent';
+        return $v ?: $this->name . ' | PT Biner';
     }
     public function getMetaDescAttribute($v): string
     {

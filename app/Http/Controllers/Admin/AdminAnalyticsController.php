@@ -153,7 +153,7 @@ class AdminAnalyticsController extends Controller
             ->selectRaw('DATE(created_at) as date, COUNT(*) as count')
             ->groupBy('date')->pluck('count', 'date');
 
-        $filename = "Laporan_Cyclevent_{$from->format('Ymd')}_{$to->format('Ymd')}.csv";
+        $filename = "Laporan_PT Biner_{$from->format('Ymd')}_{$to->format('Ymd')}.csv";
 
         $headers = [
             "Content-type"        => "text/csv",

@@ -1,5 +1,5 @@
 {{--
-    SEO Component — Cyclevent
+    SEO Component — PT Biner
     Variables (semua optional): $seo[], $schema, $breadcrumbs[]
 --}}
 @php

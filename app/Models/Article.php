@@ -77,7 +77,7 @@ class Article extends Model
 
     public function getMetaTitleAttribute($value): string
     {
-        return $value ?: Str::limit($this->title, 55) . ' | Cyclevent';
+        return $value ?: Str::limit($this->title, 55) . ' | PT Biner';
     }
 
     public function getMetaDescAttribute($value): string

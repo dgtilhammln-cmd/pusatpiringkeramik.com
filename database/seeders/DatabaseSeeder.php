@@ -18,31 +18,31 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Admin user (Akses 2026)
-        User::updateOrCreate(['email' => 'admin@cyclevent.com'], [
-            'name'     => 'Admin Cyclevent',
-            'password' => Hash::make('Admin@Cyclevent2026'),
+        User::updateOrCreate(['email' => 'admin@ptbiner.co.id'], [
+            'name'     => 'Admin PT Biner',
+            'password' => Hash::make('Admin@PT Biner2026'),
             'role'     => 'admin',
             'is_active'=> true,
         ]);
 
         // WA Settings
         WaSetting::insert([
-            ['label'=>'WA Utama - Konsultasi','nomor_wa'=>'081296565757','template_pesan'=>'Halo Cyclevent, saya ingin konsultasi mengenai [produk]. Mohon informasinya. Terima kasih.','is_active'=>1,'is_primary'=>1,'order'=>1,'created_at'=>now(),'updated_at'=>now()],
+            ['label'=>'WA Utama - Konsultasi','nomor_wa'=>'081296565757','template_pesan'=>'Halo PT Biner, saya ingin konsultasi mengenai [produk]. Mohon informasinya. Terima kasih.','is_active'=>1,'is_primary'=>1,'order'=>1,'created_at'=>now(),'updated_at'=>now()],
         ]);
 
         // Settings
         $settings = [
             // Hero
             ['key'=>'hero_headline','value'=>'Ventilasi Udara Tanpa Listrik','type'=>'text','group'=>'hero','label'=>'Hero Headline'],
-            ['key'=>'hero_subheadline','value'=>'Cyclevent turbine ventilator non-electric — menghisap udara panas, lembab & berbau dari pabrik, gudang, hingga rumah tinggal. Beroperasi 24 jam dengan tenaga angin.','type'=>'text','group'=>'hero','label'=>'Hero Sub-headline'],
+            ['key'=>'hero_subheadline','value'=>'PT Biner cat industri non-electric — menghisap udara panas, lembab & berbau dari pabrik, gudang, hingga rumah tinggal. Beroperasi 24 jam dengan tenaga angin.','type'=>'text','group'=>'hero','label'=>'Hero Sub-headline'],
             ['key'=>'hero_cta_primary','value'=>'Konsultasi Gratis','type'=>'text','group'=>'hero','label'=>'CTA Primary Text'],
             ['key'=>'hero_cta_secondary','value'=>'Lihat Produk Kami','type'=>'text','group'=>'hero','label'=>'CTA Secondary Text'],
             ['key'=>'hero_bg_image','value'=>'','type'=>'image','group'=>'hero','label'=>'Hero Background Image'],
             // About
-            ['key'=>'about_text','value'=>'PT. Hiranatha Makmur Sukses adalah perusahaan produsen turbine ventilator profesional dengan merek dagang "Cyclevent". Berdiri sejak 2007, berpengalaman lebih dari 18 tahun melayani pelanggan di seluruh Indonesia — mulai dari perusahaan multinasional, konglomerasi, perusahaan domestik, hingga BUMN.','type'=>'text','group'=>'about','label'=>'About Text'],
+            ['key'=>'about_text','value'=>'PT. Hiranatha Makmur Sukses adalah perusahaan produsen cat industri profesional dengan merek dagang "PT Biner". Berdiri sejak 2007, berpengalaman lebih dari 18 tahun melayani pelanggan di seluruh Indonesia — mulai dari perusahaan multinasional, konglomerasi, perusahaan domestik, hingga BUMN.','type'=>'text','group'=>'about','label'=>'About Text'],
             ['key'=>'about_image','value'=>'','type'=>'image','group'=>'about','label'=>'About Image'],
             ['key'=>'visi','value'=>'Menjadi perusahaan nasional kelas dunia yang berorientasi pada kepentingan pelanggan.','type'=>'text','group'=>'about','label'=>'Visi'],
-            ['key'=>'misi','value'=>'Menjalankan bisnis secara profesional dengan penguasaan teknis tinggi dari hulu sampai hilir untuk memberikan produk Turbine Ventilator terbaik bagi pelanggan.','type'=>'text','group'=>'about','label'=>'Misi'],
+            ['key'=>'misi','value'=>'Menjalankan bisnis secara profesional dengan penguasaan teknis tinggi dari hulu sampai hilir untuk memberikan produk Cat Industri terbaik bagi pelanggan.','type'=>'text','group'=>'about','label'=>'Misi'],
             // Stats
             ['key'=>'stat_years','value'=>'18+','type'=>'text','group'=>'stats','label'=>'Tahun Pengalaman'],
             ['key'=>'stat_clients','value'=>'500+','type'=>'text','group'=>'stats','label'=>'Klien / Proyek'],
@@ -51,7 +51,7 @@ class DatabaseSeeder extends Seeder
             // Contact
             ['key'=>'phone','value'=>'021-22523334','type'=>'text','group'=>'contact','label'=>'Telepon'],
             ['key'=>'wa1','value'=>'081296565757','type'=>'text','group'=>'contact','label'=>'WhatsApp Utama'],
-            ['key'=>'email','value'=>'cyclevent.ventilator58@gmail.com','type'=>'text','group'=>'contact','label'=>'Email'],
+            ['key'=>'email','value'=>'info@ptbiner.co.id','type'=>'text','group'=>'contact','label'=>'Email'],
             ['key'=>'address','value'=>'Jl. Kerukunan IX, Komp. Citra Garden 2 Blok G1 No.6, Kalideres, Jakarta Barat 11830','type'=>'text','group'=>'contact','label'=>'Alamat'],
             ['key'=>'maps_embed','value'=>'https://maps.google.com/maps?q=-6.1364,106.7028&output=embed','type'=>'text','group'=>'contact','label'=>'Maps Embed URL'],
             // Social
@@ -59,11 +59,11 @@ class DatabaseSeeder extends Seeder
             ['key'=>'facebook','value'=>'','type'=>'text','group'=>'social','label'=>'Facebook URL'],
             ['key'=>'youtube','value'=>'','type'=>'text','group'=>'social','label'=>'YouTube URL'],
             // Footer
-            ['key'=>'footer_desc','value'=>'Produsen Turbine Ventilator Non-Electric #1 di Indonesia. Berdiri sejak 2007, melayani ribuan pelanggan dari Sabang sampai Merauke.','type'=>'text','group'=>'footer','label'=>'Footer Description'],
-            ['key'=>'copyright','value'=>'© 2007–2026 PT. Hiranatha Makmur Sukses (Cyclevent). All rights reserved.','type'=>'text','group'=>'footer','label'=>'Copyright'],
+            ['key'=>'footer_desc','value'=>'Produsen Cat Industri Non-Electric #1 di Indonesia. Berdiri sejak 2007, melayani ribuan pelanggan dari Sabang sampai Merauke.','type'=>'text','group'=>'footer','label'=>'Footer Description'],
+            ['key'=>'copyright','value'=>'© 2007–2026 PT. Hiranatha Makmur Sukses (PT Biner). All rights reserved.','type'=>'text','group'=>'footer','label'=>'Copyright'],
             // SEO
-            ['key'=>'meta_title_home','value'=>'Cyclevent — Turbine Ventilator Non-Electric #1 Indonesia','type'=>'text','group'=>'seo','label'=>'Meta Title Home'],
-            ['key'=>'meta_desc_home','value'=>'Produsen turbine ventilator non-electric terpercaya sejak 2007. Garansi 15 tahun tidak berkarat. Gratis konsultasi: 0812-9656-5757.','type'=>'text','group'=>'seo','label'=>'Meta Desc Home'],
+            ['key'=>'meta_title_home','value'=>'PT Biner — Cat Industri Non-Electric #1 Indonesia','type'=>'text','group'=>'seo','label'=>'Meta Title Home'],
+            ['key'=>'meta_desc_home','value'=>'Produsen cat industri non-electric terpercaya sejak 2007. Garansi 15 tahun tidak berkarat. Gratis konsultasi: 0812-9656-5757.','type'=>'text','group'=>'seo','label'=>'Meta Desc Home'],
             ['key'=>'og_image_default','value'=>'','type'=>'image','group'=>'seo','label'=>'Default OG Image (1200x630)'],
             // Theme Colors (Light Blue Palette)
             ['key'=>'color_accent','value'=>'#38BDF8','type'=>'text','group'=>'theme','label'=>'Accent Color'],
@@ -84,7 +84,7 @@ class DatabaseSeeder extends Seeder
         ];
         foreach ($products as $p) {
             Service::updateOrCreate(['slug'=>$p['slug']], array_merge($p, [
-                'description' => '<p>'.$p['short_desc'].'</p><ul><li>Material: Aluminium & Stainless Steel 430/304</li><li>Bearing: SKF Full Stainless Steel (Made in Japan)</li><li>Operasi: 24 Jam Non-stop, 0 Watt</li></ul><p>Cyclevent menggunakan konstruksi standar USA dengan powder coating pada rangka dan topi bola, menjamin ketahanan terhadap karat dan cuaca ekstrim hingga 15 tahun.</p>',
+                'description' => '<p>'.$p['short_desc'].'</p><ul><li>Material: Aluminium & Stainless Steel 430/304</li><li>Bearing: SKF Full Stainless Steel (Made in Japan)</li><li>Operasi: 24 Jam Non-stop, 0 Watt</li></ul><p>PT Biner menggunakan konstruksi standar USA dengan powder coating pada rangka dan topi bola, menjamin ketahanan terhadap karat dan cuaca ekstrim hingga 15 tahun.</p>',
                 'is_active' => true, 'created_at'=>now(),'updated_at'=>now()
             ]));
         }
@@ -102,9 +102,9 @@ class DatabaseSeeder extends Seeder
         ];
         foreach ($galleries as $g) {
             GalleryProject::updateOrCreate(['title'=>$g['title']], array_merge($g, [
-                'description' => 'Proyek pemasangan Turbine Ventilator Cyclevent untuk mengatasi masalah suhu panas dan kelembapan di dalam ruangan.',
+                'description' => 'Proyek pemasangan Cat Industri PT Biner untuk mengatasi masalah suhu panas dan kelembapan di dalam ruangan.',
                 'image'       => '',
-                'alt_text'    => $g['title'].' - Cyclevent',
+                'alt_text'    => $g['title'].' - PT Biner',
                 'is_active'   => true, 'created_at'=>now(),'updated_at'=>now()
             ]));
         }
@@ -112,40 +112,40 @@ class DatabaseSeeder extends Seeder
         // Articles
         $articles = [
             [
-                'title'        => 'Mengapa Pabrik Anda Butuh Turbine Ventilator? Ini Alasannya',
+                'title'        => 'Mengapa Pabrik Anda Butuh Cat Industri? Ini Alasannya',
                 'slug'         => 'mengapa-pabrik-butuh-turbine-ventilator',
-                'excerpt'      => 'Suhu panas dan sirkulasi udara yang buruk di dalam pabrik dapat menurunkan produktivitas pekerja. Pelajari solusi tanpa listrik dengan turbine ventilator.',
+                'excerpt'      => 'Suhu panas dan sirkulasi udara yang buruk di dalam pabrik dapat menurunkan produktivitas pekerja. Pelajari solusi tanpa listrik dengan cat industri.',
                 'category'     => 'Tips Industri',
                 'is_published' => true,
                 'published_at' => now()->subDays(5),
-                'author'       => 'Tim Cyclevent',
-                'meta_title'   => 'Mengapa Pabrik Anda Butuh Turbine Ventilator? | Cyclevent',
-                'meta_desc'    => 'Suhu panas pabrik menurunkan produktivitas. Temukan solusi ventilasi udara tanpa biaya listrik dari Cyclevent.',
+                'author'       => 'Tim PT Biner',
+                'meta_title'   => 'Mengapa Pabrik Anda Butuh Cat Industri? | PT Biner',
+                'meta_desc'    => 'Suhu panas pabrik menurunkan produktivitas. Temukan solusi ventilasi udara tanpa biaya listrik dari PT Biner.',
             ],
             [
-                'title'        => 'Cara Kerja Turbine Ventilator Non-Electric Cyclevent',
+                'title'        => 'Cara Kerja Cat Industri Non-Electric PT Biner',
                 'slug'         => 'cara-kerja-turbine-ventilator',
                 'excerpt'      => 'Banyak yang bertanya bagaimana kipas atap bisa berputar tanpa listrik. Rahasianya ada pada desain aerodinamis dan efek sentrifugal.',
                 'category'     => 'Edukasi',
                 'is_published' => true,
                 'published_at' => now()->subDays(12),
-                'author'       => 'Tim Cyclevent',
-                'meta_title'   => 'Cara Kerja Turbine Ventilator Cyclevent Tanpa Listrik',
-                'meta_desc'    => 'Penjelasan lengkap cara kerja turbine ventilator menghisap udara panas tanpa menggunakan energi listrik.',
+                'author'       => 'Tim PT Biner',
+                'meta_title'   => 'Cara Kerja Cat Industri PT Biner Tanpa Listrik',
+                'meta_desc'    => 'Penjelasan lengkap cara kerja cat industri menghisap udara panas tanpa menggunakan energi listrik.',
             ],
             [
-                'title'        => 'Tips Memilih Ukuran Turbine Ventilator untuk Gudang',
+                'title'        => 'Tips Memilih Ukuran Cat Industri untuk Gudang',
                 'slug'         => 'tips-memilih-ukuran-ventilator-gudang',
                 'excerpt'      => 'CV-60, CV-75, atau CV-90? Jangan salah pilih! Ikuti panduan kami untuk menghitung volume ruangan dan menentukan kapasitas hisap yang tepat.',
                 'category'     => 'Panduan',
                 'is_published' => true,
                 'published_at' => now()->subDays(20),
-                'author'       => 'Tim Cyclevent',
-                'meta_title'   => 'Cara Menghitung Ukuran Turbine Ventilator Gudang | Cyclevent',
-                'meta_desc'    => 'Jangan salah beli! Panduan lengkap memilih ukuran (CV-45 s/d CV-105) turbine ventilator sesuai luas gudang Anda.',
+                'author'       => 'Tim PT Biner',
+                'meta_title'   => 'Cara Menghitung Ukuran Cat Industri Gudang | PT Biner',
+                'meta_desc'    => 'Jangan salah beli! Panduan lengkap memilih ukuran (CV-45 s/d CV-105) cat industri sesuai luas gudang Anda.',
             ],
         ];
-        $contentTemplate = '<h2>Pendahuluan</h2><p>Sirkulasi udara yang baik sangat vital untuk menjaga kenyamanan dan kesehatan pekerja, serta melindungi barang-barang di dalam ruangan dari kelembapan berlebih.</p><h2>Detail Pembahasan</h2><p>Turbine ventilator dari Cyclevent menggunakan desain berstandar USA dan bearing SKF asli Jepang untuk menjamin perputaran maksimal meski dengan hembusan angin yang sangat minim. Bahan aluminium dan stainless steel juga memastikannya bebas dari karat hingga belasan tahun.</p><h2>Kesimpulan</h2><p>Hubungi Cyclevent di <strong>0812-9656-5757</strong> untuk konsultasi gratis penentuan ukuran dan jumlah ventilator yang ideal untuk properti Anda.</p>';
+        $contentTemplate = '<h2>Pendahuluan</h2><p>Sirkulasi udara yang baik sangat vital untuk menjaga kenyamanan dan kesehatan pekerja, serta melindungi barang-barang di dalam ruangan dari kelembapan berlebih.</p><h2>Detail Pembahasan</h2><p>Cat industri dari PT Biner menggunakan desain berstandar USA dan bearing SKF asli Jepang untuk menjamin perputaran maksimal meski dengan hembusan angin yang sangat minim. Bahan aluminium dan stainless steel juga memastikannya bebas dari karat hingga belasan tahun.</p><h2>Kesimpulan</h2><p>Hubungi PT Biner di <strong>0812-9656-5757</strong> untuk konsultasi gratis penentuan ukuran dan jumlah ventilator yang ideal untuk properti Anda.</p>';
         foreach ($articles as $a) {
             Article::updateOrCreate(['slug'=>$a['slug']], array_merge($a, [
                 'content'=>$contentTemplate, 'views'=>rand(100,500),
@@ -172,9 +172,9 @@ class DatabaseSeeder extends Seeder
 
         // Testimonials
         Testimonial::insert([
-            ['name'=>'Bpk. Budi Santoso','company'=>'PT. Manufaktur Sukses','position'=>'Plant Manager','content'=>'Suhu di dalam pabrik kami turun signifikan setelah memasang Cyclevent CV-90. Pekerja jadi lebih nyaman dan produktivitas meningkat tajam. Sangat direkomendasikan!','rating'=>5,'is_active'=>1,'order'=>1,'created_at'=>now(),'updated_at'=>now()],
+            ['name'=>'Bpk. Budi Santoso','company'=>'PT. Manufaktur Sukses','position'=>'Plant Manager','content'=>'Suhu di dalam pabrik kami turun signifikan setelah memasang PT Biner CV-90. Pekerja jadi lebih nyaman dan produktivitas meningkat tajam. Sangat direkomendasikan!','rating'=>5,'is_active'=>1,'order'=>1,'created_at'=>now(),'updated_at'=>now()],
             ['name'=>'Ibu Linda','company'=>'PT. Logistik Cepat','position'=>'Warehouse Head','content'=>'Awalnya ragu karena tanpa listrik, tapi ternyata perputarannya sangat stabil dan kuat. Masalah udara pengap di gudang langsung teratasi.','rating'=>5,'is_active'=>1,'order'=>2,'created_at'=>now(),'updated_at'=>now()],
-            ['name'=>'H. Ahmad','company'=>'Owner','position'=>'Pabrik Tekstil Balaraja','content'=>'Pelayanan dari Cyclevent sangat memuaskan. Mulai dari survei, rekomendasi ukuran, hingga instalasi berjalan dengan rapi. Garansi 15 tahun bikin tenang.','rating'=>5,'is_active'=>1,'order'=>3,'created_at'=>now(),'updated_at'=>now()],
+            ['name'=>'H. Ahmad','company'=>'Owner','position'=>'Pabrik Tekstil Balaraja','content'=>'Pelayanan dari PT Biner sangat memuaskan. Mulai dari survei, rekomendasi ukuran, hingga instalasi berjalan dengan rapi. Garansi 15 tahun bikin tenang.','rating'=>5,'is_active'=>1,'order'=>3,'created_at'=>now(),'updated_at'=>now()],
         ]);
     }
 }

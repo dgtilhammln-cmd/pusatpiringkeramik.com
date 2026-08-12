@@ -37,7 +37,7 @@
         <input type="text" name="name" id="svc-name" value="{{ old('name',$s?->name) }}" required oninput="svcAutoSlug()"
           style="width:100%;padding:.75rem 1rem;background:#F8FAFC;border:1.5px solid #E4E7F0;border-radius:10px;font-size:.9rem;color:#1E293B;font-family:inherit;outline:none;box-sizing:border-box;transition:border-color .2s;"
           onfocus="this.style.borderColor='#3B82F6';this.style.background='#fff'" onblur="this.style.borderColor='#E4E7F0';this.style.background='#F8FAFC'"
-          placeholder="Contoh: Turbine Ventilator CV-60">
+          placeholder="Contoh: Cat Industri CV-60">
       </div>
       <div>
         <label style="display:block;font-size:.8rem;font-weight:700;color:#374151;margin-bottom:.5rem;">

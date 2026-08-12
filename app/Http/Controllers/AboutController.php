@@ -16,9 +16,9 @@ class AboutController extends Controller
         $wa           = \App\Models\WaSetting::primary();
 
         $seo = [
-            'title'       => $settings['meta_title_about'] ?? 'Tentang Kami | Cyclevent - Spesialis Turbine Ventilator',
-            'description' => $settings['meta_desc_about'] ?? 'Profil Cyclevent, spesialis Turbine Ventilator Non-Electric berdiri sejak 2013. Melayani ribuan pelanggan industri dan rumah tangga di seluruh Indonesia.',
-            'keywords'    => $settings['meta_keywords_about'] ?? 'profil cyclevent, tentang cyclevent, spesialis turbine ventilator, ventilator atap pabrik',
+            'title'       => $settings['meta_title_about'] ?? 'Tentang Kami | PT Biner - Spesialis Cat Industri',
+            'description' => $settings['meta_desc_about'] ?? 'Profil PT Biner, spesialis Cat Industri Non-Electric berdiri sejak 2013. Melayani ribuan pelanggan industri dan rumah tangga di seluruh Indonesia.',
+            'keywords'    => $settings['meta_keywords_about'] ?? 'profil ptbiner, tentang ptbiner, spesialis cat industri, ventilator atap pabrik',
             'og_image'    => !empty($settings['og_image_default']) ? asset('storage/'.$settings['og_image_default']) : (!empty($settings['logo']) ? asset('storage/'.$settings['logo']) : asset('images/og-default.jpg')),
             'canonical'   => route('about'),
         ];

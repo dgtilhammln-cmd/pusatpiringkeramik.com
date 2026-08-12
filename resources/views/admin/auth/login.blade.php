@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Admin | Cyclevent</title>
+    <title>Login Admin | PT Biner</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     @if(file_exists(public_path('build/assets')) && count(glob(public_path('build/assets/*.css'))) > 0)
@@ -282,7 +282,7 @@
                 <div class="logo-placeholder">CV</div>
             @endif
             
-            <h1 class="hero-title">Cyclevent<br>Control Panel</h1>
+            <h1 class="hero-title">PT Biner<br>Control Panel</h1>
             <p class="hero-desc">Sistem manajemen konten dan pengaturan website untuk efisiensi bisnis Anda.</p>
             
             <a href="{{ route('home') }}" class="back-link">
@@ -337,7 +337,7 @@
 </div>
 
 <script>
-    localStorage.removeItem('cyclevent_intro_played');
+    localStorage.removeItem('ptbiner_intro_played');
 
     // Toggle Password Visibility
     const toggleBtn = document.getElementById('toggle-btn');

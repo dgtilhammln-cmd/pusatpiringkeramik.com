@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Laporan Analytics - Cyclevent</title>
+    <title>Laporan Analytics - PT Biner</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
         
@@ -112,7 +112,7 @@
 
 <div class="header">
     <h1>Laporan Analytics Website</h1>
-    <p>Cyclevent</p>
+    <p>PT Biner</p>
 </div>
 
 <div class="info-box">

@@ -9,8 +9,8 @@
         @endif
     @endpush
     {{-- ════════════════════════════════════════════════
-      HOME PAGE — Cyclevent Turbine Ventilator
-      PT. Hiranatha Makmur Sukses | www.cyclevent.com
+      HOME PAGE — PT Biner Cat Industri
+      PT. Hiranatha Makmur Sukses | www.ptbiner.co.id
     ════════════════════════════════════════════════ --}}
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -899,7 +899,7 @@
                                     @if(!empty($settings['logo']))
                                         <img src="{{ asset('storage/'.$settings['logo']) }}" alt="Logo">
                                     @else
-                                        <span class="cv-text-logo">Cyclevent</span>
+                                        <span class="cv-text-logo">PT Biner</span>
                                     @endif
                                 </div>
                             </div>
@@ -1441,7 +1441,7 @@
                             </div>
                             <div class="cv-cat-card-overlay"></div>
                             <div class="cv-cat-card-body">
-                                <div class="cv-cat-card-name">Turbine Ventilator {{ $pd['type'] }}</div>
+                                <div class="cv-cat-card-name">Cat Industri {{ $pd['type'] }}</div>
                                 <div class="cv-cat-card-spec">
                                     <span>{{ $pd['type'] }}</span>
                                     Ø {{ $pd['diameter'] }} — {{ $pd['capacity'] }} m³/mnt
@@ -1740,7 +1740,7 @@
             <div class="cv-adv-header">
                 <div>
                     <div class="cv-adv-section-label">KEUNGGULAN</div>
-                    <h2 class="cv-adv-section-title">Mengapa Pilih<br>Cyclevent?</h2>
+                    <h2 class="cv-adv-section-title">Mengapa Pilih<br>PT Biner?</h2>
                 </div>
                 <p style="max-width:320px;font-size:0.875rem;color:#64748B;line-height:1.65;text-align:right;">
                     Didesain untuk iklim tropis Indonesia, dibuktikan oleh ratusan proyek dari Sabang sampai Merauke.
@@ -1830,7 +1830,7 @@
                 <div class="cv-adv-section-label">APLIKASI</div>
                 <h2 class="cv-adv-section-title" style="margin-top:0.75rem;">Cocok untuk<br>Berbagai Bangunan</h2>
                 <p style="margin-top:1rem;font-size:0.875rem;color:#64748B;line-height:1.65;">
-                    Cyclevent terbukti efektif di berbagai jenis bangunan — dari rumah tinggal hingga pabrik skala besar.
+                    PT Biner terbukti efektif di berbagai jenis bangunan — dari rumah tinggal hingga pabrik skala besar.
                 </p>
             </div>
 
@@ -2643,7 +2643,7 @@
                 SIAP MULAI?
             </div>
             <h2 class="cv-cta-title-v2" style="margin-top:1rem;">Dapatkan Konsultasi Gratis<br>& Penawaran Terbaik</h2>
-            <p class="cv-cta-desc-v2">Tim teknis Cyclevent siap membantu Anda memilih ukuran ventilator yang tepat dan menghitung jumlah yang dibutuhkan untuk bangunan Anda.</p>
+            <p class="cv-cta-desc-v2">Tim teknis PT Biner siap membantu Anda memilih ukuran ventilator yang tepat dan menghitung jumlah yang dibutuhkan untuk bangunan Anda.</p>
             
             <div class="cv-cta-buttons">
                 @if($wa)
@@ -2706,7 +2706,7 @@
                                 @else
                                     <div style="width:100%;height:100%;background:#E2E8F0;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#94A3B8;">
                                         <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                                        <span style="font-size:0.75rem;margin-top:0.5rem;font-weight:600;">Artikel Cyclevent</span>
+                                        <span style="font-size:0.75rem;margin-top:0.5rem;font-weight:600;">Artikel PT Biner</span>
                                     </div>
                                 @endif
                                 <div class="cv-article-cat-badge">{{ $article->category ?? 'Tips Ventilasi' }}</div>

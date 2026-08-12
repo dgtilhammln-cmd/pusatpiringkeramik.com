@@ -28,9 +28,9 @@ class ServiceController extends Controller
         $settings = Setting::getAllAsArray();
 
         $seo = [
-            'title'       => $settings['meta_title_services'] ?? 'Daftar Produk Turbine Ventilator Cyclevent | Anti Karat & Bergaransi',
-            'description' => $settings['meta_desc_services'] ?? 'Temukan berbagai pilihan tipe Turbine Ventilator dari Cyclevent. Cocok untuk pabrik, gudang, restoran, dan rumah. Sirkulasi udara 24 jam tanpa listrik.',
-            'keywords'    => $settings['meta_keywords_services'] ?? 'produk cyclevent, harga turbine ventilator, jual ventilator atap, tipe roof ventilator, spesifikasi turbine ventilator',
+            'title'       => $settings['meta_title_services'] ?? 'Daftar Produk Cat Industri PT Biner | Anti Karat & Bergaransi',
+            'description' => $settings['meta_desc_services'] ?? 'Temukan berbagai pilihan tipe Cat Industri dari PT Biner. Cocok untuk pabrik, gudang, restoran, dan rumah. Sirkulasi udara 24 jam tanpa listrik.',
+            'keywords'    => $settings['meta_keywords_services'] ?? 'produk ptbiner, harga cat industri, jual ventilator atap, tipe roof ventilator, spesifikasi cat industri',
             'og_image'    => !empty($settings['og_image_default']) ? asset('storage/'.$settings['og_image_default']) : (!empty($settings['logo']) ? asset('storage/'.$settings['logo']) : asset('images/og-default.jpg')),
             'canonical'   => route('products'),
         ];
@@ -38,7 +38,7 @@ class ServiceController extends Controller
         $schema = json_encode([
             '@context' => 'https://schema.org',
             '@type'    => 'ItemList',
-            'name'     => 'Produk & Layanan Cyclevent',
+            'name'     => 'Produk & Layanan PT Biner',
             'url'      => route('products'),
             'itemListElement' => $services->map(function($s, $i) {
                 return [
@@ -91,11 +91,11 @@ class ServiceController extends Controller
                 '@type'       => 'Product',
                 'name'        => $service->name,
                 'image'       => [$serviceImage],
-                'description' => strip_tags($service->short_desc ?: $service->name . ' - Cyclevent Turbine Ventilator Berkualitas'),
+                'description' => strip_tags($service->short_desc ?: $service->name . ' - PT Biner Cat Industri Berkualitas'),
                 'sku'         => 'CYV-' . str_pad($service->id, 4, '0', STR_PAD_LEFT),
                 'mpn'         => 'CYV-' . strtoupper(substr($service->slug, 0, 8)),
                 'url'         => route('products.show', $slug),
-                'brand'       => ['@type' => 'Brand', 'name' => 'Cyclevent'],
+                'brand'       => ['@type' => 'Brand', 'name' => 'PT Biner'],
                 'offers'      => [
                     '@type'         => 'AggregateOffer',
                     'priceCurrency' => 'IDR',
