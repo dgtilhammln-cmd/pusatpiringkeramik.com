@@ -1418,16 +1418,7 @@
                 @if($products->count())
                     @foreach($products as $product)
                         <a href="{{ route('products.show', $product->slug) }}" class="cv-cat-card">
-                            @if($product->image)
-                                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" loading="lazy">
-                            @elseif($product->category && $product->category->image)
-                                <img src="{{ asset('storage/' . $product->category->image) }}" alt="{{ $product->name }}" loading="lazy">
-                            @else
-                                <div class="cv-cat-card-placeholder">
-                                    <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-                                    <span style="font-size:.7rem;">Upload di Admin</span>
-                                </div>
-                            @endif
+                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
                             <div class="cv-cat-card-overlay"></div>
                             <div class="cv-cat-card-body">
                                 <div class="cv-cat-card-name">{{ $product->name }}</div>

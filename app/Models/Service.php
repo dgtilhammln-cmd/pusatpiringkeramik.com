@@ -43,7 +43,23 @@ class Service extends Model
 
     public function getImageUrlAttribute(): string
     {
-        return $this->image ? asset('storage/'.$this->image) : asset('images/service-default.jpg');
+        // 1. Product has its own image
+        if ($this->image) {
+            return asset('storage/'.$this->image);
+        }
+        // 2. Fallback to category image
+        if ($this->category && $this->category->image) {
+            return asset('storage/'.$this->category->image);
+        }
+        // 3. Return brand-based SVG placeholder URL
+        $name = strtolower($this->name ?? '');
+        if (str_contains($name, 'jotun'))       return asset('images/brand-jotun.svg');
+        if (str_contains($name, 'hempel'))      return asset('images/brand-hempel.svg');
+        if (str_contains($name, 'sigma') || str_contains($name, 'ppg')) return asset('images/brand-sigma.svg');
+        if (str_contains($name, 'international')) return asset('images/brand-international.svg');
+        if (str_contains($name, 'chugoku'))     return asset('images/brand-chugoku.svg');
+        if (str_contains($name, 'agatha'))      return asset('images/brand-agatha.svg');
+        return asset('images/brand-default.svg');
     }
     public function getOgImageUrlAttribute(): string
     {

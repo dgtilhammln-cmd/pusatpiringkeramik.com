@@ -748,26 +748,26 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
             @php
                 $apps = [
                     [
-                        'title' => 'Restaurant',
-                        'desc' => 'Sirkulasi udara alami dan berkelanjutan membuat ruangan restaurant lebih nyaman, meningkatkan produktivitas kerja dan kualitas udara melalui sistem ventilasi udara.',
-                        'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>',
+                        'title' => 'Maritim & Perkapalan',
+                        'desc' => 'Perlindungan maksimal lambung kapal, deck, dan struktur offshore dari korosi air laut yang ekstrem menggunakan sistem coating anti-fouling dan anti-korosi terdepan.',
+                        'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 12h-4l-3-9L9 3l-3 9H2v6h20v-6z"/></svg>',
                         'img' => !empty($settings['app_img_restoran']) ? asset('storage/'.$settings['app_img_restoran']) : asset('images/placeholder-app.jpg')
                     ],
                     [
                         'title' => 'Pabrik & Gudang',
-                        'desc' => 'Sebagai ventilator atap pabrik, cat industri mampu menghilangkan udara panas, debu, dan partikel berbahaya secara otomatis tanpa listrik, cocok sebagai exhaust fan pabrik.',
+                        'desc' => 'Coating epoxy lantai dan cat anti-karat khusus industri untuk melindungi struktur baja, lantai pabrik, dan peralatan berat dari korosi, bahan kimia, dan beban berat.',
                         'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/></svg>',
                         'img' => !empty($settings['app_img_pabrik']) ? asset('storage/'.$settings['app_img_pabrik']) : asset('images/placeholder-app.jpg')
                     ],
                     [
-                        'title' => 'Gedung Olahraga',
-                        'desc' => 'Ventilasi yang optimal membantu menjaga udara tetap segar, mendukung performa atlet melalui sistem turbine vent yang efisien.',
+                        'title' => 'Struktur Baja & Jembatan',
+                        'desc' => 'Cat anti karat berkualitas tinggi untuk menjaga integritas struktural rangka jembatan, menara, dan baja terbuka yang terpapar cuaca ekstrem sepanjang tahun.',
                         'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
                         'img' => !empty($settings['app_img_gor']) ? asset('storage/'.$settings['app_img_gor']) : asset('images/placeholder-app.jpg')
                     ],
                     [
-                        'title' => 'Dapur',
-                        'desc' => 'Sistem ventilator turbine menjaga dapur tetap bersih dari asap dan bau, memenuhi standar kesehatan dengan sirkulasi udara optimal.',
+                        'title' => 'Oil, Gas & Petrokimia',
+                        'desc' => 'Sistem protective coating berstandar internasional untuk fasilitas kilang minyak, pipa gas, dan tangki penyimpanan yang menghadapi lingkungan korosif dan suhu tinggi.',
                         'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
                         'img' => !empty($settings['app_img_dapur']) ? asset('storage/'.$settings['app_img_dapur']) : asset('images/placeholder-app.jpg')
                     ],

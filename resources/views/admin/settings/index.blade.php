@@ -568,14 +568,14 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
         <svg width="14" height="14" fill="none" stroke="#f59e0b" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16m-7 6h7"/></svg>
         <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#f59e0b;">Gambar Ilustrasi Aplikasi Produk</div>
       </div>
-      <p style="font-size:.75rem;color:#94A3B8;margin-bottom:1.25rem;line-height:1.6;">Upload gambar ilustrasi untuk 4 bagian di halaman produk (Restaurant, Pabrik & Gudang, Gedung Olahraga, Dapur).</p>
+      <p style="font-size:.75rem;color:#94A3B8;margin-bottom:1.25rem;line-height:1.6;">Upload gambar ilustrasi untuk 4 sektor industri di halaman (Maritim & Perkapalan, Pabrik & Gudang, Struktur Baja, Fasilitas Komersial).</p>
       
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
         @foreach([
-          'app_img_restoran' => '1. Restaurant',
+          'app_img_restoran' => '1. Maritim & Perkapalan',
           'app_img_pabrik'   => '2. Pabrik & Gudang',
-          'app_img_gor'      => '3. Gedung Olahraga',
-          'app_img_dapur'    => '4. Dapur',
+          'app_img_gor'      => '3. Struktur Baja',
+          'app_img_dapur'    => '4. Fasilitas Komersial',
         ] as $imgKey => $imgLabel)
         <div style="background:#F1F5F9;padding:1rem;border-radius:8px;border:1px solid #E2E8F0;">
           <div style="font-size:.75rem;color:#f59e0b;margin-bottom:.75rem;font-weight:600;">{{ $imgLabel }}</div>
