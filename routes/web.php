@@ -33,12 +33,14 @@ Route::middleware(['track.pageview'])->group(function () {
     Route::get('/about', [AboutController::class, 'index'])->name('about');
 
     // Products (was /services) — Cyclevent turbine ventilator products
-    Route::get('/products', [ServiceController::class, 'index'])->name('products');
-    Route::get('/products/{slug}', [ServiceController::class, 'show'])->name('products.show');
+    Route::get('/product', [ServiceController::class, 'index'])->name('products');
+    Route::get('/product/{slug}', [ServiceController::class, 'show'])->name('products.show');
 
-    // Legacy redirect for /services → /products
+    // Legacy redirect for /services and /products → /product
     Route::get('/services', function () { return redirect()->route('products', [], 301); });
     Route::get('/services/{slug}', function ($slug) { return redirect()->route('products.show', $slug, 301); });
+    Route::get('/products', function () { return redirect()->route('products', [], 301); });
+    Route::get('/products/{slug}', function ($slug) { return redirect()->route('products.show', $slug, 301); });
 
     Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
     Route::get('/gallery/{slug}', [GalleryController::class, 'show'])->name('gallery.show');
