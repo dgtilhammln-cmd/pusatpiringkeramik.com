@@ -227,4 +227,120 @@ class AdminServiceController extends Controller
         Cache::forget('services_page_data');
         return back()->with('success', 'Layanan berhasil dihapus.');
     }
+
+    /* ─────────────────────────────────────────
+     | CSV IMPORT  (no extra package needed)
+     ───────────────────────────────────────── */
+    public function importCsv(Request $request)
+    {
+        $request->validate([
+            'csv_file' => 'required|file|mimes:csv,txt|max:2048',
+        ]);
+
+        $file    = $request->file('csv_file');
+        $handle  = fopen($file->getRealPath(), 'r');
+        $headers = null;
+        $imported = 0;
+        $skipped  = 0;
+        $errors   = [];
+        $order    = Service::max('order') ?? 0;
+
+        while (($row = fgetcsv($handle, 0, ',')) !== false) {
+            // First row = headers
+            if (!$headers) {
+                $headers = array_map('trim', $row);
+                continue;
+            }
+
+            $data = array_combine($headers, $row);
+
+            // Name is required
+            $name = trim($data['name'] ?? '');
+            if (empty($name)) { $skipped++; continue; }
+
+            // Generate / clean slug
+            $slug = !empty($data['slug']) ? Str::slug(trim($data['slug'])) : Str::slug($name);
+            $base = $slug; $i = 1;
+            while (Service::where('slug', $slug)->exists()) { $slug = $base.'-'.$i++; }
+
+            // Parse Specs (format: Key1:Value1|Key2:Value2)
+            $specs = [];
+            if (!empty($data['specs'])) {
+                $pairs = explode('|', $data['specs']);
+                foreach ($pairs as $pair) {
+                    $kv = explode(':', $pair, 2);
+                    if (count($kv) === 2) {
+                        $specs[] = ['key' => trim($kv[0]), 'value' => trim($kv[1])];
+                    }
+                }
+            }
+
+            // Parse FAQs (format: Q1:A1|Q2:A2)
+            $faqs = [];
+            if (!empty($data['faqs'])) {
+                $pairs = explode('|', $data['faqs']);
+                foreach ($pairs as $pair) {
+                    $kv = explode(':', $pair, 2);
+                    if (count($kv) === 2) {
+                        $faqs[] = ['q' => trim($kv[0]), 'a' => trim($kv[1])];
+                    }
+                }
+            }
+
+            try {
+                Service::create([
+                    'name'          => $name,
+                    'slug'          => $slug,
+                    'short_desc'    => trim($data['short_desc']    ?? ''),
+                    'description'   => trim($data['description']   ?? ''),
+                    'icon'          => trim($data['icon']          ?? ''),
+                    'order'         => is_numeric($data['order'] ?? '') ? (int)$data['order'] : ++$order,
+                    'is_active'     => true,
+                    'meta_title'    => trim($data['meta_title']    ?? '') ?: $name,
+                    'meta_desc'     => trim($data['meta_desc']     ?? ''),
+                    'meta_keywords' => trim($data['meta_keywords'] ?? ''),
+                    'gallery'       => [],
+                    'specifications'=> $specs,
+                    'faqs'          => $faqs,
+                ]);
+                $imported++;
+            } catch (\Exception $e) {
+                $errors[] = "Baris '$name': " . $e->getMessage();
+            }
+        }
+        fclose($handle);
+
+        Cache::forget('home_page_data');
+        Cache::forget('services_page_data');
+
+        $msg = "Import selesai: $imported produk berhasil ditambahkan";
+        if ($skipped) $msg .= ", $skipped baris dilewati (nama kosong)";
+        if ($errors)  $msg .= ". Error: " . implode(' | ', $errors);
+
+        return redirect()->route('admin.services.index')->with('success', $msg);
+    }
+
+    public function downloadTemplate()
+    {
+        $headers = [
+            'Content-Type'        => 'text/csv; charset=UTF-8',
+            'Content-Disposition' => 'attachment; filename="template-produk.csv"',
+        ];
+
+        $columns = ['name','slug','short_desc','description','icon','order','meta_title','meta_desc','meta_keywords','specs','faqs'];
+
+        $callback = function () use ($columns) {
+            $h = fopen('php://output', 'w');
+            // BOM for Excel UTF-8
+            fprintf($h, chr(0xEF).chr(0xBB).chr(0xBF));
+            fputcsv($h, $columns);
+            // 3 example rows
+            fputcsv($h, ['Cat Epoxy Primer', 'cat-epoxy-primer', 'Deskripsi singkat produk', 'Deskripsi panjang produk', '', '1', '', '', 'cat, epoxy, primer', 'Warna:Abu-abu|Kemasan:20Kg', 'Berapa lapis?:2 lapis|Kering sentuh?:30 menit']);
+            fputcsv($h, ['Cat Polyurethane', 'cat-polyurethane', '', '', '', '2', '', '', '', '', '']);
+            fputcsv($h, ['Thinner Industrial', '', '', '', '', '3', '', '', '', '', '']);
+            fclose($h);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
 }

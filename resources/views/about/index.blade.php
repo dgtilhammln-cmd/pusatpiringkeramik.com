@@ -211,13 +211,13 @@ body { background: var(--cv-bg); color: var(--cv-text); }
 
         <div class="sv-label">Profil Perusahaan</div>
         <h1 class="sv-title">
-            Mitra Ventilasi Udara Terpercaya<br>
+            Mitra Solusi Coating &amp; Chemical Terpercaya<br>
             Sejak {{ \App\Models\Setting::get('founding_year') ?? '2013' }}
         </h1>
         <p class="sv-intro">
-            PT. Hiranatha Makmur Sukses dengan merek dagang "Cyclevent" hadir untuk menjawab
-            kebutuhan sirkulasi udara bangunan industri dan komersial di seluruh Indonesia
-            dengan teknologi turbine ventilator non-electric terbaik.
+            PT. Bintang Energy Surabaya (PT Biner) hadir untuk menjawab
+            kebutuhan industrial coating, cat epoxy, polyurethane, thinner, marine coating, 
+            dan protective chemical di seluruh wilayah Indonesia dengan kualitas premium.
         </p>
     </div>
 </section>
@@ -228,14 +228,14 @@ body { background: var(--cv-bg); color: var(--cv-text); }
         <div class="cv-cards-grid">
             <div class="cv-card cv-card-gray" data-aos="fade-up">
                 <div class="cv-card-bg-pattern">
-                    <span class="cv-chip" style="top:10%;left:5%;">Tanpa Listrik</span>
-                    <span class="cv-chip" style="top:15%;left:45%;">Bebas Perawatan</span>
-                    <span class="cv-chip" style="top:12%;left:80%;">0 Watt</span>
+                    <span class="cv-chip" style="top:10%;left:5%;">Epoxy Coating</span>
+                    <span class="cv-chip" style="top:15%;left:45%;">Polyurethane</span>
+                    <span class="cv-chip" style="top:12%;left:80%;">Thinner</span>
                     <span class="cv-chip" style="top:35%;left:15%;">Anti Karat</span>
-                    <span class="cv-chip" style="top:38%;left:50%;">Sejuk Alami</span>
-                    <span class="cv-chip" style="top:60%;left:5%;">Tahan Lama</span>
-                    <span class="cv-chip" style="top:65%;left:40%;">Efisien</span>
-                    <span class="cv-chip" style="top:62%;left:75%;">Hemat Biaya</span>
+                    <span class="cv-chip" style="top:38%;left:50%;">Marine Coating</span>
+                    <span class="cv-chip" style="top:60%;left:5%;">Heavy Duty</span>
+                    <span class="cv-chip" style="top:65%;left:40%;">Tahan Lama</span>
+                    <span class="cv-chip" style="top:62%;left:75%;">Daya Rekat Tinggi</span>
                 </div>
                 <div class="cv-card-content push-bottom">
                     <div class="cv-card-label">Continents</div>
@@ -247,17 +247,17 @@ body { background: var(--cv-bg); color: var(--cv-text); }
                 <div class="cv-card-content">
                     <div class="cv-card-label">Commitment to measurable</div>
                     <div class="cv-card-value">100%</div>
-                    <div class="cv-card-desc">Komitmen terhadap kualitas terukur 15 Tahun &rarr; "Garansi jangka panjang dengan material aluminium &amp; stainless steel premium."</div>
+                    <div class="cv-card-desc">Komitmen terhadap kualitas teruji &rarr; "Produk dengan formula premium yang memberikan perlindungan jangka panjang untuk kebutuhan industrial dan marine."</div>
                 </div>
             </div>
 
             <div class="cv-card cv-card-image" data-aos="fade-up" data-aos-delay="200">
                 @php $aboutImgFallback = !empty($settings['logo']) ? asset('storage/'.$settings['logo']) : asset('images/logo.png'); @endphp
-                <img src="{{ !empty($settings['about_image']) ? asset('storage/'.$settings['about_image']) : $aboutImgFallback }}" alt="Tim Cyclevent" class="cv-card-img" loading="lazy">
+                <img src="{{ !empty($settings['about_image']) ? asset('storage/'.$settings['about_image']) : $aboutImgFallback }}" alt="Tim PT Biner" class="cv-card-img" loading="lazy">
                 <div class="cv-card-overlay"></div>
                 <div class="cv-card-content" style="justify-content: flex-end;">
                     <div class="cv-card-value">120+</div>
-                    <div class="cv-card-desc">Mitra industri nasional yang berdedikasi membangun sistem ventilasi yang lebih cerdas dan lebih tahan lama.</div>
+                    <div class="cv-card-desc">Mitra industri nasional yang mempercayakan perlindungan struktur dan asetnya pada formulasi cat kami.</div>
                 </div>
             </div>
 
@@ -265,7 +265,7 @@ body { background: var(--cv-bg); color: var(--cv-text); }
                 <div class="cv-card-content">
                     <div class="cv-card-label">Data Points</div>
                     <div class="cv-card-value">520k+</div>
-                    <div class="cv-card-desc" style="margin-top:auto;">Unit ventilator aktif bekerja 24 jam non-stop tanpa listrik.</div>
+                    <div class="cv-card-desc" style="margin-top:auto;">Liter produk chemical dan cat berhasil kami distribusikan ke seluruh negeri.</div>
                 </div>
             </div>
         </div>
@@ -284,14 +284,14 @@ body { background: var(--cv-bg); color: var(--cv-text); }
                 <div class="cv-card-content">
                     <div class="cv-card-label" style="color:var(--cv-accent); font-weight:700;">Visi Perusahaan</div>
                     <h3 style="font-size:1.5rem; font-weight:600; color:var(--cv-text); margin-bottom:1rem;">Menjadi Pelopor</h3>
-                    <p style="font-size:0.9375rem; color:#475569; line-height:1.7; margin:0;">{{ str_replace('Cyclevent', 'Cyclevent', $settings['visi'] ?? 'Menjadi pelopor penyedia sirkulasi udara hemat energi yang profesional dan terpercaya di Indonesia.') }}</p>
+                    <p style="font-size:0.9375rem; color:#475569; line-height:1.7; margin:0;">{{ str_replace('Cyclevent', 'PT Biner', $settings['visi'] ?? 'Menjadi perusahaan penyedia cat, coating, dan chemical berskala nasional yang berfokus pada kualitas dan inovasi unggul.') }}</p>
                 </div>
             </div>
             <div class="cv-card cv-card-gray" style="min-height:auto;" data-aos="fade-up" data-aos-delay="100">
                 <div class="cv-card-content">
                     <div class="cv-card-label" style="color:var(--cv-accent); font-weight:700;">Misi Perusahaan</div>
                     <h3 style="font-size:1.5rem; font-weight:600; color:var(--cv-text); margin-bottom:1rem;">Solusi Menyeluruh</h3>
-                    <p style="font-size:0.9375rem; color:#475569; line-height:1.7; margin:0;">{{ str_replace('Cyclevent', 'Cyclevent', $settings['misi'] ?? 'Menciptakan solusi menyeluruh dengan kualitas terbaik dalam pengadaan ventilator atap untuk meningkatkan efisiensi dan kenyamanan pelanggan.') }}</p>
+                    <p style="font-size:0.9375rem; color:#475569; line-height:1.7; margin:0;">{{ str_replace('Cyclevent', 'PT Biner', $settings['misi'] ?? 'Menciptakan produk dan layanan formulasi chemical yang memberikan perlindungan dan ketahanan maksimal pada aset pelanggan.') }}</p>
                 </div>
             </div>
         </div>
@@ -504,10 +504,10 @@ body { background: var(--cv-bg); color: var(--cv-text); }
             <div class="cv-adv-header">
                 <div>
                     <div class="cv-adv-section-label">KEUNGGULAN</div>
-                    <h2 class="cv-adv-section-title">Mengapa Pilih<br>Cyclevent?</h2>
+                    <h2 class="cv-adv-section-title">Mengapa Pilih<br>PT Biner?</h2>
                 </div>
                 <p style="max-width:320px;font-size:0.875rem;color:#64748B;line-height:1.65;text-align:right;">
-                    Didesain untuk iklim tropis Indonesia, dibuktikan oleh ratusan proyek dari Sabang sampai Merauke.
+                    Diformulasikan khusus untuk iklim tropis dan cuaca ekstrem, melindungi aset industri di seluruh Indonesia.
                 </p>
             </div>
 
@@ -519,9 +519,9 @@ body { background: var(--cv-bg); color: var(--cv-text); }
                     <div class="cv-adv-card-icon-wrap white-bg">
                         <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
-                    <div class="cv-adv-card-num white">15+</div>
-                    <div class="cv-adv-card-title white">Garansi 15 Tahun</div>
-                    <div class="cv-adv-card-desc white">Garansi tidak berkarat & tidak rusak. Garansi instalasi 5 tahun dan sparepart 5 tahun.</div>
+                    <div class="cv-adv-card-num white">100%</div>
+                    <div class="cv-adv-card-title white">Formula Premium</div>
+                    <div class="cv-adv-card-desc white">Diformulasikan dari bahan baku berkualitas tinggi dan aditif pilihan untuk hasil coating yang sempurna.</div>
                 </div>
 
                 {{-- Card 2: 0 Watt —Gray --}}
@@ -529,9 +529,9 @@ body { background: var(--cv-bg); color: var(--cv-text); }
                     <div class="cv-adv-card-icon-wrap blue-bg">
                         <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
-                    <div class="cv-adv-card-num">0W</div>
-                    <div class="cv-adv-card-title">Tanpa Listrik</div>
-                    <div class="cv-adv-card-desc">Bertenaga sepenuhnya dari angin. Tidak ada tagihan listrik, nol risiko korsleting.</div>
+                    <div class="cv-adv-card-num">Anti</div>
+                    <div class="cv-adv-card-title">Perlindungan Karat</div>
+                    <div class="cv-adv-card-desc">Memberikan proteksi maksimal terhadap korosi, bahan kimia, dan keausan mekanis pada permukaan industri.</div>
                 </div>
 
                 {{-- Card 3: 24 Jam — Gray --}}
@@ -539,9 +539,9 @@ body { background: var(--cv-bg); color: var(--cv-text); }
                     <div class="cv-adv-card-icon-wrap blue-bg">
                         <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                     </div>
-                    <div class="cv-adv-card-num">24/7</div>
-                    <div class="cv-adv-card-title">Non-Stop 365 Hari</div>
-                    <div class="cv-adv-card-desc">Bebas perawatan dan beroperasi 24 jam sehari, 365 hari setahun tanpa henti.</div>
+                    <div class="cv-adv-card-num">10+</div>
+                    <div class="cv-adv-card-title">Sangat Tahan Lama</div>
+                    <div class="cv-adv-card-desc">Ketahanan warna dan lapisan yang tidak pudar atau mengelupas selama bertahun-tahun penggunaan.</div>
                 </div>
 
                 {{-- Card 4: Kapasitas — Dark --}}
@@ -549,9 +549,9 @@ body { background: var(--cv-bg); color: var(--cv-text); }
                     <div class="cv-adv-card-icon-wrap dark-bg">
                         <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
                     </div>
-                    <div class="cv-adv-card-num blue">257</div>
-                    <div class="cv-adv-card-title light">Kapasitas Hisap Superior</div>
-                    <div class="cv-adv-card-desc white">Hingga 257,87 m³/menit — jauh lebih tinggi dari ventilator tipe stasioner manapun.</div>
+                    <div class="cv-adv-card-num blue">Pro</div>
+                    <div class="cv-adv-card-title light">Daya Rekat Superior</div>
+                    <div class="cv-adv-card-desc white">Menempel kuat pada berbagai substrat ekstrem mulai dari baja berat hingga beton industri.</div>
                 </div>
 
                 {{-- Card 5: Anti Hujan --}}
@@ -559,8 +559,8 @@ body { background: var(--cv-bg); color: var(--cv-text); }
                     <div class="cv-adv-card-icon-wrap blue-bg">
                         <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
                     </div>
-                    <div class="cv-adv-card-title" style="margin-top:auto;">100% Anti Tampias Hujan</div>
-                    <div class="cv-adv-card-desc">Desain khusus memastikan air hujan tidak masuk ke dalam bangunan dalam kondisi apapun.</div>
+                    <div class="cv-adv-card-title" style="margin-top:auto;">Tahan Cuaca Ekstrem</div>
+                    <div class="cv-adv-card-desc">Perlindungan andal terhadap paparan sinar UV, hujan asam, dan fluktuasi suhu ekstrem.</div>
                 </div>
 
                 {{-- Card 6: Iklim Tropis --}}
@@ -568,8 +568,8 @@ body { background: var(--cv-bg); color: var(--cv-text); }
                     <div class="cv-adv-card-icon-wrap blue-bg">
                         <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
                     </div>
-                    <div class="cv-adv-card-title" style="margin-top:auto;">Cocok Iklim Tropis</div>
-                    <div class="cv-adv-card-desc">Dioptimalkan untuk kondisi panas dan lembab Indonesia, efektif bahkan di angin minimum.</div>
+                    <div class="cv-adv-card-title" style="margin-top:auto;">Aplikasi Cepat &amp; Praktis</div>
+                    <div class="cv-adv-card-desc">Sifat cepat kering memberikan efisiensi waktu yang tinggi untuk proyek-proyek dengan jadwal ketat.</div>
                 </div>
 
                 {{-- Card 7: Desain USA — spans 2 columns --}}
@@ -578,8 +578,8 @@ body { background: var(--cv-bg); color: var(--cv-text); }
                         <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                     </div>
                     <div>
-                        <div class="cv-adv-card-title" style="font-size:1.125rem; margin-bottom:0.5rem;">Desain Konstruksi USA</div>
-                        <div class="cv-adv-card-desc">Mengikuti standar desain USA dengan powder coating pada rangka bola dan topi bola untuk ketahanan dan keawetan maksimal di iklim tropis yang ekstrem.</div>
+                        <div class="cv-adv-card-title" style="font-size:1.125rem; margin-bottom:0.5rem;">Standar Mutu &amp; Industri</div>
+                        <div class="cv-adv-card-desc">Setiap batch produksi melewati proses Quality Control (QC) yang ketat sesuai dengan standar industri untuk menjamin konsistensi kualitas, warna, dan kekuatan cat di lapangan.</div>
                     </div>
                 </div>
 
