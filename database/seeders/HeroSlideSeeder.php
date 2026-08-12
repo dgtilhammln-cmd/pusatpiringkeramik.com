@@ -17,12 +17,15 @@ class HeroSlideSeeder extends Seeder
         HeroSlide::create([
             'title' => "Perlindungan Maksimal untuk\nKapal & Industri Anda",
             'subtitle' => 'Premium Industrial Coating Solutions',
-            'description' => 'PT Bintang Energy Surabaya hadir sebagai distributor resmi cat internasional terkemuka. Kami menyediakan solusi pelapisan cat anti karat, epoxy lantai, dan cat besi terbaik di Indonesia.',
+            'description' => 'CV. Bintang Energy Surabaya hadir sebagai distributor resmi cat internasional terkemuka. Kami menyediakan solusi pelapisan cat anti karat, epoxy lantai, dan cat besi terbaik di Indonesia.',
             'tags' => 'Marine Coating, Protective Coating, Industrial Coating',
             'button_text' => 'Lihat Produk',
             'button_url' => '/products',
             'order' => 1,
             'is_active' => true,
+            'stat_1_value' => '500+', 'stat_1_label' => 'Klien Perusahaan',
+            'stat_2_value' => '18+', 'stat_2_label' => 'Tahun Pengalaman',
+            'stat_3_value' => '1.000+', 'stat_3_label' => 'Varian Produk',
         ]);
 
         HeroSlide::create([
@@ -34,6 +37,9 @@ class HeroSlideSeeder extends Seeder
             'button_url' => '/products',
             'order' => 2,
             'is_active' => true,
+            'stat_1_value' => '500+', 'stat_1_label' => 'Klien Perusahaan',
+            'stat_2_value' => '18+', 'stat_2_label' => 'Tahun Pengalaman',
+            'stat_3_value' => '1.000+', 'stat_3_label' => 'Varian Produk',
         ]);
     }
 }

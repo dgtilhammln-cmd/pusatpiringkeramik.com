@@ -17,6 +17,14 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        // ── Call Other Seeders ──────────────────────────────────────
+        $this->call([
+            ProductSlugSeeder::class,
+            CategorySeeder::class,
+            HeroSlideSeeder::class,
+            SeoSeeder::class,
+        ]);
+
         // ── Admin user ──────────────────────────────────────────────
         User::updateOrCreate(['email' => 'admin@ptbiner.co.id'], [
             'name'      => 'Admin CV. Bintang Energy Surabaya',
