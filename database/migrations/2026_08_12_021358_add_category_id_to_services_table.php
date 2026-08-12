@@ -23,9 +23,15 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('services', function (Blueprint $table) {
-            $table->dropForeign(['service_category_id']);
-            $table->dropColumn('service_category_id');
-        });
+        if (Schema::hasColumn('services', 'service_category_id')) {
+            Schema::table('services', function (Blueprint $table) {
+                try {
+                    $table->dropForeign(['service_category_id']);
+                } catch (\Exception $e) {
+                    // Ignore if foreign key doesn't exist
+                }
+                $table->dropColumn('service_category_id');
+            });
+        }
     }
 };
