@@ -283,7 +283,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
     width:44px; height:44px; border-radius:12px;
     display:flex; align-items:center; justify-content:center; flex-shrink:0;
 }
-.sh-adv-card-icon.blue-bg { background:#E0F2FE; color:var(--accent); }
+.sh-adv-card-icon.blue-bg { background:#FEE2E2; color:#DC2626; }
 .sh-adv-card-icon.white-bg { background:rgba(255,255,255,.2); color:#fff; }
 .sh-adv-card-icon.dark-bg { background:rgba(255,255,255,.08); color:#38BDF8; }
 .sh-adv-num { font-size:2.5rem; font-weight:300; line-height:1; letter-spacing:-.04em; color:var(--text); }

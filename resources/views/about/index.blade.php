@@ -391,7 +391,7 @@ body { background: var(--cv-bg); color: var(--cv-text); }
         margin-bottom: 1.5rem;
         flex-shrink: 0;
     }
-    .cv-adv-card-icon-wrap.blue-bg { background: #E0F2FE; color: #0EA5E9; }
+    .cv-adv-card-icon-wrap.blue-bg { background: #FEE2E2; color: #DC2626; }
     .cv-adv-card-icon-wrap.white-bg { background: rgba(255,255,255,0.2); color: #fff; }
     .cv-adv-card-icon-wrap.dark-bg { background: rgba(255,255,255,0.06); color: #38BDF8; }
     .cv-adv-card-num {

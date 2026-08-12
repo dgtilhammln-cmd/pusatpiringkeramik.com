@@ -622,7 +622,7 @@ a { text-decoration: none; color: inherit; }
 .cv-adv-card-v2.accent { background:#0EA5E9; }
 .cv-adv-card-v2.accent-dark { background:#0F172A; }
 .cv-adv-card-icon-wrap { width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; margin-bottom:1.5rem; flex-shrink:0; }
-.cv-adv-card-icon-wrap.blue-bg { background:#E0F2FE; color:#0EA5E9; }
+.cv-adv-card-icon-wrap.blue-bg { background:#FEE2E2; color:#DC2626; }
 .cv-adv-card-icon-wrap.white-bg { background:rgba(255,255,255,0.2); color:#fff; }
 .cv-adv-card-icon-wrap.dark-bg { background:rgba(255,255,255,0.06); color:#38BDF8; }
 .cv-adv-card-num { font-size:2.75rem; font-weight:400; line-height:1; letter-spacing:-0.04em; color:#0F172A; margin-bottom:0.5rem; }

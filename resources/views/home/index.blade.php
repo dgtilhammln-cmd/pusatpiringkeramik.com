@@ -1316,7 +1316,7 @@
             gap: 0.375rem;
         }
         .cv-cat-card-spec span {
-            background: rgba(14,165,233,0.85);
+            background: rgba(220,38,38,0.85);
             padding: 0.2rem 0.5rem;
             border-radius: 4px;
             font-weight: 600;
@@ -1348,8 +1348,25 @@
             transition: all 0.2s;
         }
         .cv-catalog-btn-all:hover {
-            background: #0EA5E9;
+            background: #DC2626;
             transform: translateY(-2px);
+        }
+        .cv-catalog-btn-outline {
+            background: transparent;
+            color: #1E293B;
+            border: 2px solid #1E293B;
+            padding: 0.75rem 1.5rem;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.2s;
+        }
+        .cv-catalog-btn-outline:hover {
+            background: #1E293B;
+            color: #fff;
         }
         .cv-catalog-nav {
             display: flex;
@@ -1366,8 +1383,8 @@
             transition: all 0.2s;
         }
         .cv-catalog-nav-btn:hover {
-            background: #0EA5E9;
-            border-color: #0EA5E9;
+            background: #DC2626;
+            border-color: #DC2626;
             color: #fff;
         }
 
@@ -1398,19 +1415,8 @@
         {{-- Cards Track --}}
         <div class="cv-catalog-track-wrapper">
             <div class="cv-catalog-scroll" id="cv-catalog-scroll">
-                @php
-                    $productData = [
-                        ['type' => 'CV-45', 'size' => '18"', 'diameter' => '45 cm', 'capacity' => '52,47', 'slug' => 'cv-45-18'],
-                        ['type' => 'CV-60', 'size' => '24"', 'diameter' => '60 cm', 'capacity' => '98,79', 'slug' => 'cv-60-24'],
-                        ['type' => 'CV-75', 'size' => '30"', 'diameter' => '75 cm', 'capacity' => '147,95', 'slug' => 'cv-75-30'],
-                        ['type' => 'CV-90', 'size' => '36"', 'diameter' => '90 cm', 'capacity' => '215,79', 'slug' => 'cv-90-36'],
-                        ['type' => 'CV-105', 'size' => '42"', 'diameter' => '105 cm', 'capacity' => '257,87', 'slug' => 'cv-105-42'],
-                    ];
-                @endphp
-
                 @if($products->count())
-                    @foreach($products as $i => $product)
-                        @php $pd = $productData[$i] ?? ['type' => 'CV', 'size' => '', 'diameter' => '', 'capacity' => '', 'slug' => $product->slug]; @endphp
+                    @foreach($products as $product)
                         <a href="{{ route('products.show', $product->slug) }}" class="cv-cat-card">
                             @if($product->image)
                                 <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" loading="lazy">
@@ -1426,14 +1432,17 @@
                             <div class="cv-cat-card-body">
                                 <div class="cv-cat-card-name">{{ $product->name }}</div>
                                 <div class="cv-cat-card-spec">
-                                    <span>{{ $pd['type'] }}</span>
-                                    Ø {{ $pd['diameter'] }} — {{ $pd['capacity'] }} m³/mnt
+                                    @if($product->category)
+                                        <span>{{ $product->category->name }}</span>
+                                    @else
+                                        <span>Cat Premium</span>
+                                    @endif
                                 </div>
                             </div>
                         </a>
                     @endforeach
                 @else
-                    @foreach($productData as $i => $pd)
+                    @for($i=1; $i<=5; $i++)
                         <a href="{{ route('products') }}" class="cv-cat-card">
                             <div class="cv-cat-card-placeholder">
                                 <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
@@ -1441,24 +1450,28 @@
                             </div>
                             <div class="cv-cat-card-overlay"></div>
                             <div class="cv-cat-card-body">
-                                <div class="cv-cat-card-name">Cat Industri {{ $pd['type'] }}</div>
+                                <div class="cv-cat-card-name">Produk Cat Industri {{ $i }}</div>
                                 <div class="cv-cat-card-spec">
-                                    <span>{{ $pd['type'] }}</span>
-                                    Ø {{ $pd['diameter'] }} — {{ $pd['capacity'] }} m³/mnt
+                                    <span>Cat Premium</span>
                                 </div>
                             </div>
                         </a>
-                    @endforeach
+                    @endfor
                 @endif
             </div>
         </div>
 
         {{-- Footer: Button left, Arrows right --}}
         <div class="cv-catalog-footer">
-            <a href="{{ route('products') }}" class="cv-catalog-btn-all">
-                Ke Katalog Produk
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-            </a>
+            <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap;">
+                <a href="{{ route('products') }}" class="cv-catalog-btn-all">
+                    Ke Katalog Produk
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+                </a>
+                <a href="{{ route('products') }}" class="cv-catalog-btn-outline">
+                    Semua Kategori Produk
+                </a>
+            </div>
             <div class="cv-catalog-nav">
                 <button class="cv-catalog-nav-btn" id="cv-scroll-prev" aria-label="Sebelumnya">
                     <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
@@ -1579,7 +1592,7 @@
         margin-bottom: 1.5rem;
         flex-shrink: 0;
     }
-    .cv-adv-card-icon-wrap.blue-bg { background: #E0F2FE; color: #0EA5E9; }
+    .cv-adv-card-icon-wrap.blue-bg { background: #FEE2E2; color: #DC2626; }
     .cv-adv-card-icon-wrap.white-bg { background: rgba(255,255,255,0.2); color: #fff; }
     .cv-adv-card-icon-wrap.dark-bg { background: rgba(255,255,255,0.06); color: #38BDF8; }
     .cv-adv-card-num {
