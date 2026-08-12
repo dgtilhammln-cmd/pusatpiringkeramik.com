@@ -186,9 +186,9 @@ class CategorySeeder extends Seeder
                 ],
             ],
             [
-                'name'        => 'PT Biner Own Brand',
+                'name'        => 'CV. Bintang Energy Surabaya Own Brand',
                 'slug'        => 'cat-pt-biner-531052',
-                'description' => 'Produk merk sendiri PT Biner untuk kebutuhan cat jalan, cat besi, dan pelapis khusus.',
+                'description' => 'Produk merk sendiri CV. Bintang Energy Surabaya untuk kebutuhan cat jalan, cat besi, dan pelapis khusus.',
                 'products'    => [
                     'cat-jalan-road-line-paint-7004647',
                     'cat-anti-kimia-7047651',

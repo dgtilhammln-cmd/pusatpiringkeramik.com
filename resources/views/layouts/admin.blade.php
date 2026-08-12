@@ -4,8 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
 @php $adminLogo = \App\Models\Setting::get('logo'); @endphp
+@php 
+$favicon = \App\Models\Setting::get('favicon') ? asset('storage/'.\App\Models\Setting::get('favicon')) : asset('favicon.ico');
+@endphp
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>@yield('title','Dashboard') | PT Biner Admin</title>
+<title>@yield('title','Dashboard') | CV. Bintang Energy Surabaya Admin</title>
+<link rel="icon" type="image/x-icon" href="{{ $favicon }}">
+<link rel="shortcut icon" href="{{ $favicon }}">
+<link rel="apple-touch-icon" href="{{ $favicon }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -225,7 +231,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
       @endif
     </div>
     <div>
-      <div class="sb-logo-text">PT Biner</div>
+      <div class="sb-logo-text">CV. Bintang Energy Surabaya</div>
       <div class="sb-logo-sub">{{ session('admin_name','Administrator') }}</div>
     </div>
   </div>
@@ -302,7 +308,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   {{-- Bottom card --}}
   <div class="sb-bottom">
     <div class="sb-bottom-card">
-      <strong>PT Biner</strong>
+      <strong>CV. Bintang Energy Surabaya</strong>
       <p>Kelola konten & leads bisnis Anda</p>
       <a href="{{ route('home') }}" target="_blank" style="display:inline-flex;align-items:center;gap:.375rem;background:#fff;color:#1B6FE8;font-size:.75rem;font-weight:700;padding:.4rem .875rem;border-radius:8px;text-decoration:none;transition:all .2s;">
         <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>

@@ -215,7 +215,7 @@ body { background: var(--cv-bg); color: var(--cv-text); }
             Sejak {{ \App\Models\Setting::get('founding_year') ?? '2013' }}
         </h1>
         <p class="sv-intro">
-            PT. Bintang Energy Surabaya (PT Biner) hadir untuk menjawab
+            PT. Bintang Energy Surabaya (CV. Bintang Energy Surabaya) hadir untuk menjawab
             kebutuhan industrial coating, cat epoxy, polyurethane, thinner, marine coating, 
             dan protective chemical di seluruh wilayah Indonesia dengan kualitas premium.
         </p>
@@ -253,7 +253,7 @@ body { background: var(--cv-bg); color: var(--cv-text); }
 
             <div class="cv-card cv-card-image" data-aos="fade-up" data-aos-delay="200">
                 @php $aboutImgFallback = !empty($settings['logo']) ? asset('storage/'.$settings['logo']) : asset('images/logo.png'); @endphp
-                <img src="{{ !empty($settings['about_image']) ? asset('storage/'.$settings['about_image']) : $aboutImgFallback }}" alt="Tim PT Biner" class="cv-card-img" loading="lazy">
+                <img src="{{ !empty($settings['about_image']) ? asset('storage/'.$settings['about_image']) : $aboutImgFallback }}" alt="Tim CV. Bintang Energy Surabaya" class="cv-card-img" loading="lazy">
                 <div class="cv-card-overlay"></div>
                 <div class="cv-card-content" style="justify-content: flex-end;">
                     <div class="cv-card-value">120+</div>
@@ -284,14 +284,14 @@ body { background: var(--cv-bg); color: var(--cv-text); }
                 <div class="cv-card-content">
                     <div class="cv-card-label" style="color:var(--cv-accent); font-weight:700;">Visi Perusahaan</div>
                     <h3 style="font-size:1.5rem; font-weight:600; color:var(--cv-text); margin-bottom:1rem;">Menjadi Pelopor</h3>
-                    <p style="font-size:0.9375rem; color:#475569; line-height:1.7; margin:0;">{{ str_replace('PT Biner', 'PT Biner', $settings['visi'] ?? 'Menjadi perusahaan penyedia cat, coating, dan chemical berskala nasional yang berfokus pada kualitas dan inovasi unggul.') }}</p>
+                    <p style="font-size:0.9375rem; color:#475569; line-height:1.7; margin:0;">{{ str_replace('CV. Bintang Energy Surabaya', 'CV. Bintang Energy Surabaya', $settings['visi'] ?? 'Menjadi perusahaan penyedia cat, coating, dan chemical berskala nasional yang berfokus pada kualitas dan inovasi unggul.') }}</p>
                 </div>
             </div>
             <div class="cv-card cv-card-gray" style="min-height:auto;" data-aos="fade-up" data-aos-delay="100">
                 <div class="cv-card-content">
                     <div class="cv-card-label" style="color:var(--cv-accent); font-weight:700;">Misi Perusahaan</div>
                     <h3 style="font-size:1.5rem; font-weight:600; color:var(--cv-text); margin-bottom:1rem;">Solusi Menyeluruh</h3>
-                    <p style="font-size:0.9375rem; color:#475569; line-height:1.7; margin:0;">{{ str_replace('PT Biner', 'PT Biner', $settings['misi'] ?? 'Menciptakan produk dan layanan formulasi chemical yang memberikan perlindungan dan ketahanan maksimal pada aset pelanggan.') }}</p>
+                    <p style="font-size:0.9375rem; color:#475569; line-height:1.7; margin:0;">{{ str_replace('CV. Bintang Energy Surabaya', 'CV. Bintang Energy Surabaya', $settings['misi'] ?? 'Menciptakan produk dan layanan formulasi chemical yang memberikan perlindungan dan ketahanan maksimal pada aset pelanggan.') }}</p>
                 </div>
             </div>
         </div>
@@ -504,7 +504,7 @@ body { background: var(--cv-bg); color: var(--cv-text); }
             <div class="cv-adv-header">
                 <div>
                     <div class="cv-adv-section-label">KEUNGGULAN</div>
-                    <h2 class="cv-adv-section-title">Mengapa Pilih<br>PT Biner?</h2>
+                    <h2 class="cv-adv-section-title">Mengapa Pilih<br>CV. Bintang Energy Surabaya?</h2>
                 </div>
                 <p style="max-width:320px;font-size:0.875rem;color:#64748B;line-height:1.65;text-align:right;">
                     Diformulasikan khusus untuk iklim tropis dan cuaca ekstrem, melindungi aset industri di seluruh Indonesia.
@@ -1394,7 +1394,7 @@ body { background: var(--cv-bg); color: var(--cv-text); }
                 SIAP MULAI?
             </div>
             <h2 class="cv-cta-title-v2" style="margin-top:1rem;">Dapatkan Konsultasi Gratis<br>& Penawaran Terbaik</h2>
-            <p class="cv-cta-desc-v2">Tim teknis PT Biner siap membantu Anda memilih ukuran ventilator yang tepat dan menghitung jumlah yang dibutuhkan untuk bangunan Anda.</p>
+            <p class="cv-cta-desc-v2">Tim teknis CV. Bintang Energy Surabaya siap membantu Anda memilih ukuran ventilator yang tepat dan menghitung jumlah yang dibutuhkan untuk bangunan Anda.</p>
             
             <div class="cv-cta-buttons">
                 @if($wa)

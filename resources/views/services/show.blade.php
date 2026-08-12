@@ -662,7 +662,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
         <div class="sh-adv-header">
             <div>
                 <div class="cv-section-label">KEUNGGULAN</div>
-                <h2 class="cv-section-title" style="margin-top:.75rem;">Mengapa Pilih<br>PT Biner?</h2>
+                <h2 class="cv-section-title" style="margin-top:.75rem;">Mengapa Pilih<br>CV. Bintang Energy Surabaya?</h2>
             </div>
             <p class="sh-adv-header-desc">Didesain untuk iklim tropis Indonesia, dibuktikan oleh ratusan proyek dari Sabang sampai Merauke.</p>
         </div>
@@ -741,7 +741,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
             <div class="cv-section-label">APLIKASI</div>
             <h2 class="cv-section-title" style="margin-top:.75rem;">Cocok untuk<br>Berbagai Bangunan</h2>
             <p style="margin-top:1rem; font-size:.875rem; color:var(--muted); line-height:1.65;">
-                PT Biner terbukti efektif di berbagai jenis bangunan — dari rumah tinggal hingga pabrik skala besar.
+                CV. Bintang Energy Surabaya terbukti efektif di berbagai jenis bangunan — dari rumah tinggal hingga pabrik skala besar.
             </p>
         </div>
         <div class="sh-app-grid">

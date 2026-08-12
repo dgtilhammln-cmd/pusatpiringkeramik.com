@@ -98,8 +98,8 @@
     <section class="cv-testi-premium" id="testimoni">
         <div class="cv-testi-inner">
             <div style="text-align:center; max-width:600px; margin:0 auto 3.5rem;">
-                <div class="cv-adv-section-label" style="justify-content:center;">TESTIMONI KLIEN</div>
-                <h2 class="cv-adv-section-title" style="margin-top:0.75rem;">Kata Mereka yang<br>Sudah Menggunakan</h2>
+                <div class="cv-adv-section-label" style="justify-content:center; color:#DC2626;">TESTIMONI KLIEN</div>
+                <h2 class="cv-adv-section-title" style="margin-top:0.75rem; color:#0F172A;">Kata Mereka yang<br>Sudah Menggunakan</h2>
             </div>
 
             <div class="cv-testi-grid-v2">

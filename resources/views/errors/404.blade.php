@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Halaman Tidak Ditemukan — 404 | PT Biner')
+@section('title', 'Halaman Tidak Ditemukan — 404 | CV. Bintang Energy Surabaya')
 @section('content')
 
 <link rel="preconnect" href="https://fonts.googleapis.com">

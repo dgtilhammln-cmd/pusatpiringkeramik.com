@@ -77,7 +77,7 @@ class Article extends Model
 
     public function getMetaTitleAttribute($value): string
     {
-        return $value ?: Str::limit($this->title, 55) . ' | PT Biner';
+        return $value ?: Str::limit($this->title, 55) . ' | CV. Bintang Energy Surabaya';
     }
 
     public function getMetaDescAttribute($value): string

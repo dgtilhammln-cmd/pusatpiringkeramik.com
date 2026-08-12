@@ -431,7 +431,7 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
             <iframe src="{{ $settings['maps_embed'] ?? 'https://maps.google.com/maps?q=-7.1583,112.6515&output=embed' }}"
                     allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
-                    title="Lokasi PT Biner"></iframe>
+                    title="Lokasi CV. Bintang Energy Surabaya"></iframe>
         </div>
     </div>
 </section>

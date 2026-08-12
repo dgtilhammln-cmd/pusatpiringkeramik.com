@@ -384,7 +384,7 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
       </div>
       <div>
         <label class="form-label" for="s-copyright">Copyright Text</label>
-        <input type="text" name="copyright" id="s-copyright" class="form-input" value="{{ $settings['copyright'] ?? '' }}" placeholder="© 2026 PT Biner. All rights reserved.">
+        <input type="text" name="copyright" id="s-copyright" class="form-input" value="{{ $settings['copyright'] ?? '' }}" placeholder="© 2026 CV. Bintang Energy Surabaya. All rights reserved.">
         <p style="font-size:.7rem;color:#94A3B8;margin:.375rem 0 0;">Tampil di bagian bawah footer.</p>
       </div>
       <div>
@@ -437,7 +437,7 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
           <input type="text" name="meta_title_{{ $page['key'] }}" class="form-input" maxlength="65"
                  value="{{ $settings['meta_title_'.$page['key']] ?? '' }}"
                  oninput="updateCounter(this,'cnt-title-{{ $page['key'] }}')"
-                 placeholder="{{ $page['label'] }} | PT Biner">
+                 placeholder="{{ $page['label'] }} | CV. Bintang Energy Surabaya">
           <div style="font-size:.7rem;color:#94A3B8;margin-top:.25rem;">
             <span id="cnt-title-{{ $page['key'] }}">{{ strlen($settings['meta_title_'.$page['key']] ?? '') }}</span>/65 karakter
           </div>

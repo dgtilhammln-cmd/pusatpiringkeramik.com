@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Server Error — 500 | PT Biner')
+@section('title', 'Server Error — 500 | CV. Bintang Energy Surabaya')
 @section('content')
 
 <link rel="preconnect" href="https://fonts.googleapis.com">

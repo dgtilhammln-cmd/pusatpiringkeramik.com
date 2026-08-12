@@ -54,15 +54,15 @@ class GalleryProject extends Model
     }
     public function getAltTextAttribute($v): string
     {
-        return $v ?: $this->title.' - PT Biner';
+        return $v ?: $this->title.' - CV. Bintang Energy Surabaya';
     }
     public function getMetaTitleAttribute($v): string
     {
-        return $v ?: $this->title.' | Galeri PT Biner';
+        return $v ?: $this->title.' | Galeri CV. Bintang Energy Surabaya';
     }
     public function getMetaDescAttribute($v): string
     {
-        return $v ?: 'Proyek '.$this->title.' oleh PT Biner di '.($this->location ?: 'Indonesia').'.';
+        return $v ?: 'Proyek '.$this->title.' oleh CV. Bintang Energy Surabaya di '.($this->location ?: 'Indonesia').'.';
     }
     public function getUrlAttribute(): string
     {

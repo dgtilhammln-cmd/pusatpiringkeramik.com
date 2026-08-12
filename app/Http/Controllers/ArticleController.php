@@ -16,7 +16,7 @@ class ArticleController extends Controller
         $appUrl     = rtrim(config('app.url'), '/');
 
         $seo = [
-            'title'       => $settings['meta_title_articles'] ?? 'Artikel & Tips Sistem Sirkulasi Udara | Blog PT Biner',
+            'title'       => $settings['meta_title_articles'] ?? 'Artikel & Tips Sistem Sirkulasi Udara | Blog CV. Bintang Energy Surabaya',
             'description' => $settings['meta_desc_articles'] ?? 'Kumpulan artikel informatif tentang sistem ventilasi industri, cara memilih cat industri yang tepat, dan tips menjaga sirkulasi udara bangunan.',
             'og_image'    => !empty($settings['og_image_default']) ? $appUrl.'/storage/'.$settings['og_image_default'] : (!empty($settings['logo']) ? $appUrl.'/storage/'.$settings['logo'] : $appUrl.'/images/og-default.jpg'),
             'canonical'   => route('articles'),
@@ -64,7 +64,7 @@ class ArticleController extends Controller
             // Article-specific OG
             'article_published' => $article->published_at?->toIso8601String(),
             'article_modified'  => $article->updated_at->toIso8601String(),
-            'article_author'    => $article->author ?? 'Tim PT Biner',
+            'article_author'    => $article->author ?? 'Tim CV. Bintang Energy Surabaya',
             'article_section'   => $article->category ?? 'Artikel',
         ];
 
@@ -90,11 +90,11 @@ class ArticleController extends Controller
             'inLanguage'       => 'id-ID',
             'author'           => [
                 '@type' => 'Organization',
-                'name'  => $article->author ?? 'Tim PT Biner',
+                'name'  => $article->author ?? 'Tim CV. Bintang Energy Surabaya',
             ],
             'publisher'        => [
                 '@type'  => 'Organization',
-                'name'   => 'PT Biner',
+                'name'   => 'CV. Bintang Energy Surabaya',
                 '@id'    => $appUrl.'/#organization',
                 'logo'   => ['@type' => 'ImageObject', 'url' => $appUrl.'/images/logo.png'],
             ],

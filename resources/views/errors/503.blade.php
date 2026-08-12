@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Layanan Tidak Tersedia — 503 | PT Biner')
+@section('title', 'Layanan Tidak Tersedia — 503 | CV. Bintang Energy Surabaya')
 @section('content')
 
 <link rel="preconnect" href="https://fonts.googleapis.com">

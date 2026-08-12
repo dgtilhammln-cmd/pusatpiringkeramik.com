@@ -387,7 +387,7 @@ body { background-color: var(--c-bg); font-family: var(--font); }
             di Lapangan
         </h1>
         <p class="sv-intro">
-            Dokumentasi proyek pemasangan &amp; instalasi cat industri PT Biner
+            Dokumentasi proyek pemasangan &amp; instalasi cat industri CV. Bintang Energy Surabaya
             di berbagai industri, gudang, dan bangunan komersial seluruh Indonesia.
         </p>
     </div>
@@ -517,7 +517,7 @@ body { background-color: var(--c-bg); font-family: var(--font); }
         <div class="sv-label" style="margin-bottom:1rem;">Butuh Instalasi?</div>
         <h2 class="sv-cta-h2">Wujudkan Proyek<br>Ventilasi Anda Bersama Kami</h2>
         <p class="sv-cta-sub">
-            Tim teknis PT Biner siap membantu merencanakan dan memasang sistem
+            Tim teknis CV. Bintang Energy Surabaya siap membantu merencanakan dan memasang sistem
             ventilasi terbaik untuk bangunan Anda.
         </p>
         <div class="sv-cta-btns">

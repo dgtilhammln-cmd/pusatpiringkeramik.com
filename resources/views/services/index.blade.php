@@ -335,9 +335,9 @@
 
         <p class="sv-intro">
             @if(request('category') && ($activeCat = $categories->firstWhere('slug', request('category'))))
-                {{ $activeCat->description ?? 'Temukan berbagai pilihan produk ' . $activeCat->name . ' berkualitas tinggi dari PT Biner.' }}
+                {{ $activeCat->description ?? 'Temukan berbagai pilihan produk ' . $activeCat->name . ' berkualitas tinggi dari CV. Bintang Energy Surabaya.' }}
             @else
-                PT Biner menyediakan berbagai merk cat dan coating premium untuk industri, maritim, dan komersial. Temukan produk yang tepat untuk kebutuhan Anda.
+                CV. Bintang Energy Surabaya menyediakan berbagai merk cat dan coating premium untuk industri, maritim, dan komersial. Temukan produk yang tepat untuk kebutuhan Anda.
             @endif
         </p>
     </div>
@@ -462,7 +462,7 @@
         <div class="sv-label" style="margin-bottom:1rem;">Butuh Konsultasi?</div>
         <h2 class="sv-cta-h2">Konsultasikan Kebutuhan Cat Anda</h2>
         <p class="sv-cta-sub">
-            Tim teknis PT Biner siap membantu Anda memilih produk yang paling tepat
+            Tim teknis CV. Bintang Energy Surabaya siap membantu Anda memilih produk yang paling tepat
             untuk kebutuhan industri, maritim, atau komersial Anda.
         </p>
 

@@ -9,7 +9,7 @@
         @endif
     @endpush
     {{-- ════════════════════════════════════════════════
-      HOME PAGE — PT Biner Cat Industri
+      HOME PAGE — CV. Bintang Energy Surabaya Cat Industri
       PT. Hiranatha Makmur Sukses | www.ptbiner.co.id
     ════════════════════════════════════════════════ --}}
 
@@ -899,7 +899,7 @@
                                     @if(!empty($settings['logo']))
                                         <img src="{{ asset('storage/'.$settings['logo']) }}" alt="Logo">
                                     @else
-                                        <span class="cv-text-logo">PT Biner</span>
+                                        <span class="cv-text-logo">CV. Bintang Energy Surabaya</span>
                                     @endif
                                 </div>
                             </div>
@@ -1739,83 +1739,81 @@
             {{-- Section Header --}}
             <div class="cv-adv-header">
                 <div>
-                    <div class="cv-adv-section-label">KEUNGGULAN</div>
-                    <h2 class="cv-adv-section-title">Mengapa Pilih<br>PT Biner?</h2>
+                    <div class="cv-adv-section-label" style="color:#DC2626;">KEUNGGULAN</div>
+                    <h2 class="cv-adv-section-title">Mengapa Pilih<br>CV. Bintang Energy Surabaya?</h2>
                 </div>
                 <p style="max-width:320px;font-size:0.875rem;color:#64748B;line-height:1.65;text-align:right;">
-                    Didesain untuk iklim tropis Indonesia, dibuktikan oleh ratusan proyek dari Sabang sampai Merauke.
+                    Solusi perlindungan dan pelapisan berkualitas tinggi untuk kebutuhan maritim dan industri skala besar di seluruh Indonesia.
                 </p>
             </div>
 
             {{-- Premium Cards Grid --}}
             <div class="cv-adv-cards">
 
-                {{-- Card 1: Garansi — Blue Accent --}}
-                <div class="cv-adv-card-v2 accent" data-aos="fade-up" data-aos-delay="0">
-                    <div class="cv-adv-card-icon-wrap white-bg">
-                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                {{-- Card 1: Kualitas --}}
+                <div class="cv-adv-card-v2 accent" data-aos="fade-up" data-aos-delay="0" style="background:#0F172A;">
+                    <div class="cv-adv-card-icon-wrap" style="background:#DC2626;">
+                        <svg width="22" height="22" fill="#fff" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
-                    <div class="cv-adv-card-num white">15+</div>
-                    <div class="cv-adv-card-title white">Garansi 15 Tahun</div>
-                    <div class="cv-adv-card-desc white">Garansi tidak berkarat & tidak rusak. Garansi instalasi 5 tahun dan sparepart 5 tahun.</div>
+                    <div class="cv-adv-card-num white">#1</div>
+                    <div class="cv-adv-card-title white">Kualitas Premium</div>
+                    <div class="cv-adv-card-desc white">Menyediakan produk cat dari merk terbaik yang sudah teruji tahan lama dan anti korosi.</div>
                 </div>
 
-                {{-- Card 2: 0 Watt —Gray --}}
+                {{-- Card 2: Pengiriman --}}
                 <div class="cv-adv-card-v2" data-aos="fade-up" data-aos-delay="80">
-                    <div class="cv-adv-card-icon-wrap blue-bg">
-                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    <div class="cv-adv-card-icon-wrap" style="background:#FEE2E2; color:#DC2626;">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
                     </div>
-                    <div class="cv-adv-card-num">0W</div>
-                    <div class="cv-adv-card-title">Tanpa Listrik</div>
-                    <div class="cv-adv-card-desc">Bertenaga sepenuhnya dari angin. Tidak ada tagihan listrik, nol risiko korsleting.</div>
+                    <div class="cv-adv-card-title">Cakupan Luas</div>
+                    <div class="cv-adv-card-desc">Melayani pengiriman ke seluruh wilayah Indonesia dengan ekspedisi yang terpercaya dan berasuransi.</div>
                 </div>
 
-                {{-- Card 3: 24 Jam — Gray --}}
+                {{-- Card 3: Resmi --}}
                 <div class="cv-adv-card-v2" data-aos="fade-up" data-aos-delay="160">
-                    <div class="cv-adv-card-icon-wrap blue-bg">
-                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <div class="cv-adv-card-icon-wrap" style="background:#FEE2E2; color:#DC2626;">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
                     </div>
-                    <div class="cv-adv-card-num">24/7</div>
-                    <div class="cv-adv-card-title">Non-Stop 365 Hari</div>
-                    <div class="cv-adv-card-desc">Bebas perawatan dan beroperasi 24 jam sehari, 365 hari setahun tanpa henti.</div>
+                    <div class="cv-adv-card-title">Distributor Resmi</div>
+                    <div class="cv-adv-card-desc">Produk 100% original, tersertifikasi dan didatangkan langsung dari pabrik resmi.</div>
                 </div>
 
-                {{-- Card 4: Kapasitas — Dark --}}
-                <div class="cv-adv-card-v2 accent-dark" data-aos="fade-up" data-aos-delay="240">
-                    <div class="cv-adv-card-icon-wrap dark-bg">
-                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                {{-- Card 4: Kapasitas --}}
+                <div class="cv-adv-card-v2 accent-dark" data-aos="fade-up" data-aos-delay="240" style="background:#DC2626;">
+                    <div class="cv-adv-card-icon-wrap" style="background:rgba(255,255,255,0.2); color:#fff;">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                     </div>
-                    <div class="cv-adv-card-num blue">257</div>
-                    <div class="cv-adv-card-title light">Kapasitas Hisap Superior</div>
-                    <div class="cv-adv-card-desc white">Hingga 257,87 m³/menit — jauh lebih tinggi dari ventilator tipe stasioner manapun.</div>
+                    <div class="cv-adv-card-num" style="color:#fff;">B2B</div>
+                    <div class="cv-adv-card-title light">Siap Skala Proyek</div>
+                    <div class="cv-adv-card-desc white">Memiliki kapasitas besar untuk memenuhi permintaan proyek industri dan kontraktor.</div>
                 </div>
 
-                {{-- Card 5: Anti Hujan --}}
+                {{-- Card 5: Perlindungan --}}
                 <div class="cv-adv-card-v2" data-aos="fade-up" data-aos-delay="0">
-                    <div class="cv-adv-card-icon-wrap blue-bg">
-                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                    <div class="cv-adv-card-icon-wrap" style="background:#FEE2E2; color:#DC2626;">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
                     </div>
-                    <div class="cv-adv-card-title" style="margin-top:auto;">100% Anti Tampias Hujan</div>
-                    <div class="cv-adv-card-desc">Desain khusus memastikan air hujan tidak masuk ke dalam bangunan dalam kondisi apapun.</div>
+                    <div class="cv-adv-card-title" style="margin-top:auto;">Pelindungan Maksimal</div>
+                    <div class="cv-adv-card-desc">Cocok diaplikasikan untuk perlindungan aset maritim maupun industri dari kondisi ekstrim.</div>
                 </div>
 
-                {{-- Card 6: Iklim Tropis --}}
+                {{-- Card 6: Support --}}
                 <div class="cv-adv-card-v2" data-aos="fade-up" data-aos-delay="80">
-                    <div class="cv-adv-card-icon-wrap blue-bg">
-                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                    <div class="cv-adv-card-icon-wrap" style="background:#FEE2E2; color:#DC2626;">
+                        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                     </div>
-                    <div class="cv-adv-card-title" style="margin-top:auto;">Cocok Iklim Tropis</div>
-                    <div class="cv-adv-card-desc">Dioptimalkan untuk kondisi panas dan lembab Indonesia, efektif bahkan di angin minimum.</div>
+                    <div class="cv-adv-card-title" style="margin-top:auto;">Layanan Konsultasi</div>
+                    <div class="cv-adv-card-desc">Tim kami selalu siap mendampingi Anda dalam memilih jenis cat dan spesifikasi yang paling tepat.</div>
                 </div>
 
-                {{-- Card 7: Desain USA — spans 2 columns --}}
+                {{-- Card 7: Pengalaman spans 2 columns --}}
                 <div class="cv-adv-card-v2 cv-adv-card-span-2" data-aos="fade-up" data-aos-delay="160" style="grid-column: span 2; flex-direction: row; gap: 2rem; align-items: center;">
-                    <div class="cv-adv-card-icon-wrap blue-bg" style="flex-shrink:0; width:60px; height:60px;">
+                    <div class="cv-adv-card-icon-wrap" style="flex-shrink:0; width:60px; height:60px; background:#FEE2E2; color:#DC2626;">
                         <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                     </div>
                     <div>
-                        <div class="cv-adv-card-title" style="font-size:1.125rem; margin-bottom:0.5rem;">Desain Konstruksi USA</div>
-                        <div class="cv-adv-card-desc">Mengikuti standar desain USA dengan powder coating pada rangka bola dan topi bola untuk ketahanan dan keawetan maksimal di iklim tropis yang ekstrem.</div>
+                        <div class="cv-adv-card-title" style="font-size:1.125rem; margin-bottom:0.5rem;">Berpengalaman Sejak 2007</div>
+                        <div class="cv-adv-card-desc">Lebih dari 18 tahun menjadi andalan perusahaan BUMN dan swasta dalam menyuplai produk cat pelindung berstandar internasional.</div>
                     </div>
                 </div>
 
@@ -1827,10 +1825,10 @@
     <section class="cv-apps-premium" id="aplikasi">
         <div class="cv-apps-inner">
             <div class="cv-apps-header">
-                <div class="cv-adv-section-label">APLIKASI</div>
-                <h2 class="cv-adv-section-title" style="margin-top:0.75rem;">Cocok untuk<br>Berbagai Bangunan</h2>
+                <div class="cv-adv-section-label" style="color:#DC2626;">APLIKASI</div>
+                <h2 class="cv-adv-section-title" style="margin-top:0.75rem;">Cocok untuk<br>Berbagai Industri</h2>
                 <p style="margin-top:1rem;font-size:0.875rem;color:#64748B;line-height:1.65;">
-                    PT Biner terbukti efektif di berbagai jenis bangunan — dari rumah tinggal hingga pabrik skala besar.
+                    Produk pelapis dan cat CV. Bintang Energy Surabaya dirancang untuk melindungi beragam aset strategis di berbagai sektor.
                 </p>
             </div>
 
@@ -1838,27 +1836,27 @@
                 @php
                     $apps = [
                         [
-                            'title' => 'Restaurant',
-                            'desc' => 'Sirkulasi udara alami membuat ruangan restaurant lebih nyaman, meningkatkan produktivitas kerja & kualitas udara.',
-                            'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>',
+                            'title' => 'Maritim & Perkapalan',
+                            'desc' => 'Perlindungan maksimal lambung kapal dan struktur laut dari korosi air asin yang ekstrem.',
+                            'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 12h-4l-3-9L9 3l-3 9H2v6h20v-6z"/></svg>',
                             'img' => !empty($settings['app_img_restoran']) ? asset('storage/'.$settings['app_img_restoran']) : asset('images/placeholder-app.jpg')
                         ],
                         [
                             'title' => 'Pabrik & Gudang',
-                            'desc' => 'Menghilangkan udara panas, debu, dan partikel berbahaya secara otomatis tanpa listrik, cocok sebagai exhaust fan pabrik.',
+                            'desc' => 'Melindungi lantai pabrik, struktur baja, dan alat berat dengan coating khusus tahan lama.',
                             'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/></svg>',
                             'img' => !empty($settings['app_img_pabrik']) ? asset('storage/'.$settings['app_img_pabrik']) : asset('images/placeholder-app.jpg')
                         ],
                         [
-                            'title' => 'Gedung Olahraga',
-                            'desc' => 'Ventilasi optimal membantu menjaga udara tetap segar, mendukung performa atlet melalui sistem turbine vent yang efisien.',
+                            'title' => 'Struktur Baja',
+                            'desc' => 'Cat anti karat terbaik untuk menjaga integritas rangka jembatan dan struktur baja terbuka.',
                             'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
                             'img' => !empty($settings['app_img_gor']) ? asset('storage/'.$settings['app_img_gor']) : asset('images/placeholder-app.jpg')
                         ],
                         [
-                            'title' => 'Dapur',
-                            'desc' => 'Menjaga dapur tetap bersih dari asap dan bau memasak, memenuhi standar kesehatan dengan sirkulasi udara optimal.',
-                            'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
+                            'title' => 'Fasilitas Komersial',
+                            'desc' => 'Lapisan pelindung yang estetik dan awet untuk pusat perbelanjaan dan gedung komersial.',
+                            'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
                             'img' => !empty($settings['app_img_dapur']) ? asset('storage/'.$settings['app_img_dapur']) : asset('images/placeholder-app.jpg')
                         ],
                     ];
@@ -2643,7 +2641,7 @@
                 SIAP MULAI?
             </div>
             <h2 class="cv-cta-title-v2" style="margin-top:1rem;">Dapatkan Konsultasi Gratis<br>& Penawaran Terbaik</h2>
-            <p class="cv-cta-desc-v2">Tim teknis PT Biner siap membantu Anda memilih ukuran ventilator yang tepat dan menghitung jumlah yang dibutuhkan untuk bangunan Anda.</p>
+            <p class="cv-cta-desc-v2">Tim teknis CV. Bintang Energy Surabaya siap membantu Anda memilih ukuran ventilator yang tepat dan menghitung jumlah yang dibutuhkan untuk bangunan Anda.</p>
             
             <div class="cv-cta-buttons">
                 @if($wa)
@@ -2706,7 +2704,7 @@
                                 @else
                                     <div style="width:100%;height:100%;background:#E2E8F0;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#94A3B8;">
                                         <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                                        <span style="font-size:0.75rem;margin-top:0.5rem;font-weight:600;">Artikel PT Biner</span>
+                                        <span style="font-size:0.75rem;margin-top:0.5rem;font-weight:600;">Artikel CV. Bintang Energy Surabaya</span>
                                     </div>
                                 @endif
                                 <div class="cv-article-cat-badge">{{ $article->category ?? 'Tips Ventilasi' }}</div>

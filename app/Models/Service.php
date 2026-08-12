@@ -61,7 +61,7 @@ class Service extends Model
     }
     public function getMetaTitleAttribute($v): string
     {
-        return $v ?: $this->name . ' | PT Biner';
+        return $v ?: $this->name . ' | CV. Bintang Energy Surabaya';
     }
     public function getMetaDescAttribute($v): string
     {

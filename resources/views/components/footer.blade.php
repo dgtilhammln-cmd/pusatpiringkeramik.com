@@ -1,5 +1,5 @@
 {{-- ═══════════════════════════════════
-FOOTER COMPONENT — PT Biner (Jangkauan-Style)
+FOOTER COMPONENT — CV. Bintang Energy Surabaya (Jangkauan-Style)
 PT. Hiranatha Makmur Sukses
 www.ptbiner.co.id
 ══════════════════════════════════ --}}
@@ -357,7 +357,7 @@ www.ptbiner.co.id
                     @if($logo)
                         <img src="{{ asset('storage/' . $logo) }}" alt="Logo">
                     @else
-                        <span style="font-weight:900;color:#0EA5E9;font-size:1rem;">PT Biner</span>
+                        <span style="font-weight:900;color:#0EA5E9;font-size:1rem;">CV. Bintang Energy Surabaya</span>
                     @endif
                 </div>
                 <div>

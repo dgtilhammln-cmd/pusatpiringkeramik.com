@@ -19,27 +19,27 @@ class DatabaseSeeder extends Seeder
     {
         // Admin user (Akses 2026)
         User::updateOrCreate(['email' => 'admin@ptbiner.co.id'], [
-            'name'     => 'Admin PT Biner',
-            'password' => Hash::make('Admin@PT Biner2026'),
+            'name'     => 'Admin CV. Bintang Energy Surabaya',
+            'password' => Hash::make('Admin@CV. Bintang Energy Surabaya2026'),
             'role'     => 'admin',
             'is_active'=> true,
         ]);
 
         // WA Settings
         WaSetting::insert([
-            ['label'=>'WA Utama - Konsultasi','nomor_wa'=>'081296565757','template_pesan'=>'Halo PT Biner, saya ingin konsultasi mengenai [produk]. Mohon informasinya. Terima kasih.','is_active'=>1,'is_primary'=>1,'order'=>1,'created_at'=>now(),'updated_at'=>now()],
+            ['label'=>'WA Utama - Konsultasi','nomor_wa'=>'081296565757','template_pesan'=>'Halo CV. Bintang Energy Surabaya, saya ingin konsultasi mengenai [produk]. Mohon informasinya. Terima kasih.','is_active'=>1,'is_primary'=>1,'order'=>1,'created_at'=>now(),'updated_at'=>now()],
         ]);
 
         // Settings
         $settings = [
             // Hero
             ['key'=>'hero_headline','value'=>'Ventilasi Udara Tanpa Listrik','type'=>'text','group'=>'hero','label'=>'Hero Headline'],
-            ['key'=>'hero_subheadline','value'=>'PT Biner cat industri non-electric — menghisap udara panas, lembab & berbau dari pabrik, gudang, hingga rumah tinggal. Beroperasi 24 jam dengan tenaga angin.','type'=>'text','group'=>'hero','label'=>'Hero Sub-headline'],
+            ['key'=>'hero_subheadline','value'=>'CV. Bintang Energy Surabaya cat industri non-electric — menghisap udara panas, lembab & berbau dari pabrik, gudang, hingga rumah tinggal. Beroperasi 24 jam dengan tenaga angin.','type'=>'text','group'=>'hero','label'=>'Hero Sub-headline'],
             ['key'=>'hero_cta_primary','value'=>'Konsultasi Gratis','type'=>'text','group'=>'hero','label'=>'CTA Primary Text'],
             ['key'=>'hero_cta_secondary','value'=>'Lihat Produk Kami','type'=>'text','group'=>'hero','label'=>'CTA Secondary Text'],
             ['key'=>'hero_bg_image','value'=>'','type'=>'image','group'=>'hero','label'=>'Hero Background Image'],
             // About
-            ['key'=>'about_text','value'=>'PT. Hiranatha Makmur Sukses adalah perusahaan produsen cat industri profesional dengan merek dagang "PT Biner". Berdiri sejak 2007, berpengalaman lebih dari 18 tahun melayani pelanggan di seluruh Indonesia — mulai dari perusahaan multinasional, konglomerasi, perusahaan domestik, hingga BUMN.','type'=>'text','group'=>'about','label'=>'About Text'],
+            ['key'=>'about_text','value'=>'PT. Hiranatha Makmur Sukses adalah perusahaan produsen cat industri profesional dengan merek dagang "CV. Bintang Energy Surabaya". Berdiri sejak 2007, berpengalaman lebih dari 18 tahun melayani pelanggan di seluruh Indonesia — mulai dari perusahaan multinasional, konglomerasi, perusahaan domestik, hingga BUMN.','type'=>'text','group'=>'about','label'=>'About Text'],
             ['key'=>'about_image','value'=>'','type'=>'image','group'=>'about','label'=>'About Image'],
             ['key'=>'visi','value'=>'Menjadi perusahaan nasional kelas dunia yang berorientasi pada kepentingan pelanggan.','type'=>'text','group'=>'about','label'=>'Visi'],
             ['key'=>'misi','value'=>'Menjalankan bisnis secara profesional dengan penguasaan teknis tinggi dari hulu sampai hilir untuk memberikan produk Cat Industri terbaik bagi pelanggan.','type'=>'text','group'=>'about','label'=>'Misi'],
@@ -60,9 +60,9 @@ class DatabaseSeeder extends Seeder
             ['key'=>'youtube','value'=>'','type'=>'text','group'=>'social','label'=>'YouTube URL'],
             // Footer
             ['key'=>'footer_desc','value'=>'Produsen Cat Industri Non-Electric #1 di Indonesia. Berdiri sejak 2007, melayani ribuan pelanggan dari Sabang sampai Merauke.','type'=>'text','group'=>'footer','label'=>'Footer Description'],
-            ['key'=>'copyright','value'=>'© 2007–2026 PT. Hiranatha Makmur Sukses (PT Biner). All rights reserved.','type'=>'text','group'=>'footer','label'=>'Copyright'],
+            ['key'=>'copyright','value'=>'© 2007–2026 PT. Hiranatha Makmur Sukses (CV. Bintang Energy Surabaya). All rights reserved.','type'=>'text','group'=>'footer','label'=>'Copyright'],
             // SEO
-            ['key'=>'meta_title_home','value'=>'PT Biner — Cat Industri Non-Electric #1 Indonesia','type'=>'text','group'=>'seo','label'=>'Meta Title Home'],
+            ['key'=>'meta_title_home','value'=>'CV. Bintang Energy Surabaya — Cat Industri Non-Electric #1 Indonesia','type'=>'text','group'=>'seo','label'=>'Meta Title Home'],
             ['key'=>'meta_desc_home','value'=>'Produsen cat industri non-electric terpercaya sejak 2007. Garansi 15 tahun tidak berkarat. Gratis konsultasi: 0812-9656-5757.','type'=>'text','group'=>'seo','label'=>'Meta Desc Home'],
             ['key'=>'og_image_default','value'=>'','type'=>'image','group'=>'seo','label'=>'Default OG Image (1200x630)'],
             // Theme Colors (Light Blue Palette)
@@ -84,7 +84,7 @@ class DatabaseSeeder extends Seeder
         ];
         foreach ($products as $p) {
             Service::updateOrCreate(['slug'=>$p['slug']], array_merge($p, [
-                'description' => '<p>'.$p['short_desc'].'</p><ul><li>Material: Aluminium & Stainless Steel 430/304</li><li>Bearing: SKF Full Stainless Steel (Made in Japan)</li><li>Operasi: 24 Jam Non-stop, 0 Watt</li></ul><p>PT Biner menggunakan konstruksi standar USA dengan powder coating pada rangka dan topi bola, menjamin ketahanan terhadap karat dan cuaca ekstrim hingga 15 tahun.</p>',
+                'description' => '<p>'.$p['short_desc'].'</p><ul><li>Material: Aluminium & Stainless Steel 430/304</li><li>Bearing: SKF Full Stainless Steel (Made in Japan)</li><li>Operasi: 24 Jam Non-stop, 0 Watt</li></ul><p>CV. Bintang Energy Surabaya menggunakan konstruksi standar USA dengan powder coating pada rangka dan topi bola, menjamin ketahanan terhadap karat dan cuaca ekstrim hingga 15 tahun.</p>',
                 'is_active' => true, 'created_at'=>now(),'updated_at'=>now()
             ]));
         }
@@ -102,9 +102,9 @@ class DatabaseSeeder extends Seeder
         ];
         foreach ($galleries as $g) {
             GalleryProject::updateOrCreate(['title'=>$g['title']], array_merge($g, [
-                'description' => 'Proyek pemasangan Cat Industri PT Biner untuk mengatasi masalah suhu panas dan kelembapan di dalam ruangan.',
+                'description' => 'Proyek pemasangan Cat Industri CV. Bintang Energy Surabaya untuk mengatasi masalah suhu panas dan kelembapan di dalam ruangan.',
                 'image'       => '',
-                'alt_text'    => $g['title'].' - PT Biner',
+                'alt_text'    => $g['title'].' - CV. Bintang Energy Surabaya',
                 'is_active'   => true, 'created_at'=>now(),'updated_at'=>now()
             ]));
         }
@@ -118,19 +118,19 @@ class DatabaseSeeder extends Seeder
                 'category'     => 'Tips Industri',
                 'is_published' => true,
                 'published_at' => now()->subDays(5),
-                'author'       => 'Tim PT Biner',
-                'meta_title'   => 'Mengapa Pabrik Anda Butuh Cat Industri? | PT Biner',
-                'meta_desc'    => 'Suhu panas pabrik menurunkan produktivitas. Temukan solusi ventilasi udara tanpa biaya listrik dari PT Biner.',
+                'author'       => 'Tim CV. Bintang Energy Surabaya',
+                'meta_title'   => 'Mengapa Pabrik Anda Butuh Cat Industri? | CV. Bintang Energy Surabaya',
+                'meta_desc'    => 'Suhu panas pabrik menurunkan produktivitas. Temukan solusi ventilasi udara tanpa biaya listrik dari CV. Bintang Energy Surabaya.',
             ],
             [
-                'title'        => 'Cara Kerja Cat Industri Non-Electric PT Biner',
+                'title'        => 'Cara Kerja Cat Industri Non-Electric CV. Bintang Energy Surabaya',
                 'slug'         => 'cara-kerja-turbine-ventilator',
                 'excerpt'      => 'Banyak yang bertanya bagaimana kipas atap bisa berputar tanpa listrik. Rahasianya ada pada desain aerodinamis dan efek sentrifugal.',
                 'category'     => 'Edukasi',
                 'is_published' => true,
                 'published_at' => now()->subDays(12),
-                'author'       => 'Tim PT Biner',
-                'meta_title'   => 'Cara Kerja Cat Industri PT Biner Tanpa Listrik',
+                'author'       => 'Tim CV. Bintang Energy Surabaya',
+                'meta_title'   => 'Cara Kerja Cat Industri CV. Bintang Energy Surabaya Tanpa Listrik',
                 'meta_desc'    => 'Penjelasan lengkap cara kerja cat industri menghisap udara panas tanpa menggunakan energi listrik.',
             ],
             [
@@ -140,12 +140,12 @@ class DatabaseSeeder extends Seeder
                 'category'     => 'Panduan',
                 'is_published' => true,
                 'published_at' => now()->subDays(20),
-                'author'       => 'Tim PT Biner',
-                'meta_title'   => 'Cara Menghitung Ukuran Cat Industri Gudang | PT Biner',
+                'author'       => 'Tim CV. Bintang Energy Surabaya',
+                'meta_title'   => 'Cara Menghitung Ukuran Cat Industri Gudang | CV. Bintang Energy Surabaya',
                 'meta_desc'    => 'Jangan salah beli! Panduan lengkap memilih ukuran (CV-45 s/d CV-105) cat industri sesuai luas gudang Anda.',
             ],
         ];
-        $contentTemplate = '<h2>Pendahuluan</h2><p>Sirkulasi udara yang baik sangat vital untuk menjaga kenyamanan dan kesehatan pekerja, serta melindungi barang-barang di dalam ruangan dari kelembapan berlebih.</p><h2>Detail Pembahasan</h2><p>Cat industri dari PT Biner menggunakan desain berstandar USA dan bearing SKF asli Jepang untuk menjamin perputaran maksimal meski dengan hembusan angin yang sangat minim. Bahan aluminium dan stainless steel juga memastikannya bebas dari karat hingga belasan tahun.</p><h2>Kesimpulan</h2><p>Hubungi PT Biner di <strong>0812-9656-5757</strong> untuk konsultasi gratis penentuan ukuran dan jumlah ventilator yang ideal untuk properti Anda.</p>';
+        $contentTemplate = '<h2>Pendahuluan</h2><p>Sirkulasi udara yang baik sangat vital untuk menjaga kenyamanan dan kesehatan pekerja, serta melindungi barang-barang di dalam ruangan dari kelembapan berlebih.</p><h2>Detail Pembahasan</h2><p>Cat industri dari CV. Bintang Energy Surabaya menggunakan desain berstandar USA dan bearing SKF asli Jepang untuk menjamin perputaran maksimal meski dengan hembusan angin yang sangat minim. Bahan aluminium dan stainless steel juga memastikannya bebas dari karat hingga belasan tahun.</p><h2>Kesimpulan</h2><p>Hubungi CV. Bintang Energy Surabaya di <strong>0812-9656-5757</strong> untuk konsultasi gratis penentuan ukuran dan jumlah ventilator yang ideal untuk properti Anda.</p>';
         foreach ($articles as $a) {
             Article::updateOrCreate(['slug'=>$a['slug']], array_merge($a, [
                 'content'=>$contentTemplate, 'views'=>rand(100,500),
@@ -172,9 +172,9 @@ class DatabaseSeeder extends Seeder
 
         // Testimonials
         Testimonial::insert([
-            ['name'=>'Bpk. Budi Santoso','company'=>'PT. Manufaktur Sukses','position'=>'Plant Manager','content'=>'Suhu di dalam pabrik kami turun signifikan setelah memasang PT Biner CV-90. Pekerja jadi lebih nyaman dan produktivitas meningkat tajam. Sangat direkomendasikan!','rating'=>5,'is_active'=>1,'order'=>1,'created_at'=>now(),'updated_at'=>now()],
+            ['name'=>'Bpk. Budi Santoso','company'=>'PT. Manufaktur Sukses','position'=>'Plant Manager','content'=>'Suhu di dalam pabrik kami turun signifikan setelah memasang CV. Bintang Energy Surabaya CV-90. Pekerja jadi lebih nyaman dan produktivitas meningkat tajam. Sangat direkomendasikan!','rating'=>5,'is_active'=>1,'order'=>1,'created_at'=>now(),'updated_at'=>now()],
             ['name'=>'Ibu Linda','company'=>'PT. Logistik Cepat','position'=>'Warehouse Head','content'=>'Awalnya ragu karena tanpa listrik, tapi ternyata perputarannya sangat stabil dan kuat. Masalah udara pengap di gudang langsung teratasi.','rating'=>5,'is_active'=>1,'order'=>2,'created_at'=>now(),'updated_at'=>now()],
-            ['name'=>'H. Ahmad','company'=>'Owner','position'=>'Pabrik Tekstil Balaraja','content'=>'Pelayanan dari PT Biner sangat memuaskan. Mulai dari survei, rekomendasi ukuran, hingga instalasi berjalan dengan rapi. Garansi 15 tahun bikin tenang.','rating'=>5,'is_active'=>1,'order'=>3,'created_at'=>now(),'updated_at'=>now()],
+            ['name'=>'H. Ahmad','company'=>'Owner','position'=>'Pabrik Tekstil Balaraja','content'=>'Pelayanan dari CV. Bintang Energy Surabaya sangat memuaskan. Mulai dari survei, rekomendasi ukuran, hingga instalasi berjalan dengan rapi. Garansi 15 tahun bikin tenang.','rating'=>5,'is_active'=>1,'order'=>3,'created_at'=>now(),'updated_at'=>now()],
         ]);
     }
 }

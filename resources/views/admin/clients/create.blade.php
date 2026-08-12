@@ -81,7 +81,7 @@
                     <input type="text" name="alt_text" id="alt-text-input"
                            value="{{ old('alt_text', $client->alt_text ?? '') }}"
                            class="form-input"
-                           placeholder="Klien PT Biner | PT. Nama Perusahaan">
+                           placeholder="Klien CV. Bintang Energy Surabaya | PT. Nama Perusahaan">
                     <p style="font-size:0.7rem;color:rgba(255,255,255,.25);margin:0.375rem 0 0;">
                         Auto-generate dari nama. Bisa diedit manual jika diperlukan.
                     </p>
@@ -134,7 +134,7 @@ function previewLogo(input) {
 function autoAlt(name) {
     const altInput = document.getElementById('alt-text-input');
     if (!altInput) return;
-    altInput.value = name.trim() ? 'Klien PT Biner | ' + name.trim() : '';
+    altInput.value = name.trim() ? 'Klien CV. Bintang Energy Surabaya | ' + name.trim() : '';
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const altInput  = document.getElementById('alt-text-input');
     // Only auto-fill if alt is still empty (new form or blank edit)
     if (nameInput && altInput && !altInput.value && nameInput.value) {
-        altInput.value = 'Klien PT Biner | ' + nameInput.value;
+        altInput.value = 'Klien CV. Bintang Energy Surabaya | ' + nameInput.value;
     }
 });
 </script>

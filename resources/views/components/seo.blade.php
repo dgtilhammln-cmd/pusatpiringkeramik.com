@@ -1,5 +1,5 @@
 {{--
-    SEO Component — PT Biner
+    SEO Component — CV. Bintang Energy Surabaya
     Variables (semua optional): $seo[], $schema, $breadcrumbs[]
 --}}
 @php
