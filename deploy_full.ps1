@@ -13,7 +13,7 @@ Write-Host "📦 1. Membuat file ZIP dari project lokal..." -ForegroundColor Cya
 if (Test-Path $ZIP_FILE) { Remove-Item $ZIP_FILE -Force }
 
 # Gunakan tar.exe bawaan Windows 10/11 untuk membuat zip, exclude folder berat
-& tar.exe -a -c -f $ZIP_FILE --exclude=".git" --exclude="node_modules" --exclude="vendor" *
+& tar.exe -a -c -f $ZIP_FILE --exclude=".git" --exclude="node_modules" --exclude="vendor" .
 
 Write-Host "🚀 2. Mengunggah $ZIP_FILE ke Hostinger (Akan diminta password SSH)..." -ForegroundColor Cyan
 & scp -P $SSH_PORT $ZIP_FILE "${SSH_USER}@${SSH_HOST}:${REMOTE_DIR}/$ZIP_FILE"

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Models\ServiceCategory;
 use App\Models\Setting;
 use App\Models\WaSetting;
 use App\Models\Testimonial;
@@ -11,7 +12,19 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $services = Service::active()->ordered()->get();
+        $categories = ServiceCategory::all();
+        $query = Service::active()->ordered();
+
+        if (request()->has('category')) {
+            $catSlug = request()->get('category');
+            if ($catSlug !== 'all') {
+                $query->whereHas('category', function($q) use ($catSlug) {
+                    $q->where('slug', $catSlug);
+                });
+            }
+        }
+
+        $services = $query->paginate(12)->withQueryString();
         $settings = Setting::getAllAsArray();
 
         $seo = [
@@ -37,11 +50,19 @@ class ServiceController extends Controller
             })->toArray(),
         ]);
 
-        return view('services.index', compact('services', 'settings', 'seo', 'schema'));
+        return view('services.index', compact('services', 'categories', 'settings', 'seo', 'schema'));
     }
 
     public function show(string $slug)
     {
+        // Check if the slug belongs to a category first to preserve legacy SEO URLs
+        $category = ServiceCategory::where('slug', $slug)->first();
+        if ($category) {
+            // Act like the index page but filtered for this category
+            request()->merge(['category' => $slug]);
+            return $this->index();
+        }
+
         $service      = Service::where('slug', $slug)->where('is_active', true)->firstOrFail();
         $settings     = Setting::getAllAsArray();
         $wa           = WaSetting::primary();

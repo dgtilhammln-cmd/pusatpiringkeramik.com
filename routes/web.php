@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\AdminClientController;
 use App\Http\Controllers\Admin\AdminWaController;
 use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Admin\AdminLeadController;
+use App\Http\Controllers\Admin\AdminServiceCategoryController;
 use App\Http\Controllers\Admin\AdminHeroSlideController;
 
 /*
@@ -150,6 +151,16 @@ Route::prefix('admin')->group(function () {
         Route::post('/wa-settings', [AdminWaController::class, 'update'])->name('admin.wa.update');
         Route::post('/wa-settings/add', [AdminWaController::class, 'store'])->name('admin.wa.store');
         Route::delete('/wa-settings/{id}', [AdminWaController::class, 'destroy'])->name('admin.wa.destroy');
+
+        // Product Categories
+        Route::resource('service-categories', AdminServiceCategoryController::class)->names([
+            'index'   => 'admin.service-categories.index',
+            'create'  => 'admin.service-categories.create',
+            'store'   => 'admin.service-categories.store',
+            'edit'    => 'admin.service-categories.edit',
+            'update'  => 'admin.service-categories.update',
+            'destroy' => 'admin.service-categories.destroy',
+        ])->except(['show']);
 
         Route::resource('hero-slides', AdminHeroSlideController::class)->names([
             'index'   => 'admin.hero_slides.index',   'create'  => 'admin.hero_slides.create',

@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class Service extends Model
 {
     protected $fillable = [
-        'name', 'slug', 'short_desc', 'description', 'image', 'brochure', 'og_image', 'gallery',
+        'service_category_id', 'name', 'slug', 'short_desc', 'description', 'image', 'brochure', 'og_image', 'gallery',
         'specifications', 'faqs',
         'icon', 'order', 'is_active',
         'meta_title', 'meta_desc', 'meta_keywords',
@@ -22,6 +22,11 @@ class Service extends Model
         'specifications' => 'array',
         'faqs'           => 'array',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(ServiceCategory::class, 'service_category_id');
+    }
 
     protected static function boot()
     {
