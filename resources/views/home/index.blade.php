@@ -1809,9 +1809,13 @@
     <style>
         /* ── APLIKASI ─────────────────────────────── */
         .cv-apps-premium {
-            background: #F8FAFC;
+            background: #0F172A;
             padding: 5rem 0;
+            color: #ffffff;
         }
+
+        .cv-apps-premium .cv-adv-section-label { color: #94A3B8; }
+        .cv-apps-premium .cv-adv-section-title { color: #ffffff; }
 
         .cv-apps-inner {
             max-width: 1200px;
@@ -1832,8 +1836,8 @@
         }
 
         .cv-app-card-v2 {
-            background: #ffffff;
-            border: 1px solid #E2E8F0;
+            background: #1E293B;
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 20px;
             display: flex;
             flex-direction: column;
@@ -1845,7 +1849,7 @@
             width: 100%;
             aspect-ratio: 4/3;
             overflow: hidden;
-            background: #F8FAFC;
+            background: #0F172A;
         }
 
         .cv-app-img-wrapper-v2 img {
@@ -1870,7 +1874,7 @@
         .cv-app-card-v2:hover {
             border-color: #DC2626;
             transform: translateY(-6px);
-            box-shadow: 0 16px 40px rgba(14, 165, 233, 0.1);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
         }
 
         .cv-app-icon-circle {
@@ -1894,13 +1898,13 @@
         .cv-app-card-title-v2 {
             font-size: 1.05rem;
             font-weight: 600;
-            color: #0F172A;
+            color: #ffffff;
             margin: 0;
         }
 
         .cv-app-card-desc-v2 {
             font-size: 0.8125rem;
-            color: #64748B;
+            color: #94A3B8;
             line-height: 1.65;
             margin: 0;
         }
@@ -1944,7 +1948,7 @@
             <div class="cv-apps-header">
                 <div class="cv-adv-section-label">APLIKASI</div>
                 <h2 class="cv-adv-section-title" style="margin-top:0.75rem;">Cocok untuk<br>Berbagai Industri</h2>
-                <p style="margin-top:1rem;font-size:0.875rem;color:#64748B;line-height:1.65;">
+                <p style="margin-top:1rem;font-size:0.875rem;color:#94A3B8;line-height:1.65;">
                     Produk pelapis dan cat CV. Bintang Energy Surabaya dirancang untuk melindungi beragam aset strategis di
                     berbagai sektor.
                 </p>
@@ -2517,94 +2521,96 @@
     </style>
 
     {{-- ════ COVERAGE (PREMIUM REDESIGN) ════ --}}
-<section class="cv-coverage-premium" id="jangkauan" style="background-color: #0F172A; padding: 6rem 0 2rem 0; color: #fff; overflow: hidden; position: relative;">
-    <div class="cv-coverage-inner" style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 2;">
-        
-        <div style="display: flex; flex-wrap: wrap; gap: 4rem; justify-content: space-between; margin-bottom: 2rem;">
-            {{-- Left: Heading --}}
-            <div style="flex: 1; min-width: 300px;" data-aos="fade-right">
-                <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 500; line-height: 1.2; letter-spacing: -0.03em; margin: 0;">
-                    Melayani seluruh Indonesia dengan jangkauan <br>
-                    <span style="color: #DC2626;">50+ Kota.</span>
-                </h2>
-            </div>
-            
-            {{-- Right: Description --}}
-            <div style="flex: 1; min-width: 300px; max-width: 500px; display: flex; align-items: center;" data-aos="fade-left">
-                <p style="color: #94A3B8; font-size: 1.1rem; line-height: 1.6; margin: 0;">
-                    CV. Bintang Energy Surabaya bermitra dengan ekspedisi terkemuka untuk mendistribusikan solusi perlindungan maritim dan industri kualitas premium ke seluruh pelosok Nusantara secara cepat dan aman.
-                </p>
-            </div>
-        </div>
+    <section class="cv-coverage-premium" id="jangkauan"
+        style="background-color: #0F172A; padding: 6rem 0 2rem 0; color: #fff; overflow: hidden; position: relative;">
+        <div class="cv-coverage-inner"
+            style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 2;">
 
-        {{-- Stats Grid --}}
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
-            {{-- Stat 1 --}}
-            <div data-aos="fade-up" data-aos-delay="0">
-                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; color: #e2e8f0;">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 22h20M12 2v20M5 22V10l7-8 7 8v12M8 14h8M8 18h8"/></svg>
-                    <span style="font-weight: 600; font-size: 1.1rem;">Berdiri Sejak {{ \App\Models\Setting::get('founding_year') ?? '2013' }}</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 4rem; justify-content: space-between; margin-bottom: 2rem;">
+                {{-- Left: Heading --}}
+                <div style="flex: 1; min-width: 300px;" data-aos="fade-right">
+                    <h2
+                        style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 500; line-height: 1.2; letter-spacing: -0.03em; margin: 0;">
+                        Melayani seluruh Indonesia dengan jangkauan <br>
+                        <span style="color: #DC2626;">50+ Kota.</span>
+                    </h2>
                 </div>
-                <p style="color: #64748B; font-size: 0.95rem; line-height: 1.5; margin: 0;">
-                    Berpengalaman lebih dari satu dekade menjadi andalan perusahaan BUMN dan swasta.
-                </p>
-            </div>
 
-            {{-- Stat 2 --}}
-            <div data-aos="fade-up" data-aos-delay="100">
-                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; color: #e2e8f0;">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 7a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-                    <span style="font-weight: 600; font-size: 1.1rem;">500+ Klien Aktif</span>
+                {{-- Right: Description --}}
+                <div style="flex: 1; min-width: 300px; max-width: 500px; display: flex; align-items: center;"
+                    data-aos="fade-left">
+                    <p style="color: #94A3B8; font-size: 1.1rem; line-height: 1.6; margin: 0;">
+                        CV. Bintang Energy Surabaya bermitra dengan ekspedisi terkemuka untuk mendistribusikan solusi
+                        perlindungan maritim dan industri kualitas premium ke seluruh pelosok Nusantara secara cepat dan
+                        aman.
+                    </p>
                 </div>
-                <p style="color: #64748B; font-size: 0.95rem; line-height: 1.5; margin: 0;">
-                    Dipercaya oleh ratusan perusahaan terkemuka untuk melindungi aset strategis mereka.
-                </p>
             </div>
 
-            {{-- Stat 3 --}}
-            <div data-aos="fade-up" data-aos-delay="200">
-                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; color: #e2e8f0;">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
-                    <span style="font-weight: 600; font-size: 1.1rem;">Garansi 15 Tahun</span>
+            {{-- Stats Grid --}}
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 1rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                {{-- Stat 1 --}}
+                <div data-aos="fade-up" data-aos-delay="0">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; color: #e2e8f0;">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M2 22h20M12 2v20M5 22V10l7-8 7 8v12M8 14h8M8 18h8" />
+                        </svg>
+                        <span style="font-weight: 600; font-size: 1.1rem;">Berdiri Sejak
+                            {{ \App\Models\Setting::get('founding_year') ?? '2013' }}</span>
+                    </div>
+                    <p style="color: #64748B; font-size: 0.95rem; line-height: 1.5; margin: 0;">
+                        Berpengalaman lebih dari satu dekade menjadi andalan perusahaan BUMN dan swasta.
+                    </p>
                 </div>
-                <p style="color: #64748B; font-size: 0.95rem; line-height: 1.5; margin: 0;">
-                    Jaminan kualitas dan performa maksimal untuk setiap produk pelapis yang kami sediakan.
-                </p>
-            </div>
-        </div>
 
-        {{-- Map Graphic --}}
-        @php $coverageMap = \App\Models\Setting::get('coverage_map'); @endphp
-        @if($coverageMap)
-            <div style="position: relative; width: 100%; text-align: center; margin-bottom: 2rem;" data-aos="zoom-in">
-                <img src="{{ asset('storage/'.$coverageMap) }}" alt="Peta Jangkauan Indonesia"
-                     style="max-width: 100%; height: auto; filter: opacity(0.8) drop-shadow(0 0 20px rgba(220, 38, 38, 0.2));" loading="lazy">
+                {{-- Stat 2 --}}
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; color: #e2e8f0;">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path
+                                d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 7a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+                        </svg>
+                        <span style="font-weight: 600; font-size: 1.1rem;">500+ Klien Aktif</span>
+                    </div>
+                    <p style="color: #64748B; font-size: 0.95rem; line-height: 1.5; margin: 0;">
+                        Dipercaya oleh ratusan perusahaan terkemuka untuk melindungi aset strategis mereka.
+                    </p>
+                </div>
+
+                {{-- Stat 3 --}}
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; color: #e2e8f0;">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <circle cx="12" cy="8" r="7" />
+                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                        </svg>
+                        <span style="font-weight: 600; font-size: 1.1rem;">Garansi Terbaik</span>
+                    </div>
+                    <p style="color: #64748B; font-size: 0.95rem; line-height: 1.5; margin: 0;">
+                        Jaminan kualitas dan performa maksimal untuk setiap produk pelapis yang kami sediakan.
+                    </p>
+                </div>
             </div>
-        @else
-           <div style="position: relative; width: 100%; text-align: center; margin-bottom: 2rem; opacity: 0.7;" data-aos="zoom-in">
-                <img src="https://www.amcharts.com/lib/3/maps/svg/indonesiaLow.svg" alt="Peta Indonesia" style="width:100%; height:auto; filter: invert(1) brightness(0.8) sepia(1) hue-rotate(310deg) saturate(3) opacity(0.5);">
-           </div>
-        @endif
-        
-        {{-- Minimalist CTA --}}
-        <div style="text-align: center; margin-top: 3rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1);" data-aos="fade-up">
-            <h3 style="font-size: 1.5rem; font-weight: 500; margin-bottom: 1.5rem; color: #fff;">Butuh Cat Industri & Solusi Coating Terbaik?</h3>
-            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-                @if($wa)
-                    <a href="javascript:void(0)" onclick="openOrderModal('Map CTA WA')" style="background: #DC2626; color: #ffffff; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; text-decoration: none;" data-track="Map CTA WA" onmouseover="this.style.background='#B91C1C'" onmouseout="this.style.background='#DC2626'">
-                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                        Chat WhatsApp
-                    </a>
-                @endif
-                <a href="{{ route('contact') }}" style="background: transparent; color: #ffffff; border: 1px solid rgba(255,255,255,0.3); padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.borderColor='#ffffff'" onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(255,255,255,0.3)'">
-                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
-                    Form Konsultasi
-                </a>
-            </div>
+
+            {{-- Map Graphic --}}
+            @php $coverageMap = \App\Models\Setting::get('coverage_map'); @endphp
+            @if($coverageMap)
+                <div style="position: relative; width: 100%; text-align: center; margin-bottom: 0;" data-aos="zoom-in">
+                    <img src="{{ asset('storage/' . $coverageMap) }}" alt="Peta Jangkauan Indonesia"
+                        style="max-width: 100%; height: auto; filter: opacity(0.8) drop-shadow(0 0 20px rgba(220, 38, 38, 0.2));"
+                        loading="lazy">
+                </div>
+            @else
+                <div style="position: relative; width: 100%; text-align: center; margin-bottom: 0; opacity: 0.7;"
+                    data-aos="zoom-in">
+                    <img src="https://www.amcharts.com/lib/3/maps/svg/indonesiaLow.svg" alt="Peta Indonesia"
+                        style="width:100%; height:auto; filter: invert(1) brightness(0.8) sepia(1) hue-rotate(310deg) saturate(3) opacity(0.5);">
+                </div>
+            @endif
+
         </div>
-        
-    </div>
-</section>
+    </section>
 
     {{-- ════ PREMIUM CTA & ARTICLES CSS ════ --}}
     <style>
@@ -2616,15 +2622,18 @@
             padding: 4rem 0 8rem 0;
             color: #ffffff;
         }
+
         .cv-cta-bg-glow {
             position: absolute;
             width: 800px;
             height: 800px;
-            background: radial-gradient(circle, rgba(220,38,38,0.08) 0%, transparent 60%);
-            top: 50%; left: 50%;
+            background: radial-gradient(circle, rgba(220, 38, 38, 0.08) 0%, transparent 60%);
+            top: 50%;
+            left: 50%;
             transform: translate(-50%, -50%);
             pointer-events: none;
         }
+
         .cv-cta-inner-v2 {
             position: relative;
             z-index: 2;
@@ -2633,6 +2642,7 @@
             text-align: center;
             padding: 0 1.5rem;
         }
+
         .cv-cta-title-v2 {
             font-size: clamp(2rem, 4vw, 3.5rem);
             font-weight: 500;
@@ -2641,18 +2651,21 @@
             margin-bottom: 1.5rem;
             color: #ffffff !important;
         }
+
         .cv-cta-desc-v2 {
             font-size: 1.125rem;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255, 255, 255, 0.7);
             line-height: 1.6;
             margin-bottom: 3rem;
         }
+
         .cv-cta-buttons {
             display: flex;
             justify-content: center;
             gap: 1rem;
             flex-wrap: wrap;
         }
+
         .cv-cta-btn-primary {
             background: #DC2626;
             color: #ffffff;
@@ -2664,18 +2677,20 @@
             align-items: center;
             gap: 0.75rem;
             transition: all 0.3s;
-            box-shadow: 0 10px 25px rgba(220,38,38,0.2);
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.2);
             text-decoration: none !important;
         }
+
         .cv-cta-btn-primary:hover {
             background: #B91C1C;
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(220,38,38,0.3);
+            box-shadow: 0 15px 30px rgba(220, 38, 38, 0.3);
         }
+
         .cv-cta-btn-outline {
             background: transparent;
             color: #ffffff;
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             padding: 1.125rem 2.5rem;
             border-radius: 50px;
             font-weight: 600;
@@ -2686,27 +2701,31 @@
             transition: all 0.3s;
             text-decoration: none !important;
         }
+
         .cv-cta-btn-outline:hover {
             border-color: #ffffff;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             transform: translateY(-3px);
         }
+
         .cv-cta-info {
             margin-top: 4rem;
             display: flex;
             justify-content: center;
             gap: 3rem;
             flex-wrap: wrap;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 3rem;
         }
+
         .cv-cta-info-item {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            color: rgba(255,255,255,0.6);
+            color: rgba(255, 255, 255, 0.6);
             font-size: 0.875rem;
         }
+
         .cv-cta-info-icon {
             color: #DC2626;
         }
