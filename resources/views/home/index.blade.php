@@ -1446,7 +1446,7 @@
     <style>
         /* ── PRODUCT CATALOG SECTION ─────────────────── */
         .cv-catalog-section {
-            background: #F8FAFC;
+            background: #0F172A;
             padding: 5rem 0;
         }
 
@@ -1465,7 +1465,7 @@
         .cv-catalog-title {
             font-size: clamp(1.75rem, 3.5vw, 3rem);
             font-weight: 500;
-            color: #0F172A;
+            color: #ffffff;
             line-height: 1.15;
             letter-spacing: -0.02em;
             max-width: 420px;
@@ -1478,14 +1478,14 @@
 
         .cv-catalog-right-info p {
             font-size: 0.875rem;
-            color: #64748B;
+            color: #94A3B8;
             line-height: 1.6;
             margin-bottom: 0.5rem;
         }
 
         .cv-catalog-right-info small {
             font-size: 0.75rem;
-            color: #94A3B8;
+            color: #64748B;
         }
 
         /* Horizontal scroll track */
@@ -1521,14 +1521,14 @@
             text-decoration: none;
             display: block;
             flex-shrink: 0;
-            background: #e2e8f0;
+            background: #1E293B;
             cursor: pointer;
             transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
         }
 
         .cv-cat-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 20px 50px rgba(14, 165, 233, 0.15);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
         }
 
         .cv-cat-card img {
@@ -1555,13 +1555,13 @@
         .cv-cat-card-placeholder {
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+            background: linear-gradient(135deg, #1E293B, #0F172A);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
             gap: 0.5rem;
-            color: #94a3b8;
+            color: #475569;
         }
 
         .cv-cat-card-body {
@@ -1611,7 +1611,7 @@
         }
 
         .cv-catalog-btn-all {
-            background: #1E293B;
+            background: #DC2626;
             color: #fff;
             padding: 0.875rem 2rem;
             border-radius: 999px;
@@ -1625,14 +1625,14 @@
         }
 
         .cv-catalog-btn-all:hover {
-            background: #DC2626;
+            background: #B91C1C;
             transform: translateY(-2px);
         }
 
         .cv-catalog-btn-outline {
             background: transparent;
-            color: #1E293B;
-            border: 2px solid #1E293B;
+            color: #ffffff;
+            border: 2px solid rgba(255,255,255,0.3);
             padding: 0.75rem 1.5rem;
             border-radius: 999px;
             font-size: 0.875rem;
@@ -1644,7 +1644,8 @@
         }
 
         .cv-catalog-btn-outline:hover {
-            background: #1E293B;
+            background: rgba(255,255,255,0.08);
+            border-color: #ffffff;
             color: #fff;
         }
 
@@ -1657,13 +1658,13 @@
             width: 42px;
             height: 42px;
             border-radius: 50%;
-            background: #fff;
-            border: 1.5px solid #E2E8F0;
+            background: rgba(255,255,255,0.08);
+            border: 1.5px solid rgba(255,255,255,0.15);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            color: #334155;
+            color: #ffffff;
             transition: all 0.2s;
         }
 

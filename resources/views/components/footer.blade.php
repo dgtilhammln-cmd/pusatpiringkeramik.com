@@ -17,9 +17,9 @@ www.ptbiner.co.id
    FOOTER — Jangkauan Section Style (#EAEBED)
 ═══════════════════════════════════ */
     .cv-footer-v2 {
-        background: #F8FAFC;
-        border-top: 1px solid #E2E8F0;
-        color: #0F172A;
+        background: #0F172A;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        color: #ffffff;
         font-family: 'Montserrat', sans-serif;
         position: relative;
     }
@@ -66,7 +66,7 @@ www.ptbiner.co.id
     .cv-footer-v2-brand-name {
         font-size: 1.25rem;
         font-weight: 700;
-        color: #0F172A;
+        color: #ffffff;
         letter-spacing: -0.02em;
         line-height: 1;
     }
@@ -74,7 +74,7 @@ www.ptbiner.co.id
     .cv-footer-v2-brand-sub {
         font-size: 0.6rem;
         font-weight: 500;
-        color: #64748B;
+        color: #94A3B8;
         letter-spacing: 0.15em;
         text-transform: uppercase;
         margin-top: 4px;
@@ -83,7 +83,7 @@ www.ptbiner.co.id
     .cv-footer-v2-tagline {
         font-size: 0.9rem;
         font-weight: 400;
-        color: #64748B;
+        color: #94A3B8;
         line-height: 1.75;
         margin-bottom: 2rem;
         max-width: 320px;
@@ -101,19 +101,19 @@ www.ptbiner.co.id
         display: inline-flex;
         align-items: center;
         gap: 0.4rem;
-        background: #ffffff;
-        color: #1E293B;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.1);
+        color: #CBD5E1;
         font-size: 0.625rem;
         font-weight: 700;
         letter-spacing: 0.08em;
         text-transform: uppercase;
         padding: 0.4rem 0.875rem;
         border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
 
     .cv-footer-v2-badge svg {
-        color: #64748B;
+        color: #94A3B8;
         transition: color 0.3s;
     }
 
@@ -130,13 +130,13 @@ www.ptbiner.co.id
     .cv-footer-v2-social-btn {
         width: 36px;
         height: 36px;
-        background: #ffffff;
-        border: 1px solid #E2E8F0;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.12);
         border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #64748B;
+        color: #94A3B8;
         text-decoration: none;
         transition: all 0.25s;
     }
@@ -149,7 +149,7 @@ www.ptbiner.co.id
         box-shadow: 0 8px 20px rgba(14, 165, 233, 0.25);
     }
 
-    /* ── COLUMN HEADINGS ───────────── */
+    /* ── COLUMN HEADINGS ─────────── */
     .cv-footer-v2-col-title {
         font-size: 0.65rem;
         font-weight: 700;
@@ -173,7 +173,7 @@ www.ptbiner.co.id
     .cv-footer-v2-links a {
         font-size: 0.9rem;
         font-weight: 400;
-        color: #1E293B;
+        color: #94A3B8;
         text-decoration: none;
         display: inline-flex;
         align-items: center;
@@ -182,7 +182,7 @@ www.ptbiner.co.id
     }
 
     .cv-footer-v2-links a:hover {
-        color: #0F172A;
+        color: #ffffff;
         font-weight: 600;
     }
 
@@ -197,14 +197,14 @@ www.ptbiner.co.id
     .cv-footer-v2-contact-icon {
         width: 36px;
         height: 36px;
-        background: #ffffff;
-        border: 1px solid #E2E8F0;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.1);
         border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        color: #64748B;
+        color: #94A3B8;
         transition: all 0.25s;
     }
 
@@ -229,12 +229,12 @@ www.ptbiner.co.id
     .cv-footer-v2-contact-text {
         font-size: 0.8125rem;
         font-weight: 400;
-        color: #1E293B;
+        color: #CBD5E1;
         line-height: 1.6;
     }
 
     .cv-footer-v2-contact-text a {
-        color: #0F172A;
+        color: #ffffff;
         text-decoration: none;
         font-weight: 500;
         transition: opacity 0.2s;
@@ -244,16 +244,16 @@ www.ptbiner.co.id
         opacity: 0.7;
     }
 
-    /* ── DIVIDER ───────────────────── */
+    /* ── DIVIDER ───────────────── */
     .cv-footer-v2-divider {
         border: none;
-        border-top: 1px solid rgba(15, 23, 42, 0.08);
+        border-top: 1px solid rgba(255,255,255,0.08);
         margin: 0;
     }
 
-    /* ── BOTTOM BAR ────────────────── */
+    /* ── BOTTOM BAR ─────────────── */
     .cv-footer-v2-bottom-wrap {
-        background: rgba(15, 23, 42, 0.04);
+        background: rgba(0, 0, 0, 0.2);
     }
 
     .cv-footer-v2-bottom {
@@ -274,7 +274,7 @@ www.ptbiner.co.id
     }
 
     .cv-footer-v2-copy strong {
-        color: #0F172A;
+        color: #94A3B8;
         font-weight: 600;
     }
 
@@ -293,7 +293,7 @@ www.ptbiner.co.id
     }
 
     .cv-footer-v2-bottom-links a:hover {
-        color: #0F172A;
+        color: #ffffff;
     }
 
     .cv-footer-v2-dev {
@@ -302,14 +302,14 @@ www.ptbiner.co.id
     }
 
     .cv-footer-v2-dev a {
-        color: #475569;
+        color: #64748B;
         text-decoration: none;
         font-weight: 600;
         transition: color 0.2s;
     }
 
     .cv-footer-v2-dev a:hover {
-        color: #0F172A;
+        color: #ffffff;
     }
 
     /* ── RESPONSIVE ────────────────── */
