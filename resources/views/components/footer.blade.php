@@ -372,33 +372,19 @@ www.ptbiner.co.id
                 {{ $s['footer_desc'] ?? 'Produsen Cat Industri Non-Electric #1 di Indonesia. Berdiri sejak 2013, melayani ribuan pelanggan dari Sabang sampai Merauke.' }}
             </p>
 
-            <div class="cv-footer-v2-badges">
-                <span class="cv-footer-v2-badge">
-                    <svg width="9" height="9" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    Garansi 15 Tahun
-                </span>
-                <span class="cv-footer-v2-badge">
-                    <svg width="9" height="9" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                    0 Watt
-                </span>
-                <span class="cv-footer-v2-badge">
-                    <svg width="9" height="9" fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                    </svg>
-                    Sejak {{ \App\Models\Setting::get('founding_year') ?? '2013' }}
-                </span>
-                <span class="cv-footer-v2-badge">
-                    <svg width="9" height="9" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    50+ Kota
-                </span>
+            <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem;">
+                <div style="display: flex; gap: 5px;">
+                    @for($i=0; $i<5; $i++)
+                    <div style="background: #DC2626; padding: 5px; border-radius: 4px; color: #ffffff; display: flex; align-items: center; justify-content: center;">
+                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/>
+                        </svg>
+                    </div>
+                    @endfor
+                </div>
+                <div style="font-size: 0.9rem; font-weight: 700; color: #0F172A;">
+                    4.9 / 5 <span style="color: #64748B; font-weight: 500; font-size: 0.85rem;">&bull; 134+ Ulasan Terverifikasi</span>
+                </div>
             </div>
 
             <div class="cv-footer-v2-socials">
@@ -428,8 +414,8 @@ www.ptbiner.co.id
 
         {{-- Produk Column --}}
         <div>
-            <div class="cv-footer-v2-col-title">Produk</div>
-            <ul class="cv-footer-v2-links">
+            <div class="cv-footer-v2-col-title" style="color: #0F172A; border-bottom: 2px solid #DC2626; display: inline-block; padding-bottom: 0.25rem;">Kategori Produk</div>
+            <ul class="cv-footer-v2-links" style="margin-top: 0.5rem; padding-left: 0.75rem; border-left: 2px solid rgba(220, 38, 38, 0.2);">
                 @if($svc->count())
                     @foreach($svc as $item)
                         <li><a href="{{ route('products.show', $item->slug) }}">{{ $item->name }}</a></li>
@@ -545,7 +531,7 @@ www.ptbiner.co.id
             </div>
             <div class="cv-footer-v2-dev">
                 Built by <a href="https://hvmdigital.id/jasa-pembuatan-website-jakarta-murah" target="_blank"
-                    rel="noopener">HVM Digital</a>
+                    rel="noopener">hvmdigital.id</a>
             </div>
         </div>
     </div>
