@@ -50,7 +50,7 @@
         color: #E0F2FE;
     }
     .cv-testi-stars-v2 {
-        color: #F59E0B;
+        color: #DC2626;
         margin-bottom: 1.25rem;
         display: flex;
         gap: 0.15rem;

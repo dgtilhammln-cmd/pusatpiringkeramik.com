@@ -171,14 +171,14 @@
     }
     .pill-btn-outline:hover { background: rgba(0,0,0,0.04); }
     .pill-btn-solid {
-        background: #0A1930;
+        background: #DC2626;
         color: #fff;
-        box-shadow: 0 2px 10px rgba(10,25,48,0.22);
+        box-shadow: 0 2px 10px rgba(220,38,38,0.28);
     }
     .pill-btn-solid:hover {
-        background: #1E3A5F;
+        background: #B91C1C;
         transform: translateY(-1px);
-        box-shadow: 0 4px 16px rgba(10,25,48,0.32);
+        box-shadow: 0 4px 16px rgba(220,38,38,0.38);
     }
 
     /* ── Mobile ── */
