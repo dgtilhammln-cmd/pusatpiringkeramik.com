@@ -868,120 +868,99 @@ body { background: var(--cv-bg); color: var(--cv-text); }
         .cv-coverage-glass-box { padding: 2rem 1.5rem; margin-top: 3rem; }
     }
     </style>
-<section class="cv-coverage-premium" id="jangkauan">
-
-
-        <style>
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.6; }
-            50% { transform: scale(1.5); opacity: 0; }
-            100% { transform: scale(1); opacity: 0; }
-        }
-        </style>
-
-        <div class="cv-coverage-inner">
-            <div class="cv-coverage-header-row">
-                <h2 class="cv-coverage-title-v2">Melayani<br>seluruh Indonesia</h2>
-
-                <div class="cv-coverage-stats-grid">
-                    {{-- Card 1 --}}
-                    <div class="cv-stat-card-v2" data-aos="fade-up" data-aos-delay="0">
-                        <div class="cv-stat-top">
-                            <span class="cv-stat-label">Berdiri Sejak</span>
-                            <svg class="cv-stat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 22h20M12 2v20M5 22V10l7-8 7 8v12M8 14h8M8 18h8"/></svg>
-                        </div>
-                        <div class="cv-stat-val"><span class="count-up" data-target="{{ \App\Models\Setting::get('founding_year') ?? '2013' }}">0</span></div>
-                    </div>
-
-                    {{-- Card 2 --}}
-                    <div class="cv-stat-card-v2" data-aos="fade-up" data-aos-delay="100">
-                        <div class="cv-stat-top">
-                            <span class="cv-stat-label">Klien Aktif</span>
-                            <svg class="cv-stat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 7a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-                        </div>
-                        <div class="cv-stat-val"><span class="count-up" data-target="500">0</span><span>+</span></div>
-                    </div>
-
-                    {{-- Card 3 --}}
-                    <div class="cv-stat-card-v2" data-aos="fade-up" data-aos-delay="200">
-                        <div class="cv-stat-top">
-                            <span class="cv-stat-label">Kota Dilayani</span>
-                            <svg class="cv-stat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        </div>
-                        <div class="cv-stat-val"><span class="count-up" data-target="50">0</span><span>+</span></div>
-                    </div>
-
-                    {{-- Card 4 --}}
-                    <div class="cv-stat-card-v2" data-aos="fade-up" data-aos-delay="300">
-                        <div class="cv-stat-top">
-                            <span class="cv-stat-label">Tahun Garansi</span>
-                            <svg class="cv-stat-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
-                        </div>
-                        <div class="cv-stat-val"><span class="count-up" data-target="15">0</span><span>+</span></div>
-                    </div>
-                </div>
+<section class="cv-coverage-premium" id="jangkauan" style="background-color: #0F172A; padding: 6rem 0 2rem 0; color: #fff; overflow: hidden; position: relative;">
+    <div class="cv-coverage-inner" style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 2;">
+        
+        <div style="display: flex; flex-wrap: wrap; gap: 4rem; justify-content: space-between; margin-bottom: 4rem;">
+            {{-- Left: Heading --}}
+            <div style="flex: 1; min-width: 300px;" data-aos="fade-right">
+                <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 500; line-height: 1.2; letter-spacing: -0.03em; margin: 0;">
+                    Melayani seluruh Indonesia dengan jangkauan <br>
+                    <span style="color: #DC2626;">50+ Kota.</span>
+                </h2>
             </div>
-        {{-- MAP: from admin upload --}}
+            
+            {{-- Right: Description --}}
+            <div style="flex: 1; min-width: 300px; max-width: 500px; display: flex; align-items: center;" data-aos="fade-left">
+                <p style="color: #94A3B8; font-size: 1.1rem; line-height: 1.6; margin: 0;">
+                    CV. Bintang Energy Surabaya bermitra dengan ekspedisi terkemuka untuk mendistribusikan solusi perlindungan maritim dan industri kualitas premium ke seluruh pelosok Nusantara secara cepat dan aman.
+                </p>
+            </div>
+        </div>
+
+        {{-- Stats Grid --}}
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 5rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1);">
+            {{-- Stat 1 --}}
+            <div data-aos="fade-up" data-aos-delay="0">
+                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; color: #e2e8f0;">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 22h20M12 2v20M5 22V10l7-8 7 8v12M8 14h8M8 18h8"/></svg>
+                    <span style="font-weight: 600; font-size: 1.1rem;">Berdiri Sejak {{ \App\Models\Setting::get('founding_year') ?? '2013' }}</span>
+                </div>
+                <p style="color: #64748B; font-size: 0.95rem; line-height: 1.5; margin: 0;">
+                    Berpengalaman lebih dari satu dekade menjadi andalan perusahaan BUMN dan swasta.
+                </p>
+            </div>
+
+            {{-- Stat 2 --}}
+            <div data-aos="fade-up" data-aos-delay="100">
+                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; color: #e2e8f0;">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 7a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                    <span style="font-weight: 600; font-size: 1.1rem;">500+ Klien Aktif</span>
+                </div>
+                <p style="color: #64748B; font-size: 0.95rem; line-height: 1.5; margin: 0;">
+                    Dipercaya oleh ratusan perusahaan terkemuka untuk melindungi aset strategis mereka.
+                </p>
+            </div>
+
+            {{-- Stat 3 --}}
+            <div data-aos="fade-up" data-aos-delay="200">
+                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; color: #e2e8f0;">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                    <span style="font-weight: 600; font-size: 1.1rem;">Garansi 15 Tahun</span>
+                </div>
+                <p style="color: #64748B; font-size: 0.95rem; line-height: 1.5; margin: 0;">
+                    Jaminan kualitas dan performa maksimal untuk setiap produk pelapis yang kami sediakan.
+                </p>
+            </div>
+        </div>
+
+        {{-- Map Graphic --}}
         @php $coverageMap = \App\Models\Setting::get('coverage_map'); @endphp
         @if($coverageMap)
-            <div style="position:relative; width:100%; margin-top:-6rem;">
+            <div style="position: relative; width: 100%; text-align: center; margin-bottom: 2rem;" data-aos="zoom-in">
                 <img src="{{ asset('storage/'.$coverageMap) }}" alt="Peta Jangkauan Indonesia"
-                     style="display:block; width:100%; height:auto;" loading="lazy">
+                     style="max-width: 100%; height: auto; filter: opacity(0.8) drop-shadow(0 0 20px rgba(220, 38, 38, 0.2));" loading="lazy">
             </div>
+        @else
+           <div style="position: relative; width: 100%; text-align: center; margin-bottom: 2rem; opacity: 0.7;" data-aos="zoom-in">
+                <img src="https://www.amcharts.com/lib/3/maps/svg/indonesiaLow.svg" alt="Peta Indonesia" style="width:100%; height:auto; filter: invert(1) brightness(0.8) sepia(1) hue-rotate(310deg) saturate(3) opacity(0.5);">
+           </div>
         @endif
-        </div>{{-- end cv-coverage-inner --}}
         
-        <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const counters = document.querySelectorAll('.count-up');
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        const el = entry.target;
-                        if (el.classList.contains('counted')) return;
-                        el.classList.add('counted');
-                        const target = +el.getAttribute('data-target');
-                        const duration = 2000;
-                        const frameRate = 30;
-                        const totalFrames = Math.round((duration / 1000) * frameRate);
-                        let frame = 0;
-                        const counter = setInterval(() => {
-                            frame++;
-                            const progress = frame / totalFrames;
-                            const easeOut = progress * (2 - progress);
-                            const current = Math.round(target * easeOut);
-                            el.innerText = current;
-                            if (frame === totalFrames) {
-                                clearInterval(counter);
-                                el.innerText = target;
-                            }
-                        }, 1000 / frameRate);
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            counters.forEach(c => observer.observe(c));
-        });
-        </script>
-    </section>
+    </div>
+</section>
 
 {{-- MARQUEE KLIEN --}}
 @if($clients->count())
-<section class="cv-clients-bar">
-    <div class="container" style="margin-bottom:1.5rem; text-align:center;">
-        <div class="cv-label">Klien Aktif</div>
-        <h2 class="cv-heading" style="font-size:clamp(1.5rem,2.5vw,2rem);">Dipercaya oleh Perusahaan Terkemuka</h2>
+<section class="cv-clients-bar" style="background-color: #0F172A; padding-bottom: 4rem;">
+    <div class="container" style="margin-bottom:2rem; text-align:center;">
+        <div style="font-size: 0.875rem; font-weight: 700; color: #DC2626; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Klien Aktif</div>
+        <h2 style="font-size:clamp(1.5rem,2.5vw,2rem); font-weight: 500; color: #fff;">Dipercaya oleh Perusahaan Terkemuka</h2>
     </div>
-    <div class="cv-marquee-container">
-        <div class="cv-marquee-track">
+    <div class="cv-marquee-container" style="overflow: hidden; white-space: nowrap; width: 100%; position: relative;">
+        <!-- Fade edges for marquee -->
+        <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 100px; background: linear-gradient(to right, #0F172A, transparent); z-index: 2;"></div>
+        <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 100px; background: linear-gradient(to left, #0F172A, transparent); z-index: 2;"></div>
+
+        <div class="cv-marquee-track animate-marquee" style="display: flex; gap: 1.5rem; padding: 1rem 0;">
             @foreach([1, 2] as $loopGroup)
                 @foreach($clients as $c)
                     @if($c->logo)
-                        <div class="cv-client-logo-card">
-                            <img src="{{ asset('storage/' . $c->logo) }}" alt="{{ $c->name }}" class="cv-client-logo-img" title="{{ $c->name }}">
+                        <div class="cv-client-logo-card-dark">
+                            <img src="{{ asset('storage/' . $c->logo) }}" alt="{{ $c->name }}" class="cv-client-logo-img-dark" title="{{ $c->name }}">
                         </div>
                     @else
-                        <div class="cv-client-chip-v2">{{ $c->name }}</div>
+                        <div class="cv-client-chip-dark">{{ $c->name }}</div>
                     @endif
                 @endforeach
             @endforeach
@@ -991,94 +970,82 @@ body { background: var(--cv-bg); color: var(--cv-text); }
 @endif
 
 <style>
-    /* Card Design */
-    .cv-client-logo-card {
-        background: #F8FAFC;
-        border: 1.5px solid #E2E8F0;
+    /* Dark Marquee Styling */
+    .cv-client-logo-card-dark {
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.1);
         border-radius: 16px;
         padding: 1rem 1.75rem;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 0.75rem;
         min-width: 180px;
         max-width: 220px;
         height: 110px;
-        transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-        text-decoration: none;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        transition: all 0.3s;
     }
-    .cv-client-logo-card:hover {
-        border-color: #EF4444;
-        background: #ffffff;
-        transform: translateY(-4px) scale(1.02);
-        box-shadow: 0 12px 30px rgba(14,165,233,0.12);
+    .cv-client-logo-card-dark:hover {
+        border-color: rgba(220, 38, 38, 0.5);
+        background: rgba(255,255,255,0.05);
+        transform: translateY(-4px);
     }
-    .cv-client-logo-img {
+    .cv-client-logo-img-dark {
         max-height: 52px;
         max-width: 160px;
         width: auto;
         height: auto;
         object-fit: contain;
-        filter: grayscale(80%) opacity(0.8);
+        filter: grayscale(100%) brightness(200%) opacity(0.6);
         transition: all 0.3s;
         display: block;
     }
-    .cv-client-logo-card:hover .cv-client-logo-img { filter: grayscale(0%) opacity(1); }
-    .cv-client-logo-name {
-        font-size: 0.7rem;
-        font-weight: 600;
-        color: #64748B;
-        text-align: center;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 130px;
+    .cv-client-logo-card-dark:hover .cv-client-logo-img-dark { 
+        filter: grayscale(0%) brightness(100%) opacity(1); 
     }
-    /* Text-only chip */
-    .cv-client-chip-v2 {
+    .cv-client-chip-dark {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 0.5rem;
-        background: #F8FAFC;
-        border: 1.5px solid #E2E8F0;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.1);
         border-radius: 16px;
         padding: 0 2rem;
-        height: 100px;
+        height: 110px;
         min-width: 160px;
         font-size: 0.85rem;
         font-weight: 600;
-        color: #475569;
+        color: rgba(255,255,255,0.7);
         white-space: nowrap;
-        transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        transition: all 0.3s;
     }
-    .cv-client-chip-v2::before {
+    .cv-client-chip-dark::before {
         content: '';
         width: 6px; height: 6px;
-        background: #EF4444;
+        background: #DC2626;
         border-radius: 50%;
     }
-    .cv-client-chip-v2:hover {
-        background: #FEF2F2;
-        border-color: #FECACA;
-        transform: translateY(-2px);
+    .cv-client-chip-dark:hover {
+        border-color: rgba(220, 38, 38, 0.5);
+        background: rgba(255,255,255,0.05);
+        transform: translateY(-4px);
+        color: #fff;
     }
 
-    /* ── CTA PREMIUM ────────────────────────── */
+    /* ── CTA PREMIUM (Dark Theme) ────────────────────────── */
     .cv-cta-premium {
         background: #0F172A;
         position: relative;
         overflow: hidden;
-        padding: 6rem 0;
+        padding: 4rem 0 8rem 0;
         color: #ffffff;
     }
     .cv-cta-bg-glow {
         position: absolute;
         width: 800px;
         height: 800px;
-        background: radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 60%);
+        background: radial-gradient(circle, rgba(220,38,38,0.08) 0%, transparent 60%);
         top: 50%; left: 50%;
         transform: translate(-50%, -50%);
         pointer-events: none;
@@ -1122,18 +1089,18 @@ body { background: var(--cv-bg); color: var(--cv-text); }
         align-items: center;
         gap: 0.75rem;
         transition: all 0.3s;
-        box-shadow: 0 10px 25px rgba(14,165,233,0.3);
+        box-shadow: 0 10px 25px rgba(220,38,38,0.2);
         text-decoration: none !important;
     }
     .cv-cta-btn-primary:hover {
         background: #B91C1C;
         transform: translateY(-3px);
-        box-shadow: 0 15px 30px rgba(14,165,233,0.4);
+        box-shadow: 0 15px 30px rgba(220,38,38,0.3);
     }
     .cv-cta-btn-outline {
         background: transparent;
         color: #ffffff;
-        border: 1.5px solid rgba(255,255,255,0.3);
+        border: 1px solid rgba(255,255,255,0.3);
         padding: 1.125rem 2.5rem;
         border-radius: 50px;
         font-weight: 600;
@@ -1146,7 +1113,7 @@ body { background: var(--cv-bg); color: var(--cv-text); }
     }
     .cv-cta-btn-outline:hover {
         border-color: #ffffff;
-        background: rgba(255,255,255,0.1);
+        background: rgba(255,255,255,0.05);
         transform: translateY(-3px);
     }
     .cv-cta-info {
@@ -1169,175 +1136,50 @@ body { background: var(--cv-bg); color: var(--cv-text); }
         color: #DC2626;
     }
 
-    /* ── ARTIKEL PREMIUM ────────────────────── */
-    .cv-articles-premium {
-        background: #ffffff;
-        padding: 6rem 0;
-    }
-    .cv-articles-inner {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 1.5rem;
-    }
-    .cv-articles-header {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        gap: 2rem;
-        margin-bottom: 3.5rem;
-        flex-wrap: wrap;
-    }
-    .cv-articles-grid-v2 {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-    }
-    .cv-article-card-v2 {
-        background: #F8FAFC;
-        border: 1.5px solid #E2E8F0;
-        border-radius: 24px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
-        text-decoration: none !important;
-    }
-    .cv-article-card-v2 * {
-        text-decoration: none !important;
-    }
-    .cv-article-card-v2:hover {
-        border-color: #DC2626;
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(14,165,233,0.08);
-    }
-    .cv-article-img-wrap {
-        width: 100%;
-        aspect-ratio: 16/10;
-        overflow: hidden;
-        position: relative;
-    }
-    .cv-article-img-v2 {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.6s cubic-bezier(0.22,1,0.36,1);
-    }
-    .cv-article-card-v2:hover .cv-article-img-v2 {
-        transform: scale(1.08);
-    }
-    .cv-article-cat-badge {
-        position: absolute;
-        top: 1.25rem; left: 1.25rem;
-        background: rgba(15,23,42,0.85);
-        backdrop-filter: blur(8px);
-        color: #fff;
-        font-size: 0.75rem;
-        font-weight: 600;
-        padding: 0.4rem 1rem;
-        border-radius: 50px;
-    }
-    .cv-article-content-v2 {
-        padding: 1.75rem;
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-    }
-    .cv-article-title-v2 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: #0F172A !important;
-        line-height: 1.4;
-        margin-bottom: 0.75rem;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
-    .cv-article-excerpt-v2 {
-        font-size: 0.9375rem;
-        color: #64748B !important;
-        line-height: 1.6;
-        margin-bottom: 1.5rem;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        flex-grow: 1;
-    }
-    .cv-article-meta-v2 {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-top: 1px solid #E2E8F0;
-        padding-top: 1.25rem;
-        font-size: 0.8125rem;
-        font-weight: 600;
-    }
-    .cv-article-date-v2 {
-        color: #94A3B8;
-    }
-    .cv-article-read-v2 {
-        color: #DC2626;
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-    }
-    .cv-article-read-v2 svg {
-        transition: transform 0.3s;
-    }
-    .cv-article-card-v2:hover .cv-article-read-v2 svg {
-        transform: translateX(4px);
-    }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-        .cv-articles-grid-v2 { grid-template-columns: repeat(2, 1fr); }
-    }
     @media (max-width: 640px) {
-        .cv-cta-premium, .cv-articles-premium { padding: 4rem 0; }
+        .cv-cta-premium, .cv-coverage-premium { padding: 4rem 0; }
         .cv-cta-info { gap: 1.5rem; flex-direction: column; align-items: center; }
-        .cv-articles-grid-v2 { grid-template-columns: 1fr; }
     }
-    </style>
+</style>
+
 <section class="cv-cta-premium">
-        <div class="cv-cta-bg-glow"></div>
-        <div class="cv-cta-inner-v2" data-aos="zoom-in">
-            <div style="font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#EF4444; margin-bottom:1rem; display:flex; align-items:center; justify-content:center; gap:0.5rem;">
-                <span style="width:4px; height:4px; background:#EF4444; border-radius:50%;"></span>
-                SIAP MULAI?
-            </div>
-            <h2 class="cv-cta-title-v2" style="margin-top:1rem;">Dapatkan Konsultasi Gratis<br>& Penawaran Terbaik</h2>
-            <p class="cv-cta-desc-v2">Tim kami siap membantu Anda memilih produk cat dan pelapis yang paling sesuai untuk kebutuhan industri dan proyek Anda.</p>
-            
-            <div class="cv-cta-buttons">
-                @if($wa)
-                    <a href="javascript:void(0)" onclick="openOrderModal('Bottom CTA WA')"
-                       class="cv-cta-btn-primary" data-track="Bottom CTA WA">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                        Chat WhatsApp
-                    </a>
-                @endif
-                <a href="{{ route('contact') }}" class="cv-cta-btn-outline">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
-                    Form Konsultasi
+    <div class="cv-cta-bg-glow"></div>
+    <div class="cv-cta-inner-v2" data-aos="zoom-in">
+        <div style="font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#DC2626; margin-bottom:1rem; display:flex; align-items:center; justify-content:center; gap:0.5rem;">
+            <span style="width:4px; height:4px; background:#DC2626; border-radius:50%;"></span>
+            SIAP MULAI?
+        </div>
+        <h2 class="cv-cta-title-v2" style="margin-top:1rem;">Dapatkan Konsultasi Gratis<br>& Penawaran Terbaik</h2>
+        <p class="cv-cta-desc-v2">Tim kami siap membantu Anda memilih solusi dan produk pelapis yang paling tepat untuk kebutuhan industri maupun proyek berskala besar Anda.</p>
+        
+        <div class="cv-cta-buttons">
+            @if($wa)
+                <a href="javascript:void(0)" onclick="openOrderModal('Bottom CTA WA')" class="cv-cta-btn-primary" data-track="Bottom CTA WA">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Chat WhatsApp
                 </a>
+            @endif
+            <a href="{{ route('contact') }}" class="cv-cta-btn-outline">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+                Form Konsultasi
+            </a>
+        </div>
+        
+        <div class="cv-cta-info">
+            <div class="cv-cta-info-item">
+                <svg class="cv-cta-info-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.5 12.05a19.79 19.79 0 01-3.07-8.67A2 2 0 012.41 1.5h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.4a16 16 0 006.69 6.69l1.27-.76a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                {{ \App\Models\Setting::get('phone') ?? '021-22523334' }}
             </div>
-            
-            <div class="cv-cta-info">
-                <div class="cv-cta-info-item">
-                    <svg class="cv-cta-info-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.5 12.05a19.79 19.79 0 01-3.07-8.67A2 2 0 012.41 1.5h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.4a16 16 0 006.69 6.69l1.27-.76a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-                    021-22523334
-                </div>
-                <div class="cv-cta-info-item">
-                    <svg class="cv-cta-info-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    Senin–Sabtu 08.00–18.00 WIB
-                </div>
-                <div class="cv-cta-info-item">
-                    <svg class="cv-cta-info-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                    Kalideres, Jakarta Barat
-                </div>
+            <div class="cv-cta-info-item">
+                <svg class="cv-cta-info-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                {{ \App\Models\Setting::get('business_hours') ?? 'Senin–Sabtu 08.00–18.00 WIB' }}
+            </div>
+            <div class="cv-cta-info-item">
+                <svg class="cv-cta-info-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                Kantor Pusat Surabaya
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 @endsection
