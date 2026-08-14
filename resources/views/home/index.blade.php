@@ -1806,7 +1806,7 @@
 
     @include('components.keunggulan')
 
-
+    <style>
         /* ── APLIKASI ─────────────────────────────── */
         .cv-apps-premium {
             background: #F8FAFC;
