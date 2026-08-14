@@ -414,18 +414,17 @@ www.ptbiner.co.id
 
         {{-- Produk Column --}}
         <div>
-            <div class="cv-footer-v2-col-title" style="color: #0F172A; border-bottom: 2px solid #DC2626; display: inline-block; padding-bottom: 0.25rem;">Kategori Produk</div>
-            <ul class="cv-footer-v2-links" style="margin-top: 0.5rem; padding-left: 0.75rem; border-left: 2px solid rgba(220, 38, 38, 0.2);">
-                @if($svc->count())
-                    @foreach($svc as $item)
-                        <li><a href="{{ route('products.show', $item->slug) }}">{{ $item->name }}</a></li>
+            <div class="cv-footer-v2-col-title">Kategori Produk</div>
+            <ul class="cv-footer-v2-links">
+                @php
+                    $categories = \App\Models\ServiceCategory::take(5)->get();
+                @endphp
+                @if($categories->count())
+                    @foreach($categories as $cat)
+                        <li><a href="{{ route('products', ['category' => $cat->slug]) }}">{{ $cat->name }}</a></li>
                     @endforeach
                 @else
-                    <li><a href="{{ route('products') }}">CV-45 (18")</a></li>
-                    <li><a href="{{ route('products') }}">CV-60 (24")</a></li>
-                    <li><a href="{{ route('products') }}">CV-75 (30")</a></li>
-                    <li><a href="{{ route('products') }}">CV-90 (36")</a></li>
-                    <li><a href="{{ route('products') }}">CV-105 (42")</a></li>
+                    <li><a href="{{ route('products') }}">Semua Produk</a></li>
                 @endif
             </ul>
         </div>

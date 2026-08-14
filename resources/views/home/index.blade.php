@@ -2520,7 +2520,7 @@
 <section class="cv-coverage-premium" id="jangkauan" style="background-color: #0F172A; padding: 6rem 0 2rem 0; color: #fff; overflow: hidden; position: relative;">
     <div class="cv-coverage-inner" style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 2;">
         
-        <div style="display: flex; flex-wrap: wrap; gap: 4rem; justify-content: space-between; margin-bottom: 4rem;">
+        <div style="display: flex; flex-wrap: wrap; gap: 4rem; justify-content: space-between; margin-bottom: 2rem;">
             {{-- Left: Heading --}}
             <div style="flex: 1; min-width: 300px;" data-aos="fade-right">
                 <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 500; line-height: 1.2; letter-spacing: -0.03em; margin: 0;">
@@ -2538,7 +2538,7 @@
         </div>
 
         {{-- Stats Grid --}}
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 5rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1);">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
             {{-- Stat 1 --}}
             <div data-aos="fade-up" data-aos-delay="0">
                 <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; color: #e2e8f0;">
@@ -2585,6 +2585,23 @@
                 <img src="https://www.amcharts.com/lib/3/maps/svg/indonesiaLow.svg" alt="Peta Indonesia" style="width:100%; height:auto; filter: invert(1) brightness(0.8) sepia(1) hue-rotate(310deg) saturate(3) opacity(0.5);">
            </div>
         @endif
+        
+        {{-- Minimalist CTA --}}
+        <div style="text-align: center; margin-top: 3rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1);" data-aos="fade-up">
+            <h3 style="font-size: 1.5rem; font-weight: 500; margin-bottom: 1.5rem; color: #fff;">Butuh Cat Industri & Solusi Coating Terbaik?</h3>
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                @if($wa)
+                    <a href="javascript:void(0)" onclick="openOrderModal('Map CTA WA')" style="background: #DC2626; color: #ffffff; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; text-decoration: none;" data-track="Map CTA WA" onmouseover="this.style.background='#B91C1C'" onmouseout="this.style.background='#DC2626'">
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        Chat WhatsApp
+                    </a>
+                @endif
+                <a href="{{ route('contact') }}" style="background: transparent; color: #ffffff; border: 1px solid rgba(255,255,255,0.3); padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s; text-decoration: none;" onmouseover="this.style.background='rgba(255,255,255,0.05)'; this.style.borderColor='#ffffff'" onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(255,255,255,0.3)'">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+                    Form Konsultasi
+                </a>
+            </div>
+        </div>
         
     </div>
 </section>
@@ -2874,48 +2891,6 @@
             }
         }
     </style>
-
-    {{-- ════ CTA STRIP (PREMIUM) ════ --}}
-    <section class="cv-cta-premium">
-        <div class="cv-cta-bg-glow"></div>
-        <div class="cv-cta-inner-v2" data-aos="zoom-in">
-            <div style="font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#DC2626; margin-bottom:1rem; display:flex; align-items:center; justify-content:center; gap:0.5rem;">
-                <span style="width:4px; height:4px; background:#DC2626; border-radius:50%;"></span>
-                SIAP MULAI?
-            </div>
-            <h2 class="cv-cta-title-v2" style="margin-top:1rem;">Dapatkan Konsultasi Gratis<br>& Penawaran Terbaik</h2>
-            <p class="cv-cta-desc-v2">Tim kami siap membantu Anda memilih solusi dan produk pelapis yang paling tepat untuk kebutuhan industri maupun proyek berskala besar Anda.</p>
-            
-            <div class="cv-cta-buttons">
-                @if($wa)
-                    <a href="javascript:void(0)" onclick="openOrderModal('Bottom CTA WA')" class="cv-cta-btn-primary" data-track="Bottom CTA WA">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                        Chat WhatsApp
-                    </a>
-                @endif
-                <a href="{{ route('contact') }}" class="cv-cta-btn-outline">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
-                    Form Konsultasi
-                </a>
-            </div>
-            
-            <div class="cv-cta-info">
-                <div class="cv-cta-info-item">
-                    <svg class="cv-cta-info-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.5 12.05a19.79 19.79 0 01-3.07-8.67A2 2 0 012.41 1.5h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.4a16 16 0 006.69 6.69l1.27-.76a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-                    {{ \App\Models\Setting::get('phone') ?? '021-22523334' }}
-                </div>
-                <div class="cv-cta-info-item">
-                    <svg class="cv-cta-info-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                    {{ \App\Models\Setting::get('business_hours') ?? 'Senin–Sabtu 08.00–18.00 WIB' }}
-                </div>
-                <div class="cv-cta-info-item">
-                    <svg class="cv-cta-info-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                    Kantor Pusat Surabaya
-                </div>
-            </div>
-        </div>
-    </section>
-
 
     {{-- ════ ARTICLES (PREMIUM) ════ --}}
     @if($articles->count())
