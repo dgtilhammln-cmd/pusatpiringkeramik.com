@@ -12,8 +12,8 @@
     --c-border:  #E2E8F0;
     --c-text:    #0F172A;
     --c-muted:   #64748B;
-    --c-accent:  #0EA5E9;
-    --c-accent-hover: #0284C7;
+    --c-accent:  #DC2626;
+    --c-accent-hover: #B91C1C;
     --c-white:   #ffffff;
     --font:      'Montserrat', sans-serif;
     --ease:      cubic-bezier(0.22, 1, 0.36, 1);
@@ -253,7 +253,7 @@ a { text-decoration: none; color: inherit; }
 /* ════ CTA INLINE ════ */
 .ar-cta-box {
     margin-top:3rem;
-    background:linear-gradient(135deg,#0EA5E9,#0284C7);
+    background:linear-gradient(135deg,#DC2626,#B91C1C);
     padding:2.5rem 2rem; border-radius:20px;
     text-align:center; position:relative; overflow:hidden;
 }
@@ -488,7 +488,7 @@ a { text-decoration: none; color: inherit; }
         <div style="position:absolute; bottom:-30px; right:10%; width:100px; height:100px; background:radial-gradient(circle, rgba(14,165,233,0.05) 0%, transparent 70%); border-radius:50%; pointer-events:none;"></div>
         
         <div style="display:flex; align-items:center; gap:1rem;">
-            <div style="width:42px; height:42px; border-radius:12px; background:rgba(14,165,233,0.08); color:#0EA5E9; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <div style="width:42px; height:42px; border-radius:12px; background:rgba(14,165,233,0.08); color:#DC2626; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
                 <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
             </div>
             <h4 style="margin:0; font-size:1.15rem; color:#0F172A; font-weight:700; letter-spacing:-0.01em;">Butuh Solusi Sirkulasi Udara Pabrik?</h4>
@@ -496,7 +496,7 @@ a { text-decoration: none; color: inherit; }
         
         <p style="margin:0; color:#475569; font-size:0.95rem; line-height:1.65; max-width:95%;">Tingkatkan produktivitas kerja dengan CV. Bintang Energy Surabaya Cat Industri. Bergaransi resmi, tahan lama, dan 100% bebas biaya listrik.</p>
         
-        <a href="{{ url('/products') }}" style="align-self:flex-start; margin-top:0.25rem; display:inline-flex; align-items:center; gap:0.5rem; background:#0EA5E9; color:#fff; padding:0.75rem 1.75rem; border-radius:50px; font-weight:600; text-decoration:none; font-size:0.925rem; transition:all 0.3s; box-shadow:0 4px 12px rgba(14,165,233,0.2);" onmouseover="this.style.background='#0284C7'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(14,165,233,0.3)';" onmouseout="this.style.background='#0EA5E9'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(14,165,233,0.2)';">
+        <a href="{{ url('/products') }}" style="align-self:flex-start; margin-top:0.25rem; display:inline-flex; align-items:center; gap:0.5rem; background:#DC2626; color:#fff; padding:0.75rem 1.75rem; border-radius:50px; font-weight:600; text-decoration:none; font-size:0.925rem; transition:all 0.3s; box-shadow:0 4px 12px rgba(14,165,233,0.2);" onmouseover="this.style.background='#B91C1C'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(14,165,233,0.3)';" onmouseout="this.style.background='#DC2626'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(14,165,233,0.2)';">
             Lihat Spesifikasi Produk
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -614,19 +614,19 @@ a { text-decoration: none; color: inherit; }
 .cv-adv-inner { max-width:1200px; margin:0 auto; padding:0 1.5rem; }
 .cv-adv-header { display:flex; align-items:flex-end; justify-content:space-between; gap:2rem; margin-bottom:3.5rem; flex-wrap:wrap; }
 .cv-adv-section-label { font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#64748B; display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem; }
-.cv-adv-section-label::before { content:''; width:4px; height:4px; border-radius:50%; background:#0EA5E9; }
+.cv-adv-section-label::before { content:''; width:4px; height:4px; border-radius:50%; background:#DC2626; }
 .cv-adv-section-title { font-size:clamp(2rem,3.5vw,3rem); font-weight:500; color:#0F172A; line-height:1.15; letter-spacing:-0.025em; }
 .cv-adv-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; }
 .cv-adv-card-v2 { background:#F1F5F9; border-radius:22px; padding:2rem; position:relative; overflow:hidden; display:flex; flex-direction:column; min-height:240px; transition:transform 0.3s cubic-bezier(0.22,1,0.36,1),box-shadow 0.3s; }
 .cv-adv-card-v2:hover { transform:translateY(-6px); box-shadow:0 20px 50px rgba(14,165,233,0.1); }
-.cv-adv-card-v2.accent { background:#0EA5E9; }
+.cv-adv-card-v2.accent { background:#DC2626; }
 .cv-adv-card-v2.accent-dark { background:#0F172A; }
 .cv-adv-card-icon-wrap { width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; margin-bottom:1.5rem; flex-shrink:0; }
 .cv-adv-card-icon-wrap.blue-bg { background:#FEE2E2; color:#DC2626; }
 .cv-adv-card-icon-wrap.white-bg { background:rgba(255,255,255,0.2); color:#fff; }
-.cv-adv-card-icon-wrap.dark-bg { background:rgba(255,255,255,0.06); color:#38BDF8; }
+.cv-adv-card-icon-wrap.dark-bg { background:rgba(255,255,255,0.06); color:#EF4444; }
 .cv-adv-card-num { font-size:2.75rem; font-weight:400; line-height:1; letter-spacing:-0.04em; color:#0F172A; margin-bottom:0.5rem; }
-.cv-adv-card-num.white { color:#fff; } .cv-adv-card-num.blue { color:#38BDF8; }
+.cv-adv-card-num.white { color:#fff; } .cv-adv-card-num.blue { color:#EF4444; }
 .cv-adv-card-title { font-size:1rem; font-weight:600; color:#0F172A; margin-bottom:0.5rem; }
 .cv-adv-card-title.white { color:#fff; } .cv-adv-card-title.light { color:rgba(255,255,255,0.9); }
 .cv-adv-card-desc { font-size:0.8125rem; line-height:1.65; color:#64748B; margin-top:auto; }
@@ -638,9 +638,9 @@ a { text-decoration: none; color: inherit; }
 .cv-apps-header { max-width:600px; margin-bottom:3rem; }
 .cv-apps-grid-v2 { display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; }
 .cv-app-card-v2 { background:#ffffff; border:1.5px solid #E2E8F0; border-radius:20px; padding:1.75rem 1.5rem; display:flex; flex-direction:column; gap:1rem; transition:all 0.3s cubic-bezier(0.22,1,0.36,1); }
-.cv-app-card-v2:hover { border-color:#0EA5E9; transform:translateY(-6px); box-shadow:0 16px 40px rgba(14,165,233,0.1); }
-.cv-app-icon-circle { width:50px; height:50px; background:#F0F9FF; border-radius:14px; display:flex; align-items:center; justify-content:center; color:#0EA5E9; flex-shrink:0; transition:all 0.3s; }
-.cv-app-card-v2:hover .cv-app-icon-circle { background:#0EA5E9; color:#fff; }
+.cv-app-card-v2:hover { border-color:#DC2626; transform:translateY(-6px); box-shadow:0 16px 40px rgba(14,165,233,0.1); }
+.cv-app-icon-circle { width:50px; height:50px; background:#FEF2F2; border-radius:14px; display:flex; align-items:center; justify-content:center; color:#DC2626; flex-shrink:0; transition:all 0.3s; }
+.cv-app-card-v2:hover .cv-app-icon-circle { background:#DC2626; color:#fff; }
 .cv-app-card-title-v2 { font-size:0.9375rem; font-weight:700; color:#0F172A; margin:0; font-family:var(--font); }
 .cv-app-card-desc-v2 { font-size:0.8125rem; color:#64748B; line-height:1.65; margin:0; font-family:var(--font); }
 
@@ -655,7 +655,7 @@ a { text-decoration: none; color: inherit; }
 .cv-stat-label { font-size:0.65rem; font-weight:700; color:#64748B; text-transform:uppercase; letter-spacing:0.1em; font-family:var(--font); }
 .cv-stat-icon { color:#0F172A; opacity:0.8; }
 .cv-stat-val { font-size:3.5rem; font-weight:400; color:#0F172A; line-height:1; letter-spacing:-0.05em; font-family:var(--font); }
-.cv-stat-val span { color:#0EA5E9; font-size:2rem; vertical-align:super; font-weight:500; }
+.cv-stat-val span { color:#DC2626; font-size:2rem; vertical-align:super; font-weight:500; }
 
 /* Responsive */
 @media (max-width:1024px) {

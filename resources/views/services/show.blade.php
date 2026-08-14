@@ -17,8 +17,8 @@ html, body { overflow-x: hidden; max-width: 100%; }
     --border:  #E2E8F0;
     --text:    #0F172A;
     --muted:   #64748B;
-    --accent:  #0EA5E9;
-    --accent2: #0284C7;
+    --accent:  #DC2626;
+    --accent2: #B91C1C;
     --font:    'Montserrat', sans-serif;
     --ease:    cubic-bezier(0.22,1,0.36,1);
 }
@@ -285,10 +285,10 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
 }
 .sh-adv-card-icon.blue-bg { background:#FEE2E2; color:#DC2626; }
 .sh-adv-card-icon.white-bg { background:rgba(255,255,255,.2); color:#fff; }
-.sh-adv-card-icon.dark-bg { background:rgba(255,255,255,.08); color:#38BDF8; }
+.sh-adv-card-icon.dark-bg { background:rgba(255,255,255,.08); color:#EF4444; }
 .sh-adv-num { font-size:2.5rem; font-weight:300; line-height:1; letter-spacing:-.04em; color:var(--text); }
 .sh-adv-num.white { color:#fff; }
-.sh-adv-num.blue { color:#38BDF8; }
+.sh-adv-num.blue { color:#EF4444; }
 .sh-adv-title { font-size:.9375rem; font-weight:600; color:var(--text); }
 .sh-adv-title.white { color:#fff; }
 .sh-adv-title.light { color:rgba(255,255,255,.9); }
@@ -333,7 +333,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
 }
 .sh-app-card:hover { border-color:var(--accent); transform:translateY(-6px); box-shadow:0 16px 40px rgba(14,165,233,.08); }
 .sh-app-icon {
-    width:50px; height:50px; background:#F0F9FF;
+    width:50px; height:50px; background:#FEF2F2;
     border-radius:14px; display:flex; align-items:center; justify-content:center;
     color:var(--accent); transition:all .3s; flex-shrink:0;
 }

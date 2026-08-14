@@ -12,8 +12,8 @@
     --c-border: #E2E8F0;
     --c-text:   #0F172A;
     --c-muted:  #64748B;
-    --c-accent: #0EA5E9;
-    --c-accent-hover: #0284C7;
+    --c-accent: #DC2626;
+    --c-accent-hover: #B91C1C;
     --font:     'Montserrat', sans-serif;
 }
 body { background: var(--c-bg); font-family: var(--font); }
@@ -67,7 +67,7 @@ body { background: var(--c-bg); font-family: var(--font); }
     font-weight: 800;
     letter-spacing: -0.05em;
     line-height: 1;
-    background: linear-gradient(135deg, #0EA5E9, #0284C7);
+    background: linear-gradient(135deg, #DC2626, #B91C1C);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -132,9 +132,9 @@ body { background: var(--c-bg); font-family: var(--font); }
         </nav>
 
         {{-- Icon --}}
-        <svg class="err-illustration" width="120" height="120" fill="none" stroke="#0EA5E9" stroke-width="1" viewBox="0 0 24 24">
+        <svg class="err-illustration" width="120" height="120" fill="none" stroke="#DC2626" stroke-width="1" viewBox="0 0 24 24">
             <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            <line x1="11" y1="8" x2="11" y2="12"/><circle cx="11" cy="15" r=".5" fill="#0EA5E9"/>
+            <line x1="11" y1="8" x2="11" y2="12"/><circle cx="11" cy="15" r=".5" fill="#DC2626"/>
         </svg>
 
         <div class="err-code">404</div>

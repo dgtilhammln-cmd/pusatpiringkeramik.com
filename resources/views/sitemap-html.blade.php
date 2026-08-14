@@ -16,8 +16,8 @@
         --border:   #E2E8F0;
         --text:     #0F172A;
         --muted:    #64748B;
-        --accent:   #0EA5E9;
-        --accent2:  #0284C7;
+        --accent:   #DC2626;
+        --accent2:  #B91C1C;
         --dark:     #0F172A;
         --yellow:   #F5A623;
         --font:     'Montserrat', sans-serif;
@@ -276,7 +276,7 @@
         font-size: .75rem;
         background: rgba(14,165,233,.15);
         border: 1px solid rgba(14,165,233,.3);
-        color: #38BDF8;
+        color: #EF4444;
         padding: .5rem 1rem;
         border-radius: 8px;
         word-break: break-all;

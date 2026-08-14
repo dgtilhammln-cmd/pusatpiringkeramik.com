@@ -309,14 +309,14 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #0EA5E9, #38BDF8, #7DD3FC);
+            background: linear-gradient(90deg, #DC2626, #EF4444, #FCA5A5);
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.4s ease;
         }
 
         .cv-product-card:hover {
-            border-color: #38BDF8;
+            border-color: #EF4444;
             transform: translateY(-8px);
             box-shadow: 0 32px 80px rgba(56, 189, 248, 0.15), 0 0 0 1px rgba(56, 189, 248, 0.1);
         }
@@ -330,7 +330,7 @@
             font-weight: 700;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: #0EA5E9;
+            color: #DC2626;
             margin-bottom: 0.375rem;
         }
 
@@ -376,7 +376,7 @@
         }
 
         .cv-spec-val.highlight {
-            color: #0284C7;
+            color: #B91C1C;
         }
 
         .cv-product-cta {
@@ -386,7 +386,7 @@
             gap: 0.375rem;
             font-size: 0.8125rem;
             font-weight: 600;
-            color: #0EA5E9;
+            color: #DC2626;
             transition: gap 0.2s;
         }
 
@@ -546,7 +546,7 @@
 
         .cv-testi-quote {
             font-size: 2.5rem;
-            color: #38BDF8;
+            color: #EF4444;
             opacity: 0.3;
             line-height: 1;
             margin-bottom: 0.5rem;
@@ -572,7 +572,7 @@
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #0EA5E9, #38BDF8);
+            background: linear-gradient(135deg, #DC2626, #EF4444);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -637,13 +637,13 @@
             width: 5px;
             height: 5px;
             border-radius: 50%;
-            background: #38BDF8;
+            background: #EF4444;
             flex-shrink: 0;
         }
 
         /* ── CTA SECTION ──────────────────── */
         .cv-cta {
-            background: linear-gradient(135deg, #38BDF8 0%, #0EA5E9 50%, #0284C7 100%);
+            background: linear-gradient(135deg, #EF4444 0%, #DC2626 50%, #B91C1C 100%);
             position: relative;
             overflow: hidden;
         }
@@ -723,7 +723,7 @@
             font-weight: 700;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: #0EA5E9;
+            color: #DC2626;
             margin-bottom: 0.5rem;
         }
 
@@ -787,8 +787,8 @@
         .cv-clients-count {
             font-size: 0.7rem;
             font-weight: 600;
-            color: #0EA5E9;
-            background: #F0F9FF;
+            color: #DC2626;
+            background: #FEF2F2;
             padding: 0.35rem 1rem;
             border-radius: 20px;
             border: 1px solid rgba(14, 165, 233, 0.15);
@@ -867,7 +867,7 @@
         }
 
         .cv-client-logo-card:hover {
-            border-color: #38BDF8;
+            border-color: #EF4444;
             background: #ffffff;
             transform: translateY(-4px) scale(1.02);
             box-shadow: 0 12px 30px rgba(14, 165, 233, 0.12);
@@ -923,12 +923,12 @@
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: #38BDF8;
+            background: #EF4444;
             flex-shrink: 0;
         }
 
         .cv-client-chip-v2:hover {
-            border-color: #38BDF8;
+            border-color: #EF4444;
             background: #ffffff;
             transform: translateY(-4px) scale(1.02);
             box-shadow: 0 12px 30px rgba(14, 165, 233, 0.12);
@@ -1367,7 +1367,7 @@
         }
 
         .ab-card-accent {
-            background: #0ea5e9;
+            background: #DC2626;
             /* matching hero blue */
         }
 
@@ -1868,7 +1868,7 @@
         }
 
         .cv-app-card-v2:hover {
-            border-color: #0EA5E9;
+            border-color: #DC2626;
             transform: translateY(-6px);
             box-shadow: 0 16px 40px rgba(14, 165, 233, 0.1);
         }
@@ -1876,18 +1876,18 @@
         .cv-app-icon-circle {
             width: 50px;
             height: 50px;
-            background: #F0F9FF;
+            background: #FEF2F2;
             border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #0EA5E9;
+            color: #DC2626;
             flex-shrink: 0;
             transition: all 0.3s;
         }
 
         .cv-app-card-v2:hover .cv-app-icon-circle {
-            background: #0EA5E9;
+            background: #DC2626;
             color: #fff;
         }
 
@@ -2241,7 +2241,7 @@
         }
 
         .cv-testi-card-v2:hover {
-            border-color: #0EA5E9;
+            border-color: #DC2626;
             transform: translateY(-6px);
             box-shadow: 0 16px 40px rgba(14, 165, 233, 0.1);
         }
@@ -2257,7 +2257,7 @@
         }
 
         .cv-testi-card-v2:hover .cv-testi-quote-icon {
-            color: #E0F2FE;
+            color: #FEE2E2;
         }
 
         .cv-testi-stars-v2 {
@@ -2485,7 +2485,7 @@
         .cv-stat-val {
             font-size: 4rem;
             font-weight: 400;
-            color: #0EA5E9;
+            color: #DC2626;
             line-height: 1;
             letter-spacing: -0.05em;
             display: flex;
@@ -2494,7 +2494,7 @@
         }
 
         .cv-stat-val span {
-            color: #0EA5E9;
+            color: #DC2626;
             font-size: 2rem;
             font-weight: 600;
             line-height: 1;
@@ -2556,8 +2556,8 @@
         }
 
         .cv-city-item.active::before {
-            background: #0EA5E9;
-            border-color: #0EA5E9;
+            background: #DC2626;
+            border-color: #DC2626;
         }
 
         /* Responsive */
@@ -2923,7 +2923,7 @@
         }
 
         .cv-article-card-v2:hover {
-            border-color: #0EA5E9;
+            border-color: #DC2626;
             transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(14, 165, 233, 0.08);
         }
@@ -3005,7 +3005,7 @@
         }
 
         .cv-article-read-v2 {
-            color: #0EA5E9;
+            color: #DC2626;
             display: flex;
             align-items: center;
             gap: 0.4rem;
@@ -3131,7 +3131,7 @@
                     <div>
                         <div
                             style="font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#64748b; margin-bottom:1.5rem; display:flex; align-items:center; gap:0.5rem;">
-                            <span style="width:4px; height:4px; background:#0ea5e9; border-radius:50%;"></span>
+                            <span style="width:4px; height:4px; background:#DC2626; border-radius:50%;"></span>
                             ARTIKEL &amp; TIPS
                         </div>
                         <h2

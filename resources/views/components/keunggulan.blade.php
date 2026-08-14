@@ -36,7 +36,7 @@
         width: 4px;
         height: 4px;
         border-radius: 50%;
-        background: #0EA5E9;
+        background: #DC2626;
     }
 
     .cv-adv-section-title {
@@ -73,7 +73,7 @@
     }
 
     .cv-adv-card-v2.accent {
-        background: #0EA5E9;
+        background: #DC2626;
     }
 
     .cv-adv-card-v2.accent-dark {
@@ -103,7 +103,7 @@
 
     .cv-adv-card-icon-wrap.dark-bg {
         background: rgba(255, 255, 255, 0.06);
-        color: #38BDF8;
+        color: #EF4444;
     }
 
     .cv-adv-card-num {
@@ -120,7 +120,7 @@
     }
 
     .cv-adv-card-num.blue {
-        color: #38BDF8;
+        color: #EF4444;
     }
 
     .cv-adv-card-title {

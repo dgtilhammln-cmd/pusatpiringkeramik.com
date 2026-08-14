@@ -12,8 +12,8 @@
         --c-border:  #E2E8F0;
         --c-text:    #0F172A;
         --c-muted:   #64748B;
-        --c-accent:  #0EA5E9;
-        --c-accent-hover: #0284C7;
+        --c-accent:  #DC2626;
+        --c-accent-hover: #B91C1C;
         --c-white:   #ffffff;
         --radius-sm: 8px;
         --radius-md: 14px;

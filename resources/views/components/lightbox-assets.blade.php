@@ -49,7 +49,7 @@
     justify-content: center !important;
 }
 .gnext:hover, .gprev:hover, .gclose:hover {
-    background: #0EA5E9 !important;
+    background: #DC2626 !important;
     transform: scale(1.1);
 }
 .gnext svg, .gprev svg, .gclose svg {

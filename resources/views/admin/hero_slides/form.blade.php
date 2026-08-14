@@ -16,7 +16,7 @@
 
         {{-- Main Info --}}
         <div class="admin-card">
-            <h3 style="font-size:.7rem;font-weight:700;color:#38BDF8;text-transform:uppercase;letter-spacing:.1em;margin:0 0 1.25rem;">Konten Slide</h3>
+            <h3 style="font-size:.7rem;font-weight:700;color:#EF4444;text-transform:uppercase;letter-spacing:.1em;margin:0 0 1.25rem;">Konten Slide</h3>
             <div style="display:flex;flex-direction:column;gap:1rem;">
                 <div>
                     <label class="form-label">Sub-Judul / Label Atas</label>
@@ -79,7 +79,7 @@
 
         {{-- Image --}}
         <div class="admin-card">
-            <h3 style="font-size:.7rem;font-weight:700;color:#38BDF8;text-transform:uppercase;letter-spacing:.1em;margin:0 0 1.25rem;">Gambar & Tombol Play</h3>
+            <h3 style="font-size:.7rem;font-weight:700;color:#EF4444;text-transform:uppercase;letter-spacing:.1em;margin:0 0 1.25rem;">Gambar & Tombol Play</h3>
             @if(isset($slide) && $slide->image)
                 <img src="{{ asset('storage/'.$slide->image) }}" style="height:100px;border-radius:8px;object-fit:cover;margin-bottom:.75rem;display:block;">
             @endif
@@ -95,7 +95,7 @@
 
         {{-- Meta --}}
         <div class="admin-card">
-            <h3 style="font-size:.7rem;font-weight:700;color:#38BDF8;text-transform:uppercase;letter-spacing:.1em;margin:0 0 1.25rem;">Pengaturan</h3>
+            <h3 style="font-size:.7rem;font-weight:700;color:#EF4444;text-transform:uppercase;letter-spacing:.1em;margin:0 0 1.25rem;">Pengaturan</h3>
             <div style="display:flex;gap:1.5rem;align-items:center;">
                 <div>
                     <label class="form-label">Urutan Tampil</label>
@@ -103,7 +103,7 @@
                 </div>
                 <div style="display:flex;align-items:flex-end;gap:.5rem;padding-bottom:.5rem;">
                     <input type="hidden" name="is_active" value="0">
-                    <input type="checkbox" name="is_active" id="is_active" value="1" {{ old('is_active', $slide->is_active ?? true) ? 'checked' : '' }} style="accent-color:#38BDF8;width:16px;height:16px;">
+                    <input type="checkbox" name="is_active" id="is_active" value="1" {{ old('is_active', $slide->is_active ?? true) ? 'checked' : '' }} style="accent-color:#EF4444;width:16px;height:16px;">
                     <label for="is_active" style="font-size:.875rem;color:#D4D4D8;">Tampilkan di homepage</label>
                 </div>
             </div>

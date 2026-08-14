@@ -57,7 +57,7 @@
             @endif
           </td>
           <td style="padding:1rem 1.5rem;">
-            <code style="font-size:.8rem;background:#F1F5F9;color:#0EA5E9;padding:.25rem .5rem;border-radius:6px;">{{ $cat->slug }}</code>
+            <code style="font-size:.8rem;background:#F1F5F9;color:#DC2626;padding:.25rem .5rem;border-radius:6px;">{{ $cat->slug }}</code>
           </td>
           <td style="padding:1rem 1.5rem;text-align:center;">
             <span style="font-size:1rem;font-weight:700;color:#1E293B;">{{ $cat->services_count }}</span>

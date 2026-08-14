@@ -47,7 +47,7 @@
             <div style="font-size:.75rem;color:rgba(255,255,255,.4);line-height:1.4;">{{ Str::limit($slide->description, 80) }}</div>
             <div style="display:flex;gap:.75rem;margin-top:.5rem;align-items:center;">
                 @if($slide->button_text)
-                    <span style="font-size:.7rem;background:rgba(56,189,248,.1);color:#38BDF8;padding:.2rem .6rem;border-radius:4px;">{{ $slide->button_text }}</span>
+                    <span style="font-size:.7rem;background:rgba(56,189,248,.1);color:#EF4444;padding:.2rem .6rem;border-radius:4px;">{{ $slide->button_text }}</span>
                 @endif
                 @if($slide->button_url)
                     <span style="font-size:.7rem;color:rgba(255,255,255,.3);">→ {{ Str::limit($slide->button_url, 40) }}</span>
@@ -67,7 +67,7 @@
         </div>
         {{-- Actions --}}
         <div style="display:flex;gap:.5rem;flex-shrink:0;">
-            <a href="{{ route('admin.hero_slides.edit', $slide) }}" style="background:rgba(56,189,248,.1);color:#38BDF8;padding:.5rem .875rem;border-radius:6px;font-size:.8rem;text-decoration:none;transition:all .2s;">Edit</a>
+            <a href="{{ route('admin.hero_slides.edit', $slide) }}" style="background:rgba(56,189,248,.1);color:#EF4444;padding:.5rem .875rem;border-radius:6px;font-size:.8rem;text-decoration:none;transition:all .2s;">Edit</a>
             <form method="POST" action="{{ route('admin.hero_slides.destroy', $slide) }}" onsubmit="return confirm('Hapus slide ini?')">
                 @csrf @method('DELETE')
                 <button type="submit" style="background:rgba(239,68,68,.1);color:#f87171;padding:.5rem .875rem;border-radius:6px;font-size:.8rem;border:none;cursor:pointer;">Hapus</button>

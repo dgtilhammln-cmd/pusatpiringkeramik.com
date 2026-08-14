@@ -138,7 +138,7 @@
         .cv-wind-line {
             position: absolute;
             height: 2px;
-            background: linear-gradient(90deg, transparent, #0EA5E9, transparent);
+            background: linear-gradient(90deg, transparent, #DC2626, transparent);
             border-radius: 50%;
             opacity: 0;
             animation: wind-blow 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;

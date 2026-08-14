@@ -118,7 +118,7 @@ www.ptbiner.co.id
     }
 
     .cv-footer-v2-badge:hover svg {
-        color: #0EA5E9;
+        color: #DC2626;
     }
 
     /* Social */
@@ -142,8 +142,8 @@ www.ptbiner.co.id
     }
 
     .cv-footer-v2-social-btn:hover {
-        background: #0EA5E9;
-        border-color: #0EA5E9;
+        background: #DC2626;
+        border-color: #DC2626;
         color: #ffffff;
         transform: translateY(-3px);
         box-shadow: 0 8px 20px rgba(14, 165, 233, 0.25);
@@ -209,8 +209,8 @@ www.ptbiner.co.id
     }
 
     .cv-footer-v2-contact-item:hover .cv-footer-v2-contact-icon {
-        background: #0EA5E9;
-        border-color: #0EA5E9;
+        background: #DC2626;
+        border-color: #DC2626;
         color: #ffffff;
         box-shadow: 0 4px 12px rgba(14, 165, 233, 0.25);
         transform: scale(1.05);
@@ -357,7 +357,7 @@ www.ptbiner.co.id
                     @if($logo)
                         <img src="{{ asset('storage/' . $logo) }}" alt="Logo">
                     @else
-                        <span style="font-weight:900;color:#0EA5E9;font-size:1rem;">CV. Bintang Energy Surabaya</span>
+                        <span style="font-weight:900;color:#DC2626;font-size:1rem;">CV. Bintang Energy Surabaya</span>
                     @endif
                 </div>
                 <div>

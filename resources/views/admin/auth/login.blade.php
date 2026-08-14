@@ -14,7 +14,7 @@
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #F0F9FF; /* Sangat soft blue */
+            background-color: #FEF2F2; /* Sangat soft blue */
             color: #0F172A;
             display: flex;
             align-items: center;
@@ -88,7 +88,7 @@
 
         .logo-placeholder {
             width: 50px; height: 50px;
-            background: linear-gradient(135deg, #0EA5E9, #38BDF8);
+            background: linear-gradient(135deg, #DC2626, #EF4444);
             display: flex; align-items: center; justify-content: center;
             font-weight: 800; color: #fff; font-size: 1.125rem;
             border-radius: 12px;
@@ -124,7 +124,7 @@
             margin-top: auto; /* Push to bottom */
         }
         .back-link:hover {
-            color: #0EA5E9;
+            color: #DC2626;
         }
 
         /* Right side form styles */
@@ -176,7 +176,7 @@
             font-weight: 400;
         }
         .input-modern:focus {
-            border-color: #0EA5E9;
+            border-color: #DC2626;
             box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
         }
 
@@ -195,10 +195,10 @@
             justify-content: center;
             transition: color 0.2s;
         }
-        .toggle-password:hover { color: #0EA5E9; }
+        .toggle-password:hover { color: #DC2626; }
 
         .btn-primary {
-            background: #0EA5E9; /* solid blue */
+            background: #DC2626; /* solid blue */
             color: #fff;
             font-weight: 700;
             font-family: 'Montserrat', sans-serif;
@@ -217,7 +217,7 @@
             justify-content: center;
         }
         .btn-primary:hover {
-            background: #0284C7;
+            background: #B91C1C;
             transform: translateY(-2px);
             box-shadow: 0 12px 20px rgba(14, 165, 233, 0.3);
         }
@@ -330,7 +330,7 @@
             </form>
             
             <div style="text-align: center; margin-top: 1.5rem;">
-                <p style="font-size: 0.75rem; color: #94A3B8; margin: 0;">developed by <a href="https://hvmdigital.id" target="_blank" rel="noopener" style="color: #0EA5E9; text-decoration: none; font-weight: 600;">hvmdigital.id</a></p>
+                <p style="font-size: 0.75rem; color: #94A3B8; margin: 0;">developed by <a href="https://hvmdigital.id" target="_blank" rel="noopener" style="color: #DC2626; text-decoration: none; font-weight: 600;">hvmdigital.id</a></p>
             </div>
         </div>
     </div>

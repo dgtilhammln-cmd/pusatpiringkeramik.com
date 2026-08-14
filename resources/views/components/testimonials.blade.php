@@ -47,7 +47,7 @@
         transition: color 0.3s;
     }
     .cv-testi-card-v2:hover .cv-testi-quote-icon {
-        color: #E0F2FE;
+        color: #FEE2E2;
     }
     .cv-testi-stars-v2 {
         color: #DC2626;

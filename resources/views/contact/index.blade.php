@@ -15,8 +15,8 @@
     --c-border:  #E2E8F0;
     --c-text:    #0F172A;
     --c-muted:   #64748B;
-    --c-accent:  #0EA5E9;
-    --c-accent-hover: #0284C7;
+    --c-accent:  #DC2626;
+    --c-accent-hover: #B91C1C;
     --font:      'Montserrat', sans-serif;
     --ease:      cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -164,7 +164,7 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
     display:flex; align-items:center; justify-content:center;
     flex-shrink:0;
 }
-.ct-info-icon.blue { background:#E0F2FE; color:var(--c-accent); }
+.ct-info-icon.blue { background:#FEE2E2; color:var(--c-accent); }
 .ct-info-icon.green { background:rgba(37,211,102,0.1); color:#25D366; }
 .ct-info-icon.purple { background:rgba(139,92,246,0.1); color:#7C3AED; }
 .ct-info-icon.orange { background:rgba(249,115,22,0.1); color:#EA580C; }

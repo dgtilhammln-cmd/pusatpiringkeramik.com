@@ -214,7 +214,7 @@
                 @if($logo)
                     <img src="{{ asset('storage/'.$logo) }}" alt="{{ $companyName }}">
                 @else
-                    <span style="font-weight:900;color:#0EA5E9;font-size:1rem;">{{ $companyName }}</span>
+                    <span style="font-weight:900;color:#DC2626;font-size:1rem;">{{ $companyName }}</span>
                 @endif
             </div>
             <div>
@@ -268,7 +268,7 @@
         @if($logo)
             <img src="{{ asset('storage/'.$logo) }}" alt="{{ $companyName }}" style="height:38px;object-fit:contain;">
         @else
-            <span style="font-weight:900;color:#0EA5E9;font-size:1.4rem;">{{ $companyName }}</span>
+            <span style="font-weight:900;color:#DC2626;font-size:1.4rem;">{{ $companyName }}</span>
         @endif
     </div>
     <nav style="display:flex;flex-direction:column;gap:1.25rem;">
