@@ -675,60 +675,9 @@ a { text-decoration: none; color: inherit; }
 </style>
 
 {{-- KEUNGGULAN --}}
-<section class="cv-adv-premium" id="keunggulan">
-    <div class="cv-adv-inner">
-        <div class="cv-adv-header">
-            <div>
-                <div class="cv-adv-section-label">KEUNGGULAN</div>
-                <h2 class="cv-adv-section-title">Mengapa Pilih<br>CV. Bintang Energy Surabaya?</h2>
-            </div>
-            <p style="max-width:320px;font-size:0.875rem;color:#64748B;line-height:1.65;text-align:right;font-family:var(--font);">Didesain untuk iklim tropis Indonesia, dibuktikan oleh ratusan proyek dari Sabang sampai Merauke.</p>
-        </div>
-        <div class="cv-adv-cards">
-            <div class="cv-adv-card-v2 accent" data-aos="fade-up">
-                <div class="cv-adv-card-icon-wrap white-bg"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-                <div class="cv-adv-card-num white">15+</div>
-                <div class="cv-adv-card-title white">Garansi 15 Tahun</div>
-                <div class="cv-adv-card-desc white">Garansi tidak berkarat & tidak rusak. Garansi instalasi 5 tahun dan sparepart 5 tahun.</div>
-            </div>
-            <div class="cv-adv-card-v2" data-aos="fade-up" data-aos-delay="80">
-                <div class="cv-adv-card-icon-wrap blue-bg"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
-                <div class="cv-adv-card-num">0W</div>
-                <div class="cv-adv-card-title">Tanpa Listrik</div>
-                <div class="cv-adv-card-desc">Bertenaga sepenuhnya dari angin. Tidak ada tagihan listrik, nol risiko korsleting.</div>
-            </div>
-            <div class="cv-adv-card-v2" data-aos="fade-up" data-aos-delay="160">
-                <div class="cv-adv-card-icon-wrap blue-bg"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-                <div class="cv-adv-card-num">24/7</div>
-                <div class="cv-adv-card-title">Non-Stop 365 Hari</div>
-                <div class="cv-adv-card-desc">Bebas perawatan dan beroperasi 24 jam sehari, 365 hari setahun tanpa henti.</div>
-            </div>
-            <div class="cv-adv-card-v2 accent-dark" data-aos="fade-up" data-aos-delay="240">
-                <div class="cv-adv-card-icon-wrap dark-bg"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-                <div class="cv-adv-card-num blue">257</div>
-                <div class="cv-adv-card-title light">Kapasitas Hisap Superior</div>
-                <div class="cv-adv-card-desc white">Hingga 257,87 m³/menit — jauh lebih tinggi dari ventilator tipe stasioner manapun.</div>
-            </div>
-            <div class="cv-adv-card-v2" data-aos="fade-up">
-                <div class="cv-adv-card-icon-wrap blue-bg"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
-                <div class="cv-adv-card-title" style="margin-top:auto;">100% Anti Tampias Hujan</div>
-                <div class="cv-adv-card-desc">Formula tahan cuaca dan anti korosi, dirancang khusus untuk kondisi ekstrem industri.</div>
-            </div>
-            <div class="cv-adv-card-v2" data-aos="fade-up" data-aos-delay="80">
-                <div class="cv-adv-card-icon-wrap blue-bg"><svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
-                <div class="cv-adv-card-title" style="margin-top:auto;">Cocok Iklim Tropis</div>
-                <div class="cv-adv-card-desc">Dioptimalkan untuk kondisi panas dan lembab Indonesia, efektif bahkan di angin minimum.</div>
-            </div>
-            <div class="cv-adv-card-v2" data-aos="fade-up" data-aos-delay="160" style="grid-column:span 2; flex-direction:row; gap:2rem; align-items:center;">
-                <div class="cv-adv-card-icon-wrap blue-bg" style="flex-shrink:0; width:60px; height:60px;"><svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-                <div>
-                    <div class="cv-adv-card-title" style="font-size:1.125rem; margin-bottom:0.5rem;">Desain Konstruksi USA</div>
-                    <div class="cv-adv-card-desc">Mengikuti standar desain USA dengan powder coating pada rangka bola dan topi bola untuk ketahanan dan keawetan maksimal di iklim tropis yang ekstrem.</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<div style="margin-top: 3rem;">
+    @include('components.keunggulan')
+</div>
 
 {{-- APLIKASI --}}
 <section class="cv-apps-premium" id="aplikasi">

@@ -657,79 +657,9 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
 
 
 {{-- ═══ KEUNGGULAN ═══ --}}
-<section class="sh-adv-section" id="keunggulan">
-    <div class="sh-adv-inner">
-        <div class="sh-adv-header">
-            <div>
-                <div class="cv-section-label">KEUNGGULAN</div>
-                <h2 class="cv-section-title" style="margin-top:.75rem;">Mengapa Pilih<br>CV. Bintang Energy Surabaya?</h2>
-            </div>
-            <p class="sh-adv-he        <div class="sh-adv-cards">
-            {{-- Card 1: Distributor Resmi --}}
-            <div class="sh-adv-card accent">
-                <div class="sh-adv-card-icon white-bg">
-                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
-                <div class="sh-adv-num white">#1</div>
-                <div class="sh-adv-title white">Distributor Resmi</div>
-                <div class="sh-adv-desc white">Produk 100% original bergaransi, didatangkan langsung dari pabrik resmi internasional. Bukan KW, bukan repacking.</div>
-            </div>
-            {{-- Card 2: Anti Karat --}}
-            <div class="sh-adv-card">
-                <div class="sh-adv-card-icon blue-bg">
-                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-                </div>
-                <div class="sh-adv-num">15+</div>
-                <div class="sh-adv-title">Garansi Produk</div>
-                <div class="sh-adv-desc">Garansi ketahanan cat hingga 15 tahun untuk kondisi ekstrem. Tidak mudah mengelupas, pudar, atau korosi.</div>
-            </div>
-            {{-- Card 3: Pengiriman --}}
-            <div class="sh-adv-card">
-                <div class="sh-adv-card-icon blue-bg">
-                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-                </div>
-                <div class="sh-adv-num">50+</div>
-                <div class="sh-adv-title">Kota Pengiriman</div>
-                <div class="sh-adv-desc">Melayani pengiriman ke seluruh Indonesia dengan ekspedisi terpercaya, aman dan tepat waktu.</div>
-            </div>
-            {{-- Card 4: B2B --}}
-            <div class="sh-adv-card accent-dark">
-                <div class="sh-adv-card-icon dark-bg">
-                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                </div>
-                <div class="sh-adv-num blue">B2B</div>
-                <div class="sh-adv-title light">Siap Skala Proyek</div>
-                <div class="sh-adv-desc white">Stok besar, siap memenuhi kebutuhan proyek BUMN, kontraktor, dan galangan kapal skala besar.</div>
-            </div>
-            {{-- Card 5: Anti Korosi --}}
-            <div class="sh-adv-card">
-                <div class="sh-adv-card-icon blue-bg">
-                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 12h-4l-3-9L9 3l-3 9H2v6h20v-6z"/></svg>
-                </div>
-                <div class="sh-adv-title" style="margin-top:auto;">Tahan Air Laut</div>
-                <div class="sh-adv-desc">Formulasi khusus anti-fouling untuk lambung kapal dan struktur offshore yang terpapar air laut terus-menerus.</div>
-            </div>
-            {{-- Card 6: Konsultasi --}}
-            <div class="sh-adv-card">
-                <div class="sh-adv-card-icon blue-bg">
-                    <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                </div>
-                <div class="sh-adv-title" style="margin-top:auto;">Konsultasi Teknis</div>
-                <div class="sh-adv-desc">Tim ahli kami membantu menentukan sistem coating yang paling tepat untuk setiap jenis substrate dan kondisi lingkungan.</div>
-            </div>
-            {{-- Card 7: Pengalaman (span 2) --}}
-            <div class="sh-adv-card sh-adv-card-span-2" style="grid-column:span 2; flex-direction:row; gap:2rem; align-items:center;">
-                <div class="sh-adv-card-icon blue-bg" style="flex-shrink:0; width:56px; height:56px;">
-                    <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                </div>
-                <div>
-                    <div class="sh-adv-title" style="font-size:1.125rem; margin-bottom:.5rem;">Berpengalaman Sejak 2007</div>
-                    <div class="sh-adv-desc">Lebih dari 18 tahun menjadi mitra andalan perusahaan BUMN, galangan kapal, dan kontraktor industri dalam menyuplai cat pelindung berstandar internasional.</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<div style="margin-top: 4rem;">
+    @include('components.keunggulan')
+</div>
 
 
 {{-- ═══ APLIKASI ═══ --}}
