@@ -40,10 +40,11 @@ $favicon = \App\Models\Setting::get('favicon') ? asset('storage/'.\App\Models\Se
 body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text1); min-height: 100vh; display: flex; }
 
 /* ═══════ SIDEBAR LIGHT & INTERACTIVE ═══════ */
+/* ═══════ SIDEBAR LIGHT GRAY & ELEGAN ═══════ */
 #sidebar {
   width: 76px;
   height: 100vh;
-  background: #FFFFFF;
+  background: #F1F5F9;
   border-right: 1px solid #E2E8F0;
   position: fixed;
   top: 0;
@@ -52,17 +53,17 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   display: flex;
   flex-direction: column;
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s ease;
-  box-shadow: 4px 0 20px rgba(0,0,0,0.03);
+  box-shadow: 2px 0 16px rgba(0,0,0,0.03);
   overflow-x: hidden;
   overflow-y: auto;
 }
 #sidebar:hover {
   width: 250px;
-  box-shadow: 8px 0 30px rgba(0,0,0,0.08);
+  box-shadow: 6px 0 24px rgba(0,0,0,0.08);
 }
 #sidebar::-webkit-scrollbar { width: 4px; }
 #sidebar::-webkit-scrollbar-track { background: transparent; }
-#sidebar::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 10px; }
+#sidebar::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
 
 /* Logo area */
 .sb-logo {
@@ -75,14 +76,14 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 .sb-logo-badge {
   width: 44px;
   height: 44px;
-  background: #F8FAFC;
+  background: #FFFFFF;
   border: 1px solid #E2E8F0;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border-radius: 14px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   padding: 6px;
 }
 .sb-logo-info {
@@ -101,18 +102,19 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  height: 42px;
-  background: #F8FAFC;
+  height: 44px;
+  background: #FFFFFF;
   border: 1px solid #E2E8F0;
-  border-radius: 12px;
+  border-radius: 100px;
   padding: 0 0.875rem;
   color: #64748B;
   transition: all 0.2s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
 }
 .sb-search-box:focus-within {
   background: #FFF;
-  border-color: #1B6FE8;
-  box-shadow: 0 0 0 3px rgba(27,111,232,0.1);
+  border-color: #0F172A;
+  box-shadow: 0 0 0 3px rgba(15,23,42,0.1);
 }
 .sb-search-box input {
   border: none;
@@ -128,7 +130,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 #sidebar:hover .sb-search-box input { opacity: 1; }
 
 /* Nav */
-.sb-nav { flex: 1; padding: 0.25rem 0; overflow-y: auto; overflow-x: hidden; }
+.sb-nav { flex: 1; padding: 0.25rem 0 2rem; overflow-y: auto; overflow-x: hidden; }
 .sb-sec {
   font-size: 0.6rem;
   font-weight: 700;
@@ -142,36 +144,48 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 }
 #sidebar:hover .sb-sec { opacity: 1; }
 
-/* Nav link */
+/* Nav link - Bulat & Ngambang Minimalis */
 .sb-link {
   display: flex;
   align-items: center;
   gap: 0.875rem;
   height: 44px;
-  padding: 0 0.875rem;
-  margin: 0.25rem 0.75rem;
+  padding: 0 0.75rem;
+  margin: 0.35rem 0.875rem;
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #64748B;
-  border-radius: 12px;
+  color: #475569;
+  border-radius: 100px;
   text-decoration: none;
-  transition: all 0.2s;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   border: none;
   background: transparent;
-  width: calc(100% - 1.5rem);
+  width: calc(100% - 1.75rem);
   text-align: left;
   white-space: nowrap;
 }
-.sb-link:hover { background: #F1F5F9; color: #0F172A; }
-.sb-link svg { flex-shrink: 0; stroke: #64748B; transition: stroke 0.2s; width: 20px; height: 20px; }
-.sb-link:hover svg { stroke: #0F172A; }
-.sb-link.active {
-  background: #1B6FE8;
-  color: #FFFFFF;
-  box-shadow: 0 4px 14px rgba(27,111,232,0.25);
+.sb-link:hover {
+  background: #FFFFFF;
+  color: #0F172A;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
-.sb-link.active svg { stroke: #FFFFFF; }
+.sb-link svg {
+  flex-shrink: 0;
+  stroke: #475569;
+  transition: stroke 0.2s;
+  width: 20px;
+  height: 20px;
+}
+.sb-link:hover svg { stroke: #0F172A; }
+
+/* Active link — Hitam Elegan, Bulat & Ngambang */
+.sb-link.active {
+  background: #0F172A !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 6px 18px rgba(15,23,42,0.28) !important;
+}
+.sb-link.active svg { stroke: #FFFFFF !important; }
 .sb-link-text {
   opacity: 0;
   transition: opacity 0.2s ease 0.1s;
@@ -449,17 +463,6 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
     </form>
   </nav>
 
-  {{-- Bottom card --}}
-  <div class="sb-bottom">
-    <div class="sb-bottom-card">
-      <strong>{{ $companyName }}</strong>
-      <p>Kelola konten & leads bisnis Anda</p>
-      <a href="{{ route('home') }}" target="_blank" style="display:inline-flex;align-items:center;gap:.375rem;background:#1B6FE8;color:#fff;font-size:.75rem;font-weight:700;padding:.4rem .875rem;border-radius:8px;text-decoration:none;transition:all .2s;box-shadow:0 2px 8px rgba(27,111,232,0.25);">
-        <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        Preview Website
-      </a>
-    </div>
-  </div>
 </aside>
 
 <!-- MAIN -->
