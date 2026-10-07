@@ -286,6 +286,66 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 .topbar-icon-btn { width: 36px; height: 36px; background: var(--bg3); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text3); cursor: pointer; transition: all .2s; text-decoration: none; }
 .topbar-icon-btn:hover { background: #E0E8F5; color: var(--text1); }
 .avatar { width: 36px; height: 36px; background: #3B82F6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #fff; font-size: .875rem; flex-shrink: 0; }
+
+/* ACCOUNT DROPDOWN ON HOVER */
+.user-dropdown-wrap {
+  position: relative;
+  display: inline-block;
+}
+.user-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 230px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.08), 0 2px 10px rgba(0,0,0,0.03);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9999;
+  overflow: hidden;
+  font-family: inherit;
+}
+.user-dropdown-wrap:hover .user-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.user-dropdown-wrap:hover img {
+  border-color: #0F172A !important;
+}
+.user-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 1.25rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #334155;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.user-dropdown-item:hover {
+  background: #F8FAFC;
+  color: #0F172A;
+}
+.user-dropdown-item.danger:hover {
+  background: #FEF2F2;
+  color: #EF4444;
+}
+.user-dropdown-item svg {
+  color: #64748B;
+  transition: color 0.2s;
+}
+.user-dropdown-item:hover svg {
+  color: #0F172A;
+}
+.user-dropdown-item.danger:hover svg {
+  color: #EF4444;
+}
 .success-toast { background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.25); color: #4ade80; font-size: .75rem; padding: .375rem .875rem; border-radius: 100px; }
 #content { padding: 1.75rem; flex: 1; }
 .errors-box { background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.3); padding: .875rem 1.25rem; margin-bottom: 1.5rem; border-radius: 6px; }
@@ -621,7 +681,51 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
           @endif
         </div>
       </div>
-      <div class="avatar">{{ strtoupper(substr(session('admin_name','A'),0,1)) }}</div>
+      {{-- User Account Logo Avatar & Hover Dropdown --}}
+      <div class="user-dropdown-wrap">
+        <div style="cursor:pointer; display:flex; align-items:center;">
+          @if($adminLogo)
+            <img src="{{ asset('storage/'.$adminLogo) }}" alt="Admin Avatar" style="width:38px; height:38px; border-radius:50%; object-fit:contain; background:#FFFFFF; border:1.5px solid #E2E8F0; padding:2px; box-shadow:0 2px 8px rgba(0,0,0,0.04); flex-shrink:0; transition:border-color 0.2s;">
+          @else
+            <div style="width:38px; height:38px; border-radius:50%; background:#0F172A; color:#FFFFFF; font-weight:700; display:flex; align-items:center; justify-content:center; font-size:0.875rem; border:1.5px solid #E2E8F0; flex-shrink:0;">
+              {{ strtoupper(substr(session('admin_name','A'),0,1)) }}
+            </div>
+          @endif
+        </div>
+
+        {{-- Account Dropdown Menu --}}
+        <div class="user-dropdown-menu">
+          <div style="padding: 1rem 1.25rem; border-bottom: 1px solid #F1F5F9; background: #F8FAFC;">
+            <div style="font-size: 0.875rem; font-weight: 700; color: #0F172A;">{{ session('admin_name', 'Administrator') }}</div>
+            <div style="display:inline-block; background:#E2E8F0; color:#475569; font-size:0.625rem; font-weight:700; padding:2px 8px; border-radius:100px; margin-top:4px; text-transform:uppercase; letter-spacing:0.05em;">Super Admin</div>
+          </div>
+
+          <div style="padding: 0.35rem 0;">
+            <!-- Role / Hak Akses Menu Item -->
+            <a href="{{ route('admin.roles.index') }}" class="user-dropdown-item">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Role &amp; Hak Akses</span>
+            </a>
+
+            <!-- Pengaturan Akun -->
+            <a href="{{ route('admin.settings') }}" class="user-dropdown-item">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+              <span>Pengaturan Akun</span>
+            </a>
+          </div>
+
+          <div style="border-top: 1px solid #F1F5F9; padding: 0.35rem 0;">
+            <!-- Logout Form -->
+            <form action="{{ route('admin.logout') }}" method="POST" style="margin:0;">
+              @csrf
+              <button type="submit" class="user-dropdown-item danger" style="width:100%; border:none; background:transparent; font-family:inherit; cursor:pointer; text-align:left;">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                <span>Keluar / Logout</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -707,10 +811,10 @@ document.addEventListener('DOMContentLoaded', function() {
         Swal.fire({
             text: msg,
             icon: 'info',
-            confirmButtonColor: '#3B82F6',
+            confirmButtonColor: '#0F172A',
             confirmButtonText: 'Mengerti',
             background: '#ffffff',
-            color: '#2B3674',
+            color: '#0F172A',
             customClass: { popup: 'premium-swal-popup' },
             showClass: { popup: 'animate__animated animate__fadeInDown animate__faster' },
             hideClass: { popup: 'animate__animated animate__fadeOutUp animate__faster' }
@@ -731,12 +835,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 text: msg,
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#ef4444',
-                cancelButtonColor: '#94a3b8',
+                confirmButtonColor: '#EF4444',
+                cancelButtonColor: '#94A3B8',
                 confirmButtonText: 'Ya, Lanjutkan',
                 cancelButtonText: 'Batal',
                 background: '#ffffff',
-                color: '#2B3674',
+                color: '#0F172A',
                 customClass: { popup: 'premium-swal-popup' }
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -761,12 +865,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 text: msg,
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#ef4444',
-                cancelButtonColor: '#94a3b8',
+                confirmButtonColor: '#EF4444',
+                cancelButtonColor: '#94A3B8',
                 confirmButtonText: 'Ya, Lanjutkan',
                 cancelButtonText: 'Batal',
                 background: '#ffffff',
-                color: '#2B3674',
+                color: '#0F172A',
                 customClass: { popup: 'premium-swal-popup' }
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -786,23 +890,38 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <style>
 .premium-swal-popup {
-    border-radius: 20px !important;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.08) !important;
-    padding: 1.5rem !important;
+    border-radius: 24px !important;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12) !important;
+    padding: 2rem 1.75rem !important;
+    border: 1px solid #E2E8F0 !important;
+    font-family: 'Montserrat', sans-serif !important;
 }
 div:where(.swal2-container) button:where(.swal2-styled) {
-    border-radius: 8px !important;
+    border-radius: 50px !important;
     font-weight: 600 !important;
     font-size: 0.875rem !important;
-    padding: 0.625rem 1.5rem !important;
+    padding: 0.65rem 1.75rem !important;
+}
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+    background-color: #0F172A !important;
+    box-shadow: 0 4px 15px rgba(15, 23, 42, 0.2) !important;
+}
+div:where(.swal2-container) .swal2-icon.swal2-info {
+    border-color: #0F172A !important;
+    color: #0F172A !important;
+}
+div:where(.swal2-container) .swal2-icon.swal2-info .swal2-icon-content {
+    color: #0F172A !important;
 }
 div:where(.swal2-container) h2:where(.swal2-title) {
     font-size: 1.25rem !important;
-    color: #2B3674 !important;
+    color: #0F172A !important;
+    font-weight: 700 !important;
 }
 div:where(.swal2-container) div:where(.swal2-html-container) {
     font-size: 0.95rem !important;
-    color: #64748B !important;
+    color: #475569 !important;
+    font-weight: 400 !important;
 }
 </style>
 
