@@ -94,19 +94,27 @@ MAIL_FROM_ADDRESS=admin@pusatpiringkeramik.com
 MAIL_FROM_NAME="Pusat Piring Keramik"
 ENVEOF
     echo "--- .env berhasil dibuat!"
+    cd "$DEPLOY_DIR"
+    php artisan key:generate --force
 fi
 
 echo ""
 echo "--- Menjalankan artisan commands..."
 cd "$DEPLOY_DIR"
-php artisan key:generate --force
 php artisan migrate --force
 
-echo "--- Fix storage symlink untuk public_html..."
+echo "--- Fix storage symlink & sync public_html..."
+mkdir -p "$DEPLOY_DIR/public_html"
+if [ -f "$DEPLOY_DIR/public/index.php" ]; then
+    cp -f "$DEPLOY_DIR/public/index.php" "$DEPLOY_DIR/public_html/index.php"
+fi
+if [ -f "$DEPLOY_DIR/public/.htaccess" ]; then
+    cp -f "$DEPLOY_DIR/public/.htaccess" "$DEPLOY_DIR/public_html/.htaccess"
+fi
 rm -f "$DEPLOY_DIR/public_html/storage"
 ln -s "$DEPLOY_DIR/storage/app/public" "$DEPLOY_DIR/public_html/storage"
 chmod -R 775 "$DEPLOY_DIR/storage" "$DEPLOY_DIR/bootstrap/cache"
-echo "--- Symlink storage OK!"
+echo "--- Symlink storage & public_html OK!"
 
 php artisan view:clear
 php artisan cache:clear
