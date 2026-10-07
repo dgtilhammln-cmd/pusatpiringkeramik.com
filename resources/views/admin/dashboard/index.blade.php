@@ -52,24 +52,43 @@ $adminName = session('admin_name', 'Administrator');
 @endphp
 
 {{-- Welcome Box --}}
-<div style="background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%); border-radius: 20px; padding: 2rem 2.5rem; margin-bottom: 2rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);">
-  <!-- Decorative Background -->
-  <div style="position: absolute; top: -50px; right: -50px; width: 250px; height: 250px; background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%); border-radius: 50%;"></div>
-  <div style="position: absolute; bottom: -80px; left: -20px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); border-radius: 50%;"></div>
-  
-  <div style="flex: 1; min-width: 250px; position: relative; z-index: 1;">
-    <h2 style="font-size: 1.75rem; font-weight: 700; color: #ffffff; margin: 0 0 0.5rem; letter-spacing: -0.02em;">
-      Selamat {{ ucfirst($greeting) }}, {{ $adminName }}!
+<div style="background: #FFFFFF; border-radius: 24px; padding: 1.75rem 2.25rem; margin-bottom: 2rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; position: relative; overflow: hidden; border: 1px solid #E2E8F0; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);">
+  <div style="flex: 1; min-width: 260px; position: relative; z-index: 1;">
+    <h2 style="font-family: 'Montserrat', sans-serif; font-size: 1.75rem; font-weight: 300; color: #0F172A; margin: 0 0 0.4rem; letter-spacing: -0.01em;">
+      Selamat {{ ucfirst($greeting) }}, <span style="font-weight: 600;">{{ $adminName }}!</span>
     </h2>
-    <p style="font-size: 0.95rem; color: rgba(255,255,255,0.85); margin: 0; line-height: 1.6; max-width: 600px; font-weight: 400;">
+    <p style="font-family: 'Montserrat', sans-serif; font-size: 0.9rem; color: #64748B; margin: 0; line-height: 1.6; max-width: 580px; font-weight: 300;">
       "{{ $dailyQuote }}"
     </p>
   </div>
 
-  <!-- Realtime Widget -->
-  <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 16px; padding: 1.25rem 2rem; display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 200px; position: relative; z-index: 1; border: 1px solid rgba(255,255,255,0.2);">
-    <div id="realtime-time" style="font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 600; color: #fff; letter-spacing: 0.05em; font-variant-numeric: tabular-nums;">00:00:00</div>
-    <div id="realtime-date" style="font-family: 'Montserrat', sans-serif; font-size: 0.7rem; color: rgba(255,255,255,0.7); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem;">HARI, 00 BLN 0000</div>
+  <!-- Realtime Widget Container (Image 2 style) -->
+  <div style="background: #0F172A; border-radius: 20px; padding: 1.1rem 1.6rem; display: flex; align-items: center; gap: 1.25rem; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 10px 25px rgba(15,23,42,0.12); font-family: 'Montserrat', sans-serif; position: relative; z-index: 1;">
+    <!-- Big Clock with Superscript Seconds -->
+    <div style="display: flex; align-items: flex-start; gap: 2px;">
+      <div id="clock-main" style="font-size: 2.35rem; font-weight: 800; color: #FFFFFF; line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums;">00:00</div>
+      <div id="clock-sec" style="font-size: 0.95rem; font-weight: 700; color: #94A3B8; margin-top: 1px; font-variant-numeric: tabular-nums;">00</div>
+    </div>
+    
+    <!-- Vertical Divider -->
+    <div style="width: 1px; height: 42px; background: rgba(255,255,255,0.15);"></div>
+
+    <!-- Date, Weather & Location Info -->
+    <div style="display: flex; flex-direction: column; justify-content: center;">
+      <div id="clock-day" style="font-size: 1.2rem; font-weight: 700; color: #FFFFFF; line-height: 1.2; letter-spacing: 0.01em;">Hari</div>
+      <div id="clock-date" style="font-size: 0.725rem; font-weight: 500; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.35rem;">00 JANUARI 0000</div>
+      
+      <!-- Weather & Location Details -->
+      <div id="weather-info" style="font-size: 0.775rem; display: flex; align-items: center; flex-wrap: wrap; gap: 4px; color: #E2E8F0;">
+        <span style="color:#FBBF24;">☀️</span> 
+        <strong style="color:#FFFFFF; font-weight:700;">28°C</strong> 
+        <span style="color:#4ADE80; font-weight:600;">Cerah</span> 
+        <span style="color:rgba(255,255,255,0.3); margin: 0 2px;">·</span> 
+        <span style="color:#38BDF8; font-weight:500;">💧 77%</span> 
+        <span style="color:rgba(255,255,255,0.3); margin: 0 2px;">·</span> 
+        <span style="color:#A3E635; font-weight:600;">📍 Surabaya, Jawa Timur</span>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -254,27 +273,117 @@ function downloadReport(format) {
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
-// Realtime Clock Widget
-function updateClock() {
+// Realtime Clock & Weather Widget with Device Geolocation
+function updateDashboardClock() {
     const now = new Date();
     
-    // Time
     const h = String(now.getHours()).padStart(2, '0');
     const m = String(now.getMinutes()).padStart(2, '0');
     const s = String(now.getSeconds()).padStart(2, '0');
-    document.getElementById('realtime-time').textContent = `${h}:${m}:${s}`;
     
-    // Date
+    const mainElem = document.getElementById('clock-main');
+    const secElem = document.getElementById('clock-sec');
+    if (mainElem) mainElem.textContent = `${h}:${m}`;
+    if (secElem) secElem.textContent = s;
+    
     const days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
-    const months = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agt','Sep','Okt','Nov','Des'];
-    const day = days[now.getDay()];
-    const date = now.getDate();
-    const month = months[now.getMonth()];
-    const year = now.getFullYear();
-    document.getElementById('realtime-date').textContent = `${day}, ${date} ${month} ${year}`;
+    const months = ['JANUARI','FEBRUARI','MARET','APRIL','MEI','JUNI','JULI','AGUSTUS','SEPTEMBER','OKTOBER','NOVEMBER','DESEMBER'];
+    
+    const dayElem = document.getElementById('clock-day');
+    const dateElem = document.getElementById('clock-date');
+    if (dayElem) dayElem.textContent = days[now.getDay()];
+    if (dateElem) dateElem.textContent = `${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
 }
-setInterval(updateClock, 1000);
-updateClock();
+
+function getWeatherIconAndDesc(code) {
+    if (code === 0) return { icon: '☀️', desc: 'Cerah' };
+    if (code >= 1 && code <= 3) return { icon: '⛅', desc: 'Cerah Berawan' };
+    if (code === 45 || code === 48) return { icon: '🌫️', desc: 'Berkabut' };
+    if (code >= 51 && code <= 57) return { icon: '🌧️', desc: 'Gerimis' };
+    if (code >= 61 && code <= 67) return { icon: '🌧️', desc: 'Hujan' };
+    if (code >= 71 && code <= 77) return { icon: '❄️', desc: 'Salju' };
+    if (code >= 80 && code <= 82) return { icon: '🌧️', desc: 'Hujan Lebat' };
+    if (code >= 95 && code <= 99) return { icon: '⛈️', desc: 'Hujan Petir' };
+    return { icon: '🌤️', desc: 'Cerah' };
+}
+
+async function loadWeatherAndLocation(lat, lon, fallbackCity = null) {
+    try {
+        let locationLabel = fallbackCity;
+        if (!locationLabel) {
+            try {
+                const geoRes = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
+                if (geoRes.ok) {
+                    const geoData = await geoRes.json();
+                    const addr = geoData.address || {};
+                    const city = addr.city || addr.regency || addr.town || addr.county || addr.city_district || addr.municipality || '';
+                    const state = addr.state || addr.region || '';
+                    if (city && state) {
+                        locationLabel = `${city}, ${state}`;
+                    } else if (city) {
+                        locationLabel = city;
+                    } else if (state) {
+                        locationLabel = state;
+                    }
+                }
+            } catch (geoErr) {
+                console.warn('Reverse geocoding error:', geoErr);
+            }
+        }
+        if (!locationLabel) locationLabel = 'Surabaya, Jawa Timur';
+
+        const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=relative_humidity_2m&timezone=auto`);
+        if (weatherRes.ok) {
+            const wData = await weatherRes.json();
+            const current = wData.current_weather;
+            const temp = Math.round(current.temperature);
+            const wInfo = getWeatherIconAndDesc(current.weathercode);
+            
+            let humidity = 77;
+            if (wData.hourly && wData.hourly.relative_humidity_2m) {
+                const currentHour = new Date().getHours();
+                humidity = wData.hourly.relative_humidity_2m[currentHour] ?? 77;
+            }
+
+            const weatherElem = document.getElementById('weather-info');
+            if (weatherElem) {
+                weatherElem.innerHTML = `
+                    <span style="color:#FBBF24;">${wInfo.icon}</span> 
+                    <strong style="color:#FFFFFF; font-weight:700;">${temp}°C</strong> 
+                    <span style="color:#4ADE80; font-weight:600;">${wInfo.desc}</span> 
+                    <span style="color:rgba(255,255,255,0.3); margin: 0 2px;">·</span> 
+                    <span style="color:#38BDF8; font-weight:500;">💧 ${humidity}%</span> 
+                    <span style="color:rgba(255,255,255,0.3); margin: 0 2px;">·</span> 
+                    <span style="color:#A3E635; font-weight:600;">📍 ${locationLabel}</span>
+                `;
+            }
+        }
+    } catch (err) {
+        console.error('Weather fetching error:', err);
+    }
+}
+
+function initDashboardWeather() {
+    updateDashboardClock();
+    setInterval(updateDashboardClock, 1000);
+
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+            function(pos) {
+                loadWeatherAndLocation(pos.coords.latitude, pos.coords.longitude);
+            },
+            function(err) {
+                console.warn('Geolocation denied or failed, using fallback location:', err);
+                loadWeatherAndLocation(-7.2575, 112.7521, 'Surabaya, Jawa Timur');
+            },
+            { enableHighAccuracy: true, timeout: 8000 }
+        );
+    } else {
+        loadWeatherAndLocation(-7.2575, 112.7521, 'Surabaya, Jawa Timur');
+    }
+}
+
+initDashboardWeather();
 
 // ─── PREMIUM CHART CONFIG ───
 Chart.defaults.font.family = "'Inter','Segoe UI',sans-serif";
