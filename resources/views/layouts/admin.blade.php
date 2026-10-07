@@ -41,50 +41,56 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 
 /* ═══════ SIDEBAR LIGHT & INTERACTIVE ═══════ */
 /* ═══════ SIDEBAR LIGHT GRAY & ELEGAN ═══════ */
+/* ═══════ FLOATING CAPSULE SIDEBAR (IMAGE 2 & 3 STYLE) ═══════ */
 #sidebar {
-  width: 76px;
-  height: 100vh;
-  background: #F1F5F9;
-  border-right: 1px solid #E2E8F0;
+  width: 68px;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 1rem;
+  bottom: 1rem;
+  left: 1rem;
   z-index: 200;
+  background: #FFFFFF;
+  border-radius: 32px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.06), 0 2px 10px rgba(0,0,0,0.02);
+  border: 1px solid rgba(226, 232, 240, 0.8);
   display: flex;
   flex-direction: column;
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s ease;
-  box-shadow: 2px 0 16px rgba(0,0,0,0.03);
   overflow-x: hidden;
   overflow-y: auto;
+  padding: 0.75rem 0;
 }
 #sidebar:hover {
-  width: 250px;
-  box-shadow: 6px 0 24px rgba(0,0,0,0.08);
+  width: 240px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12), 0 4px 15px rgba(0,0,0,0.04);
 }
-#sidebar::-webkit-scrollbar { width: 4px; }
+#sidebar::-webkit-scrollbar { width: 3px; }
 #sidebar::-webkit-scrollbar-track { background: transparent; }
-#sidebar::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
+#sidebar::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 10px; }
 
 /* Logo area */
 .sb-logo {
-  padding: 1.125rem 0.875rem;
+  padding: 0.375rem 0.5rem 0.75rem;
   display: flex;
   align-items: center;
   gap: 0.875rem;
-  min-height: 72px;
 }
 .sb-logo-badge {
   width: 44px;
   height: 44px;
-  background: #FFFFFF;
-  border: 1px solid #E2E8F0;
+  background: #F8FAFC;
+  border: 1.5px solid #E2E8F0;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   border-radius: 50%;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
   padding: 6px;
+  margin: 0 auto;
+}
+#sidebar:hover .sb-logo-badge {
+  margin: 0;
 }
 .sb-logo-info {
   opacity: 0;
@@ -97,19 +103,18 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 .sb-logo-sub { font-size: 0.65rem; color: #64748B; font-weight: 500; margin-top: 2px; }
 
 /* Search */
-.sb-search { padding: 0.25rem 0.875rem 0.75rem; }
+.sb-search { padding: 0.25rem 0.5rem 0.75rem; }
 .sb-search-box {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   height: 44px;
-  background: #FFFFFF;
+  background: #F8FAFC;
   border: 1px solid #E2E8F0;
   border-radius: 100px;
   padding: 0 0.875rem;
   color: #64748B;
   transition: all 0.2s;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
 }
 .sb-search-box:focus-within {
   background: #FFF;
@@ -130,45 +135,51 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 #sidebar:hover .sb-search-box input { opacity: 1; }
 
 /* Nav */
-.sb-nav { flex: 1; padding: 0.25rem 0 2rem; overflow-y: auto; overflow-x: hidden; }
+.sb-nav { flex: 1; padding: 0.25rem 0 1rem; overflow-y: auto; overflow-x: hidden; }
 .sb-sec {
   font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #94A3B8;
-  padding: 0.875rem 1.25rem 0.375rem;
+  padding: 0.75rem 1rem 0.375rem;
   opacity: 0;
   white-space: nowrap;
   transition: opacity 0.2s ease 0.1s;
 }
 #sidebar:hover .sb-sec { opacity: 1; }
 
-/* Nav link - Bulat & Ngambang Minimalis */
+/* Nav link — Floating Circle/Pill */
 .sb-link {
   display: flex;
   align-items: center;
   gap: 0.875rem;
   height: 44px;
-  padding: 0 0.75rem;
-  margin: 0.35rem 0.875rem;
+  width: 44px;
+  padding: 0;
+  margin: 0.35rem auto;
+  justify-content: center;
   font-size: 0.8125rem;
   font-weight: 600;
   color: #475569;
-  border-radius: 100px;
+  border-radius: 50%;
   text-decoration: none;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   border: none;
   background: transparent;
-  width: calc(100% - 1.75rem);
-  text-align: left;
   white-space: nowrap;
 }
-.sb-link:hover {
-  background: #FFFFFF;
+#sidebar:hover .sb-link {
+  width: calc(100% - 1rem);
+  margin: 0.35rem 0.5rem;
+  padding: 0 0.875rem;
+  justify-content: flex-start;
+  border-radius: 100px;
+}
+.sb-link:hover:not(.active) {
+  background: #F1F5F9;
   color: #0F172A;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 .sb-link svg {
   flex-shrink: 0;
@@ -179,11 +190,11 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 }
 .sb-link:hover svg { stroke: #0F172A; }
 
-/* Active link — Hitam Elegan, Bulat & Ngambang */
+/* Active link — Hitam Elegan Minimalis */
 .sb-link.active {
   background: #0F172A !important;
   color: #FFFFFF !important;
-  box-shadow: 0 6px 18px rgba(15,23,42,0.28) !important;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.3) !important;
 }
 .sb-link.active svg { stroke: #FFFFFF !important; }
 .sb-link-text {
@@ -206,25 +217,9 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   box-shadow: 0 2px 6px rgba(239,68,68,0.3);
 }
 
-/* Bottom */
-.sb-bottom { padding: 0.875rem; border-top: 1px solid #E2E8F0; background: #FAFAFA; }
-.sb-bottom-card {
-  background: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 14px;
-  padding: 0.875rem;
-  opacity: 0;
-  transition: opacity 0.2s ease 0.1s;
-  white-space: nowrap;
-  overflow: hidden;
-}
-#sidebar:hover .sb-bottom-card { opacity: 1; }
-.sb-bottom-card strong { font-size: 0.8125rem; color: #0F172A; display: block; }
-.sb-bottom-card p { font-size: 0.7rem; color: #64748B; margin: 0.25rem 0 0.625rem; white-space: normal; }
-
-/* MAIN CONTENT AREA - Synchronized Push */
+/* MAIN CONTENT AREA - Floating Sidebar Margin Push */
 #main {
-  margin-left: 76px;
+  margin-left: 96px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -233,7 +228,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 #sidebar:hover ~ #main {
-  margin-left: 250px;
+  margin-left: 268px;
 }
 #topbar { background: transparent; padding: 1.5rem 2rem 0.5rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
 .topbar-left { display: flex; align-items: center; gap: .75rem; }
@@ -253,6 +248,10 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 #mobile-toggle { display: none; background: #fff; border: 1px solid #E2E8F0; color: #0F172A; cursor: pointer; padding: .5rem; border-radius: 10px; }
 @media(max-width: 1024px) {
   #sidebar {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 0 24px 24px 0;
     width: 250px !important;
     transform: translateX(-100%);
     box-shadow: none;
@@ -264,9 +263,15 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   #sidebar .sb-logo-info,
   #sidebar .sb-sec,
   #sidebar .sb-link-text,
-  #sidebar .sb-search-box input,
-  #sidebar .sb-bottom-card {
+  #sidebar .sb-search-box input {
     opacity: 1 !important;
+  }
+  #sidebar .sb-link {
+    width: calc(100% - 1rem);
+    margin: 0.35rem 0.5rem;
+    padding: 0 0.875rem;
+    justify-content: flex-start;
+    border-radius: 100px;
   }
   #sb-overlay.open { display: block; }
   #main { margin-left: 0 !important; }
