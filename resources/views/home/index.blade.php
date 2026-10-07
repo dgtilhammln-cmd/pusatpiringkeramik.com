@@ -1721,7 +1721,7 @@
                 @if($products->count())
                     @foreach($products as $product)
                         <a href="{{ route('products.show', $product->slug) }}" class="cv-cat-card">
-                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" loading="lazy"
+                            <img src="{{ $product->image_url }}" alt="{{ $product->alt_text }}" loading="lazy"
                                 style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
                             <div class="cv-cat-card-overlay"></div>
                             <div class="cv-cat-card-body">
@@ -2942,7 +2942,7 @@
                             data-aos-delay="{{ $i * 100 }}">
                             <div class="cv-article-img-wrap">
                                 @if($article->image)
-                                    <img src="{{ asset('storage/' . $article->image) }}" alt="{{ $article->title }}"
+                                    <img src="{{ asset('storage/' . $article->image) }}" alt="{{ $article->alt_text }}"
                                         class="cv-article-img-v2" loading="lazy">
                                 @else
                                     <div

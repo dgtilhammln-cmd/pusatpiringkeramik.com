@@ -510,7 +510,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
                 <div class="swiper-wrapper">
                     @foreach($imgs as $img)
                         <div class="swiper-slide">
-                            <img src="{{ $img }}" alt="{{ $service->name }}">
+                            <img src="{{ $img }}" alt="{{ $service->alt_text }}">
                         </div>
                     @endforeach
                 </div>
@@ -817,7 +817,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
         <div class="sh-related-grid">
             @foreach($related as $r)
                 <a href="{{ route('products.show', $r->slug) }}" class="sh-related-card">
-                    <img src="{{ $r->image_url }}" alt="{{ $r->name }}" class="sh-related-img" loading="lazy">
+                    <img src="{{ $r->image_url }}" alt="{{ $r->alt_text }}" class="sh-related-img" loading="lazy">
                     <div class="sh-related-body">
                         <div class="sh-related-name">{{ $r->name }}</div>
                         <p class="sh-related-desc">{{ $r->short_desc }}</p>

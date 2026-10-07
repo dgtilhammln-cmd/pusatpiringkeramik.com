@@ -381,7 +381,7 @@
 
                 <div class="sv-card-img">
                     <img src="{{ $service->image_url }}"
-                         alt="{{ $service->name }}"
+                         alt="{{ $service->alt_text }}"
                          loading="{{ $i < 6 ? 'eager' : 'lazy' }}"
                          style="width:100%;height:100%;object-fit:cover;">
                 </div>

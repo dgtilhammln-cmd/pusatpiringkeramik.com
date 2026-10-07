@@ -61,6 +61,11 @@ class Service extends Model
         if (str_contains($name, 'agatha'))      return asset('images/brand-agatha.svg');
         return asset('images/brand-default.svg');
     }
+    public function getAltTextAttribute($v): string
+    {
+        $comp = \App\Models\Setting::get('company_name', config('app.name'));
+        return $v ?: $this->name . ' - ' . $comp;
+    }
     public function getOgImageUrlAttribute(): string
     {
         return $this->og_image ? asset('storage/'.$this->og_image) : $this->image_url;

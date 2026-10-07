@@ -68,6 +68,12 @@ class Article extends Model
             : asset('images/article-default.jpg');
     }
 
+    public function getAltTextAttribute($v): string
+    {
+        $comp = \App\Models\Setting::get('company_name', config('app.name'));
+        return $v ?: $this->title . ' - ' . $comp;
+    }
+
     public function getOgImageUrlAttribute(): string
     {
         return $this->og_image
