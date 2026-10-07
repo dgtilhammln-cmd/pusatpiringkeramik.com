@@ -39,85 +39,226 @@ $favicon = \App\Models\Setting::get('favicon') ? asset('storage/'.\App\Models\Se
 }
 body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text1); min-height: 100vh; display: flex; }
 
-/* ═══════ SIDEBAR PREMIUM BLUE ═══════ */
-#sidebar{
-  width:240px;height:100vh;
-  background:linear-gradient(170deg,#1B6FE8 0%,#1254C0 100%);
-  position:fixed;top:0;left:0;z-index:200;
-  display:flex;flex-direction:column;
-  transition:transform .3s ease;
-  box-shadow:4px 0 24px rgba(27,111,232,0.25);
+/* ═══════ SIDEBAR LIGHT & INTERACTIVE ═══════ */
+#sidebar {
+  width: 76px;
+  height: 100vh;
+  background: #FFFFFF;
+  border-right: 1px solid #E2E8F0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s ease;
+  box-shadow: 4px 0 20px rgba(0,0,0,0.03);
+  overflow-x: hidden;
+  overflow-y: auto;
 }
-/* Logo area */
-.sb-logo{padding:1.5rem 1.25rem 1.25rem;display:flex;align-items:center;gap:.75rem}
-.sb-logo-badge{width:38px;height:38px;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.15);padding:4px}
-.sb-logo-text{font-size:.9rem;font-weight:800;color:#fff;line-height:1.15;letter-spacing:-.01em}
-.sb-logo-sub{font-size:.65rem;color:rgba(255,255,255,.6);font-weight:500;margin-top:1px}
-/* Search */
-.sb-search{padding:.5rem 1rem .875rem}
-.sb-search input{width:100%;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.15);border-radius:10px;padding:.5rem .875rem;color:#fff;font-size:.8rem;outline:none;font-family:inherit;transition:all .2s;}
-.sb-search input:focus{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.35)}
-.sb-search input::placeholder{color:rgba(255,255,255,.45)}
-/* Nav */
-.sb-nav{flex:1;padding:.25rem 0;overflow-y:auto}
-.sb-nav::-webkit-scrollbar{width:3px}
-.sb-nav::-webkit-scrollbar-track{background:transparent}
-.sb-nav::-webkit-scrollbar-thumb{background:rgba(255,255,255,.2);border-radius:10px}
-.sb-sec{font-size:.575rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);padding:.875rem 1.375rem .3rem}
-/* Inactive link */
-.sb-link{
-  display:flex;align-items:center;gap:.75rem;
-  padding:.625rem 1rem;margin:.125rem .875rem;
-  font-size:.8125rem;font-weight:600;color:rgba(255,255,255,.75);
-  border-radius:12px;text-decoration:none;
-  transition:all .2s;cursor:pointer;border:none;background:none;
-  width:calc(100% - 1.75rem);text-align:left;
+#sidebar:hover {
+  width: 250px;
+  box-shadow: 8px 0 30px rgba(0,0,0,0.08);
 }
-.sb-link:hover{background:rgba(255,255,255,.1);color:#fff}
-.sb-link svg{flex-shrink:0;opacity:.75;transition:opacity .2s}
-.sb-link:hover svg{opacity:1}
-/* Active link — white card with cutout style */
-.sb-link.active{
-  background:#fff;
-  color:#1B6FE8;
-  box-shadow:0 4px 18px rgba(0,0,0,0.12);
-}
-.sb-link.active svg{opacity:1;stroke:#1B6FE8}
-/* Badge */
-.sb-badge{margin-left:auto;background:#EF4444;color:#fff;font-size:.575rem;font-weight:800;padding:.2rem .5rem;border-radius:100px;line-height:1.4;box-shadow:0 2px 8px rgba(239,68,68,0.4)}
-.sb-link.active .sb-badge{background:#EF4444;color:#fff}
-/* Bottom */
-.sb-bottom{padding:.875rem 1rem;border-top:1px solid rgba(255,255,255,.12)}
-.sb-bottom-card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:1rem}
-.sb-bottom-card p{font-size:.7rem;color:rgba(255,255,255,.6);margin:.25rem 0 .75rem;line-height:1.5}
-.sb-bottom-card strong{font-size:.8125rem;color:#fff}
+#sidebar::-webkit-scrollbar { width: 4px; }
+#sidebar::-webkit-scrollbar-track { background: transparent; }
+#sidebar::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 10px; }
 
-/* MAIN */
-#main{margin-left:240px;flex:1;display:flex;flex-direction:column;min-height:100vh;min-width:0}
-#topbar{background:transparent;padding:1.5rem 2rem 0.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-.topbar-left{display:flex;align-items:center;gap:.75rem}
-.topbar-breadcrumb{font-size:.75rem;color:var(--text3);display:flex;align-items:center;gap:.375rem;font-weight:600;}
-.topbar-title{font-size:1.5rem;font-weight:700;color:var(--text1)}
-.topbar-right{display:flex;align-items:center;gap:.75rem;background:#fff;padding:.375rem .375rem .375rem 1rem;border-radius:100px;box-shadow:0 4px 15px rgba(0,0,0,.03)}
-.topbar-icon-btn{width:36px;height:36px;background:var(--bg3);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text3);cursor:pointer;transition:all .2s;text-decoration:none}
-.topbar-icon-btn:hover{background:#E0E8F5;color:var(--text1)}
-.avatar{width:36px;height:36px;background:#3B82F6;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:.875rem;flex-shrink:0}
-.success-toast{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#4ade80;font-size:.75rem;padding:.375rem .875rem;border-radius:100px}
-#content{padding:1.75rem;flex:1}
-.errors-box{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);padding:.875rem 1.25rem;margin-bottom:1.5rem;border-radius:6px}
-.errors-box li{color:#f87171;font-size:.8125rem;margin-left:1rem}
+/* Logo area */
+.sb-logo {
+  padding: 1.125rem 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  min-height: 72px;
+}
+.sb-logo-badge {
+  width: 44px;
+  height: 44px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  padding: 6px;
+}
+.sb-logo-info {
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity 0.2s ease 0.1s;
+  overflow: hidden;
+}
+#sidebar:hover .sb-logo-info { opacity: 1; }
+.sb-logo-text { font-size: 0.875rem; font-weight: 800; color: #0F172A; line-height: 1.2; letter-spacing: -0.01em; }
+.sb-logo-sub { font-size: 0.65rem; color: #64748B; font-weight: 500; margin-top: 2px; }
+
+/* Search */
+.sb-search { padding: 0.25rem 0.875rem 0.75rem; }
+.sb-search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 42px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 0 0.875rem;
+  color: #64748B;
+  transition: all 0.2s;
+}
+.sb-search-box:focus-within {
+  background: #FFF;
+  border-color: #1B6FE8;
+  box-shadow: 0 0 0 3px rgba(27,111,232,0.1);
+}
+.sb-search-box input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 0.8rem;
+  color: #0F172A;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.2s ease 0.1s;
+  font-family: inherit;
+}
+#sidebar:hover .sb-search-box input { opacity: 1; }
+
+/* Nav */
+.sb-nav { flex: 1; padding: 0.25rem 0; overflow-y: auto; overflow-x: hidden; }
+.sb-sec {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #94A3B8;
+  padding: 0.875rem 1.25rem 0.375rem;
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity 0.2s ease 0.1s;
+}
+#sidebar:hover .sb-sec { opacity: 1; }
+
+/* Nav link */
+.sb-link {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  height: 44px;
+  padding: 0 0.875rem;
+  margin: 0.25rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #64748B;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  width: calc(100% - 1.5rem);
+  text-align: left;
+  white-space: nowrap;
+}
+.sb-link:hover { background: #F1F5F9; color: #0F172A; }
+.sb-link svg { flex-shrink: 0; stroke: #64748B; transition: stroke 0.2s; width: 20px; height: 20px; }
+.sb-link:hover svg { stroke: #0F172A; }
+.sb-link.active {
+  background: #1B6FE8;
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(27,111,232,0.25);
+}
+.sb-link.active svg { stroke: #FFFFFF; }
+.sb-link-text {
+  opacity: 0;
+  transition: opacity 0.2s ease 0.1s;
+  white-space: nowrap;
+}
+#sidebar:hover .sb-link-text { opacity: 1; }
+
+/* Badge */
+.sb-badge {
+  margin-left: auto;
+  background: #EF4444;
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 0.15rem 0.45rem;
+  border-radius: 100px;
+  line-height: 1.4;
+  box-shadow: 0 2px 6px rgba(239,68,68,0.3);
+}
+
+/* Bottom */
+.sb-bottom { padding: 0.875rem; border-top: 1px solid #E2E8F0; background: #FAFAFA; }
+.sb-bottom-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 0.875rem;
+  opacity: 0;
+  transition: opacity 0.2s ease 0.1s;
+  white-space: nowrap;
+  overflow: hidden;
+}
+#sidebar:hover .sb-bottom-card { opacity: 1; }
+.sb-bottom-card strong { font-size: 0.8125rem; color: #0F172A; display: block; }
+.sb-bottom-card p { font-size: 0.7rem; color: #64748B; margin: 0.25rem 0 0.625rem; white-space: normal; }
+
+/* MAIN CONTENT AREA - Synchronized Push */
+#main {
+  margin-left: 76px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 0;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+#sidebar:hover ~ #main {
+  margin-left: 250px;
+}
+#topbar { background: transparent; padding: 1.5rem 2rem 0.5rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
+.topbar-left { display: flex; align-items: center; gap: .75rem; }
+.topbar-breadcrumb { font-size: .75rem; color: var(--text3); display: flex; align-items: center; gap: .375rem; font-weight: 600; }
+.topbar-title { font-size: 1.5rem; font-weight: 700; color: var(--text1); }
+.topbar-right { display: flex; align-items: center; gap: .75rem; background: #fff; padding: .375rem .375rem .375rem 1rem; border-radius: 100px; box-shadow: 0 4px 15px rgba(0,0,0,.03); }
+.topbar-icon-btn { width: 36px; height: 36px; background: var(--bg3); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text3); cursor: pointer; transition: all .2s; text-decoration: none; }
+.topbar-icon-btn:hover { background: #E0E8F5; color: var(--text1); }
+.avatar { width: 36px; height: 36px; background: #3B82F6; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #fff; font-size: .875rem; flex-shrink: 0; }
+.success-toast { background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.25); color: #4ade80; font-size: .75rem; padding: .375rem .875rem; border-radius: 100px; }
+#content { padding: 1.75rem; flex: 1; }
+.errors-box { background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.3); padding: .875rem 1.25rem; margin-bottom: 1.5rem; border-radius: 6px; }
+.errors-box li { color: #f87171; font-size: .8125rem; margin-left: 1rem; }
 
 /* MOBILE */
-#sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:199}
-#mobile-toggle{display:none;background:none;border:none;color:#fff;cursor:pointer;padding:.5rem}
-@media(max-width:1024px){
-  #sidebar{transform:translateX(-100%)}
-  #sidebar.open{transform:translateX(0)}
-  #sb-overlay.open{display:block}
-  #main{margin-left:0!important}
-  #mobile-toggle{display:flex!important}
-  #content{padding:.875rem!important}
-  #topbar{padding:.75rem 1rem!important}
+#sb-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 199; backdrop-filter: blur(4px); }
+#mobile-toggle { display: none; background: #fff; border: 1px solid #E2E8F0; color: #0F172A; cursor: pointer; padding: .5rem; border-radius: 10px; }
+@media(max-width: 1024px) {
+  #sidebar {
+    width: 250px !important;
+    transform: translateX(-100%);
+    box-shadow: none;
+  }
+  #sidebar.open {
+    transform: translateX(0);
+    box-shadow: 8px 0 30px rgba(0,0,0,0.15);
+  }
+  #sidebar .sb-logo-info,
+  #sidebar .sb-sec,
+  #sidebar .sb-link-text,
+  #sidebar .sb-search-box input,
+  #sidebar .sb-bottom-card {
+    opacity: 1 !important;
+  }
+  #sb-overlay.open { display: block; }
+  #main { margin-left: 0 !important; }
+  #mobile-toggle { display: flex !important; }
+  #content { padding: .875rem !important; }
+  #topbar { padding: .75rem 1rem !important; }
 }
 @media(max-width:480px){
   #content{padding:.625rem!important}
@@ -225,12 +366,12 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   <div class="sb-logo">
     <div class="sb-logo-badge">
       @if($adminLogo)
-        <img src="{{ asset('storage/'.$adminLogo) }}" alt="Logo" style="width:30px;height:30px;object-fit:contain;border-radius:6px;">
+        <img src="{{ asset('storage/'.$adminLogo) }}" alt="Logo" style="width:28px;height:28px;object-fit:contain;border-radius:6px;">
       @else
         <svg width="22" height="22" fill="none" stroke="#1B6FE8" stroke-width="2.5" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
       @endif
     </div>
-    <div>
+    <div class="sb-logo-info">
       <div class="sb-logo-text">{{ $companyName }}</div>
       <div class="sb-logo-sub">{{ session('admin_name','Administrator') }}</div>
     </div>
@@ -238,69 +379,72 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 
   {{-- Search --}}
   <div class="sb-search">
-    <input type="text" placeholder="Cari menu..." id="sb-search-input" oninput="sbSearch(this.value)">
+    <div class="sb-search-box">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" placeholder="Cari menu..." id="sb-search-input" oninput="sbSearch(this.value)">
+    </div>
   </div>
 
   {{-- Navigation --}}
   <nav class="sb-nav" id="sb-nav">
     <div class="sb-sec">Main</div>
-    <a href="{{ route('admin.dashboard') }}" class="sb-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
-      Dashboard
+    <a href="{{ route('admin.dashboard') }}" class="sb-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" title="Dashboard">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
+      <span class="sb-link-text">Dashboard</span>
     </a>
-    <a href="{{ route('admin.analytics') }}" class="sb-link {{ request()->routeIs('admin.analytics*') ? 'active' : '' }}">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      Analytics
+    <a href="{{ route('admin.analytics') }}" class="sb-link {{ request()->routeIs('admin.analytics*') ? 'active' : '' }}" title="Analytics">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <span class="sb-link-text">Analytics</span>
     </a>
 
     <div class="sb-sec">Konten</div>
-    <a href="{{ route('admin.services.index') }}" class="sb-link {{ request()->routeIs('admin.services*') ? 'active' : '' }}">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-      Layanan
+    <a href="{{ route('admin.services.index') }}" class="sb-link {{ request()->routeIs('admin.services*') ? 'active' : '' }}" title="Layanan">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+      <span class="sb-link-text">Layanan</span>
     </a>
-    <a href="{{ route('admin.service-categories.index') }}" class="sb-link {{ request()->routeIs('admin.service-categories*') ? 'active' : '' }}">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
-      Kategori Produk
+    <a href="{{ route('admin.service-categories.index') }}" class="sb-link {{ request()->routeIs('admin.service-categories*') ? 'active' : '' }}" title="Kategori Produk">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+      <span class="sb-link-text">Kategori Produk</span>
     </a>
-    <a href="{{ route('admin.gallery.index') }}" class="sb-link {{ request()->routeIs('admin.gallery*') ? 'active' : '' }}">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-      Galeri
+    <a href="{{ route('admin.gallery.index') }}" class="sb-link {{ request()->routeIs('admin.gallery*') ? 'active' : '' }}" title="Galeri">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span class="sb-link-text">Galeri</span>
     </a>
-    <a href="{{ route('admin.articles.index') }}" class="sb-link {{ request()->routeIs('admin.articles*') ? 'active' : '' }}">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-      Artikel
+    <a href="{{ route('admin.articles.index') }}" class="sb-link {{ request()->routeIs('admin.articles*') ? 'active' : '' }}" title="Artikel">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <span class="sb-link-text">Artikel</span>
     </a>
-    <a href="{{ route('admin.clients.index') }}" class="sb-link {{ request()->routeIs('admin.clients*') ? 'active' : '' }}">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-      Klien
+    <a href="{{ route('admin.clients.index') }}" class="sb-link {{ request()->routeIs('admin.clients*') ? 'active' : '' }}" title="Klien">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 010 7.75"/></svg>
+      <span class="sb-link-text">Klien</span>
     </a>
-    <a href="{{ route('admin.testimonials.index') }}" class="sb-link {{ request()->routeIs('admin.testimonials*') ? 'active' : '' }}">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-      Testimoni
+    <a href="{{ route('admin.testimonials.index') }}" class="sb-link {{ request()->routeIs('admin.testimonials*') ? 'active' : '' }}" title="Testimoni">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      <span class="sb-link-text">Testimoni</span>
     </a>
     @php $newLeads = \App\Models\Lead::where('status','new')->count(); @endphp
-    <a href="{{ route('admin.leads.index') }}" class="sb-link {{ request()->routeIs('admin.leads*') ? 'active' : '' }}">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      Leads
+    <a href="{{ route('admin.leads.index') }}" class="sb-link {{ request()->routeIs('admin.leads*') ? 'active' : '' }}" title="Leads">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <span class="sb-link-text">Leads</span>
       @if($newLeads > 0)<span class="sb-badge">{{ $newLeads }}</span>@endif
     </a>
 
     <div class="sb-sec">Pengaturan</div>
-    <a href="{{ route('admin.settings') }}" class="sb-link {{ request()->routeIs('admin.settings*') || request()->routeIs('admin.wa*') ? 'active' : '' }}">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
-      Pengaturan
+    <a href="{{ route('admin.settings') }}" class="sb-link {{ request()->routeIs('admin.settings*') || request()->routeIs('admin.wa*') ? 'active' : '' }}" title="Pengaturan">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      <span class="sb-link-text">Pengaturan</span>
     </a>
 
     <div class="sb-sec">Aksi</div>
-    <a href="{{ route('home') }}" target="_blank" class="sb-link">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-      Lihat Website
+    <a href="{{ route('home') }}" target="_blank" class="sb-link" title="Lihat Website">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      <span class="sb-link-text">Lihat Website</span>
     </a>
     <form method="POST" action="{{ route('admin.logout') }}" style="margin:0" id="logout-form">
       @csrf
-      <button type="button" class="sb-link" onclick="handleLogoutClick()">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-        Logout
+      <button type="button" class="sb-link" onclick="handleLogoutClick()" title="Logout">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        <span class="sb-link-text">Logout</span>
       </button>
     </form>
   </nav>
@@ -310,7 +454,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
     <div class="sb-bottom-card">
       <strong>{{ $companyName }}</strong>
       <p>Kelola konten & leads bisnis Anda</p>
-      <a href="{{ route('home') }}" target="_blank" style="display:inline-flex;align-items:center;gap:.375rem;background:#fff;color:#1B6FE8;font-size:.75rem;font-weight:700;padding:.4rem .875rem;border-radius:8px;text-decoration:none;transition:all .2s;">
+      <a href="{{ route('home') }}" target="_blank" style="display:inline-flex;align-items:center;gap:.375rem;background:#1B6FE8;color:#fff;font-size:.75rem;font-weight:700;padding:.4rem .875rem;border-radius:8px;text-decoration:none;transition:all .2s;box-shadow:0 2px 8px rgba(27,111,232,0.25);">
         <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         Preview Website
       </a>
