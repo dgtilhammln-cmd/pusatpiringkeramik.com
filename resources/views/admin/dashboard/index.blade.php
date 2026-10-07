@@ -51,6 +51,8 @@ $dailyQuote = $quotes[$dayOfYear % count($quotes)];
 $adminName = session('admin_name', 'Administrator');
 @endphp
 
+@push('styles')
+<style>
 /* ═══════ 4 SECONDS SMOOTH ENTRANCE ANIMATION FOR DASHBOARD ═══════ */
 @keyframes animateBannerDown {
   0% {
