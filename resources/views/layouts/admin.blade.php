@@ -37,7 +37,23 @@ $favicon = \App\Models\Setting::get('favicon') ? asset('storage/'.\App\Models\Se
     --sb-border: rgba(255,255,255,0.12);
     --sb-text: rgba(255,255,255,0.65);
 }
-body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text1); min-height: 100vh; display: flex; }
+body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text1); min-height: 100vh; display: flex; scrollbar-width: thin; scrollbar-color: #CBD5E1 transparent; }
+
+/* GLOBAL BROWSER SCROLLBAR (MATCH SIDEBAR LIGHT GRAY SUBTLE) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
 
 /* ═══════ SIDEBAR LIGHT & INTERACTIVE ═══════ */
 /* ═══════ SIDEBAR LIGHT GRAY & ELEGAN ═══════ */
