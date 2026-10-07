@@ -3,11 +3,9 @@
 # Cara pakai: ./deploy
 # ============================================================
 
-$SSH_HOST   = "46.202.186.86"
-$SSH_PORT   = "65002"
-$SSH_USER   = "u664715641"
-$DEPLOY_DIR = "~/domains/pusatpiringkeramik.hvmdigital.id/public_html"
-$REPO_URL   = "https://github.com/dgtilhammln-cmd/pusatpiringkeramik.com.git"
+$SSH_HOST = "46.202.186.86"
+$SSH_PORT = "65002"
+$SSH_USER = "u664715641"
 
 Write-Host ""
 Write-Host "==============================================" -ForegroundColor Cyan
@@ -35,14 +33,46 @@ Write-Host "Push berhasil!" -ForegroundColor Green
 Write-Host ""
 Write-Host "[3/3] Deploy ke Hosting..." -ForegroundColor Yellow
 
-$envContent = @"
-APP_NAME=`"Pusat Piring Keramik`"
+# PENTING: Pakai @'...'@ (single-quote) agar PowerShell TIDAK expand variabel
+# Semua $ di sini adalah milik bash, bukan PowerShell
+$bashScript = @'
+#!/bin/bash
+DEPLOY_DIR="/home/u664715641/domains/pusatpiringkeramik.hvmdigital.id"
+REPO_URL="https://github.com/dgtilhammln-cmd/pusatpiringkeramik.com.git"
+
+echo "=== Cek direktori hosting ==="
+
+if [ -d "$DEPLOY_DIR/.git" ]; then
+    echo "--- [UPDATE] Repo sudah ada, menarik update dari GitHub..."
+    cd "$DEPLOY_DIR"
+    git fetch origin main
+    git reset --hard origin/main
+    echo "--- Update selesai!"
+else
+    echo "--- [SETUP PERTAMA] Membuat folder dan clone dari GitHub..."
+    mkdir -p "$DEPLOY_DIR"
+    cd "$DEPLOY_DIR"
+    git init
+    git remote add origin "$REPO_URL"
+    git fetch origin main
+    git reset --hard origin/main
+    echo "--- Clone selesai!"
+
+    echo "--- Membuat file .env..."
+    cat > "$DEPLOY_DIR/.env" << 'ENVEOF'
+APP_NAME="Pusat Piring Keramik"
 APP_ENV=production
 APP_KEY=base64:8v7nZVLpqpXmf3DacvEgc4/ohLjd4ABdBqOc5hTG5rg=
 APP_DEBUG=false
 APP_URL=https://pusatpiringkeramik.hvmdigital.id
 APP_LOCALE=id
 APP_FALLBACK_LOCALE=en
+APP_FAKER_LOCALE=id_ID
+APP_MAINTENANCE_DRIVER=file
+BCRYPT_ROUNDS=12
+LOG_CHANNEL=stack
+LOG_STACK=single
+LOG_LEVEL=debug
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -51,40 +81,24 @@ DB_USERNAME=u664715641_PIRINGKERAMIK
 DB_PASSWORD=Piringkeramik23
 SESSION_DRIVER=file
 SESSION_LIFETIME=120
+SESSION_ENCRYPT=false
+SESSION_PATH=/
+SESSION_DOMAIN=null
 FILESYSTEM_DISK=public
 QUEUE_CONNECTION=database
 CACHE_STORE=file
 MAIL_MAILER=log
+MAIL_HOST=127.0.0.1
+MAIL_PORT=2525
 MAIL_FROM_ADDRESS=admin@pusatpiringkeramik.com
-MAIL_FROM_NAME=Pusat Piring Keramik
-"@
-
-$sshScript = @"
-DEPLOY_DIR=$DEPLOY_DIR
-REPO_URL=$REPO_URL
-
-if [ -d \`$DEPLOY_DIR/.git ]; then
-    echo '--- [UPDATE] Repo sudah ada, menarik update...'
-    cd \`$DEPLOY_DIR
-    git fetch origin main
-    git reset --hard origin/main
-else
-    echo '--- [SETUP PERTAMA] Membuat folder dan clone dari GitHub...'
-    mkdir -p \`$DEPLOY_DIR
-    cd \`$DEPLOY_DIR
-    git init
-    git remote add origin \`$REPO_URL
-    git fetch origin main
-    git reset --hard origin/main
-    echo '--- Membuat .env...'
-    cat > \`$DEPLOY_DIR/.env << 'ENVEOF'
-$envContent
+MAIL_FROM_NAME="Pusat Piring Keramik"
 ENVEOF
-    echo '.env selesai dibuat!'
+    echo "--- .env berhasil dibuat!"
 fi
 
-echo '--- Menjalankan artisan...'
-cd \`$DEPLOY_DIR
+echo ""
+echo "--- Menjalankan artisan commands..."
+cd "$DEPLOY_DIR"
 php artisan key:generate --force
 php artisan migrate --force
 php artisan storage:link
@@ -93,10 +107,17 @@ php artisan cache:clear
 php artisan route:clear
 php artisan config:clear
 php artisan optimize
-echo '--- Deploy selesai! ---'
-"@
+echo ""
+echo "--- DEPLOY SELESAI! ---"
+'@
 
-& ssh -p $SSH_PORT "${SSH_USER}@${SSH_HOST}" $sshScript
+# Tulis script ke file temp lalu pipe ke SSH bash -s
+$tmpScript = "$env:TEMP\deploy_piringkeramik.sh"
+[System.IO.File]::WriteAllText($tmpScript, $bashScript, [System.Text.Encoding]::UTF8)
+
+Get-Content $tmpScript -Raw | & ssh -p $SSH_PORT "${SSH_USER}@${SSH_HOST}" "bash -s"
+
+Remove-Item $tmpScript -ErrorAction SilentlyContinue
 
 Write-Host ""
 Write-Host "==============================================" -ForegroundColor Green
