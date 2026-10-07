@@ -51,30 +51,188 @@ $dailyQuote = $quotes[$dayOfYear % count($quotes)];
 $adminName = session('admin_name', 'Administrator');
 @endphp
 
+@push('styles')
+<style>
+.welcome-banner-card {
+  background: #FFFFFF;
+  border-radius: 24px;
+  padding: 1.75rem 2.25rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.welcome-widget-capsule {
+  background: #0F172A;
+  border-radius: 20px;
+  padding: 1.1rem 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 10px 25px rgba(15,23,42,0.12);
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+}
+
+.welcome-clock-main {
+  font-size: 2.35rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.welcome-clock-sec {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #94A3B8;
+  margin-top: 1px;
+  font-variant-numeric: tabular-nums;
+}
+
+.welcome-widget-divider {
+  width: 1px;
+  height: 42px;
+  background: rgba(255,255,255,0.15);
+  flex-shrink: 0;
+}
+
+.welcome-title-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 300;
+  color: #0F172A;
+  margin: 0 0 0.4rem;
+  letter-spacing: -0.01em;
+}
+
+.welcome-quote-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  color: #64748B;
+  margin: 0;
+  line-height: 1.6;
+  max-width: 580px;
+  font-weight: 300;
+}
+
+@media (max-width: 768px) {
+  .welcome-banner-card {
+    padding: 1.25rem 1.25rem;
+    gap: 1.25rem;
+    border-radius: 20px;
+    margin-bottom: 1.25rem;
+  }
+
+  .welcome-title-text {
+    font-size: 1.35rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .welcome-quote-text {
+    font-size: 0.825rem;
+    line-height: 1.5;
+  }
+
+  .welcome-widget-capsule {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.9rem 1.1rem;
+    gap: 0.85rem;
+    border-radius: 16px;
+  }
+
+  .welcome-clock-main {
+    font-size: 1.85rem;
+  }
+
+  .welcome-clock-sec {
+    font-size: 0.8rem;
+  }
+
+  .welcome-widget-divider {
+    height: 36px;
+  }
+
+  #clock-day {
+    font-size: 1.05rem !important;
+  }
+
+  #clock-date {
+    font-size: 0.675rem !important;
+    margin-bottom: 0.2rem !important;
+  }
+
+  #weather-info {
+    font-size: 0.725rem !important;
+    gap: 3px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .welcome-banner-card {
+    padding: 1rem;
+    border-radius: 18px;
+  }
+
+  .welcome-widget-capsule {
+    padding: 0.85rem 0.9rem;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .welcome-clock-main {
+    font-size: 1.6rem;
+  }
+
+  .welcome-widget-divider {
+    display: none;
+  }
+
+  #weather-info {
+    font-size: 0.7rem !important;
+    line-height: 1.4;
+  }
+}
+</style>
+@endpush
+
 {{-- Welcome Box --}}
-<div style="background: #FFFFFF; border-radius: 24px; padding: 1.75rem 2.25rem; margin-bottom: 2rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; position: relative; overflow: hidden; border: 1px solid #E2E8F0; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);">
-  <div style="flex: 1; min-width: 260px; position: relative; z-index: 1;">
-    <h2 style="font-family: 'Montserrat', sans-serif; font-size: 1.75rem; font-weight: 300; color: #0F172A; margin: 0 0 0.4rem; letter-spacing: -0.01em;">
+<div class="welcome-banner-card">
+  <div style="flex: 1; min-width: 240px; position: relative; z-index: 1;">
+    <h2 class="welcome-title-text">
       Selamat {{ ucfirst($greeting) }}, <span style="font-weight: 600;">{{ $adminName }}!</span>
     </h2>
-    <p style="font-family: 'Montserrat', sans-serif; font-size: 0.9rem; color: #64748B; margin: 0; line-height: 1.6; max-width: 580px; font-weight: 300;">
+    <p class="welcome-quote-text">
       "{{ $dailyQuote }}"
     </p>
   </div>
 
   <!-- Realtime Widget Container (Image 2 style) -->
-  <div style="background: #0F172A; border-radius: 20px; padding: 1.1rem 1.6rem; display: flex; align-items: center; gap: 1.25rem; border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 10px 25px rgba(15,23,42,0.12); font-family: 'Montserrat', sans-serif; position: relative; z-index: 1;">
+  <div class="welcome-widget-capsule">
     <!-- Big Clock with Superscript Seconds -->
-    <div style="display: flex; align-items: flex-start; gap: 2px;">
-      <div id="clock-main" style="font-size: 2.35rem; font-weight: 800; color: #FFFFFF; line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums;">00:00</div>
-      <div id="clock-sec" style="font-size: 0.95rem; font-weight: 700; color: #94A3B8; margin-top: 1px; font-variant-numeric: tabular-nums;">00</div>
+    <div style="display: flex; align-items: flex-start; gap: 2px; flex-shrink: 0;">
+      <div id="clock-main" class="welcome-clock-main">00:00</div>
+      <div id="clock-sec" class="welcome-clock-sec">00</div>
     </div>
     
     <!-- Vertical Divider -->
-    <div style="width: 1px; height: 42px; background: rgba(255,255,255,0.15);"></div>
+    <div class="welcome-widget-divider"></div>
 
     <!-- Date, Weather & Location Info -->
-    <div style="display: flex; flex-direction: column; justify-content: center;">
+    <div style="display: flex; flex-direction: column; justify-content: center; min-width: 0; flex: 1;">
       <div id="clock-day" style="font-size: 1.2rem; font-weight: 700; color: #FFFFFF; line-height: 1.2; letter-spacing: 0.01em;">Hari</div>
       <div id="clock-date" style="font-size: 0.725rem; font-weight: 500; color: #94A3B8; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.35rem;">00 JANUARI 0000</div>
       
