@@ -154,11 +154,16 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #94A3B8;
-  padding: 0.75rem 1rem 0.375rem;
-  display: none;
+  padding: 0.5rem 1rem 0.2rem;
+  height: 22px;
+  line-height: 1.2;
+  opacity: 0;
   white-space: nowrap;
+  transition: opacity 0.2s ease 0.1s;
 }
-#sidebar:hover .sb-sec { display: block; }
+#sidebar:hover .sb-sec {
+  opacity: 1;
+}
 
 /* Nav link — Floating Circle/Pill */
 .sb-link {
