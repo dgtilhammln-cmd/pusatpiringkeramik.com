@@ -9,8 +9,7 @@
         @endif
     @endpush
     {{-- ════════════════════════════════════════════════
-    HOME PAGE — CV. Bintang Energy Surabaya Cat Industri
-    PT. Hiranatha Makmur Sukses | www.ptbiner.co.id
+    HOME PAGE — {{ $companyName }}
     ════════════════════════════════════════════════ --}}
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -1108,7 +1107,7 @@
                                     @if(!empty($settings['logo']))
                                         <img src="{{ asset('storage/' . $settings['logo']) }}" alt="Logo">
                                     @else
-                                        <span class="cv-text-logo">CV. Bintang Energy Surabaya</span>
+                                        <span class="cv-text-logo">{{ $companyName }}</span>
                                     @endif
                                 </div>
                             </div>
@@ -1237,14 +1236,14 @@
                 {{-- Card 1: Light Gray (Keywords pattern) --}}
                 <div class="ab-card ab-card-gray" data-aos="fade-up" data-aos-delay="0">
                     <div class="ab-card-bg-pattern">
-                        <span class="ab-chip" style="top:10%;left:5%;">Cat Industri</span>
-                        <span class="ab-chip" style="top:15%;left:45%;">Cat Kapal</span>
-                        <span class="ab-chip" style="top:12%;left:80%;">Anti Karat</span>
-                        <span class="ab-chip" style="top:35%;left:15%;">Tahan Cuaca</span>
+                        <span class="ab-chip" style="top:10%;left:5%;">Piring Keramik</span>
+                        <span class="ab-chip" style="top:15%;left:45%;">Keramik Lantai</span>
+                        <span class="ab-chip" style="top:12%;left:80%;">Porselen</span>
+                        <span class="ab-chip" style="top:35%;left:15%;">Grosir Hotel</span>
                         <span class="ab-chip" style="top:38%;left:50%;">High Quality</span>
-                        <span class="ab-chip" style="top:60%;left:5%;">Cat Jalan</span>
-                        <span class="ab-chip" style="top:65%;left:40%;">Protektif</span>
-                        <span class="ab-chip" style="top:62%;left:75%;">Warna Presisi</span>
+                        <span class="ab-chip" style="top:60%;left:5%;">Keramik Dinding</span>
+                        <span class="ab-chip" style="top:65%;left:40%;">Tahan Lama</span>
+                        <span class="ab-chip" style="top:62%;left:75%;">Food Safe</span>
                     </div>
                     <div class="ab-card-content">
                         <div class="ab-card-label">Pengalaman</div>
@@ -1751,9 +1750,9 @@
                             </div>
                             <div class="cv-cat-card-overlay"></div>
                             <div class="cv-cat-card-body">
-                                <div class="cv-cat-card-name">Produk Cat Industri {{ $i }}</div>
+                                <div class="cv-cat-card-name">Produk Keramik {{ $i }}</div>
                                 <div class="cv-cat-card-spec">
-                                    <span>Cat Premium</span>
+                                    <span>Keramik Premium</span>
                                 </div>
                             </div>
                         </a>
@@ -1950,7 +1949,7 @@
                 <div class="cv-adv-section-label">APLIKASI</div>
                 <h2 class="cv-adv-section-title" style="margin-top:0.75rem;">Cocok untuk<br>Berbagai Industri</h2>
                 <p style="margin-top:1rem;font-size:0.875rem;color:#94A3B8;line-height:1.65;">
-                    Produk pelapis dan cat CV. Bintang Energy Surabaya dirancang untuk melindungi beragam aset strategis di
+                    Produk pelapis dan cat {{ $companyName }} dirancang untuk melindungi beragam aset strategis di
                     berbagai sektor.
                 </p>
             </div>
@@ -2541,7 +2540,7 @@
                 <div style="flex: 1; min-width: 300px; max-width: 500px; display: flex; align-items: center;"
                     data-aos="fade-left">
                     <p style="color: #94A3B8; font-size: 1.1rem; line-height: 1.6; margin: 0;">
-                        CV. Bintang Energy Surabaya bermitra dengan ekspedisi terkemuka untuk mendistribusikan solusi
+                        {{ $companyName }} bermitra dengan ekspedisi terkemuka untuk mendistribusikan solusi
                         perlindungan maritim dan industri kualitas premium ke seluruh pelosok Nusantara secara cepat dan
                         aman.
                     </p>
@@ -2956,8 +2955,7 @@
                                             <line x1="16" y1="17" x2="8" y2="17" />
                                             <polyline points="10 9 9 9 8 9" />
                                         </svg>
-                                        <span style="font-size:0.75rem;margin-top:0.5rem;font-weight:600;">Artikel CV. Bintang Energy
-                                            Surabaya</span>
+                                        <span style="font-size:0.75rem;margin-top:0.5rem;font-weight:600;">Artikel {{ $companyName }}</span>
                                     </div>
                                 @endif
                                 <div class="cv-article-cat-badge">{{ $article->category ?? 'Cat & Coating' }}</div>

@@ -387,7 +387,7 @@ body { background-color: var(--c-bg); font-family: var(--font); }
             di Lapangan
         </h1>
         <p class="sv-intro">
-            Dokumentasi proyek pemasangan &amp; instalasi cat industri CV. Bintang Energy Surabaya
+            Dokumentasi proyek pemasangan &amp; instalasi {{ $companyName }}
             di berbagai sektor industri dan komersial di seluruh Indonesia.
         </p>
     </div>
@@ -416,7 +416,7 @@ body { background-color: var(--c-bg); font-family: var(--font); }
         @foreach($gallery as $i => $item)
         <a href="{{ $item->image_url }}"
            class="gl-card gallery-item glightbox"
-           data-gallery="ptbiner-gallery"
+           data-gallery="company-gallery"
            data-title="{{ $item->title }}"
            data-description="{{ $item->client ? 'Klien: '.$item->client : '' }}"
            data-category="{{ $item->category }}"
@@ -517,7 +517,7 @@ body { background-color: var(--c-bg); font-family: var(--font); }
         <div class="sv-label" style="margin-bottom:1rem;">Butuh Instalasi?</div>
         <h2 class="sv-cta-h2">Wujudkan Proyek<br>Ventilasi Anda Bersama Kami</h2>
         <p class="sv-cta-sub">
-            Tim teknis CV. Bintang Energy Surabaya siap membantu merencanakan dan memasang sistem
+            Tim teknis {{ $companyName }} siap membantu merencanakan dan memasang sistem
             solusi cat dan pelapis terbaik untuk kebutuhan Anda.
         </p>
         <div class="sv-cta-btns">

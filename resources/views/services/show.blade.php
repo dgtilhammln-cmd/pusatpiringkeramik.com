@@ -669,7 +669,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
             <div class="cv-section-label">APLIKASI</div>
             <h2 class="cv-section-title" style="margin-top:.75rem;">Cocok untuk<br>Berbagai Sektor Industri</h2>
             <p style="margin-top:1rem;font-size:0.875rem;color:#64748B;line-height:1.65;font-family:var(--font);">
-                Produk cat dan pelapis CV. Bintang Energy Surabaya dirancang untuk melindungi berbagai aset industri, maritim, dan komersial.
+                Produk dari {{ $companyName }} dirancang untuk memberikan kualitas dan ketahanan terbaik.
             </p>
         </div>
         <div class="sh-app-grid">

@@ -15,12 +15,15 @@ class ArticleController extends Controller
         $settings   = Setting::getAllAsArray();
         $appUrl     = rtrim(config('app.url'), '/');
 
+        $comp    = Setting::get('company_name', config('app.name'));
+        $tagline = Setting::get('company_tagline', '');
+
         $seo = [
-            'title'       => $settings['meta_title_articles'] ?? 'Artikel & Tips Sistem Sirkulasi Udara | Blog CV. Bintang Energy Surabaya',
-            'description' => $settings['meta_desc_articles'] ?? 'Kumpulan artikel informatif tentang sistem ventilasi industri, cara memilih cat industri yang tepat, dan tips menjaga sirkulasi udara bangunan.',
+            'title'       => $settings['meta_title_articles'] ?? ('Artikel & Informasi | Blog ' . $comp),
+            'description' => $settings['meta_desc_articles'] ?? ($tagline ?: ('Kumpulan artikel dan informasi dari ' . $comp)),
             'og_image'    => !empty($settings['og_image_default']) ? $appUrl.'/storage/'.$settings['og_image_default'] : (!empty($settings['logo']) ? $appUrl.'/storage/'.$settings['logo'] : $appUrl.'/images/og-default.jpg'),
             'canonical'   => route('articles'),
-            'keywords'    => $settings['meta_keywords_articles'] ?? 'artikel ventilasi, tips sirkulasi udara, manfaat cat industri, blog ptbiner, cara pasang ventilator atap',
+            'keywords'    => $settings['meta_keywords_articles'] ?? '',
         ];
 
         $breadcrumbs = [
@@ -64,7 +67,7 @@ class ArticleController extends Controller
             // Article-specific OG
             'article_published' => $article->published_at?->toIso8601String(),
             'article_modified'  => $article->updated_at->toIso8601String(),
-            'article_author'    => $article->author ?? 'Tim CV. Bintang Energy Surabaya',
+            'article_author'    => $article->author ?? ('Tim ' . Setting::get('company_name', config('app.name'))),
             'article_section'   => $article->category ?? 'Artikel',
         ];
 
@@ -90,11 +93,11 @@ class ArticleController extends Controller
             'inLanguage'       => 'id-ID',
             'author'           => [
                 '@type' => 'Organization',
-                'name'  => $article->author ?? 'Tim CV. Bintang Energy Surabaya',
+                'name'  => $article->author ?? ('Tim ' . Setting::get('company_name', config('app.name'))),
             ],
             'publisher'        => [
                 '@type'  => 'Organization',
-                'name'   => 'CV. Bintang Energy Surabaya',
+                'name'   => Setting::get('company_name', config('app.name')),
                 '@id'    => $appUrl.'/#organization',
                 'logo'   => ['@type' => 'ImageObject', 'url' => $appUrl.'/images/logo.png'],
             ],

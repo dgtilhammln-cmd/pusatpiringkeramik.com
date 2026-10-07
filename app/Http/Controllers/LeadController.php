@@ -24,7 +24,8 @@ class LeadController extends Controller
         $wa = WaSetting::primary();
 
         // Build WA message
-        $msg = "Halo CV. Bintang Energy Surabaya,\n\n";
+        $comp = \App\Models\Setting::get('company_name', config('app.name'));
+        $msg = "Halo {$comp},\n\n";
         $msg .= "Nama: {$validated['name']}\n";
         if (!empty($validated['company'])) $msg .= "Perusahaan: {$validated['company']}\n";
         if (!empty($validated['email']))   $msg .= "Email: {$validated['email']}\n";

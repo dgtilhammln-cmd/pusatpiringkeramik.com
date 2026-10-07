@@ -1,7 +1,5 @@
 {{-- ═══════════════════════════════════
-FOOTER COMPONENT — CV. Bintang Energy Surabaya (Jangkauan-Style)
-PT. Hiranatha Makmur Sukses
-www.ptbiner.co.id
+FOOTER COMPONENT — {{ $companyName }}
 ══════════════════════════════════ --}}
 @php
     $s = \App\Models\Setting::getAllAsArray();
@@ -357,7 +355,7 @@ www.ptbiner.co.id
                     @if($logo)
                         <img src="{{ asset('storage/' . $logo) }}" alt="Logo">
                     @else
-                        <span style="font-weight:900;color:#DC2626;font-size:1rem;">CV. Bintang Energy Surabaya</span>
+                        <span style="font-weight:900;color:#DC2626;font-size:1rem;">{{ $companyName }}</span>
                     @endif
                 </div>
                 <div>
@@ -369,7 +367,7 @@ www.ptbiner.co.id
             </a>
 
             <p class="cv-footer-v2-tagline">
-                {{ $s['footer_desc'] ?? 'Produsen Cat Industri Non-Electric #1 di Indonesia. Berdiri sejak 2013, melayani ribuan pelanggan dari Sabang sampai Merauke.' }}
+                {{ $s['footer_desc'] ?? 'Distributor & Supplier Piring Keramik terpercaya di Indonesia. Melayani kebutuhan grosir restoran, hotel, dan catering.' }}
             </p>
 
             <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem;">
@@ -397,7 +395,7 @@ www.ptbiner.co.id
                         </svg>
                     </a>
                 @endif
-                <a href="mailto:info@ptbiner.co.id" class="cv-footer-v2-social-btn" title="Email">
+                <a href="mailto:{{ \App\Models\Setting::get('email') ?? \App\Models\Setting::get('contact_email') ?? '' }}" class="cv-footer-v2-social-btn" title="Email">
                     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                         <polyline points="22,6 12,12 2,6" />

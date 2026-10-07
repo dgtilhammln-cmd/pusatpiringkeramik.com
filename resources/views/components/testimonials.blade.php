@@ -118,7 +118,7 @@
                             <img src="{{ $testi->photo_url }}" alt="{{ $testi->name }}" class="cv-testi-avatar-v2">
                             <div>
                                 <div class="cv-testi-name-v2">{{ $testi->name }}</div>
-                                <div class="cv-testi-pos-v2">{{ $testi->position }} — {{ $testi->company }}</div>
+                                <div class="cv-testi-pos-v2">{{ $testi->position }} | {{ $testi->company }}</div>
                             </div>
                         </div>
                     </div>

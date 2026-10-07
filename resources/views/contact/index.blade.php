@@ -296,8 +296,8 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
             dengan Tim Ahli Kami
         </h1>
         <p class="sv-intro">
-            Kami siap membantu menemukan solusi cat dan pelapis terbaik untuk kebutuhan proyek Anda.
-            Hubungi kami sekarang — respon cepat, gratis!
+            Kami siap membantu menemukan produk piring dan keramik terbaik untuk kebutuhan Anda.
+            Hubungi kami sekarang - respon cepat, gratis!
         </p>
     </div>
 </section>
@@ -347,7 +347,7 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
                     <label class="ct-label">Produk yang Diminati</label>
                     <select name="product" class="ct-select">
                         <option value="">-- Pilih Produk --</option>
-                        @foreach(['Cat Industri 12"','Cat Industri 14"','Cat Industri 18"','Cat Industri 24"','Cat Industri Stainless','Instalasi Ventilator','Konsultasi Ventilasi','Lainnya'] as $p)
+                        @foreach(['Piring Keramik','Keramik Lantai','Keramik Dinding','Piring Porselen','Peralatan Makan','Aksesori Dapur','Pembelian Grosir','Konsultasi Produk','Lainnya'] as $p)
                         <option value="{{ $p }}" {{ old('product')===$p?'selected':'' }}>{{ $p }}</option>
                         @endforeach
                     </select>
@@ -431,7 +431,7 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
             <iframe src="{{ $settings['maps_embed'] ?? 'https://maps.google.com/maps?q=-7.1583,112.6515&output=embed' }}"
                     allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
-                    title="Lokasi CV. Bintang Energy Surabaya"></iframe>
+                    title="Lokasi {{ $companyName }}"></iframe>
         </div>
     </div>
 </section>

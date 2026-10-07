@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sitemap — {{ $companyName ?? config('app.name') }}</title>
+<title>Sitemap | {{ $companyName ?? config('app.name') }}</title>
 <meta name="robots" content="noindex, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -313,7 +313,7 @@
             SITEMAP
         </div>
         <h1>Peta Situs<br>{{ $companyName ?? config('app.name') }}</h1>
-        <p>Semua halaman, produk, dan artikel yang tersedia di website<br>{{ $companyName ?? config('app.name') }}{{ $companyTagline ? ' — '.$companyTagline : '' }}.</p>
+        <p>Semua halaman, produk, dan artikel yang tersedia di website<br>{{ $companyName ?? config('app.name') }}{{ $companyTagline ? ' | '.$companyTagline : '' }}.</p>
         <div class="sm-hero-actions">
             <a href="/" class="sm-btn sm-btn-primary">
                 <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>

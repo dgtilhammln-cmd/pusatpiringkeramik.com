@@ -27,10 +27,13 @@ class ServiceController extends Controller
         $services = $query->paginate(12)->withQueryString();
         $settings = Setting::getAllAsArray();
 
+        $comp    = Setting::get('company_name', config('app.name'));
+        $tagline = Setting::get('company_tagline', '');
+
         $seo = [
-            'title'       => $settings['meta_title_services'] ?? 'Daftar Produk Cat Industri CV. Bintang Energy Surabaya | Anti Karat & Bergaransi',
-            'description' => $settings['meta_desc_services'] ?? 'Temukan berbagai pilihan tipe Cat Industri dari CV. Bintang Energy Surabaya. Cocok untuk pabrik, gudang, restoran, dan rumah. Sirkulasi udara 24 jam tanpa listrik.',
-            'keywords'    => $settings['meta_keywords_services'] ?? 'produk ptbiner, harga cat industri, jual ventilator atap, tipe roof ventilator, spesifikasi cat industri',
+            'title'       => $settings['meta_title_services'] ?? ('Daftar Produk | ' . $comp),
+            'description' => $settings['meta_desc_services'] ?? ($tagline ?: ('Produk dan Layanan ' . $comp)),
+            'keywords'    => $settings['meta_keywords_services'] ?? '',
             'og_image'    => !empty($settings['og_image_default']) ? asset('storage/'.$settings['og_image_default']) : (!empty($settings['logo']) ? asset('storage/'.$settings['logo']) : asset('images/og-default.jpg')),
             'canonical'   => route('products'),
         ];
@@ -38,7 +41,7 @@ class ServiceController extends Controller
         $schema = json_encode([
             '@context' => 'https://schema.org',
             '@type'    => 'ItemList',
-            'name'     => 'Produk & Layanan CV. Bintang Energy Surabaya',
+            'name'     => 'Produk & Layanan ' . $comp,
             'url'      => route('products'),
             'itemListElement' => $services->map(function($s, $i) {
                 return [
@@ -91,11 +94,11 @@ class ServiceController extends Controller
                 '@type'       => 'Product',
                 'name'        => $service->name,
                 'image'       => [$serviceImage],
-                'description' => strip_tags($service->short_desc ?: $service->name . ' - CV. Bintang Energy Surabaya Cat Industri Berkualitas'),
-                'sku'         => 'CYV-' . str_pad($service->id, 4, '0', STR_PAD_LEFT),
-                'mpn'         => 'CYV-' . strtoupper(substr($service->slug, 0, 8)),
+                'description' => strip_tags($service->short_desc ?: $service->name . ' - ' . Setting::get('company_name', config('app.name'))),
+                'sku'         => 'PRG-' . str_pad($service->id, 4, '0', STR_PAD_LEFT),
+                'mpn'         => 'PRG-' . strtoupper(substr($service->slug, 0, 8)),
                 'url'         => route('products.show', $slug),
-                'brand'       => ['@type' => 'Brand', 'name' => 'CV. Bintang Energy Surabaya'],
+                'brand'       => ['@type' => 'Brand', 'name' => Setting::get('company_name', config('app.name'))],
                 'offers'      => [
                     '@type'         => 'AggregateOffer',
                     'priceCurrency' => 'IDR',

@@ -301,7 +301,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label">Penulis</label>
-                    <input type="text" name="author" value="{{ old('author',$a?->author ?? 'Tim CV. Bintang Energy Surabaya') }}" class="form-input">
+                    <input type="text" name="author" value="{{ old('author',$a?->author ?? 'Tim Redaksi') }}" class="form-input">
                 </div>
                 <div class="form-group">
                     <label class="form-label">Kategori</label>

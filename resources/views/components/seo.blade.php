@@ -1,5 +1,5 @@
 {{--
-    SEO Component — CV. Bintang Energy Surabaya
+    SEO Component
     Variables (semua optional): $seo[], $schema, $breadcrumbs[]
 --}}
 @php
@@ -9,7 +9,7 @@
     $appUrl         = rtrim(config('app.url'), '/');
 
     // Dynamic company info from settings
-    $companyName    = \App\Models\Setting::get('company_name', config('app.name', 'PT Bintang Energy Surabaya'));
+    $companyName    = \App\Models\Setting::get('company_name', config('app.name'));
     $companyTagline = \App\Models\Setting::get('company_tagline', '');
     $addressStreet  = \App\Models\Setting::get('address_street', '');
     $addressCity    = \App\Models\Setting::get('address_city', '');
@@ -18,7 +18,7 @@
     $addressFull    = \App\Models\Setting::get('address_full', $addressStreet);
     $companyPhone   = \App\Models\Setting::get('phone', \App\Models\Setting::get('whatsapp', ''));
     $companyEmail   = \App\Models\Setting::get('email', '');
-    $siteDefaultTitle = $companyName . ($companyTagline ? ' — ' . $companyTagline : '');
+    $siteDefaultTitle = $companyName . ($companyTagline ? ' | ' . $companyTagline : '');
 
     // Canonical — always use app.url, never localhost
     $rawCanonical   = $seoData['canonical'] ?? url()->current();
@@ -32,7 +32,7 @@
                         : $appUrl . '/' . ltrim($rawOg, '/');
 @endphp
 <title>{{ $seoData['title'] ?? $siteDefaultTitle }}</title>
-<meta name="description" content="{{ $seoData['description'] ?? $companyName . ' — ' . ($companyTagline ?: 'Distributor & Supplier Cat Industrial Indonesia.') }}">
+<meta name="description" content="{{ $seoData['description'] ?? $companyName . ($companyTagline ? ' - ' . $companyTagline : ' - Distributor & Supplier Piring Keramik Indonesia.') }}">
 @php
     $robotsDirective = $seoData['robots'] ?? 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 @endphp
@@ -87,7 +87,7 @@ $lbSchema = json_encode([
     '@id'           => $appUrl . '/#organization',
     'name'          => $companyName,
     'alternateName' => $companyName,
-    'description'   => $companyTagline ?: ('Distributor dan Supplier Cat Industrial Indonesia — ' . $companyName),
+    'description'   => $companyTagline ?: ('Distributor dan Supplier Piring Keramik Indonesia - ' . $companyName),
     'url'           => $appUrl,
     'telephone'     => $companyPhone ?: '',
     'email'         => $companyEmail ?: '',

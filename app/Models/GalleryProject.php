@@ -54,15 +54,18 @@ class GalleryProject extends Model
     }
     public function getAltTextAttribute($v): string
     {
-        return $v ?: $this->title.' - CV. Bintang Energy Surabaya';
+        $comp = \App\Models\Setting::get('company_name', config('app.name'));
+        return $v ?: $this->title.' - '.$comp;
     }
     public function getMetaTitleAttribute($v): string
     {
-        return $v ?: $this->title.' | Galeri CV. Bintang Energy Surabaya';
+        $comp = \App\Models\Setting::get('company_name', config('app.name'));
+        return $v ?: $this->title.' | Galeri '.$comp;
     }
     public function getMetaDescAttribute($v): string
     {
-        return $v ?: 'Proyek '.$this->title.' oleh CV. Bintang Energy Surabaya di '.($this->location ?: 'Indonesia').'.';
+        $comp = \App\Models\Setting::get('company_name', config('app.name'));
+        return $v ?: 'Proyek '.$this->title.' oleh '.$comp.' di '.($this->location ?: 'Indonesia').'.';
     }
     public function getUrlAttribute(): string
     {

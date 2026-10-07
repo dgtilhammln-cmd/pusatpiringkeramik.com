@@ -310,8 +310,8 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
             Ventilasi Udara
         </h1>
         <p class="sv-intro">
-            Kumpulan artikel, panduan teknis, dan tips perawatan seputar
-            sistem ventilasi udara untuk industri dan hunian dari tim CV. Bintang Energy Surabaya.
+            Kumpulan artikel, panduan teknis, dan tips seputar
+            produk dan layanan dari tim {{ $companyName }}.
         </p>
     </div>
 </section>
@@ -425,7 +425,7 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
     <div class="sv-cta-inner">
         <div class="sv-label" style="margin-bottom:1rem;">Siap Memulai?</div>
         <h2 class="sv-cta-h2">Temukan Produk Cat<br>yang Tepat untuk Proyek Anda</h2>
-        <p class="sv-cta-sub">Tim teknis CV. Bintang Energy Surabaya siap membantu menghitung kebutuhan dan memasang cat industri terbaik untuk proyek Anda.</p>
+        <p class="sv-cta-sub">Tim teknis {{ $companyName }} siap membantu menghitung kebutuhan dan memberikan solusi terbaik untuk proyek Anda.</p>
         <div class="sv-cta-btns">
             @php $wa = \App\Models\WaSetting::primary(); @endphp
             @if($wa)

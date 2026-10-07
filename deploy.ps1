@@ -101,7 +101,13 @@ echo "--- Menjalankan artisan commands..."
 cd "$DEPLOY_DIR"
 php artisan key:generate --force
 php artisan migrate --force
-php artisan storage:link
+
+echo "--- Fix storage symlink untuk public_html..."
+rm -f "$DEPLOY_DIR/public_html/storage"
+ln -s "$DEPLOY_DIR/storage/app/public" "$DEPLOY_DIR/public_html/storage"
+chmod -R 775 "$DEPLOY_DIR/storage" "$DEPLOY_DIR/bootstrap/cache"
+echo "--- Symlink storage OK!"
+
 php artisan view:clear
 php artisan cache:clear
 php artisan route:clear

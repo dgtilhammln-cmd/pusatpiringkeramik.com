@@ -77,7 +77,7 @@ class Service extends Model
     }
     public function getMetaTitleAttribute($v): string
     {
-        return $v ?: $this->name . ' | CV. Bintang Energy Surabaya';
+        return $v ?: $this->name . ' | ' . \App\Models\Setting::get('company_name', config('app.name'));
     }
     public function getMetaDescAttribute($v): string
     {

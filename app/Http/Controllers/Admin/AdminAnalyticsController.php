@@ -153,7 +153,8 @@ class AdminAnalyticsController extends Controller
             ->selectRaw('DATE(created_at) as date, COUNT(*) as count')
             ->groupBy('date')->pluck('count', 'date');
 
-        $filename = "Laporan_CV. Bintang Energy Surabaya_{$from->format('Ymd')}_{$to->format('Ymd')}.csv";
+        $compName = \Illuminate\Support\Str::slug(\App\Models\Setting::get('company_name', config('app.name')));
+        $filename = "Laporan_{$compName}_{$from->format('Ymd')}_{$to->format('Ymd')}.csv";
 
         $headers = [
             "Content-type"        => "text/csv",

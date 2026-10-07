@@ -24,10 +24,12 @@ class HomeController extends Controller
         $wa           = WaSetting::primary();
         $heroSlides   = HeroSlide::active()->ordered()->limit(5)->get();
 
+        $comp    = Setting::get('company_name', config('app.name'));
+        $tagline = Setting::get('company_tagline', '');
         $seo = [
-            'title'       => $settings['meta_title_home'] ?? 'CV. Bintang Energy Surabaya — Cat Industri Non-Electric #1 Indonesia | PT. Hiranatha Makmur Sukses',
-            'description' => $settings['meta_desc_home']  ?? 'Produsen cat industri non-electric terpercaya sejak 2007. Garansi 15 tahun tidak berkarat. 5 tipe: CV-45, CV-60, CV-75, CV-90, CV-105. Gratis konsultasi: 0812-9656-5757.',
-            'keywords'    => $settings['meta_keywords_home'] ?? 'cat industri, ventilator atap, ptbiner, roof ventilator, ventilator non electric, kipas angin atap, vent turbine, ventilasi pabrik, ventilasi gudang',
+            'title'       => $settings['meta_title_home'] ?? ($comp . ($tagline ? ' — ' . $tagline : '')),
+            'description' => $settings['meta_desc_home']  ?? ($tagline ?: $comp),
+            'keywords'    => $settings['meta_keywords_home'] ?? '',
             'og_image'    => !empty($settings['og_image_default']) ? asset('storage/'.$settings['og_image_default']) : (!empty($settings['logo']) ? asset('storage/'.$settings['logo']) : asset('favicon.ico')),
             'canonical'   => route('home'),
         ];

@@ -14,10 +14,12 @@ class GalleryController extends Controller
         $categories = GalleryProject::active()->select('category')->whereNotNull('category')->distinct()->pluck('category')->filter()->values();
         $settings   = Setting::getAllAsArray();
 
+        $comp = Setting::get('company_name', config('app.name'));
+
         $seo = [
-            'title'      => $settings['meta_title_gallery'] ?? 'Galeri Proyek Crane & Lift | CV. Bintang Energy Surabaya',
-            'description'=> $settings['meta_desc_gallery'] ?? 'Dokumentasi proyek pemasangan overhead crane, chain hoist, cargo lift & gantry crane di berbagai industri di Jawa Timur dan seluruh Indonesia.',
-            'keywords'   => $settings['meta_keywords_gallery'] ?? 'galeri hoist crane, proyek crane surabaya, pemasangan cargo lift',
+            'title'      => $settings['meta_title_gallery'] ?? ('Galeri Proyek & Produk | ' . $comp),
+            'description'=> $settings['meta_desc_gallery'] ?? ('Dokumentasi produk dan pengiriman ' . $comp . ' di seluruh Indonesia.'),
+            'keywords'   => $settings['meta_keywords_gallery'] ?? '',
             'og_image'   => !empty($settings['og_image_default']) ? asset('storage/'.$settings['og_image_default']) : (!empty($settings['logo']) ? asset('storage/'.$settings['logo']) : asset('images/og-default.jpg')),
             'canonical'  => route('gallery'),
             'robots'     => 'noindex, nofollow',
@@ -57,7 +59,7 @@ class GalleryController extends Controller
             'contentUrl'  => $item->image_url,
             'url'         => route('gallery.show', $slug),
             'datePublished'=> $item->created_at->toIso8601String(),
-            'author'      => ['@type' => 'Organization', 'name' => 'CV. Bintang Energy Surabaya'],
+            'author'      => ['@type' => 'Organization', 'name' => Setting::get('company_name', config('app.name'))],
             'about'       => [
                 '@type'    => 'CreativeWork',
                 'name'     => $item->title,

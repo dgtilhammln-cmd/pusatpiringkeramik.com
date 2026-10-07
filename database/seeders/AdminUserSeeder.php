@@ -13,7 +13,7 @@ class AdminUserSeeder extends Seeder
         DB::table('users')->updateOrInsert(
             ['email' => 'admin@pusatpiringkeramik.com'],
             [
-                'name'              => 'Admin Pusat Piring Keramik',
+                'name'              => 'Super Admin',
                 'email'             => 'admin@pusatpiringkeramik.com',
                 'password'          => Hash::make('PiringKeramik@2026!'),
                 'role'              => 'admin',

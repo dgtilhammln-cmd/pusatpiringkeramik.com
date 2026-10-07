@@ -258,12 +258,12 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
       <div>
         <label class="form-label" for="s-company_name">Nama Perusahaan</label>
-        <input type="text" name="company_name" id="s-company_name" class="form-input" value="{{ $settings['company_name'] ?? '' }}" placeholder="PT Bintang Energy Surabaya">
+        <input type="text" name="company_name" id="s-company_name" class="form-input" value="{{ $settings['company_name'] ?? '' }}" placeholder="Nama Perusahaan Anda">
         <p style="font-size:.7rem;color:#94A3B8;margin:.375rem 0 0;">Tampil di footer, halaman about, sitemap, dan seluruh halaman website.</p>
       </div>
       <div>
         <label class="form-label" for="s-company_tagline">Tagline / Slogan</label>
-        <input type="text" name="company_tagline" id="s-company_tagline" class="form-input" value="{{ $settings['company_tagline'] ?? '' }}" placeholder="Distributor Cat Industrial Terpercaya">
+        <input type="text" name="company_tagline" id="s-company_tagline" class="form-input" value="{{ $settings['company_tagline'] ?? '' }}" placeholder="Tagline / Slogan Perusahaan">
       </div>
       <div>
         <label class="form-label" for="s-address_street">Alamat Jalan</label>
@@ -379,12 +379,12 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
       <div>
         <label class="form-label" for="s-footer_desc">Deskripsi Footer</label>
-        <input type="text" name="footer_desc" id="s-footer_desc" class="form-input" value="{{ $settings['footer_desc'] ?? '' }}" placeholder="Produsen dan Spesialis Cat Industri...">
+        <input type="text" name="footer_desc" id="s-footer_desc" class="form-input" value="{{ $settings['footer_desc'] ?? '' }}" placeholder="Deskripsi singkat perusahaan...">
         <p style="font-size:.7rem;color:#94A3B8;margin:.375rem 0 0;">Tampil di footer website sebagai deskripsi singkat perusahaan.</p>
       </div>
       <div>
         <label class="form-label" for="s-copyright">Copyright Text</label>
-        <input type="text" name="copyright" id="s-copyright" class="form-input" value="{{ $settings['copyright'] ?? '' }}" placeholder="© 2026 CV. Bintang Energy Surabaya. All rights reserved.">
+        <input type="text" name="copyright" id="s-copyright" class="form-input" value="{{ $settings['copyright'] ?? '' }}" placeholder="© {{ date('Y') }} Nama Perusahaan. All rights reserved.">
         <p style="font-size:.7rem;color:#94A3B8;margin:.375rem 0 0;">Tampil di bagian bawah footer.</p>
       </div>
       <div>
@@ -437,7 +437,7 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
           <input type="text" name="meta_title_{{ $page['key'] }}" class="form-input" maxlength="65"
                  value="{{ $settings['meta_title_'.$page['key']] ?? '' }}"
                  oninput="updateCounter(this,'cnt-title-{{ $page['key'] }}')"
-                 placeholder="{{ $page['label'] }} | CV. Bintang Energy Surabaya">
+                 placeholder="{{ $page['label'] }} | Nama Perusahaan">
           <div style="font-size:.7rem;color:#94A3B8;margin-top:.25rem;">
             <span id="cnt-title-{{ $page['key'] }}">{{ strlen($settings['meta_title_'.$page['key']] ?? '') }}</span>/65 karakter
           </div>

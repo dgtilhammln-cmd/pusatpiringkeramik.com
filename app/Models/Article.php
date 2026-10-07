@@ -77,7 +77,7 @@ class Article extends Model
 
     public function getMetaTitleAttribute($value): string
     {
-        return $value ?: Str::limit($this->title, 55) . ' | CV. Bintang Energy Surabaya';
+        return $value ?: Str::limit($this->title, 55) . ' | ' . \App\Models\Setting::get('company_name', config('app.name'));
     }
 
     public function getMetaDescAttribute($value): string
