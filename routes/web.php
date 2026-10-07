@@ -223,6 +223,8 @@ Route::prefix('admin')->group(function () {
             'store'   => 'admin.hero_slides.store',   'show'    => 'admin.hero_slides.show',
             'edit'    => 'admin.hero_slides.edit',    'update'  => 'admin.hero_slides.update',
             'destroy' => 'admin.hero_slides.destroy',
+        ]);
+
         // Roles & Hak Akses (Placeholder)
         Route::get('/roles', function() {
             return redirect()->back()->with('success', 'Halaman Role & Hak Akses dalam proses pengembangan.');
