@@ -47,8 +47,9 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   width: 68px;
   position: fixed;
   top: 1rem;
-  bottom: 1rem;
   left: 1rem;
+  max-height: calc(100vh - 2rem);
+  height: fit-content;
   z-index: 200;
   background: #FFFFFF;
   border-radius: 32px;
@@ -59,7 +60,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s ease;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 0.75rem 0;
+  padding: 0.75rem 0 0.5rem;
   scrollbar-width: thin;
   scrollbar-color: #CBD5E1 transparent;
 }
@@ -146,7 +147,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 #sidebar:hover .sb-search-box input { display: block; }
 
 /* Nav */
-.sb-nav { flex: 1; padding: 0.25rem 0 1rem; overflow-y: auto; overflow-x: hidden; }
+.sb-nav { flex: 0 1 auto; padding: 0.25rem 0 0.5rem; overflow-y: auto; overflow-x: hidden; }
 .sb-sec {
   font-size: 0.6rem;
   font-weight: 700;
