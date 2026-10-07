@@ -51,22 +51,67 @@ $dailyQuote = $quotes[$dayOfYear % count($quotes)];
 $adminName = session('admin_name', 'Administrator');
 @endphp
 
-@push('styles')
-<style>
+/* ═══════ 4 SECONDS SMOOTH ENTRANCE ANIMATION FOR DASHBOARD ═══════ */
+@keyframes animateBannerDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes animateCardUpOpposite {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes animateChartFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(60px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
 .welcome-banner-card {
-  background: #FFFFFF;
-  border-radius: 24px;
-  padding: 1.75rem 2.25rem;
-  margin-bottom: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  position: relative;
-  overflow: hidden;
-  border: 1px solid #E2E8F0;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  animation: animateBannerDown 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.stat-card-anim {
+  opacity: 0;
+  animation: animateCardUpOpposite 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.chart-card-anim {
+  opacity: 0;
+  animation: animateChartFromRight 4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+.content-card-anim {
+  opacity: 0;
+  animation: animateCardUpOpposite 4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+}
+
+.table-card-anim {
+  opacity: 0;
+  animation: animateCardUpOpposite 4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+}
+
+.qa-card-anim {
+  opacity: 0;
+  animation: animateCardUpOpposite 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .welcome-widget-capsule {
@@ -299,14 +344,14 @@ function downloadReport(format) {
     ['Total Leads','leads',$stats['leads'],'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z','#475569', '#F1F5F9'],
     ['Conversion (CTR)','ctr',$stats['ctr'].'%','M13 7h8m0 0v8m0-8l-8 8-4-4-6 6','#475569', '#F1F5F9'],
   ] as $sc)
-  <div style="background:#FFFFFF;border-radius:20px;padding:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,0.03);display:flex;flex-direction:column;gap:1rem;transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.06)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.03)';">
+  <div class="stat-card-anim" style="animation-delay:{{ 0.15 * ($loop->index + 1) }}s;background:#FFFFFF;border-radius:20px;padding:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,0.03);display:flex;flex-direction:column;gap:1rem;transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.06)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.03)';">
     <div style="display:flex;align-items:center;gap:1rem;">
       <div style="background:{{ $sc[5] }};border-radius:12px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
         <svg width="24" height="24" fill="none" stroke="{{ $sc[4] }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="{{ $sc[3] }}"/></svg>
       </div>
       <div>
         <div style="font-size:0.875rem;color:var(--text3);font-weight:500;margin-bottom:0.2rem;">{{ $sc[0] }}</div>
-        <div style="font-size:1.75rem;font-weight:800;color:var(--text1);line-height:1;">{{ $sc[2] }}</div>
+        <div class="count-up-val" data-target="{{ $sc[2] }}" style="font-size:1.75rem;font-weight:800;color:var(--text1);line-height:1;">0</div>
       </div>
     </div>
   </div>
@@ -317,11 +362,11 @@ function downloadReport(format) {
 <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:1.5rem;margin-bottom:2rem;">
 
   {{-- Leads Chart --}}
-  <div style="background:#FFFFFF;border-radius:24px;padding:1.75rem 1.75rem 1.5rem;box-shadow:0 2px 20px rgba(0,0,0,0.04);">
+  <div class="chart-card-anim" style="background:#FFFFFF;border-radius:24px;padding:1.75rem 1.75rem 1.5rem;box-shadow:0 2px 20px rgba(0,0,0,0.04);">
     <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.75rem;">
       <div>
         <div style="font-size:.8rem;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.35rem;">Traffic &amp; Leads</div>
-        <div style="font-size:1.85rem;font-weight:800;color:#1E293B;line-height:1;">{{ $monthLeads }} <span style="font-size:.875rem;font-weight:500;color:#94A3B8;">leads bulan ini</span></div>
+        <div style="font-size:1.85rem;font-weight:800;color:#1E293B;line-height:1;"><span class="count-up-val" data-target="{{ $monthLeads }}">0</span> <span style="font-size:.875rem;font-weight:500;color:#94A3B8;">leads bulan ini</span></div>
       </div>
       <div style="display:flex;gap:.625rem;align-items:center;padding:.5rem .875rem;background:#F8FAFC;border-radius:100px;">
         <div style="display:flex;align-items:center;gap:.35rem;font-size:.72rem;font-weight:700;color:#64748B;"><span style="display:inline-block;width:10px;height:3px;background:#A3AED0;border-radius:2px;"></span>Visitor</div>
@@ -333,7 +378,7 @@ function downloadReport(format) {
   </div>
 
   {{-- Content Overview --}}
-  <div style="background:#FFFFFF;border-radius:20px;padding:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,0.03);">
+  <div class="content-card-anim" style="background:#FFFFFF;border-radius:20px;padding:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,0.03);">
     <div style="font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:1.25rem;">Konten Website</div>
     <div style="display:flex; flex-direction:column; gap:0.5rem;">
     @foreach([
@@ -350,7 +395,7 @@ function downloadReport(format) {
         <span style="font-size:.875rem;color:var(--text1);font-weight:600;">{{ $cc[0] }}</span>
       </div>
       <div style="display:flex;align-items:center;gap:.5rem;">
-        <span style="font-size:1.125rem;font-weight:800;color:#0F172A;">{{ $cc[2] }}</span>
+        <span class="count-up-val" data-target="{{ $cc[2] }}" style="font-size:1.125rem;font-weight:800;color:#0F172A;">0</span>
         <svg width="14" height="14" fill="none" stroke="var(--text3)" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
       </div>
     </a>
@@ -360,7 +405,7 @@ function downloadReport(format) {
 </div>
 
 {{-- RECENT LEADS TABLE --}}
-<div style="background:#FFFFFF;border-radius:20px;box-shadow:0 4px 15px rgba(0,0,0,0.03);overflow:hidden;">
+<div class="table-card-anim" style="background:#FFFFFF;border-radius:20px;box-shadow:0 4px 15px rgba(0,0,0,0.03);overflow:hidden;">
   <div style="display:flex;align-items:center;justify-content:space-between;padding:1.5rem 2rem;border-bottom:1px solid var(--border);">
     <div>
       <div style="font-size:1.125rem;font-weight:700;color:var(--text1);">Checkup progress / Leads</div>
@@ -419,7 +464,7 @@ function downloadReport(format) {
     ['Tulis Artikel',route('admin.articles.create'),'#475569','#F1F5F9','M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'],
     ['Pengaturan WA',route('admin.wa.index'),'#475569','#F1F5F9','M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15'],
   ] as $qa)
-  <a href="{{ $qa[1] }}" style="background:#FFFFFF;border-radius:16px;padding:1.25rem;display:flex;align-items:center;gap:1rem;text-decoration:none;box-shadow:0 4px 15px rgba(0,0,0,0.03);transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.06)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.03)';">
+  <a href="{{ $qa[1] }}" class="qa-card-anim" style="animation-delay:{{ 0.85 + (0.12 * $loop->index) }}s;background:#FFFFFF;border-radius:16px;padding:1.25rem;display:flex;align-items:center;gap:1rem;text-decoration:none;box-shadow:0 4px 15px rgba(0,0,0,0.03);transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.06)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.03)';">
     <div style="width:42px;height:42px;background:{{ $qa[3] }};border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
       <svg width="20" height="20" fill="none" stroke="{{ $qa[2] }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="{{ $qa[4] }}"/></svg>
     </div>
@@ -431,6 +476,54 @@ function downloadReport(format) {
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
+// Number Count Up Animation (0 to Target over 4s)
+function animateCounterUp(el, targetStr, duration = 4000) {
+    const isPercent = String(targetStr).includes('%');
+    const numericValue = parseFloat(String(targetStr).replace(/[^0-9.]/g, ''));
+    if (isNaN(numericValue) || numericValue === 0) {
+        el.textContent = targetStr;
+        return;
+    }
+
+    const isDecimal = String(numericValue).includes('.');
+    const decimalPlaces = isDecimal ? (String(numericValue).split('.')[1] || '').length : 0;
+    
+    let startTime = null;
+    function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        const easedProgress = 1 - Math.pow(1 - progress, 4); // easeOutQuart
+        const currentValue = easedProgress * numericValue;
+
+        let formatted = isDecimal ? currentValue.toFixed(decimalPlaces) : Math.floor(currentValue);
+        if (isPercent) formatted += '%';
+
+        el.textContent = formatted;
+
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        } else {
+            el.textContent = targetStr;
+        }
+    }
+    requestAnimationFrame(step);
+}
+
+function initDashboardCounters() {
+    document.querySelectorAll('.count-up-val').forEach(el => {
+        const target = el.getAttribute('data-target');
+        if (target !== null) {
+            animateCounterUp(el, target, 4000);
+        }
+    });
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDashboardCounters);
+} else {
+    initDashboardCounters();
+}
+
 // Realtime Clock & Weather Widget with Device Geolocation
 function updateDashboardClock() {
     const now = new Date();
@@ -633,6 +726,10 @@ new Chart(dashCtx, {
   options: {
     responsive: true,
     maintainAspectRatio: true,
+    animation: {
+      duration: 4000,
+      easing: 'easeOutQuart'
+    },
     interaction: { mode: 'index', intersect: false },
     plugins: {
       legend: { display: false },

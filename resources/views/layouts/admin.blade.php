@@ -55,10 +55,38 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   background: #94A3B8;
 }
 
+/* ═══════ 4 SECONDS SMOOTH ENTRANCE ANIMATION ═══════ */
+@keyframes animateSidebarSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes animateTopbarSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#sidebar {
+  animation: animateSidebarSlideIn 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+#topbar {
+  animation: animateTopbarSlideIn 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 /* ═══════ SIDEBAR LIGHT & INTERACTIVE ═══════ */
-/* ═══════ SIDEBAR LIGHT GRAY & ELEGAN ═══════ */
-/* ═══════ FLOATING CAPSULE SIDEBAR (IMAGE 2 & 3 STYLE) ═══════ */
-/* ═══════ FLOATING CAPSULE SIDEBAR (IMAGE 2 & 3 STYLE) ═══════ */
 #sidebar {
   width: 68px;
   position: fixed;
