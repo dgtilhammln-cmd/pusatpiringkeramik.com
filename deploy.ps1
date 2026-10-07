@@ -63,7 +63,7 @@ else
 APP_NAME="Pusat Piring Keramik"
 APP_ENV=production
 APP_KEY=base64:8v7nZVLpqpXmf3DacvEgc4/ohLjd4ABdBqOc5hTG5rg=
-APP_DEBUG=false
+APP_DEBUG=true
 APP_URL=https://pusatpiringkeramik.hvmdigital.id
 APP_LOCALE=id
 APP_FALLBACK_LOCALE=en
@@ -96,6 +96,11 @@ ENVEOF
     echo "--- .env berhasil dibuat!"
     cd "$DEPLOY_DIR"
     php artisan key:generate --force
+fi
+
+# Ensure APP_DEBUG=true in existing .env file
+if [ -f "$DEPLOY_DIR/.env" ]; then
+    sed -i 's/APP_DEBUG=false/APP_DEBUG=true/g' "$DEPLOY_DIR/.env"
 fi
 
 echo ""
