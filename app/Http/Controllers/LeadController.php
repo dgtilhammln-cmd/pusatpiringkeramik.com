@@ -34,10 +34,14 @@ class LeadController extends Controller
         if (!empty($validated['message'])) $msg .= "\nPesan: {$validated['message']}\n";
         $msg .= "\nTerima kasih.";
 
-        // Build WA URL
-        $nomor = $wa ? preg_replace('/[^0-9]/', '', $wa->nomor_wa) : '6281331148731';
-        if (str_starts_with($nomor, '0')) $nomor = '62' . substr($nomor, 1);
-        $waUrl = 'https://wa.me/' . $nomor . '?text=' . urlencode($msg);
+        // Build WA URL — only if a primary WA number is configured in admin
+        $nomor = null;
+        $waUrl = null;
+        if ($wa && $wa->nomor_wa) {
+            $nomor = preg_replace('/[^0-9]/', '', $wa->nomor_wa);
+            if (str_starts_with($nomor, '0')) $nomor = '62' . substr($nomor, 1);
+            $waUrl = 'https://wa.me/' . $nomor . '?text=' . urlencode($msg);
+        }
 
         // Save lead
         $lead = Lead::create(array_merge($validated, [
