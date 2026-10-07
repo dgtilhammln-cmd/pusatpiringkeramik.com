@@ -42,6 +42,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 /* ═══════ SIDEBAR LIGHT & INTERACTIVE ═══════ */
 /* ═══════ SIDEBAR LIGHT GRAY & ELEGAN ═══════ */
 /* ═══════ FLOATING CAPSULE SIDEBAR (IMAGE 2 & 3 STYLE) ═══════ */
+/* ═══════ FLOATING CAPSULE SIDEBAR (IMAGE 2 & 3 STYLE) ═══════ */
 #sidebar {
   width: 68px;
   position: fixed;
@@ -59,14 +60,18 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   overflow-x: hidden;
   overflow-y: auto;
   padding: 0.75rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: #CBD5E1 transparent;
 }
 #sidebar:hover {
   width: 240px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.12), 0 4px 15px rgba(0,0,0,0.04);
 }
-#sidebar::-webkit-scrollbar { width: 3px; }
+/* Scrollbar Abu Samar - Hilang Saat Tidak Di-hover */
+#sidebar::-webkit-scrollbar { width: 4px; }
 #sidebar::-webkit-scrollbar-track { background: transparent; }
-#sidebar::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 10px; }
+#sidebar::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; }
+#sidebar:not(:hover)::-webkit-scrollbar-thumb { background: transparent; }
 
 /* Logo area */
 .sb-logo {
@@ -93,12 +98,11 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   margin: 0;
 }
 .sb-logo-info {
-  opacity: 0;
+  display: none;
   white-space: nowrap;
-  transition: opacity 0.2s ease 0.1s;
   overflow: hidden;
 }
-#sidebar:hover .sb-logo-info { opacity: 1; }
+#sidebar:hover .sb-logo-info { display: block; }
 .sb-logo-text { font-size: 0.875rem; font-weight: 800; color: #0F172A; line-height: 1.2; letter-spacing: -0.01em; }
 .sb-logo-sub { font-size: 0.65rem; color: #64748B; font-weight: 500; margin-top: 2px; }
 
@@ -107,14 +111,22 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 .sb-search-box {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  justify-content: center;
+  width: 44px;
   height: 44px;
+  margin: 0 auto;
   background: #F8FAFC;
   border: 1px solid #E2E8F0;
-  border-radius: 100px;
-  padding: 0 0.875rem;
+  border-radius: 50%;
   color: #64748B;
   transition: all 0.2s;
+}
+#sidebar:hover .sb-search-box {
+  width: 100%;
+  border-radius: 100px;
+  padding: 0 0.875rem;
+  justify-content: flex-start;
+  gap: 0.75rem;
 }
 .sb-search-box:focus-within {
   background: #FFF;
@@ -128,11 +140,10 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   font-size: 0.8rem;
   color: #0F172A;
   width: 100%;
-  opacity: 0;
-  transition: opacity 0.2s ease 0.1s;
+  display: none;
   font-family: inherit;
 }
-#sidebar:hover .sb-search-box input { opacity: 1; }
+#sidebar:hover .sb-search-box input { display: block; }
 
 /* Nav */
 .sb-nav { flex: 1; padding: 0.25rem 0 1rem; overflow-y: auto; overflow-x: hidden; }
@@ -143,22 +154,20 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   text-transform: uppercase;
   color: #94A3B8;
   padding: 0.75rem 1rem 0.375rem;
-  opacity: 0;
+  display: none;
   white-space: nowrap;
-  transition: opacity 0.2s ease 0.1s;
 }
-#sidebar:hover .sb-sec { opacity: 1; }
+#sidebar:hover .sb-sec { display: block; }
 
 /* Nav link — Floating Circle/Pill */
 .sb-link {
   display: flex;
   align-items: center;
-  gap: 0.875rem;
+  justify-content: center;
   height: 44px;
   width: 44px;
   padding: 0;
   margin: 0.35rem auto;
-  justify-content: center;
   font-size: 0.8125rem;
   font-weight: 600;
   color: #475569;
@@ -169,14 +178,22 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   border: none;
   background: transparent;
   white-space: nowrap;
+  position: relative;
 }
 #sidebar:hover .sb-link {
   width: calc(100% - 1rem);
   margin: 0.35rem 0.5rem;
   padding: 0 0.875rem;
   justify-content: flex-start;
+  gap: 0.875rem;
   border-radius: 100px;
 }
+.sb-link-text {
+  display: none;
+  white-space: nowrap;
+}
+#sidebar:hover .sb-link-text { display: inline-block; }
+
 .sb-link:hover:not(.active) {
   background: #F1F5F9;
   color: #0F172A;
@@ -187,6 +204,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   transition: stroke 0.2s;
   width: 20px;
   height: 20px;
+  display: block;
 }
 .sb-link:hover svg { stroke: #0F172A; }
 
@@ -197,24 +215,32 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   box-shadow: 0 6px 18px rgba(15, 23, 42, 0.3) !important;
 }
 .sb-link.active svg { stroke: #FFFFFF !important; }
-.sb-link-text {
-  opacity: 0;
-  transition: opacity 0.2s ease 0.1s;
-  white-space: nowrap;
-}
-#sidebar:hover .sb-link-text { opacity: 1; }
 
-/* Badge */
+/* Badge (Indikator Notifikasi Merah di Mode Minimalist & Expanded) */
 .sb-badge {
-  margin-left: auto;
+  position: absolute;
+  top: 0px;
+  right: 0px;
   background: #EF4444;
   color: #fff;
-  font-size: 0.6rem;
+  font-size: 0.55rem;
   font-weight: 800;
-  padding: 0.15rem 0.45rem;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 3px;
   border-radius: 100px;
-  line-height: 1.4;
-  box-shadow: 0 2px 6px rgba(239,68,68,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  box-shadow: 0 2px 6px rgba(239,68,68,0.4);
+  border: 1.5px solid #FFFFFF;
+  z-index: 10;
+}
+#sidebar:hover .sb-badge {
+  position: static;
+  margin-left: auto;
+  border: none;
 }
 
 /* MAIN CONTENT AREA - Floating Sidebar Margin Push */
