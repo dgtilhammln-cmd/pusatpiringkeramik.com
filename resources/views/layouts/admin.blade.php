@@ -67,25 +67,6 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   }
 }
 
-@keyframes animateTopbarSlideIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-#sidebar {
-  animation: animateSidebarSlideIn 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-#topbar {
-  animation: animateTopbarSlideIn 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
 /* ═══════ SIDEBAR LIGHT & INTERACTIVE ═══════ */
 #sidebar {
   width: 68px;

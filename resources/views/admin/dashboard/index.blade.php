@@ -53,67 +53,17 @@ $adminName = session('admin_name', 'Administrator');
 
 @push('styles')
 <style>
-/* ═══════ 4 SECONDS SMOOTH ENTRANCE ANIMATION FOR DASHBOARD ═══════ */
-@keyframes animateBannerDown {
-  0% {
-    opacity: 0;
-    transform: translateY(-40px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes animateCardUpOpposite {
-  0% {
-    opacity: 0;
-    transform: translateY(50px) scale(0.97);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes animateChartFromRight {
-  0% {
-    opacity: 0;
-    transform: translateX(60px) scale(0.97);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0) scale(1);
-  }
-}
-
 .welcome-banner-card {
-  animation: animateBannerDown 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.stat-card-anim {
-  opacity: 0;
-  animation: animateCardUpOpposite 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.chart-card-anim {
-  opacity: 0;
-  animation: animateChartFromRight 4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
-}
-
-.content-card-anim {
-  opacity: 0;
-  animation: animateCardUpOpposite 4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
-}
-
-.table-card-anim {
-  opacity: 0;
-  animation: animateCardUpOpposite 4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
-}
-
-.qa-card-anim {
-  opacity: 0;
-  animation: animateCardUpOpposite 4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  background: #FFFFFF;
+  border-radius: 24px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .welcome-widget-capsule {
