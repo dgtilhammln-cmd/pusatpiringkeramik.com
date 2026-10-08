@@ -228,32 +228,7 @@
   </div>
 
   {{-- Gallery --}}
-  <div style="background:#fff;border-radius:20px;padding:1.5rem;box-shadow:0 2px 20px rgba(0,0,0,0.04);">
-    <div style="display:flex;align-items:center;gap:.625rem;margin-bottom:1.25rem;">
-      <div style="width:32px;height:32px;background:rgba(139,92,246,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;">
-        <svg width="16" height="16" fill="none" stroke="#8B5CF6" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-      </div>
-      <h3 style="font-size:.875rem;font-weight:800;color:#1E293B;margin:0;">Foto Gallery</h3>
-    </div>
-    @if($s && is_array($s->gallery) && count($s->gallery) > 0)
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1rem;">
-      @foreach($s->gallery as $g)
-      <div style="position:relative;border-radius:10px;overflow:hidden;border:1.5px solid #E4E7F0;">
-        <img src="{{ asset('storage/'.$g) }}" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
-        <label style="position:absolute;bottom:0;left:0;right:0;background:rgba(15, 23, 42,0.85);padding:.375rem;text-align:center;font-size:.7rem;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:center;gap:.25rem;font-weight:700;">
-          <input type="checkbox" name="delete_gallery[]" value="{{ $g }}" style="accent-color:#fff;"> Hapus
-        </label>
-      </div>
-      @endforeach
-    </div>
-    @endif
-    <label style="display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:1.25rem;border:2px dashed #E4E7F0;border-radius:12px;cursor:pointer;transition:all .2s;text-align:center;" onmouseover="this.style.borderColor='#8B5CF6';this.style.background='#FAFAFF'" onmouseout="this.style.borderColor='#E4E7F0';this.style.background='transparent'">
-      <svg width="24" height="24" fill="none" stroke="#94A3B8" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-      <span style="font-size:.8rem;color:#64748B;font-weight:600;">Upload Foto Gallery</span>
-      <span style="font-size:.72rem;color:#94A3B8;">Bisa pilih banyak file sekaligus</span>
-      <input type="file" name="gallery_images[]" multiple accept="image/*" style="display:none;">
-    </label>
-  </div>
+  @include('admin.partials.gallery-upload', ['item'=>$s??null])
 
 </div>
 </div>
