@@ -546,7 +546,9 @@
             }
 
             .cv-banner-card {
-                height: 200px;
+                aspect-ratio: 3448 / 914;
+                height: auto;
+                min-height: 160px;
             }
 
             .cv-banner-content {
