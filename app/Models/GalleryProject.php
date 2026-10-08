@@ -52,10 +52,23 @@ class GalleryProject extends Model
     {
         return $this->og_image ? asset('storage/'.$this->og_image) : $this->image_url;
     }
+    public function getAutoAltAttribute(): string
+    {
+        $comp = \App\Models\Setting::get('company_name', 'Pusat Piring Keramik');
+        if (!empty($this->attributes['alt_text'] ?? null)) {
+            $alt = $this->attributes['alt_text'];
+            if (str_contains(strtolower($alt), strtolower($comp))) {
+                return $alt;
+            }
+            return $alt . ' - ' . $comp;
+        }
+        $clientStr = !empty($this->client) ? ' - ' . $this->client : '';
+        return $this->title . $clientStr . ' ' . $comp;
+    }
+
     public function getAltTextAttribute($v): string
     {
-        $comp = \App\Models\Setting::get('company_name', config('app.name'));
-        return $v ?: $this->title.' - '.$comp;
+        return $this->auto_alt;
     }
     public function getMetaTitleAttribute($v): string
     {

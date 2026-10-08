@@ -2399,8 +2399,13 @@
             transition: background 0.3s;
         }
 
+        @php
+            $ghovColorHex = \App\Models\Setting::get('page_gallery_hover_overlay') ?? '#0EA5E9';
+            list($ghr, $ghg, $ghb) = sscanf(strlen($ghovColorHex) == 7 ? $ghovColorHex : '#0EA5E9', "#%02x%02x%02x");
+            $ghovRgba1 = "rgba({$ghr}, {$ghg}, {$ghb}, 0.9)";
+        @endphp
         .cv-gallery-card-v2:hover .cv-gallery-overlay-v2 {
-            background: linear-gradient(to top, rgba(14, 165, 233, 0.9) 0%, rgba(15, 23, 42, 0) 70%);
+            background: linear-gradient(to top, {{ $ghovRgba1 }} 0%, rgba(15, 23, 42, 0) 70%);
         }
 
         .cv-gallery-meta-v2 {
@@ -2579,12 +2584,12 @@
 
     {{-- ════ GALLERY PREVIEW (PREMIUM) ════ --}}
     @if($gallery->count())
-        <section class="cv-gallery-premium" id="galeri">
+        <section class="cv-gallery-premium" id="galeri" style="background: {{ \App\Models\Setting::get('page_home_gallery_bg') ?? '#FFFFFF' }};">
             <div class="cv-gallery-inner">
                 <div class="cv-gallery-header">
                     <div>
-                        <div class="cv-adv-section-label">GALERI</div>
-                        <h2 class="cv-adv-section-title" style="margin-top:0.75rem;">Bukti Nyata<br>di Lapangan</h2>
+                        <div class="cv-adv-section-label">{{ \App\Models\Setting::get('gallery_section_label') ?? 'GALERI' }}</div>
+                        <h2 class="cv-adv-section-title" style="margin-top:0.75rem;">{!! nl2br(e(\App\Models\Setting::get('gallery_section_title') ?? "Bukti Nyata\ndi Lapangan")) !!}</h2>
                     </div>
                     <a href="{{ route('gallery') }}" class="btn-ghost"
                         style="color:#0F172A; border-color:#E2E8F0; background:#F8FAFC;">

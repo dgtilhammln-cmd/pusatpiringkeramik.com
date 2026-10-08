@@ -180,10 +180,10 @@
 
         .gl-filter-btn:hover,
         .gl-filter-btn.active {
-            background: var(--c-accent);
-            border-color: var(--c-accent);
-            color: #fff;
-            box-shadow: 0 4px 14px rgba(14, 165, 233, 0.25);
+            background: {{ \App\Models\Setting::get('page_gallery_active_badge_bg') ?? '#EF4444' }} !important;
+            border-color: {{ \App\Models\Setting::get('page_gallery_active_badge_bg') ?? '#EF4444' }} !important;
+            color: {{ \App\Models\Setting::get('page_gallery_active_badge_text') ?? '#ffffff' }} !important;
+            box-shadow: 0 4px 14px rgba(239, 68, 68, 0.25);
         }
 
         /* ═══════════════════════════════════════
@@ -240,8 +240,14 @@
             transition: background 0.35s ease;
         }
 
+        @php
+            $hovColorHex = \App\Models\Setting::get('page_gallery_hover_overlay') ?? '#0EA5E9';
+            list($hr, $hg, $hb) = sscanf(strlen($hovColorHex) == 7 ? $hovColorHex : '#0EA5E9', "#%02x%02x%02x");
+            $hovRgba1 = "rgba({$hr}, {$hg}, {$hb}, 0.88)";
+            $hovRgba2 = "rgba({$hr}, {$hg}, {$hb}, 0.15)";
+        @endphp
         .gl-card:hover .gl-card-overlay {
-            background: linear-gradient(to top, rgba(14, 165, 233, 0.88) 0%, rgba(14, 165, 233, 0.15) 55%, transparent 100%);
+            background: linear-gradient(to top, {{ $hovRgba1 }} 0%, {{ $hovRgba2 }} 55%, transparent 100%);
         }
 
         .gl-card-meta {
@@ -507,14 +513,12 @@
                 <span class="sv-breadcrumb-current">Galeri</span>
             </nav>
 
-            <div class="sv-label">Galeri</div>
+            <div class="sv-label">{{ \App\Models\Setting::get('gallery_section_label') ?? 'GALERI' }}</div>
             <h1 class="sv-title">
-                Bukti Nyata<br>
-                di Lapangan
+                {!! nl2br(e(\App\Models\Setting::get('gallery_section_title') ?? "Bukti Nyata\ndi Lapangan")) !!}
             </h1>
             <p class="sv-intro">
-                Dokumentasi proyek pemasangan &amp; instalasi {{ $companyName }}
-                di berbagai sektor industri dan komersial di seluruh Indonesia.
+                {{ \App\Models\Setting::get('gallery_section_desc') ?? "Dokumentasi proyek pemasangan & instalasi {$companyName} di berbagai sektor industri dan komersial di seluruh Indonesia." }}
             </p>
         </div>
     </section>

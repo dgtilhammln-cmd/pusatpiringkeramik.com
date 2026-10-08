@@ -476,6 +476,7 @@
             'sect-client' => ['Client Marquee & Logo', 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z'],
             'sect-about' => ['About Us Section', 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'],
             'sect-product' => ['Product Section', 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4'],
+            'sect-gallery' => ['Galeri Section & Page', 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z'],
             'sect-value' => ['Value & Keunggulan', 'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z'],
             'sect-aplikasi' => ['Aplikasi & Use Case', 'M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10'],
             'sect-kota' => ['Coverage Kota', 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z'],
@@ -727,7 +728,8 @@
         <div class="pm-card" style="margin-bottom:1.5rem;">
           <div class="pm-card-header">
             <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
             <div class="pm-card-title">Kustomisasi Section Client & Partner Marquee</div>
           </div>
@@ -754,7 +756,9 @@
         {{-- Form Tambah Klien Baru --}}
         <div class="pm-card" style="margin-bottom:1.5rem; background:#F8FAFC; border:1px solid #E2E8F0;">
           <div style="font-weight:700; color:#0F172A; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
-            <svg width="18" height="18" fill="none" stroke="#10B981" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg>
+            <svg width="18" height="18" fill="none" stroke="#10B981" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 4v16m8-8H4" />
+            </svg>
             <span>Tambah Logo / Nama Klien Baru</span>
           </div>
 
@@ -770,20 +774,23 @@
                 <input type="file" name="logo" class="pm-input" accept="image/*">
               </div>
               <div>
-                <button type="submit" class="btn-primary" style="width:100%; height:42px; display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; background:#10B981; border-color:#10B981; color:#fff; font-weight:600; border-radius:10px;">
+                <button type="submit" class="btn-primary"
+                  style="width:100%; height:42px; display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; background:#10B981; border-color:#10B981; color:#fff; font-weight:600; border-radius:10px;">
                   + Tambah Klien
                 </button>
               </div>
             </div>
             <div style="font-size:0.75rem; color:#64748B; margin-top:0.5rem;">
-              * Tag <code>alt</code> gambar akan terformat otomatis: <code>[Nama Klien] customer {{ $settings['company_name'] ?? 'Pusat Piring Keramik' }}</code>.
+              * Tag <code>alt</code> gambar akan terformat otomatis:
+              <code>[Nama Klien] customer {{ $settings['company_name'] ?? 'Pusat Piring Keramik' }}</code>.
             </div>
           </form>
         </div>
 
         {{-- Daftar Klien --}}
         <div class="pm-card">
-          <div style="font-weight:700; color:#0F172A; margin-bottom:1.25rem; display:flex; justify-content:space-between; align-items:center;">
+          <div
+            style="font-weight:700; color:#0F172A; margin-bottom:1.25rem; display:flex; justify-content:space-between; align-items:center;">
             <span>Daftar Klien ({{ count($clients) }} Item)</span>
             <span style="font-size:0.8rem; color:#64748B;">Total: {{ count($clients) }} Mitra</span>
           </div>
@@ -795,30 +802,39 @@
           @else
             <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:1rem;">
               @foreach($clients as $cli)
-                <div style="background:#ffffff; border:1px solid #E2E8F0; border-radius:12px; padding:1rem; display:flex; gap:1rem; align-items:center; justify-content:space-between; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+                <div
+                  style="background:#ffffff; border:1px solid #E2E8F0; border-radius:12px; padding:1rem; display:flex; gap:1rem; align-items:center; justify-content:space-between; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
                   <div style="display:flex; align-items:center; gap:1rem; overflow:hidden;">
-                    <div style="width:60px; height:45px; background:#F1F5F9; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden; border:1px solid #E2E8F0;">
+                    <div
+                      style="width:60px; height:45px; background:#F1F5F9; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden; border:1px solid #E2E8F0;">
                       @if($cli->logo)
-                        <img src="{{ asset('storage/' . $cli->logo) }}" alt="{{ $cli->auto_alt }}" style="max-width:100%; max-height:100%; object-fit:contain;">
+                        <img src="{{ asset('storage/' . $cli->logo) }}" alt="{{ $cli->auto_alt }}"
+                          style="max-width:100%; max-height:100%; object-fit:contain;">
                       @else
                         <span style="font-size:0.65rem; font-weight:700; color:#64748B; text-align:center;">TEXT ONLY</span>
                       @endif
                     </div>
                     <div style="overflow:hidden;">
-                      <div style="font-weight:600; font-size:0.9rem; color:#0F172A; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="{{ $cli->name }}">
+                      <div
+                        style="font-weight:600; font-size:0.9rem; color:#0F172A; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"
+                        title="{{ $cli->name }}">
                         {{ $cli->name }}
                       </div>
-                      <div style="font-size:0.725rem; color:#64748B; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="{{ $cli->auto_alt }}">
+                      <div
+                        style="font-size:0.725rem; color:#64748B; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"
+                        title="{{ $cli->auto_alt }}">
                         Alt: {{ $cli->auto_alt }}
                       </div>
                     </div>
                   </div>
 
                   <div style="display:flex; align-items:center; gap:0.35rem; flex-shrink:0;">
-                    <form action="{{ route('admin.clients.destroy', $cli->id) }}" method="POST" onsubmit="return confirm('Hapus logo/klien {{ addslashes($cli->name) }}?')">
+                    <form action="{{ route('admin.clients.destroy', $cli->id) }}" method="POST"
+                      onsubmit="return confirm('Hapus logo/klien {{ addslashes($cli->name) }}?')">
                       @csrf
                       @method('DELETE')
-                      <button type="submit" style="background:#FEE2E2; color:#EF4444; border:none; padding:0.4rem 0.6rem; border-radius:8px; cursor:pointer; font-size:0.75rem; font-weight:600;">
+                      <button type="submit"
+                        style="background:#FEE2E2; color:#EF4444; border:none; padding:0.4rem 0.6rem; border-radius:8px; cursor:pointer; font-size:0.75rem; font-weight:600;">
                         Hapus
                       </button>
                     </form>
@@ -959,8 +975,8 @@
               </div>
               <div>
                 <label class="pm-label">Deskripsi (opsional, tampil di bawah angka)</label>
-                <input type="text" name="about_c1_desc" class="pm-input"
-                  value="{{ $settings['about_c1_desc'] ?? '' }}" placeholder="Kosongkan jika tidak perlu">
+                <input type="text" name="about_c1_desc" class="pm-input" value="{{ $settings['about_c1_desc'] ?? '' }}"
+                  placeholder="Kosongkan jika tidak perlu">
               </div>
               <div>
                 <label class="pm-label">Keywords Tag Chips (Pisahkan dengan koma)</label>
@@ -998,7 +1014,8 @@
 
               {{-- Background Mode --}}
               <div style="background:#F8FAFC; border:1.5px solid #E2E8F0; border-radius:12px; padding:1rem;">
-                <div style="font-size:.8rem; font-weight:700; color:#0F172A; margin-bottom:.85rem;">&#127912; Background Card 2 &mdash; pilih salah satu mode:</div>
+                <div style="font-size:.8rem; font-weight:700; color:#0F172A; margin-bottom:.85rem;">&#127912; Background
+                  Card 2 &mdash; pilih salah satu mode:</div>
 
                 {{-- A: Solid Color --}}
                 <div style="margin-bottom:.85rem;">
@@ -1013,7 +1030,8 @@
 
                 {{-- B: Gradient --}}
                 <div style="margin-bottom:.85rem;">
-                  <label class="pm-label" style="color:#64748B;">B) Gradasi 2 Warna &mdash; <em>override warna solid jika diisi keduanya</em></label>
+                  <label class="pm-label" style="color:#64748B;">B) Gradasi 2 Warna &mdash; <em>override warna solid jika
+                      diisi keduanya</em></label>
                   <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:.5rem; align-items:end;">
                     <div>
                       <label class="pm-label" style="font-size:.7rem;">Warna Awal</label>
@@ -1036,18 +1054,21 @@
                     <div>
                       <label class="pm-label" style="font-size:.7rem;">Arah Gradasi</label>
                       <select name="about_c2_grad_dir" class="pm-input">
-                        @foreach(['135deg'=>'&#8600; Diagonal','to right'=>'&#8594; Kanan','to bottom'=>'&#8595; Bawah','to top'=>'&#8593; Atas','to left'=>'&#8592; Kiri'] as $v=>$l)
-                          <option value="{{ $v }}" {{ ($settings['about_c2_grad_dir'] ?? '135deg') == $v ? 'selected' : '' }}>{!! $l !!}</option>
+                        @foreach(['135deg' => '&#8600; Diagonal', 'to right' => '&#8594; Kanan', 'to bottom' => '&#8595; Bawah', 'to top' => '&#8593; Atas', 'to left' => '&#8592; Kiri'] as $v => $l)
+                          <option value="{{ $v }}" {{ ($settings['about_c2_grad_dir'] ?? '135deg') == $v ? 'selected' : '' }}>
+                            {!! $l !!}</option>
                         @endforeach
                       </select>
                     </div>
                   </div>
-                  <div class="pm-help">Isi kedua warna untuk mengaktifkan gradasi. Kosongkan salah satu untuk mematikan.</div>
+                  <div class="pm-help">Isi kedua warna untuk mengaktifkan gradasi. Kosongkan salah satu untuk mematikan.
+                  </div>
                 </div>
 
                 {{-- C: Image --}}
                 <div>
-                  <label class="pm-label" style="color:#64748B;">C) Gambar Background (auto WebP) &mdash; <em>override gradasi &amp; solid jika ada gambar</em></label>
+                  <label class="pm-label" style="color:#64748B;">C) Gambar Background (auto WebP) &mdash; <em>override
+                      gradasi &amp; solid jika ada gambar</em></label>
                   @if(!empty($settings['about_c2_image']))
                     <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem;">
                       <img src="{{ asset('storage/' . $settings['about_c2_image']) }}"
@@ -1056,7 +1077,8 @@
                     </div>
                   @endif
                   <input type="file" name="about_c2_image" class="pm-input" accept="image/*">
-                  <div class="pm-help">Upload gambar &rarr; otomatis dikonversi ke WebP. Gambar akan override gradasi &amp; warna solid.</div>
+                  <div class="pm-help">Upload gambar &rarr; otomatis dikonversi ke WebP. Gambar akan override gradasi
+                    &amp; warna solid.</div>
                 </div>
               </div>
 
@@ -1138,20 +1160,26 @@
           </div>
 
           {{-- Info & Direct Link ke Pengelolaan Produk --}}
-          <div style="background:#EFF6FF; border:1px solid #BFDBFE; border-radius:12px; padding:1.1rem 1.25rem; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+          <div
+            style="background:#EFF6FF; border:1px solid #BFDBFE; border-radius:12px; padding:1.1rem 1.25rem; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
             <div style="display:flex; align-items:center; gap:0.75rem;">
-              <div style="width:38px; height:38px; border-radius:10px; background:#2563EB; color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+              <div
+                style="width:38px; height:38px; border-radius:10px; background:#2563EB; color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
                 <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                  <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
               <div>
                 <div style="font-size:0.9rem; font-weight:700; color:#1E3A8A;">Informasi Produk Homepage</div>
-                <div style="font-size:0.8125rem; color:#1E40AF;">Produk yang tampil di Homepage adalah <strong>4 produk terbaru</strong>. Untuk mengedit atau menambah produk baru, silakan buka menu Layanan & Produk.</div>
+                <div style="font-size:0.8125rem; color:#1E40AF;">Produk yang tampil di Homepage adalah <strong>4 produk
+                    terbaru</strong>. Untuk mengedit atau menambah produk baru, silakan buka menu Layanan & Produk.</div>
               </div>
             </div>
-            <a href="{{ route('admin.services.index') }}" target="_blank" style="display:inline-flex; align-items:center; gap:0.5rem; background:#2563EB; color:#ffffff; font-weight:600; font-size:0.85rem; padding:0.6rem 1.2rem; border-radius:10px; text-decoration:none; white-space:nowrap; box-shadow:0 2px 6px rgba(37,99,235,0.25);">
-              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg>
+            <a href="{{ route('admin.services.index') }}" target="_blank"
+              style="display:inline-flex; align-items:center; gap:0.5rem; background:#2563EB; color:#ffffff; font-weight:600; font-size:0.85rem; padding:0.6rem 1.2rem; border-radius:10px; text-decoration:none; white-space:nowrap; box-shadow:0 2px 6px rgba(37,99,235,0.25);">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M12 4v16m8-8H4" />
+              </svg>
               Kelola & Tambah Produk Baru
             </a>
           </div>
@@ -1225,7 +1253,8 @@
 
           {{-- Single CTA Button Settings --}}
           <div style="background:#F8FAFC; border:1.5px solid #E2E8F0; border-radius:12px; padding:1rem; margin-top:1rem;">
-            <div style="font-size:.8rem; font-weight:700; color:#0F172A; margin-bottom:.85rem;">&#128279; Tombol CTA Section Produk</div>
+            <div style="font-size:.8rem; font-weight:700; color:#0F172A; margin-bottom:.85rem;">&#128279; Tombol CTA
+              Section Produk</div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
               <div>
                 <label class="pm-label">Teks Tombol</label>
@@ -1264,14 +1293,113 @@
                   <input type="text" name="page_home_product_btn_border" id="c_btn_border" class="pm-input"
                     value="{{ $settings['page_home_product_btn_border'] ?? '' }}" placeholder="default: putih 45%">
                 </div>
-                <div class="pm-help">Saat hover: tombol berubah jadi warna teks sebagai background dan background jadi warna teks.</div>
+                <div class="pm-help">Saat hover: tombol berubah jadi warna teks sebagai background dan background jadi
+                  warna teks.</div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {{-- SUB TAB 4: SECT VALUE --}}
+      {{-- SUB TAB: SECT GALLERY --}}
+      <div id="sub-sect-gallery" class="sub-tab-content"
+        style="{{ ($activeTab ?? '') === 'sect-gallery' ? '' : 'display:none;' }}">
+        <div class="pm-card">
+          <div class="pm-card-header">
+            <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24">
+              <path
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <div class="pm-card-title">Kustomisasi Section & Halaman Galeri</div>
+          </div>
+
+          {{-- Info & Link Pengelolaan Foto Galeri --}}
+          <div
+            style="background:#EFF6FF; border:1px solid #BFDBFE; border-radius:12px; padding:1.1rem 1.25rem; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+            <div style="display:flex; align-items:center; gap:0.75rem;">
+              <div
+                style="width:38px; height:38px; border-radius:10px; background:#2563EB; color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path
+                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div>
+                <div style="font-size:0.9rem; font-weight:700; color:#1E3A8A;">Pengelolaan Foto & Proyek Galeri</div>
+                <div style="font-size:0.8125rem; color:#1E40AF;">Tambah, edit, dan hapus foto/proyek galeri dikelola
+                  melalui halaman CRUD Galeri. Di sini Anda dapat mengkustomisasi warna, judul, hover overlay, dan button
+                  filter.</div>
+              </div>
+            </div>
+            <a href="{{ route('admin.gallery.index') }}" target="_blank"
+              style="display:inline-flex; align-items:center; gap:0.5rem; background:#2563EB; color:#ffffff; font-weight:600; font-size:0.85rem; padding:0.6rem 1.2rem; border-radius:10px; text-decoration:none; white-space:nowrap; box-shadow:0 2px 6px rgba(37,99,235,0.25);">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M12 4v16m8-8H4" />
+              </svg>
+              Kelola Foto & Proyek Galeri
+            </a>
+          </div>
+
+          <div
+            style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem; margin-bottom:1.5rem;">
+            <div>
+              <label class="pm-label">Background Section Homepage</label>
+              <div class="pm-color-picker-wrap">
+                <input type="color" value="{{ $settings['page_home_gallery_bg'] ?? '#FFFFFF' }}"
+                  onchange="document.getElementById('c_gal_bg').value=this.value">
+                <input type="text" name="page_home_gallery_bg" id="c_gal_bg" class="pm-input"
+                  value="{{ $settings['page_home_gallery_bg'] ?? '#FFFFFF' }}">
+              </div>
+            </div>
+            <div>
+              <label class="pm-label">Warna Shadow Overlay Hover (Biru/Custom)</label>
+              <div class="pm-color-picker-wrap">
+                <input type="color" value="{{ $settings['page_gallery_hover_overlay'] ?? '#0EA5E9' }}"
+                  onchange="document.getElementById('c_gal_hov').value=this.value">
+                <input type="text" name="page_gallery_hover_overlay" id="c_gal_hov" class="pm-input"
+                  value="{{ $settings['page_gallery_hover_overlay'] ?? '#0EA5E9' }}">
+              </div>
+            </div>
+            <div>
+              <label class="pm-label">Warna Button Filter (Custom)</label>
+              <div class="pm-color-picker-wrap">
+                <input type="color" value="{{ $settings['page_gallery_active_badge_bg'] ?? '#EF4444' }}"
+                  onchange="document.getElementById('c_gal_badge_bg').value=this.value">
+                <input type="text" name="page_gallery_active_badge_bg" id="c_gal_badge_bg" class="pm-input"
+                  value="{{ $settings['page_gallery_active_badge_bg'] ?? '#EF4444' }}">
+              </div>
+            </div>
+            <div>
+              <label class="pm-label">Warna Teks Button Filter Aktif</label>
+              <div class="pm-color-picker-wrap">
+                <input type="color" value="{{ $settings['page_gallery_active_badge_text'] ?? '#FFFFFF' }}"
+                  onchange="document.getElementById('c_gal_badge_txt').value=this.value">
+                <input type="text" name="page_gallery_active_badge_text" id="c_gal_badge_txt" class="pm-input"
+                  value="{{ $settings['page_gallery_active_badge_text'] ?? '#FFFFFF' }}">
+              </div>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 2fr; gap:1.25rem;">
+            <div>
+              <label class="pm-label">Badge Label Atas</label>
+              <input type="text" name="gallery_section_label" class="pm-input"
+                value="{{ $settings['gallery_section_label'] ?? 'GALERI' }}">
+            </div>
+            <div>
+              <label class="pm-label">Judul Section / Halaman Galeri</label>
+              <input type="text" name="gallery_section_title" class="pm-input"
+                value="{{ $settings['gallery_section_title'] ?? 'Bukti Nyata di Lapangan' }}">
+            </div>
+            <div style="grid-column: span 2;">
+              <label class="pm-label">Deskripsi / Subtitle Section Galeri</label>
+              <textarea name="gallery_section_desc" class="pm-input"
+                rows="2">{{ $settings['gallery_section_desc'] ?? 'Dokumentasi proyek pemasangan & instalasi Pusat Piring Keramik di berbagai sektor industri dan komersial di seluruh Indonesia.' }}</textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {{-- SUB TAB 4: SECT VALUE --}}
       <div id="sub-sect-value" class="sub-tab-content"
         style="{{ ($activeTab ?? '') === 'sect-value' ? '' : 'display:none;' }}">
@@ -1332,13 +1460,13 @@
 
           @php
             $cardDefs = [
-              1 => ['num'=>'#1','title'=>'Kualitas Premium','desc'=>'Menyediakan produk piring keramik & tableware premium food grade yang tahan panas dan awet.','bg'=>'#0F172A','num_color'=>'#ffffff','title_color'=>'#ffffff','desc_color'=>'rgba(255,255,255,0.75)','icon_key'=>'shield','icon_bg'=>'#DC2626','icon_color'=>'#ffffff','span'=>'1'],
-              2 => ['num'=>'','title'=>'Cakupan Luas','desc'=>'Melayani pengiriman ke seluruh wilayah Indonesia dengan packing aman kayu & berasuransi.','bg'=>'#F1F5F9','num_color'=>'#0F172A','title_color'=>'#0F172A','desc_color'=>'#64748B','icon_key'=>'check','icon_bg'=>'#FEE2E2','icon_color'=>'#DC2626','span'=>'1'],
-              3 => ['num'=>'','title'=>'Distributor Resmi','desc'=>'Produk 100% original, tersertifikasi food grade dan didatangkan langsung dari pabrik resmi.','bg'=>'#F1F5F9','num_color'=>'#0F172A','title_color'=>'#0F172A','desc_color'=>'#64748B','icon_key'=>'award','icon_bg'=>'#FEE2E2','icon_color'=>'#DC2626','span'=>'1'],
-              4 => ['num'=>'HORECA','title'=>'Siap Skala Besar','desc'=>'Memiliki kapasitas suplai besar untuk memenuhi permintaan Hotel, Restoran, Kafe, dan Grosir.','bg'=>'#DC2626','num_color'=>'#ffffff','title_color'=>'rgba(255,255,255,0.9)','desc_color'=>'rgba(255,255,255,0.75)','icon_key'=>'users','icon_bg'=>'rgba(255,255,255,0.2)','icon_color'=>'#ffffff','span'=>'1'],
-              5 => ['num'=>'','title'=>'Desain Variatif','desc'=>'Beragam pilihan model piring keramik modern & vintage untuk mempercantik hidangan F&B.','bg'=>'#F1F5F9','num_color'=>'#EF4444','title_color'=>'#0F172A','desc_color'=>'#64748B','icon_key'=>'tag','icon_bg'=>'#FEE2E2','icon_color'=>'#DC2626','span'=>'1'],
-              6 => ['num'=>'','title'=>'Layanan Konsultasi','desc'=>'Tim kami selalu siap mendampingi Anda dalam memilih jenis tableware dan kuantitas paling tepat.','bg'=>'#F1F5F9','num_color'=>'#0F172A','title_color'=>'#0F172A','desc_color'=>'#64748B','icon_key'=>'chat','icon_bg'=>'#FEE2E2','icon_color'=>'#DC2626','span'=>'1'],
-              7 => ['num'=>'','title'=>'Terpercaya & Bergaransi','desc'=>'Dipercaya oleh ratusan hotel, restoran, catering, dan mitra usaha F&B di seluruh Indonesia.','bg'=>'#F1F5F9','num_color'=>'#0F172A','title_color'=>'#0F172A','desc_color'=>'#64748B','icon_key'=>'star','icon_bg'=>'#FEE2E2','icon_color'=>'#DC2626','span'=>'2'],
+              1 => ['num' => '#1', 'title' => 'Kualitas Premium', 'desc' => 'Menyediakan produk piring keramik & tableware premium food grade yang tahan panas dan awet.', 'bg' => '#0F172A', 'num_color' => '#ffffff', 'title_color' => '#ffffff', 'desc_color' => 'rgba(255,255,255,0.75)', 'icon_key' => 'shield', 'icon_bg' => '#DC2626', 'icon_color' => '#ffffff', 'span' => '1'],
+              2 => ['num' => '', 'title' => 'Cakupan Luas', 'desc' => 'Melayani pengiriman ke seluruh wilayah Indonesia dengan packing aman kayu & berasuransi.', 'bg' => '#F1F5F9', 'num_color' => '#0F172A', 'title_color' => '#0F172A', 'desc_color' => '#64748B', 'icon_key' => 'check', 'icon_bg' => '#FEE2E2', 'icon_color' => '#DC2626', 'span' => '1'],
+              3 => ['num' => '', 'title' => 'Distributor Resmi', 'desc' => 'Produk 100% original, tersertifikasi food grade dan didatangkan langsung dari pabrik resmi.', 'bg' => '#F1F5F9', 'num_color' => '#0F172A', 'title_color' => '#0F172A', 'desc_color' => '#64748B', 'icon_key' => 'award', 'icon_bg' => '#FEE2E2', 'icon_color' => '#DC2626', 'span' => '1'],
+              4 => ['num' => 'HORECA', 'title' => 'Siap Skala Besar', 'desc' => 'Memiliki kapasitas suplai besar untuk memenuhi permintaan Hotel, Restoran, Kafe, dan Grosir.', 'bg' => '#DC2626', 'num_color' => '#ffffff', 'title_color' => 'rgba(255,255,255,0.9)', 'desc_color' => 'rgba(255,255,255,0.75)', 'icon_key' => 'users', 'icon_bg' => 'rgba(255,255,255,0.2)', 'icon_color' => '#ffffff', 'span' => '1'],
+              5 => ['num' => '', 'title' => 'Desain Variatif', 'desc' => 'Beragam pilihan model piring keramik modern & vintage untuk mempercantik hidangan F&B.', 'bg' => '#F1F5F9', 'num_color' => '#EF4444', 'title_color' => '#0F172A', 'desc_color' => '#64748B', 'icon_key' => 'tag', 'icon_bg' => '#FEE2E2', 'icon_color' => '#DC2626', 'span' => '1'],
+              6 => ['num' => '', 'title' => 'Layanan Konsultasi', 'desc' => 'Tim kami selalu siap mendampingi Anda dalam memilih jenis tableware dan kuantitas paling tepat.', 'bg' => '#F1F5F9', 'num_color' => '#0F172A', 'title_color' => '#0F172A', 'desc_color' => '#64748B', 'icon_key' => 'chat', 'icon_bg' => '#FEE2E2', 'icon_color' => '#DC2626', 'span' => '1'],
+              7 => ['num' => '', 'title' => 'Terpercaya & Bergaransi', 'desc' => 'Dipercaya oleh ratusan hotel, restoran, catering, dan mitra usaha F&B di seluruh Indonesia.', 'bg' => '#F1F5F9', 'num_color' => '#0F172A', 'title_color' => '#0F172A', 'desc_color' => '#64748B', 'icon_key' => 'star', 'icon_bg' => '#FEE2E2', 'icon_color' => '#DC2626', 'span' => '2'],
             ];
             $iconOptions = [
               'shield' => 'Shield (Perisai)',
@@ -1362,9 +1490,12 @@
 
           @for ($i = 1; $i <= 7; $i++)
             @php $def = $cardDefs[$i]; @endphp
-            <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:14px; padding:1.25rem; margin-bottom:1.25rem;">
-              <div style="font-weight:700; color:#0F172A; margin-bottom:1rem; display:flex; align-items:center; justify-content:space-between;">
-                <span>Card {{ $i }} @if($i == 1)(Hitam / Utama)@elseif($i == 4)(Merah / HORECA)@elseif($i == 7)(Lebar 2 Kolom)@endif</span>
+            <div
+              style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:14px; padding:1.25rem; margin-bottom:1.25rem;">
+              <div
+                style="font-weight:700; color:#0F172A; margin-bottom:1rem; display:flex; align-items:center; justify-content:space-between;">
+                <span>Card {{ $i }} @if($i == 1)(Hitam / Utama)@elseif($i == 4)(Merah / HORECA)@elseif($i == 7)(Lebar 2
+                Kolom)@endif</span>
                 <span style="font-size:0.75rem; color:#64748B; font-weight:normal;">Key: value_card_{{ $i }}</span>
               </div>
 
@@ -1382,18 +1513,22 @@
                 <div>
                   <label class="pm-label">Lebar Grid Span</label>
                   <select name="value_card_{{ $i }}_span" class="pm-input">
-                    <option value="1" {{ ($settings["value_card_{$i}_span"] ?? $def['span']) == '1' ? 'selected' : '' }}>1 Kolom</option>
-                    <option value="2" {{ ($settings["value_card_{$i}_span"] ?? $def['span']) == '2' ? 'selected' : '' }}>2 Kolom (Wide)</option>
+                    <option value="1" {{ ($settings["value_card_{$i}_span"] ?? $def['span']) == '1' ? 'selected' : '' }}>1
+                      Kolom</option>
+                    <option value="2" {{ ($settings["value_card_{$i}_span"] ?? $def['span']) == '2' ? 'selected' : '' }}>2
+                      Kolom (Wide)</option>
                   </select>
                 </div>
               </div>
 
               <div style="margin-bottom:1rem;">
                 <label class="pm-label">Deskripsi Card</label>
-                <textarea name="value_card_{{ $i }}_desc" class="pm-input" rows="2">{{ $settings["value_card_{$i}_desc"] ?? $def['desc'] }}</textarea>
+                <textarea name="value_card_{{ $i }}_desc" class="pm-input"
+                  rows="2">{{ $settings["value_card_{$i}_desc"] ?? $def['desc'] }}</textarea>
               </div>
 
-              <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:1rem; margin-bottom:1rem;">
+              <div
+                style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:1rem; margin-bottom:1rem;">
                 <div>
                   <label class="pm-label">Background Card</label>
                   <div class="pm-color-picker-wrap">
@@ -1406,7 +1541,8 @@
                 <div>
                   <label class="pm-label">Warna Stat/Angka</label>
                   <div class="pm-color-picker-wrap">
-                    <input type="color" value="{{ str_contains($settings["value_card_{$i}_num_color"] ?? $def['num_color'], '#') ? ($settings["value_card_{$i}_num_color"] ?? $def['num_color']) : '#0F172A' }}"
+                    <input type="color"
+                      value="{{ str_contains($settings["value_card_{$i}_num_color"] ?? $def['num_color'], '#') ? ($settings["value_card_{$i}_num_color"] ?? $def['num_color']) : '#0F172A' }}"
                       onchange="document.getElementById('c_card_{{ $i }}_num_color').value=this.value">
                     <input type="text" name="value_card_{{ $i }}_num_color" id="c_card_{{ $i }}_num_color" class="pm-input"
                       value="{{ $settings["value_card_{$i}_num_color"] ?? $def['num_color'] }}">
@@ -1415,19 +1551,21 @@
                 <div>
                   <label class="pm-label">Warna Judul</label>
                   <div class="pm-color-picker-wrap">
-                    <input type="color" value="{{ str_contains($settings["value_card_{$i}_title_color"] ?? $def['title_color'], '#') ? ($settings["value_card_{$i}_title_color"] ?? $def['title_color']) : '#0F172A' }}"
+                    <input type="color"
+                      value="{{ str_contains($settings["value_card_{$i}_title_color"] ?? $def['title_color'], '#') ? ($settings["value_card_{$i}_title_color"] ?? $def['title_color']) : '#0F172A' }}"
                       onchange="document.getElementById('c_card_{{ $i }}_title_color').value=this.value">
-                    <input type="text" name="value_card_{{ $i }}_title_color" id="c_card_{{ $i }}_title_color" class="pm-input"
-                      value="{{ $settings["value_card_{$i}_title_color"] ?? $def['title_color'] }}">
+                    <input type="text" name="value_card_{{ $i }}_title_color" id="c_card_{{ $i }}_title_color"
+                      class="pm-input" value="{{ $settings["value_card_{$i}_title_color"] ?? $def['title_color'] }}">
                   </div>
                 </div>
                 <div>
                   <label class="pm-label">Warna Deskripsi</label>
                   <div class="pm-color-picker-wrap">
-                    <input type="color" value="{{ str_contains($settings["value_card_{$i}_desc_color"] ?? $def['desc_color'], '#') ? ($settings["value_card_{$i}_desc_color"] ?? $def['desc_color']) : '#64748B' }}"
+                    <input type="color"
+                      value="{{ str_contains($settings["value_card_{$i}_desc_color"] ?? $def['desc_color'], '#') ? ($settings["value_card_{$i}_desc_color"] ?? $def['desc_color']) : '#64748B' }}"
                       onchange="document.getElementById('c_card_{{ $i }}_desc_color').value=this.value">
-                    <input type="text" name="value_card_{{ $i }}_desc_color" id="c_card_{{ $i }}_desc_color" class="pm-input"
-                      value="{{ $settings["value_card_{$i}_desc_color"] ?? $def['desc_color'] }}">
+                    <input type="text" name="value_card_{{ $i }}_desc_color" id="c_card_{{ $i }}_desc_color"
+                      class="pm-input" value="{{ $settings["value_card_{$i}_desc_color"] ?? $def['desc_color'] }}">
                   </div>
                 </div>
               </div>
@@ -1453,7 +1591,8 @@
                 <div>
                   <label class="pm-label">Warna Background Icon</label>
                   <div class="pm-color-picker-wrap">
-                    <input type="color" value="{{ str_contains($settings["value_card_{$i}_icon_bg"] ?? $def['icon_bg'], '#') ? ($settings["value_card_{$i}_icon_bg"] ?? $def['icon_bg']) : '#DC2626' }}"
+                    <input type="color"
+                      value="{{ str_contains($settings["value_card_{$i}_icon_bg"] ?? $def['icon_bg'], '#') ? ($settings["value_card_{$i}_icon_bg"] ?? $def['icon_bg']) : '#DC2626' }}"
                       onchange="document.getElementById('c_card_{{ $i }}_icon_bg').value=this.value">
                     <input type="text" name="value_card_{{ $i }}_icon_bg" id="c_card_{{ $i }}_icon_bg" class="pm-input"
                       value="{{ $settings["value_card_{$i}_icon_bg"] ?? $def['icon_bg'] }}">
@@ -1462,10 +1601,11 @@
                 <div>
                   <label class="pm-label">Warna Fill / Line Icon</label>
                   <div class="pm-color-picker-wrap">
-                    <input type="color" value="{{ str_contains($settings["value_card_{$i}_icon_color"] ?? $def['icon_color'], '#') ? ($settings["value_card_{$i}_icon_color"] ?? $def['icon_color']) : '#ffffff' }}"
+                    <input type="color"
+                      value="{{ str_contains($settings["value_card_{$i}_icon_color"] ?? $def['icon_color'], '#') ? ($settings["value_card_{$i}_icon_color"] ?? $def['icon_color']) : '#ffffff' }}"
                       onchange="document.getElementById('c_card_{{ $i }}_icon_color').value=this.value">
-                    <input type="text" name="value_card_{{ $i }}_icon_color" id="c_card_{{ $i }}_icon_color" class="pm-input"
-                      value="{{ $settings["value_card_{$i}_icon_color"] ?? $def['icon_color'] }}">
+                    <input type="text" name="value_card_{{ $i }}_icon_color" id="c_card_{{ $i }}_icon_color"
+                      class="pm-input" value="{{ $settings["value_card_{$i}_icon_color"] ?? $def['icon_color'] }}">
                   </div>
                 </div>
               </div>
@@ -2161,28 +2301,28 @@
       row.className = 'pm-menu-item-row';
       row.style.cssText = 'display:grid; grid-template-columns: 2fr 3fr 1.2fr 40px; gap:0.75rem; align-items:center; background:#F8FAFC; padding:0.75rem 1rem; border-radius:12px; border:1px solid #E2E8F0;';
       row.innerHTML = `
-          <div>
-            <label class="pm-label" style="font-size:0.75rem;">Label Menu</label>
-            <input type="text" name="header_menus[${headerMenuIndex}][label]" class="pm-input" value="" placeholder="Menu Baru">
-          </div>
-          <div>
-            <label class="pm-label" style="font-size:0.75rem;">Tujuan Link / URL</label>
-            <input type="text" name="header_menus[${headerMenuIndex}][url]" class="pm-input" value="#" placeholder="/halaman-tujuan">
-          </div>
-          <div>
-            <label class="pm-label" style="font-size:0.75rem;">Status Tampil</label>
-            <select name="header_menus[${headerMenuIndex}][show]" class="pm-input" style="padding:.75rem .5rem !important;">
-              <option value="1" selected>Tampil</option>
-              <option value="0">Sembunyi</option>
-            </select>
-          </div>
-          <div style="padding-top:1.25rem;">
-            <button type="button" onclick="this.closest('.pm-menu-item-row').remove()"
-              style="background:#FEE2E2; border:none; color:#EF4444; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;" title="Hapus Menu">
-              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-            </button>
-          </div>
-        `;
+            <div>
+              <label class="pm-label" style="font-size:0.75rem;">Label Menu</label>
+              <input type="text" name="header_menus[${headerMenuIndex}][label]" class="pm-input" value="" placeholder="Menu Baru">
+            </div>
+            <div>
+              <label class="pm-label" style="font-size:0.75rem;">Tujuan Link / URL</label>
+              <input type="text" name="header_menus[${headerMenuIndex}][url]" class="pm-input" value="#" placeholder="/halaman-tujuan">
+            </div>
+            <div>
+              <label class="pm-label" style="font-size:0.75rem;">Status Tampil</label>
+              <select name="header_menus[${headerMenuIndex}][show]" class="pm-input" style="padding:.75rem .5rem !important;">
+                <option value="1" selected>Tampil</option>
+                <option value="0">Sembunyi</option>
+              </select>
+            </div>
+            <div style="padding-top:1.25rem;">
+              <button type="button" onclick="this.closest('.pm-menu-item-row').remove()"
+                style="background:#FEE2E2; border:none; color:#EF4444; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;" title="Hapus Menu">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+              </button>
+            </div>
+          `;
       container.appendChild(row);
       headerMenuIndex++;
     }
@@ -2195,30 +2335,30 @@
       row.className = 'pm-faq-item-row';
       row.style.cssText = 'background:#F8FAFC; padding:1rem; border-radius:14px; border:1px solid #E2E8F0; display:flex; flex-direction:column; gap:0.75rem;';
       row.innerHTML = `
-          <div style="display:grid; grid-template-columns: 1fr 120px 40px; gap:0.75rem; align-items:center;">
-            <div>
-              <label class="pm-label" style="font-size:0.75rem;">Pertanyaan (Question)</label>
-              <input type="text" name="seo_faq_json[${seoFaqIndex}][question]" class="pm-input" value="" placeholder="Pertanyaan FAQ Baru">
+            <div style="display:grid; grid-template-columns: 1fr 120px 40px; gap:0.75rem; align-items:center;">
+              <div>
+                <label class="pm-label" style="font-size:0.75rem;">Pertanyaan (Question)</label>
+                <input type="text" name="seo_faq_json[${seoFaqIndex}][question]" class="pm-input" value="" placeholder="Pertanyaan FAQ Baru">
+              </div>
+              <div>
+                <label class="pm-label" style="font-size:0.75rem;">Status</label>
+                <select name="seo_faq_json[${seoFaqIndex}][show]" class="pm-input" style="padding:.75rem .5rem !important;">
+                  <option value="1" selected>Tampil</option>
+                  <option value="0">Sembunyi</option>
+                </select>
+              </div>
+              <div style="padding-top:1.25rem;">
+                <button type="button" onclick="this.closest('.pm-faq-item-row').remove()"
+                  style="background:#FEE2E2; border:none; color:#EF4444; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;" title="Hapus FAQ">
+                  <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                </button>
+              </div>
             </div>
             <div>
-              <label class="pm-label" style="font-size:0.75rem;">Status</label>
-              <select name="seo_faq_json[${seoFaqIndex}][show]" class="pm-input" style="padding:.75rem .5rem !important;">
-                <option value="1" selected>Tampil</option>
-                <option value="0">Sembunyi</option>
-              </select>
+              <label class="pm-label" style="font-size:0.75rem;">Jawaban (Answer)</label>
+              <textarea name="seo_faq_json[${seoFaqIndex}][answer]" class="pm-input" rows="2" placeholder="Jawaban lengkap FAQ"></textarea>
             </div>
-            <div style="padding-top:1.25rem;">
-              <button type="button" onclick="this.closest('.pm-faq-item-row').remove()"
-                style="background:#FEE2E2; border:none; color:#EF4444; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;" title="Hapus FAQ">
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-              </button>
-            </div>
-          </div>
-          <div>
-            <label class="pm-label" style="font-size:0.75rem;">Jawaban (Answer)</label>
-            <textarea name="seo_faq_json[${seoFaqIndex}][answer]" class="pm-input" rows="2" placeholder="Jawaban lengkap FAQ"></textarea>
-          </div>
-        `;
+          `;
       container.appendChild(row);
       seoFaqIndex++;
     }
