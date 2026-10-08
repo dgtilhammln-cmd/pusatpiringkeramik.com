@@ -29,7 +29,7 @@
                         <label class="form-label">Hapus</label>
                         <form method="POST" action="{{ route('admin.wa.destroy', $wa->id) }}" onsubmit="return confirm('Hapus nomor ini?')" style="margin:0;">
                             @csrf @method('DELETE')
-                            <button type="submit" style="background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.3);color:#f87171;padding:0.5rem 0.75rem;cursor:pointer;font-size:0.8125rem;font-weight:600;"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" title="Hapus"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></button>
+                            <button type="submit" style="background:rgba(15, 23, 42,0.12);border:1px solid rgba(15, 23, 42,0.3);color:#64748B;padding:0.5rem 0.75rem;cursor:pointer;font-size:0.8125rem;font-weight:600;"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" title="Hapus"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg></button>
                         </form>
                     </div>
                 </div>

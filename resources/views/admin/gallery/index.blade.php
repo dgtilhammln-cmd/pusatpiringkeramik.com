@@ -36,8 +36,8 @@
     </div>
   </div>
   <div style="background:#fff;border-radius:16px;padding:1.25rem 1.5rem;box-shadow:0 2px 12px rgba(0,0,0,0.04);display:flex;align-items:center;gap:1rem;">
-    <div style="width:44px;height:44px;background:rgba(239,68,68,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-      <svg width="20" height="20" fill="none" stroke="#EF4444" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+    <div style="width:44px;height:44px;background:rgba(15, 23, 42,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+      <svg width="20" height="20" fill="none" stroke="#334155" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
     </div>
     <div>
       <div style="font-size:1.5rem;font-weight:800;color:#1E293B;line-height:1;">{{ $items->where('is_active',false)->count() }}</div>
@@ -61,7 +61,7 @@
             <span style="width:5px;height:5px;background:#fff;border-radius:50%;"></span>Aktif
           </span>
         @else
-          <span style="display:inline-flex;align-items:center;gap:.3rem;font-size:.7rem;font-weight:700;padding:.25rem .625rem;border-radius:100px;background:rgba(239,68,68,0.9);color:#fff;backdrop-filter:blur(8px);">
+          <span style="display:inline-flex;align-items:center;gap:.3rem;font-size:.7rem;font-weight:700;padding:.25rem .625rem;border-radius:100px;background:rgba(15, 23, 42,0.9);color:#fff;backdrop-filter:blur(8px);">
             <span style="width:5px;height:5px;background:#fff;border-radius:50%;"></span>Off
           </span>
         @endif
@@ -99,8 +99,8 @@
         <form method="POST" action="{{ route('admin.gallery.destroy',$item) }}" onsubmit="return confirm('Hapus foto ini? Tidak dapat dibatalkan.')">
           @csrf @method('DELETE')
           <button type="submit" title="Hapus"
-            style="display:flex;align-items:center;justify-content:center;width:38px;height:38px;background:rgba(239,68,68,0.08);border-radius:10px;color:#EF4444;border:none;cursor:pointer;transition:all .2s;"
-            onmouseover="this.style.background='rgba(239,68,68,0.18)'" onmouseout="this.style.background='rgba(239,68,68,0.08)'">
+            style="display:flex;align-items:center;justify-content:center;width:38px;height:38px;background:rgba(15, 23, 42,0.08);border-radius:10px;color:#334155;border:none;cursor:pointer;transition:all .2s;"
+            onmouseover="this.style.background='rgba(15, 23, 42,0.18)'" onmouseout="this.style.background='rgba(15, 23, 42,0.08)'">
             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
           </button>
         </form>

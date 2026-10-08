@@ -17,7 +17,7 @@
         $preloaderLogo   = $layoutSettings['logo'] ?? null;
         $headScripts     = $layoutSettings['head_scripts']  ?? '';
         $bodyScripts     = $layoutSettings['body_scripts']  ?? '';
-        $headerAccent    = $layoutSettings['header_accent_color'] ?? '#DC2626';
+        $headerAccent    = $layoutSettings['header_accent_color'] ?? '#0F172A';
         $brandColor      = !empty($layoutSettings['brand_color']) ? $layoutSettings['brand_color'] : $headerAccent;
         $preloaderAccent = $layoutSettings['preloader_accent_color'] ?? $headerAccent;
         $preloaderEnable = $layoutSettings['preloader_enable'] ?? '1';

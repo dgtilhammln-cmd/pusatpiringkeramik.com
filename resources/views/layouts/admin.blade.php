@@ -252,7 +252,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   position: absolute;
   top: 0px;
   right: 0px;
-  background: #EF4444;
+  background: #334155;
   color: #fff;
   font-size: 0.55rem;
   font-weight: 800;
@@ -264,7 +264,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   align-items: center;
   justify-content: center;
   line-height: 1;
-  box-shadow: 0 2px 6px rgba(239,68,68,0.4);
+  box-shadow: 0 2px 6px rgba(15, 23, 42,0.4);
   border: 1.5px solid #FFFFFF;
   z-index: 10;
 }
@@ -342,8 +342,8 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   color: #0F172A;
 }
 .user-dropdown-item.danger:hover {
-  background: #FEF2F2;
-  color: #EF4444;
+  background: #F8FAFC;
+  color: #334155;
 }
 .user-dropdown-item svg {
   color: #64748B;
@@ -353,7 +353,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   color: #0F172A;
 }
 .user-dropdown-item.danger:hover svg {
-  color: #EF4444;
+  color: #334155;
 }
 #main {
   flex: 1;
@@ -365,8 +365,8 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   background: #F4F7FE;
 }
 #content { padding: 1.75rem; flex: 1; }
-.errors-box { background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.3); padding: .875rem 1.25rem; margin-bottom: 1.5rem; border-radius: 6px; }
-.errors-box li { color: #f87171; font-size: .8125rem; margin-left: 1rem; }
+.errors-box { background: rgba(15, 23, 42,.1); border: 1px solid rgba(15, 23, 42,.3); padding: .875rem 1.25rem; margin-bottom: 1.5rem; border-radius: 6px; }
+.errors-box li { color: #64748B; font-size: .8125rem; margin-left: 1rem; }
 
 /* MOBILE */
 #sb-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 199; backdrop-filter: blur(4px); }
@@ -662,7 +662,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
     <div class="errors-box" style="margin-bottom:1.25rem;">
       <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:.25rem;">
         @foreach($errors->all() as $e)
-        <li style="display:flex;align-items:center;gap:.5rem;color:#f87171;font-size:.8125rem;">
+        <li style="display:flex;align-items:center;gap:.5rem;color:#64748B;font-size:.8125rem;">
           <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
           {{ $e }}
         </li>
@@ -762,7 +762,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 text: msg,
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#EF4444',
+                confirmButtonColor: '#334155',
                 cancelButtonColor: '#94A3B8',
                 confirmButtonText: 'Ya, Lanjutkan',
                 cancelButtonText: 'Batal',
@@ -792,7 +792,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 text: msg,
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#EF4444',
+                confirmButtonColor: '#334155',
                 cancelButtonColor: '#94A3B8',
                 confirmButtonText: 'Ya, Lanjutkan',
                 cancelButtonText: 'Batal',

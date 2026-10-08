@@ -86,8 +86,8 @@
 }
 .export-xls { background: rgba(34,197,94,0.1); color: #16A34A; border: 1px solid rgba(34,197,94,0.2); }
 .export-xls:hover { background: rgba(34,197,94,0.2); transform: translateY(-1px); }
-.export-pdf { background: rgba(239,68,68,0.1); color: #DC2626; border: 1px solid rgba(239,68,68,0.2); }
-.export-pdf:hover { background: rgba(239,68,68,0.2); transform: translateY(-1px); }
+.export-pdf { background: rgba(15, 23, 42,0.1); color: #0F172A; border: 1px solid rgba(15, 23, 42,0.2); }
+.export-pdf:hover { background: rgba(15, 23, 42,0.2); transform: translateY(-1px); }
 
 @media(max-width:1024px) {
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -235,7 +235,7 @@
               
               <form method="POST" action="{{ route('admin.leads.destroy',$lead) }}" onsubmit="return confirm('Hapus lead ini secara permanen?')" style="margin:0;">
                 @csrf @method('DELETE')
-                <button type="submit" style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:rgba(239,68,68,0.1);color:#DC2626;border-radius:8px;border:none;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='#EF4444';this.style.color='#fff';" onmouseout="this.style.background='rgba(239,68,68,0.1)';this.style.color='#DC2626';">
+                <button type="submit" style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:rgba(15, 23, 42,0.1);color:#0F172A;border-radius:8px;border:none;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='#334155';this.style.color='#fff';" onmouseout="this.style.background='rgba(15, 23, 42,0.1)';this.style.color='#0F172A';">
                     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" title="Hapus"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
                 </button>
               </form>

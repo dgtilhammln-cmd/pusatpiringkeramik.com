@@ -49,7 +49,7 @@
     justify-content: center !important;
 }
 .gnext:hover, .gprev:hover, .gclose:hover {
-    background: #DC2626 !important;
+    background: #0F172A !important;
     transform: scale(1.1);
 }
 .gnext svg, .gprev svg, .gclose svg {
@@ -59,10 +59,10 @@
 .gclose {
     top: 20px !important;
     right: 20px !important;
-    background: rgba(239, 68, 68, 0.8) !important;
+    background: rgba(15, 23, 42, 0.8) !important;
 }
 .gclose:hover {
-    background: #EF4444 !important;
+    background: #334155 !important;
 }
 @media (min-width: 769px) {
     .glightbox-clean .gslide-description {

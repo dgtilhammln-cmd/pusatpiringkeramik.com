@@ -116,7 +116,7 @@ FOOTER COMPONENT — {{ $companyName }}
     }
 
     .cv-footer-v2-badge:hover svg {
-        color: #DC2626;
+        color: #0F172A;
     }
 
     /* Social */
@@ -140,8 +140,8 @@ FOOTER COMPONENT — {{ $companyName }}
     }
 
     .cv-footer-v2-social-btn:hover {
-        background: #DC2626;
-        border-color: #DC2626;
+        background: #0F172A;
+        border-color: #0F172A;
         color: #ffffff;
         transform: translateY(-3px);
         box-shadow: 0 8px 20px rgba(14, 165, 233, 0.25);
@@ -207,8 +207,8 @@ FOOTER COMPONENT — {{ $companyName }}
     }
 
     .cv-footer-v2-contact-item:hover .cv-footer-v2-contact-icon {
-        background: #DC2626;
-        border-color: #DC2626;
+        background: #0F172A;
+        border-color: #0F172A;
         color: #ffffff;
         box-shadow: 0 4px 12px rgba(14, 165, 233, 0.25);
         transform: scale(1.05);
@@ -355,7 +355,7 @@ FOOTER COMPONENT — {{ $companyName }}
                     @if($logo)
                         <img src="{{ asset('storage/' . $logo) }}" alt="Logo">
                     @else
-                        <span style="font-weight:900;color:#DC2626;font-size:1rem;">{{ $companyName }}</span>
+                        <span style="font-weight:900;color:#0F172A;font-size:1rem;">{{ $companyName }}</span>
                     @endif
                 </div>
                 <div>
@@ -373,7 +373,7 @@ FOOTER COMPONENT — {{ $companyName }}
             <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem;">
                 <div style="display: flex; gap: 5px;">
                     @for($i=0; $i<5; $i++)
-                    <div style="background: #DC2626; padding: 5px; border-radius: 4px; color: #ffffff; display: flex; align-items: center; justify-content: center;">
+                    <div style="background: #0F172A; padding: 5px; border-radius: 4px; color: #ffffff; display: flex; align-items: center; justify-content: center;">
                         <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/>
                         </svg>

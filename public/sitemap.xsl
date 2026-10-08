@@ -7,7 +7,7 @@
     <xsl:template match="/">
         <html lang="id">
         <head>
-            <title>XML Sitemap - Cyclevent</title>
+            <title>XML Sitemap</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
             <style>
@@ -121,7 +121,7 @@
         <body>
             <div class="sm-hero">
                 <h1>XML Sitemap by HVM Digital</h1>
-                <p>Ini adalah format XML sitemap yang digunakan oleh Google Search Console dan mesin pencari lainnya untuk melakukan indexing pada seluruh halaman website Cyclevent.</p>
+                <p>Ini adalah format XML sitemap yang digunakan oleh Google Search Console dan mesin pencari lainnya untuk melakukan indexing pada seluruh halaman website.</p>
             </div>
             <div class="sm-main">
                 <div class="sm-table-wrap">

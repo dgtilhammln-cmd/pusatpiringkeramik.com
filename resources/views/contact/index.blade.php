@@ -15,8 +15,8 @@
     --c-border:  #E2E8F0;
     --c-text:    #0F172A;
     --c-muted:   #64748B;
-    --c-accent:  #DC2626;
-    --c-accent-hover: #B91C1C;
+    --c-accent:  #0F172A;
+    --c-accent-hover: #1E293B;
     --font:      'Montserrat', sans-serif;
     --ease:      cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -138,7 +138,7 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
 }
 .ct-textarea { resize:vertical; min-height:130px; }
 .ct-select { appearance:none; cursor:pointer; }
-.ct-error { font-size:0.8rem; color:#EF4444; font-family:var(--font); }
+.ct-error { font-size:0.8rem; color:#334155; font-family:var(--font); }
 
 .ct-submit {
     display:inline-flex; align-items:center; gap:0.625rem;
@@ -164,7 +164,7 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
     display:flex; align-items:center; justify-content:center;
     flex-shrink:0;
 }
-.ct-info-icon.blue { background:#FEE2E2; color:var(--c-accent); }
+.ct-info-icon.blue { background:#F1F5F9; color:var(--c-accent); }
 .ct-info-icon.green { background:rgba(37,211,102,0.1); color:#25D366; }
 .ct-info-icon.purple { background:rgba(139,92,246,0.1); color:#7C3AED; }
 .ct-info-icon.orange { background:rgba(249,115,22,0.1); color:#EA580C; }

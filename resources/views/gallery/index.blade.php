@@ -12,8 +12,8 @@
             --c-border: #E2E8F0;
             --c-text: #0F172A;
             --c-muted: #64748B;
-            --c-accent: #DC2626;
-            --c-accent-hover: #B91C1C;
+            --c-accent: #0F172A;
+            --c-accent-hover: #1E293B;
             --c-white: #ffffff;
             --radius-sm: 8px;
             --radius-md: 14px;
@@ -180,10 +180,10 @@
 
         .gl-filter-btn:hover,
         .gl-filter-btn.active {
-            background: {{ \App\Models\Setting::get('page_gallery_active_badge_bg') ?? '#EF4444' }} !important;
-            border-color: {{ \App\Models\Setting::get('page_gallery_active_badge_bg') ?? '#EF4444' }} !important;
+            background: {{ \App\Models\Setting::get('page_gallery_active_badge_bg') ?? '#334155' }} !important;
+            border-color: {{ \App\Models\Setting::get('page_gallery_active_badge_bg') ?? '#334155' }} !important;
             color: {{ \App\Models\Setting::get('page_gallery_active_badge_text') ?? '#ffffff' }} !important;
-            box-shadow: 0 4px 14px rgba(239, 68, 68, 0.25);
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25);
         }
 
         /* ═══════════════════════════════════════

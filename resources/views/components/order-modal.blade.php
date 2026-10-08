@@ -37,16 +37,16 @@
         font-size: 0.9375rem; border-radius: 12px; outline: none; padding: 0.875rem 1rem;
         transition: all 0.2s; font-family: 'Montserrat', sans-serif;
     }
-    .light-input:focus { border-color: #DC2626; box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1); }
+    .light-input:focus { border-color: #0F172A; box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1); }
     .light-label { font-size: 0.8125rem; font-weight: 600; color: #475569; margin-bottom: 0.5rem; display: block; }
     
     .order-submit-btn-light {
-        background: #DC2626; color: #fff; width: 100%; padding: 1.125rem; border: none;
+        background: #0F172A; color: #fff; width: 100%; padding: 1.125rem; border: none;
         font-size: 0.95rem; font-weight: 700; border-radius: 14px; cursor: pointer;
         display: flex; align-items: center; justify-content: center; gap: 0.75rem;
         transition: all 0.3s; box-shadow: 0 8px 20px rgba(14, 165, 233, 0.25);
     }
-    .order-submit-btn-light:hover { background: #B91C1C; transform: translateY(-2px); box-shadow: 0 12px 25px rgba(14, 165, 233, 0.35); }
+    .order-submit-btn-light:hover { background: #1E293B; transform: translateY(-2px); box-shadow: 0 12px 25px rgba(14, 165, 233, 0.35); }
     
     @media(max-width: 600px) {
         .modal-box-light { border-radius: 20px 20px 0 0; max-height: 95vh; transform: translateY(100%); }
@@ -76,11 +76,11 @@
             
             <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:1.25rem;">
                 <div>
-                    <label class="light-label" for="order-name">Nama Lengkap <span style="color:#EF4444;">*</span></label>
+                    <label class="light-label" for="order-name">Nama Lengkap <span style="color:#334155;">*</span></label>
                     <input class="light-input" type="text" id="order-name" name="name" placeholder="Nama Anda" required autocomplete="name">
                 </div>
                 <div>
-                    <label class="light-label" for="order-phone">Telepon / WhatsApp <span style="color:#EF4444;">*</span></label>
+                    <label class="light-label" for="order-phone">Telepon / WhatsApp <span style="color:#334155;">*</span></label>
                     <input class="light-input" type="tel" id="order-phone" name="phone" placeholder="08xxxxxxxxxx" required autocomplete="tel">
                 </div>
             </div>
@@ -96,7 +96,7 @@
             </div>
 
             {{-- Error --}}
-            <div id="order-error" style="display:none;background:#FEF2F2;border:1px solid #FCA5A5;color:#EF4444;font-size:0.875rem;padding:0.875rem 1rem;border-radius:10px;"></div>
+            <div id="order-error" style="display:none;background:#F8FAFC;border:1px solid #FCA5A5;color:#334155;font-size:0.875rem;padding:0.875rem 1rem;border-radius:10px;"></div>
 
             {{-- Submit --}}
             <div>

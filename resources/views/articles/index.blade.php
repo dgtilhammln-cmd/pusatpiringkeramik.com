@@ -12,8 +12,8 @@
     --c-border:  #E2E8F0;
     --c-text:    #0F172A;
     --c-muted:   #64748B;
-    --c-accent:  #DC2626;
-    --c-accent-hover: #B91C1C;
+    --c-accent:  #0F172A;
+    --c-accent-hover: #1E293B;
     --c-white:   #ffffff;
     --font:      'Montserrat', sans-serif;
     --ease:      cubic-bezier(0.22, 1, 0.36, 1);

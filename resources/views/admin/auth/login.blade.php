@@ -236,11 +236,11 @@
         }
 
         .error-box {
-            background: #FEF2F2;
+            background: #F8FAFC;
             border: 1px solid #FCA5A5;
             padding: 0.875rem 1rem;
             margin-bottom: 1.25rem;
-            color: #EF4444;
+            color: #334155;
             font-size: 0.8125rem;
             border-radius: 8px;
             font-weight: 500;
@@ -317,7 +317,7 @@
                 <div class="input-group">
                     <label class="form-label">Email</label>
                     <input type="email" name="email" value="{{ old('email') }}" class="input-modern" placeholder="admin@domain.com" required autofocus>
-                    @error('email')<p style="color:#EF4444;font-size:0.7rem;margin:0.25rem 0 0;">{{ $message }}</p>@enderror
+                    @error('email')<p style="color:#334155;font-size:0.7rem;margin:0.25rem 0 0;">{{ $message }}</p>@enderror
                 </div>
                 
                 <div class="input-group">
@@ -331,7 +331,7 @@
                             </svg>
                         </button>
                     </div>
-                    @error('password')<p style="color:#EF4444;font-size:0.7rem;margin:0.25rem 0 0;">{{ $message }}</p>@enderror
+                    @error('password')<p style="color:#334155;font-size:0.7rem;margin:0.25rem 0 0;">{{ $message }}</p>@enderror
                 </div>
 
                 <button type="submit" class="btn-primary">

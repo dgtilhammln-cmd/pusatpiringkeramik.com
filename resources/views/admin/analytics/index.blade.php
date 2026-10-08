@@ -24,7 +24,7 @@
     <div style="border-left: 1px solid var(--border); margin: 0 0.5rem; height: 30px;"></div>
     
     <button onclick="downloadReport('xls')" style="padding: 0.4rem 1rem; font-size: 0.8rem; background:rgba(16, 185, 129, 0.1); color: #10B981; border:none; border-radius:6px; font-weight:700; cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">↓ XLS</button>
-    <button onclick="downloadReport('pdf')" style="padding: 0.4rem 1rem; font-size: 0.8rem; background:rgba(239, 68, 68, 0.1); color: #EF4444; border:none; border-radius:6px; font-weight:700; cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">↓ PDF</button>
+    <button onclick="downloadReport('pdf')" style="padding: 0.4rem 1rem; font-size: 0.8rem; background:rgba(15, 23, 42, 0.1); color: #334155; border:none; border-radius:6px; font-weight:700; cursor:pointer; transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">↓ PDF</button>
   </div>
 </div>
 <div style="font-size:0.75rem; color:var(--text3); margin-top:-1.5rem; margin-bottom:2rem; text-align:right;">
@@ -393,7 +393,7 @@ function renderData(data) {
     const locEl = document.getElementById('location-list');
     if (data.locations && Object.keys(data.locations).length) {
         const totalLoc = Object.values(data.locations).reduce((a, b) => a + b, 0);
-        const colors = ['#3B82F6','#10B981','#F59E0B','#EF4444','#8B5CF6','#EC4899','#06B6D4','#F97316','#6366F1','#14B8A6'];
+        const colors = ['#3B82F6','#10B981','#F59E0B','#334155','#8B5CF6','#EC4899','#06B6D4','#F97316','#6366F1','#14B8A6'];
         locEl.innerHTML = Object.entries(data.locations).map(([loc, count], i) => {
             const pct = Math.round((count / totalLoc) * 100);
             const color = colors[i % colors.length];

@@ -2,8 +2,8 @@
     $logo           = \App\Models\Setting::get('logo');
     $companyName    = \App\Models\Setting::get('company_name', config('app.name'));
     $companyTagline = \App\Models\Setting::get('company_tagline', '');
-    $headerAccent   = \App\Models\Setting::get('header_accent_color', '#DC2626');
-    $headerHover    = \App\Models\Setting::get('header_cta_hover_color', '#B91C1C');
+    $headerAccent   = \App\Models\Setting::get('header_accent_color', '#0F172A');
+    $headerHover    = \App\Models\Setting::get('header_cta_hover_color', '#1E293B');
     $headerCtaText  = \App\Models\Setting::get('header_cta_text', 'Hubungi Kami');
     $headerCtaUrl   = \App\Models\Setting::get('header_cta_url', route('contact'));
     $headerCtaShow  = \App\Models\Setting::get('header_cta_show', '1');

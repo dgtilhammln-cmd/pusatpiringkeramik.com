@@ -35,7 +35,7 @@
     color: #475569;
     margin-bottom: 0.5rem;
 }
-.form-label span.req { color: #EF4444; }
+.form-label span.req { color: #334155; }
 .form-label span.hint { font-weight: 400; color: #94A3B8; font-size: 0.75rem; margin-left: 0.25rem; }
 .form-input, .form-select, .form-textarea {
     width: 100%;
@@ -404,12 +404,12 @@ function insertImage() {
                 if(loadingEl) loadingEl.outerHTML = imgHtml;
                 else document.execCommand('insertHTML', false, imgHtml);
             } else {
-                if(loadingEl) loadingEl.outerHTML = `<span style="color:#EF4444;">[Gagal upload gambar]</span>`;
+                if(loadingEl) loadingEl.outerHTML = `<span style="color:#334155;">[Gagal upload gambar]</span>`;
             }
         })
         .catch(err => {
             const loadingEl = document.getElementById(loadingId);
-            if(loadingEl) loadingEl.outerHTML = `<span style="color:#EF4444;">[Error upload]</span>`;
+            if(loadingEl) loadingEl.outerHTML = `<span style="color:#334155;">[Error upload]</span>`;
         });
     };
     input.click();
@@ -421,7 +421,7 @@ function insertQuote() {
 }
 function insertCode() {
     const sel = window.getSelection().toString() || 'code';
-    document.execCommand('insertHTML', false, `<code style="background:#F1F5F9;padding:0.2rem 0.4rem;border-radius:4px;font-family:monospace;color:#EF4444;font-size:0.9em;">${sel}</code>`);
+    document.execCommand('insertHTML', false, `<code style="background:#F1F5F9;padding:0.2rem 0.4rem;border-radius:4px;font-family:monospace;color:#334155;font-size:0.9em;">${sel}</code>`);
     editor.focus();
 }
 function toggleHtml() {

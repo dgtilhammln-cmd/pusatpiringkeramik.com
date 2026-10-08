@@ -12,7 +12,7 @@
     --c-border: #E2E8F0;
     --c-text:   #0F172A;
     --c-muted:  #64748B;
-    --c-accent: #DC2626;
+    --c-accent: #0F172A;
     --font:     'Montserrat', sans-serif;
 }
 body { background: var(--c-bg); font-family: var(--font); }
@@ -41,7 +41,7 @@ body { background: var(--c-bg); font-family: var(--font); }
     margin-bottom: 3rem; font-family: 'Montserrat', sans-serif;
 }
 .err-breadcrumb a { color: #64748B; text-decoration: none; transition: color 0.2s; }
-.err-breadcrumb a:hover { color: #DC2626; }
+.err-breadcrumb a:hover { color: #0F172A; }
 .err-breadcrumb-sep { font-size: 0.6rem; opacity: 0.5; }
 .err-breadcrumb-current { color: #0F172A; font-weight: 600; }
 .err-code {
@@ -65,19 +65,19 @@ body { background: var(--c-bg); font-family: var(--font); }
 .err-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 .err-btn-primary {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    background: #DC2626; color: #fff; font-family: 'Montserrat', sans-serif;
+    background: #0F172A; color: #fff; font-family: 'Montserrat', sans-serif;
     font-size: 0.9375rem; font-weight: 600; padding: 0.875rem 2rem;
     border-radius: 50px; text-decoration: none !important; transition: all 0.3s;
     box-shadow: 0 8px 20px rgba(14,165,233,0.25);
 }
-.err-btn-primary:hover { background: #B91C1C; transform: translateY(-2px); color: #fff !important; }
+.err-btn-primary:hover { background: #1E293B; transform: translateY(-2px); color: #fff !important; }
 .err-btn-outline {
     display: inline-flex; align-items: center; gap: 0.5rem; background: transparent;
     color: #0F172A; font-family: 'Montserrat', sans-serif; font-size: 0.9375rem;
     font-weight: 600; padding: 0.875rem 2rem; border-radius: 50px;
     border: 1.5px solid #E2E8F0; text-decoration: none !important; transition: all 0.3s;
 }
-.err-btn-outline:hover { border-color: #DC2626; color: #DC2626 !important; }
+.err-btn-outline:hover { border-color: #0F172A; color: #0F172A !important; }
 .err-illustration { margin-bottom: 2rem; opacity: 0.12; }
 </style>
 

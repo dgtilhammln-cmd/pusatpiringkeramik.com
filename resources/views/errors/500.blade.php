@@ -12,8 +12,8 @@
     --c-border: #E2E8F0;
     --c-text:   #0F172A;
     --c-muted:  #64748B;
-    --c-accent: #DC2626;
-    --c-accent-hover: #B91C1C;
+    --c-accent: #0F172A;
+    --c-accent-hover: #1E293B;
     --font:     'Montserrat', sans-serif;
 }
 body { background: var(--c-bg); font-family: var(--font); }
@@ -26,7 +26,7 @@ body { background: var(--c-bg); font-family: var(--font); }
 .err-page::before {
     content: ''; position: absolute; top: -150px; right: -100px;
     width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(239,68,68,0.05) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(15, 23, 42,0.05) 0%, transparent 70%);
     border-radius: 50%; pointer-events: none;
 }
 .err-page::after {
@@ -42,13 +42,13 @@ body { background: var(--c-bg); font-family: var(--font); }
     margin-bottom: 3rem; font-family: 'Montserrat', sans-serif;
 }
 .err-breadcrumb a { color: #64748B; text-decoration: none; transition: color 0.2s; }
-.err-breadcrumb a:hover { color: #DC2626; }
+.err-breadcrumb a:hover { color: #0F172A; }
 .err-breadcrumb-sep { font-size: 0.6rem; opacity: 0.5; }
 .err-breadcrumb-current { color: #0F172A; font-weight: 600; }
 .err-code {
     font-size: clamp(5rem, 15vw, 9rem); font-weight: 800;
     letter-spacing: -0.05em; line-height: 1;
-    background: linear-gradient(135deg, #EF4444, #DC2626);
+    background: linear-gradient(135deg, #334155, #0F172A);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text; margin-bottom: 1.5rem; font-family: 'Montserrat', sans-serif;
 }
@@ -66,19 +66,19 @@ body { background: var(--c-bg); font-family: var(--font); }
 .err-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 .err-btn-primary {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    background: #DC2626; color: #fff; font-family: 'Montserrat', sans-serif;
+    background: #0F172A; color: #fff; font-family: 'Montserrat', sans-serif;
     font-size: 0.9375rem; font-weight: 600; padding: 0.875rem 2rem;
     border-radius: 50px; text-decoration: none !important; transition: all 0.3s;
     box-shadow: 0 8px 20px rgba(14,165,233,0.25);
 }
-.err-btn-primary:hover { background: #B91C1C; transform: translateY(-2px); color: #fff !important; }
+.err-btn-primary:hover { background: #1E293B; transform: translateY(-2px); color: #fff !important; }
 .err-btn-outline {
     display: inline-flex; align-items: center; gap: 0.5rem; background: transparent;
     color: #0F172A; font-family: 'Montserrat', sans-serif; font-size: 0.9375rem;
     font-weight: 600; padding: 0.875rem 2rem; border-radius: 50px;
     border: 1.5px solid #E2E8F0; text-decoration: none !important; transition: all 0.3s;
 }
-.err-btn-outline:hover { border-color: #DC2626; color: #DC2626 !important; }
+.err-btn-outline:hover { border-color: #0F172A; color: #0F172A !important; }
 .err-illustration { margin-bottom: 2rem; opacity: 0.12; }
 </style>
 
@@ -91,9 +91,9 @@ body { background: var(--c-bg); font-family: var(--font); }
             <span class="err-breadcrumb-current">Error 500</span>
         </nav>
 
-        <svg class="err-illustration" width="120" height="120" fill="none" stroke="#EF4444" stroke-width="1" viewBox="0 0 24 24">
+        <svg class="err-illustration" width="120" height="120" fill="none" stroke="#334155" stroke-width="1" viewBox="0 0 24 24">
             <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
-            <line x1="12" y1="9" x2="12" y2="13"/><circle cx="12" cy="17" r=".5" fill="#EF4444"/>
+            <line x1="12" y1="9" x2="12" y2="13"/><circle cx="12" cy="17" r=".5" fill="#334155"/>
         </svg>
 
         <div class="err-code">500</div>

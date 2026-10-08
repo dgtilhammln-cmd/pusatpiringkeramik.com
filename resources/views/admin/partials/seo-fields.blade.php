@@ -61,12 +61,12 @@ function seoTitleBar(el) {
   var pct = Math.min(100, Math.round(el.value.length / 70 * 100));
   var bar = document.getElementById('seo-mt-bar');
   bar.style.width = pct + '%';
-  bar.style.background = pct > 90 ? '#EF4444' : pct > 70 ? '#F59E0B' : '#10B981';
+  bar.style.background = pct > 90 ? '#334155' : pct > 70 ? '#F59E0B' : '#10B981';
 }
 function seoDescBar(el) {
   var pct = Math.min(100, Math.round(el.value.length / 160 * 100));
   var bar = document.getElementById('seo-md-bar');
   bar.style.width = pct + '%';
-  bar.style.background = pct > 90 ? '#EF4444' : pct > 70 ? '#F59E0B' : '#10B981';
+  bar.style.background = pct > 90 ? '#334155' : pct > 70 ? '#F59E0B' : '#10B981';
 }
 </script>

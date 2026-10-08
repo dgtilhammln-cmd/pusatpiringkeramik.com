@@ -129,8 +129,8 @@
             <form method="POST" action="{{ route('admin.articles.destroy',$a) }}" onsubmit="return confirm('Hapus artikel ini? Tindakan tidak dapat dibatalkan.')">
               @csrf @method('DELETE')
               <button type="submit" title="Hapus"
-                style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;background:rgba(239,68,68,0.08);border-radius:8px;color:#EF4444;border:none;cursor:pointer;transition:all .2s;"
-                onmouseover="this.style.background='rgba(239,68,68,0.18)'" onmouseout="this.style.background='rgba(239,68,68,0.08)'">
+                style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;background:rgba(15, 23, 42,0.08);border-radius:8px;color:#334155;border:none;cursor:pointer;transition:all .2s;"
+                onmouseover="this.style.background='rgba(15, 23, 42,0.18)'" onmouseout="this.style.background='rgba(15, 23, 42,0.08)'">
                 <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
               </button>
             </form>

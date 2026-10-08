@@ -12,8 +12,8 @@
         --c-border:  #E2E8F0;
         --c-text:    #0F172A;
         --c-muted:   #64748B;
-        --c-accent:  #DC2626;
-        --c-accent-hover: #B91C1C;
+        --c-accent:  #0F172A;
+        --c-accent-hover: #1E293B;
         --c-white:   #ffffff;
         --radius-sm: 8px;
         --radius-md: 14px;
@@ -449,7 +449,7 @@
     <div class="sv-cta-glow"></div>
     <div class="sv-cta-inner">
         <div class="sv-label" style="margin-bottom:1rem;">Butuh Konsultasi?</div>
-        <h2 class="sv-cta-h2">Konsultasikan Kebutuhan Cat Anda</h2>
+        <h2 class="sv-cta-h2">Konsultasikan Kebutuhan Tableware & Piring Keramik Anda</h2>
         <p class="sv-cta-sub">
             Tim teknis {{ $companyName }} siap membantu Anda memilih produk yang paling tepat untuk kebutuhan Anda.
         </p>

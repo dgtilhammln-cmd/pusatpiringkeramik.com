@@ -658,7 +658,7 @@
         }
 
         .cv-product-card:hover {
-            border-color: #EF4444;
+            border-color: #334155;
             transform: translateY(-8px);
             box-shadow: 0 32px 80px rgba(56, 189, 248, 0.15), 0 0 0 1px rgba(56, 189, 248, 0.1);
         }
@@ -718,7 +718,7 @@
         }
 
         .cv-spec-val.highlight {
-            color: #B91C1C;
+            color: #1E293B;
         }
 
         .cv-product-cta {
@@ -888,7 +888,7 @@
 
         .cv-testi-quote {
             font-size: 2.5rem;
-            color: #EF4444;
+            color: #334155;
             opacity: 0.3;
             line-height: 1;
             margin-bottom: 0.5rem;
@@ -979,7 +979,7 @@
             width: 5px;
             height: 5px;
             border-radius: 50%;
-            background: #EF4444;
+            background: #334155;
             flex-shrink: 0;
         }
 
@@ -1614,7 +1614,7 @@
         }
 
         .about-premium-heading .ab-icon-red {
-            background: #ef4444;
+            background: #334155;
             /* red */
             color: #fff;
             padding: 0.2em;
@@ -1921,7 +1921,7 @@
 
         .cv-cat-card-spec span {
             background:
-                {{ $settings['page_home_product_accent_color'] ?? 'rgba(220, 38, 38, 0.85)' }}
+                {{ $settings['page_home_product_accent_color'] ?? 'rgba(15, 23, 42, 0.85)' }}
             ;
             padding: 0.2rem 0.5rem;
             border-radius: 4px;
@@ -2215,7 +2215,7 @@
         .cv-app-icon-circle {
             width: 50px;
             height: 50px;
-            background: #FEF2F2;
+            background: #F8FAFC;
             border-radius: 14px;
             display: flex;
             align-items: center;
@@ -2488,7 +2488,7 @@
         }
 
         .cv-testi-card-v2:hover .cv-testi-quote-icon {
-            color: #FEE2E2;
+            color: #F1F5F9;
         }
 
         .cv-testi-stars-v2 {
@@ -2940,7 +2940,7 @@
             @if($coverageMap)
                 <div style="position: relative; width: 100%; text-align: center; margin-bottom: 0;" data-aos="zoom-in">
                     <img src="{{ asset('storage/' . $coverageMap) }}" alt="Peta Jangkauan Indonesia"
-                        style="max-width: 100%; height: auto; filter: opacity(0.8) drop-shadow(0 0 20px rgba(220, 38, 38, 0.2));"
+                        style="max-width: 100%; height: auto; filter: opacity(0.8) drop-shadow(0 0 20px rgba(15, 23, 42, 0.2));"
                         loading="lazy">
                 </div>
             @else
@@ -2969,7 +2969,7 @@
             position: absolute;
             width: 800px;
             height: 800px;
-            background: radial-gradient(circle, rgba(220, 38, 38, 0.08) 0%, transparent 60%);
+            background: radial-gradient(circle, rgba(15, 23, 42, 0.08) 0%, transparent 60%);
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -3019,14 +3019,14 @@
             align-items: center;
             gap: 0.75rem;
             transition: all 0.3s;
-            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.2);
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.2);
             text-decoration: none !important;
         }
 
         .cv-cta-btn-primary:hover {
-            background: #B91C1C;
+            background: #1E293B;
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(220, 38, 38, 0.3);
+            box-shadow: 0 15px 30px rgba(15, 23, 42, 0.3);
         }
 
         .cv-cta-btn-outline {

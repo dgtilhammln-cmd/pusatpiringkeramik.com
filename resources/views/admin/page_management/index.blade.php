@@ -194,7 +194,7 @@
 
   @if($errors->any())
     <div
-      style="background:#FEF2F2; border:1px solid #FECACA; color:#B91C1C; padding:.875rem 1.25rem; border-radius:12px; margin-bottom:1.5rem; font-size:.875rem; font-weight:600;">
+      style="background:#F8FAFC; border:1px solid #FECACA; color:#1E293B; padding:.875rem 1.25rem; border-radius:12px; margin-bottom:1.5rem; font-size:.875rem; font-weight:600;">
       {{ $errors->first() }}
     </div>
   @endif
@@ -296,7 +296,7 @@
       {{-- CARD 1: Warna & Aksent Header --}}
       <div class="pm-card">
         <div class="pm-card-header">
-          <svg width="22" height="22" fill="none" stroke="#DC2626" stroke-width="2" viewBox="0 0 24 24">
+          <svg width="22" height="22" fill="none" stroke="#0F172A" stroke-width="2" viewBox="0 0 24 24">
             <path
               d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
           </svg>
@@ -310,23 +310,23 @@
           <div>
             <label class="pm-label">Warna Utama Header (Red Accent)</label>
             <div class="pm-color-picker-wrap">
-              <input type="color" value="{{ $settings['header_accent_color'] ?? '#DC2626' }}"
+              <input type="color" value="{{ $settings['header_accent_color'] ?? '#0F172A' }}"
                 onchange="document.getElementById('c_header_accent').value=this.value">
               <input type="text" name="header_accent_color" id="c_header_accent" class="pm-input"
-                value="{{ $settings['header_accent_color'] ?? '#DC2626' }}">
+                value="{{ $settings['header_accent_color'] ?? '#0F172A' }}">
             </div>
-            <div class="pm-help">Default: #DC2626 (Merah solid untuk tombol CTA & aksen)</div>
+            <div class="pm-help">Default: #0F172A (Merah solid untuk tombol CTA & aksen)</div>
           </div>
 
           <div>
             <label class="pm-label">Warna Hover Tombol CTA Header</label>
             <div class="pm-color-picker-wrap">
-              <input type="color" value="{{ $settings['header_cta_hover_color'] ?? '#B91C1C' }}"
+              <input type="color" value="{{ $settings['header_cta_hover_color'] ?? '#1E293B' }}"
                 onchange="document.getElementById('c_header_cta_hover').value=this.value">
               <input type="text" name="header_cta_hover_color" id="c_header_cta_hover" class="pm-input"
-                value="{{ $settings['header_cta_hover_color'] ?? '#B91C1C' }}">
+                value="{{ $settings['header_cta_hover_color'] ?? '#1E293B' }}">
             </div>
-            <div class="pm-help">Default: #B91C1C (Merah lebih gelap saat hover)</div>
+            <div class="pm-help">Default: #1E293B (Merah lebih gelap saat hover)</div>
           </div>
         </div>
       </div>
@@ -334,7 +334,7 @@
       {{-- CARD 2: Animasi Loading (Preloader) --}}
       <div class="pm-card">
         <div class="pm-card-header">
-          <svg width="22" height="22" fill="none" stroke="#DC2626" stroke-width="2" viewBox="0 0 24 24">
+          <svg width="22" height="22" fill="none" stroke="#0F172A" stroke-width="2" viewBox="0 0 24 24">
             <path
               d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
           </svg>
@@ -359,12 +359,12 @@
           <div>
             <label class="pm-label">Warna Aksen Animasi Loading</label>
             <div class="pm-color-picker-wrap">
-              <input type="color" value="{{ $settings['preloader_accent_color'] ?? '#DC2626' }}"
+              <input type="color" value="{{ $settings['preloader_accent_color'] ?? '#0F172A' }}"
                 onchange="document.getElementById('c_preloader_accent').value=this.value">
               <input type="text" name="preloader_accent_color" id="c_preloader_accent" class="pm-input"
-                value="{{ $settings['preloader_accent_color'] ?? '#DC2626' }}">
+                value="{{ $settings['preloader_accent_color'] ?? '#0F172A' }}">
             </div>
-            <div class="pm-help">Default: #DC2626 (Aksen merah garis animasi wind loading)</div>
+            <div class="pm-help">Default: #0F172A (Aksen merah garis animasi wind loading)</div>
           </div>
         </div>
       </div>
@@ -435,7 +435,7 @@
               </div>
               <div style="padding-top:1.25rem;">
                 <button type="button" onclick="this.closest('.pm-menu-item-row').remove()"
-                  style="background:#FEE2E2; border:none; color:#EF4444; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;"
+                  style="background:#F1F5F9; border:none; color:#334155; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;"
                   title="Hapus Menu">
                   <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path
@@ -584,12 +584,12 @@
               <label class="pm-label">Warna Aksen (Brand Color Sitewide)</label>
               <div class="pm-color-picker-wrap">
                 <input type="color"
-                  value="{{ $settings['brand_color'] ?? $settings['header_accent_color'] ?? '#DC2626' }}"
+                  value="{{ $settings['brand_color'] ?? $settings['header_accent_color'] ?? '#0F172A' }}"
                   onchange="document.getElementById('c_brand_color').value=this.value">
                 <input type="text" name="brand_color" id="c_brand_color" class="pm-input"
-                  value="{{ $settings['brand_color'] ?? $settings['header_accent_color'] ?? '#DC2626' }}">
+                  value="{{ $settings['brand_color'] ?? $settings['header_accent_color'] ?? '#0F172A' }}">
               </div>
-              <div class="pm-help">Default: #DC2626 — Aksen merah yang muncul di garis hero, badge, sparkle, stat, tombol,
+              <div class="pm-help">Default: #0F172A — Aksen merah yang muncul di garis hero, badge, sparkle, stat, tombol,
                 dan seluruh halaman.</div>
             </div>
             <div>
@@ -741,7 +741,7 @@
                       Edit
                     </button>
                     <button type="button" onclick="confirmDeleteSlide({{ $slide->id }})"
-                      style="background:#FEF2F2; color:#DC2626; border:1px solid #FECACA; padding:.5rem .875rem; border-radius:8px; font-size:.78rem; font-weight:700; cursor:pointer; transition:all .2s;">
+                      style="background:#F8FAFC; color:#0F172A; border:1px solid #FECACA; padding:.5rem .875rem; border-radius:8px; font-size:.78rem; font-weight:700; cursor:pointer; transition:all .2s;">
                       Hapus
                     </button>
                   </div>
@@ -867,7 +867,7 @@
                       @csrf
                       @method('DELETE')
                       <button type="submit"
-                        style="background:#FEE2E2; color:#EF4444; border:none; padding:0.4rem 0.6rem; border-radius:8px; cursor:pointer; font-size:0.75rem; font-weight:600;">
+                        style="background:#F1F5F9; color:#334155; border:none; padding:0.4rem 0.6rem; border-radius:8px; cursor:pointer; font-size:0.75rem; font-weight:600;">
                         Hapus
                       </button>
                     </form>
@@ -1396,10 +1396,10 @@
             <div>
               <label class="pm-label">Warna Button Filter (Custom)</label>
               <div class="pm-color-picker-wrap">
-                <input type="color" value="{{ $settings['page_gallery_active_badge_bg'] ?? '#EF4444' }}"
+                <input type="color" value="{{ $settings['page_gallery_active_badge_bg'] ?? '#334155' }}"
                   onchange="document.getElementById('c_gal_badge_bg').value=this.value">
                 <input type="text" name="page_gallery_active_badge_bg" id="c_gal_badge_bg" class="pm-input"
-                  value="{{ $settings['page_gallery_active_badge_bg'] ?? '#EF4444' }}">
+                  value="{{ $settings['page_gallery_active_badge_bg'] ?? '#334155' }}">
               </div>
             </div>
             <div>
@@ -1493,13 +1493,13 @@
 
           @php
             $cardDefs = [
-              1 => ['num' => '#1', 'title' => 'Kualitas Premium', 'desc' => 'Menyediakan produk piring keramik & tableware premium food grade yang tahan panas dan awet.', 'bg' => '#0F172A', 'num_color' => '#ffffff', 'title_color' => '#ffffff', 'desc_color' => 'rgba(255,255,255,0.75)', 'icon_key' => 'shield', 'icon_bg' => '#DC2626', 'icon_color' => '#ffffff', 'span' => '1'],
-              2 => ['num' => '', 'title' => 'Cakupan Luas', 'desc' => 'Melayani pengiriman ke seluruh wilayah Indonesia dengan packing aman kayu & berasuransi.', 'bg' => '#F1F5F9', 'num_color' => '#0F172A', 'title_color' => '#0F172A', 'desc_color' => '#64748B', 'icon_key' => 'check', 'icon_bg' => '#FEE2E2', 'icon_color' => '#DC2626', 'span' => '1'],
-              3 => ['num' => '', 'title' => 'Distributor Resmi', 'desc' => 'Produk 100% original, tersertifikasi food grade dan didatangkan langsung dari pabrik resmi.', 'bg' => '#F1F5F9', 'num_color' => '#0F172A', 'title_color' => '#0F172A', 'desc_color' => '#64748B', 'icon_key' => 'award', 'icon_bg' => '#FEE2E2', 'icon_color' => '#DC2626', 'span' => '1'],
-              4 => ['num' => 'HORECA', 'title' => 'Siap Skala Besar', 'desc' => 'Memiliki kapasitas suplai besar untuk memenuhi permintaan Hotel, Restoran, Kafe, dan Grosir.', 'bg' => '#DC2626', 'num_color' => '#ffffff', 'title_color' => 'rgba(255,255,255,0.9)', 'desc_color' => 'rgba(255,255,255,0.75)', 'icon_key' => 'users', 'icon_bg' => 'rgba(255,255,255,0.2)', 'icon_color' => '#ffffff', 'span' => '1'],
-              5 => ['num' => '', 'title' => 'Desain Variatif', 'desc' => 'Beragam pilihan model piring keramik modern & vintage untuk mempercantik hidangan F&B.', 'bg' => '#F1F5F9', 'num_color' => '#EF4444', 'title_color' => '#0F172A', 'desc_color' => '#64748B', 'icon_key' => 'tag', 'icon_bg' => '#FEE2E2', 'icon_color' => '#DC2626', 'span' => '1'],
-              6 => ['num' => '', 'title' => 'Layanan Konsultasi', 'desc' => 'Tim kami selalu siap mendampingi Anda dalam memilih jenis tableware dan kuantitas paling tepat.', 'bg' => '#F1F5F9', 'num_color' => '#0F172A', 'title_color' => '#0F172A', 'desc_color' => '#64748B', 'icon_key' => 'chat', 'icon_bg' => '#FEE2E2', 'icon_color' => '#DC2626', 'span' => '1'],
-              7 => ['num' => '', 'title' => 'Terpercaya & Bergaransi', 'desc' => 'Dipercaya oleh ratusan hotel, restoran, catering, dan mitra usaha F&B di seluruh Indonesia.', 'bg' => '#F1F5F9', 'num_color' => '#0F172A', 'title_color' => '#0F172A', 'desc_color' => '#64748B', 'icon_key' => 'star', 'icon_bg' => '#FEE2E2', 'icon_color' => '#DC2626', 'span' => '2'],
+              1 => ['num' => '#1', 'title' => 'Kualitas Premium', 'desc' => 'Menyediakan produk piring keramik & tableware premium food grade yang tahan panas dan awet.', 'bg' => '#0F172A', 'num_color' => '#ffffff', 'title_color' => '#ffffff', 'desc_color' => 'rgba(255,255,255,0.75)', 'icon_key' => 'shield', 'icon_bg' => '#0F172A', 'icon_color' => '#ffffff', 'span' => '1'],
+              2 => ['num' => '', 'title' => 'Cakupan Luas', 'desc' => 'Melayani pengiriman ke seluruh wilayah Indonesia dengan packing aman kayu & berasuransi.', 'bg' => '#F1F5F9', 'num_color' => '#0F172A', 'title_color' => '#0F172A', 'desc_color' => '#64748B', 'icon_key' => 'check', 'icon_bg' => '#F1F5F9', 'icon_color' => '#0F172A', 'span' => '1'],
+              3 => ['num' => '', 'title' => 'Distributor Resmi', 'desc' => 'Produk 100% original, tersertifikasi food grade dan didatangkan langsung dari pabrik resmi.', 'bg' => '#F1F5F9', 'num_color' => '#0F172A', 'title_color' => '#0F172A', 'desc_color' => '#64748B', 'icon_key' => 'award', 'icon_bg' => '#F1F5F9', 'icon_color' => '#0F172A', 'span' => '1'],
+              4 => ['num' => 'HORECA', 'title' => 'Siap Skala Besar', 'desc' => 'Memiliki kapasitas suplai besar untuk memenuhi permintaan Hotel, Restoran, Kafe, dan Grosir.', 'bg' => '#0F172A', 'num_color' => '#ffffff', 'title_color' => 'rgba(255,255,255,0.9)', 'desc_color' => 'rgba(255,255,255,0.75)', 'icon_key' => 'users', 'icon_bg' => 'rgba(255,255,255,0.2)', 'icon_color' => '#ffffff', 'span' => '1'],
+              5 => ['num' => '', 'title' => 'Desain Variatif', 'desc' => 'Beragam pilihan model piring keramik modern & vintage untuk mempercantik hidangan F&B.', 'bg' => '#F1F5F9', 'num_color' => '#334155', 'title_color' => '#0F172A', 'desc_color' => '#64748B', 'icon_key' => 'tag', 'icon_bg' => '#F1F5F9', 'icon_color' => '#0F172A', 'span' => '1'],
+              6 => ['num' => '', 'title' => 'Layanan Konsultasi', 'desc' => 'Tim kami selalu siap mendampingi Anda dalam memilih jenis tableware dan kuantitas paling tepat.', 'bg' => '#F1F5F9', 'num_color' => '#0F172A', 'title_color' => '#0F172A', 'desc_color' => '#64748B', 'icon_key' => 'chat', 'icon_bg' => '#F1F5F9', 'icon_color' => '#0F172A', 'span' => '1'],
+              7 => ['num' => '', 'title' => 'Terpercaya & Bergaransi', 'desc' => 'Dipercaya oleh ratusan hotel, restoran, catering, dan mitra usaha F&B di seluruh Indonesia.', 'bg' => '#F1F5F9', 'num_color' => '#0F172A', 'title_color' => '#0F172A', 'desc_color' => '#64748B', 'icon_key' => 'star', 'icon_bg' => '#F1F5F9', 'icon_color' => '#0F172A', 'span' => '2'],
             ];
             $iconOptions = [
               'shield' => 'Shield (Perisai)',
@@ -1625,7 +1625,7 @@
                   <label class="pm-label">Warna Background Icon</label>
                   <div class="pm-color-picker-wrap">
                     <input type="color"
-                      value="{{ str_contains($settings["value_card_{$i}_icon_bg"] ?? $def['icon_bg'], '#') ? ($settings["value_card_{$i}_icon_bg"] ?? $def['icon_bg']) : '#DC2626' }}"
+                      value="{{ str_contains($settings["value_card_{$i}_icon_bg"] ?? $def['icon_bg'], '#') ? ($settings["value_card_{$i}_icon_bg"] ?? $def['icon_bg']) : '#0F172A' }}"
                       onchange="document.getElementById('c_card_{{ $i }}_icon_bg').value=this.value">
                     <input type="text" name="value_card_{{ $i }}_icon_bg" id="c_card_{{ $i }}_icon_bg" class="pm-input"
                       value="{{ $settings["value_card_{$i}_icon_bg"] ?? $def['icon_bg'] }}">
@@ -2188,7 +2188,7 @@
                 </div>
                 <div style="padding-top:1.25rem;">
                   <button type="button" onclick="this.closest('.pm-faq-item-row').remove()"
-                    style="background:#FEE2E2; border:none; color:#EF4444; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;"
+                    style="background:#F1F5F9; border:none; color:#334155; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;"
                     title="Hapus FAQ">
                     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                       <path
@@ -2463,7 +2463,7 @@
             </div>
             <div style="padding-top:1.25rem;">
               <button type="button" onclick="this.closest('.pm-menu-item-row').remove()"
-                style="background:#FEE2E2; border:none; color:#EF4444; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;" title="Hapus Menu">
+                style="background:#F1F5F9; border:none; color:#334155; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;" title="Hapus Menu">
                 <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
               </button>
             </div>
@@ -2494,7 +2494,7 @@
               </div>
               <div style="padding-top:1.25rem;">
                 <button type="button" onclick="this.closest('.pm-faq-item-row').remove()"
-                  style="background:#FEE2E2; border:none; color:#EF4444; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;" title="Hapus FAQ">
+                  style="background:#F1F5F9; border:none; color:#334155; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;" title="Hapus FAQ">
                   <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
                 </button>
               </div>

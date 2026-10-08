@@ -17,8 +17,8 @@ html, body { overflow-x: hidden; max-width: 100%; }
     --border:  #E2E8F0;
     --text:    #0F172A;
     --muted:   #64748B;
-    --accent:  #DC2626;
-    --accent2: #B91C1C;
+    --accent:  #0F172A;
+    --accent2: #1E293B;
     --font:    'Montserrat', sans-serif;
     --ease:    cubic-bezier(0.22,1,0.36,1);
 }
@@ -283,12 +283,12 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
     width:44px; height:44px; border-radius:12px;
     display:flex; align-items:center; justify-content:center; flex-shrink:0;
 }
-.sh-adv-card-icon.blue-bg { background:#FEE2E2; color:#DC2626; }
+.sh-adv-card-icon.blue-bg { background:#F1F5F9; color:#0F172A; }
 .sh-adv-card-icon.white-bg { background:rgba(255,255,255,.2); color:#fff; }
-.sh-adv-card-icon.dark-bg { background:rgba(255,255,255,.08); color:#EF4444; }
+.sh-adv-card-icon.dark-bg { background:rgba(255,255,255,.08); color:#334155; }
 .sh-adv-num { font-size:2.5rem; font-weight:300; line-height:1; letter-spacing:-.04em; color:var(--text); }
 .sh-adv-num.white { color:#fff; }
-.sh-adv-num.blue { color:#EF4444; }
+.sh-adv-num.blue { color:#334155; }
 .sh-adv-title { font-size:.9375rem; font-weight:600; color:var(--text); }
 .sh-adv-title.white { color:#fff; }
 .sh-adv-title.light { color:rgba(255,255,255,.9); }
@@ -333,7 +333,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
 }
 .sh-app-card:hover { border-color:var(--accent); transform:translateY(-6px); box-shadow:0 16px 40px rgba(14,165,233,.08); }
 .sh-app-icon {
-    width:50px; height:50px; background:#FEF2F2;
+    width:50px; height:50px; background:#F8FAFC;
     border-radius:14px; display:flex; align-items:center; justify-content:center;
     color:var(--accent); transition:all .3s; flex-shrink:0;
 }
@@ -645,10 +645,10 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
             <div style="background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.25rem;">
                 <h4 style="font-size:.875rem; font-weight:700; color:var(--text); margin-bottom:.75rem;">Standar Kualitas &amp; Sertifikasi</h4>
                 <ul style="margin:0; padding-left:1.25rem; font-size:.8rem; color:var(--muted); line-height:1.6;">
-                    <li>Material plat Zincalume/Stainless anti karat</li>
-                    <li>Desain standar USA teruji cuaca ekstrem</li>
-                    <li>Sertifikasi uji coba kelayakan pakai</li>
-                    <li>Garansi resmi pabrik 15 tahun</li>
+                    <li>Material Keramik &amp; Porcelain Food Grade High Quality</li>
+                    <li>Tahan panas oven, microwave &amp; dishwasher safe</li>
+                    <li>Sertifikasi aman kontak makanan (Lead-Free &amp; Cadmium-Free)</li>
+                    <li>Garansi pengiriman aman dengan paking peti kayu</li>
                 </ul>
             </div>
         </div>
@@ -676,27 +676,27 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
             @php
                 $apps = [
                     [
-                        'title' => 'Maritim & Perkapalan',
-                        'desc' => 'Perlindungan maksimal lambung kapal, deck, dan struktur offshore dari korosi air laut yang ekstrem menggunakan sistem coating anti-fouling dan anti-korosi terdepan.',
-                        'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 12h-4l-3-9L9 3l-3 9H2v6h20v-6z"/></svg>',
+                        'title' => 'Hotel & Resort Fine Dining',
+                        'desc' => 'Perlengkapan piring porselen dan tableware eksklusif berstandar internasional untuk menyajikan kelezatan hidangan hotel bintang dan resort.',
+                        'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>',
                         'img' => !empty($settings['app_img_restoran']) ? asset('storage/'.$settings['app_img_restoran']) : asset('images/placeholder-app.jpg')
                     ],
                     [
-                        'title' => 'Pabrik & Gudang',
-                        'desc' => 'Coating epoxy lantai dan cat anti-karat khusus industri untuk melindungi struktur baja, lantai pabrik, dan peralatan berat dari korosi, bahan kimia, dan beban berat.',
-                        'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/></svg>',
+                        'title' => 'Restoran & Cafe Modern',
+                        'desc' => 'Koleksi piring keramik, mangkok ramen, dan cangkir tahan panas yang aman untuk microwave & dishwasher, tahan lama untuk operasional padat.',
+                        'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>',
                         'img' => !empty($settings['app_img_pabrik']) ? asset('storage/'.$settings['app_img_pabrik']) : asset('images/placeholder-app.jpg')
                     ],
                     [
-                        'title' => 'Struktur Baja & Jembatan',
-                        'desc' => 'Cat anti karat berkualitas tinggi untuk menjaga integritas struktural rangka jembatan, menara, dan baja terbuka yang terpapar cuaca ekstrem sepanjang tahun.',
-                        'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
+                        'title' => 'Catering & Event Prasmanan',
+                        'desc' => 'Piring saji oval, baki stainless steel, dan mangkok sup kapasitas besar yang praktis dan elegan untuk pesta pernikahan & banquet.',
+                        'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 7a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
                         'img' => !empty($settings['app_img_gor']) ? asset('storage/'.$settings['app_img_gor']) : asset('images/placeholder-app.jpg')
                     ],
                     [
-                        'title' => 'Oil, Gas & Petrokimia',
-                        'desc' => 'Sistem protective coating berstandar internasional untuk fasilitas kilang minyak, pipa gas, dan tangki penyimpanan yang menghadapi lingkungan korosif dan suhu tinggi.',
-                        'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
+                        'title' => 'Grosir & Toko Pecah Belah',
+                        'desc' => 'Suplai skala grosir dari distributor resmi dengan jaminan harga pabrik langsung dan pengiriman aman peti kayu ke seluruh kota.',
+                        'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',
                         'img' => !empty($settings['app_img_dapur']) ? asset('storage/'.$settings['app_img_dapur']) : asset('images/placeholder-app.jpg')
                     ],
                 ];

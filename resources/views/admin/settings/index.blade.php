@@ -159,7 +159,7 @@ input[type="file"]::file-selector-button:hover {
 }
 
 /* 9. Premium Buttons */
-button[type="submit"][style*="background:#DC2626"] {
+button[type="submit"][style*="background:#0F172A"] {
     background: #3B82F6 !important;
     color: #fff !important;
     font-size: .875rem !important;
@@ -170,7 +170,7 @@ button[type="submit"][style*="background:#DC2626"] {
     box-shadow: 0 4px 14px rgba(59,130,246,0.3) !important;
     transition: all .2s !important;
 }
-button[type="submit"][style*="background:#DC2626"]:hover {
+button[type="submit"][style*="background:#0F172A"]:hover {
     transform: translateY(-1px) !important;
     box-shadow: 0 6px 20px rgba(59,130,246,0.4) !important;
 }
@@ -231,7 +231,7 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
       <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
       Preview Website
     </a>
-    <button type="submit" style="display:inline-flex;align-items:center;gap:.375rem;padding:.5rem 1.25rem;font-size:.875rem;font-weight:700;background:#DC2626;color:#ffffff;border:none;border-radius:4px;cursor:pointer;transition:all .2s;font-family:'Montserrat',sans-serif;" onmouseover="this.style.background='#B91C1C'" onmouseout="this.style.background='#DC2626'">
+    <button type="submit" style="display:inline-flex;align-items:center;gap:.375rem;padding:.5rem 1.25rem;font-size:.875rem;font-weight:700;background:#0F172A;color:#ffffff;border:none;border-radius:4px;cursor:pointer;transition:all .2s;font-family:'Montserrat',sans-serif;" onmouseover="this.style.background='#1E293B'" onmouseout="this.style.background='#0F172A'">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
       Simpan Semua
     </button>
@@ -262,8 +262,8 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
   {{-- ━━━ IDENTITAS PERUSAHAAN ━━━ --}}
   <div style="background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 4px 15px rgba(0,0,0,0.03);border-radius:10px;padding:1.5rem;margin-bottom:1.25rem;">
     <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;">
-      <svg width="14" height="14" fill="none" stroke="#DC2626" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
-      <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#DC2626;">Identitas Perusahaan</div>
+      <svg width="14" height="14" fill="none" stroke="#0F172A" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+      <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0F172A;">Identitas Perusahaan</div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
       <div>
@@ -313,8 +313,8 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
     {{-- Logo --}}
     <div style="background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 4px 15px rgba(0,0,0,0.03);border-radius:10px;padding:1.5rem;">
       <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;">
-        <svg width="14" height="14" fill="none" stroke="#DC2626" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#DC2626;">Logo Perusahaan</div>
+        <svg width="14" height="14" fill="none" stroke="#0F172A" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0F172A;">Logo Perusahaan</div>
       </div>
       @if(!empty($settings['logo']))
       <div style="margin-bottom:1rem;padding:1rem;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:6px;display:flex;align-items:center;gap:1rem;">
@@ -329,8 +329,8 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
     {{-- Favicon --}}
     <div style="background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 4px 15px rgba(0,0,0,0.03);border-radius:10px;padding:1.5rem;">
       <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;">
-        <svg width="14" height="14" fill="none" stroke="#DC2626" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-        <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#DC2626;">Favicon Browser</div>
+        <svg width="14" height="14" fill="none" stroke="#0F172A" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0F172A;">Favicon Browser</div>
       </div>
       @if(!empty($settings['favicon']))
       <div style="margin-bottom:1rem;padding:1rem;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:6px;display:flex;align-items:center;gap:1rem;">
@@ -346,8 +346,8 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
     {{-- Company Profile --}}
     <div style="background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 4px 15px rgba(0,0,0,0.03);border-radius:10px;padding:1.5rem;grid-column:1/-1;">
       <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;">
-        <svg width="14" height="14" fill="none" stroke="#DC2626" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#DC2626;">Company Profile (PDF)</div>
+        <svg width="14" height="14" fill="none" stroke="#0F172A" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0F172A;">Company Profile (PDF)</div>
       </div>
       @if(!empty($settings['compro']))
       <div style="margin-bottom:1rem;padding:1rem;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:6px;display:flex;align-items:center;justify-content:space-between;">
@@ -355,7 +355,7 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
           <span style="font-size:.8rem;color:#0F172A;">{{ basename($settings['compro']) }}</span>
         </div>
-        <a href="{{ asset('storage/'.$settings['compro']) }}" target="_blank" style="font-size:.7rem;color:#DC2626;text-decoration:none;">Buka File</a>
+        <a href="{{ asset('storage/'.$settings['compro']) }}" target="_blank" style="font-size:.7rem;color:#0F172A;text-decoration:none;">Buka File</a>
       </div>
       @endif
       <label style="font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);display:block;margin-bottom:.5rem;">Upload Compro Baru</label>
@@ -366,8 +366,8 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
     {{-- Coverage Map --}}
     <div style="background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 4px 15px rgba(0,0,0,0.03);border-radius:10px;padding:1.5rem;grid-column:1/-1;">
       <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;">
-        <svg width="14" height="14" fill="none" stroke="#DC2626" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#DC2626;">Peta Jangkauan (Coverage Map)</div>
+        <svg width="14" height="14" fill="none" stroke="#0F172A" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0F172A;">Peta Jangkauan (Coverage Map)</div>
       </div>
       @if(!empty($settings['coverage_map']))
       <div style="margin-bottom:1rem;padding:1rem;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:6px;">
@@ -383,8 +383,8 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
 
   <div style="background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 4px 15px rgba(0,0,0,0.03);border-radius:10px;padding:1.5rem;">
     <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;">
-      <svg width="14" height="14" fill="none" stroke="#DC2626" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-      <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#DC2626;">Teks Umum</div>
+      <svg width="14" height="14" fill="none" stroke="#0F172A" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0F172A;">Teks Umum</div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
       <div>
@@ -547,10 +547,10 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
     <div style="background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 4px 15px rgba(0,0,0,0.03);border-radius:10px;padding:1.5rem;">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;">
         <div style="display:flex;align-items:center;gap:.5rem;">
-          <svg width="13" height="13" fill="none" stroke="#DC2626" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#DC2626;">{{ $page['label'] }}</div>
+          <svg width="13" height="13" fill="none" stroke="#0F172A" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0F172A;">{{ $page['label'] }}</div>
         </div>
-        <a href="{{ url($page['route']) }}" target="_blank" style="display:flex;align-items:center;gap:.25rem;font-size:.7rem;color:#94A3B8;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#DC2626'" onmouseout="this.style.color='rgba(255,255,255,.3)'">
+        <a href="{{ url($page['route']) }}" target="_blank" style="display:flex;align-items:center;gap:.25rem;font-size:.7rem;color:#94A3B8;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#0F172A'" onmouseout="this.style.color='rgba(255,255,255,.3)'">
           {{ $page['route'] }}
           <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </a>
@@ -599,8 +599,8 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
     {{-- Custom Scripts --}}
     <div style="background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 4px 15px rgba(0,0,0,0.03);border-radius:10px;padding:1.5rem;">
     <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;">
-      <svg width="14" height="14" fill="none" stroke="#DC2626" stroke-width="2" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-      <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#DC2626;">Custom Scripts / Tags</div>
+      <svg width="14" height="14" fill="none" stroke="#0F172A" stroke-width="2" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+      <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0F172A;">Custom Scripts / Tags</div>
     </div>
     <p style="font-size:.75rem;color:#94A3B8;margin-bottom:1.25rem;line-height:1.6;">Gunakan area ini untuk memasukkan kode pelacakan seperti Google Analytics, Meta Pixel, atau custom CSS/JS. Pastikan Anda memasukkan tag lengkap (contoh: <code>&lt;script&gt;...&lt;/script&gt;</code>).</p>
     
@@ -631,8 +631,8 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
   <div style="display:flex;flex-direction:column;gap:1.25rem;">
     <div style="background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 4px 15px rgba(0,0,0,0.03);border-radius:10px;padding:1.5rem;">
       <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;">
-        <svg width="14" height="14" fill="none" stroke="#DC2626" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-        <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#DC2626;">Informasi Kontak</div>
+        <svg width="14" height="14" fill="none" stroke="#0F172A" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#0F172A;">Informasi Kontak</div>
       </div>
       <p style="font-size:.75rem;color:#94A3B8;margin-bottom:1.25rem;line-height:1.6;">Data di bawah ini akan tampil di <strong style="color:#475569;">Footer</strong>, halaman <strong style="color:#475569;">Kontak</strong>, dan <strong style="color:#475569;">Navbar</strong> website.</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
@@ -690,12 +690,12 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
             </div>
             <div style="display:flex;flex-direction:column;gap:.375rem;align-items:center;">
               <label class="form-label" style="text-align:center;">Utama</label>
-              <input type="radio" name="primary" value="{{ $wa->id }}" {{ $wa->is_primary ? 'checked' : '' }} style="width:18px;height:18px;accent-color:#DC2626;cursor:pointer;">
+              <input type="radio" name="primary" value="{{ $wa->id }}" {{ $wa->is_primary ? 'checked' : '' }} style="width:18px;height:18px;accent-color:#0F172A;cursor:pointer;">
             </div>
             <div>
               <label class="form-label" style="display:block;margin-bottom:.375rem;">Hapus</label>
               <a href="#" onclick="if(confirm('Hapus nomor ini?')) { document.getElementById('del-wa-{{ $wa->id }}').submit(); } return false;"
-                style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:6px;color:#f87171;text-decoration:none;">
+                style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:rgba(15, 23, 42,.1);border:1px solid rgba(15, 23, 42,.25);border-radius:6px;color:#64748B;text-decoration:none;">
                 <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
               </a>
             </div>

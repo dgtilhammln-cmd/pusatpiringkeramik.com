@@ -37,7 +37,7 @@
     </div>
     <div style="display:flex;flex-direction:column;gap:1.125rem;">
       <div>
-        <label style="display:block;font-size:.8rem;font-weight:700;color:#374151;margin-bottom:.5rem;">Nama Layanan <span style="color:#EF4444;">*</span></label>
+        <label style="display:block;font-size:.8rem;font-weight:700;color:#374151;margin-bottom:.5rem;">Nama Layanan <span style="color:#334155;">*</span></label>
         <input type="text" name="name" id="svc-name" value="{{ old('name',$s->name) }}" required oninput="svcAutoSlug()"
           style="width:100%;padding:.75rem 1rem;background:#F8FAFC;border:1.5px solid #E4E7F0;border-radius:10px;font-size:.9rem;color:#1E293B;font-family:inherit;outline:none;box-sizing:border-box;transition:border-color .2s;"
           onfocus="this.style.borderColor='#3B82F6';this.style.background='#fff'" onblur="this.style.borderColor='#E4E7F0';this.style.background='#F8FAFC'"
@@ -101,7 +101,7 @@
       <div class="spec-row" style="display:flex;gap:.625rem;align-items:center;">
         <input type="text" name="spec_keys[]" value="{{ $k }}" placeholder="Label (misal: Dimensi)" style="flex:1;padding:.625rem .875rem;background:#F8FAFC;border:1.5px solid #E4E7F0;border-radius:8px;font-size:.875rem;color:#1E293B;font-family:inherit;outline:none;" onfocus="this.style.borderColor='#3B82F6'" onblur="this.style.borderColor='#E4E7F0'">
         <input type="text" name="spec_values[]" value="{{ $specVals[$idx] ?? '' }}" placeholder="Nilai (misal: 24 inch)" style="flex:2;padding:.625rem .875rem;background:#F8FAFC;border:1.5px solid #E4E7F0;border-radius:8px;font-size:.875rem;color:#1E293B;font-family:inherit;outline:none;" onfocus="this.style.borderColor='#3B82F6'" onblur="this.style.borderColor='#E4E7F0'">
-        <button type="button" onclick="this.parentElement.remove()" style="flex-shrink:0;width:32px;height:32px;background:rgba(239,68,68,0.08);border:none;border-radius:8px;color:#EF4444;cursor:pointer;display:flex;align-items:center;justify-content:center;" onmouseover="this.style.background='rgba(239,68,68,0.16)'" onmouseout="this.style.background='rgba(239,68,68,0.08)'">
+        <button type="button" onclick="this.parentElement.remove()" style="flex-shrink:0;width:32px;height:32px;background:rgba(15, 23, 42,0.08);border:none;border-radius:8px;color:#334155;cursor:pointer;display:flex;align-items:center;justify-content:center;" onmouseover="this.style.background='rgba(15, 23, 42,0.16)'" onmouseout="this.style.background='rgba(15, 23, 42,0.08)'">
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
       </div>
@@ -134,7 +134,7 @@
     <div id="faq-container" style="display:flex;flex-direction:column;gap:.875rem;">
       @forelse($faqs as $idx => $q)
       <div class="faq-row" style="display:flex;flex-direction:column;gap:.5rem;padding:1rem;background:#F8FAFC;border:1.5px solid #E4E7F0;border-radius:12px;position:relative;">
-        <button type="button" onclick="this.parentElement.remove()" style="position:absolute;top:.625rem;right:.625rem;width:24px;height:24px;background:rgba(239,68,68,0.08);border:none;border-radius:6px;color:#EF4444;cursor:pointer;display:flex;align-items:center;justify-content:center;" onmouseover="this.style.background='rgba(239,68,68,0.16)'" onmouseout="this.style.background='rgba(239,68,68,0.08)'">
+        <button type="button" onclick="this.parentElement.remove()" style="position:absolute;top:.625rem;right:.625rem;width:24px;height:24px;background:rgba(15, 23, 42,0.08);border:none;border-radius:6px;color:#334155;cursor:pointer;display:flex;align-items:center;justify-content:center;" onmouseover="this.style.background='rgba(15, 23, 42,0.16)'" onmouseout="this.style.background='rgba(15, 23, 42,0.08)'">
           <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
         <input type="text" name="faq_qs[]" value="{{ $q }}" placeholder="Pertanyaan?" style="width:100%;padding:.625rem .875rem;background:#fff;border:1.5px solid #E4E7F0;border-radius:8px;font-size:.875rem;color:#1E293B;font-family:inherit;outline:none;box-sizing:border-box;padding-right:2.5rem;" onfocus="this.style.borderColor='#3B82F6'" onblur="this.style.borderColor='#E4E7F0'">
@@ -206,8 +206,8 @@
   {{-- Brosur --}}
   <div style="background:#fff;border-radius:20px;padding:1.5rem;box-shadow:0 2px 20px rgba(0,0,0,0.04);">
     <div style="display:flex;align-items:center;gap:.625rem;margin-bottom:1.25rem;">
-      <div style="width:32px;height:32px;background:rgba(239,68,68,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;">
-        <svg width="16" height="16" fill="none" stroke="#EF4444" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <div style="width:32px;height:32px;background:rgba(15, 23, 42,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+        <svg width="16" height="16" fill="none" stroke="#334155" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
       </div>
       <h3 style="font-size:.875rem;font-weight:800;color:#1E293B;margin:0;">File Brosur</h3>
     </div>
@@ -238,7 +238,7 @@
       @foreach($s->gallery as $g)
       <div style="position:relative;border-radius:10px;overflow:hidden;border:1.5px solid #E4E7F0;">
         <img src="{{ asset('storage/'.$g) }}" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
-        <label style="position:absolute;bottom:0;left:0;right:0;background:rgba(239,68,68,0.85);padding:.375rem;text-align:center;font-size:.7rem;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:center;gap:.25rem;font-weight:700;">
+        <label style="position:absolute;bottom:0;left:0;right:0;background:rgba(15, 23, 42,0.85);padding:.375rem;text-align:center;font-size:.7rem;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:center;gap:.25rem;font-weight:700;">
           <input type="checkbox" name="delete_gallery[]" value="{{ $g }}" style="accent-color:#fff;"> Hapus
         </label>
       </div>
@@ -278,7 +278,7 @@ function addSpec() {
     <div class="spec-row" style="display:flex;gap:.625rem;align-items:center;">
       <input type="text" name="spec_keys[]" placeholder="Label (misal: Dimensi)" style="flex:1;padding:.625rem .875rem;background:#F8FAFC;border:1.5px solid #E4E7F0;border-radius:8px;font-size:.875rem;color:#1E293B;font-family:inherit;outline:none;" onfocus="this.style.borderColor='#3B82F6'" onblur="this.style.borderColor='#E4E7F0'">
       <input type="text" name="spec_values[]" placeholder="Nilai (misal: 24 inch)" style="flex:2;padding:.625rem .875rem;background:#F8FAFC;border:1.5px solid #E4E7F0;border-radius:8px;font-size:.875rem;color:#1E293B;font-family:inherit;outline:none;" onfocus="this.style.borderColor='#3B82F6'" onblur="this.style.borderColor='#E4E7F0'">
-      <button type="button" onclick="this.parentElement.remove()" style="flex-shrink:0;width:32px;height:32px;background:rgba(239,68,68,0.08);border:none;border-radius:8px;color:#EF4444;cursor:pointer;display:flex;align-items:center;justify-content:center;" onmouseover="this.style.background='rgba(239,68,68,0.16)'" onmouseout="this.style.background='rgba(239,68,68,0.08)'">
+      <button type="button" onclick="this.parentElement.remove()" style="flex-shrink:0;width:32px;height:32px;background:rgba(15, 23, 42,0.08);border:none;border-radius:8px;color:#334155;cursor:pointer;display:flex;align-items:center;justify-content:center;" onmouseover="this.style.background='rgba(15, 23, 42,0.16)'" onmouseout="this.style.background='rgba(15, 23, 42,0.08)'">
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>`);
@@ -286,7 +286,7 @@ function addSpec() {
 function addFaq() {
   document.getElementById('faq-container').insertAdjacentHTML('beforeend', `
     <div class="faq-row" style="display:flex;flex-direction:column;gap:.5rem;padding:1rem;background:#F8FAFC;border:1.5px solid #E4E7F0;border-radius:12px;position:relative;">
-      <button type="button" onclick="this.parentElement.remove()" style="position:absolute;top:.625rem;right:.625rem;width:24px;height:24px;background:rgba(239,68,68,0.08);border:none;border-radius:6px;color:#EF4444;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+      <button type="button" onclick="this.parentElement.remove()" style="position:absolute;top:.625rem;right:.625rem;width:24px;height:24px;background:rgba(15, 23, 42,0.08);border:none;border-radius:6px;color:#334155;cursor:pointer;display:flex;align-items:center;justify-content:center;">
         <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
       <input type="text" name="faq_qs[]" placeholder="Pertanyaan?" style="width:100%;padding:.625rem .875rem;background:#fff;border:1.5px solid #E4E7F0;border-radius:8px;font-size:.875rem;color:#1E293B;font-family:inherit;outline:none;box-sizing:border-box;padding-right:2.5rem;" onfocus="this.style.borderColor='#3B82F6'" onblur="this.style.borderColor='#E4E7F0'">
