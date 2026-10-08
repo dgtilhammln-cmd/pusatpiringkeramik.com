@@ -440,6 +440,88 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
 .sh-related-name { font-size:.9375rem; font-weight:600; color:var(--text); margin-bottom:.4rem; line-height:1.3; }
 .sh-related-desc { font-size:.8rem; color:var(--muted); line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
 
+/* ── LIGHTBOX ── */
+#sh-lightbox {
+    display:none; position:fixed; inset:0; z-index:9999;
+    background:rgba(0,0,0,.92); backdrop-filter:blur(8px);
+    align-items:center; justify-content:center;
+    cursor:zoom-out;
+}
+#sh-lightbox.open { display:flex; }
+#sh-lightbox img {
+    max-width:90vw; max-height:90vh;
+    border-radius:12px; object-fit:contain;
+    box-shadow:0 20px 80px rgba(0,0,0,.6);
+    cursor:default;
+    user-select:none;
+}
+#sh-lightbox-close {
+    position:fixed; top:1.25rem; right:1.25rem;
+    width:42px; height:42px;
+    background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2);
+    border-radius:50%; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; transition:background .2s;
+    z-index:2;
+}
+#sh-lightbox-close:hover { background:rgba(255,255,255,.2); }
+#sh-lightbox-prev,
+#sh-lightbox-next {
+    position:fixed; top:50%; transform:translateY(-50%);
+    width:48px; height:48px;
+    background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2);
+    border-radius:50%; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; transition:background .2s; z-index:2;
+}
+#sh-lightbox-prev { left:1.25rem; }
+#sh-lightbox-next { right:1.25rem; }
+#sh-lightbox-prev:hover,
+#sh-lightbox-next:hover { background:rgba(255,255,255,.2); }
+#sh-lightbox-counter {
+    position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%);
+    color:rgba(255,255,255,.65); font-size:.8rem; font-weight:600;
+    letter-spacing:.1em; z-index:2;
+}
+/* make main slides show cursor zoom-in */
+.sh-swiper-main .swiper-slide { cursor:zoom-in; }
+
+/* ── FAQ ACCORDION ── */
+.sh-faq-list { display:flex; flex-direction:column; gap:.625rem; }
+.sh-faq-item {
+    background:var(--surface); border:1.5px solid var(--border);
+    border-radius:14px; overflow:hidden;
+    transition:border-color .25s;
+}
+.sh-faq-item.open { border-color:var(--accent); }
+.sh-faq-q {
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    padding:1.1rem 1.375rem; cursor:pointer;
+    user-select:none;
+}
+.sh-faq-q-text {
+    font-size:.9375rem; font-weight:600; color:var(--text);
+    line-height:1.4;
+}
+.sh-faq-chevron {
+    flex-shrink:0; width:22px; height:22px;
+    background:#F1F5F9; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    transition:transform .3s, background .2s;
+    color:#64748B;
+}
+.sh-faq-item.open .sh-faq-chevron { transform:rotate(180deg); background:var(--accent); color:#fff; }
+.sh-faq-a {
+    max-height:0; overflow:hidden;
+    transition:max-height .35s cubic-bezier(0.22,1,0.36,1), padding .3s;
+    padding:0 1.375rem;
+    font-size:.9rem; color:var(--muted); line-height:1.75;
+}
+.sh-faq-item.open .sh-faq-a {
+    max-height:800px;
+    padding:0 1.375rem 1.25rem;
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width:1200px) {
     .sh-coverage-header-row { flex-direction:column; align-items:flex-start; gap:2rem; }
@@ -465,6 +547,8 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
     .sh-adv-header { flex-direction:column; align-items:flex-start; }
     .sh-h1 { font-size:1.75rem; }
     .sh-short-desc { font-size:.9rem; }
+    #sh-lightbox-prev { left:.5rem; }
+    #sh-lightbox-next { right:.5rem; }
 }
 </style>
 
@@ -554,31 +638,36 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
         </div>
         @endif
 
-        {{-- FAQ Table --}}
+        {{-- FAQ Accordion (matches FAQ Schema) --}}
         @php
             $faqs = is_array($service->faqs) && !empty($service->faqs) ? $service->faqs : [
                 ['q' => 'Apakah melayani pengiriman ke seluruh Indonesia?', 'a' => 'Ya, kami melayani pengiriman produk ke seluruh wilayah Indonesia menggunakan ekspedisi darat maupun laut yang terpercaya dan berasuransi.'],
                 ['q' => 'Apakah produk yang dijual resmi dan original?', 'a' => 'Tentu saja. Semua produk yang kami sediakan adalah 100% original, resmi dari pabrik, dan dilengkapi dengan jaminan kualitas.'],
-                ['q' => 'Apakah melayani pembelian untuk skala proyek besar?', 'a' => 'Sangat bisa. Kami siap mensuplai kebutuhan cat dan pelapis dalam jumlah besar untuk keperluan industri, manufaktur, maupun maritim.']
+                ['q' => 'Apakah melayani pembelian untuk skala proyek besar?', 'a' => 'Sangat bisa. Kami siap mensuplai kebutuhan tableware dan peralatan makan dalam jumlah besar untuk keperluan industri, HORECA, maupun restoran.']
             ];
         @endphp
         @if(count($faqs) > 0)
-        <div style="margin-top:3rem;">
-            <h2 style="font-size:1.5rem; font-weight:700; color:var(--text); margin-bottom:1.25rem;">FAQ {{ $service->name }}</h2>
-            <div style="overflow-x:auto; -webkit-overflow-scrolling: touch;">
-                <table style="width:100%; border-collapse:collapse; text-align:left; font-size:.9rem; color:var(--muted);">
-                    <tbody>
-                        @foreach($faqs as $f)
-                        <tr style="border-bottom:1px solid var(--border);">
-                            <td style="padding:1rem; width:35%; font-weight:600; color:var(--text); background:var(--surface);">{{ $f['q'] ?? '' }}</td>
-                            <td style="padding:1rem;">{{ $f['a'] ?? '' }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+        <div style="margin-top:3rem;" id="faq-section">
+            <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem;">
+                <h2 style="font-size:1.5rem;font-weight:700;color:var(--text);margin:0;">FAQ — {{ $service->name }}</h2>
+            </div>
+            <div class="sh-faq-list" itemscope itemtype="https://schema.org/FAQPage">
+                @foreach($faqs as $idx => $f)
+                <div class="sh-faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+                    <div class="sh-faq-q" onclick="shToggleFaq(this.parentElement)" aria-expanded="false" role="button">
+                        <span class="sh-faq-q-text" itemprop="name">{{ $f['q'] ?? '' }}</span>
+                        <div class="sh-faq-chevron" aria-hidden="true">
+                            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                        </div>
+                    </div>
+                    <div class="sh-faq-a" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <span itemprop="text">{{ $f['a'] ?? '' }}</span>
+                    </div>
+                </div>
+                @endforeach
             </div>
         </div>
-        
+
         {{-- JSON-LD FAQ Schema --}}
         <script type="application/ld+json">
         {
@@ -641,9 +730,25 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
             </a>
             @endif
 
-            </aside>
+            </div>{{-- /.sh-sidebar-card --}}
+        </aside>
 </section>
 
+
+{{-- ═══ LIGHTBOX MODAL ═══ --}}
+<div id="sh-lightbox" role="dialog" aria-modal="true" aria-label="Lihat gambar">
+    <button id="sh-lightbox-close" aria-label="Tutup">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <button id="sh-lightbox-prev" aria-label="Sebelumnya">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <img id="sh-lightbox-img" src="" alt="Zoom gambar produk">
+    <button id="sh-lightbox-next" aria-label="Selanjutnya">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div id="sh-lightbox-counter"></div>
+</div>
 
 {{-- ═══ KEUNGGULAN ═══ --}}
 <div style="margin-top: 4rem;">
@@ -678,7 +783,10 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+    // ── GALLERY SWIPER ──
+    var imgs = @json($imgs ?? []);
     var thumbsEl = document.getElementById('sh-swiper-thumbs');
+    var mainSwiper;
     if (thumbsEl) {
         var swiperThumbs = new Swiper('#sh-swiper-thumbs', {
             spaceBetween: 8,
@@ -686,7 +794,7 @@ document.addEventListener('DOMContentLoaded', function () {
             freeMode: true,
             watchSlidesProgress: true,
         });
-        new Swiper('#sh-swiper-main', {
+        mainSwiper = new Swiper('#sh-swiper-main', {
             spaceBetween: 0,
             navigation: {
                 nextEl: '.swiper-button-next',
@@ -696,9 +804,77 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     } else {
         var mainEl = document.getElementById('sh-swiper-main');
-        if (mainEl) new Swiper('#sh-swiper-main', { spaceBetween: 0 });
+        if (mainEl) mainSwiper = new Swiper('#sh-swiper-main', { spaceBetween: 0 });
+    }
+
+    // ── LIGHTBOX ──
+    var lb = document.getElementById('sh-lightbox');
+    var lbImg = document.getElementById('sh-lightbox-img');
+    var lbCounter = document.getElementById('sh-lightbox-counter');
+    var lbIdx = 0;
+
+    function lbOpen(idx) {
+        lbIdx = idx;
+        lbImg.src = imgs[lbIdx];
+        lbCounter.textContent = (lbIdx + 1) + ' / ' + imgs.length;
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function lbClose() {
+        lb.classList.remove('open');
+        lbImg.src = '';
+        document.body.style.overflow = '';
+    }
+    function lbNext() {
+        lbIdx = (lbIdx + 1) % imgs.length;
+        lbImg.src = imgs[lbIdx];
+        lbCounter.textContent = (lbIdx + 1) + ' / ' + imgs.length;
+    }
+    function lbPrev() {
+        lbIdx = (lbIdx - 1 + imgs.length) % imgs.length;
+        lbImg.src = imgs[lbIdx];
+        lbCounter.textContent = (lbIdx + 1) + ' / ' + imgs.length;
+    }
+
+    document.getElementById('sh-lightbox-close').onclick = lbClose;
+    document.getElementById('sh-lightbox-prev').onclick = function(e){ e.stopPropagation(); lbPrev(); };
+    document.getElementById('sh-lightbox-next').onclick = function(e){ e.stopPropagation(); lbNext(); };
+    lb.addEventListener('click', function(e){ if(e.target === lb) lbClose(); });
+    document.addEventListener('keydown', function(e){
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape') lbClose();
+        if (e.key === 'ArrowRight') lbNext();
+        if (e.key === 'ArrowLeft') lbPrev();
+    });
+
+    // Attach click on main swiper slides
+    var mainEl2 = document.getElementById('sh-swiper-main');
+    if (mainEl2 && imgs.length > 0) {
+        mainEl2.addEventListener('click', function() {
+            var active = mainSwiper ? mainSwiper.activeIndex : 0;
+            lbOpen(active);
+        });
     }
 });
+
+// ── FAQ ACCORDION ──
+function shToggleFaq(item) {
+    var isOpen = item.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.sh-faq-item.open').forEach(function(el) {
+        el.classList.remove('open');
+        el.querySelector('.sh-faq-q').setAttribute('aria-expanded', 'false');
+    });
+    // Open clicked (unless it was already open)
+    if (!isOpen) {
+        item.classList.add('open');
+        item.querySelector('.sh-faq-q').setAttribute('aria-expanded', 'true');
+        // Smooth scroll into view on mobile
+        if (window.innerWidth < 768) {
+            setTimeout(function(){ item.scrollIntoView({behavior:'smooth', block:'nearest'}); }, 50);
+        }
+    }
+}
 </script>
 
 @endsection

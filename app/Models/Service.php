@@ -90,6 +90,6 @@ class Service extends Model
     }
     public function getUrlAttribute(): string
     {
-        return route('services.show', $this->slug);
+        return route('products.show', $this->slug);
     }
 }
