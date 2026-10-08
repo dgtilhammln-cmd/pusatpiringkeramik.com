@@ -201,6 +201,13 @@
             z-index: 1;
         }
 
+        /* Mobile-only hero layers: hidden on desktop */
+        .cv-hero-mob-bg,
+        .cv-hero-mob-grad,
+        .cv-hero-mob-content {
+            display: none;
+        }
+
         /* Top Section */
         .cv-hero-top {
             display: flex;
@@ -556,89 +563,185 @@
             }
         }
 
+        /* ═══════════════════════════════════════
+           MOBILE HERO — Full Bleed Image Layout
+           ═══════════════════════════════════════ */
         @media (max-width: 768px) {
+
+            /* Section becomes the banner — full-height, image as background */
+            .cv-hero-modern {
+                position: relative;
+                padding: 0 !important;
+                overflow: hidden;
+                min-height: 90dvh;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                background-color: #0A1930 !important;
+            }
+
+            /* Full-bleed background image layer */
+            .cv-hero-mob-bg {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center top;
+                display: block;
+                z-index: 0;
+            }
+
+            /* Dark gradient: bottom-left corner → upper right */
+            .cv-hero-mob-grad {
+                position: absolute;
+                inset: 0;
+                z-index: 1;
+                background: linear-gradient(
+                    145deg,
+                    rgba(6, 14, 30, 0.88) 0%,
+                    rgba(6, 14, 30, 0.72) 35%,
+                    rgba(6, 14, 30, 0.18) 70%,
+                    transparent 100%
+                );
+                pointer-events: none;
+            }
+
+            /* Content sits on top */
+            .cv-hero-grid {
+                position: relative;
+                z-index: 2;
+                padding: 0 1.25rem calc(env(safe-area-inset-bottom, 0px) + 2.5rem);
+                width: 100%;
+                max-width: 100%;
+            }
+
+            /* Hide desktop elements on mobile */
+            .cv-hero-top,
+            .cv-hero-mid,
+            .cv-hero-banner-wrap,
             .cv-static-logo-badge {
                 display: none !important;
             }
 
-            .cv-hero-title,
-            h2.cv-hero-title {
-                font-size: 3.8rem !important;
-                line-height: 1.2 !important;
-                font-weight: 500 !important;
+            /* Mobile-only content block */
+            .cv-hero-mob-content {
+                display: flex !important;
+                flex-direction: column;
+                gap: 1.25rem;
+                padding-bottom: 0;
             }
 
-            /* On tablet/mobile: curved card style without dark gradient overlay */
-            .cv-banner-card {
-                aspect-ratio: auto;
-                height: auto;
-                min-height: 140px;
-                border-radius: 16px !important;
-                overflow: hidden !important;
-                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            .cv-hero-mob-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.45rem;
+                font-size: 0.72rem;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: rgba(255,255,255,0.75);
             }
 
-            .cv-banner-uploaded-img {
-                border-radius: 16px !important;
+            .cv-hero-mob-badge::before {
+                content: '';
+                width: 20px;
+                height: 2px;
+                background: #00D68F;
+                border-radius: 2px;
+                flex-shrink: 0;
+            }
+
+            .cv-hero-mob-title {
+                font-size: 2.25rem;
+                font-weight: 500;
+                color: #ffffff;
+                line-height: 1.18;
+                letter-spacing: -0.025em;
+                margin: 0;
+                white-space: pre-line;
+                text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+            }
+
+            .cv-hero-mob-desc {
+                font-size: 0.83rem;
+                color: rgba(255,255,255,0.78);
+                line-height: 1.55;
+                margin: 0;
+                padding-left: 0.85rem;
+                border-left: 2.5px solid #00D68F;
+                max-width: 90%;
+            }
+
+            /* Capsule buttons */
+            .cv-hero-mob-ctas {
+                display: flex;
+                flex-direction: column;
+                gap: 0.65rem;
                 width: 100%;
-                height: auto;
-                display: block;
-                object-fit: cover;
             }
 
-            .cv-banner-overlay {
-                background: none !important;
-                display: none !important;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .cv-hero-modern {
-                padding-top: calc(55px + 0.75rem);
-                padding-bottom: 1rem;
-            }
-
-            .cv-hero-title,
-            h2.cv-hero-title {
-                font-size: 3.5rem !important;
-                line-height: 1.2 !important;
-                font-weight: 500 !important;
+            .cv-hero-mob-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.55rem;
+                padding: 0.85rem 1.5rem;
+                border-radius: 100px;
+                font-size: 0.88rem;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.22s ease;
+                letter-spacing: 0.01em;
+                border: 2px solid transparent;
             }
 
-            .cv-hero-banner-wrap::before,
-            .cv-hero-banner-wrap::after {
-                width: 10px;
+            .cv-hero-mob-btn-primary {
+                background: #00A664;
+                color: #ffffff;
+                border-color: #00A664;
+                box-shadow: 0 4px 18px rgba(0,166,100,0.4);
             }
 
-            .cv-banner-card {
-                aspect-ratio: auto;
-                height: auto;
-                min-height: 120px;
-                border-radius: 16px !important;
-                overflow: hidden !important;
+            .cv-hero-mob-btn-primary:hover {
+                background: #00875A;
+                color: #ffffff;
+                transform: translateY(-1px);
             }
 
-            .cv-banner-uploaded-img {
-                border-radius: 16px !important;
+            .cv-hero-mob-btn-outline {
+                background: rgba(255,255,255,0.12);
+                color: #ffffff;
+                border-color: rgba(255,255,255,0.45);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
             }
 
-            .cv-banner-content {
-                padding: 0.85rem 1.1rem;
-                gap: 0.35rem;
+            .cv-hero-mob-btn-outline:hover {
+                background: rgba(255,255,255,0.22);
+                color: #ffffff;
             }
 
-            .cv-banner-headline {
-                font-size: 0.95rem;
-                line-height: 1.35;
+            /* Pagination dots — still visible at bottom on mobile */
+            .cv-hero-mob-dots {
+                display: flex;
+                justify-content: center;
+                gap: 5px;
+                margin-top: 1rem;
             }
 
-            .cv-banner-pills {
-                gap: 0.25rem;
+            .cv-hero-mob-dots span {
+                width: 6px; height: 6px;
+                border-radius: 50%;
+                background: rgba(255,255,255,0.35);
+                display: inline-block;
+                transition: all 0.3s;
             }
 
-            .cv-banner-pill {
-                font-size: 0.65rem;
-                padding: 0.2rem 0.5rem;
+            .cv-hero-mob-dots span.active {
+                width: 18px;
+                border-radius: 10px;
+                background: #ffffff;
             }
         }
 
@@ -1299,12 +1402,68 @@
 
     {{-- ════ NEW MODERN HERO (REDESIGN - IMAGE 2 STYLE) ════ --}}
     <section class="cv-hero-modern" id="home">
-        <div class="cv-hero-grid">
-            @php
-                $firstSlide = isset($heroSlides) && $heroSlides->count() > 0 ? $heroSlides->first() : null;
-            @endphp
 
-            {{-- Top Section --}}
+        {{-- MOBILE: Full-bleed background image + gradient overlay --}}
+        @php
+            $firstSlide = isset($heroSlides) && $heroSlides->count() > 0 ? $heroSlides->first() : null;
+            $mobBgUrl = '';
+            if ($firstSlide) {
+                $mobBgUrl = $firstSlide->image_mobile
+                    ? asset('storage/' . $firstSlide->image_mobile)
+                    : ($firstSlide->image ? asset('storage/' . $firstSlide->image) : '');
+            }
+            $waPhone = !empty($settings['phone_number']) ? preg_replace('/[^0-9]/', '', $settings['phone_number'])
+                     : (!empty($settings['company_phone']) ? preg_replace('/[^0-9]/', '', $settings['company_phone']) : '');
+        @endphp
+
+        {{-- Mobile background image element (hidden on desktop) --}}
+        @if($mobBgUrl)
+            <img id="cv-hero-mob-bg-img" class="cv-hero-mob-bg" src="{{ $mobBgUrl }}" alt="Banner" aria-hidden="true">
+        @else
+            <div id="cv-hero-mob-bg-img" class="cv-hero-mob-bg" style="background: linear-gradient(135deg, #005F41 0%, #00875A 50%, #004D34 100%);"></div>
+        @endif
+        <div class="cv-hero-mob-grad" aria-hidden="true"></div>
+
+        <div class="cv-hero-grid">
+            {{-- Mobile-only content block --}}
+            <div class="cv-hero-mob-content" id="cv-hero-mob-content" style="display:none;">
+                <div class="cv-hero-mob-badge" id="cv-hero-mob-badge">
+                    {{ $firstSlide->subtitle ?? 'Distributor Resmi Keramik Premium' }}
+                </div>
+                <h1 class="cv-hero-mob-title" id="cv-hero-mob-title">
+                    {{ $firstSlide ? $firstSlide->title : "Peralatan Makan\nBerkualitas Premium" }}
+                </h1>
+                <p class="cv-hero-mob-desc" id="cv-hero-mob-desc">
+                    {{ $firstSlide->description ?? 'Distributor resmi peralatan makan keramik & stainless untuk usaha, bisnis, dan rumah tangga.' }}
+                </p>
+                <div class="cv-hero-mob-ctas">
+                    <a href="{{ url('/produk') }}" class="cv-hero-mob-btn cv-hero-mob-btn-primary">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                        Lihat Katalog
+                    </a>
+                    @if($waPhone)
+                        <a href="https://wa.me/{{ $waPhone }}" target="_blank" rel="noopener" class="cv-hero-mob-btn cv-hero-mob-btn-outline">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                            Hubungi Kami
+                        </a>
+                    @else
+                        <a href="{{ url('/kontak') }}" class="cv-hero-mob-btn cv-hero-mob-btn-outline">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            Hubungi Kami
+                        </a>
+                    @endif
+                </div>
+                {{-- Slide indicator dots --}}
+                @if(isset($heroSlides) && $heroSlides->count() > 1)
+                    <div class="cv-hero-mob-dots" id="cv-hero-mob-dots">
+                        @foreach($heroSlides as $i => $s)
+                            <span class="{{ $i === 0 ? 'active' : '' }}"></span>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+
+            {{-- Desktop: Top Section --}}
             <div class="cv-hero-top">
                 <div class="cv-hero-top-left">
                     <div class="cv-hero-badge" id="hero-badge">
@@ -1322,7 +1481,7 @@
                 </div>
             </div>
 
-            {{-- Middle Section --}}
+            {{-- Desktop: Middle Section --}}
             <div class="cv-hero-mid">
                 <div class="cv-hero-tags" id="hero-tags">
                     @if($firstSlide && $firstSlide->tags)
@@ -1351,7 +1510,9 @@
                     @if(isset($heroSlides) && $heroSlides->count() > 0)
                         @foreach($heroSlides as $slide)
                             <div class="swiper-slide" data-title="{{ $slide->title }}" data-subtitle="{{ $slide->subtitle }}"
-                                data-desc="{{ $slide->description }}" data-tags="{{ $slide->tags }}">
+                                data-desc="{{ $slide->description }}" data-tags="{{ $slide->tags }}"
+                                data-img="{{ $slide->image ? asset('storage/' . $slide->image) : '' }}"
+                                data-img-mobile="{{ $slide->image_mobile ? asset('storage/' . $slide->image_mobile) : '' }}">
                                 <div class="cv-banner-card {{ ($slide->image || $slide->image_mobile) ? 'has-image' : '' }}">
                                     @if($slide->image || $slide->image_mobile)
                                         <picture style="width:100%; height:100%; display:block;">
@@ -3177,36 +3338,91 @@
         document.addEventListener('DOMContentLoaded', function () {
             if (!document.querySelector('.hero-banner-swiper')) return;
 
+            /* ── Desktop hero text elements ── */
             const badgeEl = document.getElementById('hero-badge');
             const titleEl = document.getElementById('hero-title');
-            const descEl = document.getElementById('hero-desc');
-            const tagsEl = document.getElementById('hero-tags');
+            const descEl  = document.getElementById('hero-desc');
+            const tagsEl  = document.getElementById('hero-tags');
 
+            /* ── Mobile hero elements ── */
+            const mobContent = document.getElementById('cv-hero-mob-content');
+            const mobBgEl    = document.getElementById('cv-hero-mob-bg-img');
+            const mobBadge   = document.getElementById('cv-hero-mob-badge');
+            const mobTitle   = document.getElementById('cv-hero-mob-title');
+            const mobDesc    = document.getElementById('cv-hero-mob-desc');
+            const mobDots    = document.getElementById('cv-hero-mob-dots');
+
+            const isMobile = () => window.innerWidth <= 768;
+
+            /* Show/hide mobile content block based on viewport */
+            function applyMobileLayout() {
+                if (!mobContent) return;
+                if (isMobile()) {
+                    mobContent.style.display = 'flex';
+                } else {
+                    mobContent.style.display = 'none';
+                }
+            }
+            applyMobileLayout();
+            window.addEventListener('resize', applyMobileLayout);
+
+            /* Update mobile hero background image + text on slide change */
+            function updateMobileHero(slide) {
+                if (!slide) return;
+                const imgMob = slide.dataset.imgMobile || '';
+                const imgDesk = slide.dataset.img || '';
+                const url = (isMobile() && imgMob) ? imgMob : (imgDesk || imgMob);
+                if (mobBgEl && url) {
+                    if (mobBgEl.tagName === 'IMG') {
+                        mobBgEl.src = url;
+                    } else {
+                        mobBgEl.style.backgroundImage = 'url(' + url + ')';
+                    }
+                }
+                const title    = slide.dataset.title    || '';
+                const subtitle = slide.dataset.subtitle || '';
+                const desc     = slide.dataset.desc     || '';
+                if (mobBadge && subtitle) mobBadge.textContent = subtitle;
+                if (mobTitle && title)   mobTitle.textContent  = title;
+                if (mobDesc  && desc)    mobDesc.textContent   = desc;
+            }
+
+            /* Update mobile pagination dots */
+            function updateMobDots(realIdx) {
+                if (!mobDots) return;
+                const dots = mobDots.querySelectorAll('span');
+                dots.forEach((d, i) => d.classList.toggle('active', i === realIdx));
+            }
+
+            /* Desktop text update */
             function updateHeroText(swiper) {
                 const slide = swiper.slides[swiper.activeIndex];
                 if (!slide) return;
 
-                const title = slide.dataset.title || '';
+                const title    = slide.dataset.title    || '';
                 const subtitle = slide.dataset.subtitle || '';
-                const desc = slide.dataset.desc || '';
-                const tags = slide.dataset.tags || '';
+                const desc     = slide.dataset.desc     || '';
+                const tags     = slide.dataset.tags     || '';
 
                 if (badgeEl && subtitle) badgeEl.textContent = subtitle;
-                if (titleEl && title) titleEl.textContent = title;   /* white-space:pre-line handles newlines */
-                if (descEl && desc) descEl.textContent = desc;
-                if (tagsEl && tags) {
+                if (titleEl && title)   titleEl.textContent  = title;
+                if (descEl  && desc)    descEl.textContent   = desc;
+                if (tagsEl  && tags) {
                     tagsEl.innerHTML = tags.split(',').map(function (t) {
                         return '<span>' + t.trim() + '</span>';
                     }).join('');
                 }
+
+                /* Also update mobile hero */
+                updateMobileHero(slide);
+                updateMobDots(swiper.realIndex);
             }
 
             const autoplayDelay = {{ $heroAutoplayMs > 0 ? $heroAutoplayMs : 5000 }};
             const autoplayConfig = autoplayDelay > 0 ? { delay: autoplayDelay, disableOnInteraction: false } : false;
 
             const heroSwiper = new Swiper('.hero-banner-swiper', {
-                loop: true,
-                loopAdditionalSlides: 3,   /* fix: enough clones for loop with few slides */
+                loop: false,
                 centeredSlides: true,
                 spaceBetween: 24,
                 autoplay: autoplayConfig,
@@ -3216,6 +3432,9 @@
                 },
                 on: {
                     slideChangeTransitionStart: updateHeroText,
+                    init: function(swiper) {
+                        updateHeroText(swiper);
+                    }
                 },
                 breakpoints: {
                     0: {
