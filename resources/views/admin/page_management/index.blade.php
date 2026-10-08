@@ -520,6 +520,16 @@
                   value="{{ $settings['page_home_hero_card_bg'] ?? '#0A1930' }}">
               </div>
             </div>
+            <div>
+              <label class="pm-label">Warna Aksen Merah (Brand Color Sitewide)</label>
+              <div class="pm-color-picker-wrap">
+                <input type="color" value="{{ $settings['brand_color'] ?? $settings['header_accent_color'] ?? '#DC2626' }}"
+                  onchange="document.getElementById('c_brand_color').value=this.value">
+                <input type="text" name="brand_color" id="c_brand_color" class="pm-input"
+                  value="{{ $settings['brand_color'] ?? $settings['header_accent_color'] ?? '#DC2626' }}">
+              </div>
+              <div class="pm-help">Default: #DC2626 — Aksen merah yang muncul di garis hero, badge, sparkle, stat, tombol, dan seluruh halaman.</div>
+            </div>
           </div>
         </div>
 
@@ -528,8 +538,8 @@
           <div class="pm-card-header" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
             <div style="display:flex; align-items:center; gap:.75rem;">
               <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24">
-                <polygon
-                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                <rect x="2" y="3" width="20" height="14" rx="2" />
+                <path d="M8 21h8M12 17v4" />
               </svg>
               <div>
                 <div class="pm-card-title">Kelola Slide Hero (Maks. 5 Slide)</div>
@@ -617,9 +627,24 @@
                       </div>
                     @endif
                     <div style="display:flex; gap:1rem; margin-top:.35rem; font-size:.7rem; color:#94A3B8;">
-                      @if($slide->stat_1_value) <span>📊 {{ $slide->stat_1_value }} {{ $slide->stat_1_label }}</span> @endif
-                      @if($slide->stat_2_value) <span>📊 {{ $slide->stat_2_value }} {{ $slide->stat_2_label }}</span> @endif
-                      @if($slide->stat_3_value) <span>📊 {{ $slide->stat_3_value }} {{ $slide->stat_3_label }}</span> @endif
+                      @if($slide->stat_1_value)
+                        <span style="display:inline-flex;align-items:center;gap:3px;">
+                          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/></svg>
+                          {{ $slide->stat_1_value }} {{ $slide->stat_1_label }}
+                        </span>
+                      @endif
+                      @if($slide->stat_2_value)
+                        <span style="display:inline-flex;align-items:center;gap:3px;">
+                          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/></svg>
+                          {{ $slide->stat_2_value }} {{ $slide->stat_2_label }}
+                        </span>
+                      @endif
+                      @if($slide->stat_3_value)
+                        <span style="display:inline-flex;align-items:center;gap:3px;">
+                          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/></svg>
+                          {{ $slide->stat_3_value }} {{ $slide->stat_3_label }}
+                        </span>
+                      @endif
                     </div>
                   </div>
 
@@ -1551,37 +1576,13 @@
             <input type="file" name="image" class="pm-input" accept="image/*">
           </div>
 
-          {{-- Stat 1 --}}
-          <div>
-            <label class="pm-label">Stat 1 Value</label>
-            <input type="text" name="stat_1_value" id="slide_stat_1_value" class="pm-input" placeholder="640+">
-          </div>
-          <div>
-            <label class="pm-label">Stat 1 Label</label>
-            <input type="text" name="stat_1_label" id="slide_stat_1_label" class="pm-input"
-              placeholder="Projects Completed">
-          </div>
-
-          {{-- Stat 2 --}}
-          <div>
-            <label class="pm-label">Stat 2 Value</label>
-            <input type="text" name="stat_2_value" id="slide_stat_2_value" class="pm-input" placeholder="25+">
-          </div>
-          <div>
-            <label class="pm-label">Stat 2 Label</label>
-            <input type="text" name="stat_2_label" id="slide_stat_2_label" class="pm-input"
-              placeholder="Years of Experience">
-          </div>
-
-          {{-- Stat 3 --}}
-          <div>
-            <label class="pm-label">Stat 3 Value</label>
-            <input type="text" name="stat_3_value" id="slide_stat_3_value" class="pm-input" placeholder="450+">
-          </div>
-          <div>
-            <label class="pm-label">Stat 3 Label</label>
-            <input type="text" name="stat_3_label" id="slide_stat_3_label" class="pm-input" placeholder="Happy Customers">
-          </div>
+          {{-- Hidden Stat fields (Deprecate stats on hero UI) --}}
+          <input type="hidden" name="stat_1_value" id="slide_stat_1_value">
+          <input type="hidden" name="stat_1_label" id="slide_stat_1_label">
+          <input type="hidden" name="stat_2_value" id="slide_stat_2_value">
+          <input type="hidden" name="stat_2_label" id="slide_stat_2_label">
+          <input type="hidden" name="stat_3_value" id="slide_stat_3_value">
+          <input type="hidden" name="stat_3_label" id="slide_stat_3_label">
 
           <div style="grid-column: span 2; display:flex; align-items:center; gap:.5rem;">
             <input type="checkbox" name="is_active" id="slide_is_active" value="1" checked
