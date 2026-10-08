@@ -63,6 +63,52 @@
 </div>
 
 <script>
+if (typeof compressImageClientSide !== 'function') {
+  window.compressImageClientSide = function(file, maxDim, quality, callback) {
+    if (!file || !file.type || !file.type.startsWith('image/') || file.type.includes('svg') || file.size < 400 * 1024) {
+      callback(file);
+      return;
+    }
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var img = new Image();
+      img.onload = function() {
+        var w = img.width;
+        var h = img.height;
+        if (w > maxDim || h > maxDim) {
+          if (w > h) {
+            h = Math.round((h * maxDim) / w);
+            w = maxDim;
+          } else {
+            w = Math.round((w * maxDim) / h);
+            h = maxDim;
+          }
+        }
+        var canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, w, h);
+        canvas.toBlob(function(blob) {
+          if (blob) {
+            var compressed = new File([blob], file.name.replace(/\.[^/.]+$/, "") + ".jpg", {
+              type: 'image/jpeg',
+              lastModified: Date.now()
+            });
+            callback(compressed);
+          } else {
+            callback(file);
+          }
+        }, 'image/jpeg', quality);
+      };
+      img.onerror = function() { callback(file); };
+      img.src = e.target.result;
+    };
+    reader.onerror = function() { callback(file); };
+    reader.readAsDataURL(file);
+  };
+}
+
 if (typeof clearSingleImgPreview !== 'function') {
   window.clearSingleImgPreview = function(inputId, previewId) {
     var input = document.getElementById(inputId);
@@ -79,12 +125,26 @@ if (typeof clearSingleImgPreview !== 'function') {
 if (typeof previewSingleImgPremium !== 'function') {
   window.previewSingleImgPremium = function(input, previewId) {
     if (!input.files || !input.files[0]) return;
+    var file = input.files[0];
     var img = document.getElementById(previewId);
     var box = document.getElementById('box_' + previewId);
     var drop = document.getElementById('drop_' + previewId);
-    img.src = URL.createObjectURL(input.files[0]);
+
+    img.src = URL.createObjectURL(file);
     if (box) box.style.display = 'inline-block';
     if (drop) drop.style.display = 'none';
+
+    if (typeof compressImageClientSide === 'function') {
+      compressImageClientSide(file, 1600, 0.85, function(compressed) {
+        if (compressed !== file) {
+          try {
+            const dt = new DataTransfer();
+            dt.items.add(compressed);
+            input.files = dt.files;
+          } catch(e) {}
+        }
+      });
+    }
   };
 }
 </script>

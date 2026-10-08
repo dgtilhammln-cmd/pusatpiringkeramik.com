@@ -57,14 +57,66 @@ if (typeof selectedGalleryFiles === 'undefined') {
   selectedGalleryFiles = [];
 }
 
+function compressImageClientSide(file, maxDim, quality, callback) {
+  if (!file || !file.type.startsWith('image/') || file.type.includes('svg') || file.size < 400 * 1024) {
+    callback(file);
+    return;
+  }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var img = new Image();
+    img.onload = function() {
+      var w = img.width;
+      var h = img.height;
+      if (w > maxDim || h > maxDim) {
+        if (w > h) {
+          h = Math.round((h * maxDim) / w);
+          w = maxDim;
+        } else {
+          w = Math.round((w * maxDim) / h);
+          h = maxDim;
+        }
+      }
+      var canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+      canvas.toBlob(function(blob) {
+        if (blob) {
+          var compressed = new File([blob], file.name.replace(/\.[^/.]+$/, "") + ".jpg", {
+            type: 'image/jpeg',
+            lastModified: Date.now()
+          });
+          callback(compressed);
+        } else {
+          callback(file);
+        }
+      }, 'image/jpeg', quality);
+    };
+    img.onerror = function() { callback(file); };
+    img.src = e.target.result;
+  };
+  reader.onerror = function() { callback(file); };
+  reader.readAsDataURL(file);
+}
+
 function handleGalleryFilesChange(input) {
   if (!input.files || input.files.length === 0) return;
   
-  for (let i = 0; i < input.files.length; i++) {
-    selectedGalleryFiles.push(input.files[i]);
-  }
-  syncGalleryInput();
-  renderNewGalleryPreviews();
+  var filesArray = Array.from(input.files);
+  var processedCount = 0;
+  
+  filesArray.forEach(function(file) {
+    compressImageClientSide(file, 1600, 0.82, function(finalFile) {
+      selectedGalleryFiles.push(finalFile);
+      processedCount++;
+      if (processedCount === filesArray.length) {
+        syncGalleryInput();
+        renderNewGalleryPreviews();
+      }
+    });
+  });
 }
 
 function syncGalleryInput() {

@@ -13,19 +13,29 @@ use Illuminate\Http\UploadedFile;
 trait HandlesImageUpload
 {
     /**
+     * Prepare environment for image processing (prevent OOM crashes)
+     */
+    private function prepareGdEnvironment(): void
+    {
+        @ini_set('memory_limit', '512M');
+        @ini_set('max_execution_time', '300');
+    }
+
+    /**
      * Load GD image resource from UploadedFile regardless of mime type
      */
     private function gdLoad(UploadedFile $file)
     {
+        $this->prepareGdEnvironment();
         $path = $file->getRealPath();
         $mime = $file->getMimeType() ?: mime_content_type($path);
 
         return match (true) {
-            str_contains($mime, 'jpeg'), str_contains($mime, 'jpg') => imagecreatefromjpeg($path),
-            str_contains($mime, 'png')  => imagecreatefrompng($path),
-            str_contains($mime, 'webp') => imagecreatefromwebp($path),
-            str_contains($mime, 'gif')  => imagecreatefromgif($path),
-            str_contains($mime, 'bmp')  => imagecreatefrombmp($path),
+            str_contains($mime, 'jpeg'), str_contains($mime, 'jpg') => @imagecreatefromjpeg($path),
+            str_contains($mime, 'png')  => @imagecreatefrompng($path),
+            str_contains($mime, 'webp') => @imagecreatefromwebp($path),
+            str_contains($mime, 'gif')  => @imagecreatefromgif($path),
+            str_contains($mime, 'bmp')  => @imagecreatefrombmp($path),
             default                     => @imagecreatefromjpeg($path) ?: @imagecreatefrompng($path),
         };
     }
@@ -84,25 +94,29 @@ trait HandlesImageUpload
             throw new \Exception("Gagal memproses gambar. Pastikan file valid.");
         }
         
-        $tempPath = storage_path('app/public/temp_' . uniqid() . '.webp');
+        $tempDir = sys_get_temp_dir();
+        $tempPath = $tempDir . '/webp_' . uniqid() . '.webp';
         
         try {
-            // Try saving directly to a file path
-            $success = imagewebp($img, $tempPath, $quality);
-            if (!$success) {
-                throw new \Exception("imagewebp returned false.");
+            $success = @imagewebp($img, $tempPath, $quality);
+            if ($success && file_exists($tempPath) && filesize($tempPath) > 0) {
+                $data = file_get_contents($tempPath);
+            } else {
+                ob_start();
+                @imagejpeg($img, null, $quality);
+                $data = ob_get_clean();
             }
-            $data = file_get_contents($tempPath);
         } catch (\Throwable $e) {
-            // Ultimate fallback to JPEG if WebP completely fails on this server
             ob_start();
-            imagejpeg($img, null, $quality);
+            @imagejpeg($img, null, $quality);
             $data = ob_get_clean();
         } finally {
             if (file_exists($tempPath)) {
                 @unlink($tempPath);
             }
-            imagedestroy($img);
+            if (is_resource($img) || (is_object($img) && $img instanceof \GdImage)) {
+                imagedestroy($img);
+            }
         }
         
         return (string) $data;
@@ -113,6 +127,7 @@ trait HandlesImageUpload
      */
     protected function storeWebP(UploadedFile $file, string $folder, int $maxW = 1200, int $maxH = 800, int $quality = 88): string
     {
+        $this->prepareGdEnvironment();
         $mime = (string) $file->getMimeType();
         $ext = strtolower($file->getClientOriginalExtension());
         
@@ -122,12 +137,16 @@ trait HandlesImageUpload
             return $filename;
         }
 
-        $img      = $this->gdLoad($file);
+        $img = $this->gdLoad($file);
         if (!$img) {
-            throw new \Exception("Format gambar tidak didukung atau file rusak.");
+            // Fallback: Store original file directly if GD fails to parse
+            $filename = $folder . '/' . Str::random(16) . '.' . ($ext ?: 'jpg');
+            Storage::disk('public')->put($filename, file_get_contents($file->getRealPath()));
+            return $filename;
         }
-        $img      = $this->gdScaleDown($img, $maxW, $maxH);
-        $webp     = $this->gdEncodeWebP($img, $quality);
+
+        $img  = $this->gdScaleDown($img, $maxW, $maxH);
+        $webp = $this->gdEncodeWebP($img, $quality);
         $filename = $folder . '/' . Str::random(16) . '.webp';
         Storage::disk('public')->put($filename, $webp);
         return $filename;
@@ -138,6 +157,7 @@ trait HandlesImageUpload
      */
     protected function storeWebPSquare(UploadedFile $file, string $folder, int $size = 200, int $quality = 88): string
     {
+        $this->prepareGdEnvironment();
         $mime = (string) $file->getMimeType();
         $ext = strtolower($file->getClientOriginalExtension());
         
@@ -147,12 +167,15 @@ trait HandlesImageUpload
             return $filename;
         }
 
-        $img      = $this->gdLoad($file);
+        $img = $this->gdLoad($file);
         if (!$img) {
-            throw new \Exception("Format gambar tidak didukung atau file rusak.");
+            $filename = $folder . '/' . Str::random(12) . '.' . ($ext ?: 'jpg');
+            Storage::disk('public')->put($filename, file_get_contents($file->getRealPath()));
+            return $filename;
         }
-        $img      = $this->gdSquareCrop($img, $size);
-        $webp     = $this->gdEncodeWebP($img, $quality);
+
+        $img  = $this->gdSquareCrop($img, $size);
+        $webp = $this->gdEncodeWebP($img, $quality);
         $filename = $folder . '/' . Str::random(12) . '.webp';
         Storage::disk('public')->put($filename, $webp);
         return $filename;
@@ -163,18 +186,23 @@ trait HandlesImageUpload
      */
     protected function storeOgWebP(UploadedFile $file, string $folder, int $quality = 85): string
     {
+        $this->prepareGdEnvironment();
         if (str_contains((string) $file->getMimeType(), 'svg')) {
             $filename = $folder . '/og_' . Str::random(12) . '.svg';
             Storage::disk('public')->put($filename, file_get_contents($file->getRealPath()));
             return $filename;
         }
 
-        $img      = $this->gdLoad($file);
+        $img = $this->gdLoad($file);
         if (!$img) {
-            throw new \Exception("Format gambar tidak didukung atau file rusak.");
+            $ext = strtolower($file->getClientOriginalExtension());
+            $filename = $folder . '/og_' . Str::random(12) . '.' . ($ext ?: 'jpg');
+            Storage::disk('public')->put($filename, file_get_contents($file->getRealPath()));
+            return $filename;
         }
-        $img      = $this->gdScaleDown($img, 1200, 630);
-        $webp     = $this->gdEncodeWebP($img, $quality);
+
+        $img  = $this->gdScaleDown($img, 1200, 630);
+        $webp = $this->gdEncodeWebP($img, $quality);
         $filename = $folder . '/og_' . Str::random(12) . '.webp';
         Storage::disk('public')->put($filename, $webp);
         return $filename;
