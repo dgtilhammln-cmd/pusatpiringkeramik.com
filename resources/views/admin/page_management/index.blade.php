@@ -1084,7 +1084,7 @@
             <div style="grid-column: span 2;">
               <label class="pm-label">Deskripsi Section Keunggulan</label>
               <textarea name="value_section_desc" class="pm-input"
-                rows="2">{{ $settings['value_section_desc'] ?? 'Solusi perlindungan dan pelapisan berkualitas tinggi untuk kebutuhan maritim dan industri skala besar di seluruh Indonesia.' }}</textarea>
+                rows="2">{{ $settings['value_section_desc'] ?? 'Solusi suplai tableware dan piring keramik berkualitas tinggi untuk kebutuhan restoran, hotel, catering, dan bisnis F&B di seluruh Indonesia.' }}</textarea>
             </div>
           </div>
         </div>
@@ -1103,7 +1103,7 @@
           </div>
 
           <div
-            style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem; margin-bottom:1.5rem;">
+            style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1.25rem; margin-bottom:1.5rem;">
             <div>
               <label class="pm-label">Background Section</label>
               <div class="pm-color-picker-wrap">
@@ -1111,6 +1111,24 @@
                   onchange="document.getElementById('c_apk_bg').value=this.value">
                 <input type="text" name="page_home_aplikasi_bg" id="c_apk_bg" class="pm-input"
                   value="{{ $settings['page_home_aplikasi_bg'] ?? '#0A1930' }}">
+              </div>
+            </div>
+            <div>
+              <label class="pm-label">Warna Background Card</label>
+              <div class="pm-color-picker-wrap">
+                <input type="color" value="{{ $settings['page_home_aplikasi_card_bg'] ?? '#1E293B' }}"
+                  onchange="document.getElementById('c_apk_card_bg').value=this.value">
+                <input type="text" name="page_home_aplikasi_card_bg" id="c_apk_card_bg" class="pm-input"
+                  value="{{ $settings['page_home_aplikasi_card_bg'] ?? '#1E293B' }}">
+              </div>
+            </div>
+            <div>
+              <label class="pm-label">Warna Teks Card</label>
+              <div class="pm-color-picker-wrap">
+                <input type="color" value="{{ $settings['page_home_aplikasi_card_text'] ?? '#FFFFFF' }}"
+                  onchange="document.getElementById('c_apk_card_text').value=this.value">
+                <input type="text" name="page_home_aplikasi_card_text" id="c_apk_card_text" class="pm-input"
+                  value="{{ $settings['page_home_aplikasi_card_text'] ?? '#FFFFFF' }}">
               </div>
             </div>
             <div>
@@ -1147,14 +1165,14 @@
             <div style="grid-column: span 2;">
               <label class="pm-label">Deskripsi Section Aplikasi</label>
               <textarea name="aplikasi_section_desc" class="pm-input"
-                rows="2">{{ $settings['aplikasi_section_desc'] ?? 'Produk pelapis dan cat dirancang untuk melindungi beragam aset strategis di berbagai sektor.' }}</textarea>
+                rows="2">{{ $settings['aplikasi_section_desc'] ?? 'Pusat Piring Keramik menyediakan perlengkapan meja makan dan tableware premium yang dirancang khusus untuk memenuhi standar operasional berbagai sektor bisnis F&B.' }}</textarea>
             </div>
           </div>
 
           {{-- 4 Image Uploads for Applications --}}
           <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:1.25rem;">
             <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:1.25rem; border-radius:14px;">
-              <label class="pm-label">1. Gambar Maritim / Restoran</label>
+              <label class="pm-label">1. Gambar Card 1 (Hotel, Resort & Villa)</label>
               @if(!empty($settings['app_img_restoran']))
                 <img src="{{ asset('storage/' . $settings['app_img_restoran']) }}"
                   style="width:100px; height:60px; object-fit:cover; border-radius:8px; margin-bottom:.5rem;">
@@ -1162,7 +1180,7 @@
               <input type="file" name="app_img_restoran" class="pm-input" accept="image/*">
             </div>
             <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:1.25rem; border-radius:14px;">
-              <label class="pm-label">2. Gambar Pabrik / Gudang</label>
+              <label class="pm-label">2. Gambar Card 2 (Restoran, Kafe & Bistro)</label>
               @if(!empty($settings['app_img_pabrik']))
                 <img src="{{ asset('storage/' . $settings['app_img_pabrik']) }}"
                   style="width:100px; height:60px; object-fit:cover; border-radius:8px; margin-bottom:.5rem;">
@@ -1170,7 +1188,7 @@
               <input type="file" name="app_img_pabrik" class="pm-input" accept="image/*">
             </div>
             <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:1.25rem; border-radius:14px;">
-              <label class="pm-label">3. Gambar Struktur Baja / Hotel</label>
+              <label class="pm-label">3. Gambar Card 3 (Catering & Event Organizers)</label>
               @if(!empty($settings['app_img_gor']))
                 <img src="{{ asset('storage/' . $settings['app_img_gor']) }}"
                   style="width:100px; height:60px; object-fit:cover; border-radius:8px; margin-bottom:.5rem;">
@@ -1178,7 +1196,7 @@
               <input type="file" name="app_img_gor" class="pm-input" accept="image/*">
             </div>
             <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:1.25rem; border-radius:14px;">
-              <label class="pm-label">4. Gambar Komersial / Dapur</label>
+              <label class="pm-label">4. Gambar Card 4 (Grosir & Toko Piranti Dapur)</label>
               @if(!empty($settings['app_img_dapur']))
                 <img src="{{ asset('storage/' . $settings['app_img_dapur']) }}"
                   style="width:100px; height:60px; object-fit:cover; border-radius:8px; margin-bottom:.5rem;">
@@ -1232,7 +1250,7 @@
             <div>
               <label class="pm-label">Deskripsi Paragraf Jangkauan Kota</label>
               <textarea name="kota_section_desc" class="pm-input"
-                rows="3">{{ $settings['kota_section_desc'] ?? 'Bermitra dengan ekspedisi terkemuka untuk mendistribusikan solusi perlindungan maritim dan industri kualitas premium ke seluruh pelosok Nusantara secara cepat dan aman.' }}</textarea>
+                rows="3">{{ $settings['kota_section_desc'] ?? 'Pusat Piring Keramik bermitra dengan layanan ekspedisi kargo terpercaya untuk mendistribusikan produk piring keramik dan tableware berkualitas ke seluruh penjuru Nusantara secara cepat dan aman.' }}</textarea>
             </div>
             <div>
               <label class="pm-label">Upload Gambar Peta Indonesia (Map Vector/PNG)</label>

@@ -779,9 +779,9 @@
         }
 
         .cv-app-card-v2:hover {
-            border-color: #DC2626;
-            transform: translateY(-6px);
-            box-shadow: 0 16px 40px rgba(14, 165, 233, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 22px 48px rgba(0, 0, 0, 0.45);
+            background: #243347;
         }
 
         .cv-app-icon-circle {

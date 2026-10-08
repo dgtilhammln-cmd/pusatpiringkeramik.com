@@ -1989,7 +1989,7 @@
         }
 
         .cv-app-card-v2 {
-            background: #1E293B;
+            background: {{ $settings['page_home_aplikasi_card_bg'] ?? '#1E293B' }};
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 20px;
             display: flex;
@@ -2025,9 +2025,9 @@
         }
 
         .cv-app-card-v2:hover {
-            border-color: var(--brand);
-            transform: translateY(-6px);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+            transform: translateY(-8px);
+            box-shadow: 0 22px 48px rgba(0, 0, 0, 0.45);
+            filter: brightness(1.08);
         }
 
         .cv-app-icon-circle {
@@ -2051,13 +2051,14 @@
         .cv-app-card-title-v2 {
             font-size: 1.05rem;
             font-weight: 600;
-            color: #ffffff;
+            color: {{ $settings['page_home_aplikasi_card_text'] ?? '#ffffff' }};
             margin: 0;
         }
 
         .cv-app-card-desc-v2 {
             font-size: 0.8125rem;
-            color: #94A3B8;
+            color: {{ $settings['page_home_aplikasi_card_text'] ?? '#94A3B8' }};
+            opacity: 0.85;
             line-height: 1.65;
             margin: 0;
         }
