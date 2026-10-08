@@ -1140,6 +1140,7 @@
       </div>
 
       {{-- SUB TAB 4: SECT VALUE --}}
+      {{-- SUB TAB 4: SECT VALUE --}}
       <div id="sub-sect-value" class="sub-tab-content"
         style="{{ ($activeTab ?? '') === 'sect-value' ? '' : 'display:none;' }}">
         <div class="pm-card">
@@ -1163,7 +1164,7 @@
               </div>
             </div>
             <div>
-              <label class="pm-label">Warna Card Item</label>
+              <label class="pm-label">Warna Card Item Default</label>
               <div class="pm-color-picker-wrap">
                 <input type="color" value="{{ $settings['page_home_value_card_bg'] ?? '#F8FAFC' }}"
                   onchange="document.getElementById('c_val_card_bg').value=this.value">
@@ -1190,6 +1191,155 @@
                 rows="2">{{ $settings['value_section_desc'] ?? 'Solusi suplai tableware dan piring keramik berkualitas tinggi untuk kebutuhan restoran, hotel, catering, dan bisnis F&B di seluruh Indonesia.' }}</textarea>
             </div>
           </div>
+
+          <hr style="border:0; border-top:1px solid #E2E8F0; margin: 2rem 0;">
+
+          <h3 style="font-size:1.1rem; font-weight:700; color:#1E293B; margin-bottom:1.25rem;">
+            Pengaturan 7 Card Keunggulan (Lengkap: Teks, Font Color, Bg Color, Icon Preset / Custom Upload)
+          </h3>
+
+          @php
+            $cardDefs = [
+              1 => ['num'=>'#1','title'=>'Kualitas Premium','desc'=>'Menyediakan produk piring keramik & tableware premium food grade yang tahan panas dan awet.','bg'=>'#0F172A','num_color'=>'#ffffff','title_color'=>'#ffffff','desc_color'=>'rgba(255,255,255,0.75)','icon_key'=>'shield','icon_bg'=>'#DC2626','icon_color'=>'#ffffff','span'=>'1'],
+              2 => ['num'=>'','title'=>'Cakupan Luas','desc'=>'Melayani pengiriman ke seluruh wilayah Indonesia dengan packing aman kayu & berasuransi.','bg'=>'#F1F5F9','num_color'=>'#0F172A','title_color'=>'#0F172A','desc_color'=>'#64748B','icon_key'=>'check','icon_bg'=>'#FEE2E2','icon_color'=>'#DC2626','span'=>'1'],
+              3 => ['num'=>'','title'=>'Distributor Resmi','desc'=>'Produk 100% original, tersertifikasi food grade dan didatangkan langsung dari pabrik resmi.','bg'=>'#F1F5F9','num_color'=>'#0F172A','title_color'=>'#0F172A','desc_color'=>'#64748B','icon_key'=>'award','icon_bg'=>'#FEE2E2','icon_color'=>'#DC2626','span'=>'1'],
+              4 => ['num'=>'HORECA','title'=>'Siap Skala Besar','desc'=>'Memiliki kapasitas suplai besar untuk memenuhi permintaan Hotel, Restoran, Kafe, dan Grosir.','bg'=>'#DC2626','num_color'=>'#ffffff','title_color'=>'rgba(255,255,255,0.9)','desc_color'=>'rgba(255,255,255,0.75)','icon_key'=>'users','icon_bg'=>'rgba(255,255,255,0.2)','icon_color'=>'#ffffff','span'=>'1'],
+              5 => ['num'=>'','title'=>'Desain Variatif','desc'=>'Beragam pilihan model piring keramik modern & vintage untuk mempercantik hidangan F&B.','bg'=>'#F1F5F9','num_color'=>'#EF4444','title_color'=>'#0F172A','desc_color'=>'#64748B','icon_key'=>'tag','icon_bg'=>'#FEE2E2','icon_color'=>'#DC2626','span'=>'1'],
+              6 => ['num'=>'','title'=>'Layanan Konsultasi','desc'=>'Tim kami selalu siap mendampingi Anda dalam memilih jenis tableware dan kuantitas paling tepat.','bg'=>'#F1F5F9','num_color'=>'#0F172A','title_color'=>'#0F172A','desc_color'=>'#64748B','icon_key'=>'chat','icon_bg'=>'#FEE2E2','icon_color'=>'#DC2626','span'=>'1'],
+              7 => ['num'=>'','title'=>'Terpercaya & Bergaransi','desc'=>'Dipercaya oleh ratusan hotel, restoran, catering, dan mitra usaha F&B di seluruh Indonesia.','bg'=>'#F1F5F9','num_color'=>'#0F172A','title_color'=>'#0F172A','desc_color'=>'#64748B','icon_key'=>'star','icon_bg'=>'#FEE2E2','icon_color'=>'#DC2626','span'=>'2'],
+            ];
+            $iconOptions = [
+              'shield' => 'Shield (Perisai)',
+              'check' => 'Checkmark (Centang)',
+              'clock' => 'Clock (Jam)',
+              'users' => 'Users (Grup/Orang)',
+              'tag' => 'Tag (Harga/Label)',
+              'chat' => 'Chat (Pesan/Diskusi)',
+              'star' => 'Star (Bintang)',
+              'truck' => 'Truck (Pengiriman)',
+              'globe' => 'Globe (Dunia/Jangkauan)',
+              'award' => 'Award (Penghargaan/Resmi)',
+              'box' => 'Box (Produk/Kemasan)',
+              'heart' => 'Heart (Cinta/Kualitas)',
+              'zap' => 'Zap (Kilat/Cepat)',
+              'building' => 'Building (Gedung/Pabrik)',
+              'leaf' => 'Leaf (Ramah/Eco)',
+              'diamond' => 'Diamond (Mewah/Premium)'
+            ];
+          @endphp
+
+          @for ($i = 1; $i <= 7; $i++)
+            @php $def = $cardDefs[$i]; @endphp
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:14px; padding:1.25rem; margin-bottom:1.25rem;">
+              <div style="font-weight:700; color:#0F172A; margin-bottom:1rem; display:flex; align-items:center; justify-content:space-between;">
+                <span>Card {{ $i }} @if($i == 1)(Hitam / Utama)@elseif($i == 4)(Merah / HORECA)@elseif($i == 7)(Lebar 2 Kolom)@endif</span>
+                <span style="font-size:0.75rem; color:#64748B; font-weight:normal;">Key: value_card_{{ $i }}</span>
+              </div>
+
+              <div style="display:grid; grid-template-columns: 1fr 2fr 1fr; gap:1rem; margin-bottom:1rem;">
+                <div>
+                  <label class="pm-label">Stat / Angka (#1 / HORECA)</label>
+                  <input type="text" name="value_card_{{ $i }}_num" class="pm-input"
+                    value="{{ $settings["value_card_{$i}_num"] ?? $def['num'] }}" placeholder="Contoh: #1 atau HORECA">
+                </div>
+                <div>
+                  <label class="pm-label">Judul Card</label>
+                  <input type="text" name="value_card_{{ $i }}_title" class="pm-input"
+                    value="{{ $settings["value_card_{$i}_title"] ?? $def['title'] }}">
+                </div>
+                <div>
+                  <label class="pm-label">Lebar Grid Span</label>
+                  <select name="value_card_{{ $i }}_span" class="pm-input">
+                    <option value="1" {{ ($settings["value_card_{$i}_span"] ?? $def['span']) == '1' ? 'selected' : '' }}>1 Kolom</option>
+                    <option value="2" {{ ($settings["value_card_{$i}_span"] ?? $def['span']) == '2' ? 'selected' : '' }}>2 Kolom (Wide)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="margin-bottom:1rem;">
+                <label class="pm-label">Deskripsi Card</label>
+                <textarea name="value_card_{{ $i }}_desc" class="pm-input" rows="2">{{ $settings["value_card_{$i}_desc"] ?? $def['desc'] }}</textarea>
+              </div>
+
+              <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:1rem; margin-bottom:1rem;">
+                <div>
+                  <label class="pm-label">Background Card</label>
+                  <div class="pm-color-picker-wrap">
+                    <input type="color" value="{{ $settings["value_card_{$i}_bg"] ?? $def['bg'] }}"
+                      onchange="document.getElementById('c_card_{{ $i }}_bg').value=this.value">
+                    <input type="text" name="value_card_{{ $i }}_bg" id="c_card_{{ $i }}_bg" class="pm-input"
+                      value="{{ $settings["value_card_{$i}_bg"] ?? $def['bg'] }}">
+                  </div>
+                </div>
+                <div>
+                  <label class="pm-label">Warna Stat/Angka</label>
+                  <div class="pm-color-picker-wrap">
+                    <input type="color" value="{{ str_contains($settings["value_card_{$i}_num_color"] ?? $def['num_color'], '#') ? ($settings["value_card_{$i}_num_color"] ?? $def['num_color']) : '#0F172A' }}"
+                      onchange="document.getElementById('c_card_{{ $i }}_num_color').value=this.value">
+                    <input type="text" name="value_card_{{ $i }}_num_color" id="c_card_{{ $i }}_num_color" class="pm-input"
+                      value="{{ $settings["value_card_{$i}_num_color"] ?? $def['num_color'] }}">
+                  </div>
+                </div>
+                <div>
+                  <label class="pm-label">Warna Judul</label>
+                  <div class="pm-color-picker-wrap">
+                    <input type="color" value="{{ str_contains($settings["value_card_{$i}_title_color"] ?? $def['title_color'], '#') ? ($settings["value_card_{$i}_title_color"] ?? $def['title_color']) : '#0F172A' }}"
+                      onchange="document.getElementById('c_card_{{ $i }}_title_color').value=this.value">
+                    <input type="text" name="value_card_{{ $i }}_title_color" id="c_card_{{ $i }}_title_color" class="pm-input"
+                      value="{{ $settings["value_card_{$i}_title_color"] ?? $def['title_color'] }}">
+                  </div>
+                </div>
+                <div>
+                  <label class="pm-label">Warna Deskripsi</label>
+                  <div class="pm-color-picker-wrap">
+                    <input type="color" value="{{ str_contains($settings["value_card_{$i}_desc_color"] ?? $def['desc_color'], '#') ? ($settings["value_card_{$i}_desc_color"] ?? $def['desc_color']) : '#64748B' }}"
+                      onchange="document.getElementById('c_card_{{ $i }}_desc_color').value=this.value">
+                    <input type="text" name="value_card_{{ $i }}_desc_color" id="c_card_{{ $i }}_desc_color" class="pm-input"
+                      value="{{ $settings["value_card_{$i}_desc_color"] ?? $def['desc_color'] }}">
+                  </div>
+                </div>
+              </div>
+
+              <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:1rem;">
+                <div>
+                  <label class="pm-label">Pilih Icon Preset (16 Opsi)</label>
+                  <select name="value_card_{{ $i }}_icon_key" class="pm-input">
+                    @foreach($iconOptions as $key => $name)
+                      <option value="{{ $key }}" {{ ($settings["value_card_{$i}_icon_key"] ?? $def['icon_key']) === $key ? 'selected' : '' }}>
+                        {{ $name }}
+                      </option>
+                    @endforeach
+                  </select>
+                </div>
+                <div>
+                  <label class="pm-label">Atau Upload Icon (Auto WebP)</label>
+                  <input type="file" name="value_card_{{ $i }}_icon_img" class="pm-input" accept="image/*">
+                  @if(!empty($settings["value_card_{$i}_icon_img"]))
+                    <div style="font-size:0.75rem; color:#10B981; margin-top:4px;">Icon Custom Terpasang</div>
+                  @endif
+                </div>
+                <div>
+                  <label class="pm-label">Warna Background Icon</label>
+                  <div class="pm-color-picker-wrap">
+                    <input type="color" value="{{ str_contains($settings["value_card_{$i}_icon_bg"] ?? $def['icon_bg'], '#') ? ($settings["value_card_{$i}_icon_bg"] ?? $def['icon_bg']) : '#DC2626' }}"
+                      onchange="document.getElementById('c_card_{{ $i }}_icon_bg').value=this.value">
+                    <input type="text" name="value_card_{{ $i }}_icon_bg" id="c_card_{{ $i }}_icon_bg" class="pm-input"
+                      value="{{ $settings["value_card_{$i}_icon_bg"] ?? $def['icon_bg'] }}">
+                  </div>
+                </div>
+                <div>
+                  <label class="pm-label">Warna Fill / Line Icon</label>
+                  <div class="pm-color-picker-wrap">
+                    <input type="color" value="{{ str_contains($settings["value_card_{$i}_icon_color"] ?? $def['icon_color'], '#') ? ($settings["value_card_{$i}_icon_color"] ?? $def['icon_color']) : '#ffffff' }}"
+                      onchange="document.getElementById('c_card_{{ $i }}_icon_color').value=this.value">
+                    <input type="text" name="value_card_{{ $i }}_icon_color" id="c_card_{{ $i }}_icon_color" class="pm-input"
+                      value="{{ $settings["value_card_{$i}_icon_color"] ?? $def['icon_color'] }}">
+                  </div>
+                </div>
+              </div>
+            </div>
+          @endfor
+
         </div>
       </div>
 
