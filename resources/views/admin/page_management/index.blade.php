@@ -530,6 +530,15 @@
               </div>
               <div class="pm-help">Default: #DC2626 — Aksen merah yang muncul di garis hero, badge, sparkle, stat, tombol, dan seluruh halaman.</div>
             </div>
+            <div>
+              <label class="pm-label">Durasi Transisi Slide Otomatis (Detik)</label>
+              <div style="display:flex; align-items:center; gap:0.5rem;">
+                <input type="number" name="hero_autoplay_interval" class="pm-input"
+                  value="{{ $settings['hero_autoplay_interval'] ?? '5' }}" min="0" max="60" placeholder="5" style="width:100px;">
+                <span style="font-size:0.8rem; font-weight:700; color:#3B82F6;">Detik (0 = Transisi Manual / Nonaktif)</span>
+              </div>
+              <div class="pm-help">Waktu pergantian otomatis antar slide banner hero. Contoh: 5 = pergantian tiap 5 detik.</div>
+            </div>
           </div>
         </div>
 

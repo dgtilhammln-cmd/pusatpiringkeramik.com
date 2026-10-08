@@ -263,6 +263,14 @@
             align-items: center;
         }
 
+        .cv-banner-uploaded-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 18px;
+        }
+
         .cv-banner-bg {
             position: absolute;
             inset: 0;
@@ -441,8 +449,17 @@
             }
 
             .cv-banner-card {
-                height: 180px;
-                border-radius: 14px;
+                height: auto;
+                aspect-ratio: 3448 / 914;
+                border-radius: 12px;
+            }
+
+            .cv-banner-uploaded-img {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 3448 / 914;
+                border-radius: 12px;
+                object-fit: cover;
             }
 
             .cv-banner-content {
@@ -1229,42 +1246,42 @@
                             <div class="swiper-slide">
                                 <div class="cv-banner-card">
                                     @if($slide->image)
-                                        <img src="{{ asset('storage/' . $slide->image) }}" class="cv-banner-bg" alt="{{ $slide->title }}">
+                                        <img src="{{ asset('storage/' . $slide->image) }}" class="cv-banner-uploaded-img" alt="{{ $slide->title }}">
                                     @else
                                         <div class="cv-banner-bg" style="background: linear-gradient(135deg, #005F41 0%, #00875A 50%, #004D34 100%);"></div>
-                                    @endif
-                                    <div class="cv-banner-overlay"></div>
+                                        <div class="cv-banner-overlay"></div>
 
-                                    <div class="cv-banner-content">
-                                        <div class="cv-banner-header">
-                                            <div class="cv-banner-brand-logo">
-                                                @if(!empty($settings['logo']))
-                                                    <img src="{{ asset('storage/' . $settings['logo']) }}" alt="Logo">
-                                                @else
-                                                    <svg width="14" height="14" fill="none" stroke="var(--brand, #00A664)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                        <div class="cv-banner-content">
+                                            <div class="cv-banner-header">
+                                                <div class="cv-banner-brand-logo">
+                                                    @if(!empty($settings['logo']))
+                                                        <img src="{{ asset('storage/' . $settings['logo']) }}" alt="Logo">
+                                                    @else
+                                                        <svg width="14" height="14" fill="none" stroke="var(--brand, #00A664)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                                    @endif
+                                                </div>
+                                                <span class="cv-banner-brand-name">{{ $settings['company_name'] ?? 'UD. Sukses Makmur' }}</span>
+                                            </div>
+
+                                            <h3 class="cv-banner-headline">
+                                                Distributor Peralatan makan keramik dan stainless kualitas terbaik
+                                            </h3>
+
+                                            <div class="cv-banner-pills">
+                                                <a href="{{ url('/') }}" class="cv-banner-pill">
+                                                    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                                                    <span>{{ request()->getHost() ?? 'pusatpiringkeramik.com' }}</span>
+                                                </a>
+
+                                                @if(!empty($settings['phone_number']) || !empty($settings['company_phone']))
+                                                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['phone_number'] ?? $settings['company_phone']) }}" target="_blank" class="cv-banner-pill">
+                                                        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                                                        <span>{{ $settings['phone_number'] ?? $settings['company_phone'] }}</span>
+                                                    </a>
                                                 @endif
                                             </div>
-                                            <span class="cv-banner-brand-name">{{ $settings['company_name'] ?? 'UD. Sukses Makmur' }}</span>
                                         </div>
-
-                                        <h3 class="cv-banner-headline">
-                                            Distributor Peralatan makan keramik dan stainless kualitas terbaik
-                                        </h3>
-
-                                        <div class="cv-banner-pills">
-                                            <a href="{{ url('/') }}" class="cv-banner-pill">
-                                                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-                                                <span>{{ request()->getHost() ?? 'pusatpiringkeramik.com' }}</span>
-                                            </a>
-
-                                            @if(!empty($settings['phone_number']) || !empty($settings['company_phone']))
-                                                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['phone_number'] ?? $settings['company_phone']) }}" target="_blank" class="cv-banner-pill">
-                                                    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-                                                    <span>{{ $settings['phone_number'] ?? $settings['company_phone'] }}</span>
-                                                </a>
-                                            @endif
-                                        </div>
-                                    </div>
+                                    @endif
                                 </div>
                             </div>
                         @endforeach
@@ -3106,19 +3123,29 @@
 
     @include('components.lightbox-assets')
 
+    @php
+        $heroAutoplaySec = isset($settings['hero_autoplay_interval']) && is_numeric($settings['hero_autoplay_interval'])
+            ? (int)$settings['hero_autoplay_interval']
+            : 5;
+        $heroAutoplayMs = $heroAutoplaySec * 1000;
+    @endphp
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             if (document.querySelector('.hero-banner-swiper')) {
+                const autoplayDelay = {{ $heroAutoplayMs > 0 ? $heroAutoplayMs : 5000 }};
+                const autoplayConfig = autoplayDelay > 0 ? {
+                    delay: autoplayDelay,
+                    disableOnInteraction: false,
+                } : false;
+
                 new Swiper('.hero-banner-swiper', {
                     loop: true,
                     centeredSlides: true,
                     slidesPerView: 1.18,
                     spaceBetween: 24,
-                    autoplay: {
-                        delay: 5000,
-                        disableOnInteraction: false,
-                    },
+                    autoplay: autoplayConfig,
                     pagination: {
                         el: '.hero-banner-swiper-pagination',
                         clickable: true,
