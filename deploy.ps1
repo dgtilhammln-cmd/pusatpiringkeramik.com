@@ -107,6 +107,7 @@ echo ""
 echo "--- Menjalankan artisan commands..."
 cd "$DEPLOY_DIR"
 php artisan migrate --force
+php artisan db:seed --class=DatabaseSeeder --force
 php artisan db:seed --class=HeroSlideSeeder --force
 
 echo "--- Fix storage symlink & sync public_html..."

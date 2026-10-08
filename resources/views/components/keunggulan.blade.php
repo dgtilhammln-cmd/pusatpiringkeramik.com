@@ -212,7 +212,7 @@
                 <h2 class="cv-adv-section-title">{{ \App\Models\Setting::get('value_section_title') ?? 'Mengapa Pilih ' . $companyName . '?' }}</h2>
             </div>
             <p style="max-width:320px;font-size:0.875rem;color:#64748B;line-height:1.65;text-align:right;">
-                {{ \App\Models\Setting::get('value_section_desc') ?? 'Solusi perlindungan dan pelapisan berkualitas tinggi untuk kebutuhan maritim dan industri skala besar di seluruh Indonesia.' }}
+                {{ \App\Models\Setting::get('value_section_desc') ?? 'Solusi suplai tableware dan piring keramik berkualitas tinggi untuk kebutuhan restoran, hotel, catering, dan bisnis F&B di seluruh Indonesia.' }}
             </p>
         </div>
 
@@ -228,8 +228,7 @@
                 </div>
                 <div class="cv-adv-card-num white">#1</div>
                 <div class="cv-adv-card-title white">Kualitas Premium</div>
-                <div class="cv-adv-card-desc white">Menyediakan produk cat dari merk terbaik yang sudah teruji tahan
-                    lama dan anti korosi.</div>
+                <div class="cv-adv-card-desc white">Menyediakan produk piring keramik & tableware premium food grade yang tahan panas dan awet.</div>
             </div>
 
             {{-- Card 2: Pengiriman --}}
@@ -240,8 +239,7 @@
                     </svg>
                 </div>
                 <div class="cv-adv-card-title">Cakupan Luas</div>
-                <div class="cv-adv-card-desc">Melayani pengiriman ke seluruh wilayah Indonesia dengan ekspedisi yang
-                    terpercaya dan berasuransi.</div>
+                <div class="cv-adv-card-desc">Melayani pengiriman ke seluruh wilayah Indonesia dengan packing aman kayu & berasuransi.</div>
             </div>
 
             {{-- Card 3: Resmi --}}
@@ -253,8 +251,7 @@
                     </svg>
                 </div>
                 <div class="cv-adv-card-title">Distributor Resmi</div>
-                <div class="cv-adv-card-desc">Produk 100% original, tersertifikasi dan didatangkan langsung dari pabrik
-                    resmi.</div>
+                <div class="cv-adv-card-desc">Produk 100% original, tersertifikasi food grade dan didatangkan langsung dari pabrik resmi.</div>
             </div>
 
             {{-- Card 4: Kapasitas --}}
@@ -267,10 +264,9 @@
                         <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                     </svg>
                 </div>
-                <div class="cv-adv-card-num" style="color:#fff;">B2B</div>
-                <div class="cv-adv-card-title light">Siap Skala Proyek</div>
-                <div class="cv-adv-card-desc white">Memiliki kapasitas besar untuk memenuhi permintaan proyek industri
-                    dan kontraktor.</div>
+                <div class="cv-adv-card-num" style="color:#fff;">HORECA</div>
+                <div class="cv-adv-card-title light">Siap Skala Besar</div>
+                <div class="cv-adv-card-desc white">Memiliki kapasitas suplai besar untuk memenuhi permintaan Hotel, Restoran, Kafe, dan Grosir.</div>
             </div>
 
             {{-- Card 5: Perlindungan --}}
@@ -281,9 +277,8 @@
                         <line x1="7" y1="7" x2="7.01" y2="7" />
                     </svg>
                 </div>
-                <div class="cv-adv-card-title" style="margin-top:auto;">Pelindungan Maksimal</div>
-                <div class="cv-adv-card-desc">Cocok diaplikasikan untuk perlindungan aset maritim maupun industri dari
-                    kondisi ekstrim.</div>
+                <div class="cv-adv-card-title" style="margin-top:auto;">Desain Variatif</div>
+                <div class="cv-adv-card-desc">Beragam pilihan model piring keramik modern & vintage untuk mempercantik hidangan F&B.</div>
             </div>
 
             {{-- Card 6: Support --}}
@@ -294,8 +289,7 @@
                     </svg>
                 </div>
                 <div class="cv-adv-card-title" style="margin-top:auto;">Layanan Konsultasi</div>
-                <div class="cv-adv-card-desc">Tim kami selalu siap mendampingi Anda dalam memilih jenis cat dan
-                    spesifikasi yang paling tepat.</div>
+                <div class="cv-adv-card-desc">Tim kami selalu siap mendampingi Anda dalam memilih jenis tableware dan kuantitas paling tepat.</div>
             </div>
 
             {{-- Card 7: Pengalaman spans 2 columns --}}
@@ -309,10 +303,8 @@
                     </svg>
                 </div>
                 <div>
-                    <div class="cv-adv-card-title" style="font-size:1.125rem; margin-bottom:0.5rem;">Berpengalaman Sejak
-                        2007</div>
-                    <div class="cv-adv-card-desc">Lebih dari 18 tahun menjadi andalan perusahaan BUMN dan swasta dalam
-                        menyuplai produk cat pelindung berstandar internasional.</div>
+                    <div class="cv-adv-card-title" style="font-size:1.125rem; margin-bottom:0.5rem;">Terpercaya & Bergaransi</div>
+                    <div class="cv-adv-card-desc">Dipercaya oleh ratusan hotel, restoran, catering, dan mitra usaha F&B di seluruh Indonesia.</div>
                 </div>
             </div>
 

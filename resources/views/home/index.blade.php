@@ -1889,13 +1889,6 @@
                             <div class="cv-cat-card-overlay"></div>
                             <div class="cv-cat-card-body">
                                 <div class="cv-cat-card-name">{{ $product->name }}</div>
-                                <div class="cv-cat-card-spec">
-                                    @if($product->category)
-                                        <span>{{ $product->category->name }}</span>
-                                    @else
-                                        <span>Cat Premium</span>
-                                    @endif
-                                </div>
                             </div>
                         </a>
                     @endforeach
@@ -1914,9 +1907,6 @@
                             <div class="cv-cat-card-overlay"></div>
                             <div class="cv-cat-card-body">
                                 <div class="cv-cat-card-name">Produk Keramik {{ $i }}</div>
-                                <div class="cv-cat-card-spec">
-                                    <span>Keramik Premium</span>
-                                </div>
                             </div>
                         </a>
                     @endfor
@@ -2112,7 +2102,7 @@
                 <div class="cv-adv-section-label">{{ $settings['aplikasi_section_label'] ?? 'APLIKASI' }}</div>
                 <h2 class="cv-adv-section-title" style="margin-top:0.75rem;">{!! nl2br(e($settings['aplikasi_section_title'] ?? "Cocok untuk\nBerbagai Industri")) !!}</h2>
                 <p style="margin-top:1rem;font-size:0.875rem;color:#94A3B8;line-height:1.65;">
-                    {{ $settings['aplikasi_section_desc'] ?? 'Produk pelapis dan cat ' . $companyName . ' dirancang untuk melindungi beragam aset strategis di berbagai sektor.' }}
+                    {{ $settings['aplikasi_section_desc'] ?? 'Pusat Piring Keramik menyediakan perlengkapan meja makan dan tableware premium yang dirancang khusus untuk memenuhi standar operasional berbagai sektor bisnis F&B.' }}
                 </p>
             </div>
 
@@ -2120,27 +2110,27 @@
                 @php
                     $apps = [
                         [
-                            'title' => 'Maritim & Perkapalan',
-                            'desc' => 'Perlindungan maksimal lambung kapal dan struktur laut dari korosi air asin yang ekstrem.',
-                            'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 12h-4l-3-9L9 3l-3 9H2v6h20v-6z"/></svg>',
+                            'title' => 'Hotel, Resort & Villa',
+                            'desc' => 'Tableware keramik berstandar bintang lima untuk dining area, banquet, room service, dan acara mewah.',
+                            'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m4 0h1m-5 4h1m4 0h1m-5 4h1m4 0h1"/></svg>',
                             'img' => !empty($settings['app_img_restoran']) ? asset('storage/' . $settings['app_img_restoran']) : asset('images/placeholder-app.jpg')
                         ],
                         [
-                            'title' => 'Pabrik & Gudang',
-                            'desc' => 'Melindungi lantai pabrik, struktur baja, dan alat berat dengan coating khusus tahan lama.',
-                            'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/></svg>',
+                            'title' => 'Restoran, Kafe & Bistro',
+                            'desc' => 'Piring keramik aesthetic & durable yang meningkatkan daya tarik visual sajian kuliner harian.',
+                            'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>',
                             'img' => !empty($settings['app_img_pabrik']) ? asset('storage/' . $settings['app_img_pabrik']) : asset('images/placeholder-app.jpg')
                         ],
                         [
-                            'title' => 'Struktur Baja',
-                            'desc' => 'Cat anti karat terbaik untuk menjaga integritas rangka jembatan dan struktur baja terbuka.',
-                            'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
+                            'title' => 'Catering & Event Organizers',
+                            'desc' => 'Perlengkapan makan tahan bentur & serbaguna untuk kebutuhan prasmanan dan acara pesta skala besar.',
+                            'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>',
                             'img' => !empty($settings['app_img_gor']) ? asset('storage/' . $settings['app_img_gor']) : asset('images/placeholder-app.jpg')
                         ],
                         [
-                            'title' => 'Fasilitas Komersial',
-                            'desc' => 'Lapisan pelindung yang estetik dan awet untuk pusat perbelanjaan dan gedung komersial.',
-                            'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+                            'title' => 'Grosir & Toko Piranti Dapur',
+                            'desc' => 'Suplai stok piring keramik melimpah dengan harga grosir kompetitif untuk distributor & toko daerah.',
+                            'icon' => '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>',
                             'img' => !empty($settings['app_img_dapur']) ? asset('storage/' . $settings['app_img_dapur']) : asset('images/placeholder-app.jpg')
                         ],
                     ];

@@ -42,49 +42,46 @@ class DatabaseSeeder extends Seeder
 
         // ── Site Settings ────────────────────────────────────────────
         $settings = [
+            // Company
+            ['key'=>'company_name',     'value'=>'Pusat Piring Keramik',                       'type'=>'text','group'=>'general','label'=>'Nama Perusahaan'],
+            ['key'=>'company_phone',    'value'=>'0856-2682-888',                              'type'=>'text','group'=>'contact','label'=>'Telepon / WA Utama'],
             // Hero
-            ['key'=>'hero_headline',    'value'=>'Distribusi Cat & Coating Premium',           'type'=>'text','group'=>'hero','label'=>'Hero Headline'],
-            ['key'=>'hero_subheadline', 'value'=>'CV. Bintang Energy Surabaya — distributor resmi cat industri, cat maritim, dan coating pelindung terpercaya sejak 2007. Melayani kebutuhan industri, kontraktor, dan BUMN di seluruh Indonesia.','type'=>'text','group'=>'hero','label'=>'Hero Sub-headline'],
-            ['key'=>'hero_cta_primary', 'value'=>'Konsultasi & Penawaran',                    'type'=>'text','group'=>'hero','label'=>'CTA Primary Text'],
+            ['key'=>'hero_headline',    'value'=>'Distributor Piring Keramik & Tableware Premium #1', 'type'=>'text','group'=>'hero','label'=>'Hero Headline'],
+            ['key'=>'hero_subheadline', 'value'=>'Pusat Piring Keramik — distributor resmi piring keramik, mangkuk, piranti porselen, dan stainless steel terpercaya untuk HORECA, catering, dan grosir di seluruh Indonesia.','type'=>'text','group'=>'hero','label'=>'Hero Sub-headline'],
+            ['key'=>'hero_cta_primary', 'value'=>'Hubungi WhatsApp',                           'type'=>'text','group'=>'hero','label'=>'CTA Primary Text'],
             ['key'=>'hero_cta_secondary','value'=>'Lihat Katalog Produk',                     'type'=>'text','group'=>'hero','label'=>'CTA Secondary Text'],
-            ['key'=>'hero_bg_image',    'value'=>'',                                           'type'=>'image','group'=>'hero','label'=>'Hero Background Image'],
+            // Section 1: KEUNGGULAN
+            ['key'=>'value_section_label', 'value'=>'KEUNGGULAN',                              'type'=>'text','group'=>'section','label'=>'Label Keunggulan'],
+            ['key'=>'value_section_title', 'value'=>'Mengapa Pilih Pusat Piring Keramik?',      'type'=>'text','group'=>'section','label'=>'Judul Keunggulan'],
+            ['key'=>'value_section_desc',  'value'=>'Solusi suplai tableware dan piring keramik berkualitas tinggi untuk kebutuhan restoran, hotel, catering, dan bisnis F&B di seluruh Indonesia.','type'=>'text','group'=>'section','label'=>'Deskripsi Keunggulan'],
+            // Section 2: APLIKASI
+            ['key'=>'aplikasi_section_label', 'value'=>'APLIKASI',                             'type'=>'text','group'=>'section','label'=>'Label Aplikasi'],
+            ['key'=>'aplikasi_section_title', 'value'=>"Cocok untuk\nBerbagai Industri",        'type'=>'text','group'=>'section','label'=>'Judul Aplikasi'],
+            ['key'=>'aplikasi_section_desc',  'value'=>'Pusat Piring Keramik menyediakan perlengkapan meja makan dan tableware premium yang dirancang khusus untuk memenuhi standar operasional berbagai sektor bisnis F&B.','type'=>'text','group'=>'section','label'=>'Deskripsi Aplikasi'],
+            // Section 3: JANGKAUAN KOTA
+            ['key'=>'kota_section_title', 'value'=>'Melayani seluruh Indonesia dengan jangkauan 50+ Kota.', 'type'=>'text','group'=>'section','label'=>'Judul Jangkauan Kota'],
+            ['key'=>'kota_section_desc',  'value'=>'Pusat Piring Keramik bermitra dengan layanan ekspedisi kargo terpercaya untuk mendistribusikan produk piring keramik dan tableware berkualitas ke seluruh penjuru Nusantara secara cepat dan aman.','type'=>'text','group'=>'section','label'=>'Deskripsi Jangkauan Kota'],
             // About
-            ['key'=>'about_heading',    'value'=>'Distributor Cat & Coating<br>Berstandar Industri',  'type'=>'text','group'=>'about','label'=>'About Heading'],
-            ['key'=>'about_text',       'value'=>'CV. Bintang Energy Surabaya adalah distributor resmi cat industri dan coating premium yang berpengalaman lebih dari 18 tahun. Kami menyediakan produk dari merek-merek terkemuka dunia seperti Jotun, PPG Sigma, Hempel, dan AkzoNobel untuk kebutuhan maritime, oil & gas, infrastruktur, dan industri manufaktur.','type'=>'text','group'=>'about','label'=>'About Text'],
-            ['key'=>'about_image',      'value'=>'',                                           'type'=>'image','group'=>'about','label'=>'About Image'],
-            ['key'=>'visi',             'value'=>'Menjadi distributor cat dan coating industri terpercaya kelas nasional yang berorientasi pada kepuasan pelanggan dan standar internasional.','type'=>'text','group'=>'about','label'=>'Visi'],
-            ['key'=>'misi',             'value'=>'Menyediakan produk cat dan coating berkualitas tinggi dari merek-merek terpercaya dunia dengan layanan konsultasi profesional, pengiriman tepat waktu, dan harga kompetitif untuk seluruh wilayah Indonesia.','type'=>'text','group'=>'about','label'=>'Misi'],
+            ['key'=>'about_heading',    'value'=>'Distributor Piring Keramik<br>Berstandar Restoran & Hotel',  'type'=>'text','group'=>'about','label'=>'About Heading'],
+            ['key'=>'about_text',       'value'=>'Pusat Piring Keramik adalah supplier dan distributor tableware keramik berkualitas tinggi. Kami menyediakan ribuan pilihan piring keramik, mangkuk, cangkir, dan perlengkapan meja makan untuk hotel, restoran, kafe, catering, dan bisnis F&B di seluruh Indonesia.','type'=>'text','group'=>'about','label'=>'About Text'],
+            ['key'=>'visi',             'value'=>'Menjadi distributor piring keramik dan tableware HORECA terpercaya #1 di Indonesia yang berorientasi pada kepuasan pelanggan, kualitas produk food-grade, dan kecepatan pengiriman.','type'=>'text','group'=>'about','label'=>'Visi'],
+            ['key'=>'misi',             'value'=>'Menyediakan produk piring keramik dan perlengkapan makan berkualitas tinggi dengan layanan cepat, harga grosir kompetitif, serta pengiriman aman ke seluruh wilayah Indonesia.','type'=>'text','group'=>'about','label'=>'Misi'],
             // Stats
-            ['key'=>'stat_years',    'value'=>'18+',                'type'=>'text','group'=>'stats','label'=>'Tahun Pengalaman'],
-            ['key'=>'stat_clients',  'value'=>'500+',               'type'=>'text','group'=>'stats','label'=>'Klien / Proyek'],
+            ['key'=>'stat_years',    'value'=>'10+',                'type'=>'text','group'=>'stats','label'=>'Tahun Pengalaman'],
+            ['key'=>'stat_clients',  'value'=>'500+',               'type'=>'text','group'=>'stats','label'=>'Klien Aktif'],
             ['key'=>'stat_products', 'value'=>'1.000+',             'type'=>'text','group'=>'stats','label'=>'SKU Produk'],
-            ['key'=>'stat_coverage', 'value'=>'Seluruh Indonesia',  'type'=>'text','group'=>'stats','label'=>'Jangkauan'],
+            ['key'=>'stat_coverage', 'value'=>'50+ Kota Indonesia', 'type'=>'text','group'=>'stats','label'=>'Jangkauan Kota'],
             // Contact
-            ['key'=>'phone',    'value'=>'031-1234-5678',                                          'type'=>'text','group'=>'contact','label'=>'Telepon'],
-            ['key'=>'wa1',      'value'=>'081296565757',                                           'type'=>'text','group'=>'contact','label'=>'WhatsApp Utama'],
-            ['key'=>'email',    'value'=>'info@ptbiner.co.id',                                     'type'=>'text','group'=>'contact','label'=>'Email'],
-            ['key'=>'address',  'value'=>'Jl. Industri Raya No. 12, Surabaya, Jawa Timur 60194',  'type'=>'text','group'=>'contact','label'=>'Alamat'],
-            ['key'=>'maps_embed','value'=>'https://maps.google.com/maps?q=-7.2575,112.7521&output=embed','type'=>'text','group'=>'contact','label'=>'Maps Embed URL'],
-            // Social
-            ['key'=>'instagram','value'=>'','type'=>'text','group'=>'social','label'=>'Instagram URL'],
-            ['key'=>'facebook', 'value'=>'','type'=>'text','group'=>'social','label'=>'Facebook URL'],
-            ['key'=>'youtube',  'value'=>'','type'=>'text','group'=>'social','label'=>'YouTube URL'],
+            ['key'=>'phone',    'value'=>'0856-2682-888',                                          'type'=>'text','group'=>'contact','label'=>'Telepon'],
+            ['key'=>'wa1',      'value'=>'08562682888',                                            'type'=>'text','group'=>'contact','label'=>'WhatsApp Utama'],
+            ['key'=>'email',    'value'=>'info@pusatpiringkeramik.com',                            'type'=>'text','group'=>'contact','label'=>'Email'],
+            ['key'=>'address',  'value'=>'Pusat Piring Keramik - Surabaya, Jawa Timur, Indonesia', 'type'=>'text','group'=>'contact','label'=>'Alamat'],
             // Footer
-            ['key'=>'footer_desc', 'value'=>'Distributor resmi cat industri dan coating premium sejak 2007. Melayani kebutuhan maritim, oil & gas, infrastruktur, dan manufaktur di seluruh Indonesia.','type'=>'text','group'=>'footer','label'=>'Footer Description'],
-            ['key'=>'copyright',   'value'=>'© 2007–2026 CV. Bintang Energy Surabaya. All rights reserved.','type'=>'text','group'=>'footer','label'=>'Copyright'],
+            ['key'=>'footer_desc', 'value'=>'Distributor piring keramik dan tableware premium terpercaya. Melayani kebutuhan hotel, restoran, catering, dan grosir seluruh Indonesia.','type'=>'text','group'=>'footer','label'=>'Footer Description'],
+            ['key'=>'copyright',   'value'=>'© 2016–2026 Pusat Piring Keramik. All rights reserved.','type'=>'text','group'=>'footer','label'=>'Copyright'],
             // SEO
-            ['key'=>'meta_title_home','value'=>'CV. Bintang Energy Surabaya — Distributor Cat Industri & Coating Premium #1',  'type'=>'text','group'=>'seo','label'=>'Meta Title Home'],
-            ['key'=>'meta_desc_home', 'value'=>'Distributor resmi cat industri Jotun, PPG Sigma, Hempel, dan AkzoNobel. Melayani kebutuhan maritim, pabrik, dan infrastruktur seluruh Indonesia. Hubungi: 0812-9656-5757.','type'=>'text','group'=>'seo','label'=>'Meta Desc Home'],
-            ['key'=>'og_image_default','value'=>'','type'=>'image','group'=>'seo','label'=>'Default OG Image (1200x630)'],
-            // Meta halaman lain
-            ['key'=>'meta_title_services','value'=>'Katalog Produk Cat Industri & Coating | CV. Bintang Energy Surabaya','type'=>'text','group'=>'seo','label'=>'Meta Title Products'],
-            ['key'=>'meta_desc_services', 'value'=>'Temukan produk cat Jotun, PPG Sigma, Hempel, AkzoNobel untuk kebutuhan maritim, industri, dan infrastruktur. Harga kompetitif, pengiriman seluruh Indonesia.','type'=>'text','group'=>'seo','label'=>'Meta Desc Products'],
-            ['key'=>'meta_title_about',   'value'=>'Tentang Kami | CV. Bintang Energy Surabaya - Distributor Cat Industri','type'=>'text','group'=>'seo','label'=>'Meta Title About'],
-            ['key'=>'meta_desc_about',    'value'=>'Profil CV. Bintang Energy Surabaya, distributor cat industri dan coating terpercaya berdiri sejak 2007. Lebih dari 500 klien dari berbagai sektor.','type'=>'text','group'=>'seo','label'=>'Meta Desc About'],
-            ['key'=>'meta_title_contact', 'value'=>'Hubungi Kami | CV. Bintang Energy Surabaya','type'=>'text','group'=>'seo','label'=>'Meta Title Contact'],
-            ['key'=>'meta_desc_contact',  'value'=>'Konsultasi kebutuhan cat dan coating gratis. Tim ahli kami siap membantu memilih produk yang paling sesuai untuk proyek industri Anda.','type'=>'text','group'=>'seo','label'=>'Meta Desc Contact'],
-            ['key'=>'meta_title_gallery', 'value'=>'Galeri Proyek | CV. Bintang Energy Surabaya','type'=>'text','group'=>'seo','label'=>'Meta Title Gallery'],
-            ['key'=>'meta_title_articles','value'=>'Artikel & Insight Industri Cat | CV. Bintang Energy Surabaya','type'=>'text','group'=>'seo','label'=>'Meta Title Articles'],
+            ['key'=>'meta_title_home','value'=>'Pusat Piring Keramik — Distributor Piring Keramik & Tableware HORECA #1',  'type'=>'text','group'=>'seo','label'=>'Meta Title Home'],
+            ['key'=>'meta_desc_home', 'value'=>'Distributor resmi piring keramik, mangkuk, dan tableware restoran & hotel. Melayani grosir & eceran seluruh Indonesia. Hubungi WA: 0856-2682-888.','type'=>'text','group'=>'seo','label'=>'Meta Desc Home'],
         ];
         foreach ($settings as $s) {
             Setting::updateOrCreate(['key' => $s['key']], array_merge($s, ['created_at'=>now(),'updated_at'=>now()]));
