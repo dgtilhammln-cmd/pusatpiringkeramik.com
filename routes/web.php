@@ -59,19 +59,33 @@ Route::post('/request-order', [LeadController::class, 'store'])->name('lead.stor
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 Route::get('/sitemap', [SitemapController::class, 'index'])->name('sitemap');
 Route::get('/robots.txt', function () {
-    $siteUrl = \App\Models\Setting::getAppUrl();
+    // Always use config('app.url') as the canonical — don't trust DB app_url
+    // which could contain old data from a different project.
+    $siteUrl = rtrim(config('app.url', 'https://pusatpiringkeramik.hvmdigital.id'), '/');
+    // Validate it looks like a real URL; if not, fallback hard
+    if (!str_starts_with($siteUrl, 'http') || str_contains($siteUrl, 'cyclevent')) {
+        $siteUrl = 'https://pusatpiringkeramik.hvmdigital.id';
+    }
     $content = "User-agent: *\nAllow: /\n\nSitemap: {$siteUrl}/sitemap.xml\nllms-txt: {$siteUrl}/llms.txt";
     return response($content, 200)->header('Content-Type', 'text/plain; charset=UTF-8');
 });
 
 Route::get('/llms.txt', function () {
-    $siteUrl = \App\Models\Setting::getAppUrl();
-    $comp    = \App\Models\Setting::getAppName();
-    
+    // Always use config('app.url') as canonical domain
+    $siteUrl = rtrim(config('app.url', 'https://pusatpiringkeramik.hvmdigital.id'), '/');
+    if (!str_starts_with($siteUrl, 'http') || str_contains($siteUrl, 'cyclevent')) {
+        $siteUrl = 'https://pusatpiringkeramik.hvmdigital.id';
+    }
+    $comp = \App\Models\Setting::getAppName();
+    // If company name still has cyclevent data, use the correct name
+    if (str_contains(strtolower($comp), 'cyclevent') || str_contains(strtolower($comp), 'hiranatha')) {
+        $comp = 'Pusat Piring Keramik';
+    }
+
     $defaultContent = "# {$comp}\n\n"
         . "> Distributor resmi & supplier piring keramik, mangkuk, tableware, dan peralatan makan HORECA terpercaya di Indonesia.\n\n"
         . "## Informasi Utama\n"
-        . "- **Nama Perusahaan**: {$comp} (UD. Sukses Makmur)\n"
+        . "- **Nama Perusahaan**: {$comp}\n"
         . "- **Situs Resmi**: {$siteUrl}\n"
         . "- **Telepon / WhatsApp**: 0856-2682-888\n"
         . "- **Alamat**: Surabaya, Jawa Timur, Indonesia\n\n"
@@ -86,10 +100,14 @@ Route::get('/llms.txt', function () {
         . "- Katalog Produk: {$siteUrl}/product\n"
         . "- Profil Perusahaan: {$siteUrl}/about\n"
         . "- Artikel & Tips Tableware: {$siteUrl}/articles\n"
-        . "- Kontak & Whatsapp: {$siteUrl}/contact\n"
+        . "- Kontak & WhatsApp: {$siteUrl}/contact\n"
         . "- Sitemap XML: {$siteUrl}/sitemap.xml\n";
 
-    $content = \App\Models\Setting::get('llms_txt', $defaultContent);
+    // If the stored llms_txt still has cyclevent data, ignore it and use default
+    $stored = \App\Models\Setting::get('llms_txt', '');
+    $content = (!empty($stored) && !str_contains(strtolower($stored), 'cyclevent'))
+        ? $stored
+        : $defaultContent;
 
     return response($content, 200)->header('Content-Type', 'text/plain; charset=UTF-8');
 });
@@ -103,6 +121,60 @@ Route::get('/deploy-hostinger', function () {
     } catch (\Exception $e) {
         return 'ERROR: ' . $e->getMessage();
     }
+});
+
+// FIX: Bersihkan data lama dari proyek lain & aktifkan debug mode
+// Kunjungi sekali: https://pusatpiringkeramik.hvmdigital.id/fix-env-debug
+Route::get('/fix-env-debug', function () {
+    $log = [];
+    $correctUrl  = 'https://pusatpiringkeramik.hvmdigital.id';
+    $correctName = 'Pusat Piring Keramik';
+
+    // 1. Bersihkan / fix settings DB yang masih pakai data cyclevent
+    $badKeys = \App\Models\Setting::whereIn('key', ['app_url', 'llms_txt', 'app_name', 'company_name'])->get();
+    foreach ($badKeys as $s) {
+        $val = $s->value ?? '';
+        if (str_contains(strtolower($val), 'cyclevent') || str_contains(strtolower($val), 'hiranatha')) {
+            if ($s->key === 'app_url')      { $s->value = $correctUrl;  $s->save(); $log[] = "✓ app_url diperbaiki → {$correctUrl}"; }
+            if ($s->key === 'app_name')     { $s->value = $correctName; $s->save(); $log[] = "✓ app_name diperbaiki → {$correctName}"; }
+            if ($s->key === 'company_name') { $s->value = $correctName; $s->save(); $log[] = "✓ company_name diperbaiki → {$correctName}"; }
+            if ($s->key === 'llms_txt')     { $s->delete(); $log[] = "✓ llms_txt lama (cyclevent) dihapus — akan pakai default"; }
+        }
+    }
+
+    // 2. Pastikan app_url diset dengan benar (buat kalau belum ada)
+    \App\Models\Setting::set('app_url', $correctUrl, 'url', 'seo');
+    $log[] = "✓ app_url = {$correctUrl} (upsert)";
+
+    // 3. Aktifkan APP_DEBUG di .env (untuk troubleshooting)
+    $envPath = base_path('.env');
+    if (file_exists($envPath)) {
+        $env = file_get_contents($envPath);
+        $env = preg_replace('/^APP_DEBUG=.*/m', 'APP_DEBUG=true', $env);
+        file_put_contents($envPath, $env);
+        $log[] = "✓ APP_DEBUG=true di .env";
+    } else {
+        $log[] = "✗ .env tidak ditemukan";
+    }
+
+    // 4. Bersihkan semua cache
+    \Illuminate\Support\Facades\Artisan::call('cache:clear');
+    \Illuminate\Support\Facades\Artisan::call('view:clear');
+    \Illuminate\Support\Facades\Artisan::call('config:clear');
+    \Illuminate\Support\Facades\Artisan::call('route:clear');
+    \Illuminate\Support\Facades\Cache::flush();
+    $log[] = "✓ Semua cache dibersihkan";
+
+    $result = implode("\n", $log);
+    return response(
+        "<pre style='font-family:monospace;padding:2rem;background:#0f172a;color:#4ade80;font-size:14px;'>" .
+        "=== FIX ENV DEBUG ===\n\n{$result}\n\n" .
+        "✓ SELESAI! Sekarang cek:\n" .
+        "  - https://pusatpiringkeramik.hvmdigital.id/robots.txt\n" .
+        "  - https://pusatpiringkeramik.hvmdigital.id/llms.txt\n" .
+        "  - https://pusatpiringkeramik.hvmdigital.id/sitemap.xml\n\n" .
+        "Hapus route /fix-env-debug setelah selesai!\n</pre>"
+    );
 });
 
 // TEMP: Seed categories & fix product order numbers (DELETE after running!)

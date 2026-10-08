@@ -100,7 +100,7 @@ fi
 
 # Ensure APP_DEBUG=false in existing .env file
 if [ -f "$DEPLOY_DIR/.env" ]; then
-    sed -i 's/APP_DEBUG=true/APP_DEBUG=false/g' "$DEPLOY_DIR/.env"
+    sed -i 's/APP_DEBUG=false/APP_DEBUG=true/g' "$DEPLOY_DIR/.env"
 fi
 
 echo ""
@@ -138,7 +138,7 @@ echo "--- DEPLOY SELESAI! ---"
 $tmpScript = "$env:TEMP\deploy_piringkeramik.sh"
 [System.IO.File]::WriteAllText($tmpScript, $bashScript, [System.Text.Encoding]::UTF8)
 
-Get-Content $tmpScript -Raw | & ssh -p $SSH_PORT "${SSH_USER}@${SSH_HOST}" "bash -s"
+Get-Content $tmpScript -Raw | & ssh -p $SSH_PORT -o ConnectTimeout=30 -o ServerAliveInterval=20 -o ServerAliveCountMax=6 -o StrictHostKeyChecking=no "${SSH_USER}@${SSH_HOST}" "bash -s"
 
 Remove-Item $tmpScript -ErrorAction SilentlyContinue
 
