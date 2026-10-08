@@ -1,7 +1,7 @@
 <style>
     /* ── KEUNGGULAN PREMIUM ────────────────────── */
     .cv-adv-premium {
-        background: #ffffff;
+        background: {{ \App\Models\Setting::get('page_home_value_bg') ?? '#ffffff' }};
         padding: 5rem 0;
     }
 
@@ -56,7 +56,7 @@
 
     /* Special first card: full-height accent (like about card-2) */
     .cv-adv-card-v2 {
-        background: #F1F5F9;
+        background: {{ \App\Models\Setting::get('page_home_value_card_bg') ?? '#F1F5F9' }};
         border-radius: 22px;
         padding: 2rem;
         position: relative;

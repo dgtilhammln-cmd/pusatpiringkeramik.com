@@ -1134,10 +1134,10 @@
             <div>
               <label class="pm-label">Warna Badge Label</label>
               <div class="pm-color-picker-wrap">
-                <input type="color" value="{{ $settings['page_home_aplikasi_label_color'] ?? '#94A3B8' }}"
+                <input type="color" value="{{ $settings['page_home_aplikasi_label_color'] ?? '#E2E8F0' }}"
                   onchange="document.getElementById('c_apk_label').value=this.value">
                 <input type="text" name="page_home_aplikasi_label_color" id="c_apk_label" class="pm-input"
-                  value="{{ $settings['page_home_aplikasi_label_color'] ?? '#94A3B8' }}">
+                  value="{{ $settings['page_home_aplikasi_label_color'] ?? '#E2E8F0' }}">
               </div>
             </div>
             <div>
@@ -1147,6 +1147,15 @@
                   onchange="document.getElementById('c_apk_title').value=this.value">
                 <input type="text" name="page_home_aplikasi_title_color" id="c_apk_title" class="pm-input"
                   value="{{ $settings['page_home_aplikasi_title_color'] ?? '#FFFFFF' }}">
+              </div>
+            </div>
+            <div>
+              <label class="pm-label">Warna Deskripsi Section</label>
+              <div class="pm-color-picker-wrap">
+                <input type="color" value="{{ $settings['page_home_aplikasi_desc_color'] ?? '#E2E8F0' }}"
+                  onchange="document.getElementById('c_apk_desc').value=this.value">
+                <input type="text" name="page_home_aplikasi_desc_color" id="c_apk_desc" class="pm-input"
+                  value="{{ $settings['page_home_aplikasi_desc_color'] ?? '#E2E8F0' }}">
               </div>
             </div>
           </div>

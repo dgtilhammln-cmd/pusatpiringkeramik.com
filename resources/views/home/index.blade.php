@@ -1962,13 +1962,14 @@
     <style>
         /* ── APLIKASI ─────────────────────────────── */
         .cv-apps-premium {
-            background: #0F172A;
+            background: {{ $settings['page_home_aplikasi_bg'] ?? '#0A1930' }};
             padding: 5rem 0;
             color: #ffffff;
         }
 
-        .cv-apps-premium .cv-adv-section-label { color: #94A3B8; }
-        .cv-apps-premium .cv-adv-section-title { color: #ffffff; }
+        .cv-apps-premium .cv-adv-section-label { color: {{ $settings['page_home_aplikasi_label_color'] ?? '#E2E8F0' }}; }
+        .cv-apps-premium .cv-adv-section-title { color: {{ $settings['page_home_aplikasi_title_color'] ?? '#ffffff' }}; }
+        .cv-apps-premium .cv-apps-header p { color: {{ $settings['page_home_aplikasi_desc_color'] ?? '#E2E8F0' }}; }
 
         .cv-apps-inner {
             max-width: 1200px;
@@ -2102,7 +2103,7 @@
             <div class="cv-apps-header">
                 <div class="cv-adv-section-label">{{ $settings['aplikasi_section_label'] ?? 'APLIKASI' }}</div>
                 <h2 class="cv-adv-section-title" style="margin-top:0.75rem;">{!! nl2br(e($settings['aplikasi_section_title'] ?? "Cocok untuk\nBerbagai Industri")) !!}</h2>
-                <p style="margin-top:1rem;font-size:0.875rem;color:#94A3B8;line-height:1.65;">
+                <p style="margin-top:1rem;font-size:0.875rem;line-height:1.65;">
                     {{ $settings['aplikasi_section_desc'] ?? 'Pusat Piring Keramik menyediakan perlengkapan meja makan dan tableware premium yang dirancang khusus untuk memenuhi standar operasional berbagai sektor bisnis F&B.' }}
                 </p>
             </div>
