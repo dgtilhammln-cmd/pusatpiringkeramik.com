@@ -15,8 +15,9 @@ class AboutController extends Controller
         $clients      = Client::active()->ordered()->get();
         $wa           = \App\Models\WaSetting::primary();
 
-        $comp    = Setting::get('company_name', config('app.name'));
-        $tagline = Setting::get('company_tagline', '');
+        $comp    = $settings['company_name'] ?? config('app.name');
+        $tagline = $settings['company_tagline'] ?? '';
+
         $seo = [
             'title'       => $settings['meta_title_about'] ?? ('Tentang Kami | ' . $comp),
             'description' => $settings['meta_desc_about'] ?? ($tagline ?: ('Profil Perusahaan ' . $comp)),
@@ -25,21 +26,17 @@ class AboutController extends Controller
             'canonical'   => route('about'),
         ];
 
-        $keunggulan = [
-            ['icon' => 'star', 'title' => 'Produk Berkualitas', 'desc' => 'Semua produk dari bahan zincalume dan stainless steel anti karat'],
-            ['icon' => 'shield', 'title' => 'Garansi 15 Tahun', 'desc' => 'Layanan purna jual & garansi resmi penggantian parts'],
-            ['icon' => 'tag', 'title' => 'Tanpa Listrik', 'desc' => 'Beroperasi otomatis menggunakan tenaga angin tanpa biaya listrik'],
-            ['icon' => 'map', 'title' => 'Jangkauan Nasional', 'desc' => 'Melayani pengiriman & instalasi ke seluruh Indonesia'],
-            ['icon' => 'clock', 'title' => 'Tepat Waktu', 'desc' => 'Komitmen jadwal pengiriman dan pemasangan sesuai target'],
-            ['icon' => 'hard-hat', 'title' => 'Konstruksi USA', 'desc' => 'Desain mengikuti standar USA tahan cuaca ekstrem'],
+        // Stats from settings (editable via /admin/settings)
+        $stats = [
+            'years'    => $settings['stat_years']    ?? '10+',
+            'clients'  => $settings['stat_clients']  ?? '500+',
+            'cities'   => $settings['stat_cities']   ?? '50+',
+            'products' => $settings['stat_products'] ?? '1000+',
         ];
 
-        $legalitas = [
-            ['label' => 'Akte Notaris', 'value' => $settings['akte'] ?? 'No. 47/1093/CV/VIII/2013'],
-            ['label' => 'NPWP', 'value' => $settings['npwp'] ?? '31.817.130.3-603.000'],
-            ['label' => 'NIB', 'value' => $settings['nib'] ?? '9120105110524'],
-        ];
-
-        return view('about.index', compact('settings', 'testimonials', 'clients', 'seo', 'keunggulan', 'legalitas', 'wa'));
+        return view('about.index', compact(
+            'settings', 'testimonials', 'clients', 'seo',
+            'wa', 'stats'
+        ));
     }
 }
