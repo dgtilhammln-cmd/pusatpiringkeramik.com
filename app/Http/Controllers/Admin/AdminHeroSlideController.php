@@ -46,11 +46,11 @@ class AdminHeroSlideController extends Controller
         $validated['order'] = $request->input('order', 0);
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $this->storeWebP($request->file('image'), 'hero_slides', 3448);
+            $validated['image'] = $this->storeWebP($request->file('image'), 'hero_slides', 1920, 1080);
         }
 
         if ($request->hasFile('image_mobile')) {
-            $validated['image_mobile'] = $this->storeWebP($request->file('image_mobile'), 'hero_slides', 1080);
+            $validated['image_mobile'] = $this->storeWebP($request->file('image_mobile'), 'hero_slides', 1080, 1080);
         }
 
         $count = HeroSlide::count();
@@ -94,12 +94,12 @@ class AdminHeroSlideController extends Controller
 
         if ($request->hasFile('image')) {
             $this->deleteStorageFile($heroSlide->image);
-            $validated['image'] = $this->storeWebP($request->file('image'), 'hero_slides', 3448);
+            $validated['image'] = $this->storeWebP($request->file('image'), 'hero_slides', 1920, 1080);
         }
 
         if ($request->hasFile('image_mobile')) {
             $this->deleteStorageFile($heroSlide->image_mobile);
-            $validated['image_mobile'] = $this->storeWebP($request->file('image_mobile'), 'hero_slides', 1080);
+            $validated['image_mobile'] = $this->storeWebP($request->file('image_mobile'), 'hero_slides', 1080, 1080);
         }
 
         $heroSlide->update($validated);

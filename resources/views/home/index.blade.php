@@ -563,8 +563,8 @@
 
             .cv-hero-title,
             h2.cv-hero-title {
-                font-size: 1.95rem !important;
-                line-height: 1.3 !important;
+                font-size: 3.8rem !important;
+                line-height: 1.2 !important;
                 font-weight: 500 !important;
             }
 
@@ -600,8 +600,8 @@
 
             .cv-hero-title,
             h2.cv-hero-title {
-                font-size: 1.85rem !important;
-                line-height: 1.3 !important;
+                font-size: 3.5rem !important;
+                line-height: 1.2 !important;
                 font-weight: 500 !important;
             }
 
