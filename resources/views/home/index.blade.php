@@ -144,7 +144,7 @@
             line-height: 1.2;
             letter-spacing: -0.02em;
             margin: 0;
-            white-space: normal;
+            white-space: pre-line;
             word-break: normal;
         }
 
@@ -253,11 +253,12 @@
             transform: scale(1.01);
         }
 
-        /* Card: placeholder (no image) uses fixed height */
+        /* Banner card — placeholder: proportional to 3448/914 on desktop, safe height on mobile */
         .cv-banner-card {
             position: relative;
             width: 100%;
-            height: clamp(180px, 22vw, 240px);
+            height: auto;
+            aspect-ratio: 3448 / 914;
             border-radius: 18px;
             overflow: hidden;
             background: linear-gradient(135deg, #005F41 0%, #00875A 50%, #004D34 100%);
@@ -266,10 +267,8 @@
             align-items: center;
         }
 
-        /* Card with uploaded image: respect true banner aspect ratio */
+        /* Uploaded image card — same ratio, image fills entirely */
         .cv-banner-card.has-image {
-            height: auto;
-            aspect-ratio: 3448 / 914;
             align-items: stretch;
         }
 
@@ -443,14 +442,11 @@
         }
 
         @media (max-width: 768px) {
+            /* On tablet/mobile: placeholder gets min-height so text doesn't get squished */
             .cv-banner-card {
-                height: clamp(160px, 40vw, 210px);
-                border-radius: 14px;
-            }
-
-            .cv-banner-card.has-image {
-                height: auto;
                 aspect-ratio: 3448 / 914;
+                height: auto;
+                min-height: 150px;
                 border-radius: 14px;
             }
 
@@ -467,23 +463,19 @@
 
             .cv-hero-title,
             h2.cv-hero-title {
-                font-size: 1.3rem;
+                font-size: 1.25rem;
                 line-height: 1.25;
             }
 
             .cv-hero-banner-wrap::before,
             .cv-hero-banner-wrap::after {
-                width: 12px;
+                width: 10px;
             }
 
             .cv-banner-card {
-                height: clamp(140px, 38vw, 190px);
-                border-radius: 12px;
-            }
-
-            .cv-banner-card.has-image {
-                height: auto;
                 aspect-ratio: 3448 / 914;
+                height: auto;
+                min-height: 120px;
                 border-radius: 12px;
             }
 
@@ -492,22 +484,22 @@
             }
 
             .cv-banner-content {
-                padding: 0.85rem 0.85rem;
-                gap: 0.35rem;
+                padding: 0.75rem 1rem;
+                gap: 0.3rem;
             }
 
             .cv-banner-headline {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
                 line-height: 1.3;
             }
 
             .cv-banner-pills {
-                gap: 0.25rem;
+                gap: 0.2rem;
             }
 
             .cv-banner-pill {
-                font-size: 0.65rem;
-                padding: 0.18rem 0.5rem;
+                font-size: 0.62rem;
+                padding: 0.15rem 0.45rem;
             }
         }
 
@@ -1227,14 +1219,8 @@
             {{-- Top Section --}}
             <div class="cv-hero-top">
                 <div class="cv-hero-top-left">
-                    <div class="cv-hero-badge">{{ $firstSlide->subtitle ?? 'Trusted Tableware Distributor' }}</div>
-                    <h1 class="cv-hero-title">
-                        @if($firstSlide && $firstSlide->title)
-                            {!! nl2br(e($firstSlide->title)) !!}
-                        @else
-                            Peralatan Makan Berkualitas untuk<br>Rumah & Bisnis Anda
-                        @endif
-                    </h1>
+                    <div class="cv-hero-badge" id="hero-badge">{{ $firstSlide->subtitle ?? 'Trusted Tableware Distributor' }}</div>
+                    <h1 class="cv-hero-title" id="hero-title">{{ $firstSlide ? $firstSlide->title : "Peralatan Makan Berkualitas\nuntuk Rumah & Bisnis Anda" }}</h1>
                 </div>
 
                 <div class="cv-static-logo-badge d-none d-sm-inline-flex">
@@ -1247,7 +1233,7 @@
 
             {{-- Middle Section --}}
             <div class="cv-hero-mid">
-                <div class="cv-hero-tags">
+                <div class="cv-hero-tags" id="hero-tags">
                     @if($firstSlide && $firstSlide->tags)
                         @foreach(explode(',', $firstSlide->tags) as $tag)
                             <span>{{ trim($tag) }}</span>
@@ -1261,7 +1247,7 @@
                     @endif
                 </div>
 
-                <div class="cv-hero-desc">
+                <div class="cv-hero-desc" id="hero-desc">
                     {{ $firstSlide->description ?? 'Distributor resmi peralatan makan keramik dan stainless terpercaya untuk kebutuhan usaha, bisnis, & rumah tangga.' }}
                 </div>
             </div>
@@ -1273,7 +1259,11 @@
                 <div class="swiper-wrapper">
                     @if(isset($heroSlides) && $heroSlides->count() > 0)
                         @foreach($heroSlides as $slide)
-                            <div class="swiper-slide">
+                            <div class="swiper-slide"
+                                 data-title="{{ $slide->title }}"
+                                 data-subtitle="{{ $slide->subtitle }}"
+                                 data-desc="{{ $slide->description }}"
+                                 data-tags="{{ $slide->tags }}">
                                 <div class="cv-banner-card {{ $slide->image ? 'has-image' : '' }}">
                                     @if($slide->image)
                                         <img src="{{ asset('storage/' . $slide->image) }}" class="cv-banner-uploaded-img" alt="{{ $slide->title }}">
@@ -3163,42 +3153,66 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            if (document.querySelector('.hero-banner-swiper')) {
-                const autoplayDelay = {{ $heroAutoplayMs > 0 ? $heroAutoplayMs : 5000 }};
-                const autoplayConfig = autoplayDelay > 0 ? {
-                    delay: autoplayDelay,
-                    disableOnInteraction: false,
-                } : false;
+            if (!document.querySelector('.hero-banner-swiper')) return;
 
-                new Swiper('.hero-banner-swiper', {
-                    loop: true,
-                    centeredSlides: true,
-                    slidesPerView: 1.18,
-                    spaceBetween: 24,
-                    autoplay: autoplayConfig,
-                    pagination: {
-                        el: '.hero-banner-swiper-pagination',
-                        clickable: true,
-                    },
-                    breakpoints: {
-                        0: {
-                            slidesPerView: 1,
-                            spaceBetween: 12,
-                            centeredSlides: true,
-                        },
-                        640: {
-                            slidesPerView: 1.1,
-                            spaceBetween: 16,
-                            centeredSlides: true,
-                        },
-                        1024: {
-                            slidesPerView: 1.18,
-                            spaceBetween: 24,
-                            centeredSlides: true,
-                        }
-                    }
-                });
+            const badgeEl = document.getElementById('hero-badge');
+            const titleEl = document.getElementById('hero-title');
+            const descEl  = document.getElementById('hero-desc');
+            const tagsEl  = document.getElementById('hero-tags');
+
+            function updateHeroText(swiper) {
+                const slide = swiper.slides[swiper.activeIndex];
+                if (!slide) return;
+
+                const title    = slide.dataset.title    || '';
+                const subtitle = slide.dataset.subtitle || '';
+                const desc     = slide.dataset.desc     || '';
+                const tags     = slide.dataset.tags     || '';
+
+                if (badgeEl && subtitle) badgeEl.textContent = subtitle;
+                if (titleEl && title)    titleEl.textContent = title;   /* white-space:pre-line handles newlines */
+                if (descEl  && desc)     descEl.textContent  = desc;
+                if (tagsEl  && tags) {
+                    tagsEl.innerHTML = tags.split(',').map(function(t) {
+                        return '<span>' + t.trim() + '</span>';
+                    }).join('');
+                }
             }
+
+            const autoplayDelay = {{ $heroAutoplayMs > 0 ? $heroAutoplayMs : 5000 }};
+            const autoplayConfig = autoplayDelay > 0 ? { delay: autoplayDelay, disableOnInteraction: false } : false;
+
+            const heroSwiper = new Swiper('.hero-banner-swiper', {
+                loop: true,
+                loopAdditionalSlides: 3,   /* fix: enough clones for loop with few slides */
+                centeredSlides: true,
+                spaceBetween: 24,
+                autoplay: autoplayConfig,
+                pagination: {
+                    el: '.hero-banner-swiper-pagination',
+                    clickable: true,
+                },
+                on: {
+                    slideChangeTransitionStart: updateHeroText,
+                },
+                breakpoints: {
+                    0: {
+                        slidesPerView: 1,
+                        spaceBetween: 12,
+                        centeredSlides: true,
+                    },
+                    640: {
+                        slidesPerView: 1.06,
+                        spaceBetween: 16,
+                        centeredSlides: true,
+                    },
+                    1024: {
+                        slidesPerView: 1.12,
+                        spaceBetween: 24,
+                        centeredSlides: true,
+                    }
+                }
+            });
         });
     </script>
 
