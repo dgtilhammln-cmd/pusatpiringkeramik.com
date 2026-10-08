@@ -14,10 +14,21 @@ class ServiceCategory extends Model
         'slug',
         'description',
         'image',
+        'parent_id',
         'meta_title',
         'meta_desc',
         'meta_keywords',
     ];
+
+    public function parent()
+    {
+        return $this->belongsTo(ServiceCategory::class, 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(ServiceCategory::class, 'parent_id');
+    }
 
     public function services()
     {

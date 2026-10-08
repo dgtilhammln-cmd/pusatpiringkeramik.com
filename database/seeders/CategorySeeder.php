@@ -5,217 +5,382 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\ServiceCategory;
 use App\Models\Service;
+use Illuminate\Support\Str;
 
 class CategorySeeder extends Seeder
 {
     public function run(): void
     {
-        $categories = [
+        $categoriesData = [
             [
-                'name'        => 'Agatha Paint',
-                'slug'        => 'cat-agatha-paint-531053',
-                'description' => 'Produk cat merk Agatha Paint berkualitas tinggi untuk industri dan komersial.',
-                'products'    => [
-                    'agatha-paint-agatha-hardtop-finish-5088-7321493','agatha-paint-agatha-water-proofing-7321426',
-                    'agatha-paint-agatha-top-guardian-100-7321517','agatha-paint-agatha-inorganic-zinc-silicate-7321494',
-                    'agatha-paint-cat-peredam-panas-atau-cat-penolak-panas-7046532','agatha-paint-agatha-rubber-zp-7321509',
-                    'agatha-paint-agatha-bituminous-7321479','agatha-paint-agatha-metal-primer-7321495',
-                    'agatha-paint-agatha-flooring-finish-7321492','agatha-paint-agatha-polamide-classic-7321499',
-                    'cat-kapal-agatha-paint-surabaya-harga-distributor-7045771','agatha-paint-agatha-polamide-primer-7321504',
-                    'agatha-paint-agatha-thinner-marine-coating-7497015','cat-agatha-colour-card-7053439',
-                    'agatha-paint-agatha-polamide-primer-sea-7321502','agatha-paint-agatha-pool-paint-7321506',
-                    'agatha-paint-cat-besi-7046527','agatha-paint-atalac-pro-7321475',
-                    'zinc-chromate-agatha-paint-7046534','agatha-paint-atazinc-7321478',
-                    'agatha-paint-agatha-tds-super-coating-88-7321514','agatha-paint-agatha-nadine-black-7321497',
-                    'agatha-paint-agatha-epoxy-finish-7321488','agatha-silicon-200-heat-resistance-coating-cat-tahan-panas-7312251',
-                    'agatha-paint-agatha-alkyd-finish-7321429','agatha-paint-agatha-polamide-guard-7321500',
-                    'agatha-paint-agatha-nitrolight-70np-7321498','agatha-paint-agatha-shop-primer-7321510',
-                    'agatha-paint-agatha-polamide-special-7321505','agatha-paint-agatha-epoxy-primer-7321490',
-                    'agatha-paint-agatha-silverish-al-7321513','fire-resistant-coating-agatha-paint-cat-penolak-panas-7312285',
-                    'agatha-paint-agatha-silicon-600-7321512','agatha-paint-agatha-top-guardian-80-7321516',
-                    'agatha-paint-atamine-mastic-7321477','agatha-paint-agatha-epoxy-tar-7321491',
-                    'agatha-paint-agatha-polamide-classic-7321499','colour-card-agatha-paint-7004725',
-                    'agatha-paint-agatha-cat-lapangan-atau-court-paints-7046529',
-                ],
+                'name'          => 'Mug Promosi Cap Gunung',
+                'slug'          => 'mug-promosi-cap-gunung',
+                'description'   => 'Mug promosi keramik, porcelain, dan enamel merk Cap Gunung dengan sablon/decal custom logo berkualitas tinggi. Sangat ideal untuk souvenir perusahaan, acara seminar, merchandise kantor, promo event, serta branding cafe & restoran.',
+                'meta_title'    => 'Distributor Mug Promosi Cap Gunung Custom Logo Grosir',
+                'meta_desc'     => 'Jual Mug Promosi Cap Gunung custom logo perusahaan harga grosir murah. Rekomendasi souvenir event, merchandise kantor & branding HORECA terlengkap.',
+                'meta_keywords' => 'mug promosi cap gunung, grosir mug promosi, supplier mug souvenir custom, mug keramik cap gunung, produsen mug promosi surabaya, mug souvenir kantor',
+                'parent_slug'   => null,
+                'products'      => [
+                    [
+                        'name'       => 'Mug Promosi Cap Gunung Custom Logo Enamel 350ml',
+                        'slug'       => 'mug-promosi-cap-gunung-custom-logo-enamel-350ml',
+                        'short_desc' => 'Mug enamel Cap Gunung tahan panas dengan cetak logo custom untuk souvenir outdoor & event kantor.',
+                        'meta_title' => 'Jual Mug Promosi Cap Gunung Enamel Custom Logo | UD. Sukses Makmur',
+                        'meta_desc'  => 'Mug enamel Cap Gunung 350ml custom logo perusahaan. Tahan karat, tahan panas, dan cocok untuk souvenir outdoor & merchandise event.',
+                        'meta_keywords' => 'mug enamel cap gunung, mug promosi enamel, mug souvenir custom logo, mug enamel surabaya',
+                    ],
+                    [
+                        'name'       => 'Mug Keramik Cap Gunung White Glossy Standard 11oz',
+                        'slug'       => 'mug-keramik-cap-gunung-white-glossy-11oz',
+                        'short_desc' => 'Mug keramik putih polos Cap Gunung 11oz permukaan glossy food grade cocok untuk sablon & decal logo.',
+                        'meta_title' => 'Mug Keramik Cap Gunung Putih Polos 11oz Grosir | Supplier Tableware',
+                        'meta_desc'  => 'Mug keramik Cap Gunung warna putih glossy 11oz. Standar sablon souvenir, food grade & microwave safe.',
+                        'meta_keywords' => 'mug keramik putih cap gunung, mug sablon polos, mug keramik 11oz grosir, mug promosi polos',
+                    ],
+                    [
+                        'name'       => 'Mug Promosi Cap Gunung Two-Tone Color Inner & Handle',
+                        'slug'       => 'mug-promosi-cap-gunung-two-tone-color',
+                        'short_desc' => 'Mug keramik dua warna Cap Gunung dengan kombinasi warna menarik pada bagian dalam dan pegangan mug.',
+                        'meta_title' => 'Mug Keramik Two Tone Cap Gunung Custom Logo Souvenir',
+                        'meta_desc'  => 'Jual mug keramik two tone Cap Gunung warna-warni. Mug promosi eksklusif dengan cetak logo presisi tinggi.',
+                        'meta_keywords' => 'mug two tone cap gunung, mug warna dalam, mug promosi dua warna, mug souvenir berwarna',
+                    ],
+                    [
+                        'name'       => 'Mug Promosi Cap Gunung Vintage Coating Sablon Logo',
+                        'slug'       => 'mug-promosi-cap-gunung-vintage-coating',
+                        'short_desc' => 'Mug keramik bergaya vintage klasik Cap Gunung untuk resto, cafe retro, dan merchandise bergaya unik.',
+                        'meta_title' => 'Mug Vintage Cap Gunung Keramik Klasik Custom Branding',
+                        'meta_desc'  => 'Mug keramik vintage Cap Gunung desain klasik tahan lama. Pilihan favorit cafe & resto bertema retro.',
+                        'meta_keywords' => 'mug vintage cap gunung, mug keramik jadul, mug cafe retro, mug promosi unik',
+                    ],
+                    [
+                        'name'       => 'Mug Keramik Cap Gunung Sublimasi Premium Food Grade',
+                        'slug'       => 'mug-keramik-cap-gunung-sublimasi-premium',
+                        'short_desc' => 'Mug coated khusus sublimasi Cap Gunung dengan hasil cetak warna tajam, jernih, dan tidak mudah mengelupas.',
+                        'meta_title' => 'Mug Sublimasi Cap Gunung Premium Food Grade Grosir',
+                        'meta_desc'  => 'Distributor mug coating sublimasi Cap Gunung. Siap cetak foto & logo full color hasil tajam mengkilap.',
+                        'meta_keywords' => 'mug sublimasi cap gunung, mug coating souvenir, mug pres foto custom, grosir mug sublimasi',
+                    ],
+                ]
             ],
             [
-                'name'        => 'Hempel Paint',
-                'slug'        => 'cat-hempel-paint-531054',
-                'description' => 'Produk cat merk Hempel Paint untuk perlindungan korosi industri dan maritim.',
-                'products'    => [
-                    'hempel-15400-hempadur-7318960','hempel-52140-hempalin-enamel-7318988',
-                    'hempel-51570-hempels-silvium-7318987','hempel-56990-hempel-versiline-cui-7319000',
-                    'hempel-45540-hempadur-multi-strength-7318979','hempel-120sg-hempels-fast-drying-primer-7318944',
-                    'hempel-15460-hempadur-7318961','hempel-85671-hempadur-7319006',
-                    'hempel-02220-hempels-marine-varnish-7316133','hempel-45751-hempadur-multi-strength-7318980',
-                    'hempel-15570-hempadur-7318963','hempel-16490-hempels-zinc-primer-7318970',
-                    'hempel-05570-hempels-tropaline-pu-lacquer-7317591','hempel-15780-hempels-galvosil-7318966',
-                    'hempel-35560-hempadur-7318976','hempel-17634-hempadur-quattro-7318975',
-                    'hempel-15790-hempels-galvosil-7318967','hempel-35870-hempadur-multi-strength-gf-7318977',
-                    'cat-hempel-paint-colour-card-7053437','hempel-15890-hempels-shop-primer-zs-7318968',
-                    'hempel-17630-hempadur-7318974','hempel-46330-hempatex-hi-build-7318983',
-                    'hempel-15553-hempadur-7318962','hempel-56914-hempels-silicone-7318998',
-                    'hempel-13624-hempaquick-primer-7318946','hempel-78950-hempels-antifouling-globic-9000-7319005',
-                    'hempel-12050-hempalin-primer-7318943','hempel-05990-hempadur-sealer-7318938',
-                    'hempel-56540-hempels-hi-vee-7318997','hempel-47182-hempadur-7318985',
-                    'hempel-15341-hempadur-zinc-7319008','hempel-46410-hempatex-hi-build-7318984',
-                    'hempel-15300-hempadur-primer-7319009','hempel-13140-hempels-uniprimer-7318945',
-                    'hempel-17360-hempadur-zinc-7318972','hempel-15asg-hempels-15asg-7318969',
-                    'hempel-55102-hempels-polyenamel-7318990','hempel-15700-hempels-galvosil-7318965',
-                    'hempel-56940-hempels-silicone-acrylic-7318999','hempel-1736g-hempadur-avantguard-750-7318973',
-                    'hempel-55210-hempathane-7318992','hempel-16900-hempels-silicone-zinc-7318971',
-                    'hempel-55610-hempathane-hs-7318993','hempel-45881-hempadur-mastic-7318981',
-                    'hempel-56360-hempatex-enamel-7318995','hempel-15590-hempadur-7318964',
-                    'hempel-47550-hempadur-mastic-7318986','hempel-538sg-hempels-fast-dry-enamel-7318989',
-                    'hempel-136id-hempels-primer-7318947','hempel-45200-hempadur-hi-build-7318978',
-                    'hempel-45950-hempaprime-multi-500-7318982',
-                ],
+                'name'          => 'Kaibon',
+                'slug'          => 'kaibon',
+                'description'   => 'Koleksi piranti makan keramik & porselen Kaibon modern elegan. Dirancang khusus untuk memenuhi standar keindahan estetika serta ketahanan operasional hotel bintang lima, restoran fine dining, cafe kekinian, dan catering profesional.',
+                'meta_title'    => 'Distributor Tableware Kaibon Porcelain & Keramik Premium',
+                'meta_desc'     => 'Jual perlengkapan makan Kaibon keramik & porselen kualitas ekspor. Piring, mangkok & tea set Kaibon harga grosir distributor terpercaya.',
+                'meta_keywords' => 'kaibon ceramic, tableware kaibon, piring keramik kaibon, mangkok porselen kaibon, distributor kaibon surabaya, piring resto kaibon',
+                'parent_slug'   => null,
+                'products'      => [
+                    [
+                        'name'       => 'Piring Makan Kaibon Porcelain Dinner Plate 10 Inch',
+                        'slug'       => 'piring-makan-kaibon-porcelain-dinner-plate-10-inch',
+                        'short_desc' => 'Piring makan porselen Kaibon ukuran 10 inchi berdesain mewah, tahan goresan pisau, dan food-grade.',
+                        'meta_title' => 'Piring Makan Kaibon Porcelain 10 Inch Hotel & Resto Grade',
+                        'meta_desc'  => 'Jual piring makan Kaibon porselen 10 inch polos mewah. Pilihan utama hotel bintang dan restoran fine dining.',
+                        'meta_keywords' => 'piring makan kaibon, kaibon dinner plate, piring porselen 10 inch, piring hotel kaibon',
+                    ],
+                    [
+                        'name'       => 'Mangkok Sup Kaibon Ceramic Deep Bowl 7 Inch',
+                        'slug'       => 'mangkok-sup-kaibon-ceramic-deep-bowl-7-inch',
+                        'short_desc' => 'Mangkok sup keramik Kaibon 7 inchi bentuk melengkung anggun, tahan panas tinggi dan mudah dibersihkan.',
+                        'meta_title' => 'Mangkok Sup Kaibon Ceramic Deep Bowl 7 Inch Grosir',
+                        'meta_desc'  => 'Mangkok sup dan soto Kaibon keramik 7 inchi. Tahan panas microwave & dishwasher safe untuk resto.',
+                        'meta_keywords' => 'mangkok sup kaibon, mangkok keramik kaibon 7 inch, kaibon deep bowl, mangkok soto kaibon',
+                    ],
+                    [
+                        'name'       => 'Piring Ceper Kaibon Fine Ceramic Salad Plate 8 Inch',
+                        'slug'       => 'piring-ceper-kaibon-fine-ceramic-salad-plate-8-inch',
+                        'short_desc' => 'Piring ceper 8 inchi Kaibon untuk penyajian appetizer, dessert, kue, dan salad dengan kesan eksklusif.',
+                        'meta_title' => 'Piring Ceper Kaibon Salad & Dessert Plate 8 Inch',
+                        'meta_desc'  => 'Piring ceper Kaibon 8 inchi porselen halus. Cocok untuk salad, dessert, dan hidangan pembuka restoran.',
+                        'meta_keywords' => 'piring ceper kaibon, piring dessert kaibon, kaibon salad plate, piring kue keramik',
+                    ],
+                    [
+                        'name'       => 'Cangkir & Saucer Set Kaibon Porcelain Coffee Cup',
+                        'slug'       => 'cangkir-saucer-set-kaibon-porcelain-coffee-cup',
+                        'short_desc' => 'Set cangkir kopi dan tatakan porselen Kaibon penyaji kopi dan teh dengan sentuhan kemewahan istimewa.',
+                        'meta_title' => 'Cangkir Saucer Set Kaibon Porcelain Kopi & Teh Cafe',
+                        'meta_desc'  => 'Set cangkir dan tatakan porselen Kaibon untuk cafe dan hotel. Desain ergonomis dan finishing berkilau.',
+                        'meta_keywords' => 'cangkir kaibon, cangkir kopi porcelain kaibon, cangkir saucer set, cangkir teh hotel kaibon',
+                    ],
+                    [
+                        'name'       => 'Piring Saji Kaibon Oval Serving Platter 12 Inch',
+                        'slug'       => 'piring-saji-kaibon-oval-serving-platter-12-inch',
+                        'short_desc' => 'Piring saji oval Kaibon 12 inchi untuk hidangan ikan bakar, seafood, prasmanan, dan menu tengah meja.',
+                        'meta_title' => 'Piring Saji Oval Kaibon 12 Inch Porselen Restoran',
+                        'meta_desc'  => 'Jual piring saji bentuk oval merk Kaibon ukuran 12 inchi. Material keramik porselen tebal tahan benturan.',
+                        'meta_keywords' => 'piring saji oval kaibon, piring ikan kaibon, kaibon serving platter, piring prasmanan kaibon',
+                    ],
+                ]
             ],
             [
-                'name'        => 'International Paint',
-                'slug'        => 'cat-international-paint-531055',
-                'description' => 'Produk cat merk International Paint untuk perlindungan industri dan infrastruktur.',
-                'products'    => [
-                    'enviroline-225-sulfuric-hydrochloric-acid-resistant-lining-7315648',
-                    'international-paint-interchar-2060-solvent-base-cellulosic-7315862',
-                    'cat-besi-international-paint-7047645',
-                    'international-paint-intergard-740-cosmetic-epoxy-finish-7315664',
-                    'international-paint-intertherm-875-high-temperature-silicone-acrylic-7315830',
-                    'international-paint-interzinc-52-epoxy-zinc-rich-primer-7315853',
-                    'international-paint-intergard-263-tar-free-modified-epoxy-tie-coat-7315656',
-                    'international-paint-intergard-475hs-high-build-epoxy-coating-7315661',
-                    'international-paint-intergard-400-pure-epoxy-primer-7315658',
-                    'international-paint-interzinc-22-inorganic-zinc-rich-silicate-primer-7315852',
-                    'international-paint-interline-984-solvent-free-chemical-resistant-7315671',
-                    'international-paint-intergard-269-quick-drying-epoxy-primer-7315657',
-                    'international-paint-interlac-665-one-pack-alkyd-gloss-finish-7315665',
-                    'cat-besi-atau-cat-international-paint-surabaya-harga-distributor-7045773',
-                    'international-paint-interseal-670hs-surface-tolerant-epoxy-7315667',
-                    'international-paint-interspeed-376-tbt-free-antifouling-7315856',
-                    'international-paint-interbond-201-epoxy-primer-finish-7315652',
-                    'international-paint-interthane-990-acrylic-polyurethane-finish-7315698',
-                    'international-paint-intertuf-262-anticorrosive-epoxy-primer-7315851',
-                    'cat-international-paint-7053436',
-                    'international-paint-interkote-1460-light-weight-cement-fireproofing-7315863',
-                    'cat-international-paint-colour-card-7053435',
-                    'international-paint-interkote-1560-high-density-cement-fireproofin-7315864',
-                    'international-paint-interswift-6800hs-selfpolishing-copolymer-7315858',
-                    'international-paint-interline-994-chemical-resistant-7315672',
-                    'international-paint-interprime-198-one-pack-alkyd-primer-7315666',
-                    'international-paint-intertherm-50-high-temperature-silicone-540c-7315702',
-                    'international-paint-interline-1064-chemical-abrasion-resistant-7315674',
-                    'international-paint-interzone-954-splash-zone-modified-epoxy-7315859',
-                    'international-paint-chartek-7-high-performance-intumescent-fireproof-7315860',
-                    'international-paint-interline-399-epoxy-novolac-tank-lining-7315669',
-                    'international-paint-interline-850-chemical-resistant-epoxy-phenoli-7315670',
-                    'international-paint-intertuf-16-high-build-bituminous-coating-7315850',
-                ],
+                'name'          => 'Toyoki',
+                'slug'          => 'toyoki',
+                'description'   => 'Produk tableware keramik & stoneware gaya Jepang merk Toyoki. Tahan terhadap suhu panas ekstrem, ramah microwave & dishwasher, tahan goresan, serta sangat pas untuk restoran Japanese Food, Ramen Bar, Sushibar, dan Modern Asian Dining.',
+                'meta_title'    => 'Supplier Piring & Mangkok Keramik Toyoki HORECA Grosir',
+                'meta_desc'     => 'Distributor piring keramik Toyoki & perlengkapan makan ala Jepang terpercaya. Kualitas food grade, microwave safe, harga grosir terbaik.',
+                'meta_keywords' => 'piring toyoki, mangkok toyoki keramik, japanese tableware toyoki, supplier toyoki indonesia, piring resto jepang toyoki',
+                'parent_slug'   => null,
+                'products'      => [
+                    [
+                        'name'       => 'Piring Keramik Toyoki Japanese Style Rectangular Dish 10 Inch',
+                        'slug'       => 'piring-keramik-toyoki-japanese-style-rectangular-10-inch',
+                        'short_desc' => 'Piring persegi panjang Toyoki gaya Jepang untuk sajian sushi, sashimi, gyoza, dan gorengan tempura.',
+                        'meta_title' => 'Piring Keramik Toyoki Persegi Panjang 10 Inch Japanese Style',
+                        'meta_desc'  => 'Piring saji persegi panjang Toyoki 10 inchi. Desain autentik Jepang sangat cocok untuk restoran sushi & ramen.',
+                        'meta_keywords' => 'piring toyoki persegi, piring sushi toyoki, japanese dish toyoki, piring saji tempura toyoki',
+                    ],
+                    [
+                        'name'       => 'Mangkok Ramen Toyoki Stoneware Ceramic Bowl 8 Inch',
+                        'slug'       => 'mangkok-ramen-toyoki-stoneware-ceramic-bowl-8-inch',
+                        'short_desc' => 'Mangkok ramen tebal Toyoki ukuran 8 inchi material stoneware yang mampu menahan suhu kuah ramen panas lebih lama.',
+                        'meta_title' => 'Mangkok Ramen Toyoki Stoneware 8 Inch Tahan Panas',
+                        'meta_desc'  => 'Jual mangkok ramen Toyoki 8 inch berbahan stoneware tebal. Menjaga kuah tetap hangat, tidak mudah retak.',
+                        'meta_keywords' => 'mangkok ramen toyoki, mangkok stoneware toyoki, mangkok kuah jepang, supplier mangkok ramen',
+                    ],
+                    [
+                        'name'       => 'Piring Ceper Toyoki Modern Minimalist Dinner Plate 9 Inch',
+                        'slug'       => 'piring-ceper-toyoki-modern-minimalist-9-inch',
+                        'short_desc' => 'Piring ceper 9 inchi Toyoki dengan tekstur glaze khas yang memberi nuansa estetis pada hidangan utama.',
+                        'meta_title' => 'Piring Ceper Toyoki Modern Minimalist 9 Inch Grosir',
+                        'meta_desc'  => 'Piring ceper Toyoki 9 inchi minimalis modern. Pilihan favorit resto bistro dan cafe kekinian.',
+                        'meta_keywords' => 'piring ceper toyoki, piring minimalis toyoki, toyoki dinner plate, piring resto kekinian',
+                    ],
+                    [
+                        'name'       => 'Mangkok Nasi Toyoki Ceramic Rice Bowl 5 Inch',
+                        'slug'       => 'mangkok-nasi-toyoki-ceramic-rice-bowl-5-inch',
+                        'short_desc' => 'Mangkok nasi keramik Toyoki 5 inchi untuk nasi bento, chawanmushi, dan hidangan pendamping.',
+                        'meta_title' => 'Mangkok Nasi Toyoki Ceramic Rice Bowl 5 Inch',
+                        'meta_desc'  => 'Mangkok nasi keramik Toyoki 5 inch gaya Jepang. Desain kokoh, nyaman digenggam, food grade.',
+                        'meta_keywords' => 'mangkok nasi toyoki, toyoki rice bowl, mangkok bento toyoki, mangkok kecil jepang',
+                    ],
+                    [
+                        'name'       => 'Piring Saji Toyoki Fish Platter Heavy Duty Ceramic 12 Inch',
+                        'slug'       => 'piring-saji-toyoki-fish-platter-ceramic-12-inch',
+                        'short_desc' => 'Piring saji ikan dan hidangan laut Toyoki 12 inchi berbahan keramik tebal heavy-duty anti retak.',
+                        'meta_title' => 'Piring Saji Ikan Toyoki Fish Platter 12 Inch Keramik',
+                        'meta_desc'  => 'Piring saji bentuk ikan Toyoki 12 inch. Tahan banting, ideal untuk hidangan ikan steam & seafood resto.',
+                        'meta_keywords' => 'piring saji ikan toyoki, toyoki fish platter, piring seafood toyoki, piring saji keramik tebal',
+                    ],
+                ]
             ],
             [
-                'name'        => 'Jotun Paint',
-                'slug'        => 'cat-jotun-paint-531056',
-                'description' => 'Produk cat merk Jotun Paint untuk perlindungan korosi dan estetika bangunan.',
-                'products'    => [
-                    'jotun-pioner-topcoat-acrylic-semi-gloss-finish-7320706',
-                    'jotun-jotamastic-80-polyamine-epoxy-mastic-7320568',
-                    'jotun-jotaetch-modified-epoxy-primer-7320507',
-                    'jotun-aluflex-alkyd-aluminum-finish-7320428',
-                    'jotun-penguard-express-fast-drying-amine-cured-epoxy-7320670',
-                    'jotun-hardtop-xp-acrylic-polyurethane-gloss-finish-7320499',
-                    'jotun-penguard-midcoat-polyamide-cured-epoxy-7320684',
-                    'jotun-alkyd-primer-qd-zinc-phosphate-reinforced-alkyd-7320422',
-                    'jotun-epoxy-hr-polyamine-cured-phenolic-novolac-epoxy-7320489',
-                    'jotun-penguard-universal-abrasion-resistant-epoxy-7320695',
-                    'jotun-aluminum-paint-hr-styrene-modified-alkyd-7320446',
-                    'jotun-resist-86-inorganic-zinc-ethyl-silicate-primer-7320715',
-                    'jotun-safeguard-universal-es-vinyl-epoxy-tie-coat-7320723',
-                    'cat-jotun-paint-7053434',
-                    'jotun-resist-78-inorganic-zinc-ethyl-silicate-primer-7320713',
-                    'jotun-alkyd-high-gloss-finish-7320420',
-                    'jotun-hardtop-clear-aliphatic-acrylic-polyurethane-finish-7320495',
-                    'jotun-jotamastic-80-aluminum-surface-tolerant-epoxy-mastic-7320573',
-                    'jotun-jotatemp-540-zinc-ethyl-silicate-primer-7320653',
-                    'jotun-penguard-fc-high-molecular-epoxy-primer-finish-7320677',
-                    'jotun-reflecting-traffic-paint-acrylic-road-marking-7320709',
-                    'jotun-barrier-77-zinc-rich-polyamide-cured-epoxy-primer-7320475',
-                    'jotun-marathon-xhb-glass-flake-reinforced-epoxy-7320669',
-                    'jotun-seaforce-active-acrylic-hydrolysing-antifouling-7320730',
-                    'jotun-alkyd-primer-7320418',
-                    'jotun-barrier-65-zinc-rich-polyamide-cured-epoxy-primer-7320473',
-                    'jotun-jotafloor-solvent-free-primer-7320534',
-                    'jotun-jotafloor-sealer-transparent-concrete-floor-epoxy-primer-7320527',
-                    'jotun-penguard-topcoat-polyamide-cured-epoxy-7320689',
-                    'jotun-penguard-primer-polyamide-cured-epoxy-7320687',
-                    'jotun-jotamastic-70-surface-tolerant-epoxy-mastic-7320564',
-                    'jotun-jotamastic-90-surface-tolerant-epoxy-mastic-7320648',
-                    'jotun-pilot-ii-alkyd-top-coat-gloss-finish-7320698',
-                    'jotun-jotaguard-82-polyamine-cured-epoxy-coating-7320541',
-                    'jotun-marathon-glass-flake-polyamine-cured-abrasion-resistant-epoxy-7320664',
-                    'jotun-resist-65-inorganic-zinc-ethyl-silicate-primer-7320710',
-                    'jotun-alkyd-high-gloss-qd-finish-7320424',
-                    'jotun-solvalitt-600c-heat-resistant-silicone-acrylic-7320734',
-                    'jotun-jotafloor-sl-universal-abrasion-impact-resistant-epoxy-7320531',
-                    'jotun-jotachar-1709-intumescent-hydrocarbon-fireproofing-epoxy-7320504',
-                    'jotun-chemflake-special-chemical-resistant-vinyl-ester-coating-7320486',
-                ],
+                'name'          => 'Cap Gunung (Stainless Ware)',
+                'slug'          => 'cap-gunung-stainless-ware',
+                'description'   => 'Lini perlengkapan makan stainless steel Cap Gunung (Stainless Ware) berbahan stainless steel kualitas food-grade tinggi. Anti karat, tebal, tahan lama, mengkilap, dan sangat cocok untuk operasional hotel, restoran, catering, hingga kantin pabrik.',
+                'meta_title'    => 'Grosir Peralatan Makan Stainless Ware Cap Gunung Anti Karat',
+                'meta_desc'     => 'Supplier sendok, garpu & peralatan makan Cap Gunung Stainless Ware. Bahan stainless steel food grade tebal & tahan karat untuk hotel & restoran.',
+                'meta_keywords' => 'cap gunung stainless ware, sendok cap gunung, garpu stainless cap gunung, peralatan makan stainless hotel, grosir alat makan stainless',
+                'parent_slug'   => null,
+                'products'      => [
+                    [
+                        'name'       => 'Sendok Makan Cap Gunung Stainless Steel Thick Grade (12 Pcs)',
+                        'slug'       => 'sendok-makan-cap-gunung-stainless-steel-thick-12pcs',
+                        'short_desc' => 'Sendok makan stainless steel Cap Gunung tebal anti bengkok, permukaan halus mengkilap isi 12 pcs per pax.',
+                        'meta_title' => 'Sendok Makan Stainless Cap Gunung Thick Grade Isi 12 Pcs',
+                        'meta_desc'  => 'Jual sendok makan stainless Cap Gunung tebal & mengkilap. Anti karat, tahan lama untuk restoran & rumah tangga.',
+                        'meta_keywords' => 'sendok makan cap gunung, sendok stainless cap gunung, grosir sendok makan, sendok tebal anti karat',
+                    ],
+                    [
+                        'name'       => 'Garpu Makan Cap Gunung Stainless Steel Heavy Duty (12 Pcs)',
+                        'slug'       => 'garpu-makan-cap-gunung-stainless-steel-heavy-duty-12pcs',
+                        'short_desc' => 'Garpu makan stainless steel Cap Gunung dengan gerigi presisi, tebal, serta nyaman digunakan.',
+                        'meta_title' => 'Garpu Makan Stainless Cap Gunung Heavy Duty Isi 12 Pcs',
+                        'meta_desc'  => 'Garpu makan stainless steel Cap Gunung kualitas heavy duty. Anti bengkok dan cocok untuk catering & resto.',
+                        'meta_keywords' => 'garpu makan cap gunung, garpu stainless cap gunung, grosir garpu stainless, peralatan makan resto',
+                    ],
+                    [
+                        'name'       => 'Sendok Teh & Kopi Cap Gunung Stainless Steel Premium',
+                        'slug'       => 'sendok-teh-kopi-cap-gunung-stainless-steel-premium',
+                        'short_desc' => 'Sendok teh dan kopi stainless steel Cap Gunung ukuran mini yang pas untuk cangkir minuman hotel dan cafe.',
+                        'meta_title' => 'Sendok Teh & Kopi Cap Gunung Stainless Steel Premium',
+                        'meta_desc'  => 'Sendok teh kecil Cap Gunung bahan stainless steel mengkilap. Ideal untuk usaha cafe, resto, dan cangkir kopi.',
+                        'meta_keywords' => 'sendok teh cap gunung, sendok kopi stainless, sendok kecil cap gunung, sendok dessert stainless',
+                    ],
+                    [
+                        'name'       => 'Pisau Steak Cap Gunung Stainless Steel Table Knife',
+                        'slug'       => 'pisau-steak-cap-gunung-stainless-steel-table-knife',
+                        'short_desc' => 'Pisau makan / pisau steak stainless Cap Gunung bergerigi tajam untuk pemotongan daging restoran steakhouse.',
+                        'meta_title' => 'Pisau Steak Stainless Cap Gunung Table Knife Restoran',
+                        'meta_desc'  => 'Pisau steak stainless steel Cap Gunung tajam & tahan karat. Pegangan mantap untuk kebutuhan resto & hotel.',
+                        'meta_keywords' => 'pisau steak cap gunung, table knife stainless, pisau makan cap gunung, pisau resto stainless',
+                    ],
+                    [
+                        'name'       => 'Tray Saji Stainless Steel Cap Gunung Heavy Duty 40cm',
+                        'slug'       => 'tray-saji-stainless-steel-cap-gunung-heavy-duty-40cm',
+                        'short_desc' => 'Baki / tray saji stainless steel Cap Gunung ukuran 40cm serbaguna untuk pengantaran makanan catering & hotel.',
+                        'meta_title' => 'Baki Tray Saji Stainless Steel Cap Gunung 40cm Catering',
+                        'meta_desc'  => 'Baki saji stainless steel Cap Gunung 40cm tebal & tidak mudah penyok. Praktis untuk waiter resto & catering.',
+                        'meta_keywords' => 'tray saji stainless cap gunung, baki catering stainless, baki makanan stainless, tray saji hotel 40cm',
+                    ],
+                ]
             ],
             [
-                'name'        => 'PPG Sigma Paint',
-                'slug'        => 'cat-sigma-coating-531058',
-                'description' => 'Produk cat merk PPG Sigma untuk pelindung industri maritim dan infrastruktur.',
-                'products'    => [
-                    'ppg-sigma-paint-sigmadur-550-7319191','ppg-sigma-paint-sigmaweld-120-7319252',
-                    'ppg-sigma-paint-sigma-glide-790-7319195','ppg-sigma-paint-sigma-vicote-63-7319153',
-                    'ppg-sigma-paint-phenguard-930-7319293','ppg-sigma-paint-sigmacover-620-7319187',
-                    'ppg-sigma-paint-phenguard-940-7319294','ppg-sigma-paint-sigmaprime-200-7319211',
-                    'ppg-sigma-paint-sigmazinc-158-7319266','ppg-sigma-paint-sigmazinc-160-7319269',
-                    'ppg-sigma-paint-sigmaguard-csf-650-7319205','ppg-sigma-paint-sigmatherm-350-7319246',
-                    'ppg-sigma-paint-sigma-ecol-iv-7319147','ppg-sigma-paint-steelguard-550-7319290',
-                    'ppg-sigma-paint-sigmacover-246-7319154','ppg-sigma-paint-sigmacover-380-7319160',
-                    'ppg-sigma-paint-sigmarine-48-7319218','ppg-sigma-paint-novaguard-840-7319292',
-                    'ppg-sigma-paint-sigmaguard-720-7319202','ppg-sigma-paint-sigmarite-37g1-7319222',
-                    'ppg-sigma-paint-sigmacover-435-7319164','ppg-sigma-paint-sigmazinc-9-7319258',
-                    'ppg-sigma-paint-sigmazinc-109hs-7319263','ppg-sigma-paint-sigmaterm-230-7319237',
-                    'ppg-sigma-paint-sigmacover-410-7319162','ppg-sigma-paint-sigmazinc-11-7319261',
-                    'ppg-sigma-paint-sigmacover-456-7319167','ppg-sigma-paint-pittchar-xp-7319291',
-                    'ppg-sigma-paint-sigmatherm-175-7319231','ppg-sigma-paint-sigmacover-280-7319159',
-                    'ppg-sigma-paint-sigmacover-630-7319189','ppg-sigma-paint-sigma-line-2000-7319209',
-                    'ppg-sigma-paint-sigmashield-460-7319228','ppg-sigma-paint-sigmacover-522-7319176',
-                    'ppg-sigma-paint-sigmacover-300-7319157','ppg-sigma-paint-sigmatherm-500-7319248',
-                    'ppg-sigma-paint-sigmarine-24-7319214','ppg-sigma-paint-sigmacover-525-7319185',
-                ],
+                'name'          => 'Piring Cap Gunung',
+                'slug'          => 'piring-cap-gunung',
+                'description'   => 'Piring keramik & porselen Cap Gunung pilihan terfavorit di Indonesia. Memiliki ketahanan benturan ekstra, glazuur halus mengkilap, food-grade standar internasional, serta tersedia dalam berbagai varian piring cekung, piring ceper, piring list mas, dan piring saji.',
+                'meta_title'    => 'Distributor Resmi Piring Cap Gunung Keramik Grosir Pabrik',
+                'meta_desc'     => 'Pusat agen resmi piring keramik Cap Gunung. Menyediakan piring ceper, piring cekung & piring saji harga grosir murah untuk restoran & catering.',
+                'meta_keywords' => 'piring cap gunung, distributor piring cap gunung, piring keramik cap gunung surabaya, pabrik piring cap gunung, piring cekung cap gunung',
+                'parent_slug'   => null,
+                'products'      => [
+                    [
+                        'name'       => 'Piring Cekung Cap Gunung Keramik Putih Polos 9 Inch',
+                        'slug'       => 'piring-cekung-cap-gunung-keramik-putih-polos-9-inch',
+                        'short_desc' => 'Piring cekung keramik putih polos Cap Gunung 9 inchi standar utama restoran, warung makan, dan catering.',
+                        'meta_title' => 'Piring Cekung Cap Gunung Putih Polos 9 Inch Grosir Resto',
+                        'meta_desc'  => 'Distributor piring cekung Cap Gunung keramik putih polos 9 inch. Sangat tebal, food grade, dan harga grosir pabrik.',
+                        'meta_keywords' => 'piring cekung cap gunung, piring keramik 9 inch, piring makan putih cap gunung, grosir piring resto',
+                    ],
+                    [
+                        'name'       => 'Piring Ceper Cap Gunung Keramik List Mas 10 Inch',
+                        'slug'       => 'piring-ceper-cap-gunung-keramik-list-mas-10-inch',
+                        'short_desc' => 'Piring ceper keramik Cap Gunung 10 inchi dengan hiasan garis emas (list mas) mewah untuk pesta & gedung pertemuan.',
+                        'meta_title' => 'Piring Ceper Cap Gunung Keramik List Mas 10 Inch',
+                        'meta_desc'  => 'Jual piring ceper Cap Gunung list mas 10 inch. Menghadirkan kesan elegan pada hidangan pesta & resepsi.',
+                        'meta_keywords' => 'piring list mas cap gunung, piring ceper 10 inch, piring pesta keramik, piring emas cap gunung',
+                    ],
+                    [
+                        'name'       => 'Piring Cekung Cap Gunung Motif Bunga Klasik 8 Inch',
+                        'slug'       => 'piring-cekung-cap-gunung-motif-bunga-klasik-8-inch',
+                        'short_desc' => 'Piring cekung Cap Gunung 8 inchi bermotif bunga klasik legendaris yang disukai rumah tangga & usaha kuliner.',
+                        'meta_title' => 'Piring Cekung Cap Gunung Motif Bunga Klasik 8 Inch',
+                        'meta_desc'  => 'Piring cekung motif bunga Cap Gunung 8 inch. Motif cetak tahan pudar, keramik tebal anti retak.',
+                        'meta_keywords' => 'piring motif bunga cap gunung, piring bunga jadul, piring cekung 8 inch, piring makan keluarga',
+                    ],
+                    [
+                        'name'       => 'Piring Makan Cap Gunung Porcelain White Hotel Grade 9.5 Inch',
+                        'slug'       => 'piring-makan-cap-gunung-porcelain-white-hotel-grade',
+                        'short_desc' => 'Piring makan porselen putih polos Cap Gunung 9.5 inchi berstandar hotel bintang tiga ke atas.',
+                        'meta_title' => 'Piring Makan Porselen Cap Gunung Hotel Grade 9.5 Inch',
+                        'meta_desc'  => 'Piring makan porselen putih Cap Gunung 9.5 inchi standar hotel. Kilau sempurna dan ekstra tahan gores.',
+                        'meta_keywords' => 'piring porselen cap gunung, piring putih hotel, piring makan 9.5 inch, piring porcelain polos',
+                    ],
+                    [
+                        'name'       => 'Piring Saji Oval Cap Gunung Keramik Tebal 12 Inch',
+                        'slug'       => 'piring-saji-oval-cap-gunung-keramik-tebal-12-inch',
+                        'short_desc' => 'Piring saji bentuk oval Cap Gunung 12 inchi keramik tebal untuk sajian lauk pauk tengah meja.',
+                        'meta_title' => 'Piring Saji Oval Cap Gunung Keramik Tebal 12 Inch',
+                        'meta_desc'  => 'Piring saji oval keramik Cap Gunung 12 inch. Ideal untuk lauk makan bersama, ikan goreng, dan prasmanan.',
+                        'meta_keywords' => 'piring saji oval cap gunung, piring lauk cap gunung, piring besar keramik, piring oval 12 inch',
+                    ],
+                ]
             ],
             [
-                'name'        => 'CV. Bintang Energy Surabaya Own Brand',
-                'slug'        => 'cat-pt-biner-531052',
-                'description' => 'Produk merk sendiri CV. Bintang Energy Surabaya untuk kebutuhan cat jalan, cat besi, dan pelapis khusus.',
-                'products'    => [
-                    'cat-jalan-road-line-paint-7004647',
-                    'cat-anti-kimia-7047651',
-                    'cat-galvanis-7047658',
-                    'cat-jalan-atau-road-paint-7053449',
-                    'cat-jalan-raya-7047659',
-                    'cat-besi-dan-kayu-7047655',
-                ],
+                'name'          => 'Mangkok Cap Gunung',
+                'slug'          => 'mangkok-cap-gunung',
+                'description'   => 'Mangkok keramik & porselen merk Cap Gunung khusus kuliner Indonesia. Tersedia berbagai ukuran mangkok bakso, mangkok mi ayam, mangkok soto, mangkok sup, hingga mangkok cobek keramik dengan ketahanan panas luar biasa.',
+                'meta_title'    => 'Jual Mangkok Keramik Cap Gunung Bakso & Sup Grosir Murah',
+                'meta_desc'     => 'Distributor mangkok keramik Cap Gunung terlengkap. Mangkok bakso, mangkok sup, mangkok ayam & mangkok ramen porselen harga grosir pabrik.',
+                'meta_keywords' => 'mangkok cap gunung, mangkok keramik cap gunung, mangkok bakso cap gunung, supplier mangkok cap gunung, mangkok sup porselen',
+                'parent_slug'   => 'piring-cap-gunung',
+                'products'      => [
+                    [
+                        'name'       => 'Mangkok Bakso Cap Gunung Keramik Putih 7 Inch',
+                        'slug'       => 'mangkok-bakso-cap-gunung-keramik-putih-7-inch',
+                        'short_desc' => 'Mangkok bakso keramik Cap Gunung 7 inchi standar usaha bakso, mie ayam, dan soto seluruh Indonesia.',
+                        'meta_title' => 'Mangkok Bakso Cap Gunung Keramik Putih 7 Inch Grosir',
+                        'meta_desc'  => 'Jual mangkok bakso Cap Gunung keramik putih 7 inchi. Tebal, menahan panas kuah lama, dan harga grosir pabrik.',
+                        'meta_keywords' => 'mangkok bakso cap gunung, mangkok soto cap gunung, mangkok keramik 7 inch, grosir mangkok bakso',
+                    ],
+                    [
+                        'name'       => 'Mangkok Sup Cekung Cap Gunung Porcelain 6 Inch',
+                        'slug'       => 'mangkok-sup-cekung-cap-gunung-porcelain-6-inch',
+                        'short_desc' => 'Mangkok sup porselen Cap Gunung 6 inchi bentuk melengkung anggun cocok untuk hidangan sup & prasmanan.',
+                        'meta_title' => 'Mangkok Sup Cekung Cap Gunung Porcelain 6 Inch',
+                        'meta_desc'  => 'Mangkok sup porselen Cap Gunung 6 inchi. Warna putih bening khas porselen, mudah dicuci dan hygienic.',
+                        'meta_keywords' => 'mangkok sup cap gunung, mangkok porselen 6 inch, mangkok prasmanan, mangkok kuah cap gunung',
+                    ],
+                    [
+                        'name'       => 'Mangkok Mie Ayam Cap Gunung Ceramic Deep Bowl 8 Inch',
+                        'slug'       => 'mangkok-mie-ayam-cap-gunung-ceramic-deep-bowl-8-inch',
+                        'short_desc' => 'Mangkok dalam keramik Cap Gunung 8 inchi kapasitas besar untuk mie ayam komplit, ramen, dan kuah jumbo.',
+                        'meta_title' => 'Mangkok Mie Ayam Cap Gunung Ceramic Deep Bowl 8 Inch',
+                        'meta_desc'  => 'Mangkok mie ayam Cap Gunung 8 inchi kapasitas jumbo. Keramik kokoh anti pecah untuk warung & restoran.',
+                        'meta_keywords' => 'mangkok mie ayam cap gunung, mangkok jumbo cap gunung, mangkok deep bowl 8 inch, mangkok ramen keramik',
+                    ],
+                    [
+                        'name'       => 'Mangkok Kecil Sambal Cap Gunung Keramik 3.5 Inch',
+                        'slug'       => 'mangkok-kecil-sambal-cap-gunung-keramik-3-5-inch',
+                        'short_desc' => 'Mangkok cuka dan mangkok sambal keramik Cap Gunung 3.5 inchi pelengkap meja makan meja resto.',
+                        'meta_title' => 'Mangkok Kecil Sambal & Saucer Cap Gunung Keramik 3.5 Inch',
+                        'meta_desc'  => 'Mangkok kecil tempat sambal & kecap Cap Gunung 3.5 inchi. Terbuat dari keramik tebal dan praktis.',
+                        'meta_keywords' => 'mangkok sambal cap gunung, mangkok cuka keramik, mangkok kecap kecil, mangkok condiment 3.5 inch',
+                    ],
+                    [
+                        'name'       => 'Mangkok Cobek Keramik Cap Gunung Heavy Duty 7.5 Inch',
+                        'slug'       => 'mangkok-cobek-keramik-cap-gunung-heavy-duty-7-5-inch',
+                        'short_desc' => 'Mangkok cobek penyajian ayam penyet & bebek goreng Cap Gunung 7.5 inchi berbahan keramik tahan api & minyak.',
+                        'meta_title' => 'Mangkok Cobek Keramik Cap Gunung Heavy Duty 7.5 Inch',
+                        'meta_desc'  => 'Mangkok cobek penyet Cap Gunung 7.5 inchi keramik tebal khusus penyajian resto ayam & bebek penyet panas.',
+                        'meta_keywords' => 'mangkok cobek cap gunung, cobek keramik penyet, mangkok ayam penyet, mangkok cobek tahan panas',
+                    ],
+                ]
             ],
         ];
 
-        foreach ($categories as $catData) {
-            $cat = ServiceCategory::firstOrCreate(
+        // 1. Create or Update Categories & Map Parent IDs
+        $createdCategoryMap = [];
+
+        foreach ($categoriesData as $catData) {
+            $parentId = null;
+            if (!empty($catData['parent_slug']) && isset($createdCategoryMap[$catData['parent_slug']])) {
+                $parentId = $createdCategoryMap[$catData['parent_slug']]->id;
+            }
+
+            $category = ServiceCategory::updateOrCreate(
                 ['slug' => $catData['slug']],
                 [
-                    'name'        => $catData['name'],
-                    'description' => $catData['description'],
+                    'name'          => $catData['name'],
+                    'description'   => $catData['description'],
+                    'parent_id'     => $parentId,
+                    'meta_title'    => $catData['meta_title'],
+                    'meta_desc'     => $catData['meta_desc'],
+                    'meta_keywords' => $catData['meta_keywords'],
                 ]
             );
 
-            foreach ($catData['products'] as $pSlug) {
-                Service::where('slug', $pSlug)->update(['service_category_id' => $cat->id]);
+            $createdCategoryMap[$catData['slug']] = $category;
+
+            // 2. Create or Update High-Intent Products for each category
+            foreach ($catData['products'] as $pIndex => $pData) {
+                $productContent = "<h2>Deskripsi Produk {$pData['name']}</h2>"
+                    . "<p>{$pData['short_desc']} Produk ini diproduksi dengan standar kualitas internasional food-grade, tahan terhadap suhu panas tinggi, aman digunakan dalam microwave maupun dishwasher, serta didesain khusus untuk daya tahan operasional yang lama.</p>"
+                    . "<h2>Spesifikasi & Keunggulan</h2>"
+                    . "<ul>"
+                    . "<li><strong>Brand / Merk:</strong> " . $catData['name'] . "</li>"
+                    . "<li><strong>Material:</strong> High-Grade Ceramic / Porcelain / Stainless Steel</li>"
+                    . "<li><strong>Standar Keamanan:</strong> 100% Food Grade Safe, Lead-Free & Cadmium-Free</li>"
+                    . "<li><strong>Ketahanan Suhu:</strong> Tahan panas oven, microwave & dishwasher safe</li>"
+                    . "<li><strong>Penggunaan:</strong> Ideal untuk Restoran, Hotel, Cafe, Catering, Warung Kuliner, dan Souvenir Promosi</li>"
+                    . "</ul>"
+                    . "<h2>Layanan Pemesanan & Pengiriman Grosir</h2>"
+                    . "<p>UD. Sukses Makmur (Pusat Piring Keramik) melayani pembelian eceran maupun grosir skala besar dengan penawaran harga pabrik terbaik. Setiap pengiriman ke luar kota dilindungi dengan kemasan bubble wrap ekstra dan paking peti kayu tebal untuk memastikan produk sampai tanpa retak atau pecah.</p>";
+
+                Service::updateOrCreate(
+                    ['slug' => $pData['slug']],
+                    [
+                        'service_category_id' => $category->id,
+                        'name'                => $pData['name'],
+                        'short_desc'          => $pData['short_desc'],
+                        'description'         => $productContent,
+                        'order'               => $pIndex + 1,
+                        'is_active'           => true,
+                        'meta_title'          => $pData['meta_title'],
+                        'meta_desc'           => $pData['meta_desc'],
+                        'meta_keywords'       => $pData['meta_keywords'],
+                    ]
+                );
             }
 
-            $this->command->info("✓ Kategori: {$catData['name']} (ID: {$cat->id})");
+            $this->command->info("✓ Category Seeding Success: {$category->name} (ID: {$category->id}) with " . count($catData['products']) . " high-intent products");
         }
 
-        $this->command->info('Done! Categories seeded and products mapped.');
+        // Clean up old legacy/dummy paint products that don't belong to any of these new categories
+        $validCatIds = ServiceCategory::pluck('id')->toArray();
+        Service::whereNotIn('service_category_id', $validCatIds)->orWhereNull('service_category_id')->delete();
+
+        $this->command->info('✓ Done! All categories seeded with high-intent SEO metadata and mapped products successfully.');
     }
 }
