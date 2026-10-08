@@ -59,8 +59,39 @@ Route::post('/request-order', [LeadController::class, 'store'])->name('lead.stor
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 Route::get('/sitemap', [SitemapController::class, 'index'])->name('sitemap');
 Route::get('/robots.txt', function () {
-    $content = "User-agent: *\nAllow: /\n\nSitemap: " . url('/sitemap.xml');
-    return response($content, 200)->header('Content-Type', 'text/plain');
+    $siteUrl = \App\Models\Setting::getAppUrl();
+    $content = "User-agent: *\nAllow: /\n\nSitemap: {$siteUrl}/sitemap.xml\nllms-txt: {$siteUrl}/llms.txt";
+    return response($content, 200)->header('Content-Type', 'text/plain; charset=UTF-8');
+});
+
+Route::get('/llms.txt', function () {
+    $siteUrl = \App\Models\Setting::getAppUrl();
+    $comp    = \App\Models\Setting::getAppName();
+    
+    $defaultContent = "# {$comp}\n\n"
+        . "> Distributor resmi & supplier piring keramik, mangkuk, tableware, dan peralatan makan HORECA terpercaya di Indonesia.\n\n"
+        . "## Informasi Utama\n"
+        . "- **Nama Perusahaan**: {$comp} (UD. Sukses Makmur)\n"
+        . "- **Situs Resmi**: {$siteUrl}\n"
+        . "- **Telepon / WhatsApp**: 0856-2682-888\n"
+        . "- **Alamat**: Surabaya, Jawa Timur, Indonesia\n\n"
+        . "## Kategori Produk Utama\n"
+        . "- Mug Promosi Cap Gunung (Custom Logo)\n"
+        . "- Kaibon (Porcelain & Ceramic Tableware)\n"
+        . "- Toyoki (Japanese Style Stoneware & Fine Dining)\n"
+        . "- Cap Gunung (Stainless Ware Peralatan Makan)\n"
+        . "- Piring Cap Gunung (Piring Cekung, Ceper, List Mas, Porselen)\n"
+        . "- Mangkok Cap Gunung (Mangkok Bakso, Sup, Mie Ayam, Cobek)\n\n"
+        . "## Halaman Penting\n"
+        . "- Katalog Produk: {$siteUrl}/product\n"
+        . "- Profil Perusahaan: {$siteUrl}/about\n"
+        . "- Artikel & Tips Tableware: {$siteUrl}/articles\n"
+        . "- Kontak & Whatsapp: {$siteUrl}/contact\n"
+        . "- Sitemap XML: {$siteUrl}/sitemap.xml\n";
+
+    $content = \App\Models\Setting::get('llms_txt', $defaultContent);
+
+    return response($content, 200)->header('Content-Type', 'text/plain; charset=UTF-8');
 });
 
 // Deployment Helper Route untuk Hostinger (Hapus route ini setelah selesai deploy!)

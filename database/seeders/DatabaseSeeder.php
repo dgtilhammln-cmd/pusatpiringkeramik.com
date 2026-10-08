@@ -44,6 +44,8 @@ class DatabaseSeeder extends Seeder
         $settings = [
             // Company
             ['key'=>'company_name',     'value'=>'Pusat Piring Keramik',                       'type'=>'text','group'=>'general','label'=>'Nama Perusahaan'],
+            ['key'=>'app_name',         'value'=>'Pusat Piring Keramik',                       'type'=>'text','group'=>'seo','label'=>'Nama Aplikasi'],
+            ['key'=>'app_url',          'value'=>'https://pusatpiringkeramik.hvmdigital.id',   'type'=>'text','group'=>'seo','label'=>'URL Domain'],
             ['key'=>'company_phone',    'value'=>'0856-2682-888',                              'type'=>'text','group'=>'contact','label'=>'Telepon / WA Utama'],
             // Hero
             ['key'=>'hero_headline',    'value'=>'Distributor Piring Keramik & Tableware Premium #1', 'type'=>'text','group'=>'hero','label'=>'Hero Headline'],

@@ -23,9 +23,7 @@ class AdminSettingsController extends Controller
         $data      = $request->except(['_token', '_method']);
 
         foreach ($data as $key => $value) {
-            // Jika array, ubah menjadi JSON string agar bisa disimpan di DB (kecuali untuk file upload yang tidak ada di $data)
             if (is_array($value)) {
-                // Filter array kosong dan reset index (array_values) untuk menghindari format object JSON yang salah
                 $value = json_encode(array_values(array_filter($value)));
             }
             
@@ -36,21 +34,45 @@ class AdminSettingsController extends Controller
             }
         }
 
+        // Handle URL Domain (APP_URL) and APP_NAME synchronization to .env
+        $envUpdates = [];
+        if ($request->has('app_url')) {
+            $cleanUrl = rtrim(trim($request->input('app_url')), '/');
+            if (!empty($cleanUrl)) {
+                Setting::set('app_url', $cleanUrl, 'text', 'seo');
+                $envUpdates['APP_URL'] = $cleanUrl;
+            }
+        }
+
+        if ($request->has('app_name') || $request->has('company_name')) {
+            $appName  = trim($request->input('app_name', ''));
+            $compName = trim($request->input('company_name', Setting::get('company_name', 'Pusat Piring Keramik')));
+            Setting::set('app_name', $appName, 'text', 'seo');
+            
+            $effectiveName = !empty($appName) ? $appName : $compName;
+            if (!empty($effectiveName)) {
+                $envUpdates['APP_NAME'] = $effectiveName;
+            }
+        }
+
+        if (!empty($envUpdates)) {
+            $this->syncEnvFile($envUpdates);
+        }
+
         // Handle image uploads
         foreach ($request->allFiles() as $key => $file) {
             if (!$file->isValid()) continue;
 
-            // Handle favicon separately (ico/png, no WebP conversion)
             if ($key === 'favicon') {
                 $path = 'settings/favicon.' . $file->getClientOriginalExtension();
                 Storage::disk('public')->put($path, file_get_contents($file->getRealPath()));
                 Setting::set($key, $path, 'image');
-                // Also copy to public/
-                copy($file->getRealPath(), base_path('public_html/favicon.ico'));
+                if (file_exists(base_path('public_html'))) {
+                    copy($file->getRealPath(), base_path('public_html/favicon.ico'));
+                }
                 continue;
             }
 
-            // Handle compro (PDF/Doc) separately
             if ($key === 'compro') {
                 $path = 'settings/compro_' . time() . '.' . $file->getClientOriginalExtension();
                 Storage::disk('public')->put($path, file_get_contents($file->getRealPath()));
@@ -75,6 +97,37 @@ class AdminSettingsController extends Controller
         }
 
         Setting::clearCache();
-        return back()->with('success', 'Pengaturan berhasil disimpan!');
+        return back()->with('success', 'Pengaturan berhasil disimpan dan disinkronkan!');
+    }
+
+    /**
+     * Safely update values inside the .env file
+     */
+    protected function syncEnvFile(array $keyValues): void
+    {
+        $envPath = base_path('.env');
+        if (!file_exists($envPath)) {
+            return;
+        }
+
+        try {
+            $envContent = file_get_contents($envPath);
+
+            foreach ($keyValues as $key => $val) {
+                $envKey = strtoupper($key);
+                $val = str_replace(["\r", "\n"], '', $val);
+                $escapedVal = (str_contains($val, ' ') && !str_starts_with($val, '"')) ? '"' . $val . '"' : $val;
+
+                if (preg_match("/^{$envKey}=.*/m", $envContent)) {
+                    $envContent = preg_replace("/^{$envKey}=.*/m", "{$envKey}={$escapedVal}", $envContent);
+                } else {
+                    $envContent .= "\n{$envKey}={$escapedVal}";
+                }
+            }
+
+            file_put_contents($envPath, $envContent);
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::error('Env sync error: ' . $e->getMessage());
+        }
     }
 }

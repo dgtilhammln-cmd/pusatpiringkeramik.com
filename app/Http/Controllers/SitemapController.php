@@ -14,22 +14,22 @@ class SitemapController extends Controller
         $services = Service::active()->ordered()->get(['slug', 'name', 'updated_at']);
         $articles = Article::published()->latest()->get(['slug', 'title', 'updated_at']);
 
-        // Dynamic company info from settings
-        $companyName    = Setting::get('company_name', config('app.name', 'Website'));
+        // Dynamic app & company info from settings
+        $companyName    = Setting::getAppName();
         $companyTagline = Setting::get('company_tagline', '');
         $addressFull    = Setting::get('address_full', '');
-        $siteUrl        = url('/');
+        $siteUrl        = Setting::getAppUrl();
 
         $staticPages = [
-            ['url' => route('home'),     'label' => 'Beranda',      'priority' => '1.0', 'changefreq' => 'weekly',  'lastmod' => now()->toDateString()],
-            ['url' => route('about'),    'label' => 'Tentang Kami', 'priority' => '0.8', 'changefreq' => 'monthly', 'lastmod' => now()->toDateString()],
-            ['url' => route('products'), 'label' => 'Produk',       'priority' => '0.9', 'changefreq' => 'weekly',  'lastmod' => now()->toDateString()],
-            ['url' => route('articles'), 'label' => 'Artikel',      'priority' => '0.8', 'changefreq' => 'daily',   'lastmod' => now()->toDateString()],
-            ['url' => route('contact'),  'label' => 'Kontak',       'priority' => '0.7', 'changefreq' => 'monthly', 'lastmod' => now()->toDateString()],
+            ['url' => $siteUrl,                  'label' => 'Beranda',      'priority' => '1.0', 'changefreq' => 'weekly',  'lastmod' => now()->toDateString()],
+            ['url' => $siteUrl . '/about',       'label' => 'Tentang Kami', 'priority' => '0.8', 'changefreq' => 'monthly', 'lastmod' => now()->toDateString()],
+            ['url' => $siteUrl . '/product',     'label' => 'Produk',       'priority' => '0.9', 'changefreq' => 'weekly',  'lastmod' => now()->toDateString()],
+            ['url' => $siteUrl . '/articles',    'label' => 'Artikel',      'priority' => '0.8', 'changefreq' => 'daily',   'lastmod' => now()->toDateString()],
+            ['url' => $siteUrl . '/contact',     'label' => 'Kontak',       'priority' => '0.7', 'changefreq' => 'monthly', 'lastmod' => now()->toDateString()],
         ];
 
         $serviceUrls = $services->map(fn($s) => [
-            'url'        => route('products.show', $s->slug),
+            'url'        => $siteUrl . '/product/' . $s->slug,
             'label'      => $s->name,
             'priority'   => '0.85',
             'changefreq' => 'monthly',
@@ -37,7 +37,7 @@ class SitemapController extends Controller
         ])->toArray();
 
         $articleUrls = $articles->map(fn($a) => [
-            'url'        => route('articles.show', $a->slug),
+            'url'        => $siteUrl . '/articles/' . $a->slug,
             'label'      => $a->title,
             'priority'   => '0.7',
             'changefreq' => 'monthly',

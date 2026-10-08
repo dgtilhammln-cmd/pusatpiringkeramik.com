@@ -409,6 +409,120 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
 {{-- ======== TAB: SEO ======== --}}
 <div id="tab-seo" class="tab-section" style="display:none;">
   <div style="display:flex;flex-direction:column;gap:1.25rem;">
+
+    {{-- ⚡ KONFIGURASI DOMAIN, NAMA APP & LLM (AI SEO) --}}
+    <div style="background:#FFFFFF;border:1.5px solid #3B82F6;box-shadow:0 8px 25px rgba(59,130,246,0.08);border-radius:14px;padding:1.75rem;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid #F1F5F9;flex-wrap:wrap;gap:1rem;">
+        <div style="display:flex;align-items:center;gap:.625rem;">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(59,130,246,0.1);display:flex;align-items:center;justify-content:center;">
+            <svg width="20" height="20" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div>
+            <div style="font-size:1rem;font-weight:800;color:#0F172A;">Konfigurasi Domain, Nama App & AI SEO (llms.txt)</div>
+            <div style="font-size:.75rem;color:#64748B;">Pengaturan dinamis URL domain, Nama App, serta integrasi AI Search Engine (ChatGPT, Claude, Perplexity, Gemini)</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+          <a href="{{ \App\Models\Setting::getAppUrl() }}/sitemap.xml" target="_blank" style="display:inline-flex;align-items:center;gap:.375rem;padding:.4rem .875rem;font-size:.75rem;font-weight:700;background:#F8FAFC;border:1px solid #E2E8F0;color:#334155;border-radius:8px;text-decoration:none;">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+            Sitemap.xml
+          </a>
+          <a href="{{ \App\Models\Setting::getAppUrl() }}/robots.txt" target="_blank" style="display:inline-flex;align-items:center;gap:.375rem;padding:.4rem .875rem;font-size:.75rem;font-weight:700;background:#F8FAFC;border:1px solid #E2E8F0;color:#334155;border-radius:8px;text-decoration:none;">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Robots.txt
+          </a>
+          <a href="{{ \App\Models\Setting::getAppUrl() }}/llms.txt" target="_blank" style="display:inline-flex;align-items:center;gap:.375rem;padding:.4rem .875rem;font-size:.75rem;font-weight:700;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);color:#3B82F6;border-radius:8px;text-decoration:none;">
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            llms.txt
+          </a>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem;">
+        {{-- 1. URL Domain --}}
+        <div>
+          <label class="form-label" for="s-app_url">🌐 URL Domain (App URL)</label>
+          <input type="url" name="app_url" id="s-app_url" class="form-input" 
+                 value="{{ $settings['app_url'] ?? config('app.url', 'https://pusatpiringkeramik.hvmdigital.id') }}" 
+                 placeholder="https://pusatpiringkeramik.hvmdigital.id">
+          <p style="font-size:.75rem;color:#64748B;margin:.375rem 0 0;line-height:1.4;">
+            <strong style="color:#0F172A;">Sinkron Otomatis:</strong> Diperbarui ke <code>.env (APP_URL)</code>, <code>sitemap.xml</code>, dan <code>robots.txt</code>.
+          </p>
+        </div>
+
+        {{-- 2. App Name --}}
+        <div>
+          <label class="form-label" for="s-app_name">🏷️ Nama Aplikasi (App Name)</label>
+          <input type="text" name="app_name" id="s-app_name" class="form-input" 
+                 value="{{ $settings['app_name'] ?? '' }}" 
+                 placeholder="{{ $settings['company_name'] ?? 'Pusat Piring Keramik' }}">
+          <p style="font-size:.75rem;color:#64748B;margin:.375rem 0 0;line-height:1.4;">
+            <strong style="color:#0F172A;">Fallback Otomatis:</strong> Jika dikosongkan, akan menggunakan Nama Perusahaan (<em>{{ $settings['company_name'] ?? 'Pusat Piring Keramik' }}</em>). Diperbarui ke <code>.env (APP_NAME)</code> & <code>sitemap</code>.
+          </p>
+        </div>
+      </div>
+
+      {{-- 3. Form llms.txt --}}
+      <div>
+        <label class="form-label" for="s-llms_txt">
+          🤖 Konten <code>llms.txt</code> (Format Informasi AI Search Engines)
+        </label>
+        @php
+          $siteUrlDefault = $settings['app_url'] ?? config('app.url', 'https://pusatpiringkeramik.hvmdigital.id');
+          $compNameDefault = !empty($settings['app_name']) ? $settings['app_name'] : ($settings['company_name'] ?? 'Pusat Piring Keramik');
+          $defaultLlms = "# {$compNameDefault}
+
+"
+              . "> Distributor resmi & supplier piring keramik, mangkuk, tableware, dan peralatan makan HORECA terpercaya di Indonesia.
+
+"
+              . "## Informasi Utama
+"
+              . "- **Nama Perusahaan**: {$compNameDefault} (UD. Sukses Makmur)
+"
+              . "- **Situs Resmi**: {$siteUrlDefault}
+"
+              . "- **Telepon / WhatsApp**: 0856-2682-888
+"
+              . "- **Alamat**: Surabaya, Jawa Timur, Indonesia
+
+"
+              . "## Kategori Produk Utama
+"
+              . "- Mug Promosi Cap Gunung (Custom Logo)
+"
+              . "- Kaibon (Porcelain & Ceramic Tableware)
+"
+              . "- Toyoki (Japanese Style Stoneware & Fine Dining)
+"
+              . "- Cap Gunung (Stainless Ware Peralatan Makan)
+"
+              . "- Piring Cap Gunung (Piring Cekung, Ceper, List Mas, Porselen)
+"
+              . "- Mangkok Cap Gunung (Mangkok Bakso, Sup, Mie Ayam, Cobek)
+
+"
+              . "## Halaman Penting
+"
+              . "- Katalog Produk: {$siteUrlDefault}/product
+"
+              . "- Profil Perusahaan: {$siteUrlDefault}/about
+"
+              . "- Artikel & Tips Tableware: {$siteUrlDefault}/articles
+"
+              . "- Kontak & Whatsapp: {$siteUrlDefault}/contact
+"
+              . "- Sitemap XML: {$siteUrlDefault}/sitemap.xml
+";
+        @endphp
+        <textarea name="llms_txt" id="s-llms_txt" class="form-input" rows="9" 
+                  style="font-family:'Courier New', monospace; font-size:0.85rem; line-height:1.5; background:#0F172A; color:#38BDF8; border-color:#1E293B;"
+                  placeholder="Isi dokumen llms.txt...">{{ $settings['llms_txt'] ?? $defaultLlms }}</textarea>
+        <p style="font-size:.75rem;color:#64748B;margin:.375rem 0 0;line-height:1.4;">
+          Konten ini dibaca oleh bot AI Search (ChatGPT, Claude, Perplexity, Gemini) untuk memahami profil perusahaan dan struktur website. Dapat diakses secara publik pada URL <code>/llms.txt</code>.
+        </p>
+      </div>
+    </div>
     
     {{-- Google Search Console --}}
     <div style="background:#FFFFFF;border:1px solid rgba(16,185,129,.15);border-radius:10px;padding:1.5rem;">

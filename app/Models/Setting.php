@@ -26,6 +26,30 @@ class Setting extends Model
     }
 
     /**
+     * Get App Name with fallback to company_name
+     */
+    public static function getAppName(): string
+    {
+        $appName = static::get('app_name');
+        if (!empty(trim($appName))) {
+            return trim($appName);
+        }
+        return trim(static::get('company_name', config('app.name', 'Pusat Piring Keramik')));
+    }
+
+    /**
+     * Get App URL with fallback to config('app.url')
+     */
+    public static function getAppUrl(): string
+    {
+        $appUrl = static::get('app_url');
+        if (!empty(trim($appUrl))) {
+            return rtrim(trim($appUrl), '/');
+        }
+        return rtrim(config('app.url', 'https://pusatpiringkeramik.hvmdigital.id'), '/');
+    }
+
+    /**
      * Set (upsert) a setting value
      */
     public static function set(string $key, $value, string $type = 'text', string $group = 'general'): void
