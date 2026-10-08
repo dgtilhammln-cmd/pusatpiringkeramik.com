@@ -156,12 +156,14 @@
         text-decoration: none !important;
         transition: all 0.4s var(--ease);
         position: relative;
+        outline: none !important;
     }
     .sv-card * { text-decoration: none !important; }
-    .sv-card:hover {
-        border-color: var(--c-accent);
+    .sv-card:hover, .sv-card:focus {
+        border-color: #10B981 !important;
+        outline: none !important;
         transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(14, 165, 233, 0.08);
+        box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15);
     }
     .sv-card-img {
         width: 100%; aspect-ratio: 16/10;
