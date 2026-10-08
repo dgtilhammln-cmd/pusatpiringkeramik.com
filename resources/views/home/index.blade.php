@@ -89,8 +89,8 @@
         /* ── NEW COMPACT HERO REDESIGN (IMAGE 2 STYLE) ── */
         .cv-hero-modern {
             background-color: {{ $settings['page_home_hero_bg'] ?? '#FAFAFA' }};
-            padding-top: calc(75px + 1rem);
-            padding-bottom: 2rem;
+            padding-top: calc(65px + 0.5rem);
+            padding-bottom: 0.5rem;
             position: relative;
             overflow: hidden;
             font-family: var(--font);
@@ -109,7 +109,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 1.25rem;
+            margin-bottom: 0.6rem;
             gap: 1.5rem;
         }
 
@@ -120,25 +120,25 @@
         .cv-hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.8125rem;
+            gap: 0.4rem;
+            font-size: 0.78rem;
             font-weight: 600;
             color: #64748B;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
             letter-spacing: 0.01em;
         }
 
         .cv-hero-badge::before {
             content: '';
-            width: 20px;
-            height: 2.5px;
+            width: 18px;
+            height: 2px;
             background: var(--brand, #00A664);
             border-radius: 2px;
         }
 
         .cv-hero-title,
         h2.cv-hero-title {
-            font-size: clamp(2rem, 3.5vw, 3.2rem);
+            font-size: clamp(1.4rem, 2.4vw, 2.1rem);
             font-weight: 500;
             color: {{ $settings['page_home_hero_title_color'] ?? '#0A1930' }};
             line-height: 1.15;
@@ -160,9 +160,9 @@
         }
 
         .cv-static-logo-badge img {
-            height: 52px;
+            height: 46px;
             width: auto;
-            max-width: 220px;
+            max-width: 200px;
             object-fit: contain;
         }
 
@@ -171,38 +171,38 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.6rem;
             gap: 1.5rem;
         }
 
         .cv-hero-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
+            gap: 0.4rem;
             flex: 1;
             align-items: center;
         }
 
         .cv-hero-tags span {
-            font-size: 0.8rem;
+            font-size: 0.73rem;
             font-weight: 500;
             color: {{ $settings['page_home_hero_tags_color'] ?? '#475569' }};
             background: {{ $settings['page_home_hero_tags_bg'] ?? '#ffffff' }};
             border: 1px solid {{ $settings['page_home_hero_tags_border'] ?? '#E2E8F0' }};
-            padding: 0.4rem 1rem;
+            padding: 0.25rem 0.75rem;
             border-radius: 50px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
             white-space: nowrap;
         }
 
         .cv-hero-desc {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 400;
             color: {{ $settings['page_home_hero_text_color'] ?? '#64748B' }};
-            line-height: 1.55;
-            padding-left: 1rem;
-            border-left: 3.5px solid var(--brand, #00A664);
-            max-width: 480px;
+            line-height: 1.45;
+            padding-left: 0.85rem;
+            border-left: 3px solid var(--brand, #00A664);
+            max-width: 440px;
             flex-shrink: 0;
         }
 
@@ -211,8 +211,8 @@
             position: relative;
             width: 100%;
             overflow: hidden;
-            padding: 0.5rem 0 2.25rem;
-            margin-top: 1rem;
+            padding: 0.25rem 0 0.5rem;
+            margin-top: 0.4rem;
         }
 
         .cv-hero-banner-wrap::before,
@@ -220,20 +220,20 @@
             content: '';
             position: absolute;
             top: 0;
-            bottom: 2.25rem;
-            width: 90px;
+            bottom: 1.75rem;
+            width: 120px;
             z-index: 10;
             pointer-events: none;
         }
 
         .cv-hero-banner-wrap::before {
             left: 0;
-            background: linear-gradient(to right, {{ $settings['page_home_hero_bg'] ?? '#FAFAFA' }} 25%, rgba(250, 250, 250, 0) 100%);
+            background: linear-gradient(to right, {{ $settings['page_home_hero_bg'] ?? '#FAFAFA' }} 30%, rgba(250, 250, 250, 0) 100%);
         }
 
         .cv-hero-banner-wrap::after {
             right: 0;
-            background: linear-gradient(to left, {{ $settings['page_home_hero_bg'] ?? '#FAFAFA' }} 25%, rgba(250, 250, 250, 0) 100%);
+            background: linear-gradient(to left, {{ $settings['page_home_hero_bg'] ?? '#FAFAFA' }} 30%, rgba(250, 250, 250, 0) 100%);
         }
 
         .hero-banner-swiper {
@@ -254,11 +254,11 @@
         .cv-banner-card {
             position: relative;
             width: 100%;
-            height: 270px;
-            border-radius: 20px;
+            height: clamp(180px, 21vw, 220px);
+            border-radius: 18px;
             overflow: hidden;
             background: linear-gradient(135deg, #005F41 0%, #00875A 50%, #004D34 100%);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
             display: flex;
             align-items: center;
         }
@@ -282,31 +282,31 @@
         .cv-banner-content {
             position: relative;
             z-index: 3;
-            padding: 2rem 2.5rem;
-            max-width: 600px;
+            padding: 1.5rem 2rem;
+            max-width: 580px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             height: 100%;
-            gap: 0.85rem;
+            gap: 0.65rem;
         }
 
         .cv-banner-header {
             display: inline-flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.5rem;
             background: rgba(255, 255, 255, 0.18);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            padding: 0.35rem 0.85rem;
+            padding: 0.3rem 0.75rem;
             border-radius: 50px;
             width: fit-content;
             border: 1px solid rgba(255, 255, 255, 0.25);
         }
 
         .cv-banner-brand-logo {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
             background: #ffffff;
             display: flex;
@@ -322,14 +322,14 @@
         }
 
         .cv-banner-brand-name {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 700;
             color: #ffffff;
             letter-spacing: 0.02em;
         }
 
         .cv-banner-headline {
-            font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+            font-size: clamp(1.05rem, 1.8vw, 1.45rem);
             font-weight: 400;
             color: #ffffff;
             line-height: 1.3;
@@ -340,22 +340,22 @@
         .cv-banner-pills {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.2rem;
+            gap: 0.4rem;
+            margin-top: 0.15rem;
         }
 
         .cv-banner-pill {
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 0.35rem;
             background: rgba(255, 255, 255, 0.18);
             backdrop-filter: blur(6px);
             -webkit-backdrop-filter: blur(6px);
             border: 1px solid rgba(255, 255, 255, 0.28);
             color: #ffffff;
-            padding: 0.3rem 0.8rem;
+            padding: 0.25rem 0.7rem;
             border-radius: 50px;
-            font-size: 0.73rem;
+            font-size: 0.7rem;
             font-weight: 500;
             text-decoration: none;
             transition: all 0.2s;
@@ -366,33 +366,39 @@
             color: #ffffff;
         }
 
-        /* Swiper pagination override */
+        /* Swiper pagination below card (Dark Navy / Slate Gray, NOT green) */
         .hero-banner-swiper-pagination {
-            bottom: 0 !important;
+            position: relative !important;
+            bottom: auto !important;
+            margin-top: 0.65rem !important;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
+            z-index: 12;
         }
 
         .hero-banner-swiper-pagination .swiper-pagination-bullet {
-            background: var(--brand, #00A664);
-            opacity: 0.35;
-            transition: all 0.3s;
+            background: #64748B !important;
+            opacity: 0.35 !important;
+            width: 8px;
+            height: 8px;
+            transition: all 0.3s ease;
             margin: 0 !important;
         }
 
         .hero-banner-swiper-pagination .swiper-pagination-bullet-active {
-            opacity: 1;
-            width: 24px;
-            border-radius: 10px;
+            background: #0A1930 !important;
+            opacity: 1 !important;
+            width: 22px !important;
+            border-radius: 10px !important;
         }
 
         /* Responsive adjustments */
         @media (max-width: 991px) {
             .cv-hero-top {
                 flex-direction: column;
-                gap: 0.75rem;
+                gap: 0.5rem;
             }
 
             .cv-hero-top-left {
@@ -402,7 +408,7 @@
             .cv-hero-mid {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 1rem;
+                gap: 0.6rem;
             }
 
             .cv-hero-desc {
@@ -410,23 +416,23 @@
             }
 
             .cv-banner-card {
-                height: 240px;
+                height: 200px;
             }
 
             .cv-banner-content {
-                padding: 1.5rem 1.75rem;
+                padding: 1.25rem 1.5rem;
             }
         }
 
         @media (max-width: 576px) {
             .cv-hero-modern {
-                padding-top: calc(60px + 1rem);
-                padding-bottom: 1.25rem;
+                padding-top: calc(55px + 0.5rem);
+                padding-bottom: 0.5rem;
             }
 
             .cv-hero-title,
             h2.cv-hero-title {
-                font-size: 1.45rem;
+                font-size: 1.35rem;
             }
 
             .cv-hero-banner-wrap::before,
@@ -435,26 +441,26 @@
             }
 
             .cv-banner-card {
-                height: 215px;
+                height: 180px;
                 border-radius: 14px;
             }
 
             .cv-banner-content {
-                padding: 1.1rem 1.1rem;
-                gap: 0.5rem;
+                padding: 1rem 1rem;
+                gap: 0.4rem;
             }
 
             .cv-banner-headline {
-                font-size: 1.05rem;
+                font-size: 1rem;
             }
 
             .cv-banner-pills {
-                gap: 0.35rem;
+                gap: 0.3rem;
             }
 
             .cv-banner-pill {
-                font-size: 0.7rem;
-                padding: 0.25rem 0.65rem;
+                font-size: 0.68rem;
+                padding: 0.2rem 0.55rem;
             }
         }
 

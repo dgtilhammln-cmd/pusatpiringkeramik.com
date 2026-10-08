@@ -47,13 +47,28 @@ class HeroSlideSeeder extends Seeder
                 'is_active'    => true,
                 'image'        => null,
             ],
+            [
+                'title'        => "Peralatan Makan Keramik & Stainless\nKualitas Terbaik",
+                'subtitle'     => 'UD. Sukses Makmur',
+                'description'  => 'Distributor resmi peralatan makan keramik dan stainless terpercaya untuk kebutuhan usaha F&B, resto, katering, dan rumah tangga.',
+                'tags'         => 'Peralatan Makan, Stainless Steel, Piring Set, Mangkok Keramik, Grosir Murah',
+                'stat_1_value' => '100%',
+                'stat_1_label' => 'Porselen Asli',
+                'stat_2_value' => '24/7',
+                'stat_2_label' => 'Layanan Katering',
+                'stat_3_value' => '10.000+',
+                'stat_3_label' => 'Stok Terjaga',
+                'order'        => 3,
+                'is_active'    => true,
+                'image'        => null,
+            ],
         ];
 
         foreach ($slides as $data) {
             HeroSlide::create($data);
         }
 
-        $this->command->info('[OK] HeroSlideSeeder: 2 slide hero berhasil dibuat.');
+        $this->command->info('[OK] HeroSlideSeeder: 3 slide hero berhasil dibuat.');
         $this->command->info('     Upload gambar via Admin -> Page Management -> tab Hero Section.');
     }
 }
