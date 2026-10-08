@@ -45,7 +45,7 @@ class AdminHeroSlideController extends Controller
         $validated['order'] = $request->input('order', 0);
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $this->storeWebP($request->file('image'), 'hero_slides', 1200);
+            $validated['image'] = $this->storeWebP($request->file('image'), 'hero_slides', 3448);
         }
 
         $count = HeroSlide::count();
@@ -88,7 +88,7 @@ class AdminHeroSlideController extends Controller
 
         if ($request->hasFile('image')) {
             $this->deleteStorageFile($heroSlide->image);
-            $validated['image'] = $this->storeWebP($request->file('image'), 'hero_slides', 1200);
+            $validated['image'] = $this->storeWebP($request->file('image'), 'hero_slides', 3448);
         }
 
         $heroSlide->update($validated);

@@ -206,15 +206,59 @@
             flex-shrink: 0;
         }
 
-        /* Banner Card Component (Image 2 style) */
+        /* Banner Card & Carousel Wrap (Image 2 style with side-peeking & edge fade gradients) */
+        .cv-hero-banner-wrap {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 0.5rem 0 2.25rem;
+            margin-top: 1rem;
+        }
+
+        .cv-hero-banner-wrap::before,
+        .cv-hero-banner-wrap::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 2.25rem;
+            width: 90px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .cv-hero-banner-wrap::before {
+            left: 0;
+            background: linear-gradient(to right, {{ $settings['page_home_hero_bg'] ?? '#FAFAFA' }} 25%, rgba(250, 250, 250, 0) 100%);
+        }
+
+        .cv-hero-banner-wrap::after {
+            right: 0;
+            background: linear-gradient(to left, {{ $settings['page_home_hero_bg'] ?? '#FAFAFA' }} 25%, rgba(250, 250, 250, 0) 100%);
+        }
+
+        .hero-banner-swiper {
+            width: 100%;
+            overflow: visible !important;
+        }
+
+        .hero-banner-swiper .swiper-slide {
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            opacity: 0.75;
+        }
+
+        .hero-banner-swiper .swiper-slide-active {
+            opacity: 1;
+            transform: scale(1.01);
+        }
+
         .cv-banner-card {
             position: relative;
             width: 100%;
-            height: 280px;
+            height: 270px;
             border-radius: 20px;
             overflow: hidden;
-            background: linear-gradient(135deg, #004D34 0%, #007A54 50%, #004D34 100%);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+            background: linear-gradient(135deg, #005F41 0%, #00875A 50%, #004D34 100%);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             display: flex;
             align-items: center;
         }
@@ -231,20 +275,20 @@
         .cv-banner-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(90deg, var(--brand, #005F41) 0%, rgba(0, 95, 65, 0.92) 42%, rgba(0, 95, 65, 0.35) 78%, transparent 100%);
+            background: linear-gradient(90deg, var(--brand, #005F41) 0%, rgba(0, 95, 65, 0.94) 45%, rgba(0, 95, 65, 0.3) 80%, transparent 100%);
             z-index: 2;
         }
 
         .cv-banner-content {
             position: relative;
             z-index: 3;
-            padding: 2.25rem 2.5rem;
-            max-width: 650px;
+            padding: 2rem 2.5rem;
+            max-width: 600px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             height: 100%;
-            gap: 1rem;
+            gap: 0.85rem;
         }
 
         .cv-banner-header {
@@ -261,8 +305,8 @@
         }
 
         .cv-banner-brand-logo {
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             background: #ffffff;
             display: flex;
@@ -285,59 +329,60 @@
         }
 
         .cv-banner-headline {
-            font-size: clamp(1.2rem, 2.2vw, 1.75rem);
-            font-weight: 700;
+            font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+            font-weight: 400;
             color: #ffffff;
-            line-height: 1.25;
+            line-height: 1.3;
             margin: 0;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.15);
         }
 
         .cv-banner-pills {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-top: 0.25rem;
+            gap: 0.5rem;
+            margin-top: 0.2rem;
         }
 
         .cv-banner-pill {
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.18);
             backdrop-filter: blur(6px);
             -webkit-backdrop-filter: blur(6px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.28);
             color: #ffffff;
-            padding: 0.35rem 0.85rem;
+            padding: 0.3rem 0.8rem;
             border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-size: 0.73rem;
+            font-weight: 500;
             text-decoration: none;
             transition: all 0.2s;
         }
 
         .cv-banner-pill:hover {
-            background: rgba(255, 255, 255, 0.35);
+            background: rgba(255, 255, 255, 0.32);
             color: #ffffff;
         }
 
         /* Swiper pagination override */
-        .hero-swiper {
-            padding-bottom: 1.75rem !important;
-        }
-
-        .hero-swiper-pagination {
+        .hero-banner-swiper-pagination {
             bottom: 0 !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
         }
 
-        .hero-swiper-pagination .swiper-pagination-bullet {
+        .hero-banner-swiper-pagination .swiper-pagination-bullet {
             background: var(--brand, #00A664);
             opacity: 0.35;
             transition: all 0.3s;
+            margin: 0 !important;
         }
 
-        .hero-swiper-pagination .swiper-pagination-bullet-active {
+        .hero-banner-swiper-pagination .swiper-pagination-bullet-active {
             opacity: 1;
             width: 24px;
             border-radius: 10px;
@@ -365,7 +410,7 @@
             }
 
             .cv-banner-card {
-                height: 250px;
+                height: 240px;
             }
 
             .cv-banner-content {
@@ -384,8 +429,13 @@
                 font-size: 1.45rem;
             }
 
+            .cv-hero-banner-wrap::before,
+            .cv-hero-banner-wrap::after {
+                width: 20px;
+            }
+
             .cv-banner-card {
-                height: 220px;
+                height: 215px;
                 border-radius: 14px;
             }
 
@@ -1090,99 +1140,68 @@
 
             .cv-gallery-grid .gallery-item:first-child {
                 grid-column: 1;
-                grid-row: 1;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .cv-hero-modern {
-                padding-top: calc(46px + 1.5rem);
-            }
-
-            .cv-hero-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cv-hero-center {
-                height: 320px;
-            }
-
-            .cv-gallery-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cv-products-grid,
-            .cv-adv-grid,
-            .cv-apps-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-
-    {{-- ════ NEW MODERN HERO (REDESIGN - IMAGE 2 STYLE) ════ --}}
+        {{-- ════ NEW MODERN HERO (REDESIGN - IMAGE 2 STYLE) ════ --}}
     <section class="cv-hero-modern" id="home">
         <div class="cv-hero-grid">
-            <div class="swiper hero-swiper">
+            @php
+                $firstSlide = isset($heroSlides) && $heroSlides->count() > 0 ? $heroSlides->first() : null;
+            @endphp
+
+            {{-- Top Section --}}
+            <div class="cv-hero-top">
+                <div class="cv-hero-top-left">
+                    <div class="cv-hero-badge">{{ $firstSlide->subtitle ?? 'Trusted Tableware Distributor' }}</div>
+                    <h1 class="cv-hero-title">
+                        @if($firstSlide && $firstSlide->title)
+                            {!! str_replace(['Structural Perfection', 'Innovation', 'structural perfection', 'innovation'], ['<span>Structural Perfection</span>', '<span>Innovation</span>', '<span>structural perfection</span>', '<span>innovation</span>'], nl2br(e($firstSlide->title))) !!}
+                        @else
+                            Peralatan Makan Berkualitas untuk Rumah & Bisnis Anda
+                        @endif
+                    </h1>
+                </div>
+
+                <div class="cv-static-logo-badge d-none d-sm-inline-flex">
+                    @if(!empty($settings['logo']))
+                        <img src="{{ asset('storage/' . $settings['logo']) }}"
+                            alt="{{ $settings['company_name'] ?? config('app.name') }}">
+                    @endif
+                </div>
+            </div>
+
+            {{-- Middle Section --}}
+            <div class="cv-hero-mid">
+                <div class="cv-hero-tags">
+                    @if($firstSlide && $firstSlide->tags)
+                        @foreach(explode(',', $firstSlide->tags) as $tag)
+                            <span>{{ trim($tag) }}</span>
+                        @endforeach
+                    @else
+                        <span>Keramik Lantai</span>
+                        <span>Keramik Dinding</span>
+                        <span>Porselen</span>
+                        <span>High Quality</span>
+                        <span>Food Safe</span>
+                    @endif
+                </div>
+
+                <div class="cv-hero-desc">
+                    {{ $firstSlide->description ?? 'Distributor resmi peralatan makan keramik dan stainless terpercaya untuk kebutuhan usaha, bisnis, & rumah tangga.' }}
+                </div>
+            </div>
+        </div>
+
+        {{-- Banner Carousel with Side-Peeking & Left/Right Edge Fade Gradients --}}
+        <div class="cv-hero-banner-wrap">
+            <div class="swiper hero-banner-swiper">
                 <div class="swiper-wrapper">
                     @if(isset($heroSlides) && $heroSlides->count() > 0)
                         @foreach($heroSlides as $slide)
                             <div class="swiper-slide">
-                                {{-- Top Section --}}
-                                <div class="cv-hero-top">
-                                    <div class="cv-hero-top-left">
-                                        @if($slide->subtitle)
-                                            <div class="cv-hero-badge">{{ $slide->subtitle }}</div>
-                                        @else
-                                            <div class="cv-hero-badge">Trusted Tableware Distributor</div>
-                                        @endif
-
-                                        @if($loop->first)
-                                            <h1 class="cv-hero-title">
-                                                {!! str_replace(['Structural Perfection', 'Innovation', 'structural perfection', 'innovation'], ['<span>Structural Perfection</span>', '<span>Innovation</span>', '<span>structural perfection</span>', '<span>innovation</span>'], nl2br(e($slide->title))) !!}
-                                            </h1>
-                                        @else
-                                            <h2 class="cv-hero-title">
-                                                {!! str_replace(['Structural Perfection', 'Innovation', 'structural perfection', 'innovation'], ['<span>Structural Perfection</span>', '<span>Innovation</span>', '<span>structural perfection</span>', '<span>innovation</span>'], nl2br(e($slide->title))) !!}
-                                            </h2>
-                                        @endif
-                                    </div>
-
-                                    <div class="cv-static-logo-badge d-none d-sm-inline-flex">
-                                        @if(!empty($settings['logo']))
-                                            <img src="{{ asset('storage/' . $settings['logo']) }}"
-                                                alt="{{ $settings['company_name'] ?? config('app.name') }}">
-                                        @endif
-                                    </div>
-                                </div>
-
-                                {{-- Middle Section --}}
-                                <div class="cv-hero-mid">
-                                    <div class="cv-hero-tags">
-                                        @if($slide->tags)
-                                            @foreach(explode(',', $slide->tags) as $tag)
-                                                <span>{{ trim($tag) }}</span>
-                                            @endforeach
-                                        @else
-                                            <span>KAIBON</span>
-                                            <span>TOYOKI</span>
-                                            <span>CAP GUNUNG</span>
-                                            <span>PORSELEN</span>
-                                        @endif
-                                    </div>
-
-                                    @if($slide->description)
-                                        <div class="cv-hero-desc">
-                                            {{ $slide->description }}
-                                        </div>
-                                    @endif
-                                </div>
-
-                                {{-- Banner Card Section (Overlay Style Image 2) --}}
                                 <div class="cv-banner-card">
                                     @if($slide->image)
                                         <img src="{{ asset('storage/' . $slide->image) }}" class="cv-banner-bg" alt="{{ $slide->title }}">
                                     @else
-                                        <div class="cv-banner-bg" style="background: linear-gradient(135deg, #004D34 0%, #007A54 50%, #004D34 100%);"></div>
+                                        <div class="cv-banner-bg" style="background: linear-gradient(135deg, #005F41 0%, #00875A 50%, #004D34 100%);"></div>
                                     @endif
                                     <div class="cv-banner-overlay"></div>
 
@@ -1222,30 +1241,8 @@
                     @else
                         {{-- Fallback slide --}}
                         <div class="swiper-slide">
-                            <div class="cv-hero-top">
-                                <div class="cv-hero-top-left">
-                                    <div class="cv-hero-badge">Trusted Tableware Distributor</div>
-                                    <h1 class="cv-hero-title">Peralatan Makan Berkualitas untuk Rumah & Bisnis Anda</h1>
-                                </div>
-                                <div class="cv-static-logo-badge d-none d-sm-inline-flex">
-                                    @if(!empty($settings['logo']))
-                                        <img src="{{ asset('storage/' . $settings['logo']) }}" alt="Logo">
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="cv-hero-mid">
-                                <div class="cv-hero-tags">
-                                    <span>KAIBON</span>
-                                    <span>TOYOKI</span>
-                                    <span>CAP GUNUNG</span>
-                                    <span>PORSELEN</span>
-                                </div>
-                                <div class="cv-hero-desc">
-                                    Distributor resmi peralatan makan keramik dan stainless terpercaya untuk kebutuhan usaha, bisnis, & rumah tangga.
-                                </div>
-                            </div>
                             <div class="cv-banner-card">
-                                <div class="cv-banner-bg" style="background: linear-gradient(135deg, #004D34 0%, #007A54 50%, #004D34 100%);"></div>
+                                <div class="cv-banner-bg" style="background: linear-gradient(135deg, #005F41 0%, #00875A 50%, #004D34 100%);"></div>
                                 <div class="cv-banner-overlay"></div>
                                 <div class="cv-banner-content">
                                     <div class="cv-banner-header">
@@ -1267,6 +1264,19 @@
                                         @if(!empty($settings['phone_number']) || !empty($settings['company_phone']))
                                             <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['phone_number'] ?? $settings['company_phone']) }}" target="_blank" class="cv-banner-pill">
                                                 <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                                                <span>{{ $settings['phone_number'] ?? $settings['company_phone'] }}</span>
+                                            </a>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+                <div class="swiper-pagination hero-banner-swiper-pagination"></div>
+            </div>
+        </div>
+    </section>16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
                                                 <span>{{ $settings['phone_number'] ?? $settings['company_phone'] }}</span>
                                             </a>
                                         @endif

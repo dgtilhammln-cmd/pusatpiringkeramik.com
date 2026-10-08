@@ -1576,7 +1576,7 @@
             <input type="file" name="image" class="pm-input" accept="image/*">
             <div style="font-size:0.75rem; color:#64748B; margin-top:0.4rem; display:flex; align-items:center; gap:0.35rem; background:#F8FAFC; padding:0.5rem 0.75rem; border-radius:8px; border:1px solid #E2E8F0;">
               <svg width="14" height="14" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-              <span><strong>Rekomendasi Banner:</strong> 1200 x 500 px (Rasio 12:5 atau 16:7), maks 5MB. Sistem otomatis mengompresi dan mengonversi gambar ke format <strong>WebP</strong>.</span>
+              <span><strong>Rekomendasi Ukuran Banner:</strong> <strong>3448 x 914 px</strong> (Rasio Ultra-wide ~3.77 : 1), maks 10MB. Sistem otomatis mengompresi dan mengonversi gambar ke format <strong>WebP</strong>.</span>
             </div>
           </div>
 
