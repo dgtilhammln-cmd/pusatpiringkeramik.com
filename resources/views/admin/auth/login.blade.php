@@ -14,7 +14,7 @@
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #FEF2F2; /* Sangat soft blue */
+            background-color: #F8FAFC;
             color: #0F172A;
             display: flex;
             align-items: center;
@@ -24,8 +24,8 @@
             position: relative;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.2) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(14, 165, 233, 0.15) 0px, transparent 50%);
+                radial-gradient(at 0% 0%, rgba(15, 23, 42, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(30, 41, 59, 0.04) 0px, transparent 50%);
         }
         
         /* Ornamental Blobs */
@@ -33,7 +33,7 @@
             position: absolute;
             top: -100px; left: -100px;
             width: 400px; height: 400px;
-            background: rgba(14, 165, 233, 0.2);
+            background: rgba(15, 23, 42, 0.06);
             filter: blur(80px);
             border-radius: 50%;
             z-index: -1;
@@ -42,7 +42,7 @@
             position: absolute;
             bottom: -150px; right: -50px;
             width: 500px; height: 500px;
-            background: rgba(56, 189, 248, 0.15);
+            background: rgba(30, 41, 59, 0.05);
             filter: blur(100px);
             border-radius: 50%;
             z-index: -1;
@@ -57,15 +57,15 @@
         }
 
         .login-glass-panel {
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 24px;
             padding: 1rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            box-shadow: 0 24px 50px rgba(14, 165, 233, 0.08), 0 4px 15px rgba(0,0,0,0.03);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 24px 50px rgba(15, 23, 42, 0.06), 0 4px 15px rgba(0,0,0,0.02);
+            border: 1px solid rgba(226, 232, 240, 0.8);
             min-height: 500px;
         }
 
@@ -88,31 +88,35 @@
 
         .logo-placeholder {
             width: 50px; height: 50px;
-            background: linear-gradient(135deg, #DC2626, #EF4444);
+            background: #0F172A;
             display: flex; align-items: center; justify-content: center;
             font-weight: 800; color: #fff; font-size: 1.125rem;
             border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.25);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
             margin-bottom: 2rem;
         }
 
         .hero-title {
-            font-size: 2rem;
-            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.85rem;
+            font-weight: 700;
             color: #0F172A;
-            line-height: 1.2;
-            letter-spacing: -0.03em;
+            line-height: 1.25;
+            letter-spacing: -0.02em;
             margin-bottom: 1rem;
         }
         
         .hero-desc {
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.9375rem;
             color: #64748B;
             line-height: 1.6;
             margin-bottom: 3rem;
+            font-weight: 400;
         }
 
         .back-link {
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.8125rem;
             color: #64748B;
             font-weight: 600;
@@ -124,7 +128,7 @@
             margin-top: auto; /* Push to bottom */
         }
         .back-link:hover {
-            color: #DC2626;
+            color: #0F172A;
         }
 
         /* Right side form styles */
@@ -132,6 +136,7 @@
             margin-bottom: 2rem;
         }
         .form-title {
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.5rem;
             font-weight: 700;
             color: #0F172A;
@@ -139,6 +144,7 @@
             letter-spacing: -0.02em;
         }
         .form-subtitle {
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.8125rem;
             color: #94A3B8;
             margin: 0;
@@ -146,6 +152,7 @@
         }
 
         .form-label {
+            font-family: 'Montserrat', sans-serif;
             color: #475569;
             margin-bottom: 0.5rem;
             font-size: 0.75rem;
@@ -176,8 +183,8 @@
             font-weight: 400;
         }
         .input-modern:focus {
-            border-color: #DC2626;
-            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+            border-color: #0F172A;
+            box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.1);
         }
 
         .toggle-password {
@@ -195,11 +202,11 @@
             justify-content: center;
             transition: color 0.2s;
         }
-        .toggle-password:hover { color: #DC2626; }
+        .toggle-password:hover { color: #0F172A; }
 
         .btn-primary {
-            background: #DC2626; /* solid blue */
-            color: #fff;
+            background: #0F172A; /* solid black/slate */
+            color: #ffffff;
             font-weight: 700;
             font-family: 'Montserrat', sans-serif;
             border: none;
@@ -210,16 +217,19 @@
             border-radius: 10px;
             transition: all 0.3s;
             margin-top: 1rem;
-            box-shadow: 0 8px 16px rgba(14, 165, 233, 0.2);
+            box-shadow: 0 8px 16px rgba(15, 23, 42, 0.2);
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         .btn-primary:hover {
-            background: #B91C1C;
+            background: #1E293B;
             transform: translateY(-2px);
-            box-shadow: 0 12px 20px rgba(14, 165, 233, 0.3);
+            box-shadow: 0 12px 20px rgba(15, 23, 42, 0.3);
+        }
+        .btn-primary:active {
+            transform: translateY(0);
         }
         .btn-primary:active {
             transform: translateY(0);
@@ -330,7 +340,7 @@
             </form>
             
             <div style="text-align: center; margin-top: 1.5rem;">
-                <p style="font-size: 0.75rem; color: #94A3B8; margin: 0;">developed by <a href="https://hvmdigital.id" target="_blank" rel="noopener" style="color: #DC2626; text-decoration: none; font-weight: 600;">hvmdigital.id</a></p>
+                <p style="font-size: 0.75rem; color: #94A3B8; margin: 0; font-family: 'Montserrat', sans-serif;">developed by <a href="https://hvmdigital.id" target="_blank" rel="noopener" style="color: #0F172A; text-decoration: none; font-weight: 700;">hvmdigital.id</a></p>
             </div>
         </div>
     </div>
