@@ -222,7 +222,7 @@
             content: '';
             position: absolute;
             top: 0;
-            bottom: 1.75rem;
+            bottom: 0;
             width: 120px;
             z-index: 10;
             pointer-events: none;

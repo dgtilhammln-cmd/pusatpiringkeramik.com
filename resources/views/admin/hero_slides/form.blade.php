@@ -23,8 +23,8 @@
                     <input type="text" name="subtitle" value="{{ old('subtitle', $slide->subtitle ?? '') }}" class="form-input" placeholder="Trusted Tableware Distributor">
                 </div>
                 <div>
-                    <label class="form-label">Judul Utama Slide <span style="color:#f87171;">*</span></label>
-                    <input type="text" name="title" value="{{ old('title', $slide->title ?? '') }}" class="form-input" required placeholder="Peralatan Makan Berkualitas untuk Rumah & Bisnis Anda">
+                    <label class="form-label">Judul Utama Slide <span style="color:#f87171;">*</span> (Gunakan Enter untuk buat 2 baris)</label>
+                    <textarea name="title" class="form-input" rows="2" required placeholder="Solusi Tableware Keramik&#10;Premium untuk Bisnis F&B">{{ old('title', $slide->title ?? '') }}</textarea>
                 </div>
                 <div>
                     <label class="form-label">Tags / Layanan</label>

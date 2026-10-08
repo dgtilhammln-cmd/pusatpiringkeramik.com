@@ -1644,9 +1644,9 @@
 
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.25rem;">
           <div style="grid-column: span 2;">
-            <label class="pm-label">Judul Utama Slide *</label>
-            <input type="text" name="title" id="slide_title" class="pm-input" required
-              placeholder="Contoh: Peralatan Makan Berkualitas untuk Rumah & Bisnis Anda">
+            <label class="pm-label">Judul Utama Slide * (Gunakan Enter untuk buat 2 baris)</label>
+            <textarea name="title" id="slide_title" class="pm-input" rows="2" required
+              placeholder="Contoh: Solusi Tableware Keramik&#10;Premium untuk Bisnis F&B"></textarea>
           </div>
           <div>
             <label class="pm-label">Subtitle / Badge Tagline Atas</label>
