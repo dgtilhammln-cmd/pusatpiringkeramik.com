@@ -1442,14 +1442,14 @@
                 <div class="cv-marquee-track animate-marquee" style="display: flex; gap: 1.5rem; padding: 1rem 0;">
                     @foreach([1, 2] as $loopGroup)
                         @foreach($clients as $c)
-                            @if($c->logo)
-                                <div class="cv-client-logo-card-dark">
-                                    <img src="{{ asset('storage/' . $c->logo) }}" alt="{{ $c->name }}" class="cv-client-logo-img-dark"
-                                        title="{{ $c->name }}">
-                                </div>
-                            @else
-                                <div class="cv-client-chip-dark">{{ $c->name }}</div>
-                            @endif
+                            <div style="display:flex; align-items:center; justify-content:center; height:48px; padding:0 0.5rem; flex-shrink:0;">
+                                @if($c->logo)
+                                    <img src="{{ asset('storage/' . $c->logo) }}" alt="{{ $c->auto_alt }}" class="cv-client-logo-img-dark"
+                                        title="{{ $c->name }}" style="max-height:44px; max-width:150px; object-fit:contain; filter:grayscale(100%); opacity:0.6; transition:all 0.3s ease;">
+                                @else
+                                    <span style="font-size:1rem; font-weight:600; color:#94A3B8; white-space:nowrap;">{{ $c->name }}</span>
+                                @endif
+                            </div>
                         @endforeach
                     @endforeach
                 </div>

@@ -30,4 +30,16 @@ class Client extends Model
             ? asset('storage/' . $this->logo)
             : null;
     }
+
+    public function getAutoAltAttribute(): string
+    {
+        $companyName = Setting::get('company_name') ?: 'Pusat Piring Keramik';
+        if (!empty($this->alt_text)) {
+            if (str_contains(strtolower($this->alt_text), 'customer')) {
+                return $this->alt_text;
+            }
+            return "{$this->alt_text} customer {$companyName}";
+        }
+        return "{$this->name} customer {$companyName}";
+    }
 }

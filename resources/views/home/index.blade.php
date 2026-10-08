@@ -1095,46 +1095,34 @@
             color: var(--text-4);
         }
 
-        /* ── PREMIUM CLIENT BAR ──────────── */
+        /* ── ELEGANT MINIMALIST CLIENT BAR ──────────── */
         .cv-clients-section {
             background: #ffffff;
-            padding: 3.5rem 0;
-            border-top: 1px solid rgba(14, 165, 233, 0.08);
-            border-bottom: 1px solid rgba(14, 165, 233, 0.08);
+            padding: 3rem 0 3.5rem;
+            border-top: 1px solid #F1F5F9;
+            border-bottom: 1px solid #F1F5F9;
             overflow: hidden;
             position: relative;
         }
 
         .cv-clients-header {
             max-width: 1200px;
-            margin: 0 auto 2.5rem;
+            margin: 0 auto 2rem;
             padding: 0 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
-            gap: 0.5rem;
+            text-align: center;
         }
 
         .cv-clients-label {
             font-size: 0.75rem;
             font-weight: 700;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: #64748B;
+            color: #94A3B8;
         }
 
-        .cv-clients-count {
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: var(--brand);
-            background: #FEF2F2;
-            padding: 0.35rem 1rem;
-            border-radius: 20px;
-            border: 1px solid rgba(14, 165, 233, 0.15);
-        }
-
-        /* Marquee Container */
         .cv-marquee-container {
             width: 100%;
             overflow: hidden;
@@ -1142,136 +1130,97 @@
             display: flex;
         }
 
-        /* Fade edges */
         .cv-marquee-container::before,
         .cv-marquee-container::after {
             content: '';
             position: absolute;
             top: 0;
             bottom: 0;
-            width: 150px;
+            width: 140px;
             z-index: 2;
             pointer-events: none;
         }
 
         .cv-marquee-container::before {
             left: 0;
-            background: linear-gradient(to right, #ffffff, transparent);
+            background: linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0));
         }
 
         .cv-marquee-container::after {
             right: 0;
-            background: linear-gradient(to left, #ffffff, transparent);
+            background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
         }
 
-        /* Infinite Animation */
         @keyframes scrollLeft {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         .cv-marquee-track {
             display: flex;
-            gap: 2rem;
-            padding: 1.5rem 1rem;
+            align-items: center;
+            gap: 3.5rem;
+            padding: 0.75rem 1rem;
             width: max-content;
-            animation: scrollLeft 40s linear infinite;
+            animation: scrollLeft 35s linear infinite;
         }
 
         .cv-marquee-container:hover .cv-marquee-track {
             animation-play-state: paused;
         }
 
-        /* Card Design */
-        .cv-client-logo-card {
-            background: #F8FAFC;
-            border: 1.5px solid #E2E8F0;
-            border-radius: 16px;
-            padding: 1rem 1.75rem;
+        .cv-client-minimal-item {
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 0.75rem;
-            min-width: 180px;
-            max-width: 220px;
-            height: 110px;
-            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-            text-decoration: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-        }
-
-        .cv-client-logo-card:hover {
-            border-color: #EF4444;
-            background: #ffffff;
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 12px 30px rgba(14, 165, 233, 0.12);
+            height: 52px;
+            padding: 0 0.5rem;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
         }
 
         .cv-client-logo-img {
-            max-height: 52px;
+            max-height: 48px;
             max-width: 160px;
             width: auto;
             height: auto;
             object-fit: contain;
-            filter: grayscale(80%) opacity(0.8);
-            transition: all 0.3s;
+            filter: grayscale(100%);
+            opacity: 0.55;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
             display: block;
         }
 
-        .cv-client-logo-card:hover .cv-client-logo-img {
-            filter: grayscale(0%) opacity(1);
+        .cv-client-minimal-item:hover .cv-client-logo-img {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.08);
         }
 
-        .cv-client-logo-name {
-            font-size: 0.7rem;
+        .cv-client-text-name {
+            font-size: 1.05rem;
             font-weight: 600;
+            letter-spacing: -0.01em;
             color: #64748B;
-            text-align: center;
+            opacity: 0.75;
+            transition: all 0.3s ease;
             white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 130px;
         }
 
-        /* Text-only chip */
-        .cv-client-chip-v2 {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            background: #F8FAFC;
-            border: 1.5px solid #E2E8F0;
-            border-radius: 16px;
-            padding: 0 2rem;
-            height: 100px;
-            min-width: 160px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #475569;
-            white-space: nowrap;
-            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        .cv-client-minimal-item:hover .cv-client-text-name {
+            color: #0F172A;
+            opacity: 1;
+            transform: scale(1.06);
         }
 
-        .cv-client-chip-v2::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #EF4444;
-            flex-shrink: 0;
-        }
-
-        .cv-client-chip-v2:hover {
-            border-color: #EF4444;
-            background: #ffffff;
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 12px 30px rgba(14, 165, 233, 0.12);
+        @media (max-width: 768px) {
+            .cv-clients-section { padding: 2.25rem 0 2.5rem; }
+            .cv-clients-header { margin-bottom: 1.5rem; }
+            .cv-marquee-track { gap: 2rem; animation-duration: 25s; }
+            .cv-client-minimal-item { height: 42px; }
+            .cv-client-logo-img { max-height: 38px; max-width: 130px; }
+            .cv-client-text-name { font-size: 0.9rem; }
+            .cv-marquee-container::before, .cv-marquee-container::after { width: 60px; }
         }
 
         /* RESPONSIVE */
@@ -1487,11 +1436,15 @@
         </div>
     </section>
 
-    {{-- ════ PREMIUM CLIENTS BAR ════ --}}
+    {{-- ════ PREMIUM CLIENTS BAR (MINIMALIST & ELEGANT) ════ --}}
     @if($clients->count())
-        <section class="cv-clients-section">
+        @php
+            $clientSectionBg = \App\Models\Setting::get('page_home_client_bg') ?? '#FFFFFF';
+            $clientSectionLabel = \App\Models\Setting::get('client_section_label') ?? 'DIPERCAYA OLEH PERUSAHAAN TERKEMUKA';
+        @endphp
+        <section class="cv-clients-section" style="background: {{ $clientSectionBg }};">
             <div class="cv-clients-header">
-                <span class="cv-clients-label">Dipercaya oleh perusahaan terkemuka</span>
+                <span class="cv-clients-label">{{ $clientSectionLabel }}</span>
             </div>
 
             <div class="cv-marquee-container">
@@ -1499,14 +1452,14 @@
                     {{-- Loop twice to create seamless infinite scroll effect --}}
                     @foreach([1, 2] as $loopGroup)
                         @foreach($clients as $client)
-                            @if($client->logo)
-                                <div class="cv-client-logo-card">
-                                    <img src="{{ asset('storage/' . $client->logo) }}" alt="{{ $client->alt_text ?: $client->name }}"
+                            <div class="cv-client-minimal-item">
+                                @if($client->logo)
+                                    <img src="{{ asset('storage/' . $client->logo) }}" alt="{{ $client->auto_alt }}"
                                         class="cv-client-logo-img" title="{{ $client->name }}" loading="lazy">
-                                </div>
-                            @else
-                                <div class="cv-client-chip-v2">{{ $client->name }}</div>
-                            @endif
+                                @else
+                                    <span class="cv-client-text-name">{{ $client->name }}</span>
+                                @endif
+                            </div>
                         @endforeach
                     @endforeach
                 </div>

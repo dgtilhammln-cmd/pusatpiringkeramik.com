@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use App\Models\HeroSlide;
+use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,8 +17,9 @@ class AdminPageManagementController extends Controller
     {
         $settings = Setting::getAllAsArray();
         $heroSlides = HeroSlide::ordered()->get();
+        $clients = Client::ordered()->get();
         $activeTab = $request->query('tab', session('active_tab', 'sect-hero'));
-        return view('admin.page_management.index', compact('settings', 'heroSlides', 'activeTab'));
+        return view('admin.page_management.index', compact('settings', 'heroSlides', 'clients', 'activeTab'));
     }
 
     public function update(Request $request)

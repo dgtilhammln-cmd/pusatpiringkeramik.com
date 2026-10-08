@@ -473,6 +473,7 @@
         @php
           $subTabs = [
             'sect-hero' => ['Hero Section & Slide', 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z'],
+            'sect-client' => ['Client Marquee & Logo', 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z'],
             'sect-about' => ['About Us Section', 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'],
             'sect-product' => ['Product Section', 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4'],
             'sect-value' => ['Value & Keunggulan', 'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z'],
@@ -709,6 +710,118 @@
                       style="background:#FEF2F2; color:#DC2626; border:1px solid #FECACA; padding:.5rem .875rem; border-radius:8px; font-size:.78rem; font-weight:700; cursor:pointer; transition:all .2s;">
                       Hapus
                     </button>
+                  </div>
+                </div>
+              @endforeach
+            </div>
+          @endif
+        </div>
+
+      </div>
+
+      {{-- SUB TAB 2: SECT CLIENT MARQUEE --}}
+      <div id="sub-sect-client" class="sub-tab-content"
+        style="{{ ($activeTab ?? '') === 'sect-client' ? '' : 'display:none;' }}">
+
+        {{-- Section General Options --}}
+        <div class="pm-card" style="margin-bottom:1.5rem;">
+          <div class="pm-card-header">
+            <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <div class="pm-card-title">Kustomisasi Section Client & Partner Marquee</div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 2fr; gap:1.25rem;">
+            <div>
+              <label class="pm-label">Background Section Client</label>
+              <div class="pm-color-picker-wrap">
+                <input type="color" value="{{ $settings['page_home_client_bg'] ?? '#FFFFFF' }}"
+                  onchange="document.getElementById('c_cli_bg').value=this.value">
+                <input type="text" name="page_home_client_bg" id="c_cli_bg" class="pm-input"
+                  value="{{ $settings['page_home_client_bg'] ?? '#FFFFFF' }}">
+              </div>
+            </div>
+            <div>
+              <label class="pm-label">Teks Label Judul Section</label>
+              <input type="text" name="client_section_label" class="pm-input"
+                value="{{ $settings['client_section_label'] ?? 'DIPERCAYA OLEH PERUSAHAAN TERKEMUKA' }}"
+                placeholder="DIPERCAYA OLEH PERUSAHAAN TERKEMUKA">
+            </div>
+          </div>
+        </div>
+
+        {{-- Form Tambah Klien Baru --}}
+        <div class="pm-card" style="margin-bottom:1.5rem; background:#F8FAFC; border:1px solid #E2E8F0;">
+          <div style="font-weight:700; color:#0F172A; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+            <svg width="18" height="18" fill="none" stroke="#10B981" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg>
+            <span>Tambah Logo / Nama Klien Baru</span>
+          </div>
+
+          <form action="{{ route('admin.clients.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div style="display:grid; grid-template-columns: 2fr 2fr 1fr; gap:1rem; align-items:end;">
+              <div>
+                <label class="pm-label">Nama Perusahaan Klien *</label>
+                <input type="text" name="name" class="pm-input" placeholder="Contoh: PT. Pertamina" required>
+              </div>
+              <div>
+                <label class="pm-label">Logo Image (Auto WebP)</label>
+                <input type="file" name="logo" class="pm-input" accept="image/*">
+              </div>
+              <div>
+                <button type="submit" class="btn-primary" style="width:100%; height:42px; display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; background:#10B981; border-color:#10B981; color:#fff; font-weight:600; border-radius:10px;">
+                  + Tambah Klien
+                </button>
+              </div>
+            </div>
+            <div style="font-size:0.75rem; color:#64748B; margin-top:0.5rem;">
+              * Tag <code>alt</code> gambar akan terformat otomatis: <code>[Nama Klien] customer {{ $settings['company_name'] ?? 'Pusat Piring Keramik' }}</code>.
+            </div>
+          </form>
+        </div>
+
+        {{-- Daftar Klien --}}
+        <div class="pm-card">
+          <div style="font-weight:700; color:#0F172A; margin-bottom:1.25rem; display:flex; justify-content:space-between; align-items:center;">
+            <span>Daftar Klien ({{ count($clients) }} Item)</span>
+            <span style="font-size:0.8rem; color:#64748B;">Total: {{ count($clients) }} Mitra</span>
+          </div>
+
+          @if(count($clients) === 0)
+            <div style="text-align:center; padding:3rem 1rem; color:#94A3B8;">
+              Belum ada logo klien yang ditambahkan. Silakan tambah logo klien di atas.
+            </div>
+          @else
+            <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:1rem;">
+              @foreach($clients as $cli)
+                <div style="background:#ffffff; border:1px solid #E2E8F0; border-radius:12px; padding:1rem; display:flex; gap:1rem; align-items:center; justify-content:space-between; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+                  <div style="display:flex; align-items:center; gap:1rem; overflow:hidden;">
+                    <div style="width:60px; height:45px; background:#F1F5F9; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; overflow:hidden; border:1px solid #E2E8F0;">
+                      @if($cli->logo)
+                        <img src="{{ asset('storage/' . $cli->logo) }}" alt="{{ $cli->auto_alt }}" style="max-width:100%; max-height:100%; object-fit:contain;">
+                      @else
+                        <span style="font-size:0.65rem; font-weight:700; color:#64748B; text-align:center;">TEXT ONLY</span>
+                      @endif
+                    </div>
+                    <div style="overflow:hidden;">
+                      <div style="font-weight:600; font-size:0.9rem; color:#0F172A; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="{{ $cli->name }}">
+                        {{ $cli->name }}
+                      </div>
+                      <div style="font-size:0.725rem; color:#64748B; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="{{ $cli->auto_alt }}">
+                        Alt: {{ $cli->auto_alt }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style="display:flex; align-items:center; gap:0.35rem; flex-shrink:0;">
+                    <form action="{{ route('admin.clients.destroy', $cli->id) }}" method="POST" onsubmit="return confirm('Hapus logo/klien {{ addslashes($cli->name) }}?')">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" style="background:#FEE2E2; color:#EF4444; border:none; padding:0.4rem 0.6rem; border-radius:8px; cursor:pointer; font-size:0.75rem; font-weight:600;">
+                        Hapus
+                      </button>
+                    </form>
                   </div>
                 </div>
               @endforeach
