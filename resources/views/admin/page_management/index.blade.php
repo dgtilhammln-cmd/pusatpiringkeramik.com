@@ -1087,17 +1087,53 @@
             <div style="grid-column: span 2;">
               <label class="pm-label">Deskripsi / Subtitle Section Produk</label>
               <textarea name="product_section_desc" class="pm-input"
-                rows="2">{{ $settings['product_section_desc'] ?? 'Solusi cat dan coating premium terpercaya untuk berbagai skala industri di Indonesia.' }}</textarea>
+                rows="2">{{ $settings['product_section_desc'] ?? 'Solusi tableware keramik premium terpercaya untuk berbagai skala bisnis F&B di Indonesia.' }}</textarea>
             </div>
-            <div>
-              <label class="pm-label">Teks Tombol Utama CTA</label>
-              <input type="text" name="product_cta1_text" class="pm-input"
-                value="{{ $settings['product_cta1_text'] ?? 'Ke Katalog Produk' }}">
-            </div>
-            <div>
-              <label class="pm-label">Teks Tombol Sekunder CTA</label>
-              <input type="text" name="product_cta2_text" class="pm-input"
-                value="{{ $settings['product_cta2_text'] ?? 'Semua Kategori Produk' }}">
+          </div>
+
+          {{-- Single CTA Button Settings --}}
+          <div style="background:#F8FAFC; border:1.5px solid #E2E8F0; border-radius:12px; padding:1rem; margin-top:1rem;">
+            <div style="font-size:.8rem; font-weight:700; color:#0F172A; margin-bottom:.85rem;">&#128279; Tombol CTA Section Produk</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+              <div>
+                <label class="pm-label">Teks Tombol</label>
+                <input type="text" name="product_cta1_text" class="pm-input"
+                  value="{{ $settings['product_cta1_text'] ?? 'Ke Katalog Produk' }}">
+              </div>
+              <div>
+                <label class="pm-label">URL Tujuan Tombol</label>
+                <input type="text" name="product_cta1_url" class="pm-input"
+                  value="{{ $settings['product_cta1_url'] ?? '' }}" placeholder="/produk atau URL lengkap">
+                <div class="pm-help">Kosongkan = otomatis ke halaman katalog produk.</div>
+              </div>
+              <div>
+                <label class="pm-label">Warna Teks Tombol</label>
+                <div class="pm-color-picker-wrap">
+                  <input type="color" value="{{ $settings['page_home_product_btn_text'] ?? '#ffffff' }}"
+                    onchange="document.getElementById('c_btn_text').value=this.value">
+                  <input type="text" name="page_home_product_btn_text" id="c_btn_text" class="pm-input"
+                    value="{{ $settings['page_home_product_btn_text'] ?? '#ffffff' }}">
+                </div>
+              </div>
+              <div>
+                <label class="pm-label">Warna Background Tombol</label>
+                <div class="pm-color-picker-wrap">
+                  <input type="color" value="{{ $settings['page_home_product_btn_bg'] ?? 'rgba(255,255,255,0.15)' }}"
+                    onchange="document.getElementById('c_btn_bg').value=this.value">
+                  <input type="text" name="page_home_product_btn_bg" id="c_btn_bg" class="pm-input"
+                    value="{{ $settings['page_home_product_btn_bg'] ?? '' }}" placeholder="default: transparan putih">
+                </div>
+              </div>
+              <div style="grid-column:span 2;">
+                <label class="pm-label">Warna Border Tombol</label>
+                <div class="pm-color-picker-wrap">
+                  <input type="color" value="{{ $settings['page_home_product_btn_border'] ?? 'rgba(255,255,255,0.45)' }}"
+                    onchange="document.getElementById('c_btn_border').value=this.value">
+                  <input type="text" name="page_home_product_btn_border" id="c_btn_border" class="pm-input"
+                    value="{{ $settings['page_home_product_btn_border'] ?? '' }}" placeholder="default: putih 45%">
+                </div>
+                <div class="pm-help">Saat hover: tombol berubah jadi warna teks sebagai background dan background jadi warna teks.</div>
+              </div>
             </div>
           </div>
         </div>

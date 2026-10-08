@@ -15,93 +15,183 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         .cv-hero-modern {
-            background-color: {{ $settings['page_home_hero_bg'] ?? '#FAFAFA' }};
+            background-color:
+                {{ $settings['page_home_hero_bg'] ?? '#FAFAFA' }}
+            ;
             padding-top: calc(80px + 3rem);
             padding-bottom: 2rem;
             position: relative;
             overflow: hidden;
             font-family: var(--font);
         }
-        .cv-hero-title, h2.cv-hero-title {
-            color: {{ $settings['page_home_hero_title_color'] ?? '#0A1930' }};
+
+        .cv-hero-title,
+        h2.cv-hero-title {
+            color:
+                {{ $settings['page_home_hero_title_color'] ?? '#0A1930' }}
+            ;
         }
+
         .cv-hero-desc {
-            color: {{ $settings['page_home_hero_text_color'] ?? '#64748b' }};
+            color:
+                {{ $settings['page_home_hero_text_color'] ?? '#64748b' }}
+            ;
         }
-        .cv-hero-stats-box, .cv-hero-bg-block {
-            background: {{ $settings['page_home_hero_card_bg'] ?? '#0A1930' }};
+
+        .cv-hero-stats-box,
+        .cv-hero-bg-block {
+            background:
+                {{ $settings['page_home_hero_card_bg'] ?? '#0A1930' }}
+            ;
         }
+
         /* ── Product / Catalog Section ── */
-        .cv-products, .cv-catalog-section {
-            background: {{ $settings['page_home_product_bg'] ?? '#0F172A' }} !important;
+        .cv-products,
+        .cv-catalog-section {
+            background:
+                {{ $settings['page_home_product_bg'] ?? '#0F172A' }}
+                !important;
         }
+
         .cv-product-card {
-            background: {{ $settings['page_home_product_card_bg'] ?? '#1E293B' }};
+            background:
+                {{ $settings['page_home_product_card_bg'] ?? '#1E293B' }}
+            ;
         }
+
         .cv-catalog-title {
-            color: {{ $settings['page_home_product_title_color'] ?? '#ffffff' }} !important;
+            color:
+                {{ $settings['page_home_product_title_color'] ?? '#ffffff' }}
+                !important;
         }
+
         .cv-catalog-right-info p {
-            color: {{ $settings['page_home_product_desc_color'] ?? '#94A3B8' }} !important;
+            color:
+                {{ $settings['page_home_product_desc_color'] ?? '#94A3B8' }}
+                !important;
         }
+
         .cv-catalog-right-info small {
-            color: {{ $settings['page_home_product_note_color'] ?? '#64748B' }} !important;
+            color:
+                {{ $settings['page_home_product_note_color'] ?? '#64748B' }}
+                !important;
         }
 
         /* ── About Section ── */
         .cv-about-premium {
-            background-color: {{ $settings['page_home_about_bg'] ?? '#ffffff' }} !important;
+            background-color:
+                {{ $settings['page_home_about_bg'] ?? '#ffffff' }}
+                !important;
         }
+
         .about-premium-heading {
-            color: {{ $settings['page_home_about_title_color'] ?? '#0A1930' }} !important;
+            color:
+                {{ $settings['page_home_about_title_color'] ?? '#0A1930' }}
+                !important;
         }
+
         .cv-about-premium .ab-card-label {
-            color: {{ $settings['page_home_about_text_color'] ?? '#64748b' }} !important;
+            color:
+                {{ $settings['page_home_about_text_color'] ?? '#64748b' }}
+                !important;
         }
+
         /* Desc color applies only to non-image cards — card-image always forces white */
         .cv-about-premium .ab-card-gray .ab-card-desc,
         .cv-about-premium .ab-card-accent .ab-card-desc {
-            color: {{ $settings['page_home_about_text_color'] ?? '#64748b' }} !important;
+            color:
+                {{ $settings['page_home_about_text_color'] ?? '#64748b' }}
+                !important;
         }
+
         .cv-about-premium .ab-card-image .ab-card-desc,
         .cv-about-premium .ab-card-image .ab-card-label,
         .cv-about-premium .ab-card-image .ab-card-value {
             color: #ffffff !important;
         }
+
         .cv-about-premium .ab-card-gray .ab-card-value {
-            color: {{ $settings['page_home_about_title_color'] ?? '#0A1930' }} !important;
+            color:
+                {{ $settings['page_home_about_title_color'] ?? '#0A1930' }}
+                !important;
         }
 
         /* ── Value / Keunggulan Section ── */
-        .cv-advantages { background-color: {{ $settings['page_home_value_bg'] ?? '#f8fafc' }} !important; }
-        .cv-adv-card { background-color: {{ $settings['page_home_value_card_bg'] ?? '#ffffff' }} !important; }
+        .cv-advantages {
+            background-color:
+                {{ $settings['page_home_value_bg'] ?? '#f8fafc' }}
+                !important;
+        }
+
+        .cv-adv-card {
+            background-color:
+                {{ $settings['page_home_value_card_bg'] ?? '#ffffff' }}
+                !important;
+        }
 
         /* ── Aplikasi Section ── */
-        .cv-apps-premium { background-color: {{ $settings['page_home_aplikasi_bg'] ?? '#0F172A' }} !important; }
-        .cv-apps-premium .cv-adv-section-label { color: {{ $settings['page_home_aplikasi_label_color'] ?? '#94A3B8' }} !important; }
-        .cv-apps-premium .cv-adv-section-title { color: {{ $settings['page_home_aplikasi_title_color'] ?? '#ffffff' }} !important; }
+        .cv-apps-premium {
+            background-color:
+                {{ $settings['page_home_aplikasi_bg'] ?? '#0F172A' }}
+                !important;
+        }
+
+        .cv-apps-premium .cv-adv-section-label {
+            color:
+                {{ $settings['page_home_aplikasi_label_color'] ?? '#94A3B8' }}
+                !important;
+        }
+
+        .cv-apps-premium .cv-adv-section-title {
+            color:
+                {{ $settings['page_home_aplikasi_title_color'] ?? '#ffffff' }}
+                !important;
+        }
 
         /* ── Coverage / Kota Section ── */
-        .cv-coverage-dark { background-color: {{ $settings['page_home_kota_bg'] ?? '#0F172A' }} !important; }
-        .cv-coverage-dark h2 { color: {{ $settings['page_home_kota_title_color'] ?? '#ffffff' }} !important; }
+        .cv-coverage-dark {
+            background-color:
+                {{ $settings['page_home_kota_bg'] ?? '#0F172A' }}
+                !important;
+        }
+
+        .cv-coverage-dark h2 {
+            color:
+                {{ $settings['page_home_kota_title_color'] ?? '#ffffff' }}
+                !important;
+        }
 
         /* ── Footer ── */
         @if(!empty($settings['page_home_footer_bg']))
-        footer.cv-footer { background-color: {{ $settings['page_home_footer_bg'] }} !important; }
+            footer.cv-footer {
+                background-color:
+                    {{ $settings['page_home_footer_bg'] }}
+                    !important;
+            }
+
         @endif
+
         @if(!empty($settings['page_home_footer_text_color']))
-        footer.cv-footer, footer.cv-footer p, footer.cv-footer span { color: {{ $settings['page_home_footer_text_color'] }} !important; }
+            footer.cv-footer, footer.cv-footer p, footer.cv-footer span {
+                color:
+                    {{ $settings['page_home_footer_text_color'] }}
+                    !important;
+            }
+
         @endif
 
         /* ── NEW COMPACT HERO REDESIGN (IMAGE 2 STYLE) ── */
         .cv-hero-modern {
-            background-color: {{ $settings['page_home_hero_bg'] ?? '#FAFAFA' }};
+            background-color:
+                {{ $settings['page_home_hero_bg'] ?? '#FAFAFA' }}
+            ;
             padding-top: calc(65px + 0.75rem);
             padding-bottom: 1rem;
             position: relative;
             overflow: hidden;
             font-family: var(--font);
         }
+
         .cv-hero-grid {
             max-width: 1200px;
             margin: 0 auto;
@@ -147,7 +237,9 @@
         h2.cv-hero-title {
             font-size: clamp(1.4rem, 2.4vw, 2.1rem);
             font-weight: 500;
-            color: {{ $settings['page_home_hero_title_color'] ?? '#0A1930' }};
+            color:
+                {{ $settings['page_home_hero_title_color'] ?? '#0A1930' }}
+            ;
             line-height: 1.2;
             letter-spacing: -0.02em;
             margin: 0;
@@ -157,7 +249,9 @@
 
         .cv-hero-title span,
         h2.cv-hero-title span {
-            color: {{ $settings['page_home_hero_title_color'] ?? '#0A1930' }};
+            color:
+                {{ $settings['page_home_hero_title_color'] ?? '#0A1930' }}
+            ;
             font-weight: 700;
         }
 
@@ -195,9 +289,15 @@
         .cv-hero-tags span {
             font-size: 0.73rem;
             font-weight: 500;
-            color: {{ $settings['page_home_hero_tags_color'] ?? '#475569' }};
-            background: {{ $settings['page_home_hero_tags_bg'] ?? '#ffffff' }};
-            border: 1px solid {{ $settings['page_home_hero_tags_border'] ?? '#E2E8F0' }};
+            color:
+                {{ $settings['page_home_hero_tags_color'] ?? '#475569' }}
+            ;
+            background:
+                {{ $settings['page_home_hero_tags_bg'] ?? '#ffffff' }}
+            ;
+            border: 1px solid
+                {{ $settings['page_home_hero_tags_border'] ?? '#E2E8F0' }}
+            ;
             padding: 0.25rem 0.75rem;
             border-radius: 50px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
@@ -207,7 +307,9 @@
         .cv-hero-desc {
             font-size: 0.8rem;
             font-weight: 400;
-            color: {{ $settings['page_home_hero_text_color'] ?? '#64748B' }};
+            color:
+                {{ $settings['page_home_hero_text_color'] ?? '#64748B' }}
+            ;
             line-height: 1.45;
             padding-left: 0.85rem;
             border-left: 3px solid var(--brand, #00A664);
@@ -237,12 +339,16 @@
 
         .cv-hero-banner-wrap::before {
             left: 0;
-            background: linear-gradient(to right, {{ $settings['page_home_hero_bg'] ?? '#FAFAFA' }} 30%, rgba(250, 250, 250, 0) 100%);
+            background: linear-gradient(to right,
+                    {{ $settings['page_home_hero_bg'] ?? '#FAFAFA' }}
+                    30%, rgba(250, 250, 250, 0) 100%);
         }
 
         .cv-hero-banner-wrap::after {
             right: 0;
-            background: linear-gradient(to left, {{ $settings['page_home_hero_bg'] ?? '#FAFAFA' }} 30%, rgba(250, 250, 250, 0) 100%);
+            background: linear-gradient(to left,
+                    {{ $settings['page_home_hero_bg'] ?? '#FAFAFA' }}
+                    30%, rgba(250, 250, 250, 0) 100%);
         }
 
         .hero-banner-swiper {
@@ -358,7 +464,7 @@
             color: #ffffff;
             line-height: 1.3;
             margin: 0;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
         }
 
         .cv-banner-pills {
@@ -449,6 +555,7 @@
         }
 
         @media (max-width: 768px) {
+
             /* On tablet/mobile: placeholder gets min-height so text doesn't get squished */
             .cv-banner-card {
                 aspect-ratio: 3448 / 914;
@@ -1226,8 +1333,11 @@
             {{-- Top Section --}}
             <div class="cv-hero-top">
                 <div class="cv-hero-top-left">
-                    <div class="cv-hero-badge" id="hero-badge">{{ $firstSlide->subtitle ?? 'Trusted Tableware Distributor' }}</div>
-                    <h1 class="cv-hero-title" id="hero-title">{{ $firstSlide ? $firstSlide->title : "Peralatan Makan Berkualitas\nuntuk Rumah & Bisnis Anda" }}</h1>
+                    <div class="cv-hero-badge" id="hero-badge">
+                        {{ $firstSlide->subtitle ?? 'Trusted Tableware Distributor' }}</div>
+                    <h1 class="cv-hero-title" id="hero-title">
+                        {{ $firstSlide ? $firstSlide->title : "Peralatan Makan Berkualitas\nuntuk Rumah & Bisnis Anda" }}
+                    </h1>
                 </div>
 
                 <div class="cv-static-logo-badge d-none d-sm-inline-flex">
@@ -1266,16 +1376,15 @@
                 <div class="swiper-wrapper">
                     @if(isset($heroSlides) && $heroSlides->count() > 0)
                         @foreach($heroSlides as $slide)
-                            <div class="swiper-slide"
-                                 data-title="{{ $slide->title }}"
-                                 data-subtitle="{{ $slide->subtitle }}"
-                                 data-desc="{{ $slide->description }}"
-                                 data-tags="{{ $slide->tags }}">
+                            <div class="swiper-slide" data-title="{{ $slide->title }}" data-subtitle="{{ $slide->subtitle }}"
+                                data-desc="{{ $slide->description }}" data-tags="{{ $slide->tags }}">
                                 <div class="cv-banner-card {{ $slide->image ? 'has-image' : '' }}">
                                     @if($slide->image)
-                                        <img src="{{ asset('storage/' . $slide->image) }}" class="cv-banner-uploaded-img" alt="{{ $slide->title }}">
+                                        <img src="{{ asset('storage/' . $slide->image) }}" class="cv-banner-uploaded-img"
+                                            alt="{{ $slide->title }}">
                                     @else
-                                        <div class="cv-banner-bg" style="background: linear-gradient(135deg, #005F41 0%, #00875A 50%, #004D34 100%);"></div>
+                                        <div class="cv-banner-bg"
+                                            style="background: linear-gradient(135deg, #005F41 0%, #00875A 50%, #004D34 100%);"></div>
                                         <div class="cv-banner-overlay"></div>
 
                                         <div class="cv-banner-content">
@@ -1284,10 +1393,14 @@
                                                     @if(!empty($settings['logo']))
                                                         <img src="{{ asset('storage/' . $settings['logo']) }}" alt="Logo">
                                                     @else
-                                                        <svg width="14" height="14" fill="none" stroke="var(--brand, #00A664)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                                                        <svg width="14" height="14" fill="none" stroke="var(--brand, #00A664)"
+                                                            stroke-width="2" viewBox="0 0 24 24">
+                                                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                                                        </svg>
                                                     @endif
                                                 </div>
-                                                <span class="cv-banner-brand-name">{{ $settings['company_name'] ?? 'UD. Sukses Makmur' }}</span>
+                                                <span
+                                                    class="cv-banner-brand-name">{{ $settings['company_name'] ?? 'UD. Sukses Makmur' }}</span>
                                             </div>
 
                                             <h3 class="cv-banner-headline">
@@ -1296,13 +1409,23 @@
 
                                             <div class="cv-banner-pills">
                                                 <a href="{{ url('/') }}" class="cv-banner-pill">
-                                                    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                                                    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"
+                                                        viewBox="0 0 24 24">
+                                                        <circle cx="12" cy="12" r="10" />
+                                                        <path
+                                                            d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+                                                    </svg>
                                                     <span>{{ request()->getHost() ?? 'pusatpiringkeramik.com' }}</span>
                                                 </a>
 
                                                 @if(!empty($settings['phone_number']) || !empty($settings['company_phone']))
-                                                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['phone_number'] ?? $settings['company_phone']) }}" target="_blank" class="cv-banner-pill">
-                                                        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                                                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['phone_number'] ?? $settings['company_phone']) }}"
+                                                        target="_blank" class="cv-banner-pill">
+                                                        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"
+                                                            viewBox="0 0 24 24">
+                                                            <path
+                                                                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+                                                        </svg>
                                                         <span>{{ $settings['phone_number'] ?? $settings['company_phone'] }}</span>
                                                     </a>
                                                 @endif
@@ -1316,7 +1439,8 @@
                         {{-- Fallback slide --}}
                         <div class="swiper-slide">
                             <div class="cv-banner-card">
-                                <div class="cv-banner-bg" style="background: linear-gradient(135deg, #005F41 0%, #00875A 50%, #004D34 100%);"></div>
+                                <div class="cv-banner-bg"
+                                    style="background: linear-gradient(135deg, #005F41 0%, #00875A 50%, #004D34 100%);"></div>
                                 <div class="cv-banner-overlay"></div>
                                 <div class="cv-banner-content">
                                     <div class="cv-banner-header">
@@ -1325,19 +1449,30 @@
                                                 <img src="{{ asset('storage/' . $settings['logo']) }}" alt="Logo">
                                             @endif
                                         </div>
-                                        <span class="cv-banner-brand-name">{{ $settings['company_name'] ?? 'UD. Sukses Makmur' }}</span>
+                                        <span
+                                            class="cv-banner-brand-name">{{ $settings['company_name'] ?? 'UD. Sukses Makmur' }}</span>
                                     </div>
                                     <h3 class="cv-banner-headline">
                                         Distributor Peralatan makan keramik dan stainless kualitas terbaik
                                     </h3>
                                     <div class="cv-banner-pills">
                                         <a href="{{ url('/') }}" class="cv-banner-pill">
-                                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"
+                                                viewBox="0 0 24 24">
+                                                <circle cx="12" cy="12" r="10" />
+                                                <path
+                                                    d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+                                            </svg>
                                             <span>{{ request()->getHost() ?? 'pusatpiringkeramik.com' }}</span>
                                         </a>
                                         @if(!empty($settings['phone_number']) || !empty($settings['company_phone']))
-                                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['phone_number'] ?? $settings['company_phone']) }}" target="_blank" class="cv-banner-pill">
-                                                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['phone_number'] ?? $settings['company_phone']) }}"
+                                                target="_blank" class="cv-banner-pill">
+                                                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"
+                                                    viewBox="0 0 24 24">
+                                                    <path
+                                                        d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+                                                </svg>
                                                 <span>{{ $settings['phone_number'] ?? $settings['company_phone'] }}</span>
                                             </a>
                                         @endif
@@ -1380,8 +1515,7 @@
     @endif
 
     {{-- ════ ABOUT SECTION (PREMIUM 4 CARDS) ════ --}}
-    <section class="cv-about-premium section-pad" id="tentang"
-        style="position:relative; z-index:2;">
+    <section class="cv-about-premium section-pad" id="tentang" style="position:relative; z-index:2;">
         <div class="container">
             @php
                 $aboutSubtitle = $settings['about_subtitle'] ?? 'ABOUT US';
@@ -1389,38 +1523,40 @@
                 $aboutHeadLine2 = $settings['about_heading_line2'] ?? 'Terpercaya untuk Bisnis F&B';
                 $aboutC1Label = $settings['about_c1_label'] ?? 'Pengalaman';
                 $aboutC1Value = $settings['about_c1_value'] ?? (date('Y') - (\App\Models\Setting::get('founding_year') ?? 2013)) . '+ Tahun';
-                $aboutC1Desc  = $settings['about_c1_desc'] ?? '';
+                $aboutC1Desc = $settings['about_c1_desc'] ?? '';
                 $aboutC1Keywords = array_filter(array_map('trim', explode(',', $settings['about_c1_keywords'] ?? 'Piring Keramik, Keramik Lantai, Porselen, Grosir Hotel, High Quality, Keramik Dinding, Tahan Lama, Food Safe')));
                 $aboutC2Label = $settings['about_c2_label'] ?? 'Komitmen Kualitas';
                 $aboutC2Value = $settings['about_c2_value'] ?? '100%';
-                $aboutC2Desc  = $settings['about_c2_desc'] ?? 'Memberikan solusi piring dan tableware keramik terbaik untuk usaha Anda.';
+                $aboutC2Desc = $settings['about_c2_desc'] ?? 'Memberikan solusi piring dan tableware keramik terbaik untuk usaha Anda.';
                 // Card 2 background: gradient takes priority, then image, then solid color
                 $aboutC2ColorStart = $settings['about_c2_color_start'] ?? '';
-                $aboutC2ColorEnd   = $settings['about_c2_color_end']   ?? '';
-                $aboutC2GradDir    = $settings['about_c2_grad_dir']    ?? '135deg';
-                $aboutC2Image      = $settings['about_c2_image']       ?? '';
+                $aboutC2ColorEnd = $settings['about_c2_color_end'] ?? '';
+                $aboutC2GradDir = $settings['about_c2_grad_dir'] ?? '135deg';
+                $aboutC2Image = $settings['about_c2_image'] ?? '';
                 if (!empty($aboutC2Image)) {
-                    $aboutC2BgStyle = "background:url('" . asset('storage/'.$aboutC2Image) . "') center/cover no-repeat;";
+                    $aboutC2BgStyle = "background:url('" . asset('storage/' . $aboutC2Image) . "') center/cover no-repeat;";
                 } elseif (!empty($aboutC2ColorStart) && !empty($aboutC2ColorEnd)) {
                     $aboutC2BgStyle = "background:linear-gradient({$aboutC2GradDir},{$aboutC2ColorStart},{$aboutC2ColorEnd});";
                 } else {
                     $aboutC2BgStyle = 'background:' . ($settings['about_c2_bg'] ?? '#00875A') . ';';
                 }
                 $aboutC3Value = $settings['about_c3_value'] ?? '500+';
-                $aboutC3Desc  = $settings['about_c3_desc'] ?? 'Proyek suplai dan pengadaan diselesaikan di seluruh Indonesia.';
+                $aboutC3Desc = $settings['about_c3_desc'] ?? 'Proyek suplai dan pengadaan diselesaikan di seluruh Indonesia.';
                 $aboutC4Label = $settings['about_c4_label'] ?? 'Distribusi Produk';
                 $aboutC4Value = $settings['about_c4_value'] ?? '1.000+';
-                $aboutC4Desc  = $settings['about_c4_desc'] ?? 'Ribuan set tableware terdistribusi ke berbagai sektor Horeca.';
-                $chipPositions = ['top:10%;left:5%','top:15%;left:45%','top:12%;left:80%','top:35%;left:15%','top:38%;left:50%','top:60%;left:5%','top:65%;left:40%','top:62%;left:75%'];
+                $aboutC4Desc = $settings['about_c4_desc'] ?? 'Ribuan set tableware terdistribusi ke berbagai sektor Horeca.';
+                $chipPositions = ['top:10%;left:5%', 'top:15%;left:45%', 'top:12%;left:80%', 'top:35%;left:15%', 'top:38%;left:50%', 'top:60%;left:5%', 'top:65%;left:40%', 'top:62%;left:75%'];
             @endphp
 
             {{-- Section Header --}}
             <div style="text-align:center; max-width:800px; margin:0 auto 4rem;">
-                <div style="font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#64748b; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:center; gap:0.5rem;">
+                <div
+                    style="font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#64748b; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:center; gap:0.5rem;">
                     <span style="width:4px; height:4px; background:#0A1930; border-radius:50%;"></span>
                     {{ $aboutSubtitle }}
                 </div>
-                <h2 style="font-size:clamp(1.75rem, 3.5vw, 3rem); font-weight:500; line-height:1.15; letter-spacing:-0.02em;" class="about-premium-heading">
+                <h2 style="font-size:clamp(1.75rem, 3.5vw, 3rem); font-weight:500; line-height:1.15; letter-spacing:-0.02em;"
+                    class="about-premium-heading">
                     {{ $aboutHeadLine1 }}
                     @if($aboutHeadLine2)
                         <br><strong>{{ $aboutHeadLine2 }}</strong>
@@ -1448,27 +1584,32 @@
                 </div>
 
                 {{-- Card 2: Gradient / Image / Solid Color --}}
-                <div class="ab-card ab-card-accent ab-card-c2" data-aos="fade-up" data-aos-delay="100" style="{{ $aboutC2BgStyle }} position:relative; overflow:hidden;">
+                <div class="ab-card ab-card-accent ab-card-c2" data-aos="fade-up" data-aos-delay="100"
+                    style="{{ $aboutC2BgStyle }} position:relative; overflow:hidden;">
                     {{-- Dark overlay for image mode --}}
                     @if(!empty($aboutC2Image))
                         <div style="position:absolute;inset:0;background:rgba(0,0,0,0.45);z-index:1;"></div>
                     @endif
-                    <div class="ab-card-content" style="position:relative;z-index:2;height:100%;display:flex;flex-direction:column;">
+                    <div class="ab-card-content"
+                        style="position:relative;z-index:2;height:100%;display:flex;flex-direction:column;">
                         <div class="ab-card-label" style="color:rgba(255,255,255,0.9);">{{ $aboutC2Label }}</div>
                         <div class="ab-card-value" style="color:#ffffff;">{{ $aboutC2Value }}</div>
-                        <div class="ab-card-desc" style="margin-top:auto;color:rgba(255,255,255,0.9);">{{ $aboutC2Desc }}</div>
+                        <div class="ab-card-desc" style="margin-top:auto;color:rgba(255,255,255,0.9);">{{ $aboutC2Desc }}
+                        </div>
                     </div>
                 </div>
 
                 {{-- Card 3: Image Background --}}
                 <div class="ab-card ab-card-image" data-aos="fade-up" data-aos-delay="200">
                     @if(!empty($settings['about_c3_image']))
-                        <img src="{{ asset('storage/' . $settings['about_c3_image']) }}" alt="About" class="ab-card-img" width="400" height="400" loading="lazy">
+                        <img src="{{ asset('storage/' . $settings['about_c3_image']) }}" alt="About" class="ab-card-img"
+                            width="400" height="400" loading="lazy">
                     @else
                         <div style="position:absolute; inset:0; background:linear-gradient(135deg, #cbd5e1, #94a3b8);"></div>
                     @endif
                     <div class="ab-card-overlay"></div>
-                    <div class="ab-card-content" style="position:relative; z-index:2; height:100%; display:flex; flex-direction:column; justify-content:flex-end;">
+                    <div class="ab-card-content"
+                        style="position:relative; z-index:2; height:100%; display:flex; flex-direction:column; justify-content:flex-end;">
                         <div class="ab-card-value" style="color:#ffffff; margin-bottom:0.5rem;">{{ $aboutC3Value }}</div>
                         <div class="ab-card-desc" style="color:rgba(255,255,255,0.9);">{{ $aboutC3Desc }}</div>
                     </div>
@@ -1553,7 +1694,9 @@
         }
 
         .ab-card-gray {
-            background: {{ $settings['page_home_about_card_gray_bg'] ?? '#f1f5f9' }};
+            background:
+                {{ $settings['page_home_about_card_gray_bg'] ?? '#f1f5f9' }}
+            ;
         }
 
         .ab-card-accent {
@@ -1584,7 +1727,9 @@
         .ab-card-label {
             font-size: 0.875rem;
             font-weight: 500;
-            color: {{ $settings['page_home_about_text_color'] ?? '#64748b' }};
+            color:
+                {{ $settings['page_home_about_text_color'] ?? '#64748b' }}
+            ;
             margin-bottom: 1rem;
         }
 
@@ -1592,14 +1737,18 @@
             font-size: 3rem;
             font-weight: 400;
             line-height: 1;
-            color: {{ $settings['page_home_about_title_color'] ?? '#0f172a' }};
+            color:
+                {{ $settings['page_home_about_title_color'] ?? '#0f172a' }}
+            ;
             letter-spacing: -0.05em;
         }
 
         .ab-card-desc {
             font-size: 0.95rem;
             line-height: 1.5;
-            color: {{ $settings['page_home_about_text_color'] ?? '#475569' }};
+            color:
+                {{ $settings['page_home_about_text_color'] ?? '#475569' }}
+            ;
             font-weight: 400;
         }
 
@@ -1614,12 +1763,16 @@
 
         .ab-chip {
             position: absolute;
-            background: {{ $settings['page_home_about_chip_bg'] ?? '#ffffff' }};
+            background:
+                {{ $settings['page_home_about_chip_bg'] ?? '#ffffff' }}
+            ;
             padding: 0.4rem 0.8rem;
             border-radius: 999px;
             font-size: 0.7rem;
             font-weight: 600;
-            color: {{ $settings['page_home_about_chip_color'] ?? '#94a3b8' }};
+            color:
+                {{ $settings['page_home_about_chip_color'] ?? '#94a3b8' }}
+            ;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
             white-space: nowrap;
         }
@@ -1636,7 +1789,9 @@
     <style>
         /* ── PRODUCT CATALOG SECTION ─────────────────── */
         .cv-catalog-section {
-            background: {{ $settings['page_home_product_bg'] ?? '#0F172A' }};
+            background:
+                {{ $settings['page_home_product_bg'] ?? '#0F172A' }}
+            ;
             padding: 5rem 0;
         }
 
@@ -1655,7 +1810,9 @@
         .cv-catalog-title {
             font-size: clamp(1.75rem, 3.5vw, 3rem);
             font-weight: 500;
-            color: {{ $settings['page_home_product_title_color'] ?? '#ffffff' }};
+            color:
+                {{ $settings['page_home_product_title_color'] ?? '#ffffff' }}
+            ;
             line-height: 1.15;
             letter-spacing: -0.02em;
             max-width: 420px;
@@ -1668,14 +1825,18 @@
 
         .cv-catalog-right-info p {
             font-size: 0.875rem;
-            color: {{ $settings['page_home_product_desc_color'] ?? '#94A3B8' }};
+            color:
+                {{ $settings['page_home_product_desc_color'] ?? '#94A3B8' }}
+            ;
             line-height: 1.6;
             margin-bottom: 0.5rem;
         }
 
         .cv-catalog-right-info small {
             font-size: 0.75rem;
-            color: {{ $settings['page_home_product_note_color'] ?? '#64748B' }};
+            color:
+                {{ $settings['page_home_product_note_color'] ?? '#64748B' }}
+            ;
         }
 
         /* Horizontal scroll track */
@@ -1711,7 +1872,9 @@
             text-decoration: none;
             display: block;
             flex-shrink: 0;
-            background: {{ $settings['page_home_product_card_bg'] ?? '#1E293B' }};
+            background:
+                {{ $settings['page_home_product_card_bg'] ?? '#1E293B' }}
+            ;
             cursor: pointer;
             transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
         }
@@ -1742,16 +1905,32 @@
             z-index: 1;
         }
 
+        /* Skeleton shimmer — matches the card size exactly */
+        @keyframes cv-skeleton-shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
         .cv-cat-card-placeholder {
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, {{ $settings['page_home_product_card_bg'] ?? '#1E293B' }}, {{ $settings['page_home_product_bg'] ?? '#0F172A' }});
+            background: linear-gradient(90deg,
+                    rgba(255, 255, 255, 0.07) 25%,
+                    rgba(255, 255, 255, 0.18) 50%,
+                    rgba(255, 255, 255, 0.07) 75%);
+            background-size: 200% 100%;
+            animation: cv-skeleton-shimmer 1.6s ease-in-out infinite;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: flex-end;
+            justify-content: flex-start;
             flex-direction: column;
-            gap: 0.5rem;
-            color: {{ $settings['page_home_product_desc_color'] ?? '#475569' }};
+            gap: 0;
+            color: rgba(255, 255, 255, 0.35);
         }
 
         .cv-cat-card-body {
@@ -1781,11 +1960,15 @@
         }
 
         .cv-cat-card-spec span {
-            background: {{ $settings['page_home_product_accent_color'] ?? 'rgba(220, 38, 38, 0.85)' }};
+            background:
+                {{ $settings['page_home_product_accent_color'] ?? 'rgba(220, 38, 38, 0.85)' }}
+            ;
             padding: 0.2rem 0.5rem;
             border-radius: 4px;
             font-weight: 600;
-            color: {{ $settings['page_home_product_accent_text'] ?? '#fff' }};
+            color:
+                {{ $settings['page_home_product_accent_text'] ?? '#fff' }}
+            ;
         }
 
         /* Bottom Controls: Button left, Nav arrows right */
@@ -1800,10 +1983,18 @@
             gap: 1rem;
         }
 
-        .cv-catalog-btn-all {
-            background: {{ $settings['page_home_product_btn_bg'] ?? 'var(--brand)' }};
-            color: {{ $settings['page_home_product_btn_text'] ?? '#fff' }};
-            padding: 0.875rem 2rem;
+        /* Single CTA Button */
+        .cv-catalog-btn-single {
+            background:
+                {{ $settings['page_home_product_btn_bg'] ?? 'rgba(255,255,255,0.15)' }}
+            ;
+            color:
+                {{ $settings['page_home_product_btn_text'] ?? '#ffffff' }}
+            ;
+            border: 2px solid
+                {{ $settings['page_home_product_btn_border'] ?? 'rgba(255,255,255,0.45)' }}
+            ;
+            padding: 0.85rem 2.2rem;
             border-radius: 999px;
             font-size: 0.875rem;
             font-weight: 600;
@@ -1811,32 +2002,23 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            transition: all 0.2s;
+            transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
         }
 
-        .cv-catalog-btn-all:hover {
-            background: {{ $settings['page_home_product_btn_hover'] ?? '#B91C1C' }};
+        .cv-catalog-btn-single:hover {
+            background:
+                {{ $settings['page_home_product_btn_text'] ?? '#ffffff' }}
+            ;
+            color:
+                {{ $settings['page_home_product_bg'] ?? '#0F172A' }}
+            ;
+            border-color:
+                {{ $settings['page_home_product_btn_text'] ?? '#ffffff' }}
+            ;
             transform: translateY(-2px);
-        }
-
-        .cv-catalog-btn-outline {
-            background: transparent;
-            color: {{ $settings['page_home_product_btn_outline_color'] ?? '#ffffff' }};
-            border: 2px solid {{ $settings['page_home_product_btn_outline_border'] ?? 'rgba(255,255,255,0.3)' }};
-            padding: 0.75rem 1.5rem;
-            border-radius: 999px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            transition: all 0.2s;
-        }
-
-        .cv-catalog-btn-outline:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: {{ $settings['page_home_product_btn_outline_color'] ?? '#ffffff' }};
-            color: {{ $settings['page_home_product_btn_outline_color'] ?? '#fff' }};
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
         }
 
         .cv-catalog-nav {
@@ -1848,8 +2030,8 @@
             width: 42px;
             height: 42px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.08);
-            border: 1.5px solid rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1859,8 +2041,12 @@
         }
 
         .cv-catalog-nav-btn:hover {
-            background: {{ $settings['page_home_product_btn_bg'] ?? 'var(--brand)' }};
-            border-color: {{ $settings['page_home_product_btn_bg'] ?? 'var(--brand)' }};
+            background:
+                {{ $settings['page_home_product_btn_bg'] ?? 'var(--brand)' }}
+            ;
+            border-color:
+                {{ $settings['page_home_product_btn_bg'] ?? 'var(--brand)' }}
+            ;
             color: #fff;
         }
 
@@ -1901,7 +2087,8 @@
         <div class="cv-catalog-header">
             <h2 class="cv-catalog-title">{!! nl2br(e($settings['product_section_title'] ?? "Katalog Produk\nKami")) !!}</h2>
             <div class="cv-catalog-right-info">
-                <p>{{ $settings['product_section_desc'] ?? 'Solusi tableware keramik premium terpercaya untuk berbagai skala bisnis F&B di Indonesia.' }}</p>
+                <p>{{ $settings['product_section_desc'] ?? 'Solusi tableware keramik premium terpercaya untuk berbagai skala bisnis F&B di Indonesia.' }}
+                </p>
                 <small>{{ $settings['product_section_note'] ?? 'Tersedia berbagai varian dan spesifikasi' }}</small>
             </div>
         </div>
@@ -1923,18 +2110,11 @@
                 @else
                     @for($i = 1; $i <= 5; $i++)
                         <a href="{{ route('products') }}" class="cv-cat-card">
-                            <div class="cv-cat-card-placeholder">
-                                <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5"
-                                    viewBox="0 0 24 24">
-                                    <rect x="3" y="3" width="18" height="18" rx="2" />
-                                    <circle cx="8.5" cy="8.5" r="1.5" />
-                                    <polyline points="21 15 16 10 5 21" />
-                                </svg>
-                                <span style="font-size:.7rem;">Upload di Admin</span>
-                            </div>
+                            {{-- White skeleton shimmer — fills the whole card, no text --}}
+                            <div class="cv-cat-card-placeholder"></div>
                             <div class="cv-cat-card-overlay"></div>
                             <div class="cv-cat-card-body">
-                                <div class="cv-cat-card-name">Produk Keramik {{ $i }}</div>
+                                <div class="cv-cat-card-name" style="opacity:0;">—</div>
                             </div>
                         </a>
                     @endfor
@@ -1942,19 +2122,14 @@
             </div>
         </div>
 
-        {{-- Footer: Button left, Arrows right --}}
+        {{-- Footer: Single CTA Button left, Nav arrows right --}}
         <div class="cv-catalog-footer">
-            <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap;">
-                <a href="{{ route('products') }}" class="cv-catalog-btn-all">
-                    {{ $settings['product_cta1_text'] ?? 'Ke Katalog Produk' }}
-                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                        <polyline points="9 18 15 12 9 6" />
-                    </svg>
-                </a>
-                <a href="{{ route('products') }}" class="cv-catalog-btn-outline">
-                    {{ $settings['product_cta2_text'] ?? 'Semua Kategori Produk' }}
-                </a>
-            </div>
+            <a href="{{ $settings['product_cta1_url'] ?? route('products') }}" class="cv-catalog-btn-single">
+                {{ $settings['product_cta1_text'] ?? 'Ke Katalog Produk' }}
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <polyline points="9 18 15 12 9 6" />
+                </svg>
+            </a>
             <div class="cv-catalog-nav">
                 <button class="cv-catalog-nav-btn" id="cv-scroll-prev" aria-label="Sebelumnya">
                     <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -1990,14 +2165,30 @@
     <style>
         /* ── APLIKASI ─────────────────────────────── */
         .cv-apps-premium {
-            background: {{ $settings['page_home_aplikasi_bg'] ?? '#0A1930' }};
+            background:
+                {{ $settings['page_home_aplikasi_bg'] ?? '#0A1930' }}
+            ;
             padding: 5rem 0;
             color: #ffffff;
         }
 
-        .cv-apps-premium .cv-adv-section-label { color: {{ $settings['page_home_aplikasi_label_color'] ?? '#E2E8F0' }}; }
-        .cv-apps-premium .cv-adv-section-title { color: {{ $settings['page_home_aplikasi_title_color'] ?? '#ffffff' }}; }
-        .cv-apps-premium .cv-apps-header p { color: {{ $settings['page_home_aplikasi_desc_color'] ?? '#E2E8F0' }}; }
+        .cv-apps-premium .cv-adv-section-label {
+            color:
+                {{ $settings['page_home_aplikasi_label_color'] ?? '#E2E8F0' }}
+            ;
+        }
+
+        .cv-apps-premium .cv-adv-section-title {
+            color:
+                {{ $settings['page_home_aplikasi_title_color'] ?? '#ffffff' }}
+            ;
+        }
+
+        .cv-apps-premium .cv-apps-header p {
+            color:
+                {{ $settings['page_home_aplikasi_desc_color'] ?? '#E2E8F0' }}
+            ;
+        }
 
         .cv-apps-inner {
             max-width: 1200px;
@@ -2018,8 +2209,10 @@
         }
 
         .cv-app-card-v2 {
-            background: {{ $settings['page_home_aplikasi_card_bg'] ?? '#1E293B' }};
-            border: 1px solid rgba(255,255,255,0.1);
+            background:
+                {{ $settings['page_home_aplikasi_card_bg'] ?? '#1E293B' }}
+            ;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             display: flex;
             flex-direction: column;
@@ -2080,13 +2273,17 @@
         .cv-app-card-title-v2 {
             font-size: 1.05rem;
             font-weight: 600;
-            color: {{ $settings['page_home_aplikasi_card_text'] ?? '#ffffff' }};
+            color:
+                {{ $settings['page_home_aplikasi_card_text'] ?? '#ffffff' }}
+            ;
             margin: 0;
         }
 
         .cv-app-card-desc-v2 {
             font-size: 0.8125rem;
-            color: {{ $settings['page_home_aplikasi_card_text'] ?? '#94A3B8' }};
+            color:
+                {{ $settings['page_home_aplikasi_card_text'] ?? '#94A3B8' }}
+            ;
             opacity: 0.85;
             line-height: 1.65;
             margin: 0;
@@ -2130,7 +2327,8 @@
         <div class="cv-apps-inner">
             <div class="cv-apps-header">
                 <div class="cv-adv-section-label">{{ $settings['aplikasi_section_label'] ?? 'APLIKASI' }}</div>
-                <h2 class="cv-adv-section-title" style="margin-top:0.75rem;">{!! nl2br(e($settings['aplikasi_section_title'] ?? "Cocok untuk\nBerbagai Industri")) !!}</h2>
+                <h2 class="cv-adv-section-title" style="margin-top:0.75rem;">
+                    {!! nl2br(e($settings['aplikasi_section_title'] ?? "Cocok untuk\nBerbagai Industri")) !!}</h2>
                 <p style="margin-top:1rem;font-size:0.875rem;line-height:1.65;">
                     {{ $settings['aplikasi_section_desc'] ?? 'Pusat Piring Keramik menyediakan perlengkapan meja makan dan tableware premium yang dirancang khusus untuk memenuhi standar operasional berbagai sektor bisnis F&B.' }}
                 </p>
@@ -2427,7 +2625,7 @@
             <div class="cv-gallery-inner">
                 <div class="cv-gallery-header">
                     <div>
-                        <div class="cv-adv-section-label">GALERI INSTALASI</div>
+                        <div class="cv-adv-section-label">GALERI</div>
                         <h2 class="cv-adv-section-title" style="margin-top:0.75rem;">Bukti Nyata<br>di Lapangan</h2>
                     </div>
                     <a href="{{ route('gallery') }}" class="btn-ghost"
@@ -2711,13 +2909,15 @@
             <div style="display: flex; flex-wrap: wrap; gap: 4rem; justify-content: space-between; margin-bottom: 2rem;">
                 {{-- Left: Heading --}}
                 <div style="flex: 1; min-width: 300px;" data-aos="fade-right">
-                    <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 500; line-height: 1.2; letter-spacing: -0.03em; margin: 0;">
+                    <h2
+                        style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 500; line-height: 1.2; letter-spacing: -0.03em; margin: 0;">
                         {!! nl2br(e($settings['kota_section_title'] ?? 'Melayani seluruh Indonesia dengan jangkauan 50+ Kota.')) !!}
                     </h2>
                 </div>
 
                 {{-- Right: Description --}}
-                <div style="flex: 1; min-width: 300px; max-width: 500px; display: flex; align-items: center;" data-aos="fade-left">
+                <div style="flex: 1; min-width: 300px; max-width: 500px; display: flex; align-items: center;"
+                    data-aos="fade-left">
                     <p style="color: #94A3B8; font-size: 1.1rem; line-height: 1.6; margin: 0;">
                         {{ $settings['kota_section_desc'] ?? $companyName . ' bermitra dengan ekspedisi terkemuka untuk mendistribusikan solusi perlindungan maritim dan industri kualitas premium ke seluruh pelosok Nusantara secara cepat dan aman.' }}
                     </p>
@@ -3132,7 +3332,8 @@
                                             <line x1="16" y1="17" x2="8" y2="17" />
                                             <polyline points="10 9 9 9 8 9" />
                                         </svg>
-                                        <span style="font-size:0.75rem;margin-top:0.5rem;font-weight:600;">Artikel {{ $companyName }}</span>
+                                        <span style="font-size:0.75rem;margin-top:0.5rem;font-weight:600;">Artikel
+                                            {{ $companyName }}</span>
                                     </div>
                                 @endif
                                 <div class="cv-article-cat-badge">{{ $article->category ?? 'Cat & Coating' }}</div>
@@ -3165,7 +3366,7 @@
 
     @php
         $heroAutoplaySec = isset($settings['hero_autoplay_interval']) && is_numeric($settings['hero_autoplay_interval'])
-            ? (int)$settings['hero_autoplay_interval']
+            ? (int) $settings['hero_autoplay_interval']
             : 5;
         $heroAutoplayMs = $heroAutoplaySec * 1000;
     @endphp
@@ -3177,23 +3378,23 @@
 
             const badgeEl = document.getElementById('hero-badge');
             const titleEl = document.getElementById('hero-title');
-            const descEl  = document.getElementById('hero-desc');
-            const tagsEl  = document.getElementById('hero-tags');
+            const descEl = document.getElementById('hero-desc');
+            const tagsEl = document.getElementById('hero-tags');
 
             function updateHeroText(swiper) {
                 const slide = swiper.slides[swiper.activeIndex];
                 if (!slide) return;
 
-                const title    = slide.dataset.title    || '';
+                const title = slide.dataset.title || '';
                 const subtitle = slide.dataset.subtitle || '';
-                const desc     = slide.dataset.desc     || '';
-                const tags     = slide.dataset.tags     || '';
+                const desc = slide.dataset.desc || '';
+                const tags = slide.dataset.tags || '';
 
                 if (badgeEl && subtitle) badgeEl.textContent = subtitle;
-                if (titleEl && title)    titleEl.textContent = title;   /* white-space:pre-line handles newlines */
-                if (descEl  && desc)     descEl.textContent  = desc;
-                if (tagsEl  && tags) {
-                    tagsEl.innerHTML = tags.split(',').map(function(t) {
+                if (titleEl && title) titleEl.textContent = title;   /* white-space:pre-line handles newlines */
+                if (descEl && desc) descEl.textContent = desc;
+                if (tagsEl && tags) {
+                    tagsEl.innerHTML = tags.split(',').map(function (t) {
                         return '<span>' + t.trim() + '</span>';
                     }).join('');
                 }
