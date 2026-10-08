@@ -31,7 +31,12 @@ class AppServiceProvider extends ServiceProvider
         }
 
         // Share $companyName & $companyTagline ke SEMUA view — sumber dari settings DB
-        View::share('companyName', Setting::get('company_name', config('app.name')));
-        View::share('companyTagline', Setting::get('company_tagline', ''));
+        try {
+            View::share('companyName', Setting::get('company_name', config('app.name')));
+            View::share('companyTagline', Setting::get('company_tagline', ''));
+        } catch (\Throwable $e) {
+            View::share('companyName', config('app.name', 'Pusat Piring Keramik'));
+            View::share('companyTagline', '');
+        }
     }
 }

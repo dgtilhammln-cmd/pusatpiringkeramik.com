@@ -290,12 +290,12 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
             <span class="sv-breadcrumb-sep">/</span>
             <span class="sv-breadcrumb-current">Hubungi Kami</span>
         </nav>
-        <div class="sv-label">{{ \App\Models\Setting::get('page_contact_hero_label') ?? 'Kontak Kami' }}</div>
+        <div class="sv-label">{{ $settings['page_contact_hero_label'] ?? 'Kontak Kami' }}</div>
         <h1 class="sv-title">
-            {!! nl2br(e(\App\Models\Setting::get('page_contact_hero_title') ?? 'Hubungi UD. Sukses Makmur / Pusat Piring Keramik')) !!}
+            {!! nl2br(e($settings['page_contact_hero_title'] ?? 'Hubungi UD. Sukses Makmur / Pusat Piring Keramik')) !!}
         </h1>
         <p class="sv-intro">
-            {{ \App\Models\Setting::get('page_contact_hero_desc') ?? 'Tim UD. Sukses Makmur siap membantu menemukan produk piring dan keramik terbaik untuk kebutuhan Anda. Hubungi kami sekarang - respon cepat!' }}
+            {{ $settings['page_contact_hero_desc'] ?? 'Tim UD. Sukses Makmur siap membantu menemukan produk piring dan keramik terbaik untuk kebutuhan Anda. Hubungi kami sekarang - respon cepat!' }}
         </p>
     </div>
 </section>

@@ -304,12 +304,12 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
             <span class="sv-breadcrumb-sep">/</span>
             <span class="sv-breadcrumb-current">Artikel &amp; Tips</span>
         </nav>
-        <div class="sv-label">{{ \App\Models\Setting::get('page_article_hero_label') ?? 'Informasi & Wawasan' }}</div>
+        <div class="sv-label">{{ $settings['page_article_hero_label'] ?? 'Informasi & Wawasan' }}</div>
         <h1 class="sv-title">
-            {!! nl2br(e(\App\Models\Setting::get('page_article_hero_title') ?? 'Artikel, Tips & Wawasan Tableware Keramik')) !!}
+            {!! nl2br(e($settings['page_article_hero_title'] ?? 'Artikel, Tips & Wawasan Tableware Keramik')) !!}
         </h1>
         <p class="sv-intro">
-            {{ \App\Models\Setting::get('page_article_hero_desc') ?? 'Temukan berbagai artikel menarik, panduan memilih piring keramik, serta tips perawatan tableware dari UD. Sukses Makmur.' }}
+            {{ $settings['page_article_hero_desc'] ?? 'Temukan berbagai artikel menarik, panduan memilih piring keramik, serta tips perawatan tableware dari UD. Sukses Makmur.' }}
         </p>
     </div>
 </section>

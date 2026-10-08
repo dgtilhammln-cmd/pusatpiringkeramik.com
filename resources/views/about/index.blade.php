@@ -457,12 +457,12 @@
                 <span class="sv-breadcrumb-current">Tentang Kami</span>
             </nav>
 
-            <div class="sv-label">{{ \App\Models\Setting::get('page_about_hero_label') ?? 'Profil Perusahaan' }}</div>
+            <div class="sv-label">{{ $settings['page_about_hero_label'] ?? 'Profil Perusahaan' }}</div>
             <h1 class="sv-title">
-                {!! nl2br(e(\App\Models\Setting::get('page_about_hero_title') ?? 'Mitra Solusi Tableware & Piring Keramik Terpercaya')) !!}
+                {!! nl2br(e($settings['page_about_hero_title'] ?? 'Mitra Solusi Tableware & Piring Keramik Terpercaya')) !!}
             </h1>
             <p class="sv-intro">
-                {{ \App\Models\Setting::get('page_about_hero_desc') ?? 'UD. Sukses Makmur (Pusat Piring Keramik) hadir untuk menjawab kebutuhan produk berkualitas di seluruh wilayah Indonesia dengan standar terbaik.' }}
+                {{ $settings['page_about_hero_desc'] ?? 'UD. Sukses Makmur (Pusat Piring Keramik) hadir untuk menjawab kebutuhan produk berkualitas di seluruh wilayah Indonesia dengan standar terbaik.' }}
             </p>
         </div>
     </section>

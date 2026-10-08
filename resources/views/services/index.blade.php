@@ -324,12 +324,12 @@
             @endif
         </nav>
 
-        <div class="sv-label">{{ \App\Models\Setting::get('page_product_hero_label') ?? 'Katalog Produk' }}</div>
+        <div class="sv-label">{{ $settings['page_product_hero_label'] ?? 'Katalog Produk' }}</div>
         <h1 class="sv-title">
             @if(request('category') && ($activeCat = $categories->firstWhere('slug', request('category'))))
                 {{ $activeCat->name }}
             @else
-                {!! nl2br(e(\App\Models\Setting::get('page_product_hero_title') ?? 'Katalog Piring Keramik & Tableware Berkualitas')) !!}
+                {!! nl2br(e($settings['page_product_hero_title'] ?? 'Katalog Piring Keramik & Tableware Berkualitas')) !!}
             @endif
         </h1>
 
@@ -337,7 +337,7 @@
             @if(request('category') && ($activeCat = $categories->firstWhere('slug', request('category'))))
                 {{ $activeCat->description ?? 'Temukan berbagai pilihan produk ' . $activeCat->name . ' berkualitas tinggi dari ' . $companyName . '.' }}
             @else
-                {{ \App\Models\Setting::get('page_product_hero_desc') ?? 'Jelajahi koleksi piring keramik, mangkuk, cangkir, dan perlengkapan meja makan dari UD. Sukses Makmur untuk resto, hotel, cafe, dan rumah tangga.' }}
+                {{ $settings['page_product_hero_desc'] ?? 'Jelajahi koleksi piring keramik, mangkuk, cangkir, dan perlengkapan meja makan dari UD. Sukses Makmur untuk resto, hotel, cafe, dan rumah tangga.' }}
             @endif
         </p>
     </div>
