@@ -400,99 +400,9 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   #content{padding:.625rem!important}
   .admin-card{padding:1rem!important}
 }
-/* PREMIUM LOADER */
-#premium-loader {
-    position: fixed;
-    inset: 0;
-    background: #ffffff;
-    z-index: 999999;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #0F172A;
-    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
-}
-#premium-loader.hide {
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(1.02);
-}
-.pl-logo-wrap {
-    width: 64px;
-    height: 64px;
-    background: #fff;
-    border: 1px solid #E2E8F0;
-    border-radius: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #3B82F6;
-    font-weight: 800;
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.03), 0 0 40px rgba(59,130,246,0.08);
-    position: relative;
-    animation: pl-bounce 2s infinite ease-in-out;
-}
-@keyframes pl-bounce {
-    0%, 100% { transform: translateY(0); box-shadow: 0 10px 25px rgba(0,0,0,0.03), 0 0 40px rgba(59,130,246,0.08); }
-    50% { transform: translateY(-6px); box-shadow: 0 15px 30px rgba(0,0,0,0.05), 0 0 50px rgba(59,130,246,0.12); }
-}
-.pl-progress-wrap {
-    width: 220px;
-    height: 4px;
-    background: #F1F5F9;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 1rem;
-    border-radius: 4px;
-}
-.pl-progress-bar {
-    position: absolute;
-    top: 0; left: 0; height: 100%;
-    background: #3B82F6;
-    width: 0%;
-    transition: width 0.1s linear;
-    border-radius: 4px;
-    box-shadow: 0 0 10px rgba(59,130,246,0.3);
-}
-.pl-percent {
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    color: #64748B;
-}
-.pl-percent span {
-    color: #0F172A;
-    font-weight: 700;
-}
-.pl-text {
-    font-size: 0.7rem;
-    color: #94A3B8;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-top: 1.5rem;
-    font-weight: 600;
-}
 </style>
 </head>
 <body>
-
-<div id="premium-loader" style="display:none;">
-    <div class="pl-logo-wrap">
-       @if($adminLogo)
-         <img src="{{ asset('storage/'.$adminLogo) }}" alt="Logo" style="width:36px;height:auto;object-fit:contain;">
-       @else
-         <svg width="28" height="28" fill="none" stroke="#3B82F6" stroke-width="2.5" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
-       @endif
-    </div>
-    <div class="pl-progress-wrap">
-        <div class="pl-progress-bar" id="pl-bar"></div>
-    </div>
-    <div class="pl-percent"><span id="pl-num">0</span>%</div>
-    <div class="pl-text" id="pl-text">MEMUAT DASHBOARD...</div>
-</div>
 
 <div id="sb-overlay" onclick="closeSb()"></div>
 
