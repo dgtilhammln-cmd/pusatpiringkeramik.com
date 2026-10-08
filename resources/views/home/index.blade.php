@@ -138,8 +138,8 @@
 
         .cv-hero-title,
         h2.cv-hero-title {
-            font-size: clamp(1.75rem, 3.2vw, 2.75rem);
-            font-weight: 700;
+            font-size: clamp(2rem, 3.5vw, 3.2rem);
+            font-weight: 500;
             color: {{ $settings['page_home_hero_title_color'] ?? '#0A1930' }};
             line-height: 1.15;
             letter-spacing: -0.02em;
@@ -184,14 +184,12 @@
         }
 
         .cv-hero-tags span {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
+            font-size: 0.8rem;
+            font-weight: 500;
             color: {{ $settings['page_home_hero_tags_color'] ?? '#475569' }};
             background: {{ $settings['page_home_hero_tags_bg'] ?? '#ffffff' }};
             border: 1px solid {{ $settings['page_home_hero_tags_border'] ?? '#E2E8F0' }};
-            padding: 0.35rem 0.9rem;
+            padding: 0.4rem 1rem;
             border-radius: 50px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
             white-space: nowrap;
