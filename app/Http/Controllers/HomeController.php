@@ -23,6 +23,7 @@ class HomeController extends Controller
         $testimonials = Testimonial::active()->ordered()->get()->unique('name');
         $wa           = WaSetting::primary();
         $heroSlides   = HeroSlide::active()->ordered()->limit(5)->get();
+
         if ($heroSlides->count() === 0) {
             HeroSlide::create([
                 'title'        => "Solusi Tableware Keramik\nPremium untuk Bisnis F&B",
@@ -53,6 +54,7 @@ class HomeController extends Controller
                 'order'        => 2,
                 'is_active'    => true,
                 'image'        => null,
+            ]);
             HeroSlide::create([
                 'title'        => "Peralatan Makan Keramik & Stainless\nKualitas Terbaik",
                 'subtitle'     => 'UD. Sukses Makmur',
