@@ -65,7 +65,7 @@
           </td>
           <td style="padding:1rem 1.5rem;text-align:right;">
             <div style="display:flex;gap:.5rem;justify-content:flex-end;">
-              <a href="{{ route('products') }}?category={{ $cat->slug }}" target="_blank"
+              <a href="{{ route('products.category', $cat->slug) }}" target="_blank"
                  style="display:inline-flex;align-items:center;gap:.35rem;padding:.5rem .875rem;border-radius:8px;font-size:.8rem;font-weight:600;background:#EFF6FF;color:#3B82F6;text-decoration:none;border:1px solid #BFDBFE;">
                 <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                 Preview

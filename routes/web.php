@@ -34,11 +34,12 @@ Route::middleware(['track.pageview'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/about', [AboutController::class, 'index'])->name('about');
 
-    // Products (was /services) — Cyclevent turbine ventilator products
+    // Products & Categories
     Route::get('/product', [ServiceController::class, 'index'])->name('products');
+    Route::get('/k/{slug}', [ServiceController::class, 'category'])->name('products.category');
     Route::get('/product/{slug}', [ServiceController::class, 'show'])->name('products.show');
 
-    // Legacy redirect for /services and /products → /product
+    // Legacy redirects
     Route::get('/services', function () { return redirect()->route('products', [], 301); });
     Route::get('/services/{slug}', function ($slug) { return redirect()->route('products.show', $slug, 301); });
     Route::get('/products', function () { return redirect()->route('products', [], 301); });

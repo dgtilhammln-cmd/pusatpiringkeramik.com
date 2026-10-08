@@ -18,9 +18,10 @@ class ServiceController extends Controller
         if (request()->has('category')) {
             $catSlug = request()->get('category');
             if ($catSlug !== 'all') {
-                $query->whereHas('category', function($q) use ($catSlug) {
-                    $q->where('slug', $catSlug);
-                });
+                $categoryExists = ServiceCategory::where('slug', $catSlug)->exists();
+                if ($categoryExists) {
+                    return redirect()->route('products.category', $catSlug, 301);
+                }
             }
         }
 
@@ -56,14 +57,52 @@ class ServiceController extends Controller
         return view('services.index', compact('services', 'categories', 'settings', 'seo', 'schema'));
     }
 
+    public function category(string $slug)
+    {
+        $activeCategory = ServiceCategory::where('slug', $slug)->firstOrFail();
+        $categories     = ServiceCategory::all();
+        $services       = Service::active()->ordered()
+            ->whereHas('category', function($q) use ($slug) {
+                $q->where('slug', $slug);
+            })
+            ->paginate(12)
+            ->withQueryString();
+
+        $settings = Setting::getAllAsArray();
+        $comp     = Setting::get('company_name', config('app.name'));
+
+        $seo = [
+            'title'       => (!empty($activeCategory->meta_title) ? $activeCategory->meta_title : ($activeCategory->name . ' | ' . $comp)),
+            'description' => (!empty($activeCategory->meta_desc) ? $activeCategory->meta_desc : ($activeCategory->description ?: ('Temukan berbagai pilihan produk ' . $activeCategory->name . ' berkualitas tinggi dari ' . $comp))),
+            'keywords'    => $activeCategory->meta_keywords ?? ($activeCategory->name . ', ' . $comp),
+            'og_image'    => !empty($activeCategory->image) ? asset('storage/'.$activeCategory->image) : (!empty($settings['og_image_default']) ? asset('storage/'.$settings['og_image_default']) : asset('images/og-default.jpg')),
+            'canonical'   => route('products.category', $slug),
+        ];
+
+        $schema = json_encode([
+            '@context' => 'https://schema.org',
+            '@type'    => 'ItemList',
+            'name'     => 'Kategori ' . $activeCategory->name . ' - ' . $comp,
+            'url'      => route('products.category', $slug),
+            'itemListElement' => $services->map(function($s, $i) {
+                return [
+                    '@type'    => 'ListItem',
+                    'position' => $i + 1,
+                    'name'     => $s->name,
+                    'url'      => route('products.show', $s->slug),
+                ];
+            })->toArray(),
+        ]);
+
+        return view('services.index', compact('services', 'categories', 'activeCategory', 'settings', 'seo', 'schema'));
+    }
+
     public function show(string $slug)
     {
-        // Check if the slug belongs to a category first to preserve legacy SEO URLs
+        // Check if the slug belongs to a category first to preserve legacy SEO URLs with 301 redirect
         $category = ServiceCategory::where('slug', $slug)->first();
         if ($category) {
-            // Act like the index page but filtered for this category
-            request()->merge(['category' => $slug]);
-            return $this->index();
+            return redirect()->route('products.category', $slug, 301);
         }
 
         $service      = Service::where('slug', $slug)->where('is_active', true)->firstOrFail();

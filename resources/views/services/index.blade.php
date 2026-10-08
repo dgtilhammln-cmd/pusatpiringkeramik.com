@@ -336,18 +336,20 @@
     }
 </style>
 
+@php
+    $currentCat = $activeCategory ?? ($categories->firstWhere('slug', request('category')));
+@endphp
+
 {{-- ═══ HERO ═══ --}}
 <section class="sv-hero-premium">
     <div class="sv-hero-inner" data-aos="fade-up">
         <nav class="sv-breadcrumb" aria-label="Breadcrumb">
             <a href="{{ route('home') }}">Beranda</a>
             <span class="sv-breadcrumb-sep">/</span>
-            @if(request('category'))
+            @if($currentCat)
                 <a href="{{ route('products') }}">Produk &amp; Layanan</a>
                 <span class="sv-breadcrumb-sep">/</span>
-                <span class="sv-breadcrumb-current">
-                    {{ $categories->firstWhere('slug', request('category'))?->name ?? request('category') }}
-                </span>
+                <span class="sv-breadcrumb-current">{{ $currentCat->name }}</span>
             @else
                 <span class="sv-breadcrumb-current">Produk &amp; Layanan</span>
             @endif
@@ -355,16 +357,16 @@
 
         <div class="sv-label">{{ $settings['page_product_hero_label'] ?? 'Katalog Produk' }}</div>
         <h1 class="sv-title">
-            @if(request('category') && ($activeCat = $categories->firstWhere('slug', request('category'))))
-                {{ $activeCat->name }}
+            @if($currentCat)
+                {{ $currentCat->name }}
             @else
                 {!! nl2br(e($settings['page_product_hero_title'] ?? 'Katalog Piring Keramik & Tableware Berkualitas')) !!}
             @endif
         </h1>
 
         <p class="sv-intro">
-            @if(request('category') && ($activeCat = $categories->firstWhere('slug', request('category'))))
-                {{ $activeCat->description ?? 'Temukan berbagai pilihan produk ' . $activeCat->name . ' berkualitas tinggi dari ' . $companyName . '.' }}
+            @if($currentCat)
+                {{ $currentCat->description ?? 'Temukan berbagai pilihan produk ' . $currentCat->name . ' berkualitas tinggi dari ' . $companyName . '.' }}
             @else
                 {{ $settings['page_product_hero_desc'] ?? 'Jelajahi koleksi piring keramik, mangkuk, cangkir, dan perlengkapan meja makan dari UD. Sukses Makmur untuk resto, hotel, cafe, dan rumah tangga.' }}
             @endif
@@ -376,14 +378,14 @@
 <div class="sv-filter-wrap">
     <div class="sv-filter-inner">
         <a href="{{ route('products') }}"
-           class="sv-filter-tab {{ !request('category') ? 'active' : '' }}"
+           class="sv-filter-tab {{ !$currentCat ? 'active' : '' }}"
            id="filter-all">
             Semua Produk
             <span class="tab-count">{{ \App\Models\Service::active()->count() }}</span>
         </a>
         @foreach($categories as $cat)
-            <a href="{{ route('products') }}?category={{ $cat->slug }}"
-               class="sv-filter-tab {{ request('category') === $cat->slug ? 'active' : '' }}"
+            <a href="{{ route('products.category', $cat->slug) }}"
+               class="sv-filter-tab {{ ($currentCat && $currentCat->slug === $cat->slug) ? 'active' : '' }}"
                id="filter-{{ $cat->slug }}">
                 {{ $cat->name }}
                 <span class="tab-count">{{ $cat->services()->where('is_active', true)->count() }}</span>

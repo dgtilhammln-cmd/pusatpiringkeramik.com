@@ -64,10 +64,10 @@
               Slug URL *
             </label>
             <div style="position:relative;">
-              <span style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);font-size:.85rem;color:#94A3B8;">/product/</span>
+              <span style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);font-size:.85rem;color:#94A3B8;font-weight:600;">/k/</span>
               <input type="text" name="slug" id="cat-slug" value="{{ old('slug', $category?->slug) }}"
-                     placeholder="cat-jotun-paint-531056"
-                     style="width:100%;padding:.75rem 1rem .75rem 5.5rem;border:1.5px solid #E2E8F0;border-radius:10px;font-size:.9375rem;color:#1E293B;outline:none;box-sizing:border-box;transition:border-color .2s;"
+                     placeholder="mug-promosi-cap-gunung"
+                     style="width:100%;padding:.75rem 1rem .75rem 2.8rem;border:1.5px solid #E2E8F0;border-radius:10px;font-size:.9375rem;color:#1E293B;outline:none;box-sizing:border-box;transition:border-color .2s;"
                      onfocus="this.style.borderColor='#3B82F6'" onblur="this.style.borderColor='#E2E8F0'">
             </div>
             <p style="font-size:.75rem;color:#94A3B8;margin:.4rem 0 0;">Kosongkan untuk generate otomatis dari nama.</p>

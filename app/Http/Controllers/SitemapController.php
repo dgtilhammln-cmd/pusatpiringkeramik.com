@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Models\ServiceCategory;
 use App\Models\Article;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -11,8 +12,9 @@ class SitemapController extends Controller
 {
     public function index(Request $request)
     {
-        $services = Service::active()->ordered()->get(['slug', 'name', 'updated_at']);
-        $articles = Article::published()->latest()->get(['slug', 'title', 'updated_at']);
+        $categories = ServiceCategory::all(['slug', 'name', 'updated_at']);
+        $services   = Service::active()->ordered()->get(['slug', 'name', 'updated_at']);
+        $articles   = Article::published()->latest()->get(['slug', 'title', 'updated_at']);
 
         // Dynamic app & company info from settings
         $companyName    = Setting::getAppName();
@@ -27,6 +29,14 @@ class SitemapController extends Controller
             ['url' => $siteUrl . '/articles',    'label' => 'Artikel',      'priority' => '0.8', 'changefreq' => 'daily',   'lastmod' => now()->toDateString()],
             ['url' => $siteUrl . '/contact',     'label' => 'Kontak',       'priority' => '0.7', 'changefreq' => 'monthly', 'lastmod' => now()->toDateString()],
         ];
+
+        $categoryUrls = $categories->map(fn($c) => [
+            'url'        => $siteUrl . '/k/' . $c->slug,
+            'label'      => 'Kategori: ' . $c->name,
+            'priority'   => '0.85',
+            'changefreq' => 'weekly',
+            'lastmod'    => $c->updated_at ? $c->updated_at->toDateString() : now()->toDateString(),
+        ])->toArray();
 
         $serviceUrls = $services->map(fn($s) => [
             'url'        => $siteUrl . '/product/' . $s->slug,
@@ -44,12 +54,12 @@ class SitemapController extends Controller
             'lastmod'    => $a->updated_at->toDateString(),
         ])->toArray();
 
-        $urls = array_merge($staticPages, $serviceUrls, $articleUrls);
+        $urls = array_merge($staticPages, $categoryUrls, $serviceUrls, $articleUrls);
 
         // HTML view
         if ($request->is('sitemap')) {
             return view('sitemap-html', compact(
-                'staticPages', 'serviceUrls', 'articleUrls', 'urls',
+                'staticPages', 'categoryUrls', 'serviceUrls', 'articleUrls', 'urls',
                 'companyName', 'companyTagline', 'addressFull', 'siteUrl'
             ));
         }
