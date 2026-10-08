@@ -59,19 +59,30 @@ jobs:
           cd /home/u664715641
 
           # Extract ke folder web (tanpa menimpa .env dan vendor)
-          tar -xzf deploy_patch.tar.gz -C domains/produsenhoistcranelift.com/ 2>&1
+          tar -xzf deploy_patch.tar.gz -C domains/pusatpiringkeramik.hvmdigital.id/ 2>&1
           rm -f deploy_patch.tar.gz
 
           # Pastikan symlink storage selalu benar (tidak pernah rusak)
-          STORAGE_LINK="/home/u664715641/domains/produsenhoistcranelift.com/public_html/storage"
-          STORAGE_TARGET="/home/u664715641/domains/produsenhoistcranelift.com/storage/app/public"
+          DEPLOY_DIR="/home/u664715641/domains/pusatpiringkeramik.hvmdigital.id"
+          STORAGE_LINK="$DEPLOY_DIR/public_html/storage"
+          STORAGE_TARGET="$DEPLOY_DIR/storage/app/public"
           rm -rf "$STORAGE_LINK"
           ln -s "$STORAGE_TARGET" "$STORAGE_LINK"
           echo "Storage symlink OK: $(ls -la $STORAGE_LINK)"
 
-          # Clear cache & rebuild view cache
-          cd domains/produsenhoistcranelift.com/
+          # Migrate & seed & clear cache
+          cd "$DEPLOY_DIR"
           php artisan migrate --force 2>&1
+
+          # Seed hero slides hanya jika tabel masih kosong
+          SLIDE_COUNT=$(php artisan tinker --execute="echo \App\Models\HeroSlide::count();" 2>/dev/null | tail -1 || echo "0")
+          if [ "$SLIDE_COUNT" = "0" ] || [ -z "$SLIDE_COUNT" ]; then
+            echo "--- Hero slides kosong, menjalankan HeroSlideSeeder..."
+            php artisan db:seed --class=HeroSlideSeeder --force 2>&1
+          else
+            echo "--- Hero slides sudah ada ($SLIDE_COUNT slide), skip seeder."
+          fi
+
           php artisan optimize:clear 2>&1
           php artisan view:cache 2>&1
 

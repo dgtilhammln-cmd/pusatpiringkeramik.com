@@ -8,6 +8,12 @@
     $breadcrumbData = $breadcrumbs ?? [];
     $appUrl         = rtrim(config('app.url'), '/');
 
+    // Helper closure to decode HTML entities (&amp; -> &) and trim string content
+    $cleanText = function($text) {
+        if ($text === null || $text === '') return '';
+        return trim(html_entity_decode((string) $text, ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+    };
+
     // Global Fallbacks from general settings & WaSetting
     $primaryWaModel = \App\Models\WaSetting::primary() ?? \App\Models\WaSetting::where('is_active', true)->first();
     $rawWaPhone     = $primaryWaModel?->nomor_wa ?? \App\Models\Setting::get('phone', \App\Models\Setting::get('whatsapp', '087832505656'));
@@ -23,33 +29,55 @@
     $globalPostal   = \App\Models\Setting::get('address_postal', '50123');
 
     // Dynamic settings from DB with intelligent fallbacks
-    $companyName    = \App\Models\Setting::get('company_name', config('app.name'));
-    $companyTagline = \App\Models\Setting::get('company_tagline', 'Distributor & Supplier Piring Keramik Indonesia');
+    $companyName    = $cleanText(\App\Models\Setting::get('company_name', config('app.name')));
+    if (empty($companyName)) {
+        $companyName = 'Pusat Piring Keramik';
+    }
+
+    $companyTagline = $cleanText(\App\Models\Setting::get('company_tagline', 'Distributor & Supplier Piring Keramik Indonesia'));
+    if (empty($companyTagline)) {
+        $companyTagline = 'Distributor & Supplier Piring Keramik Terpercaya';
+    }
     
     // Address & City/Province Fixes (handling text vs numeric BPS codes & empty overrides)
     $seoCity        = \App\Models\Setting::get('address_city_name');
     $rawCity        = !empty(trim($seoCity)) ? $seoCity : $globalCity;
-    $addressCity    = (is_numeric($rawCity) || preg_match('/^[0-9]+$/', trim($rawCity))) ? 'Semarang' : $rawCity;
+    $addressCity    = $cleanText((is_numeric($rawCity) || preg_match('/^[0-9]+$/', trim($rawCity))) ? 'Semarang' : $rawCity);
+    if (empty($addressCity)) $addressCity = 'Semarang';
     
     $seoProv        = \App\Models\Setting::get('address_province_name');
     $rawProvince    = !empty(trim($seoProv)) ? $seoProv : $globalProv;
-    $addressProvince= (is_numeric($rawProvince) || preg_match('/^[0-9]+$/', trim($rawProvince))) ? 'Jawa Tengah' : $rawProvince;
+    $addressProvince= $cleanText((is_numeric($rawProvince) || preg_match('/^[0-9]+$/', trim($rawProvince))) ? 'Jawa Tengah' : $rawProvince);
+    if (empty($addressProvince)) $addressProvince = 'Jawa Tengah';
     
     $seoStreet      = \App\Models\Setting::get('address_street_full');
-    $addressStreet  = !empty(trim($seoStreet)) ? $seoStreet : $globalStreet;
+    $addressStreet  = $cleanText(!empty(trim($seoStreet)) ? $seoStreet : $globalStreet);
+    if (empty($addressStreet)) $addressStreet = 'Jl. Semarang No. 88';
     
     $seoPostal      = \App\Models\Setting::get('address_postal_code');
-    $addressPostal  = !empty(trim($seoPostal)) ? $seoPostal : $globalPostal;
+    $addressPostal  = $cleanText(!empty(trim($seoPostal)) ? $seoPostal : $globalPostal);
+    if (empty($addressPostal)) $addressPostal = '50123';
     
     // Phone International Format Fix
     $seoPhoneIntl   = \App\Models\Setting::get('phone_international');
-    $phoneIntl      = !empty(trim($seoPhoneIntl)) ? $seoPhoneIntl : $defaultPhoneIntl;
-    $companyEmail   = \App\Models\Setting::get('email', 'info@pusatpiringkeramik.com');
+    $phoneIntl      = $cleanText(!empty(trim($seoPhoneIntl)) ? $seoPhoneIntl : $defaultPhoneIntl);
+    if (empty($phoneIntl)) $phoneIntl = '+6287832505656';
     
-    // Geo & Map
-    $geoLat         = \App\Models\Setting::get('geo_latitude', '-6.9932');
-    $geoLng         = \App\Models\Setting::get('geo_longitude', '110.4203');
-    $hasMapUrl      = \App\Models\Setting::get('google_maps_url', 'https://maps.google.com');
+    $companyEmail   = $cleanText(\App\Models\Setting::get('email', 'info@pusatpiringkeramik.com'));
+    
+    // Geo Coordinates Fix (Ensure float lat/lng are ALWAYS provided)
+    $rawLat         = trim(\App\Models\Setting::get('geo_latitude', ''));
+    $rawLng         = trim(\App\Models\Setting::get('geo_longitude', ''));
+    if (is_numeric($rawLat) && is_numeric($rawLng) && (float)$rawLat != 0) {
+        $geoLat = (float) $rawLat;
+        $geoLng = (float) $rawLng;
+    } else {
+        $geoLat = -6.9932;
+        $geoLng = 110.4203;
+    }
+    
+    $hasMapUrl      = $cleanText(\App\Models\Setting::get('google_maps_url', 'https://maps.google.com'));
+    if (empty($hasMapUrl)) $hasMapUrl = 'https://maps.google.com';
     
     // SEO & GEO Attributes
     $businessTypes  = \App\Models\Setting::get('seo_business_type', '["LocalBusiness", "Store", "HomeGoodsStore"]');
@@ -58,18 +86,53 @@
         $parsedTypes = ["LocalBusiness", "Store", "HomeGoodsStore"];
     }
 
-    $priceRange     = \App\Models\Setting::get('seo_price_range', 'Rp5.000 - Rp500.000');
-    $seoSlogan      = \App\Models\Setting::get('seo_slogan', 'Distributor & Supplier Piring Keramik Terpercaya');
-    $foundingDate   = \App\Models\Setting::get('seo_founding_date', '2015');
-    $founderName    = \App\Models\Setting::get('seo_founder_name', 'UD. Sukses Makmur');
+    $priceRange     = $cleanText(\App\Models\Setting::get('seo_price_range', 'Rp5.000 - Rp500.000'));
+    $seoSlogan      = $cleanText(\App\Models\Setting::get('seo_slogan', 'Distributor & Supplier Piring Keramik Terpercaya'));
+    $foundingDate   = $cleanText(\App\Models\Setting::get('seo_founding_date', '2015'));
+    $founderName    = $cleanText(\App\Models\Setting::get('seo_founder_name', 'UD. Sukses Makmur'));
     
-    // KnowsAbout Array
+    // KnowsAbout Array (Decoded & Filtered)
     $knowsAboutRaw  = \App\Models\Setting::get('seo_knows_about', 'Piring Keramik, Mangkok Keramik, Perabotan Restoran & Hotel, Tableware, Dinnerware, Keramik Custom Logo');
-    $knowsAboutArr  = array_map('trim', explode(',', $knowsAboutRaw));
+    $knowsAboutArr  = array_values(array_filter(array_map($cleanText, explode(',', $knowsAboutRaw))));
     
-    // AreaServed Array
+    // AreaServed Entities with Typed Area Schema (Country, AdministrativeArea, City)
     $areaServedRaw  = \App\Models\Setting::get('seo_area_served', 'Semarang, Jawa Tengah, Indonesia');
-    $areaServedArr  = array_map('trim', explode(',', $areaServedRaw));
+    $areaServedItems= array_values(array_filter(array_map($cleanText, explode(',', $areaServedRaw))));
+    
+    $areaServedEntities = [];
+    foreach ($areaServedItems as $areaItem) {
+        $lowerArea = strtolower($areaItem);
+        if (in_array($lowerArea, ['indonesia', 'id', 'republik indonesia'])) {
+            $areaServedEntities[] = [
+                '@type' => 'Country',
+                'name'  => 'Indonesia'
+            ];
+        } elseif (
+            str_contains($lowerArea, 'jawa') || 
+            str_contains($lowerArea, 'sumatera') || 
+            str_contains($lowerArea, 'kalimantan') || 
+            str_contains($lowerArea, 'sulawesi') || 
+            str_contains($lowerArea, 'papua') || 
+            str_contains($lowerArea, 'nusa tenggara') || 
+            str_contains($lowerArea, 'banten') || 
+            str_contains($lowerArea, 'dki') || 
+            str_contains($lowerArea, 'yogyakarta') || 
+            str_contains($lowerArea, 'bali') || 
+            str_contains($lowerArea, 'provinsi') ||
+            str_contains($lowerArea, 'province') ||
+            str_contains($lowerArea, 'region')
+        ) {
+            $areaServedEntities[] = [
+                '@type' => 'AdministrativeArea',
+                'name'  => $areaItem
+            ];
+        } else {
+            $areaServedEntities[] = [
+                '@type' => 'City',
+                'name'  => $areaItem
+            ];
+        }
+    }
 
     // SameAs Array
     $sameAsRaw      = \App\Models\Setting::get('seo_same_as_urls', '');
@@ -86,13 +149,28 @@
 
     // Opening Hours Specification
     $openDaysRaw    = \App\Models\Setting::get('seo_opening_days', 'Monday,Tuesday,Wednesday,Thursday,Friday,Saturday');
-    $openDaysArr    = array_map('trim', explode(',', $openDaysRaw));
-    $openTime       = \App\Models\Setting::get('seo_opening_time', '08:00');
-    $closeTime      = \App\Models\Setting::get('seo_closing_time', '17:00');
+    $openDaysArr    = array_values(array_filter(array_map($cleanText, explode(',', $openDaysRaw))));
+    $openTime       = $cleanText(\App\Models\Setting::get('seo_opening_time', '08:00'));
+    $closeTime      = $cleanText(\App\Models\Setting::get('seo_closing_time', '17:00'));
 
-    // Canonical & Images
-    $siteTitle      = $seoData['title'] ?? ($companyName . ($companyTagline ? ' | ' . $companyTagline : ''));
-    $siteDescription= $seoData['description'] ?? ($companyName . ' - ' . $companyTagline . '. Distributor piring keramik grosir dan eceran.');
+    // Title & Description Fix (Strictly non-empty fallback strings)
+    $rawTitle       = $cleanText($seoData['title'] ?? '');
+    if (empty($rawTitle)) {
+        $rawTitle = $companyName . ($companyTagline ? ' | ' . $companyTagline : '');
+    }
+    if (empty($rawTitle)) {
+        $rawTitle = 'Pusat Piring Keramik - Distributor & Supplier Piring Keramik';
+    }
+    $siteTitle      = $rawTitle;
+
+    $rawDesc        = $cleanText($seoData['description'] ?? '');
+    if (empty($rawDesc)) {
+        $rawDesc = $companyName . ' - ' . $companyTagline . '. Distributor piring keramik grosir dan eceran berkualitas tinggi.';
+    }
+    if (empty($rawDesc)) {
+        $rawDesc = 'Distributor & supplier piring keramik grosir dan eceran terpercaya di Indonesia.';
+    }
+    $siteDescription= $rawDesc;
     
     $rawCanonical   = $seoData['canonical'] ?? url()->current();
     $canonical      = preg_replace('#^https?://[^/]+#', $appUrl, $rawCanonical);
@@ -105,7 +183,7 @@
                         ? preg_replace('#^https?://[^/]+#', $appUrl, $rawOg)
                         : $appUrl . '/' . ltrim($rawOg, '/');
 
-    // FAQ Page Schema Data
+    // FAQ Page Schema Data (Strict Normalized acceptedAnswer Structure)
     $faqRaw = \App\Models\Setting::get('seo_faq_json');
     $faqItems = [];
     if (!empty($faqRaw)) {
@@ -212,33 +290,31 @@ $graph[] = [
 
 // 3. Organization / LocalBusiness Entity
 $localBusinessEntity = [
-    '@type'       => $parsedTypes,
-    '@id'         => $appUrl . '/#organization',
-    'name'        => $companyName,
+    '@type'         => $parsedTypes,
+    '@id'           => $appUrl . '/#organization',
+    'name'          => $companyName,
     'alternateName' => $companyName,
-    'description' => $companyTagline,
-    'url'         => $appUrl,
-    'logo'        => [
+    'description'   => $companyTagline,
+    'url'           => $appUrl,
+    'logo'          => [
         '@type' => 'ImageObject',
         '@id'   => $appUrl . '/#logo',
         'url'   => $logoUrl
     ],
-    'image'       => [
+    'image'         => [
         '@type' => 'ImageObject',
         'url'   => $ogImage
     ],
-    'telephone'   => $phoneIntl,
-    'email'       => $companyEmail,
-    'priceRange'  => $priceRange,
-    'slogan'      => $seoSlogan,
-    'foundingDate'=> $foundingDate,
-    'knowsAbout'  => $knowsAboutArr,
-    'areaServed'  => array_map(function($area) {
-        return ['@type' => 'City', 'name' => $area];
-    }, $areaServedArr),
-    'sameAs'      => $sameAsArr,
-    'hasMap'      => $hasMapUrl,
-    'address'     => [
+    'telephone'     => $phoneIntl,
+    'email'         => $companyEmail,
+    'priceRange'    => $priceRange,
+    'slogan'        => $seoSlogan,
+    'foundingDate'  => $foundingDate,
+    'knowsAbout'    => $knowsAboutArr,
+    'areaServed'    => $areaServedEntities,
+    'sameAs'        => $sameAsArr,
+    'hasMap'        => $hasMapUrl,
+    'address'       => [
         '@type'           => 'PostalAddress',
         'streetAddress'   => $addressStreet,
         'addressLocality' => $addressCity,
@@ -246,7 +322,7 @@ $localBusinessEntity = [
         'postalCode'      => $addressPostal,
         'addressCountry'  => 'ID'
     ],
-    'geo'         => [
+    'geo'           => [
         '@type'     => 'GeoCoordinates',
         'latitude'  => (float) $geoLat,
         'longitude' => (float) $geoLng
@@ -259,7 +335,7 @@ $localBusinessEntity = [
             'closes'    => $closeTime
         ]
     ],
-    'contactPoint' => [
+    'contactPoint'  => [
         [
             '@type'             => 'ContactPoint',
             'contactType'       => 'customer service',
@@ -278,11 +354,11 @@ if (!empty($founderName)) {
 
 $ratingVal   = \App\Models\Setting::get('seo_rating_value');
 $ratingCount = \App\Models\Setting::get('seo_rating_count');
-if (!empty($ratingVal) && !empty($ratingCount)) {
+if (!empty($ratingVal) && !empty($ratingCount) && is_numeric($ratingVal) && is_numeric($ratingCount)) {
     $localBusinessEntity['aggregateRating'] = [
         '@type'       => 'AggregateRating',
-        'ratingValue' => $ratingVal,
-        'reviewCount' => $ratingCount
+        'ratingValue' => (float) $ratingVal,
+        'reviewCount' => (int) $ratingCount
     ];
 }
 
@@ -291,15 +367,51 @@ $graph[] = $localBusinessEntity;
 // 4. FAQPage Entity (AEO Optimization)
 $faqEntities = [];
 foreach ($faqItems as $item) {
-    if (($item['show'] ?? '1') == '1' || ($item['show'] ?? '1') === 'on') {
-        $faqEntities[] = [
-            '@type'          => 'Question',
-            'name'           => $item['question'] ?? '',
-            'acceptedAnswer' => [
-                '@type' => 'Answer',
-                'text'  => $item['answer'] ?? ''
-            ]
-        ];
+    if (!is_array($item)) continue;
+    $shouldShow = ($item['show'] ?? '1');
+    if ($shouldShow == '1' || $shouldShow === 'on' || $shouldShow === true) {
+        $qText = '';
+        $aText = '';
+        
+        // Extract Question
+        if (!empty($item['question'])) {
+            $qText = is_string($item['question']) ? $item['question'] : ($item['question']['name'] ?? '');
+        } elseif (!empty($item['q'])) {
+            $qText = is_string($item['q']) ? $item['q'] : '';
+        } elseif (!empty($item['name'])) {
+            $qText = is_string($item['name']) ? $item['name'] : '';
+        }
+
+        // Extract Answer
+        if (!empty($item['answer'])) {
+            if (is_string($item['answer'])) {
+                $aText = $item['answer'];
+            } elseif (is_array($item['answer'])) {
+                $aText = $item['answer']['text'] ?? $item['answer']['answer'] ?? '';
+            }
+        } elseif (!empty($item['acceptedAnswer'])) {
+            if (is_string($item['acceptedAnswer'])) {
+                $aText = $item['acceptedAnswer'];
+            } elseif (is_array($item['acceptedAnswer'])) {
+                $aText = $item['acceptedAnswer']['text'] ?? '';
+            }
+        } elseif (!empty($item['a'])) {
+            $aText = is_string($item['a']) ? $item['a'] : '';
+        }
+
+        $qClean = $cleanText($qText);
+        $aClean = $cleanText($aText);
+
+        if (!empty($qClean) && !empty($aClean)) {
+            $faqEntities[] = [
+                '@type'          => 'Question',
+                'name'           => $qClean,
+                'acceptedAnswer' => [
+                    '@type' => 'Answer',
+                    'text'  => $aClean
+                ]
+            ];
+        }
     }
 }
 
@@ -331,19 +443,29 @@ $fullGraphJson = json_encode([
 @php
     $bcItems = [];
     foreach ($breadcrumbData as $idx => $crumb) {
-        $bcItems[] = [
-            '@type'    => 'ListItem',
-            'position' => $idx + 1,
-            'name'     => $crumb['name'] ?? '',
-            'item'     => preg_replace('#^https?://[^/]+#', $appUrl, $crumb['url'] ?? ''),
-        ];
+        $cName = $cleanText($crumb['name'] ?? '');
+        $cUrl  = preg_replace('#^https?://[^/]+#', $appUrl, $crumb['url'] ?? '');
+        if (!empty($cName) && !empty($cUrl)) {
+            $bcItems[] = [
+                '@type'    => 'ListItem',
+                'position' => $idx + 1,
+                'name'     => $cName,
+                'item'     => $cUrl,
+            ];
+        }
     }
-    $bcJson = json_encode([
-        '@context'        => 'https://schema.org',
-        '@type'           => 'BreadcrumbList',
-        'itemListElement' => $bcItems,
-    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+    if (count($bcItems) > 0) {
+        $bcJson = json_encode([
+            '@context'        => 'https://schema.org',
+            '@type'           => 'BreadcrumbList',
+            'itemListElement' => $bcItems,
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+    } else {
+        $bcJson = null;
+    }
 @endphp
+@if($bcJson)
 <script type="application/ld+json">{!! $bcJson !!}</script>
+@endif
 @endif
 

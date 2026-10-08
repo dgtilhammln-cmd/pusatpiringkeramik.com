@@ -1124,7 +1124,18 @@
                                             <img src="{{ asset('storage/' . $slide->image) }}" class="cv-hero-img"
                                                 alt="{{ $slide->title }}">
                                         @else
-                                            <div style="width:100%;height:100%;background:#1E293B;"></div>
+                                            <div style="width:100%;height:100%;background:linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#94A3B8;gap:0.75rem;padding:2rem;text-align:center;">
+                                                <svg width="48" height="48" fill="none" stroke="#DC2626" stroke-width="1.5" viewBox="0 0 24 24">
+                                                    <rect x="3" y="3" width="18" height="18" rx="4" />
+                                                    <circle cx="12" cy="12" r="5" />
+                                                    <path d="M12 2v2M12 20v2M2 12h2M20 12h2" />
+                                                </svg>
+                                                <div style="font-size:0.875rem;font-weight:700;color:#F8FAFC;">Pusat Piring Keramik — Slide {{ $loop->iteration }}</div>
+                                                <div style="font-size:0.75rem;color:#94A3B8;display:inline-flex;align-items:center;gap:0.35rem;">
+                                                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+                                                    Upload foto banner di Admin &rarr; Page Management &rarr; Tab Homepage &rarr; Hero Section
+                                                </div>
+                                            </div>
                                         @endif
                                     </div>
 
@@ -1160,9 +1171,8 @@
                         <div class="cv-hero-grid">
                             <div class="cv-hero-top">
                                 <div class="cv-hero-top-left">
-                                    <div class="cv-hero-badge">Award-Winning Construction Excellence</div>
-                                    <h1 class="cv-hero-title">Where <span>Innovation</span> Drives<br><span>Structural
-                                            Perfection</span></h1>
+                                    <div class="cv-hero-badge">Grosir & Eceran Piring Keramik</div>
+                                    <h1 class="cv-hero-title">Solusi <span>Tableware Keramik</span><br><span>Premium</span> untuk Bisnis F&B</h1>
                                 </div>
                                 <div class="cv-static-logo-badge d-none d-sm-flex">
                                     @if(!empty($settings['logo']))
@@ -1174,12 +1184,12 @@
                             </div>
                             <div class="cv-hero-mid">
                                 <div class="cv-hero-tags">
-                                    <span>General Construction Services</span>
-                                    <span>Concrete Work</span>
-                                    <span>Design and Planning</span>
+                                    <span>Piring Keramik</span>
+                                    <span>Hotel & Restoran</span>
+                                    <span>Food Grade</span>
+                                    <span>Grosir</span>
                                 </div>
-                                <div class="cv-hero-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tambahkan
-                                    slide di admin.</div>
+                                <div class="cv-hero-desc">Kami menyediakan piring keramik, mangkuk, dan tableware berkualitas tinggi untuk hotel, restoran, katering, dan usaha F&B skala besar di seluruh Indonesia.</div>
                             </div>
                             <div class="cv-hero-bottom">
                                 <div class="cv-sparkles d-none d-md-flex">
@@ -1192,47 +1202,37 @@
                                     </svg>
                                 </div>
                                 <div class="cv-hero-img-wrapper">
-                                    <div style="width:100%;height:100%;background:#1E293B;"></div>
+                                    <div style="width:100%;height:100%;background:linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#94A3B8;gap:0.75rem;padding:2rem;text-align:center;">
+                                        <svg width="48" height="48" fill="none" stroke="#DC2626" stroke-width="1.5" viewBox="0 0 24 24">
+                                            <rect x="3" y="3" width="18" height="18" rx="4" />
+                                            <circle cx="12" cy="12" r="5" />
+                                            <path d="M12 2v2M12 20v2M2 12h2M20 12h2" />
+                                        </svg>
+                                        <div style="font-size:0.875rem;font-weight:700;color:#F8FAFC;">Pusat Piring Keramik — Hero Slide</div>
+                                        <div style="font-size:0.75rem;color:#94A3B8;display:inline-flex;align-items:center;gap:0.35rem;">
+                                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+                                            Upload foto banner di Admin &rarr; Page Management &rarr; Tab Homepage &rarr; Hero Section
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="cv-hero-stats-box">
                                     <div class="cv-stat-item">
-                                        <div style="display:flex;align-items:center;gap:0.75rem;">
-                                            <svg width="28" height="28" fill="none" stroke="var(--brand)" stroke-width="2"
-                                                viewBox="0 0 24 24">
-                                                <path
-                                                    d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
-                                                <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-                                                <line x1="12" y1="22.08" x2="12" y2="12" />
-                                            </svg>
-                                            <div class="cv-stat-val">640+</div>
+                                        <div class="cv-stat-row">
+                                            <div class="cv-stat-val">10+</div>
                                         </div>
-                                        <div class="cv-stat-label">Projects Completed</div>
+                                        <div class="cv-stat-label">Tahun Pengalaman</div>
                                     </div>
-                                    <div style="width:100%;height:1px;background:rgba(255,255,255,0.1);"></div>
                                     <div class="cv-stat-item">
-                                        <div style="display:flex;align-items:center;gap:0.75rem;">
-                                            <svg width="28" height="28" fill="none" stroke="var(--brand)" stroke-width="2"
-                                                viewBox="0 0 24 24">
-                                                <circle cx="12" cy="12" r="10" />
-                                                <polyline points="12 6 12 12 16 14" />
-                                            </svg>
-                                            <div class="cv-stat-val">25+</div>
+                                        <div class="cv-stat-row">
+                                            <div class="cv-stat-val">500+</div>
                                         </div>
-                                        <div class="cv-stat-label">Years of Experience</div>
+                                        <div class="cv-stat-label">Proyek Selesai</div>
                                     </div>
-                                    <div style="width:100%;height:1px;background:rgba(255,255,255,0.1);"></div>
                                     <div class="cv-stat-item">
-                                        <div style="display:flex;align-items:center;gap:0.75rem;">
-                                            <svg width="28" height="28" fill="none" stroke="var(--brand)" stroke-width="2"
-                                                viewBox="0 0 24 24">
-                                                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                                                <circle cx="9" cy="7" r="4" />
-                                                <path d="M23 21v-2a4 4 0 00-3-3.87" />
-                                                <path d="M16 3.13a4 4 0 010 7.75" />
-                                            </svg>
-                                            <div class="cv-stat-val">450+</div>
+                                        <div class="cv-stat-row">
+                                            <div class="cv-stat-val">50+</div>
                                         </div>
-                                        <div class="cv-stat-label">Happy Customers</div>
+                                        <div class="cv-stat-label">Kota Terjangkau</div>
                                     </div>
                                 </div>
                             </div>

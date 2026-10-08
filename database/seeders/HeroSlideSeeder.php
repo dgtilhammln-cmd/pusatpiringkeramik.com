@@ -9,7 +9,7 @@ class HeroSlideSeeder extends Seeder
 {
     /**
      * Seed 2 Hero Slides untuk homepage Pusat Piring Keramik.
-     * 📸 Upload gambar via: Admin → Page Management → Tab "Hero Section" → Edit slide.
+     * Upload gambar via: Admin -> Page Management -> Tab "Hero Section" -> Edit slide.
      */
     public function run(): void
     {
@@ -53,7 +53,7 @@ class HeroSlideSeeder extends Seeder
             HeroSlide::create($data);
         }
 
-        $this->command->info('✅ HeroSlideSeeder: 2 slide hero berhasil dibuat.');
-        $this->command->info('   📸 Upload gambar via Admin → Page Management → tab Hero Section.');
+        $this->command->info('[OK] HeroSlideSeeder: 2 slide hero berhasil dibuat.');
+        $this->command->info('     Upload gambar via Admin -> Page Management -> tab Hero Section.');
     }
 }
