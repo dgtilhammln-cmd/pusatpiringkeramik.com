@@ -939,64 +939,17 @@ div:where(.swal2-container) div:where(.swal2-html-container) {
 </style>
 
 <script>
-// --- Premium Loader Logic ---
+// --- Fast Premium Loader Logic ---
 document.addEventListener("DOMContentLoaded", () => {
-    if (sessionStorage.getItem('play_intro') === '1') {
-        const loader = document.getElementById('premium-loader');
-        loader.style.display = 'flex';
-        
-        const num = document.getElementById('pl-num');
-        const bar = document.getElementById('pl-bar');
-        const text = document.getElementById('pl-text');
-        
-        text.innerText = "MEMUAT DASHBOARD...";
-        
-        let progress = 0;
-        let interval = setInterval(() => {
-            progress += Math.floor(Math.random() * 12) + 4;
-            if (progress > 100) progress = 100;
-            num.innerText = progress;
-            bar.style.width = progress + '%';
-            
-            if (progress === 100) {
-                clearInterval(interval);
-                setTimeout(() => {
-                    loader.classList.add('hide');
-                    sessionStorage.removeItem('play_intro');
-                    setTimeout(() => loader.style.display = 'none', 800);
-                }, 400);
-            }
-        }, 60);
+    const loader = document.getElementById('premium-loader');
+    if (loader) {
+        loader.classList.add('hide');
+        setTimeout(() => loader.style.display = 'none', 150);
     }
 });
 
 function handleLogoutClick() {
-    const loader = document.getElementById('premium-loader');
-    loader.style.display = 'flex';
-    loader.classList.remove('hide');
-    
-    const num = document.getElementById('pl-num');
-    const bar = document.getElementById('pl-bar');
-    const text = document.getElementById('pl-text');
-    
-    text.innerText = "MENGAKHIRI SESI...";
-    let progress = 0;
-    num.innerText = '0';
-    bar.style.width = '0%';
-
-    let interval = setInterval(() => {
-        progress += Math.floor(Math.random() * 12) + 6;
-        if (progress > 100) progress = 100;
-        num.innerText = progress;
-        bar.style.width = progress + '%';
-        
-        if (progress === 100) {
-            clearInterval(interval);
-            setTimeout(() => {
-                document.getElementById('logout-form').submit();
-            }, 300);
-        }
-    }, 50);
+    document.getElementById('logout-form').submit();
 }
 </script>
 
