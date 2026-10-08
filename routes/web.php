@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\AdminTestimonialController;
 use App\Http\Controllers\Admin\AdminLeadController;
 use App\Http\Controllers\Admin\AdminServiceCategoryController;
 use App\Http\Controllers\Admin\AdminHeroSlideController;
+use App\Http\Controllers\Admin\AdminPageManagementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -153,6 +154,8 @@ Route::prefix('admin')->group(function () {
 
         Route::get('/settings', [AdminSettingsController::class, 'index'])->name('admin.settings');
         Route::post('/settings', [AdminSettingsController::class, 'update'])->name('admin.settings.update');
+        Route::get('/page-management', [AdminPageManagementController::class, 'index'])->name('admin.page_management');
+        Route::post('/page-management', [AdminPageManagementController::class, 'update'])->name('admin.page_management.update');
         Route::post('upload-image', [\App\Http\Controllers\Admin\AdminUploadController::class, 'uploadImage'])->name('admin.upload.image');
 
         // Leads / Inquiries

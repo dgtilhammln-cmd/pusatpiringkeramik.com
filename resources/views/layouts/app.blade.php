@@ -17,6 +17,7 @@
         $preloaderLogo  = $layoutSettings['logo'] ?? null;
         $headScripts    = $layoutSettings['head_scripts']  ?? '';
         $bodyScripts    = $layoutSettings['body_scripts']  ?? '';
+        $brandColor     = !empty($layoutSettings['brand_color']) ? $layoutSettings['brand_color'] : '#DC2626';
     @endphp
 
     {{-- SEO Component --}}
@@ -57,15 +58,15 @@
     @endif
 
     {{-- Dynamic Theme Colors --}}
-    @if($tAccent || $tMain || $tText)
     <style>
         :root {
+            --brand: {{ $brandColor }};
+            --brand-dark: {{ $brandColor }};
             @if($tAccent) --accent: {{ $tAccent }} !important; --accent-dark: {{ $tAccent }} !important; @endif
             @if($tMain)   --bg-base: {{ $tMain }} !important; --bg-1: {{ $tMain }} !important; @endif
             @if($tText)   --text-1: {{ $tText }} !important; @endif
         }
     </style>
-    @endif
 
     {{-- Breadcrumb / Page Hero Background --}}
     @if($breadcrumbBg)
@@ -138,7 +139,7 @@
         .cv-wind-line {
             position: absolute;
             height: 2px;
-            background: linear-gradient(90deg, transparent, #DC2626, transparent);
+            background: linear-gradient(90deg, transparent, var(--brand), transparent);
             border-radius: 50%;
             opacity: 0;
             animation: wind-blow 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;

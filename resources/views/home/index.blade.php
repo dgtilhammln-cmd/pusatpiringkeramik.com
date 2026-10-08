@@ -14,14 +14,28 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
-        /* ── NEW HERO ────────────────────────────────── */
         .cv-hero-modern {
-            background-color: #FAFAFA;
+            background-color: {{ $settings['page_home_hero_bg'] ?? '#FAFAFA' }};
             padding-top: calc(80px + 3rem);
             padding-bottom: 2rem;
             position: relative;
             overflow: hidden;
             font-family: var(--font);
+        }
+        .cv-hero-title, h2.cv-hero-title {
+            color: {{ $settings['page_home_hero_title_color'] ?? '#0A1930' }};
+        }
+        .cv-hero-desc {
+            color: {{ $settings['page_home_hero_text_color'] ?? '#64748b' }};
+        }
+        .cv-hero-stats-box, .cv-hero-bg-block {
+            background: {{ $settings['page_home_hero_card_bg'] ?? '#0A1930' }};
+        }
+        .cv-products {
+            background: {{ $settings['page_home_product_bg'] ?? 'var(--bg-base)' }};
+        }
+        .cv-product-card {
+            background: {{ $settings['page_home_product_card_bg'] ?? 'var(--bg-base)' }};
         }
 
         .cv-hero-bg-block {
@@ -72,7 +86,7 @@
             content: '';
             width: 25px;
             height: 1.5px;
-            background: #DC2626;
+            background: var(--brand);
             /* Red accent */
         }
 
@@ -143,7 +157,7 @@
             color: #64748b;
             line-height: 1.6;
             padding-left: 1.5rem;
-            border-left: 2px solid #DC2626;
+            border-left: 2px solid var(--brand);
             /* Red vertical line */
             max-width: 400px;
         }
@@ -232,7 +246,7 @@
         }
 
         .cv-sparkle {
-            color: #DC2626;
+            color: var(--brand);
         }
 
         @media (max-width: 992px) {
@@ -257,7 +271,7 @@
 
             .cv-hero-desc {
                 border-left: none;
-                border-top: 2px solid #DC2626;
+                border-top: 2px solid var(--brand);
                 padding-left: 0;
                 padding-top: 1rem;
             }
@@ -308,7 +322,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, #DC2626, #EF4444, #FCA5A5);
+            background: linear-gradient(90deg, var(--brand), var(--brand), #FCA5A5);
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.4s ease;
@@ -329,7 +343,7 @@
             font-weight: 700;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: #DC2626;
+            color: var(--brand);
             margin-bottom: 0.375rem;
         }
 
@@ -385,7 +399,7 @@
             gap: 0.375rem;
             font-size: 0.8125rem;
             font-weight: 600;
-            color: #DC2626;
+            color: var(--brand);
             transition: gap 0.2s;
         }
 
@@ -571,7 +585,7 @@
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #DC2626, #EF4444);
+            background: linear-gradient(135deg, var(--brand), var(--brand));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -642,7 +656,7 @@
 
         /* ── CTA SECTION ──────────────────── */
         .cv-cta {
-            background: linear-gradient(135deg, #EF4444 0%, #DC2626 50%, #B91C1C 100%);
+            background: linear-gradient(135deg, var(--brand) 0%, var(--brand) 50%, var(--brand) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -722,7 +736,7 @@
             font-weight: 700;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: #DC2626;
+            color: var(--brand);
             margin-bottom: 0.5rem;
         }
 
@@ -786,7 +800,7 @@
         .cv-clients-count {
             font-size: 0.7rem;
             font-weight: 600;
-            color: #DC2626;
+            color: var(--brand);
             background: #FEF2F2;
             padding: 0.35rem 1rem;
             border-radius: 20px;
@@ -1136,7 +1150,7 @@
                                 <div class="cv-hero-stats-box">
                                     <div class="cv-stat-item">
                                         <div style="display:flex;align-items:center;gap:0.75rem;">
-                                            <svg width="28" height="28" fill="none" stroke="#DC2626" stroke-width="2"
+                                            <svg width="28" height="28" fill="none" stroke="var(--brand)" stroke-width="2"
                                                 viewBox="0 0 24 24">
                                                 <path
                                                     d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
@@ -1150,7 +1164,7 @@
                                     <div style="width:100%;height:1px;background:rgba(255,255,255,0.1);"></div>
                                     <div class="cv-stat-item">
                                         <div style="display:flex;align-items:center;gap:0.75rem;">
-                                            <svg width="28" height="28" fill="none" stroke="#DC2626" stroke-width="2"
+                                            <svg width="28" height="28" fill="none" stroke="var(--brand)" stroke-width="2"
                                                 viewBox="0 0 24 24">
                                                 <circle cx="12" cy="12" r="10" />
                                                 <polyline points="12 6 12 12 16 14" />
@@ -1162,7 +1176,7 @@
                                     <div style="width:100%;height:1px;background:rgba(255,255,255,0.1);"></div>
                                     <div class="cv-stat-item">
                                         <div style="display:flex;align-items:center;gap:0.75rem;">
-                                            <svg width="28" height="28" fill="none" stroke="#DC2626" stroke-width="2"
+                                            <svg width="28" height="28" fill="none" stroke="var(--brand)" stroke-width="2"
                                                 viewBox="0 0 24 24">
                                                 <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
                                                 <circle cx="9" cy="7" r="4" />
@@ -1366,7 +1380,7 @@
         }
 
         .ab-card-accent {
-            background: #DC2626;
+            background: var(--brand);
             /* matching hero blue */
         }
 
@@ -1610,7 +1624,7 @@
         }
 
         .cv-catalog-btn-all {
-            background: #DC2626;
+            background: var(--brand);
             color: #fff;
             padding: 0.875rem 2rem;
             border-radius: 999px;
@@ -1668,8 +1682,8 @@
         }
 
         .cv-catalog-nav-btn:hover {
-            background: #DC2626;
-            border-color: #DC2626;
+            background: var(--brand);
+            border-color: var(--brand);
             color: #fff;
         }
 
@@ -1872,7 +1886,7 @@
         }
 
         .cv-app-card-v2:hover {
-            border-color: #DC2626;
+            border-color: var(--brand);
             transform: translateY(-6px);
             box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
         }
@@ -1885,13 +1899,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #DC2626;
+            color: var(--brand);
             flex-shrink: 0;
             transition: all 0.3s;
         }
 
         .cv-app-card-v2:hover .cv-app-icon-circle {
-            background: #DC2626;
+            background: var(--brand);
             color: #fff;
         }
 
@@ -2127,7 +2141,7 @@
         }
 
         .cv-testi-card-v2:hover {
-            border-color: #DC2626;
+            border-color: var(--brand);
             transform: translateY(-6px);
             box-shadow: 0 16px 40px rgba(14, 165, 233, 0.1);
         }
@@ -2371,7 +2385,7 @@
         .cv-stat-val {
             font-size: 4rem;
             font-weight: 400;
-            color: #DC2626;
+            color: var(--brand);
             line-height: 1;
             letter-spacing: -0.05em;
             display: flex;
@@ -2380,7 +2394,7 @@
         }
 
         .cv-stat-val span {
-            color: #DC2626;
+            color: var(--brand);
             font-size: 2rem;
             font-weight: 600;
             line-height: 1;
@@ -2442,8 +2456,8 @@
         }
 
         .cv-city-item.active::before {
-            background: #DC2626;
-            border-color: #DC2626;
+            background: var(--brand);
+            border-color: var(--brand);
         }
 
         /* Responsive */
@@ -2532,7 +2546,7 @@
                     <h2
                         style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 500; line-height: 1.2; letter-spacing: -0.03em; margin: 0;">
                         Melayani seluruh Indonesia dengan jangkauan <br>
-                        <span style="color: #DC2626;">50+ Kota.</span>
+                        <span style="color: var(--brand);">50+ Kota.</span>
                     </h2>
                 </div>
 
@@ -2667,7 +2681,7 @@
         }
 
         .cv-cta-btn-primary {
-            background: #DC2626;
+            background: var(--brand);
             color: #ffffff;
             padding: 1.125rem 2.5rem;
             border-radius: 50px;
@@ -2727,7 +2741,7 @@
         }
 
         .cv-cta-info-icon {
-            color: #DC2626;
+            color: var(--brand);
         }
 
         /* ── ARTIKEL PREMIUM ────────────────────── */
@@ -2773,7 +2787,7 @@
         }
 
         .cv-article-card-v2:hover {
-            border-color: #DC2626;
+            border-color: var(--brand);
             transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(14, 165, 233, 0.08);
         }
@@ -2855,7 +2869,7 @@
         }
 
         .cv-article-read-v2 {
-            color: #DC2626;
+            color: var(--brand);
             display: flex;
             align-items: center;
             gap: 0.4rem;
@@ -2919,7 +2933,7 @@
                     <div>
                         <div
                             style="font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#64748b; margin-bottom:1.5rem; display:flex; align-items:center; gap:0.5rem;">
-                            <span style="width:4px; height:4px; background:#DC2626; border-radius:50%;"></span>
+                            <span style="width:4px; height:4px; background:var(--brand); border-radius:50%;"></span>
                             ARTIKEL &amp; TIPS
                         </div>
                         <h2
