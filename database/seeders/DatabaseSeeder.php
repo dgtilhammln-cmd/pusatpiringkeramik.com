@@ -87,25 +87,8 @@ class DatabaseSeeder extends Seeder
             Setting::updateOrCreate(['key' => $s['key']], array_merge($s, ['created_at'=>now(),'updated_at'=>now()]));
         }
 
-        // ── Gallery Projects ─────────────────────────────────────────
-        $galleries = [
-            ['title'=>'Pengecatan Lambung Kapal Tanker','category'=>'maritim','client'=>'PT. Pelayaran Samudra Raya','location'=>'Surabaya','year'=>2024,'order'=>1],
-            ['title'=>'Coating Struktur Baja Jembatan','category'=>'infrastruktur','client'=>'PT. Wijaya Karya (Persero)','location'=>'Jawa Timur','year'=>2024,'order'=>2],
-            ['title'=>'Cat Lantai Pabrik Otomotif','category'=>'industri','client'=>'PT. Astra Daihatsu Motor','location'=>'Karawang','year'=>2023,'order'=>3],
-            ['title'=>'Protective Coating Offshore Platform','category'=>'oil-gas','client'=>'PT. Pertamina Internasional EP','location'=>'Kalimantan Timur','year'=>2023,'order'=>4],
-            ['title'=>'Cat Anti Karat Fasilitas Pelabuhan','category'=>'maritim','client'=>'PT. Pelabuhan Indonesia III','location'=>'Tanjung Perak, Surabaya','year'=>2023,'order'=>5],
-            ['title'=>'Interior & Exterior Coating Gedung Pemerintah','category'=>'komersial','client'=>'Dinas PU Jawa Timur','location'=>'Surabaya','year'=>2022,'order'=>6],
-            ['title'=>'Epoxy Floor Coating Gudang Logistik','category'=>'industri','client'=>'PT. JNE Logistics','location'=>'Sidoarjo','year'=>2022,'order'=>7],
-            ['title'=>'Coating Refinery Unit Kilang Minyak','category'=>'oil-gas','client'=>'PT. Chandra Asri Petrochemical','location'=>'Cilegon, Banten','year'=>2024,'order'=>8],
-        ];
-        foreach ($galleries as $g) {
-            GalleryProject::updateOrCreate(['title'=>$g['title']], array_merge($g, [
-                'description' => 'Pengerjaan proyek '.$g['title'].' menggunakan produk cat dan coating premium dari CV. Bintang Energy Surabaya. Hasil tahan lama, sesuai standar internasional.',
-                'image'       => '',
-                'alt_text'    => $g['title'].' — CV. Bintang Energy Surabaya',
-                'is_active'   => true, 'created_at'=>now(),'updated_at'=>now()
-            ]));
-        }
+        // ── Gallery Projects (Cleared so gallery auto-hides until real images are uploaded) ───────────
+        GalleryProject::query()->delete();
 
         // ── Articles ─────────────────────────────────────────────────
         $articles = [

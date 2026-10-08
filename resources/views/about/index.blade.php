@@ -1421,7 +1421,7 @@
     </section>
 
     {{-- MARQUEE KLIEN --}}
-    @if($clients->count())
+    @if(isset($clients) && $clients->filter(fn($c) => !empty($c->logo) || !empty($c->name))->count() > 0)
         <section class="cv-clients-bar" style="background-color: #0F172A; padding-bottom: 4rem;">
             <div class="container" style="margin-bottom:2rem; text-align:center;">
                 <div

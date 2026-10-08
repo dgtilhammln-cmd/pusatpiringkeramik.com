@@ -1,4 +1,4 @@
-@if(isset($testimonials) && $testimonials->count())
+@if(isset($testimonials) && $testimonials->filter(fn($t) => !empty($t->content) || !empty($t->name))->count() > 0)
     {{-- ════ PREMIUM TESTIMONIALS CSS ════ --}}
     <style>
     .cv-testi-premium {

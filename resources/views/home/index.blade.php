@@ -1437,7 +1437,7 @@
     </section>
 
     {{-- ════ PREMIUM CLIENTS BAR (MINIMALIST & ELEGANT) ════ --}}
-    @if($clients->count())
+    @if(isset($clients) && $clients->filter(fn($c) => !empty($c->logo) || !empty($c->name))->count() > 0)
         @php
             $clientSectionBg = \App\Models\Setting::get('page_home_client_bg') ?? '#FFFFFF';
             $clientSectionLabel = \App\Models\Setting::get('client_section_label') ?? 'DIPERCAYA OLEH PERUSAHAAN TERKEMUKA';
@@ -2583,7 +2583,7 @@
     </style>
 
     {{-- ════ GALLERY PREVIEW (PREMIUM) ════ --}}
-    @if($gallery->count())
+    @if(isset($gallery) && $gallery->filter(fn($item) => !empty($item->image))->count() > 0)
         <section class="cv-gallery-premium" id="galeri" style="background: {{ \App\Models\Setting::get('page_home_gallery_bg') ?? '#FFFFFF' }};">
             <div class="cv-gallery-inner">
                 <div class="cv-gallery-header">
