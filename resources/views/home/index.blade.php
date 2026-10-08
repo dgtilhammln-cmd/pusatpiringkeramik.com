@@ -89,8 +89,8 @@
         /* ── NEW COMPACT HERO REDESIGN (IMAGE 2 STYLE) ── */
         .cv-hero-modern {
             background-color: {{ $settings['page_home_hero_bg'] ?? '#FAFAFA' }};
-            padding-top: calc(65px + 0.5rem);
-            padding-bottom: 0.5rem;
+            padding-top: calc(65px + 0.75rem);
+            padding-bottom: 1rem;
             position: relative;
             overflow: hidden;
             font-family: var(--font);
@@ -141,9 +141,11 @@
             font-size: clamp(1.4rem, 2.4vw, 2.1rem);
             font-weight: 500;
             color: {{ $settings['page_home_hero_title_color'] ?? '#0A1930' }};
-            line-height: 1.15;
+            line-height: 1.2;
             letter-spacing: -0.02em;
             margin: 0;
+            white-space: normal;
+            word-break: normal;
         }
 
         .cv-hero-title span,
@@ -251,16 +253,24 @@
             transform: scale(1.01);
         }
 
+        /* Card: placeholder (no image) uses fixed height */
         .cv-banner-card {
             position: relative;
             width: 100%;
-            height: clamp(180px, 21vw, 220px);
+            height: clamp(180px, 22vw, 240px);
             border-radius: 18px;
             overflow: hidden;
             background: linear-gradient(135deg, #005F41 0%, #00875A 50%, #004D34 100%);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
             display: flex;
             align-items: center;
+        }
+
+        /* Card with uploaded image: respect true banner aspect ratio */
+        .cv-banner-card.has-image {
+            height: auto;
+            aspect-ratio: 3448 / 914;
+            align-items: stretch;
         }
 
         .cv-banner-uploaded-img {
@@ -432,52 +442,72 @@
             }
         }
 
+        @media (max-width: 768px) {
+            .cv-banner-card {
+                height: clamp(160px, 40vw, 210px);
+                border-radius: 14px;
+            }
+
+            .cv-banner-card.has-image {
+                height: auto;
+                aspect-ratio: 3448 / 914;
+                border-radius: 14px;
+            }
+
+            .cv-banner-uploaded-img {
+                border-radius: 14px;
+            }
+        }
+
         @media (max-width: 576px) {
             .cv-hero-modern {
-                padding-top: calc(55px + 0.5rem);
-                padding-bottom: 0.5rem;
+                padding-top: calc(55px + 0.75rem);
+                padding-bottom: 1rem;
             }
 
             .cv-hero-title,
             h2.cv-hero-title {
-                font-size: 1.35rem;
+                font-size: 1.3rem;
+                line-height: 1.25;
             }
 
             .cv-hero-banner-wrap::before,
             .cv-hero-banner-wrap::after {
-                width: 20px;
+                width: 12px;
             }
 
             .cv-banner-card {
+                height: clamp(140px, 38vw, 190px);
+                border-radius: 12px;
+            }
+
+            .cv-banner-card.has-image {
                 height: auto;
                 aspect-ratio: 3448 / 914;
                 border-radius: 12px;
             }
 
             .cv-banner-uploaded-img {
-                width: 100%;
-                height: auto;
-                aspect-ratio: 3448 / 914;
                 border-radius: 12px;
-                object-fit: cover;
             }
 
             .cv-banner-content {
-                padding: 1rem 1rem;
-                gap: 0.4rem;
+                padding: 0.85rem 0.85rem;
+                gap: 0.35rem;
             }
 
             .cv-banner-headline {
-                font-size: 1rem;
+                font-size: 0.9rem;
+                line-height: 1.3;
             }
 
             .cv-banner-pills {
-                gap: 0.3rem;
+                gap: 0.25rem;
             }
 
             .cv-banner-pill {
-                font-size: 0.68rem;
-                padding: 0.2rem 0.55rem;
+                font-size: 0.65rem;
+                padding: 0.18rem 0.5rem;
             }
         }
 
@@ -1200,9 +1230,9 @@
                     <div class="cv-hero-badge">{{ $firstSlide->subtitle ?? 'Trusted Tableware Distributor' }}</div>
                     <h1 class="cv-hero-title">
                         @if($firstSlide && $firstSlide->title)
-                            {!! str_replace(['Structural Perfection', 'Innovation', 'structural perfection', 'innovation'], ['<span>Structural Perfection</span>', '<span>Innovation</span>', '<span>structural perfection</span>', '<span>innovation</span>'], nl2br(e($firstSlide->title))) !!}
+                            {!! nl2br(e($firstSlide->title)) !!}
                         @else
-                            Peralatan Makan Berkualitas untuk Rumah & Bisnis Anda
+                            Peralatan Makan Berkualitas untuk<br>Rumah & Bisnis Anda
                         @endif
                     </h1>
                 </div>
@@ -1244,7 +1274,7 @@
                     @if(isset($heroSlides) && $heroSlides->count() > 0)
                         @foreach($heroSlides as $slide)
                             <div class="swiper-slide">
-                                <div class="cv-banner-card">
+                                <div class="cv-banner-card {{ $slide->image ? 'has-image' : '' }}">
                                     @if($slide->image)
                                         <img src="{{ asset('storage/' . $slide->image) }}" class="cv-banner-uploaded-img" alt="{{ $slide->title }}">
                                     @else

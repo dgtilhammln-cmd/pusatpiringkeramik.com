@@ -241,13 +241,15 @@
 
     {{-- MAIN PAGE TABS --}}
     <div style="display:flex; gap:0.75rem; margin-bottom:1.5rem; flex-wrap:wrap;">
-      <button type="button" class="pm-main-tab-btn {{ $isHeaderTab ? 'active' : '' }}" onclick="switchMainTab('header')" id="main-tab-header">
+      <button type="button" class="pm-main-tab-btn {{ $isHeaderTab ? 'active' : '' }}" onclick="switchMainTab('header')"
+        id="main-tab-header">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path d="M4 6h16M4 12h16M4 18h16" />
         </svg>
         Header & Preloader
       </button>
-      <button type="button" class="pm-main-tab-btn {{ !$isHeaderTab ? 'active' : '' }}" onclick="switchMainTab('homepage')" id="main-tab-homepage">
+      <button type="button" class="pm-main-tab-btn {{ !$isHeaderTab ? 'active' : '' }}"
+        onclick="switchMainTab('homepage')" id="main-tab-homepage">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path
             d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -262,7 +264,8 @@
       <div class="pm-card">
         <div class="pm-card-header">
           <svg width="22" height="22" fill="none" stroke="#DC2626" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+            <path
+              d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
           </svg>
           <div>
             <div class="pm-card-title">Warna & Aksent Merah Header</div>
@@ -299,11 +302,12 @@
       <div class="pm-card">
         <div class="pm-card-header">
           <svg width="22" height="22" fill="none" stroke="#DC2626" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            <path
+              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
           </svg>
           <div>
             <div class="pm-card-title">Efek Animasi Loading (Preloader Website)</div>
-            <div class="pm-help">Atur animasi loading awal saat pengunjung membuka website beserta warna aksen merahnya.</div>
+            <div class="pm-help">Atur animasi loading awal saat pengunjung membuka website beserta warna aksen.</div>
           </div>
         </div>
 
@@ -311,8 +315,10 @@
           <div>
             <label class="pm-label">Status Preloader Loading</label>
             <select name="preloader_enable" class="pm-input">
-              <option value="1" {{ ($settings['preloader_enable'] ?? '1') == '1' ? 'selected' : '' }}>Aktif (Tampilkan Animasi Loading)</option>
-              <option value="0" {{ ($settings['preloader_enable'] ?? '1') == '0' ? 'selected' : '' }}>Nonaktifkan Preloader</option>
+              <option value="1" {{ ($settings['preloader_enable'] ?? '1') == '1' ? 'selected' : '' }}>Aktif (Tampilkan
+                Animasi Loading)</option>
+              <option value="0" {{ ($settings['preloader_enable'] ?? '1') == '0' ? 'selected' : '' }}>Nonaktifkan Preloader
+              </option>
             </select>
             <div class="pm-help">Aktifkan efek wind sway & garis animasi loading</div>
           </div>
@@ -339,12 +345,16 @@
             </svg>
             <div>
               <div class="pm-card-title">Manajemen Menu Navigasi Header</div>
-              <div class="pm-help">Tambah menu baru, ubah label, atur link tujuan, serta tampilkan atau sembunyikan menu header.</div>
+              <div class="pm-help">Tambah menu baru, ubah label, atur link tujuan, serta tampilkan atau sembunyikan menu
+                header.</div>
             </div>
           </div>
           <button type="button" onclick="addHeaderMenuItem()"
             style="display:inline-flex;align-items:center;gap:.375rem;padding:.5rem 1rem;font-size:.8125rem;font-weight:700;background:#0F172A;color:#ffffff;border:none;border-radius:10px;cursor:pointer;transition:all .2s;">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
             Tambah Menu Header
           </button>
         </div>
@@ -352,12 +362,12 @@
         @php
           $rawMenus = $settings['header_menus'] ?? null;
           $defaultNavs = [
-            ['label' => 'Beranda',  'url' => route('home'),    'show' => '1'],
-            ['label' => 'Tentang',  'url' => route('about'),   'show' => '1'],
-            ['label' => 'Produk',   'url' => route('products'),'show' => '1'],
-            ['label' => 'Galeri',   'url' => route('gallery'), 'show' => '1'],
-            ['label' => 'Artikel',  'url' => route('articles'),'show' => '1'],
-            ['label' => 'Kontak',   'url' => route('contact'), 'show' => '1'],
+            ['label' => 'Beranda', 'url' => route('home'), 'show' => '1'],
+            ['label' => 'Tentang', 'url' => route('about'), 'show' => '1'],
+            ['label' => 'Produk', 'url' => route('products'), 'show' => '1'],
+            ['label' => 'Galeri', 'url' => route('gallery'), 'show' => '1'],
+            ['label' => 'Artikel', 'url' => route('articles'), 'show' => '1'],
+            ['label' => 'Kontak', 'url' => route('contact'), 'show' => '1'],
           ];
           if (!empty($rawMenus)) {
             $headerMenus = is_string($rawMenus) ? json_decode($rawMenus, true) : $rawMenus;
@@ -371,14 +381,17 @@
 
         <div id="header-menu-container" style="display:flex; flex-direction:column; gap:0.75rem;">
           @foreach($headerMenus as $idx => $m)
-            <div class="pm-menu-item-row" style="display:grid; grid-template-columns: 2fr 3fr 1.2fr 40px; gap:0.75rem; align-items:center; background:#F8FAFC; padding:0.75rem 1rem; border-radius:12px; border:1px solid #E2E8F0;">
+            <div class="pm-menu-item-row"
+              style="display:grid; grid-template-columns: 2fr 3fr 1.2fr 40px; gap:0.75rem; align-items:center; background:#F8FAFC; padding:0.75rem 1rem; border-radius:12px; border:1px solid #E2E8F0;">
               <div>
                 <label class="pm-label" style="font-size:0.75rem;">Label Menu</label>
-                <input type="text" name="header_menus[{{ $idx }}][label]" class="pm-input" value="{{ $m['label'] ?? '' }}" placeholder="Nama Menu">
+                <input type="text" name="header_menus[{{ $idx }}][label]" class="pm-input" value="{{ $m['label'] ?? '' }}"
+                  placeholder="Nama Menu">
               </div>
               <div>
                 <label class="pm-label" style="font-size:0.75rem;">Tujuan Link / URL</label>
-                <input type="text" name="header_menus[{{ $idx }}][url]" class="pm-input" value="{{ $m['url'] ?? '' }}" placeholder="https://... atau /route">
+                <input type="text" name="header_menus[{{ $idx }}][url]" class="pm-input" value="{{ $m['url'] ?? '' }}"
+                  placeholder="https://... atau /route">
               </div>
               <div>
                 <label class="pm-label" style="font-size:0.75rem;">Status Tampil</label>
@@ -389,8 +402,12 @@
               </div>
               <div style="padding-top:1.25rem;">
                 <button type="button" onclick="this.closest('.pm-menu-item-row').remove()"
-                  style="background:#FEE2E2; border:none; color:#EF4444; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;" title="Hapus Menu">
-                  <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                  style="background:#FEE2E2; border:none; color:#EF4444; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;"
+                  title="Hapus Menu">
+                  <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  </svg>
                 </button>
               </div>
             </div>
@@ -402,11 +419,13 @@
       <div class="pm-card">
         <div class="pm-card-header">
           <svg width="22" height="22" fill="none" stroke="#10B981" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+            <path
+              d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
           </svg>
           <div>
             <div class="pm-card-title">Tombol Aksi Utama Header (CTA Button)</div>
-            <div class="pm-help">Atur teks, tipe aksi (WhatsApp/URL direct), dan tujuan tombol utama di kanan header.</div>
+            <div class="pm-help">Atur teks, tipe aksi (WhatsApp/URL direct), dan tujuan tombol utama di kanan header.
+            </div>
           </div>
         </div>
 
@@ -414,27 +433,33 @@
           <div>
             <label class="pm-label">Status Tombol Header CTA</label>
             <select name="header_cta_show" class="pm-input">
-              <option value="1" {{ ($settings['header_cta_show'] ?? '1') == '1' ? 'selected' : '' }}>Tampilkan Tombol</option>
-              <option value="0" {{ ($settings['header_cta_show'] ?? '1') == '0' ? 'selected' : '' }}>Sembunyikan Tombol</option>
+              <option value="1" {{ ($settings['header_cta_show'] ?? '1') == '1' ? 'selected' : '' }}>Tampilkan Tombol
+              </option>
+              <option value="0" {{ ($settings['header_cta_show'] ?? '1') == '0' ? 'selected' : '' }}>Sembunyikan Tombol
+              </option>
             </select>
           </div>
 
           <div>
             <label class="pm-label">Teks Tombol CTA</label>
-            <input type="text" name="header_cta_text" class="pm-input" value="{{ $settings['header_cta_text'] ?? 'Hubungi Kami' }}" placeholder="Hubungi Kami">
+            <input type="text" name="header_cta_text" class="pm-input"
+              value="{{ $settings['header_cta_text'] ?? 'Hubungi Kami' }}" placeholder="Hubungi Kami">
           </div>
 
           <div>
             <label class="pm-label">Tipe Aksi Tombol</label>
             <select name="header_cta_type" class="pm-input">
-              <option value="wa" {{ ($settings['header_cta_type'] ?? 'wa') == 'wa' ? 'selected' : '' }}>Buka WhatsApp (Modal Order)</option>
-              <option value="url" {{ ($settings['header_cta_type'] ?? 'wa') == 'url' ? 'selected' : '' }}>URL Langsung</option>
+              <option value="wa" {{ ($settings['header_cta_type'] ?? 'wa') == 'wa' ? 'selected' : '' }}>Buka WhatsApp (Modal
+                Order)</option>
+              <option value="url" {{ ($settings['header_cta_type'] ?? 'wa') == 'url' ? 'selected' : '' }}>URL Langsung
+              </option>
             </select>
           </div>
 
           <div>
             <label class="pm-label">Tujuan Link URL (jika tipe URL)</label>
-            <input type="text" name="header_cta_url" class="pm-input" value="{{ $settings['header_cta_url'] ?? route('contact') }}" placeholder="{{ route('contact') }}">
+            <input type="text" name="header_cta_url" class="pm-input"
+              value="{{ $settings['header_cta_url'] ?? route('contact') }}" placeholder="{{ route('contact') }}">
           </div>
         </div>
       </div>
@@ -521,23 +546,28 @@
               </div>
             </div>
             <div>
-              <label class="pm-label">Warna Aksen Merah (Brand Color Sitewide)</label>
+              <label class="pm-label">Warna Aksen (Brand Color Sitewide)</label>
               <div class="pm-color-picker-wrap">
-                <input type="color" value="{{ $settings['brand_color'] ?? $settings['header_accent_color'] ?? '#DC2626' }}"
+                <input type="color"
+                  value="{{ $settings['brand_color'] ?? $settings['header_accent_color'] ?? '#DC2626' }}"
                   onchange="document.getElementById('c_brand_color').value=this.value">
                 <input type="text" name="brand_color" id="c_brand_color" class="pm-input"
                   value="{{ $settings['brand_color'] ?? $settings['header_accent_color'] ?? '#DC2626' }}">
               </div>
-              <div class="pm-help">Default: #DC2626 — Aksen merah yang muncul di garis hero, badge, sparkle, stat, tombol, dan seluruh halaman.</div>
+              <div class="pm-help">Default: #DC2626 — Aksen merah yang muncul di garis hero, badge, sparkle, stat, tombol,
+                dan seluruh halaman.</div>
             </div>
             <div>
               <label class="pm-label">Durasi Transisi Slide Otomatis (Detik)</label>
               <div style="display:flex; align-items:center; gap:0.5rem;">
                 <input type="number" name="hero_autoplay_interval" class="pm-input"
-                  value="{{ $settings['hero_autoplay_interval'] ?? '5' }}" min="0" max="60" placeholder="5" style="width:100px;">
-                <span style="font-size:0.8rem; font-weight:700; color:#3B82F6;">Detik (0 = Transisi Manual / Nonaktif)</span>
+                  value="{{ $settings['hero_autoplay_interval'] ?? '5' }}" min="0" max="60" placeholder="5"
+                  style="width:100px;">
+                <span style="font-size:0.8rem; font-weight:700; color:#3B82F6;">Detik (0 = Transisi Manual /
+                  Nonaktif)</span>
               </div>
-              <div class="pm-help">Waktu pergantian otomatis antar slide banner hero. Contoh: 5 = pergantian tiap 5 detik.</div>
+              <div class="pm-help">Waktu pergantian otomatis antar slide banner hero. Contoh: 5 = pergantian tiap 5 detik.
+              </div>
             </div>
           </div>
         </div>
@@ -638,19 +668,31 @@
                     <div style="display:flex; gap:1rem; margin-top:.35rem; font-size:.7rem; color:#94A3B8;">
                       @if($slide->stat_1_value)
                         <span style="display:inline-flex;align-items:center;gap:3px;">
-                          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/></svg>
+                          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <rect x="3" y="12" width="4" height="9" />
+                            <rect x="10" y="7" width="4" height="14" />
+                            <rect x="17" y="3" width="4" height="18" />
+                          </svg>
                           {{ $slide->stat_1_value }} {{ $slide->stat_1_label }}
                         </span>
                       @endif
                       @if($slide->stat_2_value)
                         <span style="display:inline-flex;align-items:center;gap:3px;">
-                          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/></svg>
+                          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <rect x="3" y="12" width="4" height="9" />
+                            <rect x="10" y="7" width="4" height="14" />
+                            <rect x="17" y="3" width="4" height="18" />
+                          </svg>
                           {{ $slide->stat_2_value }} {{ $slide->stat_2_label }}
                         </span>
                       @endif
                       @if($slide->stat_3_value)
                         <span style="display:inline-flex;align-items:center;gap:3px;">
-                          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/></svg>
+                          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <rect x="3" y="12" width="4" height="9" />
+                            <rect x="10" y="7" width="4" height="14" />
+                            <rect x="17" y="3" width="4" height="18" />
+                          </svg>
                           {{ $slide->stat_3_value }} {{ $slide->stat_3_label }}
                         </span>
                       @endif
@@ -1258,18 +1300,18 @@
         $rawWaPhone = $primaryWa?->nomor_wa ?? ($settings['phone'] ?? ($settings['whatsapp'] ?? '087832505656'));
         $cleanWaPhone = preg_replace('/[^0-9]/', '', $rawWaPhone);
         if (str_starts_with($cleanWaPhone, '0')) {
-            $cleanWaPhone = '62' . substr($cleanWaPhone, 1);
+          $cleanWaPhone = '62' . substr($cleanWaPhone, 1);
         }
         $defaultPhoneIntl = '+' . ltrim($cleanWaPhone, '+');
 
         $defaultCity = $settings['address_city'] ?? 'Semarang';
         if (is_numeric($defaultCity) || preg_match('/^[0-9]+$/', trim($defaultCity))) {
-            $defaultCity = 'Semarang';
+          $defaultCity = 'Semarang';
         }
 
         $defaultProv = $settings['address_province'] ?? 'Jawa Tengah';
         if (is_numeric($defaultProv) || preg_match('/^[0-9]+$/', trim($defaultProv))) {
-            $defaultProv = 'Jawa Tengah';
+          $defaultProv = 'Jawa Tengah';
         }
 
         $defaultStreet = $settings['address_full'] ?? ($settings['address_street'] ?? 'Jl. Semarang No. 88');
@@ -1280,58 +1322,72 @@
       <div class="pm-card">
         <div class="pm-card-header">
           <svg width="22" height="22" fill="none" stroke="#2563EB" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path
+              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
           <div>
             <div class="pm-card-title">1. Local SEO & Data Lokasi Presisi (GEO)</div>
-            <div class="pm-help">Perbaiki kode wilayah menjadi nama kota & provinsi resmi, format telepon +62, serta koordinat peta. Jika dikosongkan, otomatis menggunakan data Pengaturan Umum / WhatsApp.</div>
+            <div class="pm-help">Perbaiki kode wilayah menjadi nama kota & provinsi resmi, format telepon +62, serta
+              koordinat peta. Jika dikosongkan, otomatis menggunakan data Pengaturan Umum / WhatsApp.</div>
           </div>
         </div>
 
         <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:1.25rem;">
           <div>
             <label class="pm-label">Nama Kota / Kabupaten (addressLocality)</label>
-            <input type="text" name="address_city_name" class="pm-input" value="{{ $settings['address_city_name'] ?? '' }}" placeholder="Fallback: {{ $defaultCity }}">
-            <div class="pm-help">Gunakan teks nama kota resmi. Kosongkan untuk fallback ke database utama ({{ $defaultCity }})</div>
+            <input type="text" name="address_city_name" class="pm-input"
+              value="{{ $settings['address_city_name'] ?? '' }}" placeholder="Fallback: {{ $defaultCity }}">
+            <div class="pm-help">Gunakan teks nama kota resmi. Kosongkan untuk fallback ke database utama
+              ({{ $defaultCity }})</div>
           </div>
 
           <div>
             <label class="pm-label">Nama Provinsi (addressRegion)</label>
-            <input type="text" name="address_province_name" class="pm-input" value="{{ $settings['address_province_name'] ?? '' }}" placeholder="Fallback: {{ $defaultProv }}">
-            <div class="pm-help">Gunakan teks nama provinsi resmi. Kosongkan untuk fallback ke database utama ({{ $defaultProv }})</div>
+            <input type="text" name="address_province_name" class="pm-input"
+              value="{{ $settings['address_province_name'] ?? '' }}" placeholder="Fallback: {{ $defaultProv }}">
+            <div class="pm-help">Gunakan teks nama provinsi resmi. Kosongkan untuk fallback ke database utama
+              ({{ $defaultProv }})</div>
           </div>
 
           <div>
             <label class="pm-label">Alamat Jalan Lengkap (streetAddress)</label>
-            <input type="text" name="address_street_full" class="pm-input" value="{{ $settings['address_street_full'] ?? '' }}" placeholder="Fallback: {{ $defaultStreet }}">
+            <input type="text" name="address_street_full" class="pm-input"
+              value="{{ $settings['address_street_full'] ?? '' }}" placeholder="Fallback: {{ $defaultStreet }}">
             <div class="pm-help">Kosongkan untuk fallback ke alamat di Pengaturan Umum</div>
           </div>
 
           <div>
             <label class="pm-label">Kode Pos (postalCode)</label>
-            <input type="text" name="address_postal_code" class="pm-input" value="{{ $settings['address_postal_code'] ?? '' }}" placeholder="Fallback: {{ $defaultPostal }}">
+            <input type="text" name="address_postal_code" class="pm-input"
+              value="{{ $settings['address_postal_code'] ?? '' }}" placeholder="Fallback: {{ $defaultPostal }}">
             <div class="pm-help">Kosongkan untuk fallback ke kode pos Pengaturan Umum</div>
           </div>
 
           <div>
             <label class="pm-label">Telepon Format Internasional (telephone)</label>
-            <input type="text" name="phone_international" class="pm-input" value="{{ $settings['phone_international'] ?? '' }}" placeholder="Fallback: {{ $defaultPhoneIntl }}">
-            <div class="pm-help">Format +62. Kosongkan untuk fallback otomatis dari nomor WhatsApp/Telepon utama ({{ $defaultPhoneIntl }})</div>
+            <input type="text" name="phone_international" class="pm-input"
+              value="{{ $settings['phone_international'] ?? '' }}" placeholder="Fallback: {{ $defaultPhoneIntl }}">
+            <div class="pm-help">Format +62. Kosongkan untuk fallback otomatis dari nomor WhatsApp/Telepon utama
+              ({{ $defaultPhoneIntl }})</div>
           </div>
 
           <div>
             <label class="pm-label">Koordinat Latitude (geo.latitude)</label>
-            <input type="text" name="geo_latitude" class="pm-input" value="{{ $settings['geo_latitude'] ?? '-6.9932' }}" placeholder="-6.9932">
+            <input type="text" name="geo_latitude" class="pm-input" value="{{ $settings['geo_latitude'] ?? '-6.9932' }}"
+              placeholder="-6.9932">
           </div>
 
           <div>
             <label class="pm-label">Koordinat Longitude (geo.longitude)</label>
-            <input type="text" name="geo_longitude" class="pm-input" value="{{ $settings['geo_longitude'] ?? '110.4203' }}" placeholder="110.4203">
+            <input type="text" name="geo_longitude" class="pm-input"
+              value="{{ $settings['geo_longitude'] ?? '110.4203' }}" placeholder="110.4203">
           </div>
 
           <div>
             <label class="pm-label">Link Google Maps (hasMap)</label>
-            <input type="text" name="google_maps_url" class="pm-input" value="{{ $settings['google_maps_url'] ?? 'https://maps.google.com' }}" placeholder="https://maps.google.com/?cid=...">
+            <input type="text" name="google_maps_url" class="pm-input"
+              value="{{ $settings['google_maps_url'] ?? 'https://maps.google.com' }}"
+              placeholder="https://maps.google.com/?cid=...">
           </div>
         </div>
       </div>
@@ -1340,17 +1396,20 @@
       <div class="pm-card">
         <div class="pm-card-header">
           <svg width="22" height="22" fill="none" stroke="#8B5CF6" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+            <path
+              d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
           </svg>
           <div>
             <div class="pm-card-title">2. Identitas Entitas Eksternal (sameAs)</div>
-            <div class="pm-help">Masukkan link profil media sosial, Google Business Profile, dan Marketplace (1 URL per baris) agar mesin AI (Gemini/ChatGPT/Perplexity) dapat memverifikasi otoritas entitas.</div>
+            <div class="pm-help">Masukkan link profil media sosial, Google Business Profile, dan Marketplace (1 URL per
+              baris) agar mesin AI (Gemini/ChatGPT/Perplexity) dapat memverifikasi otoritas entitas.</div>
           </div>
         </div>
 
         <div>
           <label class="pm-label">Daftar Link Profil Eksternal (sameAs)</label>
-          <textarea name="seo_same_as_urls" class="pm-input" rows="5" placeholder="https://g.co/kgs/... (Google Business Profile)&#10;https://www.instagram.com/pusatpiringkeramik&#10;https://shopee.co.id/pusatpiringkeramik&#10;https://www.tokopedia.com/pusatpiringkeramik">{{ $settings['seo_same_as_urls'] ?? '' }}</textarea>
+          <textarea name="seo_same_as_urls" class="pm-input" rows="5"
+            placeholder="https://g.co/kgs/... (Google Business Profile)&#10;https://www.instagram.com/pusatpiringkeramik&#10;https://shopee.co.id/pusatpiringkeramik&#10;https://www.tokopedia.com/pusatpiringkeramik">{{ $settings['seo_same_as_urls'] ?? '' }}</textarea>
           <div class="pm-help">Pisahkan setiap URL dengan baris baru (Enter).</div>
         </div>
       </div>
@@ -1359,60 +1418,75 @@
       <div class="pm-card">
         <div class="pm-card-header">
           <svg width="22" height="22" fill="none" stroke="#059669" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m3 0h1m-1-4h.01M9 16h.01M9 12h.01M9 8h.01M15 16h.01M15 12h.01M15 8h.01" />
+            <path
+              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m3 0h1m-1-4h.01M9 16h.01M9 12h.01M9 8h.01M15 16h.01M15 12h.01M15 8h.01" />
           </svg>
           <div>
             <div class="pm-card-title">3. Tipe Bisnis, Penawaran & E-E-A-T (SEO & GEO Graph)</div>
-            <div class="pm-help">Definisikan tipe bisnis spesifik, rentang harga rupiah, topik keahlian, dan pemilik entitas.</div>
+            <div class="pm-help">Definisikan tipe bisnis spesifik, rentang harga rupiah, topik keahlian, dan pemilik
+              entitas.</div>
           </div>
         </div>
 
         <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:1.25rem;">
           <div>
             <label class="pm-label">Tipe Spesifik Bisnis Schema.org (@type)</label>
-            <input type="text" name="seo_business_type" class="pm-input" value="{{ $settings['seo_business_type'] ?? '["LocalBusiness", "Store", "HomeGoodsStore"]' }}" placeholder='["LocalBusiness", "Store", "HomeGoodsStore"]'>
+            <input type="text" name="seo_business_type" class="pm-input"
+              value="{{ $settings['seo_business_type'] ?? '["LocalBusiness", "Store", "HomeGoodsStore"]' }}"
+              placeholder='["LocalBusiness", "Store", "HomeGoodsStore"]'>
             <div class="pm-help">Default: ["LocalBusiness", "Store", "HomeGoodsStore"]</div>
           </div>
 
           <div>
             <label class="pm-label">Rentang Harga Produk (priceRange)</label>
-            <input type="text" name="seo_price_range" class="pm-input" value="{{ $settings['seo_price_range'] ?? 'Rp5.000 - Rp500.000' }}" placeholder="Rp5.000 - Rp500.000">
+            <input type="text" name="seo_price_range" class="pm-input"
+              value="{{ $settings['seo_price_range'] ?? 'Rp5.000 - Rp500.000' }}" placeholder="Rp5.000 - Rp500.000">
           </div>
 
           <div>
             <label class="pm-label">Area Layanan (areaServed)</label>
-            <input type="text" name="seo_area_served" class="pm-input" value="{{ $settings['seo_area_served'] ?? 'Semarang, Jawa Tengah, Indonesia' }}" placeholder="Semarang, Jawa Tengah, Indonesia">
+            <input type="text" name="seo_area_served" class="pm-input"
+              value="{{ $settings['seo_area_served'] ?? 'Semarang, Jawa Tengah, Indonesia' }}"
+              placeholder="Semarang, Jawa Tengah, Indonesia">
           </div>
 
           <div>
             <label class="pm-label">Slogan Bisnis (slogan)</label>
-            <input type="text" name="seo_slogan" class="pm-input" value="{{ $settings['seo_slogan'] ?? 'Distributor & Supplier Piring Keramik Terpercaya' }}" placeholder="Distributor & Supplier Piring Keramik Terpercaya">
+            <input type="text" name="seo_slogan" class="pm-input"
+              value="{{ $settings['seo_slogan'] ?? 'Distributor & Supplier Piring Keramik Terpercaya' }}"
+              placeholder="Distributor & Supplier Piring Keramik Terpercaya">
           </div>
 
           <div>
             <label class="pm-label">Tahun Pendirian (foundingDate)</label>
-            <input type="text" name="seo_founding_date" class="pm-input" value="{{ $settings['seo_founding_date'] ?? '2015' }}" placeholder="2015">
+            <input type="text" name="seo_founding_date" class="pm-input"
+              value="{{ $settings['seo_founding_date'] ?? '2015' }}" placeholder="2015">
           </div>
 
           <div>
             <label class="pm-label">Nama Pendiri / Founder / EEAT (founder)</label>
-            <input type="text" name="seo_founder_name" class="pm-input" value="{{ $settings['seo_founder_name'] ?? 'UD. Sukses Makmur' }}" placeholder="UD. Sukses Makmur">
+            <input type="text" name="seo_founder_name" class="pm-input"
+              value="{{ $settings['seo_founder_name'] ?? 'UD. Sukses Makmur' }}" placeholder="UD. Sukses Makmur">
           </div>
 
           <div style="grid-column: span 2;">
             <label class="pm-label">Topik Keahlian Entitas (knowsAbout)</label>
-            <input type="text" name="seo_knows_about" class="pm-input" value="{{ $settings['seo_knows_about'] ?? 'Piring Keramik, Mangkok Keramik, Perabotan Restoran & Hotel, Tableware, Dinnerware, Keramik Custom Logo' }}" placeholder="Piring Keramik, Mangkok Keramik, Perabotan Restoran & Hotel">
+            <input type="text" name="seo_knows_about" class="pm-input"
+              value="{{ $settings['seo_knows_about'] ?? 'Piring Keramik, Mangkok Keramik, Perabotan Restoran & Hotel, Tableware, Dinnerware, Keramik Custom Logo' }}"
+              placeholder="Piring Keramik, Mangkok Keramik, Perabotan Restoran & Hotel">
             <div class="pm-help">Pisahkan setiap kata kunci keahlian dengan koma.</div>
           </div>
 
           <div>
             <label class="pm-label">Nilai Rating Ulasan (ratingValue - optional)</label>
-            <input type="text" name="seo_rating_value" class="pm-input" value="{{ $settings['seo_rating_value'] ?? '' }}" placeholder="Contoh: 4.9">
+            <input type="text" name="seo_rating_value" class="pm-input" value="{{ $settings['seo_rating_value'] ?? '' }}"
+              placeholder="Contoh: 4.9">
           </div>
 
           <div>
             <label class="pm-label">Jumlah Ulasan Terverifikasi (reviewCount - optional)</label>
-            <input type="text" name="seo_rating_count" class="pm-input" value="{{ $settings['seo_rating_count'] ?? '' }}" placeholder="Contoh: 128">
+            <input type="text" name="seo_rating_count" class="pm-input" value="{{ $settings['seo_rating_count'] ?? '' }}"
+              placeholder="Contoh: 128">
           </div>
         </div>
       </div>
@@ -1432,18 +1506,22 @@
         <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:1.25rem;">
           <div>
             <label class="pm-label">Hari Operasional (dayOfWeek)</label>
-            <input type="text" name="seo_opening_days" class="pm-input" value="{{ $settings['seo_opening_days'] ?? 'Monday,Tuesday,Wednesday,Thursday,Friday,Saturday' }}" placeholder="Monday,Tuesday,Wednesday,Thursday,Friday,Saturday">
+            <input type="text" name="seo_opening_days" class="pm-input"
+              value="{{ $settings['seo_opening_days'] ?? 'Monday,Tuesday,Wednesday,Thursday,Friday,Saturday' }}"
+              placeholder="Monday,Tuesday,Wednesday,Thursday,Friday,Saturday">
             <div class="pm-help">Bahasa Inggris terpisah koma (Monday, Tuesday, dst)</div>
           </div>
 
           <div>
             <label class="pm-label">Jam Buka (opens)</label>
-            <input type="text" name="seo_opening_time" class="pm-input" value="{{ $settings['seo_opening_time'] ?? '08:00' }}" placeholder="08:00">
+            <input type="text" name="seo_opening_time" class="pm-input"
+              value="{{ $settings['seo_opening_time'] ?? '08:00' }}" placeholder="08:00">
           </div>
 
           <div>
             <label class="pm-label">Jam Tutup (closes)</label>
-            <input type="text" name="seo_closing_time" class="pm-input" value="{{ $settings['seo_closing_time'] ?? '17:00' }}" placeholder="17:00">
+            <input type="text" name="seo_closing_time" class="pm-input"
+              value="{{ $settings['seo_closing_time'] ?? '17:00' }}" placeholder="17:00">
           </div>
         </div>
       </div>
@@ -1453,16 +1531,21 @@
         <div class="pm-card-header" style="justify-content:space-between;">
           <div style="display:flex; align-items:center; gap:.75rem;">
             <svg width="22" height="22" fill="none" stroke="#EC4899" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <path
+                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <div>
               <div class="pm-card-title">5. AEO FAQ Schema Manager (Featured Snippet & Voice Search)</div>
-              <div class="pm-help">Tambah & kelola pertanyaan dan jawaban yang sering ditanyakan untuk tampil langsung di Google Search & Jawaban AI.</div>
+              <div class="pm-help">Tambah & kelola pertanyaan dan jawaban yang sering ditanyakan untuk tampil langsung di
+                Google Search & Jawaban AI.</div>
             </div>
           </div>
           <button type="button" onclick="addFaqSchemaItem()"
             style="display:inline-flex;align-items:center;gap:.375rem;padding:.5rem 1rem;font-size:.8125rem;font-weight:700;background:#0F172A;color:#ffffff;border:none;border-radius:10px;cursor:pointer;transition:all .2s;">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
             Tambah FAQ Baru
           </button>
         </div>
@@ -1472,23 +1555,23 @@
           $defaultFaqs = [
             [
               'question' => 'Apakah menjual piring keramik secara grosir?',
-              'answer'   => 'Ya, kami adalah distributor utama piring keramik yang melayani pembelian grosir dan eceran dengan harga pabrik langsung.',
-              'show'     => '1'
+              'answer' => 'Ya, kami adalah distributor utama piring keramik yang melayani pembelian grosir dan eceran dengan harga pabrik langsung.',
+              'show' => '1'
             ],
             [
               'question' => 'Apakah pengiriman piring keramik aman sampai luar kota/luar pulau?',
-              'answer'   => 'Sangat aman. Setiap piring keramik dipack berlapis menggunakan bubble wrap tebal dan peti kayu standar ekspor dengan garansi pecah diganti baru.',
-              'show'     => '1'
+              'answer' => 'Sangat aman. Setiap piring keramik dipack berlapis menggunakan bubble wrap tebal dan peti kayu standar ekspor dengan garansi pecah diganti baru.',
+              'show' => '1'
             ],
             [
               'question' => 'Apakah bisa custom logo resto atau hotel di piring keramik?',
-              'answer'   => 'Bisa. Kami menerima pemesanan piring keramik custom cetak logo untuk restoran, café, hotel, dan souvenir pernikahan.',
-              'show'     => '1'
+              'answer' => 'Bisa. Kami menerima pemesanan piring keramik custom cetak logo untuk restoran, café, hotel, dan souvenir pernikahan.',
+              'show' => '1'
             ],
             [
               'question' => 'Bagaimana cara melakukan pemesanan dan konsultasi produk?',
-              'answer'   => 'Anda dapat menghubungi tim customer service kami melalui WhatsApp di +6287832505656 atau menekan tombol Konsultasi di website kami.',
-              'show'     => '1'
+              'answer' => 'Anda dapat menghubungi tim customer service kami melalui WhatsApp di +6287832505656 atau menekan tombol Konsultasi di website kami.',
+              'show' => '1'
             ]
           ];
           if (!empty($rawFaqs)) {
@@ -1503,11 +1586,13 @@
 
         <div id="seo-faq-container" style="display:flex; flex-direction:column; gap:0.75rem;">
           @foreach($seoFaqs as $fIdx => $fq)
-            <div class="pm-faq-item-row" style="background:#F8FAFC; padding:1rem; border-radius:14px; border:1px solid #E2E8F0; display:flex; flex-direction:column; gap:0.75rem;">
+            <div class="pm-faq-item-row"
+              style="background:#F8FAFC; padding:1rem; border-radius:14px; border:1px solid #E2E8F0; display:flex; flex-direction:column; gap:0.75rem;">
               <div style="display:grid; grid-template-columns: 1fr 120px 40px; gap:0.75rem; align-items:center;">
                 <div>
                   <label class="pm-label" style="font-size:0.75rem;">Pertanyaan (Question)</label>
-                  <input type="text" name="seo_faq_json[{{ $fIdx }}][question]" class="pm-input" value="{{ $fq['question'] ?? '' }}" placeholder="Pertanyaan FAQ">
+                  <input type="text" name="seo_faq_json[{{ $fIdx }}][question]" class="pm-input"
+                    value="{{ $fq['question'] ?? '' }}" placeholder="Pertanyaan FAQ">
                 </div>
                 <div>
                   <label class="pm-label" style="font-size:0.75rem;">Status</label>
@@ -1518,14 +1603,19 @@
                 </div>
                 <div style="padding-top:1.25rem;">
                   <button type="button" onclick="this.closest('.pm-faq-item-row').remove()"
-                    style="background:#FEE2E2; border:none; color:#EF4444; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;" title="Hapus FAQ">
-                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                    style="background:#FEE2E2; border:none; color:#EF4444; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;"
+                    title="Hapus FAQ">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
                   </button>
                 </div>
               </div>
               <div>
                 <label class="pm-label" style="font-size:0.75rem;">Jawaban (Answer)</label>
-                <textarea name="seo_faq_json[{{ $fIdx }}][answer]" class="pm-input" rows="2" placeholder="Jawaban lengkap FAQ">{{ $fq['answer'] ?? '' }}</textarea>
+                <textarea name="seo_faq_json[{{ $fIdx }}][answer]" class="pm-input" rows="2"
+                  placeholder="Jawaban lengkap FAQ">{{ $fq['answer'] ?? '' }}</textarea>
               </div>
             </div>
           @endforeach
@@ -1583,9 +1673,16 @@
               <img id="slide_img_src" src="" style="max-height:120px; border-radius:10px; border:1px solid #E2E8F0;">
             </div>
             <input type="file" name="image" class="pm-input" accept="image/*">
-            <div style="font-size:0.75rem; color:#64748B; margin-top:0.4rem; display:flex; align-items:center; gap:0.35rem; background:#F8FAFC; padding:0.5rem 0.75rem; border-radius:8px; border:1px solid #E2E8F0;">
-              <svg width="14" height="14" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-              <span><strong>Rekomendasi Ukuran Banner:</strong> <strong>3448 x 914 px</strong> (Rasio Ultra-wide ~3.77 : 1), maks 10MB. Sistem otomatis mengompresi dan mengonversi gambar ke format <strong>WebP</strong>.</span>
+            <div
+              style="font-size:0.75rem; color:#64748B; margin-top:0.4rem; display:flex; align-items:center; gap:0.35rem; background:#F8FAFC; padding:0.5rem 0.75rem; border-radius:8px; border:1px solid #E2E8F0;">
+              <svg width="14" height="14" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"
+                style="flex-shrink:0;">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg>
+              <span><strong>Rekomendasi Ukuran Banner:</strong> <strong>3448 x 914 px</strong> (Rasio Ultra-wide ~3.77 :
+                1), maks 10MB. Sistem otomatis mengompresi dan mengonversi gambar ke format <strong>WebP</strong>.</span>
             </div>
           </div>
 
@@ -1652,28 +1749,28 @@
       row.className = 'pm-menu-item-row';
       row.style.cssText = 'display:grid; grid-template-columns: 2fr 3fr 1.2fr 40px; gap:0.75rem; align-items:center; background:#F8FAFC; padding:0.75rem 1rem; border-radius:12px; border:1px solid #E2E8F0;';
       row.innerHTML = `
-        <div>
-          <label class="pm-label" style="font-size:0.75rem;">Label Menu</label>
-          <input type="text" name="header_menus[${headerMenuIndex}][label]" class="pm-input" value="" placeholder="Menu Baru">
-        </div>
-        <div>
-          <label class="pm-label" style="font-size:0.75rem;">Tujuan Link / URL</label>
-          <input type="text" name="header_menus[${headerMenuIndex}][url]" class="pm-input" value="#" placeholder="/halaman-tujuan">
-        </div>
-        <div>
-          <label class="pm-label" style="font-size:0.75rem;">Status Tampil</label>
-          <select name="header_menus[${headerMenuIndex}][show]" class="pm-input" style="padding:.75rem .5rem !important;">
-            <option value="1" selected>Tampil</option>
-            <option value="0">Sembunyi</option>
-          </select>
-        </div>
-        <div style="padding-top:1.25rem;">
-          <button type="button" onclick="this.closest('.pm-menu-item-row').remove()"
-            style="background:#FEE2E2; border:none; color:#EF4444; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;" title="Hapus Menu">
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-          </button>
-        </div>
-      `;
+          <div>
+            <label class="pm-label" style="font-size:0.75rem;">Label Menu</label>
+            <input type="text" name="header_menus[${headerMenuIndex}][label]" class="pm-input" value="" placeholder="Menu Baru">
+          </div>
+          <div>
+            <label class="pm-label" style="font-size:0.75rem;">Tujuan Link / URL</label>
+            <input type="text" name="header_menus[${headerMenuIndex}][url]" class="pm-input" value="#" placeholder="/halaman-tujuan">
+          </div>
+          <div>
+            <label class="pm-label" style="font-size:0.75rem;">Status Tampil</label>
+            <select name="header_menus[${headerMenuIndex}][show]" class="pm-input" style="padding:.75rem .5rem !important;">
+              <option value="1" selected>Tampil</option>
+              <option value="0">Sembunyi</option>
+            </select>
+          </div>
+          <div style="padding-top:1.25rem;">
+            <button type="button" onclick="this.closest('.pm-menu-item-row').remove()"
+              style="background:#FEE2E2; border:none; color:#EF4444; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;" title="Hapus Menu">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+            </button>
+          </div>
+        `;
       container.appendChild(row);
       headerMenuIndex++;
     }
@@ -1686,30 +1783,30 @@
       row.className = 'pm-faq-item-row';
       row.style.cssText = 'background:#F8FAFC; padding:1rem; border-radius:14px; border:1px solid #E2E8F0; display:flex; flex-direction:column; gap:0.75rem;';
       row.innerHTML = `
-        <div style="display:grid; grid-template-columns: 1fr 120px 40px; gap:0.75rem; align-items:center;">
-          <div>
-            <label class="pm-label" style="font-size:0.75rem;">Pertanyaan (Question)</label>
-            <input type="text" name="seo_faq_json[${seoFaqIndex}][question]" class="pm-input" value="" placeholder="Pertanyaan FAQ Baru">
+          <div style="display:grid; grid-template-columns: 1fr 120px 40px; gap:0.75rem; align-items:center;">
+            <div>
+              <label class="pm-label" style="font-size:0.75rem;">Pertanyaan (Question)</label>
+              <input type="text" name="seo_faq_json[${seoFaqIndex}][question]" class="pm-input" value="" placeholder="Pertanyaan FAQ Baru">
+            </div>
+            <div>
+              <label class="pm-label" style="font-size:0.75rem;">Status</label>
+              <select name="seo_faq_json[${seoFaqIndex}][show]" class="pm-input" style="padding:.75rem .5rem !important;">
+                <option value="1" selected>Tampil</option>
+                <option value="0">Sembunyi</option>
+              </select>
+            </div>
+            <div style="padding-top:1.25rem;">
+              <button type="button" onclick="this.closest('.pm-faq-item-row').remove()"
+                style="background:#FEE2E2; border:none; color:#EF4444; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;" title="Hapus FAQ">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+              </button>
+            </div>
           </div>
           <div>
-            <label class="pm-label" style="font-size:0.75rem;">Status</label>
-            <select name="seo_faq_json[${seoFaqIndex}][show]" class="pm-input" style="padding:.75rem .5rem !important;">
-              <option value="1" selected>Tampil</option>
-              <option value="0">Sembunyi</option>
-            </select>
+            <label class="pm-label" style="font-size:0.75rem;">Jawaban (Answer)</label>
+            <textarea name="seo_faq_json[${seoFaqIndex}][answer]" class="pm-input" rows="2" placeholder="Jawaban lengkap FAQ"></textarea>
           </div>
-          <div style="padding-top:1.25rem;">
-            <button type="button" onclick="this.closest('.pm-faq-item-row').remove()"
-              style="background:#FEE2E2; border:none; color:#EF4444; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;" title="Hapus FAQ">
-              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-            </button>
-          </div>
-        </div>
-        <div>
-          <label class="pm-label" style="font-size:0.75rem;">Jawaban (Answer)</label>
-          <textarea name="seo_faq_json[${seoFaqIndex}][answer]" class="pm-input" rows="2" placeholder="Jawaban lengkap FAQ"></textarea>
-        </div>
-      `;
+        `;
       container.appendChild(row);
       seoFaqIndex++;
     }
