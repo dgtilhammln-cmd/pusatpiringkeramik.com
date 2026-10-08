@@ -2372,7 +2372,7 @@
               placeholder="Piring Keramik, Keramik Lantai, Porselen, Food Grade">
           </div>
           <div style="grid-column: span 2;">
-            <label class="pm-label">Gambar Slide Hero (WebP / JPG / PNG)</label>
+            <label class="pm-label">Gambar Slide Hero Desktop (WebP / JPG / PNG)</label>
             <div id="slide_img_preview" style="margin-bottom:.5rem; display:none;">
               <img id="slide_img_src" src="" style="max-height:120px; border-radius:10px; border:1px solid #E2E8F0;">
             </div>
@@ -2385,8 +2385,25 @@
                 <line x1="12" y1="16" x2="12" y2="12" />
                 <line x1="12" y1="8" x2="12.01" y2="8" />
               </svg>
-              <span><strong>Rekomendasi Ukuran Banner:</strong> <strong>3448 x 914 px</strong> (Rasio Ultra-wide ~3.77 :
-                1), maks 10MB. Sistem otomatis mengompresi dan mengonversi gambar ke format <strong>WebP</strong>.</span>
+              <span><strong>Rekomendasi Ukuran Banner Desktop:</strong> <strong>3448 x 914 px</strong> (Rasio ~3.77:1), maks 10MB.</span>
+            </div>
+          </div>
+
+          <div style="grid-column: span 2;">
+            <label class="pm-label">Gambar Banner Mobile (WebP / JPG / PNG) - (Opsional)</label>
+            <div id="slide_img_mobile_preview" style="margin-bottom:.5rem; display:none;">
+              <img id="slide_img_mobile_src" src="" style="max-height:120px; border-radius:10px; border:1px solid #E2E8F0;">
+            </div>
+            <input type="file" name="image_mobile" class="pm-input" accept="image/*">
+            <div
+              style="font-size:0.75rem; color:#64748B; margin-top:0.4rem; display:flex; align-items:center; gap:0.35rem; background:#F8FAFC; padding:0.5rem 0.75rem; border-radius:8px; border:1px solid #E2E8F0;">
+              <svg width="14" height="14" fill="none" stroke="#10B981" stroke-width="2" viewBox="0 0 24 24"
+                style="flex-shrink:0;">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg>
+              <span><strong>Rekomendasi Banner Mobile:</strong> <strong>1080 x 1080 px</strong> atau <strong>800 x 1000 px</strong> (Maks 10MB). Tampil khusus pada smartphone. Kosongkan jika ingin memakai banner desktop.</span>
             </div>
           </div>
 
@@ -2538,6 +2555,7 @@
       document.getElementById('slide_stat_3_label').value = 'Happy Customers';
       document.getElementById('slide_is_active').checked = true;
       document.getElementById('slide_img_preview').style.display = 'none';
+      document.getElementById('slide_img_mobile_preview').style.display = 'none';
 
       document.getElementById('hero-slide-modal').classList.add('active');
     }
@@ -2566,6 +2584,13 @@
         document.getElementById('slide_img_preview').style.display = 'block';
       } else {
         document.getElementById('slide_img_preview').style.display = 'none';
+      }
+
+      if (slide.image_mobile) {
+        document.getElementById('slide_img_mobile_src').src = "/storage/" + slide.image_mobile;
+        document.getElementById('slide_img_mobile_preview').style.display = 'block';
+      } else {
+        document.getElementById('slide_img_mobile_preview').style.display = 'none';
       }
 
       document.getElementById('hero-slide-modal').classList.add('active');

@@ -31,8 +31,9 @@
     ];
 @endphp
 
-<section class="cv-apps-premium" id="aplikasi" style="background:#0F172A; padding:5rem 1.5rem; border-top:1px solid #1E293B;">
+<section class="cv-apps-premium" id="aplikasi">
     <style>
+        .cv-apps-premium { background:#0F172A; padding:5rem 1.5rem; border-top:1px solid #1E293B; }
         .cv-apps-inner-comp { max-width:1200px; margin:0 auto; }
         .cv-apps-header-comp { max-width:650px; margin-bottom:3rem; }
         .cv-adv-section-label-comp {
@@ -56,7 +57,7 @@
             outline: none !important;
         }
         .cv-app-card-comp:hover { transform:translateY(-8px); border-color:#10B981; box-shadow:0 20px 40px rgba(0,0,0,0.4); outline: none !important; }
-        .cv-app-img-wrapper-comp { width:100%; aspect-ratio:4/3; overflow:hidden; background:#0F172A; }
+        .cv-app-img-wrapper-comp { width:100%; aspect-ratio:16/10; overflow:hidden; background:#0F172A; }
         .cv-app-img-wrapper-comp img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease; display:block; }
         .cv-app-card-comp:hover .cv-app-img-wrapper-comp img { transform:scale(1.06); }
         .cv-app-card-body-comp { padding:1.5rem; display:flex; flex-direction:column; gap:0.875rem; flex:1; }
@@ -70,12 +71,18 @@
 
         @media (max-width: 1024px) { .cv-apps-grid-comp { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 640px) {
+            .cv-apps-premium { padding: 3rem 1.25rem !important; }
+            .cv-apps-header-comp { margin-bottom: 1.75rem !important; }
             .cv-apps-grid-comp {
                 display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 1rem; padding-bottom: 1rem;
                 -webkit-overflow-scrolling: touch; scrollbar-width: none;
             }
             .cv-apps-grid-comp::-webkit-scrollbar { display: none; }
-            .cv-app-card-comp { min-width: 80vw; flex-shrink: 0; scroll-snap-align: start; }
+            .cv-app-card-comp { min-width: 82vw; max-width: 320px; flex-shrink: 0; scroll-snap-align: start; border-radius: 16px; }
+            .cv-app-img-wrapper-comp { aspect-ratio: 16 / 10; max-height: 180px; }
+            .cv-app-card-body-comp { padding: 1.25rem; gap: 0.75rem; }
+            .cv-app-card-title-comp { font-size: 1rem; }
+            .cv-app-card-desc-comp { font-size: 0.8rem; line-height: 1.55; }
         }
     </style>
 

@@ -557,17 +557,38 @@
         }
 
         @media (max-width: 768px) {
+            .cv-static-logo-badge {
+                display: none !important;
+            }
 
-            /* On tablet/mobile: placeholder gets min-height so text doesn't get squished */
+            .cv-hero-title,
+            h2.cv-hero-title {
+                font-size: 1.6rem !important;
+                line-height: 1.35 !important;
+                font-weight: 700 !important;
+            }
+
+            /* On tablet/mobile: curved card style without dark gradient overlay */
             .cv-banner-card {
-                aspect-ratio: 3448 / 914;
+                aspect-ratio: auto;
                 height: auto;
-                min-height: 150px;
-                border-radius: 14px;
+                min-height: 140px;
+                border-radius: 16px !important;
+                overflow: hidden !important;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
             }
 
             .cv-banner-uploaded-img {
-                border-radius: 14px;
+                border-radius: 16px !important;
+                width: 100%;
+                height: auto;
+                display: block;
+                object-fit: cover;
+            }
+
+            .cv-banner-overlay {
+                background: none !important;
+                display: none !important;
             }
         }
 
@@ -579,8 +600,9 @@
 
             .cv-hero-title,
             h2.cv-hero-title {
-                font-size: 1.25rem;
-                line-height: 1.25;
+                font-size: 1.55rem !important;
+                line-height: 1.35 !important;
+                font-weight: 700 !important;
             }
 
             .cv-hero-banner-wrap::before,
@@ -589,33 +611,34 @@
             }
 
             .cv-banner-card {
-                aspect-ratio: 3448 / 914;
+                aspect-ratio: auto;
                 height: auto;
                 min-height: 120px;
-                border-radius: 12px;
+                border-radius: 16px !important;
+                overflow: hidden !important;
             }
 
             .cv-banner-uploaded-img {
-                border-radius: 12px;
+                border-radius: 16px !important;
             }
 
             .cv-banner-content {
-                padding: 0.75rem 1rem;
-                gap: 0.3rem;
+                padding: 0.85rem 1.1rem;
+                gap: 0.35rem;
             }
 
             .cv-banner-headline {
-                font-size: 0.85rem;
-                line-height: 1.3;
+                font-size: 0.95rem;
+                line-height: 1.35;
             }
 
             .cv-banner-pills {
-                gap: 0.2rem;
+                gap: 0.25rem;
             }
 
             .cv-banner-pill {
-                font-size: 0.62rem;
-                padding: 0.15rem 0.45rem;
+                font-size: 0.65rem;
+                padding: 0.2rem 0.5rem;
             }
         }
 
@@ -1329,10 +1352,15 @@
                         @foreach($heroSlides as $slide)
                             <div class="swiper-slide" data-title="{{ $slide->title }}" data-subtitle="{{ $slide->subtitle }}"
                                 data-desc="{{ $slide->description }}" data-tags="{{ $slide->tags }}">
-                                <div class="cv-banner-card {{ $slide->image ? 'has-image' : '' }}">
-                                    @if($slide->image)
-                                        <img src="{{ asset('storage/' . $slide->image) }}" class="cv-banner-uploaded-img"
-                                            alt="{{ $slide->title }}">
+                                <div class="cv-banner-card {{ ($slide->image || $slide->image_mobile) ? 'has-image' : '' }}">
+                                    @if($slide->image || $slide->image_mobile)
+                                        <picture style="width:100%; height:100%; display:block;">
+                                            @if($slide->image_mobile)
+                                                <source media="(max-width: 768px)" srcset="{{ asset('storage/' . $slide->image_mobile) }}">
+                                            @endif
+                                            <img src="{{ asset('storage/' . ($slide->image ?? $slide->image_mobile)) }}" class="cv-banner-uploaded-img"
+                                                alt="{{ $slide->title }}">
+                                        </picture>
                                     @else
                                         <div class="cv-banner-bg"
                                             style="background: linear-gradient(135deg, #005F41 0%, #00875A 50%, #004D34 100%);"></div>

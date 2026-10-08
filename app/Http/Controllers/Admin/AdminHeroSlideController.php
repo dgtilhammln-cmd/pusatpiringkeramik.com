@@ -23,22 +23,23 @@ class AdminHeroSlideController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title'       => 'required|max:200',
-            'subtitle'    => 'nullable|max:200',
-            'description' => 'nullable|max:500',
-            'tags'        => 'nullable|max:500',
-            'icon'        => 'nullable|max:50',
-            'image'       => 'nullable|image|max:5096',
-            'button_text' => 'nullable|max:100',
-            'button_url'  => 'nullable|max:300',
-            'order'       => 'nullable|integer|min:0',
-            'is_active'   => 'nullable|boolean',
-            'stat_1_value'=> 'nullable|max:50',
-            'stat_1_label'=> 'nullable|max:100',
-            'stat_2_value'=> 'nullable|max:50',
-            'stat_2_label'=> 'nullable|max:100',
-            'stat_3_value'=> 'nullable|max:50',
-            'stat_3_label'=> 'nullable|max:100',
+            'title'        => 'required|max:200',
+            'subtitle'     => 'nullable|max:200',
+            'description'  => 'nullable|max:500',
+            'tags'         => 'nullable|max:500',
+            'icon'         => 'nullable|max:50',
+            'image'        => 'nullable|image|max:10240',
+            'image_mobile' => 'nullable|image|max:10240',
+            'button_text'  => 'nullable|max:100',
+            'button_url'   => 'nullable|max:300',
+            'order'        => 'nullable|integer|min:0',
+            'is_active'    => 'nullable|boolean',
+            'stat_1_value' => 'nullable|max:50',
+            'stat_1_label' => 'nullable|max:100',
+            'stat_2_value' => 'nullable|max:50',
+            'stat_2_label' => 'nullable|max:100',
+            'stat_3_value' => 'nullable|max:50',
+            'stat_3_label' => 'nullable|max:100',
         ]);
 
         $validated['is_active'] = $request->boolean('is_active', true);
@@ -46,6 +47,10 @@ class AdminHeroSlideController extends Controller
 
         if ($request->hasFile('image')) {
             $validated['image'] = $this->storeWebP($request->file('image'), 'hero_slides', 3448);
+        }
+
+        if ($request->hasFile('image_mobile')) {
+            $validated['image_mobile'] = $this->storeWebP($request->file('image_mobile'), 'hero_slides', 1080);
         }
 
         $count = HeroSlide::count();
@@ -65,22 +70,23 @@ class AdminHeroSlideController extends Controller
     public function update(Request $request, HeroSlide $heroSlide)
     {
         $validated = $request->validate([
-            'title'       => 'required|max:200',
-            'subtitle'    => 'nullable|max:200',
-            'description' => 'nullable|max:500',
-            'tags'        => 'nullable|max:500',
-            'icon'        => 'nullable|max:50',
-            'image'       => 'nullable|image|max:5096',
-            'button_text' => 'nullable|max:100',
-            'button_url'  => 'nullable|max:300',
-            'order'       => 'nullable|integer|min:0',
-            'is_active'   => 'nullable|boolean',
-            'stat_1_value'=> 'nullable|max:50',
-            'stat_1_label'=> 'nullable|max:100',
-            'stat_2_value'=> 'nullable|max:50',
-            'stat_2_label'=> 'nullable|max:100',
-            'stat_3_value'=> 'nullable|max:50',
-            'stat_3_label'=> 'nullable|max:100',
+            'title'        => 'required|max:200',
+            'subtitle'     => 'nullable|max:200',
+            'description'  => 'nullable|max:500',
+            'tags'         => 'nullable|max:500',
+            'icon'         => 'nullable|max:50',
+            'image'        => 'nullable|image|max:10240',
+            'image_mobile' => 'nullable|image|max:10240',
+            'button_text'  => 'nullable|max:100',
+            'button_url'   => 'nullable|max:300',
+            'order'        => 'nullable|integer|min:0',
+            'is_active'    => 'nullable|boolean',
+            'stat_1_value' => 'nullable|max:50',
+            'stat_1_label' => 'nullable|max:100',
+            'stat_2_value' => 'nullable|max:50',
+            'stat_2_label' => 'nullable|max:100',
+            'stat_3_value' => 'nullable|max:50',
+            'stat_3_label' => 'nullable|max:100',
         ]);
 
         $validated['is_active'] = $request->boolean('is_active', true);
@@ -91,6 +97,11 @@ class AdminHeroSlideController extends Controller
             $validated['image'] = $this->storeWebP($request->file('image'), 'hero_slides', 3448);
         }
 
+        if ($request->hasFile('image_mobile')) {
+            $this->deleteStorageFile($heroSlide->image_mobile);
+            $validated['image_mobile'] = $this->storeWebP($request->file('image_mobile'), 'hero_slides', 1080);
+        }
+
         $heroSlide->update($validated);
         return redirect()->route('admin.page_management', ['tab' => 'sect-hero'])->with('success', 'Slide Hero berhasil diperbarui.');
     }
@@ -98,6 +109,7 @@ class AdminHeroSlideController extends Controller
     public function destroy(HeroSlide $heroSlide)
     {
         $this->deleteStorageFile($heroSlide->image ?? null);
+        $this->deleteStorageFile($heroSlide->image_mobile ?? null);
         $heroSlide->delete();
         return redirect()->route('admin.page_management', ['tab' => 'sect-hero'])->with('success', 'Slide Hero berhasil dihapus.');
     }

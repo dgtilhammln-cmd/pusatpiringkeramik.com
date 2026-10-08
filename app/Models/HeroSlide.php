@@ -14,6 +14,7 @@ class HeroSlide extends Model
         'tags',
         'icon',
         'image',
+        'image_mobile',
         'button_text',
         'button_url',
         'order',
@@ -41,5 +42,10 @@ class HeroSlide extends Model
     public function getImageUrlAttribute(): ?string
     {
         return $this->image ? asset('storage/' . $this->image) : null;
+    }
+
+    public function getImageMobileUrlAttribute(): ?string
+    {
+        return $this->image_mobile ? asset('storage/' . $this->image_mobile) : $this->image_url;
     }
 }
