@@ -37,6 +37,39 @@
         .cv-product-card {
             background: {{ $settings['page_home_product_card_bg'] ?? 'var(--bg-base)' }};
         }
+        @if(!empty($settings['page_home_about_bg']))
+        .cv-about-modern, .cv-about-section { background-color: {{ $settings['page_home_about_bg'] }} !important; }
+        @endif
+        @if(!empty($settings['page_home_about_title_color']))
+        .cv-about-title, .cv-about-heading { color: {{ $settings['page_home_about_title_color'] }} !important; }
+        @endif
+        @if(!empty($settings['page_home_about_text_color']))
+        .cv-about-desc, .cv-about-text { color: {{ $settings['page_home_about_text_color'] }} !important; }
+        @endif
+        @if(!empty($settings['page_home_value_bg']))
+        .cv-advantages { background-color: {{ $settings['page_home_value_bg'] }} !important; }
+        @endif
+        @if(!empty($settings['page_home_value_card_bg']))
+        .cv-adv-card { background-color: {{ $settings['page_home_value_card_bg'] }} !important; }
+        @endif
+        @if(!empty($settings['page_home_aplikasi_bg']))
+        .cv-aplikasi, .cv-use-cases { background-color: {{ $settings['page_home_aplikasi_bg'] }} !important; }
+        @endif
+        @if(!empty($settings['page_home_aplikasi_title_color']))
+        .cv-aplikasi-title { color: {{ $settings['page_home_aplikasi_title_color'] }} !important; }
+        @endif
+        @if(!empty($settings['page_home_kota_bg']))
+        .cv-coverage, .cv-kota-section { background-color: {{ $settings['page_home_kota_bg'] }} !important; }
+        @endif
+        @if(!empty($settings['page_home_kota_title_color']))
+        .cv-kota-title { color: {{ $settings['page_home_kota_title_color'] }} !important; }
+        @endif
+        @if(!empty($settings['page_home_footer_bg']))
+        footer.cv-footer { background-color: {{ $settings['page_home_footer_bg'] }} !important; }
+        @endif
+        @if(!empty($settings['page_home_footer_text_color']))
+        footer.cv-footer, footer.cv-footer p, footer.cv-footer span { color: {{ $settings['page_home_footer_text_color'] }} !important; }
+        @endif
 
         .cv-hero-bg-block {
             position: absolute;
