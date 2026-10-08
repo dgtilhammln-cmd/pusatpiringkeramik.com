@@ -1137,6 +1137,25 @@
             <div class="pm-card-title">Kustomisasi Section Katalog Produk</div>
           </div>
 
+          {{-- Info & Direct Link ke Pengelolaan Produk --}}
+          <div style="background:#EFF6FF; border:1px solid #BFDBFE; border-radius:12px; padding:1.1rem 1.25rem; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+            <div style="display:flex; align-items:center; gap:0.75rem;">
+              <div style="width:38px; height:38px; border-radius:10px; background:#2563EB; color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div>
+                <div style="font-size:0.9rem; font-weight:700; color:#1E3A8A;">Informasi Produk Homepage</div>
+                <div style="font-size:0.8125rem; color:#1E40AF;">Produk yang tampil di Homepage adalah <strong>4 produk terbaru</strong>. Untuk mengedit atau menambah produk baru, silakan buka menu Layanan & Produk.</div>
+              </div>
+            </div>
+            <a href="{{ route('admin.services.index') }}" target="_blank" style="display:inline-flex; align-items:center; gap:0.5rem; background:#2563EB; color:#ffffff; font-weight:600; font-size:0.85rem; padding:0.6rem 1.2rem; border-radius:10px; text-decoration:none; white-space:nowrap; box-shadow:0 2px 6px rgba(37,99,235,0.25);">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg>
+              Kelola & Tambah Produk Baru
+            </a>
+          </div>
+
           <div
             style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem; margin-bottom:1.5rem;">
             <div>

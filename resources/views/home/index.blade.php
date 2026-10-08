@@ -1802,13 +1802,17 @@
 
         .cv-catalog-scroll {
             display: grid;
-            grid-template-columns: repeat(5, calc(25% - 0.75rem));
-            gap: 1rem;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1.25rem;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
+            padding-top: 16px;
+            padding-bottom: 16px;
+            margin-top: -16px;
+            margin-bottom: -16px;
         }
 
         .cv-catalog-scroll::-webkit-scrollbar {
@@ -1830,11 +1834,12 @@
             ;
             cursor: pointer;
             transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
+            transform: translateZ(0);
         }
 
         .cv-cat-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
         }
 
         .cv-cat-card img {
@@ -2006,7 +2011,7 @@
         /* Responsive */
         @media (max-width: 1024px) {
             .cv-catalog-scroll {
-                grid-template-columns: repeat(5, 280px);
+                grid-template-columns: repeat(4, 280px);
             }
         }
 
@@ -2025,7 +2030,7 @@
             }
 
             .cv-catalog-scroll {
-                grid-template-columns: repeat(5, 80vw);
+                grid-template-columns: repeat(4, 78vw);
             }
 
             .cv-cat-card {
@@ -2061,7 +2066,7 @@
                         </a>
                     @endforeach
                 @else
-                    @for($i = 1; $i <= 5; $i++)
+                    @for($i = 1; $i <= 4; $i++)
                         <a href="{{ route('products') }}" class="cv-cat-card">
                             {{-- White skeleton shimmer — fills the whole card, no text --}}
                             <div class="cv-cat-card-placeholder"></div>

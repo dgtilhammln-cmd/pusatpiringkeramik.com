@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function index()
     {
         $settings     = Setting::getAllAsArray();
-        $products     = Service::active()->ordered()->limit(5)->get();
+        $products     = Service::active()->latest()->limit(4)->get();
         $gallery      = GalleryProject::active()->ordered()->limit(8)->get();
         $articles     = Article::published()->latest()->limit(3)->get();
         $clients      = Client::active()->ordered()->get();
