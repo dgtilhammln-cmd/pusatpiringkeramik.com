@@ -563,9 +563,9 @@
 
             .cv-hero-title,
             h2.cv-hero-title {
-                font-size: 1.6rem !important;
-                line-height: 1.35 !important;
-                font-weight: 700 !important;
+                font-size: 1.95rem !important;
+                line-height: 1.3 !important;
+                font-weight: 500 !important;
             }
 
             /* On tablet/mobile: curved card style without dark gradient overlay */
@@ -600,9 +600,9 @@
 
             .cv-hero-title,
             h2.cv-hero-title {
-                font-size: 1.55rem !important;
-                line-height: 1.35 !important;
-                font-weight: 700 !important;
+                font-size: 1.85rem !important;
+                line-height: 1.3 !important;
+                font-weight: 500 !important;
             }
 
             .cv-hero-banner-wrap::before,
