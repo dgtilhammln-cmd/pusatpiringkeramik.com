@@ -8,38 +8,52 @@ use App\Models\HeroSlide;
 class HeroSlideSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Seed 2 Hero Slides untuk homepage Pusat Piring Keramik.
+     * 📸 Upload gambar via: Admin → Page Management → Tab "Hero Section" → Edit slide.
      */
     public function run(): void
     {
+        // Hapus data lama agar tidak duplikat jika dijalankan ulang
         HeroSlide::truncate();
 
-        HeroSlide::create([
-            'title' => "Perlindungan Maksimal untuk\nKapal & Industri Anda",
-            'subtitle' => 'Premium Industrial Coating Solutions',
-            'description' => 'CV. Bintang Energy Surabaya hadir sebagai distributor resmi cat internasional terkemuka. Kami menyediakan solusi pelapisan cat anti karat, epoxy lantai, dan cat besi terbaik di Indonesia.',
-            'tags' => 'Marine Coating, Protective Coating, Industrial Coating',
-            'button_text' => 'Lihat Produk',
-            'button_url' => '/products',
-            'order' => 1,
-            'is_active' => true,
-            'stat_1_value' => '500+', 'stat_1_label' => 'Klien Perusahaan',
-            'stat_2_value' => '18+', 'stat_2_label' => 'Tahun Pengalaman',
-            'stat_3_value' => '1.000+', 'stat_3_label' => 'Varian Produk',
-        ]);
+        $slides = [
+            [
+                'title'        => "Solusi Tableware Keramik\nPremium untuk Bisnis F&B",
+                'subtitle'     => 'Grosir & Eceran Piring Keramik',
+                'description'  => 'Kami menyediakan piring keramik, mangkuk, dan tableware berkualitas tinggi untuk hotel, restoran, katering, dan usaha F&B skala besar di seluruh Indonesia.',
+                'tags'         => 'Piring Keramik, Hotel & Restoran, Food Grade, Grosir, Tahan Lama',
+                'stat_1_value' => '10+',
+                'stat_1_label' => 'Tahun Pengalaman',
+                'stat_2_value' => '500+',
+                'stat_2_label' => 'Proyek Selesai',
+                'stat_3_value' => '50+',
+                'stat_3_label' => 'Kota Terjangkau',
+                'order'        => 1,
+                'is_active'    => true,
+                'image'        => null,
+            ],
+            [
+                'title'        => "Keramik Berkualitas\nuntuk Setiap Kebutuhan",
+                'subtitle'     => 'Distributor Resmi Keramik Premium',
+                'description'  => 'Dari keramik lantai, dinding, hingga tableware porselen — kami hadir sebagai mitra terpercaya untuk kebutuhan keramik bisnis dan hunian Anda.',
+                'tags'         => 'Keramik Lantai, Keramik Dinding, Porselen, High Quality, Food Safe',
+                'stat_1_value' => '1.000+',
+                'stat_1_label' => 'Produk Tersedia',
+                'stat_2_value' => '100%',
+                'stat_2_label' => 'Kepuasan Klien',
+                'stat_3_value' => '30+',
+                'stat_3_label' => 'Mitra Horeca',
+                'order'        => 2,
+                'is_active'    => true,
+                'image'        => null,
+            ],
+        ];
 
-        HeroSlide::create([
-            'title' => "Distributor Resmi Cat\nKelas Dunia",
-            'subtitle' => 'Verified Supplier & Trusted Partner',
-            'description' => 'Menyediakan lebih dari 300+ varian produk dari merek ternama seperti Hempel, International Paint, Jotun, Sigma PPG, Chugoku, dan Agatha Paint.',
-            'tags' => 'Hempel Paint, Jotun, Sigma PPG, Chugoku',
-            'button_text' => 'Katalog Produk',
-            'button_url' => '/products',
-            'order' => 2,
-            'is_active' => true,
-            'stat_1_value' => '500+', 'stat_1_label' => 'Klien Perusahaan',
-            'stat_2_value' => '18+', 'stat_2_label' => 'Tahun Pengalaman',
-            'stat_3_value' => '1.000+', 'stat_3_label' => 'Varian Produk',
-        ]);
+        foreach ($slides as $data) {
+            HeroSlide::create($data);
+        }
+
+        $this->command->info('✅ HeroSlideSeeder: 2 slide hero berhasil dibuat.');
+        $this->command->info('   📸 Upload gambar via Admin → Page Management → tab Hero Section.');
     }
 }

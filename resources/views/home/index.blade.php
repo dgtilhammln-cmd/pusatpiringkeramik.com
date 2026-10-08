@@ -31,39 +31,54 @@
         .cv-hero-stats-box, .cv-hero-bg-block {
             background: {{ $settings['page_home_hero_card_bg'] ?? '#0A1930' }};
         }
-        .cv-products {
-            background: {{ $settings['page_home_product_bg'] ?? 'var(--bg-base)' }};
+        /* ── Product / Catalog Section ── */
+        .cv-products, .cv-catalog-section {
+            background: {{ $settings['page_home_product_bg'] ?? '#0F172A' }} !important;
         }
         .cv-product-card {
-            background: {{ $settings['page_home_product_card_bg'] ?? 'var(--bg-base)' }};
+            background: {{ $settings['page_home_product_card_bg'] ?? '#1E293B' }};
         }
-        @if(!empty($settings['page_home_about_bg']))
-        .cv-about-modern, .cv-about-section { background-color: {{ $settings['page_home_about_bg'] }} !important; }
-        @endif
-        @if(!empty($settings['page_home_about_title_color']))
-        .cv-about-title, .cv-about-heading { color: {{ $settings['page_home_about_title_color'] }} !important; }
-        @endif
-        @if(!empty($settings['page_home_about_text_color']))
-        .cv-about-desc, .cv-about-text { color: {{ $settings['page_home_about_text_color'] }} !important; }
-        @endif
-        @if(!empty($settings['page_home_value_bg']))
-        .cv-advantages { background-color: {{ $settings['page_home_value_bg'] }} !important; }
-        @endif
-        @if(!empty($settings['page_home_value_card_bg']))
-        .cv-adv-card { background-color: {{ $settings['page_home_value_card_bg'] }} !important; }
-        @endif
-        @if(!empty($settings['page_home_aplikasi_bg']))
-        .cv-aplikasi, .cv-use-cases { background-color: {{ $settings['page_home_aplikasi_bg'] }} !important; }
-        @endif
-        @if(!empty($settings['page_home_aplikasi_title_color']))
-        .cv-aplikasi-title { color: {{ $settings['page_home_aplikasi_title_color'] }} !important; }
-        @endif
-        @if(!empty($settings['page_home_kota_bg']))
-        .cv-coverage, .cv-kota-section { background-color: {{ $settings['page_home_kota_bg'] }} !important; }
-        @endif
-        @if(!empty($settings['page_home_kota_title_color']))
-        .cv-kota-title { color: {{ $settings['page_home_kota_title_color'] }} !important; }
-        @endif
+        .cv-catalog-title {
+            color: {{ $settings['page_home_product_title_color'] ?? '#ffffff' }} !important;
+        }
+        .cv-catalog-right-info p {
+            color: {{ $settings['page_home_product_desc_color'] ?? '#94A3B8' }} !important;
+        }
+        .cv-catalog-right-info small {
+            color: {{ $settings['page_home_product_note_color'] ?? '#64748B' }} !important;
+        }
+
+        /* ── About Section ── */
+        .cv-about-premium {
+            background-color: {{ $settings['page_home_about_bg'] ?? '#ffffff' }} !important;
+        }
+        .about-premium-heading {
+            color: {{ $settings['page_home_about_title_color'] ?? '#0A1930' }} !important;
+        }
+        .cv-about-premium .ab-card-label {
+            color: {{ $settings['page_home_about_text_color'] ?? '#64748b' }} !important;
+        }
+        .cv-about-premium .ab-card-desc {
+            color: {{ $settings['page_home_about_text_color'] ?? '#64748b' }} !important;
+        }
+        .cv-about-premium .ab-card-gray .ab-card-value {
+            color: {{ $settings['page_home_about_title_color'] ?? '#0A1930' }} !important;
+        }
+
+        /* ── Value / Keunggulan Section ── */
+        .cv-advantages { background-color: {{ $settings['page_home_value_bg'] ?? '#f8fafc' }} !important; }
+        .cv-adv-card { background-color: {{ $settings['page_home_value_card_bg'] ?? '#ffffff' }} !important; }
+
+        /* ── Aplikasi Section ── */
+        .cv-apps-premium { background-color: {{ $settings['page_home_aplikasi_bg'] ?? '#0F172A' }} !important; }
+        .cv-apps-premium .cv-adv-section-label { color: {{ $settings['page_home_aplikasi_label_color'] ?? '#94A3B8' }} !important; }
+        .cv-apps-premium .cv-adv-section-title { color: {{ $settings['page_home_aplikasi_title_color'] ?? '#ffffff' }} !important; }
+
+        /* ── Coverage / Kota Section ── */
+        .cv-coverage-dark { background-color: {{ $settings['page_home_kota_bg'] ?? '#0F172A' }} !important; }
+        .cv-coverage-dark h2 { color: {{ $settings['page_home_kota_title_color'] ?? '#ffffff' }} !important; }
+
+        /* ── Footer ── */
         @if(!empty($settings['page_home_footer_bg']))
         footer.cv-footer { background-color: {{ $settings['page_home_footer_bg'] }} !important; }
         @endif
@@ -77,8 +92,7 @@
             left: 0;
             right: 0;
             height: 25%;
-            background-color: #0A1930;
-            /* Navy Blue */
+            background-color: {{ $settings['page_home_hero_card_bg'] ?? '#0A1930' }};
             z-index: 0;
         }
 
@@ -175,10 +189,10 @@
 
         .cv-hero-tags span {
             font-size: 0.8rem;
-            color: #475569;
+            color: {{ $settings['page_home_hero_tags_color'] ?? '#475569' }};
             font-weight: 500;
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
+            background: {{ $settings['page_home_hero_tags_bg'] ?? '#ffffff' }};
+            border: 1px solid {{ $settings['page_home_hero_tags_border'] ?? '#e2e8f0' }};
             padding: 0.4rem 1rem;
             border-radius: 50px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
@@ -1259,7 +1273,7 @@
 
     {{-- ════ ABOUT SECTION (PREMIUM 4 CARDS) ════ --}}
     <section class="cv-about-premium section-pad" id="tentang"
-        style="background:#ffffff; color:#0f172a; position:relative; z-index:2;">
+        style="position:relative; z-index:2;">
         <div class="container">
             @php
                 $aboutSubtitle = $settings['about_subtitle'] ?? 'ABOUT US';
@@ -1285,7 +1299,7 @@
                     <span style="width:4px; height:4px; background:#0A1930; border-radius:50%;"></span>
                     {{ $aboutSubtitle }}
                 </div>
-                <h2 style="font-size:clamp(1.75rem, 3.5vw, 3rem); font-weight:500; line-height:1.15; letter-spacing:-0.02em; color:#0A1930;" class="about-premium-heading">
+                <h2 style="font-size:clamp(1.75rem, 3.5vw, 3rem); font-weight:500; line-height:1.15; letter-spacing:-0.02em;" class="about-premium-heading">
                     {!! !empty($settings['about_heading']) ? $settings['about_heading'] : 'Solusi <strong>Tableware Keramik</strong> Terpercaya untuk Bisnis F&B' !!}
                 </h2>
             </div>
@@ -1410,7 +1424,7 @@
         }
 
         .ab-card-gray {
-            background: #f1f5f9;
+            background: {{ $settings['page_home_about_card_gray_bg'] ?? '#f1f5f9' }};
         }
 
         .ab-card-accent {
@@ -1441,7 +1455,7 @@
         .ab-card-label {
             font-size: 0.875rem;
             font-weight: 500;
-            color: #64748b;
+            color: {{ $settings['page_home_about_text_color'] ?? '#64748b' }};
             margin-bottom: 1rem;
         }
 
@@ -1449,14 +1463,14 @@
             font-size: 3rem;
             font-weight: 400;
             line-height: 1;
-            color: #0f172a;
+            color: {{ $settings['page_home_about_title_color'] ?? '#0f172a' }};
             letter-spacing: -0.05em;
         }
 
         .ab-card-desc {
             font-size: 0.95rem;
             line-height: 1.5;
-            color: #475569;
+            color: {{ $settings['page_home_about_text_color'] ?? '#475569' }};
             font-weight: 400;
         }
 
@@ -1471,12 +1485,12 @@
 
         .ab-chip {
             position: absolute;
-            background: #ffffff;
+            background: {{ $settings['page_home_about_chip_bg'] ?? '#ffffff' }};
             padding: 0.4rem 0.8rem;
             border-radius: 999px;
             font-size: 0.7rem;
             font-weight: 600;
-            color: #94a3b8;
+            color: {{ $settings['page_home_about_chip_color'] ?? '#94a3b8' }};
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
             white-space: nowrap;
         }
@@ -1493,7 +1507,7 @@
     <style>
         /* ── PRODUCT CATALOG SECTION ─────────────────── */
         .cv-catalog-section {
-            background: #0F172A;
+            background: {{ $settings['page_home_product_bg'] ?? '#0F172A' }};
             padding: 5rem 0;
         }
 
@@ -1512,7 +1526,7 @@
         .cv-catalog-title {
             font-size: clamp(1.75rem, 3.5vw, 3rem);
             font-weight: 500;
-            color: #ffffff;
+            color: {{ $settings['page_home_product_title_color'] ?? '#ffffff' }};
             line-height: 1.15;
             letter-spacing: -0.02em;
             max-width: 420px;
@@ -1525,14 +1539,14 @@
 
         .cv-catalog-right-info p {
             font-size: 0.875rem;
-            color: #94A3B8;
+            color: {{ $settings['page_home_product_desc_color'] ?? '#94A3B8' }};
             line-height: 1.6;
             margin-bottom: 0.5rem;
         }
 
         .cv-catalog-right-info small {
             font-size: 0.75rem;
-            color: #64748B;
+            color: {{ $settings['page_home_product_note_color'] ?? '#64748B' }};
         }
 
         /* Horizontal scroll track */
