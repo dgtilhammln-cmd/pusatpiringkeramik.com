@@ -499,7 +499,7 @@
     </div>
 
     {{-- HOMEPAGE MAIN CONTAINER --}}
-    <div id="page-homepage" style="{{ !$isHeaderTab ? 'display:block;' : 'display:none;' }}">
+    <div id="page-homepage" style="{{ $isHomepageTab ? 'display:block;' : 'display:none;' }}">
       {{-- SUB TABS NAVBAR --}}
       <div
         style="background:#ffffff; border-radius:16px; padding:0.75rem 1rem; border:1px solid #E2E8F0; margin-bottom:1.5rem; display:flex; gap:0.5rem; flex-wrap:wrap; box-shadow:0 2px 8px rgba(0,0,0,0.02);">
@@ -2206,6 +2206,7 @@
           @endforeach
         </div>
       </div>
+    </div>{{-- /page-homepage --}}
 
     {{-- ABOUT PAGE CONTAINER --}}
     <div id="page-about" style="{{ $isAboutTab ? 'display:block;' : 'display:none;' }}">
