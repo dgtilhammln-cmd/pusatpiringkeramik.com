@@ -129,23 +129,35 @@ input[type="file"]::file-selector-button:hover {
     padding: 1rem !important;
 }
 
-/* 8. Tab Buttons Wrapper */
-div[style*="border-bottom:1px solid #E2E8F0"] {
-    border-bottom: 2px solid #F1F5F9 !important;
-    padding-bottom: 0.75rem !important;
-    gap: 0.5rem !important;
+/* 8. Tab Buttons (Matching Page Management Style) */
+.pm-main-tab-btn {
+  padding: 0.75rem 1.5rem !important;
+  font-size: 0.9rem !important;
+  font-weight: 700 !important;
+  border-radius: 14px !important;
+  border: 1.5px solid #E2E8F0 !important;
+  background: #ffffff !important;
+  color: #64748B !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  font-family: 'Montserrat', sans-serif !important;
 }
-button[id^="tab-btn-"] {
-    padding: .75rem 1.25rem !important;
-    border-radius: 12px !important;
-    font-size: .85rem !important;
+
+.pm-main-tab-btn:hover {
+  border-color: #CBD5E1 !important;
+  color: #0F172A !important;
 }
-button.tab-btn-active {
-    background: #FEE2E2 !important;
-    color: #B91C1C !important;
-    font-weight: 700 !important;
-    box-shadow: 0 2px 10px rgba(14, 165, 233, 0.1) !important;
+
+.pm-main-tab-btn.active {
+  background: #0F172A !important;
+  color: #ffffff !important;
+  border-color: #0F172A !important;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.2) !important;
 }
+
 /* 9. Premium Buttons */
 button[type="submit"][style*="background:#DC2626"] {
     background: #3B82F6 !important;
@@ -226,21 +238,19 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
   </div>
 </div>
 
-{{-- Tab Nav --}}
-<div style="display:flex;gap:.125rem;margin-bottom:1.75rem;border-bottom:1px solid #E2E8F0; padding-bottom: 0.5rem;flex-wrap:wrap;">
+{{-- Tab Nav (Matching Page Management Style) --}}
+<div style="display:flex; gap:0.75rem; margin-bottom:1.5rem; flex-wrap:wrap;">
   @php
     $tabs = [
       'general' => ['Umum', 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z'],
-      'seo'     => ['SEO', 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'],
-      'hero'    => ['Hero & Konten', 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z'],
-      'contact' => ['Kontak', 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z'],
-      
+      'seo'     => ['SEO & Head Scripts', 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'],
+      'contact' => ['Kontak & Sosmed', 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z'],
     ];
   @endphp
   @foreach($tabs as $tabKey => [$tabLabel, $tabIcon])
   <button type="button" onclick="switchTab('{{ $tabKey }}')" id="tab-btn-{{ $tabKey }}"
-          style="display:flex;align-items:center;gap:.375rem;padding:.625rem 1rem;font-size:.8rem;font-weight:600;border:none;background:transparent;cursor:pointer;color:#64748B;border-radius:99px;transition:all .2s;font-family:'Montserrat',sans-serif;margin-bottom:0;">
-    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="{{ $tabIcon }}"/></svg>
+          class="pm-main-tab-btn {{ $loop->first ? 'active' : '' }}">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="{{ $tabIcon }}"/></svg>
     {{ $tabLabel }}
   </button>
   @endforeach
@@ -500,238 +510,7 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
 
 
 
-{{-- ======== TAB: HERO & KONTEN ======== --}}
-<div id="tab-hero" class="tab-section" style="display:none;">
-  <div style="display:flex;flex-direction:column;gap:1.25rem;">
 
-    {{-- Images --}}
-    <div style="background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 4px 15px rgba(0,0,0,0.03);border-radius:10px;padding:1.5rem;">
-      <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;">
-        <svg width="14" height="14" fill="none" stroke="#DC2626" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#DC2626;">Gambar Background</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;">
-        @foreach([
-          'breadcrumb_bg' => 'Header Sub-halaman (Layanan, Artikel, dll)',
-          'about_image'   => 'Foto About / Profile (Lama)',
-        ] as $imgKey => $imgLabel)
-        <div>
-          <label class="form-label">{{ $imgLabel }}</label>
-          @if(!empty($settings[$imgKey]))
-          <div style="margin-bottom:.75rem;border-radius:6px;overflow:hidden;border:1px solid #E2E8F0;box-shadow:0 4px 15px rgba(0,0,0,0.03);">
-            <img src="{{ asset('storage/'.$settings[$imgKey]) }}" style="height:90px;width:100%;object-fit:cover;" alt="{{ $imgLabel }}">
-          </div>
-          @endif
-          <input type="file" name="{{ $imgKey }}" class="form-input" accept="image/*" style="padding:.5rem;">
-        </div>
-        @endforeach
-      </div>
-      <p style="font-size:.7rem;color:#94A3B8;margin:.75rem 0 0;">Semua gambar akan otomatis dikompresi ke format WebP.</p>
-    </div>
-
-    {{-- About / Visi Misi --}}
-    <div style="background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 4px 15px rgba(0,0,0,0.03);border-radius:10px;padding:1.5rem;">
-      <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;">
-        <svg width="14" height="14" fill="none" stroke="#DC2626" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#DC2626;">Visi & Misi</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-        @foreach(['visi'=>'Visi Perusahaan','misi'=>'Misi Perusahaan'] as $key=>$label)
-        <div>
-          <label class="form-label" for="s-{{ $key }}">{{ $label }}</label>
-          <textarea name="{{ $key }}" id="s-{{ $key }}" class="form-input" rows="4">{{ $settings[$key] ?? '' }}</textarea>
-        </div>
-        @endforeach
-      </div>
-    </div>
-
-    {{-- Stats --}}
-    <div style="background:#FFFFFF;border:1px solid #E2E8F0;box-shadow:0 4px 15px rgba(0,0,0,0.03);border-radius:10px;padding:1.5rem;">
-      <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;">
-        <svg width="14" height="14" fill="none" stroke="#DC2626" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#DC2626;">Angka Statistik (Hero Section)</div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;">
-        @foreach(['stat_years'=>'Tahun Pengalaman','stat_clients'=>'Jumlah Klien','stat_products'=>'Jenis Produk','stat_coverage'=>'Jangkauan/Kota'] as $key=>$label)
-        <div>
-          <label class="form-label" for="s-{{ $key }}">{{ $label }}</label>
-          <input type="text" name="{{ $key }}" id="s-{{ $key }}" class="form-input" value="{{ $settings[$key] ?? '' }}" placeholder="contoh: 10+">
-        </div>
-        @endforeach
-      </div>
-      <p style="font-size:.7rem;color:#94A3B8;margin:.75rem 0 0;">Angka-angka ini muncul di bagian statistik halaman Home.</p>
-    </div>
-
-    {{-- ── Aplikasi Produk (4 Layanan) ── --}}
-    <div style="background:#FFFFFF;border:1px solid rgba(245,158,11,.15);border-radius:10px;padding:1.5rem;">
-      <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;">
-        <svg width="14" height="14" fill="none" stroke="#f59e0b" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16m-7 6h7"/></svg>
-        <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#f59e0b;">Gambar Ilustrasi Aplikasi Produk</div>
-      </div>
-      <p style="font-size:.75rem;color:#94A3B8;margin-bottom:1.25rem;line-height:1.6;">Upload gambar ilustrasi untuk 4 sektor industri di halaman (Maritim & Perkapalan, Pabrik & Gudang, Struktur Baja, Fasilitas Komersial).</p>
-      
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
-        @foreach([
-          'app_img_restoran' => '1. Maritim & Perkapalan',
-          'app_img_pabrik'   => '2. Pabrik & Gudang',
-          'app_img_gor'      => '3. Struktur Baja',
-          'app_img_dapur'    => '4. Fasilitas Komersial',
-        ] as $imgKey => $imgLabel)
-        <div style="background:#F1F5F9;padding:1rem;border-radius:8px;border:1px solid #E2E8F0;">
-          <div style="font-size:.75rem;color:#f59e0b;margin-bottom:.75rem;font-weight:600;">{{ $imgLabel }}</div>
-          
-          @if(!empty($settings[$imgKey]))
-          <div style="margin-bottom:.5rem;border-radius:4px;overflow:hidden;border:1px solid #E2E8F0;box-shadow:0 4px 15px rgba(0,0,0,0.03);">
-            <img src="{{ asset('storage/'.$settings[$imgKey]) }}" style="height:100px;width:100%;object-fit:cover;" alt="{{ $imgLabel }}">
-          </div>
-          @endif
-          
-          <label class="form-label" style="font-size:.65rem;">Upload Gambar (Otomatis kompres WebP)</label>
-          <input type="file" name="{{ $imgKey }}" class="form-input" accept="image/*" style="padding:.25rem;font-size:.7rem;">
-        </div>
-        @endforeach
-      </div>
-    </div>
-
-    {{-- ── About Section (Tentang Kami) ── --}}
-    <div style="background:#FFFFFF;border:1px solid rgba(16,185,129,.15);border-radius:10px;padding:1.5rem;">
-      <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem;">
-        <svg width="14" height="14" fill="none" stroke="#10b981" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#10b981;">About Section (4 Cards Layout)</div>
-      </div>
-      
-      <div style="margin-bottom:1.25rem;">
-        <label class="form-label" for="s-about_heading">Heading Utama (Gunakan tag <code>&lt;span&gt;...&lt;/span&gt;</code> untuk styling biru)</label>
-        <textarea name="about_heading" id="s-about_heading" class="form-input" rows="3" placeholder="A global consulting partner...">{{ $settings['about_heading'] ?? '' }}</textarea>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
-        {{-- Card 1 --}}
-        <div style="background:#F1F5F9;padding:1rem;border-radius:8px;border:1px solid #E2E8F0;">
-          <div style="font-size:.75rem;color:#94a3b8;margin-bottom:.75rem;font-weight:600;">Card 1 (Abu-abu, Kiri Atas)</div>
-          <div style="margin-bottom:.5rem;">
-            <label class="form-label" style="font-size:.65rem;">Title / Label</label>
-            <input type="text" name="about_c1_title" class="form-input" value="{{ $settings['about_c1_title'] ?? '' }}" placeholder="Pengalaman">
-          </div>
-          <div>
-            <label class="form-label" style="font-size:.65rem;">Value / Angka</label>
-            <input type="text" name="about_c1_val" class="form-input" value="{{ $settings['about_c1_val'] ?? '' }}" placeholder="10+ Tahun">
-          </div>
-        </div>
-        
-        {{-- Card 2 --}}
-        <div style="background:rgba(56,189,248,.05);padding:1rem;border-radius:8px;border:1px solid rgba(56,189,248,.15);">
-          <div style="font-size:.75rem;color:#EF4444;margin-bottom:.75rem;font-weight:600;">Card 2 (Biru Accent, Kiri Bawah)</div>
-          <div style="margin-bottom:.5rem;">
-            <label class="form-label" style="font-size:.65rem;">Title / Label</label>
-            <input type="text" name="about_c2_title" class="form-input" value="{{ $settings['about_c2_title'] ?? '' }}" placeholder="Komitmen Kualitas">
-          </div>
-          <div style="margin-bottom:.5rem;">
-            <label class="form-label" style="font-size:.65rem;">Value / Angka</label>
-            <input type="text" name="about_c2_val" class="form-input" value="{{ $settings['about_c2_val'] ?? '' }}" placeholder="100%">
-          </div>
-          <div>
-            <label class="form-label" style="font-size:.65rem;">Deskripsi Singkat</label>
-            <textarea name="about_c2_desc" class="form-input" rows="2" placeholder="Memberikan solusi sirkulasi udara terbaik untuk industri.">{{ $settings['about_c2_desc'] ?? '' }}</textarea>
-          </div>
-        </div>
-
-        {{-- Card 3 --}}
-        <div style="background:#F1F5F9;padding:1rem;border-radius:8px;border:1px solid #E2E8F0;">
-          <div style="font-size:.75rem;color:#94a3b8;margin-bottom:.75rem;font-weight:600;">Card 3 (Gambar Background, Kanan Atas)</div>
-          
-          <div style="margin-bottom:.75rem;">
-            <label class="form-label" style="font-size:.65rem;">Upload Gambar Background Card 3</label>
-            @if(!empty($settings['about_c3_image']))
-            <div style="margin-bottom:.5rem;border-radius:4px;overflow:hidden;border:1px solid #E2E8F0;box-shadow:0 4px 15px rgba(0,0,0,0.03);">
-              <img src="{{ asset('storage/'.$settings['about_c3_image']) }}" style="height:60px;width:100%;object-fit:cover;" alt="Card 3 Image">
-            </div>
-            @endif
-            <input type="file" name="about_c3_image" class="form-input" accept="image/*" style="padding:.25rem;font-size:.7rem;">
-          </div>
-
-          <div style="margin-bottom:.5rem;">
-            <label class="form-label" style="font-size:.65rem;">Value / Angka</label>
-            <input type="text" name="about_c3_val" class="form-input" value="{{ $settings['about_c3_val'] ?? '' }}" placeholder="120+">
-          </div>
-          <div>
-            <label class="form-label" style="font-size:.65rem;">Deskripsi Singkat</label>
-            <textarea name="about_c3_desc" class="form-input" rows="2" placeholder="Proyek instalasi diselesaikan di seluruh Indonesia.">{{ $settings['about_c3_desc'] ?? '' }}</textarea>
-          </div>
-        </div>
-
-        {{-- Card 4 --}}
-        <div style="background:#F1F5F9;padding:1rem;border-radius:8px;border:1px solid #E2E8F0;">
-          <div style="font-size:.75rem;color:#94a3b8;margin-bottom:.75rem;font-weight:600;">Card 4 (Abu-abu, Kanan Bawah)</div>
-          <div style="margin-bottom:.5rem;">
-            <label class="form-label" style="font-size:.65rem;">Title / Label</label>
-            <input type="text" name="about_c4_title" class="form-input" value="{{ $settings['about_c4_title'] ?? '' }}" placeholder="Produk Terjual">
-          </div>
-          <div style="margin-bottom:.5rem;">
-            <label class="form-label" style="font-size:.65rem;">Value / Angka</label>
-            <input type="text" name="about_c4_val" class="form-input" value="{{ $settings['about_c4_val'] ?? '' }}" placeholder="10.000+">
-          </div>
-          <div>
-            <label class="form-label" style="font-size:.65rem;">Deskripsi Singkat</label>
-            <textarea name="about_c4_desc" class="form-input" rows="2" placeholder="Unit ventilator terpasang di berbagai sektor industri.">{{ $settings['about_c4_desc'] ?? '' }}</textarea>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {{-- ── Hero Slides Manager ── --}}
-    <div style="background:#FFFFFF;border:1px solid rgba(56,189,248,.15);border-radius:10px;padding:1.5rem;">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;">
-        <div style="display:flex;align-items:center;gap:.5rem;">
-          <svg width="14" height="14" fill="none" stroke="#EF4444" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          <div style="font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#EF4444;">Hero Slides (Maks. 5 Slide)</div>
-        </div>
-        @php $slideCount = \App\Models\HeroSlide::count(); @endphp
-        <span style="font-size:.7rem;color:#EF4444;background:rgba(56,189,248,.1);padding:.25rem .75rem;border-radius:20px;">{{ $slideCount }} / 5 slide</span>
-      </div>
-
-      @php $allSlides = \App\Models\HeroSlide::orderBy('order')->get(); @endphp
-      @if($allSlides->count())
-      <div style="display:flex;flex-direction:column;gap:.625rem;margin-bottom:1.25rem;">
-        @foreach($allSlides as $hs)
-        <div style="display:flex;align-items:center;gap:1rem;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:.75rem 1rem;">
-          @if($hs->image)
-          <img src="{{ asset('storage/'.$hs->image) }}" style="width:64px;height:44px;object-fit:cover;border-radius:6px;flex-shrink:0;">
-          @else
-          <div style="width:64px;height:44px;background:#F1F5F9;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;">
-            <svg width="18" height="18" fill="none" stroke="#94A3B8" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          </div>
-          @endif
-          <div style="flex:1;min-width:0;">
-            <div style="font-size:.8rem;font-weight:600;color:#0F172A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ $hs->title }}</div>
-            <div style="font-size:.7rem;color:#64748B;">{{ Str::limit($hs->description, 70) }}</div>
-          </div>
-          <span style="font-size:.7rem;padding:.2rem .6rem;border-radius:4px;flex-shrink:0;{{ $hs->is_active ? 'background:rgba(16,185,129,.12);color:#34d399;' : 'background:#F1F5F9;color:#94A3B8;' }}">
-            {{ $hs->is_active ? 'Aktif' : 'Off' }}
-          </span>
-          <div style="display:flex;gap:.375rem;flex-shrink:0;">
-            <a href="{{ route('admin.hero_slides.edit', $hs) }}" style="font-size:.72rem;background:rgba(56,189,248,.1);color:#EF4444;padding:.35rem .7rem;border-radius:5px;text-decoration:none;transition:background .2s;">Edit</a>
-            <button type="button" onclick="if(confirm('Hapus slide ini?')) document.getElementById('del-slide-{{ $hs->id }}').submit();" style="font-size:.72rem;background:rgba(239,68,68,.1);color:#f87171;padding:.35rem .7rem;border-radius:5px;border:none;cursor:pointer;">Hapus</button>
-          </div>
-        </div>
-        @endforeach
-      </div>
-      @else
-      <p style="font-size:.78rem;color:#94A3B8;margin-bottom:1.25rem;">Belum ada slide. Klik tombol di bawah untuk menambahkan.</p>
-      @endif
-
-      @if($slideCount < 5)
-      <a href="{{ route('admin.hero_slides.create') }}" style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(56,189,248,.1);color:#EF4444;border:1px solid rgba(56,189,248,.2);padding:.6rem 1.25rem;border-radius:8px;font-size:.8rem;font-weight:600;text-decoration:none;">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-        Tambah Slide Baru ({{ 5 - $slideCount }} slot tersisa)
-      </a>
-      @else
-      <p style="font-size:.75rem;color:rgba(255,165,0,.7);background:rgba(255,165,0,.08);border:1px solid rgba(255,165,0,.15);padding:.6rem 1rem;border-radius:6px;display:inline-block;margin:0;">Batas 5 slide tercapai. Hapus salah satu dulu.</p>
-      @endif
-    </div>
-
-  </div>
-</div>
 
 {{-- ======== TAB: KONTAK ======== --}}
 <div id="tab-contact" class="tab-section" style="display:none;">
@@ -872,15 +651,14 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
 </form>
 @endforeach
 
-<style>
-.tab-btn-active { border-bottom-color:#DC2626 !important; color:#DC2626 !important; }
-</style>
 <script>
 function switchTab(name) {
     document.querySelectorAll('.tab-section').forEach(s => s.style.display='none');
-    document.querySelectorAll('[id^="tab-btn-"]').forEach(b => b.classList.remove('tab-btn-active'));
-    document.getElementById('tab-'+name).style.display='block';
-    document.getElementById('tab-btn-'+name).classList.add('tab-btn-active');
+    document.querySelectorAll('[id^="tab-btn-"]').forEach(b => b.classList.remove('active'));
+    const targetTab = document.getElementById('tab-'+name);
+    if (targetTab) targetTab.style.display='block';
+    const targetBtn = document.getElementById('tab-btn-'+name);
+    if (targetBtn) targetBtn.classList.add('active');
 }
 function updateCounter(el, cntId) {
     document.getElementById(cntId).textContent = el.value.length;

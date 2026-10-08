@@ -8,16 +8,19 @@
 
     @php
         // Single cached DB call for ALL settings — prevents N+1 queries per page load
-        $layoutSettings = \App\Models\Setting::getAllAsArray();
-        $favicon        = !empty($layoutSettings['favicon']) ? asset('storage/'.$layoutSettings['favicon']) : asset('favicon.ico');
-        $tAccent        = $layoutSettings['color_accent'] ?? null;
-        $tMain          = $layoutSettings['color_main']   ?? null;
-        $tText          = $layoutSettings['color_text']   ?? null;
-        $breadcrumbBg   = $layoutSettings['breadcrumb_bg'] ?? null;
-        $preloaderLogo  = $layoutSettings['logo'] ?? null;
-        $headScripts    = $layoutSettings['head_scripts']  ?? '';
-        $bodyScripts    = $layoutSettings['body_scripts']  ?? '';
-        $brandColor     = !empty($layoutSettings['brand_color']) ? $layoutSettings['brand_color'] : '#DC2626';
+        $layoutSettings  = \App\Models\Setting::getAllAsArray();
+        $favicon         = !empty($layoutSettings['favicon']) ? asset('storage/'.$layoutSettings['favicon']) : asset('favicon.ico');
+        $tAccent         = $layoutSettings['color_accent'] ?? null;
+        $tMain           = $layoutSettings['color_main']   ?? null;
+        $tText           = $layoutSettings['color_text']   ?? null;
+        $breadcrumbBg    = $layoutSettings['breadcrumb_bg'] ?? null;
+        $preloaderLogo   = $layoutSettings['logo'] ?? null;
+        $headScripts     = $layoutSettings['head_scripts']  ?? '';
+        $bodyScripts     = $layoutSettings['body_scripts']  ?? '';
+        $headerAccent    = $layoutSettings['header_accent_color'] ?? '#DC2626';
+        $brandColor      = !empty($layoutSettings['brand_color']) ? $layoutSettings['brand_color'] : $headerAccent;
+        $preloaderAccent = $layoutSettings['preloader_accent_color'] ?? $headerAccent;
+        $preloaderEnable = $layoutSettings['preloader_enable'] ?? '1';
     @endphp
 
     {{-- SEO Component --}}
@@ -139,7 +142,7 @@
         .cv-wind-line {
             position: absolute;
             height: 2px;
-            background: linear-gradient(90deg, transparent, var(--brand), transparent);
+            background: linear-gradient(90deg, transparent, {{ $preloaderAccent }}, transparent) !important;
             border-radius: 50%;
             opacity: 0;
             animation: wind-blow 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
@@ -161,6 +164,9 @@
         }
 
         body.loaded #cv-preloader { opacity: 0; visibility: hidden; }
+        @if(($preloaderEnable ?? '1') == '0')
+        #cv-preloader { display: none !important; }
+        @endif
     </style>
     <div id="cv-preloader">
         <div class="cv-wind-container">

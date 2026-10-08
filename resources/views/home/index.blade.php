@@ -1582,7 +1582,7 @@
             text-decoration: none;
             display: block;
             flex-shrink: 0;
-            background: #1E293B;
+            background: {{ $settings['page_home_product_card_bg'] ?? '#1E293B' }};
             cursor: pointer;
             transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s;
         }
@@ -1616,13 +1616,13 @@
         .cv-cat-card-placeholder {
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, #1E293B, #0F172A);
+            background: linear-gradient(135deg, {{ $settings['page_home_product_card_bg'] ?? '#1E293B' }}, {{ $settings['page_home_product_bg'] ?? '#0F172A' }});
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
             gap: 0.5rem;
-            color: #475569;
+            color: {{ $settings['page_home_product_desc_color'] ?? '#475569' }};
         }
 
         .cv-cat-card-body {
@@ -1652,11 +1652,11 @@
         }
 
         .cv-cat-card-spec span {
-            background: rgba(220, 38, 38, 0.85);
+            background: {{ $settings['page_home_product_accent_color'] ?? 'rgba(220, 38, 38, 0.85)' }};
             padding: 0.2rem 0.5rem;
             border-radius: 4px;
             font-weight: 600;
-            color: #fff;
+            color: {{ $settings['page_home_product_accent_text'] ?? '#fff' }};
         }
 
         /* Bottom Controls: Button left, Nav arrows right */
@@ -1672,8 +1672,8 @@
         }
 
         .cv-catalog-btn-all {
-            background: var(--brand);
-            color: #fff;
+            background: {{ $settings['page_home_product_btn_bg'] ?? 'var(--brand)' }};
+            color: {{ $settings['page_home_product_btn_text'] ?? '#fff' }};
             padding: 0.875rem 2rem;
             border-radius: 999px;
             font-size: 0.875rem;
@@ -1686,14 +1686,14 @@
         }
 
         .cv-catalog-btn-all:hover {
-            background: #B91C1C;
+            background: {{ $settings['page_home_product_btn_hover'] ?? '#B91C1C' }};
             transform: translateY(-2px);
         }
 
         .cv-catalog-btn-outline {
             background: transparent;
-            color: #ffffff;
-            border: 2px solid rgba(255,255,255,0.3);
+            color: {{ $settings['page_home_product_btn_outline_color'] ?? '#ffffff' }};
+            border: 2px solid {{ $settings['page_home_product_btn_outline_border'] ?? 'rgba(255,255,255,0.3)' }};
             padding: 0.75rem 1.5rem;
             border-radius: 999px;
             font-size: 0.875rem;
@@ -1706,8 +1706,8 @@
 
         .cv-catalog-btn-outline:hover {
             background: rgba(255,255,255,0.08);
-            border-color: #ffffff;
-            color: #fff;
+            border-color: {{ $settings['page_home_product_btn_outline_color'] ?? '#ffffff' }};
+            color: {{ $settings['page_home_product_btn_outline_color'] ?? '#fff' }};
         }
 
         .cv-catalog-nav {
@@ -1730,8 +1730,8 @@
         }
 
         .cv-catalog-nav-btn:hover {
-            background: var(--brand);
-            border-color: var(--brand);
+            background: {{ $settings['page_home_product_btn_bg'] ?? 'var(--brand)' }};
+            border-color: {{ $settings['page_home_product_btn_bg'] ?? 'var(--brand)' }};
             color: #fff;
         }
 
