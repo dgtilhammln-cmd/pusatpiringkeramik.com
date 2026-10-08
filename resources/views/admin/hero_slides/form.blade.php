@@ -20,15 +20,15 @@
             <div style="display:flex;flex-direction:column;gap:1rem;">
                 <div>
                     <label class="form-label">Sub-Judul / Label Atas</label>
-                    <input type="text" name="subtitle" value="{{ old('subtitle', $slide->subtitle ?? '') }}" class="form-input" placeholder="Award-Winning Construction Excellence">
+                    <input type="text" name="subtitle" value="{{ old('subtitle', $slide->subtitle ?? '') }}" class="form-input" placeholder="Trusted Tableware Distributor">
                 </div>
                 <div>
                     <label class="form-label">Judul Utama Slide <span style="color:#f87171;">*</span></label>
-                    <input type="text" name="title" value="{{ old('title', $slide->title ?? '') }}" class="form-input" required placeholder="Where Innovation Drives...">
+                    <input type="text" name="title" value="{{ old('title', $slide->title ?? '') }}" class="form-input" required placeholder="Peralatan Makan Berkualitas untuk Rumah & Bisnis Anda">
                 </div>
                 <div>
                     <label class="form-label">Tags / Layanan</label>
-                    <input type="text" name="tags" value="{{ old('tags', $slide->tags ?? '') }}" class="form-input" placeholder="Concrete Work, Civil Works, Design and Planning">
+                    <input type="text" name="tags" value="{{ old('tags', $slide->tags ?? '') }}" class="form-input" placeholder="Piring Keramik, Keramik Lantai, Porselen, Food Grade">
                     <p style="font-size:.7rem;color:rgba(255,255,255,.25);margin:.375rem 0 0;">Pisahkan dengan koma.</p>
                 </div>
                 <div>

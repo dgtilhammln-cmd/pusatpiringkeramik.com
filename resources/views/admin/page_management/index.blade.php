@@ -1547,12 +1547,12 @@
           <div style="grid-column: span 2;">
             <label class="pm-label">Judul Utama Slide *</label>
             <input type="text" name="title" id="slide_title" class="pm-input" required
-              placeholder="Contoh: Where Innovation Drives Structural Perfection">
+              placeholder="Contoh: Peralatan Makan Berkualitas untuk Rumah & Bisnis Anda">
           </div>
           <div>
             <label class="pm-label">Subtitle / Badge Tagline Atas</label>
             <input type="text" name="subtitle" id="slide_subtitle" class="pm-input"
-              placeholder="Contoh: Award-Winning Construction Excellence">
+              placeholder="Contoh: Trusted Tableware Distributor">
           </div>
           <div>
             <label class="pm-label">Urutan Tampil (Order)</label>
