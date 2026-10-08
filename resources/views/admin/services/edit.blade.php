@@ -65,6 +65,72 @@
     </div>
   </div>
 
+  {{-- Harga, Rating & Link E-Commerce (Opsional) --}}
+  <div style="background:#fff;border-radius:20px;padding:1.75rem;box-shadow:0 2px 20px rgba(0,0,0,0.04);">
+    <div style="display:flex;align-items:center;gap:.625rem;margin-bottom:1.5rem;">
+      <div style="width:32px;height:32px;background:rgba(16,185,129,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+        <svg width="16" height="16" fill="none" stroke="#10B981" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <div>
+        <h3 style="font-size:.875rem;font-weight:800;color:#1E293B;margin:0;">Harga, Rating & Link E-Commerce</h3>
+        <span style="font-size:.72rem;color:#94A3B8;">Opsional — Kosongkan jika tidak ingin ditampilkan</span>
+      </div>
+    </div>
+    
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.125rem;margin-bottom:1.25rem;">
+      <div>
+        <label style="display:block;font-size:.8rem;font-weight:700;color:#374151;margin-bottom:.5rem;">Harga Produk (Rp)</label>
+        <input type="number" name="price" value="{{ old('price', $s->price) }}" step="100" min="0" placeholder="Contoh: 45000"
+          style="width:100%;padding:.75rem 1rem;background:#F8FAFC;border:1.5px solid #E4E7F0;border-radius:10px;font-size:.9rem;color:#1E293B;font-family:inherit;outline:none;box-sizing:border-box;"
+          onfocus="this.style.borderColor='#10B981';this.style.background='#fff'" onblur="this.style.borderColor='#E4E7F0';this.style.background='#F8FAFC'">
+      </div>
+      <div>
+        <label style="display:block;font-size:.8rem;font-weight:700;color:#374151;margin-bottom:.5rem;">Rating (1.0 - 5.0)</label>
+        <input type="number" name="rating" value="{{ old('rating', $s->rating) }}" step="0.1" min="1" max="5" placeholder="Contoh: 4.9"
+          style="width:100%;padding:.75rem 1rem;background:#F8FAFC;border:1.5px solid #E4E7F0;border-radius:10px;font-size:.9rem;color:#1E293B;font-family:inherit;outline:none;box-sizing:border-box;"
+          onfocus="this.style.borderColor='#10B981';this.style.background='#fff'" onblur="this.style.borderColor='#E4E7F0';this.style.background='#F8FAFC'">
+      </div>
+      <div>
+        <label style="display:block;font-size:.8rem;font-weight:700;color:#374151;margin-bottom:.5rem;">Telah Terjual</label>
+        <input type="text" name="sold_count" value="{{ old('sold_count', $s->sold_count) }}" placeholder="Contoh: 1.2rb+ terjual"
+          style="width:100%;padding:.75rem 1rem;background:#F8FAFC;border:1.5px solid #E4E7F0;border-radius:10px;font-size:.9rem;color:#1E293B;font-family:inherit;outline:none;box-sizing:border-box;"
+          onfocus="this.style.borderColor='#10B981';this.style.background='#fff'" onblur="this.style.borderColor='#E4E7F0';this.style.background='#F8FAFC'">
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:1.125rem;">
+      <div>
+        <label style="display:flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:700;color:#EE4D2D;margin-bottom:.5rem;">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          Link Shopee (Opsional)
+        </label>
+        <input type="url" name="shopee_link" value="{{ old('shopee_link', $s->shopee_link) }}" placeholder="https://shopee.co.id/product/..."
+          style="width:100%;padding:.75rem 1rem;background:#F8FAFC;border:1.5px solid #E4E7F0;border-radius:10px;font-size:.9rem;color:#1E293B;font-family:inherit;outline:none;box-sizing:border-box;"
+          onfocus="this.style.borderColor='#EE4D2D';this.style.background='#fff'" onblur="this.style.borderColor='#E4E7F0';this.style.background='#F8FAFC'">
+      </div>
+
+      <div>
+        <label style="display:flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:700;color:#03AC0E;margin-bottom:.5rem;">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          Link Tokopedia (Opsional)
+        </label>
+        <input type="url" name="tokopedia_link" value="{{ old('tokopedia_link', $s->tokopedia_link) }}" placeholder="https://www.tokopedia.com/..."
+          style="width:100%;padding:.75rem 1rem;background:#F8FAFC;border:1.5px solid #E4E7F0;border-radius:10px;font-size:.9rem;color:#1E293B;font-family:inherit;outline:none;box-sizing:border-box;"
+          onfocus="this.style.borderColor='#03AC0E';this.style.background='#fff'" onblur="this.style.borderColor='#E4E7F0';this.style.background='#F8FAFC'">
+      </div>
+
+      <div>
+        <label style="display:flex;align-items:center;gap:.5rem;font-size:.8rem;font-weight:700;color:#FE2C55;margin-bottom:.5rem;">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          Link TikTok Shop (Opsional)
+        </label>
+        <input type="url" name="tiktok_link" value="{{ old('tiktok_link', $s->tiktok_link) }}" placeholder="https://www.tiktok.com/@.../product/..."
+          style="width:100%;padding:.75rem 1rem;background:#F8FAFC;border:1.5px solid #E4E7F0;border-radius:10px;font-size:.9rem;color:#1E293B;font-family:inherit;outline:none;box-sizing:border-box;"
+          onfocus="this.style.borderColor='#FE2C55';this.style.background='#fff'" onblur="this.style.borderColor='#E4E7F0';this.style.background='#F8FAFC'">
+      </div>
+    </div>
+  </div>
+
   {{-- Rich Text Editor --}}
   <div style="background:#fff;border-radius:20px;box-shadow:0 2px 20px rgba(0,0,0,0.04);overflow:hidden;">
     <div style="padding:1.25rem 1.75rem;border-bottom:1px solid #F1F5F9;display:flex;align-items:center;gap:.625rem;">

@@ -2062,6 +2062,31 @@
                             <img src="{{ $product->image_url }}" alt="{{ $product->alt_text }}" loading="lazy"
                                 style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
                             <div class="cv-cat-card-overlay"></div>
+
+                            @if(($product->rating && $product->rating > 0) || !empty($product->sold_count) || ($product->price && $product->price > 0))
+                                <div style="position:absolute; top:12px; left:12px; right:12px; display:flex; justify-content:space-between; align-items:center; z-index:3; pointer-events:none;">
+                                    @if(($product->rating && $product->rating > 0) || !empty($product->sold_count))
+                                        <div style="background:rgba(15,23,42,0.82); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); color:#ffffff; font-size:0.7rem; font-weight:600; padding:3px 9px; border-radius:20px; display:inline-flex; align-items:center; gap:4px; border:1px solid rgba(255,255,255,0.2);">
+                                            @if($product->rating && $product->rating > 0)
+                                                <span style="color:#F59E0B;">★</span>
+                                                <span>{{ number_format($product->rating, 1) }}</span>
+                                            @endif
+                                            @if(($product->rating && $product->rating > 0) && !empty($product->sold_count))
+                                                <span style="opacity:0.4; margin:0 1px;">•</span>
+                                            @endif
+                                            @if(!empty($product->sold_count))
+                                                <span style="color:#E2E8F0;">{{ $product->sold_count }} terjual</span>
+                                            @endif
+                                        </div>
+                                    @endif
+                                    @if($product->price && $product->price > 0)
+                                        <div style="background:#0F172A; color:#ffffff; font-size:0.75rem; font-weight:700; padding:3px 9px; border-radius:20px; box-shadow:0 4px 12px rgba(0,0,0,0.2); margin-left:auto;">
+                                            {{ $product->formatted_price }}
+                                        </div>
+                                    @endif
+                                </div>
+                            @endif
+
                             <div class="cv-cat-card-body">
                                 <div class="cv-cat-card-name">{{ $product->name }}</div>
                             </div>

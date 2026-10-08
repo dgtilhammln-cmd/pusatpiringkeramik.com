@@ -11,6 +11,7 @@ class Service extends Model
     protected $fillable = [
         'service_category_id', 'name', 'slug', 'short_desc', 'description', 'image', 'brochure', 'og_image', 'gallery',
         'specifications', 'faqs',
+        'price', 'rating', 'sold_count', 'shopee_link', 'tokopedia_link', 'tiktok_link',
         'icon', 'order', 'is_active',
         'meta_title', 'meta_desc', 'meta_keywords',
     ];
@@ -18,10 +19,26 @@ class Service extends Model
     protected $casts = [
         'is_active'      => 'boolean',
         'order'          => 'integer',
+        'price'          => 'float',
+        'rating'         => 'float',
         'gallery'        => 'array',
         'specifications' => 'array',
         'faqs'           => 'array',
     ];
+
+    public function getFormattedPriceAttribute(): ?string
+    {
+        return $this->price !== null && $this->price > 0 
+            ? 'Rp ' . number_format($this->price, 0, ',', '.') 
+            : null;
+    }
+
+    public function getFormattedRatingAttribute(): ?string
+    {
+        return $this->rating !== null && $this->rating > 0 
+            ? number_format($this->rating, 1) 
+            : null;
+    }
 
     public function category()
     {

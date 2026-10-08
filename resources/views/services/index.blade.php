@@ -176,6 +176,33 @@
         transition: transform 0.6s var(--ease);
     }
     .sv-card:hover .sv-card-img img { transform: scale(1.08); }
+
+    /* CARD OVERLAY BADGES */
+    .sv-card-badge-top {
+        position: absolute; top: 12px; left: 12px; right: 12px;
+        display: flex; justify-content: space-between; align-items: center;
+        gap: 6px; z-index: 3; pointer-events: none;
+    }
+    .sv-card-rating-badge {
+        background: rgba(15, 23, 42, 0.82);
+        backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+        color: #ffffff; font-size: 0.72rem; font-weight: 600;
+        padding: 4px 10px; border-radius: 20px;
+        display: inline-flex; align-items: center; gap: 4px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+    .sv-rating-star { color: #F59E0B; }
+    .sv-rating-sep { opacity: 0.4; margin: 0 1px; }
+    .sv-sold-val { color: #E2E8F0; font-weight: 500; }
+    .sv-card-price-badge {
+        background: #0F172A; color: #ffffff;
+        font-size: 0.78rem; font-weight: 700;
+        padding: 4px 10px; border-radius: 20px;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+        margin-left: auto;
+    }
+
     .sv-card-body {
         padding: 1.75rem; display: flex;
         flex-direction: column; flex-grow: 1;
@@ -386,6 +413,31 @@
                          alt="{{ $service->alt_text }}"
                          loading="{{ $i < 6 ? 'eager' : 'lazy' }}"
                          style="width:100%;height:100%;object-fit:cover;">
+
+                    @if(($service->rating && $service->rating > 0) || !empty($service->sold_count) || ($service->price && $service->price > 0))
+                        <div class="sv-card-badge-top">
+                            @if(($service->rating && $service->rating > 0) || !empty($service->sold_count))
+                                <div class="sv-card-rating-badge">
+                                    @if($service->rating && $service->rating > 0)
+                                        <span class="sv-rating-star">★</span>
+                                        <span class="sv-rating-val">{{ number_format($service->rating, 1) }}</span>
+                                    @endif
+                                    @if(($service->rating && $service->rating > 0) && !empty($service->sold_count))
+                                        <span class="sv-rating-sep">•</span>
+                                    @endif
+                                    @if(!empty($service->sold_count))
+                                        <span class="sv-sold-val">{{ $service->sold_count }} terjual</span>
+                                    @endif
+                                </div>
+                            @endif
+
+                            @if($service->price && $service->price > 0)
+                                <div class="sv-card-price-badge">
+                                    {{ $service->formatted_price }}
+                                </div>
+                            @endif
+                        </div>
+                    @endif
                 </div>
 
                 <div class="sv-card-body">

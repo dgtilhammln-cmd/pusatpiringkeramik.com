@@ -478,6 +478,82 @@
             color: var(--accent) !important;
         }
 
+        /* ── MARKETPLACE BUTTONS ── */
+        .sh-btn-shopee {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .6rem;
+            background: linear-gradient(135deg, #EE4D2D 0%, #FF6633 100%);
+            color: #ffffff !important;
+            font-size: .9375rem;
+            font-weight: 600;
+            padding: .875rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none !important;
+            transition: all .3s var(--ease);
+            box-shadow: 0 6px 18px rgba(238, 77, 45, .25);
+            width: 100%;
+            margin-top: .625rem;
+        }
+        .sh-btn-shopee:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(238, 77, 45, .35);
+            filter: brightness(1.05);
+        }
+
+        .sh-btn-tokopedia {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .6rem;
+            background: linear-gradient(135deg, #03AC0E 0%, #00C853 100%);
+            color: #ffffff !important;
+            font-size: .9375rem;
+            font-weight: 600;
+            padding: .875rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none !important;
+            transition: all .3s var(--ease);
+            box-shadow: 0 6px 18px rgba(3, 172, 14, .25);
+            width: 100%;
+            margin-top: .625rem;
+        }
+        .sh-btn-tokopedia:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(3, 172, 14, .35);
+            filter: brightness(1.05);
+        }
+
+        .sh-btn-tiktok {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .6rem;
+            background: linear-gradient(135deg, #03AC0E 0%, #00C853 100%);
+            color: #ffffff !important;
+            font-size: .9375rem;
+            font-weight: 600;
+            padding: .875rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none !important;
+            transition: all .3s var(--ease);
+            box-shadow: 0 6px 18px rgba(3, 172, 14, .25);
+            width: 100%;
+            margin-top: .625rem;
+        }
+        .sh-btn-tiktok:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(3, 172, 14, .35);
+            filter: brightness(1.05);
+        }
+
         /* ── SECTION SHARED LABELS ── */
         .cv-section-label {
             display: inline-flex;
@@ -1332,6 +1408,30 @@
             @if($service->short_desc)
                 <p class="sh-short-desc">{{ $service->short_desc }}</p>
             @endif
+
+            @if(($service->rating && $service->rating > 0) || !empty($service->sold_count) || ($service->price && $service->price > 0))
+                <div style="display:flex; align-items:center; justify-content:center; gap:12px; margin-top:1.5rem; flex-wrap:wrap;">
+                    @if($service->price && $service->price > 0)
+                        <div style="font-size: 1.5rem; font-weight: 800; color: #0F172A; background: #ffffff; padding: 6px 18px; border-radius: 30px; border: 1.5px solid #E2E8F0; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+                            {{ $service->formatted_price }}
+                        </div>
+                    @endif
+                    @if(($service->rating && $service->rating > 0) || !empty($service->sold_count))
+                        <div style="display:inline-flex; align-items:center; gap:6px; background:#ffffff; padding:8px 16px; border-radius:30px; font-size:0.875rem; font-weight:600; color:#334155; border:1.5px solid #E2E8F0;">
+                            @if($service->rating && $service->rating > 0)
+                                <span style="color:#F59E0B; font-size:1.1rem;">★</span>
+                                <span>{{ number_format($service->rating, 1) }}</span>
+                            @endif
+                            @if(($service->rating && $service->rating > 0) && !empty($service->sold_count))
+                                <span style="opacity:0.4; margin:0 2px;">•</span>
+                            @endif
+                            @if(!empty($service->sold_count))
+                                <span>{{ $service->sold_count }} Terjual</span>
+                            @endif
+                        </div>
+                    @endif
+                </div>
+            @endif
         </div>
     </section>
 
@@ -1509,9 +1609,37 @@
                             Chat via WhatsApp
                         </a>
                     @endif
+
+                    @if($service->shopee_link)
+                        <a href="{{ $service->shopee_link }}" target="_blank" rel="noopener noreferrer" class="sh-btn-shopee">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12zm-7-8c-1.66 0-3-1.34-3-3H7c0 2.76 2.24 5 5 5s5-2.24 5-5h-2c0 1.66-1.34 3-3 3z"/>
+                            </svg>
+                            Beli di Shopee
+                        </a>
+                    @endif
+
+                    @if($service->tokopedia_link)
+                        <a href="{{ $service->tokopedia_link }}" target="_blank" rel="noopener noreferrer" class="sh-btn-tokopedia">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 6h-2c0-2.76-2.24-5-5-5S7 3.24 7 6H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-7-3c1.66 0 3 1.34 3 3H9c0-1.66 1.34-3 3-3zm7 17H5V8h14v12zm-7-8c-1.66 0-3-1.34-3-3H7c0 2.76 2.24 5 5 5s5-2.24 5-5h-2c0 1.66-1.34 3-3 3z"/>
+                            </svg>
+                            Beli di Tokopedia
+                        </a>
+                    @endif
+
+                    @if($service->tiktok_link)
+                        <a href="{{ $service->tiktok_link }}" target="_blank" rel="noopener noreferrer" class="sh-btn-tiktok">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 11-2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 105.55 6.29V9a8.27 8.27 0 004.84 1.54V7.08a4.85 4.85 0 01-1.07-.39z"/>
+                            </svg>
+                            Beli di TikTok Shop
+                        </a>
+                    @endif
+
                     @if($service->brochure)
                         <a href="{{ asset('storage/' . $service->brochure) }}" target="_blank" class="sh-btn-outline"
-                            style="margin-bottom:1.5rem;">
+                            style="margin-top:.625rem; margin-bottom:1.5rem;">
                             <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -1523,6 +1651,42 @@
                 </div>{{-- /.sh-sidebar-card --}}
             </aside>
         </section>
+
+        {{-- JSON-LD Product Schema --}}
+        <script type="application/ld+json">
+        {
+          "@@context": "https://schema.org/",
+          "@@type": "Product",
+          "name": "{{ addslashes($service->name) }}",
+          "image": [
+            @foreach($imgs as $idx => $img)
+              "{{ $img }}"{{ $idx < count($imgs) - 1 ? ',' : '' }}
+            @endforeach
+          ],
+          "description": "{{ addslashes(strip_tags($service->short_desc ?? $service->name)) }}",
+          "brand": {
+            "@@type": "Brand",
+            "name": "{{ addslashes($companyName ?? 'UD. Sukses Makmur') }}"
+          }
+          @if($service->price && $service->price > 0),
+          "offers": {
+            "@@type": "Offer",
+            "url": "{{ url()->current() }}",
+            "priceCurrency": "IDR",
+            "price": "{{ (int) $service->price }}",
+            "itemCondition": "https://schema.org/NewCondition",
+            "availability": "https://schema.org/InStock"
+          }
+          @endif
+          @if($service->rating && $service->rating > 0),
+          "aggregateRating": {
+            "@@type": "AggregateRating",
+            "ratingValue": "{{ number_format($service->rating, 1) }}",
+            "reviewCount": "{{ (int) preg_replace('/[^0-9]/', '', $service->sold_count) ?: 10 }}"
+          }
+          @endif
+        }
+        </script>
 
 
         {{-- ═══ LIGHTBOX MODAL ═══ --}}
