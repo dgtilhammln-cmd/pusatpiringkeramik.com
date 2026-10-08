@@ -1140,7 +1140,31 @@
 
             .cv-gallery-grid .gallery-item:first-child {
                 grid-column: 1;
-        {{-- ════ NEW MODERN HERO (REDESIGN - IMAGE 2 STYLE) ════ --}}
+            }
+        }
+
+        @media (max-width: 640px) {
+            .cv-hero-modern {
+                padding-top: calc(46px + 1.5rem);
+            }
+
+            .cv-hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cv-gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cv-products-grid,
+            .cv-adv-grid,
+            .cv-apps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    {{-- ════ NEW MODERN HERO (REDESIGN - IMAGE 2 STYLE) ════ --}}
     <section class="cv-hero-modern" id="home">
         <div class="cv-hero-grid">
             @php
@@ -1274,19 +1298,6 @@
                     @endif
                 </div>
                 <div class="swiper-pagination hero-banner-swiper-pagination"></div>
-            </div>
-        </div>
-    </section>16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-                                                <span>{{ $settings['phone_number'] ?? $settings['company_phone'] }}</span>
-                                            </a>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                </div>
-                <div class="swiper-pagination hero-swiper-pagination"></div>
             </div>
         </div>
     </section>
@@ -3092,21 +3103,37 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            if (document.querySelector('.hero-swiper')) {
-                new Swiper('.hero-swiper', {
+            if (document.querySelector('.hero-banner-swiper')) {
+                new Swiper('.hero-banner-swiper', {
                     loop: true,
-                    effect: 'fade',
-                    fadeEffect: {
-                        crossFade: true
-                    },
+                    centeredSlides: true,
+                    slidesPerView: 1.18,
+                    spaceBetween: 24,
                     autoplay: {
                         delay: 5000,
                         disableOnInteraction: false,
                     },
                     pagination: {
-                        el: '.hero-swiper-pagination',
+                        el: '.hero-banner-swiper-pagination',
                         clickable: true,
                     },
+                    breakpoints: {
+                        0: {
+                            slidesPerView: 1,
+                            spaceBetween: 12,
+                            centeredSlides: true,
+                        },
+                        640: {
+                            slidesPerView: 1.1,
+                            spaceBetween: 16,
+                            centeredSlides: true,
+                        },
+                        1024: {
+                            slidesPerView: 1.18,
+                            spaceBetween: 24,
+                            centeredSlides: true,
+                        }
+                    }
                 });
             }
         });
