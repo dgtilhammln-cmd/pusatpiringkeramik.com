@@ -484,7 +484,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
     </a>
 
     <div class="sb-sec">Pengaturan</div>
-    <a href="{{ route('admin.page_management') }}" class="sb-link {{ request()->routeIs('admin.page_management*') ? 'active' : '' }}" title="Page Management">
+    <a href="{{ route('admin.page_management') }}" class="sb-link {{ request()->routeIs('admin.page_management*') || request()->routeIs('admin.hero_slides*') ? 'active' : '' }}" title="Page Management">
       <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
       <span class="sb-link-text">Page Management</span>
     </a>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Models\HeroSlide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -11,15 +12,18 @@ class AdminPageManagementController extends Controller
 {
     use HandlesImageUpload;
 
-    public function index()
+    public function index(Request $request)
     {
         $settings = Setting::getAllAsArray();
-        return view('admin.page_management.index', compact('settings'));
+        $heroSlides = HeroSlide::ordered()->get();
+        $activeTab = $request->query('tab', session('active_tab', 'sect-hero'));
+        return view('admin.page_management.index', compact('settings', 'heroSlides', 'activeTab'));
     }
 
     public function update(Request $request)
     {
-        $data = $request->except(['_token', '_method']);
+        $data = $request->except(['_token', '_method', 'active_tab']);
+        $activeTab = $request->input('active_tab', 'sect-hero');
 
         // Save normal input fields & JSON arrays
         foreach ($data as $key => $value) {
@@ -43,6 +47,7 @@ class AdminPageManagementController extends Controller
         }
 
         Setting::clearCache();
-        return back()->with('success', 'Halaman berhasil diperbarui!');
+        return redirect()->route('admin.page_management', ['tab' => $activeTab])->with('success', 'Halaman berhasil diperbarui!')->with('active_tab', $activeTab);
     }
 }
+

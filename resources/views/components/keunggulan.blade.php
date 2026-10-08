@@ -208,11 +208,11 @@
         {{-- Section Header --}}
         <div class="cv-adv-header">
             <div>
-                <div class="cv-adv-section-label">KEUNGGULAN</div>
-                <h2 class="cv-adv-section-title">Mengapa Pilih<br>{{ $companyName }}?</h2>
+                <div class="cv-adv-section-label">{{ \App\Models\Setting::get('value_section_label') ?? 'KEUNGGULAN' }}</div>
+                <h2 class="cv-adv-section-title">{{ \App\Models\Setting::get('value_section_title') ?? 'Mengapa Pilih ' . $companyName . '?' }}</h2>
             </div>
             <p style="max-width:320px;font-size:0.875rem;color:#64748B;line-height:1.65;text-align:right;">
-                Solusi perlindungan dan pelapisan berkualitas tinggi untuk kebutuhan maritim dan industri skala besar di seluruh Indonesia.
+                {{ \App\Models\Setting::get('value_section_desc') ?? 'Solusi perlindungan dan pelapisan berkualitas tinggi untuk kebutuhan maritim dan industri skala besar di seluruh Indonesia.' }}
             </p>
         </div>
 

@@ -12,13 +12,12 @@ class AdminHeroSlideController extends Controller
 
     public function index()
     {
-        $slides = HeroSlide::ordered()->get();
-        return view('admin.hero_slides.index', compact('slides'));
+        return redirect()->route('admin.page_management', ['tab' => 'sect-hero']);
     }
 
     public function create()
     {
-        return view('admin.hero_slides.form');
+        return redirect()->route('admin.page_management', ['tab' => 'sect-hero']);
     }
 
     public function store(Request $request)
@@ -29,11 +28,11 @@ class AdminHeroSlideController extends Controller
             'description' => 'nullable|max:500',
             'tags'        => 'nullable|max:500',
             'icon'        => 'nullable|max:50',
-            'image'       => 'nullable|image|max:3072',
+            'image'       => 'nullable|image|max:5096',
             'button_text' => 'nullable|max:100',
             'button_url'  => 'nullable|max:300',
-            'order'       => 'integer|min:0',
-            'is_active'   => 'boolean',
+            'order'       => 'nullable|integer|min:0',
+            'is_active'   => 'nullable|boolean',
             'stat_1_value'=> 'nullable|max:50',
             'stat_1_label'=> 'nullable|max:100',
             'stat_2_value'=> 'nullable|max:50',
@@ -43,6 +42,7 @@ class AdminHeroSlideController extends Controller
         ]);
 
         $validated['is_active'] = $request->boolean('is_active', true);
+        $validated['order'] = $request->input('order', 0);
 
         if ($request->hasFile('image')) {
             $validated['image'] = $this->storeWebP($request->file('image'), 'hero_slides', 1200);
@@ -50,16 +50,16 @@ class AdminHeroSlideController extends Controller
 
         $count = HeroSlide::count();
         if ($count >= 5) {
-            return back()->withErrors(['limit' => 'Maksimal 5 slide diperbolehkan.'])->withInput();
+            return redirect()->route('admin.page_management', ['tab' => 'sect-hero'])->withErrors(['limit' => 'Maksimal 5 slide diperbolehkan.'])->withInput();
         }
 
         HeroSlide::create($validated);
-        return redirect()->route('admin.hero_slides.index')->with('success', 'Slide berhasil ditambahkan.');
+        return redirect()->route('admin.page_management', ['tab' => 'sect-hero'])->with('success', 'Slide Hero berhasil ditambahkan.');
     }
 
     public function edit(HeroSlide $heroSlide)
     {
-        return view('admin.hero_slides.form', ['slide' => $heroSlide]);
+        return redirect()->route('admin.page_management', ['tab' => 'sect-hero', 'edit_slide' => $heroSlide->id]);
     }
 
     public function update(Request $request, HeroSlide $heroSlide)
@@ -70,11 +70,11 @@ class AdminHeroSlideController extends Controller
             'description' => 'nullable|max:500',
             'tags'        => 'nullable|max:500',
             'icon'        => 'nullable|max:50',
-            'image'       => 'nullable|image|max:3072',
+            'image'       => 'nullable|image|max:5096',
             'button_text' => 'nullable|max:100',
             'button_url'  => 'nullable|max:300',
-            'order'       => 'integer|min:0',
-            'is_active'   => 'boolean',
+            'order'       => 'nullable|integer|min:0',
+            'is_active'   => 'nullable|boolean',
             'stat_1_value'=> 'nullable|max:50',
             'stat_1_label'=> 'nullable|max:100',
             'stat_2_value'=> 'nullable|max:50',
@@ -84,6 +84,7 @@ class AdminHeroSlideController extends Controller
         ]);
 
         $validated['is_active'] = $request->boolean('is_active', true);
+        $validated['order'] = $request->input('order', $heroSlide->order);
 
         if ($request->hasFile('image')) {
             $this->deleteStorageFile($heroSlide->image);
@@ -91,13 +92,14 @@ class AdminHeroSlideController extends Controller
         }
 
         $heroSlide->update($validated);
-        return redirect()->route('admin.hero_slides.index')->with('success', 'Slide berhasil diperbarui.');
+        return redirect()->route('admin.page_management', ['tab' => 'sect-hero'])->with('success', 'Slide Hero berhasil diperbarui.');
     }
 
     public function destroy(HeroSlide $heroSlide)
     {
         $this->deleteStorageFile($heroSlide->image ?? null);
         $heroSlide->delete();
-        return back()->with('success', 'Slide berhasil dihapus.');
+        return redirect()->route('admin.page_management', ['tab' => 'sect-hero'])->with('success', 'Slide Hero berhasil dihapus.');
     }
 }
+

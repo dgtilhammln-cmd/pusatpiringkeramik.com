@@ -38,7 +38,7 @@
     border-radius: 12px !important;
     font-size: .875rem !important;
     color: #0F172A !important;
-    font-family: 'Montserrat', inherit !important;
+    font-family: 'Montserrat', sans-serif !important;
     font-weight: 500 !important;
     outline: none !important;
     box-sizing: border-box !important;
@@ -56,6 +56,12 @@
     font-weight: 700 !important;
     color: #334155 !important;
     margin-bottom: .4rem !important;
+}
+
+.pm-help {
+    font-size: .75rem;
+    color: #64748B;
+    margin-top: .3rem;
 }
 
 .pm-color-picker-wrap {
@@ -119,52 +125,71 @@
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
 }
 
-.pm-btn-add {
-    background: #EFF6FF;
-    color: #2563EB;
-    border: 1px dashed #93C5FD;
-    padding: 0.6rem 1.2rem;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: inline-flex;
+.pm-hero-slide-card {
+    background: #F8FAFC;
+    border: 1.5px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 1.25rem;
+    display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 1.25rem;
+    transition: all .2s;
 }
-.pm-btn-add:hover {
-    background: #DBEAFE;
-    color: #1D4ED8;
+.pm-hero-slide-card:hover {
+    border-color: #3B82F6;
+    background: #ffffff;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.04);
 }
 
-.pm-btn-del {
-    background: #FEE2E2;
-    color: #DC2626;
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    display: inline-flex;
+/* Modal Overlay */
+.pm-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    display: none;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s;
+    padding: 1.5rem;
 }
-.pm-btn-del:hover {
-    background: #FCA5A5;
-    color: #991B1B;
+.pm-modal.active {
+    display: flex;
+}
+.pm-modal-content {
+    background: #ffffff;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 720px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 2rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
 }
 </style>
 
+@if(session('success'))
+<div style="background:#ECFDF5; border:1px solid #A7F3D0; color:#047857; padding:.875rem 1.25rem; border-radius:12px; margin-bottom:1.5rem; font-size:.875rem; font-weight:600; display:flex; align-items:center; gap:.5rem;">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    {{ session('success') }}
+</div>
+@endif
+
+@if($errors->any())
+<div style="background:#FEF2F2; border:1px solid #FECACA; color:#B91C1C; padding:.875rem 1.25rem; border-radius:12px; margin-bottom:1.5rem; font-size:.875rem; font-weight:600;">
+    {{ $errors->first() }}
+</div>
+@endif
+
 <form method="POST" action="{{ route('admin.page_management.update') }}" enctype="multipart/form-data" id="page-management-form">
 @csrf
+<input type="hidden" name="active_tab" id="active_tab_input" value="{{ $activeTab ?? 'sect-hero' }}">
 
 {{-- Header --}}
 <div style="margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
   <div>
     <h1 style="font-size:1.5rem;font-weight:800;color:#0F172A;margin:0 0 .25rem;letter-spacing:-.02em;">Page Management</h1>
-    <p style="font-size:.85rem;color:#64748B;margin:0;">Kustomisasi seluruh warna, font, background, dan isi konten per halaman secara dinamis.</p>
+    <p style="font-size:.85rem;color:#64748B;margin:0;">Kustomisasi seluruh konten, warna, font, background, dan hero slide per halaman secara dinamis.</p>
   </div>
   <div style="display:flex;gap:.75rem;align-items:center;">
     <a href="{{ route('home') }}" target="_blank" style="display:inline-flex;align-items:center;gap:.375rem;padding:.625rem 1.25rem;font-size:.85rem;font-weight:600;background:#ffffff;border:1.5px solid #E2E8F0;color:#475569;border-radius:12px;text-decoration:none;transition:all .2s;">
@@ -192,7 +217,7 @@
   <div style="background:#ffffff; border-radius:16px; padding:0.75rem 1rem; border:1px solid #E2E8F0; margin-bottom:1.5rem; display:flex; gap:0.5rem; flex-wrap:wrap; box-shadow:0 2px 8px rgba(0,0,0,0.02);">
     @php
       $subTabs = [
-        'sect-hero'    => ['Hero Section', 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z'],
+        'sect-hero'    => ['Hero Section & Slide', 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z'],
         'sect-about'   => ['About Us Section', 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'],
         'sect-product' => ['Product Section', 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4'],
         'sect-value'   => ['Value & Keunggulan', 'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z'],
@@ -203,7 +228,7 @@
     @endphp
 
     @foreach($subTabs as $sKey => [$sLabel, $sIcon])
-      <button type="button" class="pm-sub-tab-btn {{ $loop->first ? 'active' : '' }}" onclick="switchSubTab('{{ $sKey }}')" id="sub-btn-{{ $sKey }}">
+      <button type="button" class="pm-sub-tab-btn {{ ($activeTab ?? 'sect-hero') === $sKey ? 'active' : '' }}" onclick="switchSubTab('{{ $sKey }}')" id="sub-btn-{{ $sKey }}">
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="{{ $sIcon }}"/></svg>
         {{ $sLabel }}
       </button>
@@ -211,14 +236,16 @@
   </div>
 
   {{-- SUB TAB 1: SECT HERO --}}
-  <div id="sub-sect-hero" class="sub-tab-content">
+  <div id="sub-sect-hero" class="sub-tab-content" style="{{ ($activeTab ?? 'sect-hero') === 'sect-hero' ? '' : 'display:none;' }}">
+    
+    {{-- Color & Styling Settings --}}
     <div class="pm-card">
       <div class="pm-card-header">
         <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
         <div class="pm-card-title">Tampilan & Warna Section Hero</div>
       </div>
 
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem; margin-bottom:1.5rem;">
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem;">
         <div>
           <label class="pm-label">Background Section</label>
           <div class="pm-color-picker-wrap">
@@ -248,33 +275,111 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem;">
-        <div>
-          <label class="pm-label">Badge Tag (Kategori Atas)</label>
-          <input type="text" name="hero_badge_text" class="pm-input" value="{{ $settings['hero_badge_text'] ?? 'PRODUSEN & DISTRIBUTOR UTAMA TABLEWARE KERAMIK' }}">
+    {{-- HERO SLIDES CRUD MANAGER (1 - MAX 5 SLIDES) --}}
+    <div class="pm-card">
+      <div class="pm-card-header" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+        <div style="display:flex; align-items:center; gap:.75rem;">
+          <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <div>
+            <div class="pm-card-title">Kelola Slide Hero (Maks. 5 Slide)</div>
+            <div style="font-size:.75rem; color:#64748B; margin-top:.15rem;">Tambah, urutkan, dan ubah banner slide hero utama yang tampil di beranda website.</div>
+          </div>
         </div>
-        <div>
-          <label class="pm-label">Judul Utama Hero (Title)</label>
-          <input type="text" name="hero_title" class="pm-input" value="{{ $settings['hero_title'] ?? 'Pusat Piring Keramik Grosir Indonesia' }}">
-        </div>
-        <div style="grid-column: span 2;">
-          <label class="pm-label">Deskripsi Ringkas</label>
-          <textarea name="hero_desc" class="pm-input" rows="3">{{ $settings['hero_desc'] ?? 'Supplier resmi piring keramik & porselen food-grade premium untuk Hotel, Restoran, Kafe, Katering & Event Organizer seluruh Indonesia.' }}</textarea>
+
+        <div style="display:flex; align-items:center; gap:1rem;">
+          <span style="font-size:.8rem; font-weight:700; color:#3B82F6; background:#EFF6FF; padding:.4rem .8rem; border-radius:20px; border:1px solid #BFDBFE;">
+            {{ $heroSlides->count() }} / 5 Slide Aktif
+          </span>
+          @if($heroSlides->count() < 5)
+          <button type="button" onclick="openAddModal()" style="display:inline-flex;align-items:center;gap:.4rem;padding:.55rem 1.1rem;font-size:.8rem;font-weight:700;background:#0F172A;color:#ffffff;border:none;border-radius:10px;cursor:pointer;transition:all .2s;">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+            Tambah Hero Slide
+          </button>
+          @endif
         </div>
       </div>
+
+      {{-- SLIDES LIST --}}
+      @if($heroSlides->isEmpty())
+      <div style="text-align:center; padding:3rem 1.5rem; background:#F8FAFC; border:1.5px dashed #CBD5E1; border-radius:16px;">
+        <svg width="40" height="40" fill="none" stroke="#94A3B8" stroke-width="1.5" viewBox="0 0 24 24" style="margin-bottom:.5rem;"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <div style="font-weight:700; color:#334155; margin-bottom:.25rem;">Belum ada Slide Hero</div>
+        <p style="font-size:.8rem; color:#64748B; margin:0 0 1rem;">Klik tombol "Tambah Hero Slide" di atas untuk membuat banner slide hero pertama.</p>
+        <button type="button" onclick="openAddModal()" style="display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1rem;font-size:.8rem;font-weight:700;background:#3B82F6;color:#ffffff;border:none;border-radius:8px;cursor:pointer;">
+          + Tambah Slide Pertama
+        </button>
+      </div>
+      @else
+      <div style="display:flex; flex-direction:column; gap:1rem;">
+        @foreach($heroSlides as $slide)
+        <div class="pm-hero-slide-card">
+          {{-- Thumbnail --}}
+          <div style="width:110px; height:75px; border-radius:12px; overflow:hidden; flex-shrink:0; background:#0F172A; position:relative;">
+            @if($slide->image)
+              <img src="{{ asset('storage/'.$slide->image) }}" style="width:100%;height:100%;object-fit:cover;" alt="{{ $slide->title }}">
+            @else
+              <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.3);font-size:.7rem;font-weight:600;">No Image</div>
+            @endif
+            <div style="position:absolute; top:4px; left:4px; background:rgba(15,23,42,0.8); color:#fff; font-size:.65rem; font-weight:800; padding:2px 6px; border-radius:6px;">
+              #{{ $slide->order }}
+            </div>
+          </div>
+
+          {{-- Slide Info --}}
+          <div style="flex:1; min-width:0;">
+            <div style="display:flex; align-items:center; gap:.5rem; margin-bottom:.2rem;">
+              <span style="font-size:.7rem; font-weight:700; color:#3B82F6; background:#EFF6FF; padding:2px 8px; border-radius:4px;">
+                {{ $slide->subtitle ?: 'Slide Banner' }}
+              </span>
+              <span style="font-size:.7rem; padding:2px 8px; border-radius:20px; font-weight:700; {{ $slide->is_active ? 'background:#DCFCE7; color:#15803D;' : 'background:#F1F5F9; color:#64748B;' }}">
+                {{ $slide->is_active ? 'Aktif' : 'Nonaktif' }}
+              </span>
+            </div>
+            <div style="font-size:.9rem; font-weight:800; color:#0F172A; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+              {{ $slide->title }}
+            </div>
+            @if($slide->description)
+              <div style="font-size:.78rem; color:#64748B; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-top:2px;">
+                {{ $slide->description }}
+              </div>
+            @endif
+            <div style="display:flex; gap:1rem; margin-top:.35rem; font-size:.7rem; color:#94A3B8;">
+              @if($slide->stat_1_value) <span>📊 {{ $slide->stat_1_value }} {{ $slide->stat_1_label }}</span> @endif
+              @if($slide->stat_2_value) <span>📊 {{ $slide->stat_2_value }} {{ $slide->stat_2_label }}</span> @endif
+              @if($slide->stat_3_value) <span>📊 {{ $slide->stat_3_value }} {{ $slide->stat_3_label }}</span> @endif
+            </div>
+          </div>
+
+          {{-- Actions --}}
+          <div style="display:flex; gap:.5rem; flex-shrink:0;">
+            <button type="button" onclick="openEditModal({{ json_encode($slide) }})" style="background:#EFF6FF; color:#2563EB; border:1px solid #BFDBFE; padding:.5rem .875rem; border-radius:8px; font-size:.78rem; font-weight:700; cursor:pointer; transition:all .2s;">
+              Edit
+            </button>
+            <button type="button" onclick="confirmDeleteSlide({{ $slide->id }})" style="background:#FEF2F2; color:#DC2626; border:1px solid #FECACA; padding:.5rem .875rem; border-radius:8px; font-size:.78rem; font-weight:700; cursor:pointer; transition:all .2s;">
+              Hapus
+            </button>
+          </div>
+        </div>
+        @endforeach
+      </div>
+      @endif
     </div>
+
   </div>
 
   {{-- SUB TAB 2: SECT ABOUT --}}
-  <div id="sub-sect-about" class="sub-tab-content" style="display:none;">
+  <div id="sub-sect-about" class="sub-tab-content" style="{{ ($activeTab ?? '') === 'sect-about' ? '' : 'display:none;' }}">
+    
+    {{-- Tampilan Warna --}}
     <div class="pm-card">
       <div class="pm-card-header">
         <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        <div class="pm-card-title">Kustomisasi Section About Us</div>
+        <div class="pm-card-title">Tampilan & Warna Section About Us</div>
       </div>
 
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem; margin-bottom:1.5rem;">
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem;">
         <div>
           <label class="pm-label">Background Section</label>
           <div class="pm-color-picker-wrap">
@@ -283,40 +388,152 @@
           </div>
         </div>
         <div>
-          <label class="pm-label">Warna Judul (Title Color)</label>
+          <label class="pm-label">Warna Judul Section</label>
           <div class="pm-color-picker-wrap">
             <input type="color" value="{{ $settings['page_home_about_title_color'] ?? '#0F172A' }}" onchange="document.getElementById('c_about_title').value=this.value">
             <input type="text" name="page_home_about_title_color" id="c_about_title" class="pm-input" value="{{ $settings['page_home_about_title_color'] ?? '#0F172A' }}">
           </div>
         </div>
         <div>
-          <label class="pm-label">Warna Teks & Paragraf</label>
+          <label class="pm-label">Warna Teks Deskripsi</label>
           <div class="pm-color-picker-wrap">
             <input type="color" value="{{ $settings['page_home_about_text_color'] ?? '#475569' }}" onchange="document.getElementById('c_about_text').value=this.value">
             <input type="text" name="page_home_about_text_color" id="c_about_text" class="pm-input" value="{{ $settings['page_home_about_text_color'] ?? '#475569' }}">
           </div>
         </div>
       </div>
+    </div>
 
-      <div style="display:grid; grid-template-columns:1fr; gap:1.25rem;">
+    {{-- Header Section About --}}
+    <div class="pm-card">
+      <div class="pm-card-header">
+        <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        <div class="pm-card-title">Judul Utama & Header About Us</div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 2fr; gap:1.25rem;">
         <div>
-          <label class="pm-label">Sub-Judul / Badge</label>
-          <input type="text" name="about_subtitle" class="pm-input" value="{{ $settings['about_subtitle'] ?? 'TENTANG KAMI' }}">
+          <label class="pm-label">Sub-Judul / Badge Tag (Atas)</label>
+          <input type="text" name="about_subtitle" class="pm-input" value="{{ $settings['about_subtitle'] ?? 'ABOUT US' }}">
+          <div class="pm-help">Teks badge kecil di atas judul utama (Contoh: ABOUT US).</div>
         </div>
         <div>
-          <label class="pm-label">Judul Section About</label>
-          <input type="text" name="about_title" class="pm-input" value="{{ $settings['about_title'] ?? 'Mitra Terpercaya Peralatan Makan Keramik B2B' }}">
-        </div>
-        <div>
-          <label class="pm-label">Deskripsi Lengkap About</label>
-          <textarea name="about_desc" class="pm-input" rows="4">{{ $settings['about_desc'] ?? 'Kami adalah distributor dan supplier piring keramik, porselen, dan peralatan makan (tableware) terbesar yang melayani ribuan bisnis F&B, hotel bintang, restoran, dan catering di Indonesia.' }}</textarea>
+          <label class="pm-label">Judul Utama About Us (HTML Supported)</label>
+          <textarea name="about_heading" class="pm-input" rows="2">{{ $settings['about_heading'] ?? 'Solusi Cat <span class="ab-icon-dark-red"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></span> Berkualitas Tinggi untuk <span class="ab-icon-red"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 3.18 1.66 6.02 4.14 7.69.41.27.68.73.68 1.22V22h8.36v-1.09c0-.49.27-.95.68-1.22 2.48-1.67 4.14-4.51 4.14-7.69 0-4.97-4.03-9-9-9zM12 18h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></span> Industri & Maritim' }}</textarea>
+          <div class="pm-help">Anda dapat mengubah teks judul utama atau menambahkan tag icon.</div>
         </div>
       </div>
+    </div>
+
+    {{-- 4 Cards Customization Grid --}}
+    <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:1.5rem;">
+      
+      {{-- Card 1: Keywords Pattern Card --}}
+      <div class="pm-card" style="margin-bottom:0;">
+        <div class="pm-card-header">
+          <span style="background:#F1F5F9; color:#0F172A; font-weight:800; padding:2px 8px; border-radius:6px; font-size:.75rem;">Card 1</span>
+          <div class="pm-card-title">Pengalaman & Keyword Chips</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1rem;">
+          <div>
+            <label class="pm-label">Label Card</label>
+            <input type="text" name="about_c1_label" class="pm-input" value="{{ $settings['about_c1_label'] ?? 'Pengalaman' }}">
+          </div>
+          <div>
+            <label class="pm-label">Nilai Teks / Tahun</label>
+            <input type="text" name="about_c1_value" class="pm-input" value="{{ $settings['about_c1_value'] ?? '10+ Tahun' }}">
+          </div>
+          <div>
+            <label class="pm-label">Keywords Tag Chips (Pisahkan dengan koma)</label>
+            <textarea name="about_c1_keywords" class="pm-input" rows="3">{{ $settings['about_c1_keywords'] ?? 'Piring Keramik, Keramik Lantai, Porselen, Grosir Hotel, High Quality, Keramik Dinding, Tahan Lama, Food Safe' }}</textarea>
+            <div class="pm-help">Keyword mengapung yang tampil di background Card 1.</div>
+          </div>
+        </div>
+      </div>
+
+      {{-- Card 2: Solid Accent Card --}}
+      <div class="pm-card" style="margin-bottom:0;">
+        <div class="pm-card-header">
+          <span style="background:#0F172A; color:#ffffff; font-weight:800; padding:2px 8px; border-radius:6px; font-size:.75rem;">Card 2</span>
+          <div class="pm-card-title">Komitmen Kualitas (Solid Card)</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1rem;">
+          <div>
+            <label class="pm-label">Label Card</label>
+            <input type="text" name="about_c2_label" class="pm-input" value="{{ $settings['about_c2_label'] ?? 'Komitmen Kualitas' }}">
+          </div>
+          <div>
+            <label class="pm-label">Nilai Persentase / Stat</label>
+            <input type="text" name="about_c2_value" class="pm-input" value="{{ $settings['about_c2_value'] ?? '100%' }}">
+          </div>
+          <div>
+            <label class="pm-label">Deskripsi Card 2</label>
+            <textarea name="about_c2_desc" class="pm-input" rows="2">{{ $settings['about_c2_desc'] ?? 'Memberikan solusi piring dan tableware keramik terbaik untuk usaha Anda.' }}</textarea>
+          </div>
+          <div>
+            <label class="pm-label">Background Color Card 2</label>
+            <div class="pm-color-picker-wrap">
+              <input type="color" value="{{ $settings['about_c2_bg'] ?? '#0A1930' }}" onchange="document.getElementById('c_c2_bg').value=this.value">
+              <input type="text" name="about_c2_bg" id="c_c2_bg" class="pm-input" value="{{ $settings['about_c2_bg'] ?? '#0A1930' }}">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{-- Card 3: Image Card --}}
+      <div class="pm-card" style="margin-bottom:0;">
+        <div class="pm-card-header">
+          <span style="background:#EFF6FF; color:#2563EB; font-weight:800; padding:2px 8px; border-radius:6px; font-size:.75rem;">Card 3</span>
+          <div class="pm-card-title">Proyek & Gambar Background Card</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1rem;">
+          <div>
+            <label class="pm-label">Upload Gambar Background Card 3</label>
+            @if(!empty($settings['about_c3_image']))
+              <div style="width:100px; height:60px; border-radius:8px; overflow:hidden; margin-bottom:.5rem; border:1px solid #E2E8F0;">
+                <img src="{{ asset('storage/'.$settings['about_c3_image']) }}" style="width:100%;height:100%;object-fit:cover;">
+              </div>
+            @endif
+            <input type="file" name="about_c3_image" class="pm-input" accept="image/*">
+          </div>
+          <div>
+            <label class="pm-label">Nilai Proyek / Stat</label>
+            <input type="text" name="about_c3_value" class="pm-input" value="{{ $settings['about_c3_value'] ?? '500+' }}">
+          </div>
+          <div>
+            <label class="pm-label">Deskripsi Card 3</label>
+            <textarea name="about_c3_desc" class="pm-input" rows="2">{{ $settings['about_c3_desc'] ?? 'Proyek suplai dan pengadaan diselesaikan di seluruh Indonesia.' }}</textarea>
+          </div>
+        </div>
+      </div>
+
+      {{-- Card 4: Light Gray Card --}}
+      <div class="pm-card" style="margin-bottom:0;">
+        <div class="pm-card-header">
+          <span style="background:#F1F5F9; color:#0F172A; font-weight:800; padding:2px 8px; border-radius:6px; font-size:.75rem;">Card 4</span>
+          <div class="pm-card-title">Distribusi Produk Card</div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1rem;">
+          <div>
+            <label class="pm-label">Label Card 4</label>
+            <input type="text" name="about_c4_label" class="pm-input" value="{{ $settings['about_c4_label'] ?? 'Distribusi Produk' }}">
+          </div>
+          <div>
+            <label class="pm-label">Nilai Stat / Volume</label>
+            <input type="text" name="about_c4_value" class="pm-input" value="{{ $settings['about_c4_value'] ?? '1.000+' }}">
+          </div>
+          <div>
+            <label class="pm-label">Deskripsi Card 4</label>
+            <textarea name="about_c4_desc" class="pm-input" rows="3">{{ $settings['about_c4_desc'] ?? 'Ribuan set tableware terdistribusi ke berbagai sektor Horeca.' }}</textarea>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
   {{-- SUB TAB 3: SECT PRODUCT --}}
-  <div id="sub-sect-product" class="sub-tab-content" style="display:none;">
+  <div id="sub-sect-product" class="sub-tab-content" style="{{ ($activeTab ?? '') === 'sect-product' ? '' : 'display:none;' }}">
     <div class="pm-card">
       <div class="pm-card-header">
         <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
@@ -327,35 +544,53 @@
         <div>
           <label class="pm-label">Background Section</label>
           <div class="pm-color-picker-wrap">
-            <input type="color" value="{{ $settings['page_home_product_bg'] ?? '#F8FAFC' }}" onchange="document.getElementById('c_prod_bg').value=this.value">
-            <input type="text" name="page_home_product_bg" id="c_prod_bg" class="pm-input" value="{{ $settings['page_home_product_bg'] ?? '#F8FAFC' }}">
+            <input type="color" value="{{ $settings['page_home_product_bg'] ?? '#0F172A' }}" onchange="document.getElementById('c_prod_bg').value=this.value">
+            <input type="text" name="page_home_product_bg" id="c_prod_bg" class="pm-input" value="{{ $settings['page_home_product_bg'] ?? '#0F172A' }}">
           </div>
         </div>
         <div>
           <label class="pm-label">Warna Background Card</label>
           <div class="pm-color-picker-wrap">
-            <input type="color" value="{{ $settings['page_home_product_card_bg'] ?? '#FFFFFF' }}" onchange="document.getElementById('c_prod_card_bg').value=this.value">
-            <input type="text" name="page_home_product_card_bg" id="c_prod_card_bg" class="pm-input" value="{{ $settings['page_home_product_card_bg'] ?? '#FFFFFF' }}">
+            <input type="color" value="{{ $settings['page_home_product_card_bg'] ?? '#1E293B' }}" onchange="document.getElementById('c_prod_card_bg').value=this.value">
+            <input type="text" name="page_home_product_card_bg" id="c_prod_card_bg" class="pm-input" value="{{ $settings['page_home_product_card_bg'] ?? '#1E293B' }}">
           </div>
         </div>
         <div>
           <label class="pm-label">Warna Judul Section</label>
           <div class="pm-color-picker-wrap">
-            <input type="color" value="{{ $settings['page_home_product_title_color'] ?? '#0F172A' }}" onchange="document.getElementById('c_prod_title').value=this.value">
-            <input type="text" name="page_home_product_title_color" id="c_prod_title" class="pm-input" value="{{ $settings['page_home_product_title_color'] ?? '#0F172A' }}">
+            <input type="color" value="{{ $settings['page_home_product_title_color'] ?? '#FFFFFF' }}" onchange="document.getElementById('c_prod_title').value=this.value">
+            <input type="text" name="page_home_product_title_color" id="c_prod_title" class="pm-input" value="{{ $settings['page_home_product_title_color'] ?? '#FFFFFF' }}">
           </div>
         </div>
       </div>
 
-      <div>
-        <label class="pm-label">Judul Section Produk</label>
-        <input type="text" name="product_section_title" class="pm-input" value="{{ $settings['product_section_title'] ?? 'Katalog Piring & Tableware Unggulan' }}">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem;">
+        <div>
+          <label class="pm-label">Judul Section Produk</label>
+          <input type="text" name="product_section_title" class="pm-input" value="{{ $settings['product_section_title'] ?? 'Katalog Produk Kami' }}">
+        </div>
+        <div>
+          <label class="pm-label">Catatan Kecil Kanan</label>
+          <input type="text" name="product_section_note" class="pm-input" value="{{ $settings['product_section_note'] ?? 'Tersedia berbagai varian dan spesifikasi' }}">
+        </div>
+        <div style="grid-column: span 2;">
+          <label class="pm-label">Deskripsi / Subtitle Section Produk</label>
+          <textarea name="product_section_desc" class="pm-input" rows="2">{{ $settings['product_section_desc'] ?? 'Solusi cat dan coating premium terpercaya untuk berbagai skala industri di Indonesia.' }}</textarea>
+        </div>
+        <div>
+          <label class="pm-label">Teks Tombol Utama CTA</label>
+          <input type="text" name="product_cta1_text" class="pm-input" value="{{ $settings['product_cta1_text'] ?? 'Ke Katalog Produk' }}">
+        </div>
+        <div>
+          <label class="pm-label">Teks Tombol Sekunder CTA</label>
+          <input type="text" name="product_cta2_text" class="pm-input" value="{{ $settings['product_cta2_text'] ?? 'Semua Kategori Produk' }}">
+        </div>
       </div>
     </div>
   </div>
 
   {{-- SUB TAB 4: SECT VALUE --}}
-  <div id="sub-sect-value" class="sub-tab-content" style="display:none;">
+  <div id="sub-sect-value" class="sub-tab-content" style="{{ ($activeTab ?? '') === 'sect-value' ? '' : 'display:none;' }}">
     <div class="pm-card">
       <div class="pm-card-header">
         <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
@@ -379,19 +614,29 @@
         </div>
       </div>
 
-      <div>
-        <label class="pm-label">Judul Keunggulan</label>
-        <input type="text" name="value_section_title" class="pm-input" value="{{ $settings['value_section_title'] ?? 'Mengapa Memilih Kami?' }}">
+      <div style="display:grid; grid-template-columns:1fr 2fr; gap:1.25rem; margin-bottom:1.5rem;">
+        <div>
+          <label class="pm-label">Badge Label Atas</label>
+          <input type="text" name="value_section_label" class="pm-input" value="{{ $settings['value_section_label'] ?? 'KEUNGGULAN' }}">
+        </div>
+        <div>
+          <label class="pm-label">Judul Section Keunggulan</label>
+          <input type="text" name="value_section_title" class="pm-input" value="{{ $settings['value_section_title'] ?? 'Mengapa Pilih Pusat Piring Keramik?' }}">
+        </div>
+        <div style="grid-column: span 2;">
+          <label class="pm-label">Deskripsi Section Keunggulan</label>
+          <textarea name="value_section_desc" class="pm-input" rows="2">{{ $settings['value_section_desc'] ?? 'Solusi perlindungan dan pelapisan berkualitas tinggi untuk kebutuhan maritim dan industri skala besar di seluruh Indonesia.' }}</textarea>
+        </div>
       </div>
     </div>
   </div>
 
   {{-- SUB TAB 5: SECT APLIKASI --}}
-  <div id="sub-sect-aplikasi" class="sub-tab-content" style="display:none;">
+  <div id="sub-sect-aplikasi" class="sub-tab-content" style="{{ ($activeTab ?? '') === 'sect-aplikasi' ? '' : 'display:none;' }}">
     <div class="pm-card">
       <div class="pm-card-header">
         <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-        <div class="pm-card-title">Kustomisasi Section Aplikasi & Segmen Pasar</div>
+        <div class="pm-card-title">Kustomisasi Section Aplikasi & Use Case</div>
       </div>
 
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem; margin-bottom:1.5rem;">
@@ -411,15 +656,57 @@
         </div>
       </div>
 
-      <div>
-        <label class="pm-label">Judul Section Aplikasi</label>
-        <input type="text" name="aplikasi_section_title" class="pm-input" value="{{ $settings['aplikasi_section_title'] ?? 'Melayani Seluruh Sektor Industri F&B & Hospitality' }}">
+      <div style="display:grid; grid-template-columns:1fr 2fr; gap:1.25rem; margin-bottom:1.5rem;">
+        <div>
+          <label class="pm-label">Badge Label Atas</label>
+          <input type="text" name="aplikasi_section_label" class="pm-input" value="{{ $settings['aplikasi_section_label'] ?? 'APLIKASI' }}">
+        </div>
+        <div>
+          <label class="pm-label">Judul Section Aplikasi</label>
+          <input type="text" name="aplikasi_section_title" class="pm-input" value="{{ $settings['aplikasi_section_title'] ?? 'Cocok untuk Berbagai Industri' }}">
+        </div>
+        <div style="grid-column: span 2;">
+          <label class="pm-label">Deskripsi Section Aplikasi</label>
+          <textarea name="aplikasi_section_desc" class="pm-input" rows="2">{{ $settings['aplikasi_section_desc'] ?? 'Produk pelapis dan cat dirancang untuk melindungi beragam aset strategis di berbagai sektor.' }}</textarea>
+        </div>
+      </div>
+
+      {{-- 4 Image Uploads for Applications --}}
+      <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:1.25rem;">
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:1.25rem; border-radius:14px;">
+          <label class="pm-label">1. Gambar Maritim / Restoran</label>
+          @if(!empty($settings['app_img_restoran']))
+            <img src="{{ asset('storage/'.$settings['app_img_restoran']) }}" style="width:100px; height:60px; object-fit:cover; border-radius:8px; margin-bottom:.5rem;">
+          @endif
+          <input type="file" name="app_img_restoran" class="pm-input" accept="image/*">
+        </div>
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:1.25rem; border-radius:14px;">
+          <label class="pm-label">2. Gambar Pabrik / Gudang</label>
+          @if(!empty($settings['app_img_pabrik']))
+            <img src="{{ asset('storage/'.$settings['app_img_pabrik']) }}" style="width:100px; height:60px; object-fit:cover; border-radius:8px; margin-bottom:.5rem;">
+          @endif
+          <input type="file" name="app_img_pabrik" class="pm-input" accept="image/*">
+        </div>
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:1.25rem; border-radius:14px;">
+          <label class="pm-label">3. Gambar Struktur Baja / Hotel</label>
+          @if(!empty($settings['app_img_gor']))
+            <img src="{{ asset('storage/'.$settings['app_img_gor']) }}" style="width:100px; height:60px; object-fit:cover; border-radius:8px; margin-bottom:.5rem;">
+          @endif
+          <input type="file" name="app_img_gor" class="pm-input" accept="image/*">
+        </div>
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:1.25rem; border-radius:14px;">
+          <label class="pm-label">4. Gambar Komersial / Dapur</label>
+          @if(!empty($settings['app_img_dapur']))
+            <img src="{{ asset('storage/'.$settings['app_img_dapur']) }}" style="width:100px; height:60px; object-fit:cover; border-radius:8px; margin-bottom:.5rem;">
+          @endif
+          <input type="file" name="app_img_dapur" class="pm-input" accept="image/*">
+        </div>
       </div>
     </div>
   </div>
 
   {{-- SUB TAB 6: SECT KOTA --}}
-  <div id="sub-sect-kota" class="sub-tab-content" style="display:none;">
+  <div id="sub-sect-kota" class="sub-tab-content" style="{{ ($activeTab ?? '') === 'sect-kota' ? '' : 'display:none;' }}">
     <div class="pm-card">
       <div class="pm-card-header">
         <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
@@ -430,28 +717,43 @@
         <div>
           <label class="pm-label">Background Section</label>
           <div class="pm-color-picker-wrap">
-            <input type="color" value="{{ $settings['page_home_kota_bg'] ?? '#FAFAFA' }}" onchange="document.getElementById('c_kota_bg').value=this.value">
-            <input type="text" name="page_home_kota_bg" id="c_kota_bg" class="pm-input" value="{{ $settings['page_home_kota_bg'] ?? '#FAFAFA' }}">
+            <input type="color" value="{{ $settings['page_home_kota_bg'] ?? '#0F172A' }}" onchange="document.getElementById('c_kota_bg').value=this.value">
+            <input type="text" name="page_home_kota_bg" id="c_kota_bg" class="pm-input" value="{{ $settings['page_home_kota_bg'] ?? '#0F172A' }}">
           </div>
         </div>
         <div>
           <label class="pm-label">Warna Judul Section</label>
           <div class="pm-color-picker-wrap">
-            <input type="color" value="{{ $settings['page_home_kota_title_color'] ?? '#0F172A' }}" onchange="document.getElementById('c_kota_title').value=this.value">
-            <input type="text" name="page_home_kota_title_color" id="c_kota_title" class="pm-input" value="{{ $settings['page_home_kota_title_color'] ?? '#0F172A' }}">
+            <input type="color" value="{{ $settings['page_home_kota_title_color'] ?? '#FFFFFF' }}" onchange="document.getElementById('c_kota_title').value=this.value">
+            <input type="text" name="page_home_kota_title_color" id="c_kota_title" class="pm-input" value="{{ $settings['page_home_kota_title_color'] ?? '#FFFFFF' }}">
           </div>
         </div>
       </div>
 
-      <div>
-        <label class="pm-label">Judul Jangkauan Kota</label>
-        <input type="text" name="kota_section_title" class="pm-input" value="{{ $settings['kota_section_title'] ?? 'Jangkauan Pengiriman Ke 50+ Kota di Indonesia' }}">
+      <div style="display:grid; grid-template-columns:1fr; gap:1.25rem; margin-bottom:1.5rem;">
+        <div>
+          <label class="pm-label">Judul Utama Jangkauan Kota</label>
+          <input type="text" name="kota_section_title" class="pm-input" value="{{ $settings['kota_section_title'] ?? 'Melayani seluruh Indonesia dengan jangkauan 50+ Kota.' }}">
+        </div>
+        <div>
+          <label class="pm-label">Deskripsi Paragraf Jangkauan Kota</label>
+          <textarea name="kota_section_desc" class="pm-input" rows="3">{{ $settings['kota_section_desc'] ?? 'Bermitra dengan ekspedisi terkemuka untuk mendistribusikan solusi perlindungan maritim dan industri kualitas premium ke seluruh pelosok Nusantara secara cepat dan aman.' }}</textarea>
+        </div>
+        <div>
+          <label class="pm-label">Upload Gambar Peta Indonesia (Map Vector/PNG)</label>
+          @if(!empty($settings['coverage_map']))
+            <div style="max-width:200px; margin-bottom:.5rem;">
+              <img src="{{ asset('storage/'.$settings['coverage_map']) }}" style="width:100%; border-radius:8px; border:1px solid #E2E8F0;">
+            </div>
+          @endif
+          <input type="file" name="coverage_map" class="pm-input" accept="image/*">
+        </div>
       </div>
     </div>
   </div>
 
   {{-- SUB TAB 7: SECT FOOTER --}}
-  <div id="sub-sect-footer" class="sub-tab-content" style="display:none;">
+  <div id="sub-sect-footer" class="sub-tab-content" style="{{ ($activeTab ?? '') === 'sect-footer' ? '' : 'display:none;' }}">
     <div class="pm-card">
       <div class="pm-card-header">
         <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5z M4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6z M16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
@@ -485,6 +787,96 @@
 
 </form>
 
+{{-- HERO SLIDE MODAL (ADD / EDIT) --}}
+<div class="pm-modal" id="hero-slide-modal">
+  <div class="pm-modal-content">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; padding-bottom:.75rem; border-bottom:1px solid #E2E8F0;">
+      <h3 id="modal-title" style="font-size:1.1rem; font-weight:800; color:#0F172A; margin:0;">Tambah Hero Slide</h3>
+      <button type="button" onclick="closeHeroModal()" style="background:none; border:none; color:#64748B; cursor:pointer; font-size:1.5rem; line-height:1;">&times;</button>
+    </div>
+
+    <form method="POST" action="{{ route('admin.hero_slides.store') }}" enctype="multipart/form-data" id="hero-slide-form">
+      @csrf
+      <input type="hidden" name="_method" id="hero-form-method" value="POST">
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.25rem;">
+        <div style="grid-column: span 2;">
+          <label class="pm-label">Judul Utama Slide *</label>
+          <input type="text" name="title" id="slide_title" class="pm-input" required placeholder="Contoh: Where Innovation Drives Structural Perfection">
+        </div>
+        <div>
+          <label class="pm-label">Subtitle / Badge Tagline Atas</label>
+          <input type="text" name="subtitle" id="slide_subtitle" class="pm-input" placeholder="Contoh: Award-Winning Construction Excellence">
+        </div>
+        <div>
+          <label class="pm-label">Urutan Tampil (Order)</label>
+          <input type="number" name="order" id="slide_order" class="pm-input" value="1" min="1" max="5">
+        </div>
+        <div style="grid-column: span 2;">
+          <label class="pm-label">Deskripsi Ringkas Banner</label>
+          <textarea name="description" id="slide_description" class="pm-input" rows="2" placeholder="Deskripsi singkat slide hero..."></textarea>
+        </div>
+        <div style="grid-column: span 2;">
+          <label class="pm-label">Tag Chips (Pisahkan dengan koma)</label>
+          <input type="text" name="tags" id="slide_tags" class="pm-input" placeholder="Piring Keramik, Keramik Lantai, Porselen, Food Grade">
+        </div>
+        <div style="grid-column: span 2;">
+          <label class="pm-label">Gambar Slide Hero (WebP/JPG/PNG)</label>
+          <div id="slide_img_preview" style="margin-bottom:.5rem; display:none;">
+            <img id="slide_img_src" src="" style="max-height:120px; border-radius:10px; border:1px solid #E2E8F0;">
+          </div>
+          <input type="file" name="image" class="pm-input" accept="image/*">
+        </div>
+
+        {{-- Stat 1 --}}
+        <div>
+          <label class="pm-label">Stat 1 Value</label>
+          <input type="text" name="stat_1_value" id="slide_stat_1_value" class="pm-input" placeholder="640+">
+        </div>
+        <div>
+          <label class="pm-label">Stat 1 Label</label>
+          <input type="text" name="stat_1_label" id="slide_stat_1_label" class="pm-input" placeholder="Projects Completed">
+        </div>
+
+        {{-- Stat 2 --}}
+        <div>
+          <label class="pm-label">Stat 2 Value</label>
+          <input type="text" name="stat_2_value" id="slide_stat_2_value" class="pm-input" placeholder="25+">
+        </div>
+        <div>
+          <label class="pm-label">Stat 2 Label</label>
+          <input type="text" name="stat_2_label" id="slide_stat_2_label" class="pm-input" placeholder="Years of Experience">
+        </div>
+
+        {{-- Stat 3 --}}
+        <div>
+          <label class="pm-label">Stat 3 Value</label>
+          <input type="text" name="stat_3_value" id="slide_stat_3_value" class="pm-input" placeholder="450+">
+        </div>
+        <div>
+          <label class="pm-label">Stat 3 Label</label>
+          <input type="text" name="stat_3_label" id="slide_stat_3_label" class="pm-input" placeholder="Happy Customers">
+        </div>
+
+        <div style="grid-column: span 2; display:flex; align-items:center; gap:.5rem;">
+          <input type="checkbox" name="is_active" id="slide_is_active" value="1" checked style="width:18px; height:18px; cursor:pointer;">
+          <label for="slide_is_active" style="font-size:.875rem; font-weight:700; color:#0F172A; cursor:pointer;">Status Aktif (Tampilkan slide di beranda)</label>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; gap:.75rem; border-top:1px solid #E2E8F0; padding-top:1.25rem;">
+        <button type="button" onclick="closeHeroModal()" style="padding:.6rem 1.2rem; font-size:.85rem; font-weight:700; background:#F1F5F9; color:#475569; border:none; border-radius:10px; cursor:pointer;">Batal</button>
+        <button type="submit" style="padding:.6rem 1.5rem; font-size:.85rem; font-weight:700; background:#3B82F6; color:#ffffff; border:none; border-radius:10px; cursor:pointer; font-family:'Montserrat',sans-serif;">Simpan Slide</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{{-- DELETE SLIDE FORM --}}
+<form id="delete-slide-form" method="POST" action="" style="display:none;">
+  @csrf @method('DELETE')
+</form>
+
 <script>
 function switchMainTab(tabKey) {
     document.querySelectorAll('.pm-main-tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -497,6 +889,71 @@ function switchSubTab(subKey) {
     
     document.getElementById('sub-btn-' + subKey).classList.add('active');
     document.getElementById('sub-' + subKey).style.display = 'block';
+    document.getElementById('active_tab_input').value = subKey;
+}
+
+function openAddModal() {
+    document.getElementById('modal-title').innerText = 'Tambah Hero Slide Baru';
+    var form = document.getElementById('hero-slide-form');
+    form.action = "{{ route('admin.hero_slides.store') }}";
+    document.getElementById('hero-form-method').value = 'POST';
+    
+    document.getElementById('slide_title').value = '';
+    document.getElementById('slide_subtitle').value = '';
+    document.getElementById('slide_order').value = '1';
+    document.getElementById('slide_description').value = '';
+    document.getElementById('slide_tags').value = '';
+    document.getElementById('slide_stat_1_value').value = '640+';
+    document.getElementById('slide_stat_1_label').value = 'Projects Completed';
+    document.getElementById('slide_stat_2_value').value = '25+';
+    document.getElementById('slide_stat_2_label').value = 'Years of Experience';
+    document.getElementById('slide_stat_3_value').value = '450+';
+    document.getElementById('slide_stat_3_label').value = 'Happy Customers';
+    document.getElementById('slide_is_active').checked = true;
+    document.getElementById('slide_img_preview').style.display = 'none';
+
+    document.getElementById('hero-slide-modal').classList.add('active');
+}
+
+function openEditModal(slide) {
+    document.getElementById('modal-title').innerText = 'Edit Hero Slide #' + slide.id;
+    var form = document.getElementById('hero-slide-form');
+    form.action = "/admin/hero-slides/" + slide.id;
+    document.getElementById('hero-form-method').value = 'PUT';
+    
+    document.getElementById('slide_title').value = slide.title || '';
+    document.getElementById('slide_subtitle').value = slide.subtitle || '';
+    document.getElementById('slide_order').value = slide.order || 0;
+    document.getElementById('slide_description').value = slide.description || '';
+    document.getElementById('slide_tags').value = slide.tags || '';
+    document.getElementById('slide_stat_1_value').value = slide.stat_1_value || '';
+    document.getElementById('slide_stat_1_label').value = slide.stat_1_label || '';
+    document.getElementById('slide_stat_2_value').value = slide.stat_2_value || '';
+    document.getElementById('slide_stat_2_label').value = slide.stat_2_label || '';
+    document.getElementById('slide_stat_3_value').value = slide.stat_3_value || '';
+    document.getElementById('slide_stat_3_label').value = slide.stat_3_label || '';
+    document.getElementById('slide_is_active').checked = !!slide.is_active;
+
+    if (slide.image) {
+        document.getElementById('slide_img_src').src = "/storage/" + slide.image;
+        document.getElementById('slide_img_preview').style.display = 'block';
+    } else {
+        document.getElementById('slide_img_preview').style.display = 'none';
+    }
+
+    document.getElementById('hero-slide-modal').classList.add('active');
+}
+
+function closeHeroModal() {
+    document.getElementById('hero-slide-modal').classList.remove('active');
+}
+
+function confirmDeleteSlide(slideId) {
+    if (confirm('Yakin ingin menghapus slide ini?')) {
+        var form = document.getElementById('delete-slide-form');
+        form.action = "/admin/hero-slides/" + slideId;
+        form.submit();
+    }
 }
 </script>
 

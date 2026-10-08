@@ -1261,21 +1261,34 @@
     <section class="cv-about-premium section-pad" id="tentang"
         style="background:#ffffff; color:#0f172a; position:relative; z-index:2;">
         <div class="container">
+            @php
+                $aboutSubtitle = $settings['about_subtitle'] ?? 'ABOUT US';
+                $aboutC1Label = $settings['about_c1_label'] ?? 'Pengalaman';
+                $aboutC1Value = $settings['about_c1_value'] ?? (date('Y') - (\App\Models\Setting::get('founding_year') ?? 2013)) . '+ Tahun';
+                $aboutC1Keywords = array_filter(array_map('trim', explode(',', $settings['about_c1_keywords'] ?? 'Piring Keramik, Keramik Lantai, Porselen, Grosir Hotel, High Quality, Keramik Dinding, Tahan Lama, Food Safe')));
+                $aboutC2Label = $settings['about_c2_label'] ?? 'Komitmen Kualitas';
+                $aboutC2Value = $settings['about_c2_value'] ?? '100%';
+                $aboutC2Desc = $settings['about_c2_desc'] ?? 'Memberikan solusi piring dan tableware keramik terbaik untuk usaha Anda.';
+                $aboutC2Bg = $settings['about_c2_bg'] ?? '#0A1930';
+                $aboutC3Value = $settings['about_c3_value'] ?? '500+';
+                $aboutC3Desc = $settings['about_c3_desc'] ?? 'Proyek suplai dan pengadaan diselesaikan di seluruh Indonesia.';
+                $aboutC4Label = $settings['about_c4_label'] ?? 'Distribusi Produk';
+                $aboutC4Value = $settings['about_c4_value'] ?? '1.000+';
+                $aboutC4Desc = $settings['about_c4_desc'] ?? 'Ribuan set tableware terdistribusi ke berbagai sektor Horeca.';
+                // positions for keyword chips
+                $chipPositions = ['top:10%;left:5%','top:15%;left:45%','top:12%;left:80%','top:35%;left:15%','top:38%;left:50%','top:60%;left:5%','top:65%;left:40%','top:62%;left:75%'];
+            @endphp
+
             {{-- Section Header --}}
             <div style="text-align:center; max-width:800px; margin:0 auto 4rem;">
-                <div
-                    style="font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#64748b; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:center; gap:0.5rem;">
+                <div style="font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#64748b; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:center; gap:0.5rem;">
                     <span style="width:4px; height:4px; background:#0A1930; border-radius:50%;"></span>
-                    ABOUT US
+                    {{ $aboutSubtitle }}
                 </div>
-
-                {{-- Dynamic Heading with Icons --}}
-                <h2 style="font-size:clamp(1.75rem, 3.5vw, 3rem); font-weight:500; line-height:1.15; letter-spacing:-0.02em; color:#0A1930;"
-                    class="about-premium-heading">
-                    {!! !empty($settings['about_heading']) ? $settings['about_heading'] : 'Solusi Cat <span class="ab-icon-dark-red"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></span> Berkualitas Tinggi untuk <span class="ab-icon-red"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 3.18 1.66 6.02 4.14 7.69.41.27.68.73.68 1.22V22h8.36v-1.09c0-.49.27-.95.68-1.22 2.48-1.67 4.14-4.51 4.14-7.69 0-4.97-4.03-9-9-9zM12 18h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></span> Industri & Maritim' !!}
+                <h2 style="font-size:clamp(1.75rem, 3.5vw, 3rem); font-weight:500; line-height:1.15; letter-spacing:-0.02em; color:#0A1930;" class="about-premium-heading">
+                    {!! !empty($settings['about_heading']) ? $settings['about_heading'] : 'Solusi <strong>Tableware Keramik</strong> Terpercaya untuk Bisnis F&B' !!}
                 </h2>
             </div>
-
 
             {{-- 4 Cards Grid --}}
             <div class="about-cards-grid">
@@ -1283,29 +1296,23 @@
                 {{-- Card 1: Light Gray (Keywords pattern) --}}
                 <div class="ab-card ab-card-gray" data-aos="fade-up" data-aos-delay="0">
                     <div class="ab-card-bg-pattern">
-                        <span class="ab-chip" style="top:10%;left:5%;">Piring Keramik</span>
-                        <span class="ab-chip" style="top:15%;left:45%;">Keramik Lantai</span>
-                        <span class="ab-chip" style="top:12%;left:80%;">Porselen</span>
-                        <span class="ab-chip" style="top:35%;left:15%;">Grosir Hotel</span>
-                        <span class="ab-chip" style="top:38%;left:50%;">High Quality</span>
-                        <span class="ab-chip" style="top:60%;left:5%;">Keramik Dinding</span>
-                        <span class="ab-chip" style="top:65%;left:40%;">Tahan Lama</span>
-                        <span class="ab-chip" style="top:62%;left:75%;">Food Safe</span>
+                        @foreach(array_slice($aboutC1Keywords, 0, 8) as $idx => $kw)
+                            <span class="ab-chip" style="{{ $chipPositions[$idx] ?? 'top:50%;left:50%' }};">{{ $kw }}</span>
+                        @endforeach
                     </div>
                     <div class="ab-card-content">
-                        <div class="ab-card-label">Pengalaman</div>
-                        <div class="ab-card-value">{{ date('Y') - (\App\Models\Setting::get('founding_year') ?? 2013) }}+
-                            Tahun</div>
+                        <div class="ab-card-label">{{ $aboutC1Label }}</div>
+                        <div class="ab-card-value">{{ $aboutC1Value }}</div>
                     </div>
                 </div>
 
                 {{-- Card 2: Solid Accent (Navy) --}}
-                <div class="ab-card ab-card-accent" data-aos="fade-up" data-aos-delay="100" style="background:#0A1930;">
+                <div class="ab-card ab-card-accent" data-aos="fade-up" data-aos-delay="100" style="background:{{ $aboutC2Bg }};">
                     <div class="ab-card-content" style="height: 100%; display: flex; flex-direction: column;">
-                        <div class="ab-card-label" style="color:rgba(255,255,255,0.9);">Komitmen Kualitas</div>
-                        <div class="ab-card-value" style="color:#ffffff;">100%</div>
+                        <div class="ab-card-label" style="color:rgba(255,255,255,0.9);">{{ $aboutC2Label }}</div>
+                        <div class="ab-card-value" style="color:#ffffff;">{{ $aboutC2Value }}</div>
                         <div class="ab-card-desc" style="margin-top:auto; color:rgba(255,255,255,0.9);">
-                            Memberikan solusi cat dan pelapis terbaik untuk industri Anda.
+                            {{ $aboutC2Desc }}
                         </div>
                     </div>
                 </div>
@@ -1313,29 +1320,23 @@
                 {{-- Card 3: Image Background --}}
                 <div class="ab-card ab-card-image" data-aos="fade-up" data-aos-delay="200">
                     @if(!empty($settings['about_c3_image']))
-                        <img src="{{ asset('storage/' . $settings['about_c3_image']) }}" alt="About" class="ab-card-img"
-                            width="400" height="400" loading="lazy">
+                        <img src="{{ asset('storage/' . $settings['about_c3_image']) }}" alt="About" class="ab-card-img" width="400" height="400" loading="lazy">
                     @else
                         <div style="position:absolute; inset:0; background:linear-gradient(135deg, #cbd5e1, #94a3b8);"></div>
                     @endif
                     <div class="ab-card-overlay"></div>
-                    <div class="ab-card-content"
-                        style="position:relative; z-index:2; height:100%; display:flex; flex-direction:column; justify-content:flex-end;">
-                        <div class="ab-card-value" style="color:#ffffff; margin-bottom:0.5rem;">500+</div>
-                        <div class="ab-card-desc" style="color:rgba(255,255,255,0.9);">
-                            Proyek suplai dan pengecatan diselesaikan di seluruh Indonesia.
-                        </div>
+                    <div class="ab-card-content" style="position:relative; z-index:2; height:100%; display:flex; flex-direction:column; justify-content:flex-end;">
+                        <div class="ab-card-value" style="color:#ffffff; margin-bottom:0.5rem;">{{ $aboutC3Value }}</div>
+                        <div class="ab-card-desc" style="color:rgba(255,255,255,0.9);">{{ $aboutC3Desc }}</div>
                     </div>
                 </div>
 
                 {{-- Card 4: Light Gray --}}
                 <div class="ab-card ab-card-gray" data-aos="fade-up" data-aos-delay="300">
                     <div class="ab-card-content" style="height: 100%; display: flex; flex-direction: column;">
-                        <div class="ab-card-label">Distribusi Produk</div>
-                        <div class="ab-card-value">1.000+</div>
-                        <div class="ab-card-desc" style="margin-top:auto;">
-                            Ton cat terdistribusi ke berbagai sektor industri dan maritim.
-                        </div>
+                        <div class="ab-card-label">{{ $aboutC4Label }}</div>
+                        <div class="ab-card-value">{{ $aboutC4Value }}</div>
+                        <div class="ab-card-desc" style="margin-top:auto;">{{ $aboutC4Desc }}</div>
                     </div>
                 </div>
 
@@ -1755,10 +1756,10 @@
 
         {{-- Header: Title left, description right --}}
         <div class="cv-catalog-header">
-            <h2 class="cv-catalog-title">Katalog Produk<br>Kami</h2>
+            <h2 class="cv-catalog-title">{!! nl2br(e($settings['product_section_title'] ?? "Katalog Produk\nKami")) !!}</h2>
             <div class="cv-catalog-right-info">
-                <p>Solusi cat dan coating premium terpercaya untuk berbagai skala industri di Indonesia.</p>
-                <small>Tersedia berbagai varian dan spesifikasi</small>
+                <p>{{ $settings['product_section_desc'] ?? 'Solusi tableware keramik premium terpercaya untuk berbagai skala bisnis F&B di Indonesia.' }}</p>
+                <small>{{ $settings['product_section_note'] ?? 'Tersedia berbagai varian dan spesifikasi' }}</small>
             </div>
         </div>
 
@@ -1812,13 +1813,13 @@
         <div class="cv-catalog-footer">
             <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap;">
                 <a href="{{ route('products') }}" class="cv-catalog-btn-all">
-                    Ke Katalog Produk
+                    {{ $settings['product_cta1_text'] ?? 'Ke Katalog Produk' }}
                     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                         <polyline points="9 18 15 12 9 6" />
                     </svg>
                 </a>
                 <a href="{{ route('products') }}" class="cv-catalog-btn-outline">
-                    Semua Kategori Produk
+                    {{ $settings['product_cta2_text'] ?? 'Semua Kategori Produk' }}
                 </a>
             </div>
             <div class="cv-catalog-nav">
@@ -1993,11 +1994,10 @@
     <section class="cv-apps-premium" id="aplikasi">
         <div class="cv-apps-inner">
             <div class="cv-apps-header">
-                <div class="cv-adv-section-label">APLIKASI</div>
-                <h2 class="cv-adv-section-title" style="margin-top:0.75rem;">Cocok untuk<br>Berbagai Industri</h2>
+                <div class="cv-adv-section-label">{{ $settings['aplikasi_section_label'] ?? 'APLIKASI' }}</div>
+                <h2 class="cv-adv-section-title" style="margin-top:0.75rem;">{!! nl2br(e($settings['aplikasi_section_title'] ?? "Cocok untuk\nBerbagai Industri")) !!}</h2>
                 <p style="margin-top:1rem;font-size:0.875rem;color:#94A3B8;line-height:1.65;">
-                    Produk pelapis dan cat {{ $companyName }} dirancang untuk melindungi beragam aset strategis di
-                    berbagai sektor.
+                    {{ $settings['aplikasi_section_desc'] ?? 'Produk pelapis dan cat ' . $companyName . ' dirancang untuk melindungi beragam aset strategis di berbagai sektor.' }}
                 </p>
             </div>
 
@@ -2576,20 +2576,15 @@
             <div style="display: flex; flex-wrap: wrap; gap: 4rem; justify-content: space-between; margin-bottom: 2rem;">
                 {{-- Left: Heading --}}
                 <div style="flex: 1; min-width: 300px;" data-aos="fade-right">
-                    <h2
-                        style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 500; line-height: 1.2; letter-spacing: -0.03em; margin: 0;">
-                        Melayani seluruh Indonesia dengan jangkauan <br>
-                        <span style="color: var(--brand);">50+ Kota.</span>
+                    <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 500; line-height: 1.2; letter-spacing: -0.03em; margin: 0;">
+                        {!! nl2br(e($settings['kota_section_title'] ?? 'Melayani seluruh Indonesia dengan jangkauan 50+ Kota.')) !!}
                     </h2>
                 </div>
 
                 {{-- Right: Description --}}
-                <div style="flex: 1; min-width: 300px; max-width: 500px; display: flex; align-items: center;"
-                    data-aos="fade-left">
+                <div style="flex: 1; min-width: 300px; max-width: 500px; display: flex; align-items: center;" data-aos="fade-left">
                     <p style="color: #94A3B8; font-size: 1.1rem; line-height: 1.6; margin: 0;">
-                        {{ $companyName }} bermitra dengan ekspedisi terkemuka untuk mendistribusikan solusi
-                        perlindungan maritim dan industri kualitas premium ke seluruh pelosok Nusantara secara cepat dan
-                        aman.
+                        {{ $settings['kota_section_desc'] ?? $companyName . ' bermitra dengan ekspedisi terkemuka untuk mendistribusikan solusi perlindungan maritim dan industri kualitas premium ke seluruh pelosok Nusantara secara cepat dan aman.' }}
                     </p>
                 </div>
             </div>
