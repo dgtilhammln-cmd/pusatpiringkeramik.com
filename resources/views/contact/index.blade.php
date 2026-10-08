@@ -62,7 +62,7 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
 }
 .sv-label::before {
     content:''; display:block; width:5px; height:5px;
-    background:var(--c-accent); border-radius:50%;
+    background:#0F172A; border-radius:50%;
 }
 .sv-title {
     font-size:clamp(2rem,4vw,3.5rem); font-weight:500; color:var(--c-text);
@@ -236,7 +236,7 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
     letter-spacing:0.15em; text-transform:uppercase;
     color:var(--c-muted); margin-bottom:1rem; font-family:var(--font);
 }
-.ct-faq-label::before { content:''; width:4px; height:4px; background:var(--c-accent); border-radius:50%; }
+.ct-faq-label::before { content:''; width:4px; height:4px; background:#0F172A; border-radius:50%; }
 .ct-faq-title {
     font-size:clamp(1.75rem,3vw,2.5rem); font-weight:500;
     color:var(--c-text); letter-spacing:-0.025em; font-family:var(--font);
@@ -290,14 +290,12 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
             <span class="sv-breadcrumb-sep">/</span>
             <span class="sv-breadcrumb-current">Hubungi Kami</span>
         </nav>
-        <div class="sv-label">Kontak</div>
+        <div class="sv-label">{{ \App\Models\Setting::get('page_contact_hero_label') ?? 'Kontak Kami' }}</div>
         <h1 class="sv-title">
-            Konsultasi Gratis<br>
-            dengan Tim Ahli Kami
+            {!! nl2br(e(\App\Models\Setting::get('page_contact_hero_title') ?? 'Hubungi UD. Sukses Makmur / Pusat Piring Keramik')) !!}
         </h1>
         <p class="sv-intro">
-            Kami siap membantu menemukan produk piring dan keramik terbaik untuk kebutuhan Anda.
-            Hubungi kami sekarang - respon cepat, gratis!
+            {{ \App\Models\Setting::get('page_contact_hero_desc') ?? 'Tim UD. Sukses Makmur siap membantu menemukan produk piring dan keramik terbaik untuk kebutuhan Anda. Hubungi kami sekarang - respon cepat!' }}
         </p>
     </div>
 </section>

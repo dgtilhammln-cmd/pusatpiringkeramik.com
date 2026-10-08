@@ -124,7 +124,7 @@
             display: block;
             width: 5px;
             height: 5px;
-            background: var(--c-accent);
+            background: #0F172A;
             border-radius: 50%;
         }
 

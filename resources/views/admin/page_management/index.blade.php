@@ -223,7 +223,7 @@
           </svg>
           Preview Website
         </a>
-        <button type="submit"
+        <button type="button" onclick="document.getElementById('page-management-form').submit()"
           style="display:inline-flex;align-items:center;gap:.375rem;padding:.625rem 1.5rem;font-size:.875rem;font-weight:700;background:#3B82F6;color:#ffffff;border:none;border-radius:12px;cursor:pointer;transition:all .2s;font-family:'Montserrat',sans-serif;box-shadow:0 4px 14px rgba(59,130,246,0.3);">
           <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
             <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z" />
@@ -237,6 +237,11 @@
 
     @php
       $isHeaderTab = in_array($activeTab ?? '', ['sect-header', 'header']);
+      $isAboutTab = in_array($activeTab ?? '', ['sect-about', 'about']);
+      $isProdukTab = in_array($activeTab ?? '', ['sect-produk', 'sect-product', 'produk', 'product']);
+      $isArtikelTab = in_array($activeTab ?? '', ['sect-artikel', 'sect-article', 'artikel', 'articles']);
+      $isKontakTab = in_array($activeTab ?? '', ['sect-kontak', 'sect-contact', 'kontak', 'contact']);
+      $isHomepageTab = !$isHeaderTab && !$isAboutTab && !$isProdukTab && !$isArtikelTab && !$isKontakTab;
     @endphp
 
     {{-- MAIN PAGE TABS --}}
@@ -248,13 +253,41 @@
         </svg>
         Header & Preloader
       </button>
-      <button type="button" class="pm-main-tab-btn {{ !$isHeaderTab ? 'active' : '' }}"
+      <button type="button" class="pm-main-tab-btn {{ $isHomepageTab ? 'active' : '' }}"
         onclick="switchMainTab('homepage')" id="main-tab-homepage">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path
             d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
         </svg>
         Homepage
+      </button>
+      <button type="button" class="pm-main-tab-btn {{ $isAboutTab ? 'active' : '' }}"
+        onclick="switchMainTab('about')" id="main-tab-about">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        About
+      </button>
+      <button type="button" class="pm-main-tab-btn {{ $isProdukTab ? 'active' : '' }}"
+        onclick="switchMainTab('produk')" id="main-tab-produk">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+        </svg>
+        Produk
+      </button>
+      <button type="button" class="pm-main-tab-btn {{ $isArtikelTab ? 'active' : '' }}"
+        onclick="switchMainTab('artikel')" id="main-tab-artikel">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6m-6 4h6" />
+        </svg>
+        Artikel
+      </button>
+      <button type="button" class="pm-main-tab-btn {{ $isKontakTab ? 'active' : '' }}"
+        onclick="switchMainTab('kontak')" id="main-tab-kontak">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+        Kontak
       </button>
     </div>
 
@@ -2174,7 +2207,125 @@
         </div>
       </div>
 
+    {{-- ABOUT PAGE CONTAINER --}}
+    <div id="page-about" style="{{ $isAboutTab ? 'display:block;' : 'display:none;' }}">
+      <div class="pm-card">
+        <div class="pm-card-header">
+          <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <div>
+            <div class="pm-card-title">Halaman About Us (Tentang Kami)</div>
+            <div class="pm-help">Kustomisasi judul, badge label, dan deskripsi hero section pada halaman /about.</div>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr; gap:1.25rem;">
+          <div>
+            <label class="pm-label">Label / Badge Hero (Di atas Judul)</label>
+            <input type="text" name="page_about_hero_label" class="pm-input" value="{{ $settings['page_about_hero_label'] ?? 'PROFIL PERUSAHAAN' }}" placeholder="Contoh: PROFIL PERUSAHAAN">
+          </div>
+          <div>
+            <label class="pm-label">Judul Utama Hero (Gunakan Enter untuk Baris Baru)</label>
+            <textarea name="page_about_hero_title" class="pm-input" rows="2" placeholder="Judul halaman about">{{ $settings['page_about_hero_title'] ?? "Mitra Solusi Tableware & Piring Keramik Terpercaya" }}</textarea>
+          </div>
+          <div>
+            <label class="pm-label">Deskripsi / Subtitle Hero</label>
+            <textarea name="page_about_hero_desc" class="pm-input" rows="3" placeholder="Deskripsi halaman about">{{ $settings['page_about_hero_desc'] ?? 'UD. Sukses Makmur (Pusat Piring Keramik) hadir untuk menjawab kebutuhan produk berkualitas di seluruh wilayah Indonesia dengan standar terbaik.' }}</textarea>
+          </div>
+        </div>
+      </div>
     </div>
+
+    {{-- PRODUK PAGE CONTAINER --}}
+    <div id="page-produk" style="{{ $isProdukTab ? 'display:block;' : 'display:none;' }}">
+      <div class="pm-card">
+        <div class="pm-card-header">
+          <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          <div>
+            <div class="pm-card-title">Halaman Katalog Produk</div>
+            <div class="pm-help">Kustomisasi judul, badge label, dan deskripsi hero section pada halaman /product (katalog produk).</div>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr; gap:1.25rem;">
+          <div>
+            <label class="pm-label">Label / Badge Hero (Di atas Judul)</label>
+            <input type="text" name="page_product_hero_label" class="pm-input" value="{{ $settings['page_product_hero_label'] ?? 'KATALOG PRODUK' }}" placeholder="Contoh: KATALOG PRODUK">
+          </div>
+          <div>
+            <label class="pm-label">Judul Utama Hero (Gunakan Enter untuk Baris Baru)</label>
+            <textarea name="page_product_hero_title" class="pm-input" rows="2" placeholder="Judul katalog produk">{{ $settings['page_product_hero_title'] ?? "Katalog Piring Keramik & Tableware Berkualitas" }}</textarea>
+          </div>
+          <div>
+            <label class="pm-label">Deskripsi / Subtitle Hero</label>
+            <textarea name="page_product_hero_desc" class="pm-input" rows="3" placeholder="Deskripsi katalog produk">{{ $settings['page_product_hero_desc'] ?? 'Jelajahi koleksi piring keramik, mangkuk, cangkir, dan perlengkapan meja makan dari UD. Sukses Makmur untuk resto, hotel, cafe, dan rumah tangga.' }}</textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{-- ARTIKEL PAGE CONTAINER --}}
+    <div id="page-artikel" style="{{ $isArtikelTab ? 'display:block;' : 'display:none;' }}">
+      <div class="pm-card">
+        <div class="pm-card-header">
+          <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6m-6 4h6"/></svg>
+          <div>
+            <div class="pm-card-title">Halaman Artikel & Blog</div>
+            <div class="pm-help">Kustomisasi judul, badge label, dan deskripsi hero section pada halaman /articles.</div>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr; gap:1.25rem;">
+          <div>
+            <label class="pm-label">Label / Badge Hero (Di atas Judul)</label>
+            <input type="text" name="page_article_hero_label" class="pm-input" value="{{ $settings['page_article_hero_label'] ?? 'INFORMASI & WAWASAN' }}" placeholder="Contoh: INFORMASI & WAWASAN">
+          </div>
+          <div>
+            <label class="pm-label">Judul Utama Hero (Gunakan Enter untuk Baris Baru)</label>
+            <textarea name="page_article_hero_title" class="pm-input" rows="2" placeholder="Judul halaman artikel">{{ $settings['page_article_hero_title'] ?? "Artikel, Tips & Wawasan Tableware Keramik" }}</textarea>
+          </div>
+          <div>
+            <label class="pm-label">Deskripsi / Subtitle Hero</label>
+            <textarea name="page_article_hero_desc" class="pm-input" rows="3" placeholder="Deskripsi halaman artikel">{{ $settings['page_article_hero_desc'] ?? 'Temukan berbagai artikel menarik, panduan memilih piring keramik, serta tips perawatan tableware dari UD. Sukses Makmur.' }}</textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{-- KONTAK PAGE CONTAINER --}}
+    <div id="page-kontak" style="{{ $isKontakTab ? 'display:block;' : 'display:none;' }}">
+      <div class="pm-card">
+        <div class="pm-card-header">
+          <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <div>
+            <div class="pm-card-title">Halaman Kontak Kami</div>
+            <div class="pm-help">Kustomisasi judul, badge label, dan deskripsi hero section pada halaman /contact.</div>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr; gap:1.25rem;">
+          <div>
+            <label class="pm-label">Label / Badge Hero (Di atas Judul)</label>
+            <input type="text" name="page_contact_hero_label" class="pm-input" value="{{ $settings['page_contact_hero_label'] ?? 'KONTAK KAMI' }}" placeholder="Contoh: KONTAK KAMI">
+          </div>
+          <div>
+            <label class="pm-label">Judul Utama Hero (Gunakan Enter untuk Baris Baru)</label>
+            <textarea name="page_contact_hero_title" class="pm-input" rows="2" placeholder="Judul halaman kontak">{{ $settings['page_contact_hero_title'] ?? "Hubungi UD. Sukses Makmur / Pusat Piring Keramik" }}</textarea>
+          </div>
+          <div>
+            <label class="pm-label">Deskripsi / Subtitle Hero</label>
+            <textarea name="page_contact_hero_desc" class="pm-input" rows="3" placeholder="Deskripsi halaman kontak">{{ $settings['page_contact_hero_desc'] ?? 'Tim UD. Sukses Makmur siap membantu menemukan produk piring dan keramik terbaik untuk kebutuhan Anda. Hubungi kami sekarang - respon cepat!' }}</textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{-- STICKY SAVE BUTTON BAR --}}
+    <div style="position:fixed; bottom:24px; right:24px; z-index:999; display:flex; gap:0.75rem; background:rgba(15,23,42,0.92); backdrop-filter:blur(8px); padding:0.75rem 1.25rem; border-radius:100px; box-shadow:0 10px 30px rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.1);">
+      <button type="button" onclick="document.getElementById('page-management-form').submit()"
+        style="display:inline-flex;align-items:center;gap:.5rem;padding:.625rem 1.5rem;font-size:.875rem;font-weight:700;background:#3B82F6;color:#ffffff;border:none;border-radius:100px;cursor:pointer;transition:all .2s;font-family:'Montserrat',sans-serif;box-shadow:0 4px 14px rgba(59,130,246,0.4);">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z" />
+          <polyline points="17 21 17 13 7 13 7 21" />
+          <polyline points="7 3 7 8 15 8" />
+        </svg>
+        Simpan Perubahan
+      </button>
     </div>
 
   </form>
@@ -2277,20 +2428,13 @@
       const activeBtn = document.getElementById('main-tab-' + tabKey);
       if (activeBtn) activeBtn.classList.add('active');
 
-      const pageHeader = document.getElementById('page-header');
-      const pageHomepage = document.getElementById('page-homepage');
+      const pages = ['header', 'homepage', 'about', 'produk', 'artikel', 'kontak'];
+      pages.forEach(p => {
+        const el = document.getElementById('page-' + p);
+        if (el) el.style.display = (p === tabKey) ? 'block' : 'none';
+      });
 
-      if (tabKey === 'header') {
-        if (pageHeader) pageHeader.style.display = 'block';
-        if (pageHomepage) pageHomepage.style.display = 'none';
-        document.getElementById('active_tab_input').value = 'sect-header';
-      } else {
-        if (pageHeader) pageHeader.style.display = 'none';
-        if (pageHomepage) pageHomepage.style.display = 'block';
-        if (document.getElementById('active_tab_input').value === 'sect-header') {
-          document.getElementById('active_tab_input').value = 'sect-hero';
-        }
-      }
+      document.getElementById('active_tab_input').value = 'sect-' + tabKey;
     }
 
     let headerMenuIndex = {{ isset($headerMenus) ? count($headerMenus) : 10 }};

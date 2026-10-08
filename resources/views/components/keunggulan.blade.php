@@ -1,4 +1,4 @@
-﻿@php
+@php
 $iconLib = [
     'shield'   => '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
     'check'    => '<path d="M5 12l5 5L20 7"/>',
@@ -50,7 +50,7 @@ foreach ($cardDefaults as $i => $def) {
     .cv-adv-inner { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
     .cv-adv-header { display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; margin-bottom:3.5rem; }
     .cv-adv-section-label { font-size:.75rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:#64748B; display:flex; align-items:center; gap:.5rem; margin-bottom:1rem; }
-    .cv-adv-section-label::before { content:''; width:4px; height:4px; border-radius:50%; background:#DC2626; }
+    .cv-adv-section-label::before { content:''; width:4px; height:4px; border-radius:50%; background:#0F172A; }
     .cv-adv-section-title { font-size:clamp(2rem,3.5vw,3rem); font-weight:500; color:#0F172A; line-height:1.15; letter-spacing:-.025em; }
     .cv-adv-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; }
     .cv-adv-card-v2 { background:{{ \App\Models\Setting::get('page_home_value_card_bg') ?? '#F1F5F9' }}; border-radius:22px; padding:2rem; position:relative; overflow:hidden; display:flex; flex-direction:column; min-height:240px; transition:transform .3s cubic-bezier(.22,1,.36,1), box-shadow .3s; }

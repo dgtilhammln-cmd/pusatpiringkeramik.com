@@ -69,7 +69,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
 }
 .sh-label::before {
     content:''; display:block; width:5px; height:5px;
-    background:var(--accent); border-radius:50%;
+    background:#0F172A; border-radius:50%;
 }
 
 .sh-h1 {
@@ -248,7 +248,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); -web
 }
 .cv-section-label::before {
     content:''; display:inline-block;
-    width:5px; height:5px; background:var(--accent); border-radius:50%;
+    width:5px; height:5px; background:#0F172A; border-radius:50%;
 }
 .cv-section-title {
     font-size:clamp(1.75rem,3vw,2.5rem);

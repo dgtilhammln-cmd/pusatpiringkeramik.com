@@ -69,7 +69,7 @@
     .sv-label::before {
         content: ''; display: block;
         width: 5px; height: 5px;
-        background: var(--c-accent); border-radius: 50%;
+        background: #0F172A; border-radius: 50%;
     }
     .sv-title {
         font-size: clamp(2rem, 4vw, 3.5rem);
@@ -324,12 +324,12 @@
             @endif
         </nav>
 
-        <div class="sv-label">Produk &amp; Layanan</div>
+        <div class="sv-label">{{ \App\Models\Setting::get('page_product_hero_label') ?? 'Katalog Produk' }}</div>
         <h1 class="sv-title">
             @if(request('category') && ($activeCat = $categories->firstWhere('slug', request('category'))))
                 {{ $activeCat->name }}
             @else
-                Produk Cat &amp; Coating<br>Berkualitas Tinggi
+                {!! nl2br(e(\App\Models\Setting::get('page_product_hero_title') ?? 'Katalog Piring Keramik & Tableware Berkualitas')) !!}
             @endif
         </h1>
 
@@ -337,7 +337,7 @@
             @if(request('category') && ($activeCat = $categories->firstWhere('slug', request('category'))))
                 {{ $activeCat->description ?? 'Temukan berbagai pilihan produk ' . $activeCat->name . ' berkualitas tinggi dari ' . $companyName . '.' }}
             @else
-                {{ $companyName }} menyediakan berbagai produk berkualitas tinggi. Temukan produk yang tepat untuk kebutuhan Anda.
+                {{ \App\Models\Setting::get('page_product_hero_desc') ?? 'Jelajahi koleksi piring keramik, mangkuk, cangkir, dan perlengkapan meja makan dari UD. Sukses Makmur untuk resto, hotel, cafe, dan rumah tangga.' }}
             @endif
         </p>
     </div>

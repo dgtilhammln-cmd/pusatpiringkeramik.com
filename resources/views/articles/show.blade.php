@@ -614,7 +614,7 @@ a { text-decoration: none; color: inherit; }
 .cv-adv-inner { max-width:1200px; margin:0 auto; padding:0 1.5rem; }
 .cv-adv-header { display:flex; align-items:flex-end; justify-content:space-between; gap:2rem; margin-bottom:3.5rem; flex-wrap:wrap; }
 .cv-adv-section-label { font-size:0.75rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:#64748B; display:flex; align-items:center; gap:0.5rem; margin-bottom:1rem; }
-.cv-adv-section-label::before { content:''; width:4px; height:4px; border-radius:50%; background:#DC2626; }
+.cv-adv-section-label::before { content:''; width:4px; height:4px; border-radius:50%; background:#0F172A; }
 .cv-adv-section-title { font-size:clamp(2rem,3.5vw,3rem); font-weight:500; color:#0F172A; line-height:1.15; letter-spacing:-0.025em; }
 .cv-adv-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; }
 .cv-adv-card-v2 { background:#F1F5F9; border-radius:22px; padding:2rem; position:relative; overflow:hidden; display:flex; flex-direction:column; min-height:240px; transition:transform 0.3s cubic-bezier(0.22,1,0.36,1),box-shadow 0.3s; }

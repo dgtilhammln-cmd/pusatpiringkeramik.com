@@ -83,7 +83,7 @@ body { background: var(--c-bg); font-family: var(--font); }
 }
 .err-label::before {
     content: ''; display: block; width: 5px; height: 5px;
-    background: var(--c-accent); border-radius: 50%;
+    background: #0F172A; border-radius: 50%;
 }
 
 .err-title {

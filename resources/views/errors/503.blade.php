@@ -56,7 +56,7 @@ body { background: var(--c-bg); font-family: var(--font); }
     font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
     text-transform: uppercase; color: #64748B; margin-bottom: 1rem;
 }
-.err-label::before { content: ''; display: block; width: 5px; height: 5px; background: #F97316; border-radius: 50%; }
+.err-label::before { content: ''; display: block; width: 5px; height: 5px; background: #0F172A; border-radius: 50%; }
 .err-title {
     font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 700; color: #0F172A;
     line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1rem; font-family: 'Montserrat', sans-serif;

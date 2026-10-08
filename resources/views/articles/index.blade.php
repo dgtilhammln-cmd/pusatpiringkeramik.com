@@ -61,7 +61,7 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
 }
 .sv-label::before {
     content:''; display:block; width:5px; height:5px;
-    background:var(--c-accent); border-radius:50%;
+    background:#0F172A; border-radius:50%;
 }
 .sv-title {
     font-size:clamp(2rem,4vw,3.5rem); font-weight:500; color:var(--c-text);
@@ -304,14 +304,12 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
             <span class="sv-breadcrumb-sep">/</span>
             <span class="sv-breadcrumb-current">Artikel &amp; Tips</span>
         </nav>
-        <div class="sv-label">Blog &amp; Insight</div>
+        <div class="sv-label">{{ \App\Models\Setting::get('page_article_hero_label') ?? 'Informasi & Wawasan' }}</div>
         <h1 class="sv-title">
-            Tips, Panduan &amp; Insight<br>
-            Ventilasi Udara
+            {!! nl2br(e(\App\Models\Setting::get('page_article_hero_title') ?? 'Artikel, Tips & Wawasan Tableware Keramik')) !!}
         </h1>
         <p class="sv-intro">
-            Kumpulan artikel, panduan teknis, dan tips seputar
-            produk dan layanan dari tim {{ $companyName }}.
+            {{ \App\Models\Setting::get('page_article_hero_desc') ?? 'Temukan berbagai artikel menarik, panduan memilih piring keramik, serta tips perawatan tableware dari UD. Sukses Makmur.' }}
         </p>
     </div>
 </section>

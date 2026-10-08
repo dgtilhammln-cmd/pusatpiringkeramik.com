@@ -95,7 +95,7 @@
             display: block;
             width: 5px;
             height: 5px;
-            background: #DC2626;
+            background: #0F172A;
             border-radius: 50%;
         }
 
@@ -441,7 +441,7 @@
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: var(--cv-accent);
+            background: #0F172A;
             flex-shrink: 0;
         }
     </style>
@@ -457,13 +457,12 @@
                 <span class="sv-breadcrumb-current">Tentang Kami</span>
             </nav>
 
-            <div class="sv-label">Profil Perusahaan</div>
+            <div class="sv-label">{{ \App\Models\Setting::get('page_about_hero_label') ?? 'Profil Perusahaan' }}</div>
             <h1 class="sv-title">
-                Mitra Solusi Coating &amp; Chemical Terpercaya<br>
-                Sejak {{ \App\Models\Setting::get('founding_year') ?? '2013' }}
+                {!! nl2br(e(\App\Models\Setting::get('page_about_hero_title') ?? 'Mitra Solusi Tableware & Piring Keramik Terpercaya')) !!}
             </h1>
             <p class="sv-intro">
-                {{ $companyName }} hadir untuk menjawab kebutuhan produk berkualitas di seluruh wilayah Indonesia dengan standar terbaik.
+                {{ \App\Models\Setting::get('page_about_hero_desc') ?? 'UD. Sukses Makmur (Pusat Piring Keramik) hadir untuk menjawab kebutuhan produk berkualitas di seluruh wilayah Indonesia dengan standar terbaik.' }}
             </p>
         </div>
     </section>
@@ -474,14 +473,14 @@
             <div class="cv-cards-grid">
                 <div class="cv-card cv-card-gray" data-aos="fade-up">
                     <div class="cv-card-bg-pattern">
-                        <span class="cv-chip" style="top:10%;left:5%;">Epoxy Coating</span>
-                        <span class="cv-chip" style="top:15%;left:45%;">Polyurethane</span>
-                        <span class="cv-chip" style="top:12%;left:80%;">Thinner</span>
-                        <span class="cv-chip" style="top:35%;left:15%;">Anti Karat</span>
-                        <span class="cv-chip" style="top:38%;left:50%;">Marine Coating</span>
-                        <span class="cv-chip" style="top:60%;left:5%;">Heavy Duty</span>
-                        <span class="cv-chip" style="top:65%;left:40%;">Tahan Lama</span>
-                        <span class="cv-chip" style="top:62%;left:75%;">Daya Rekat Tinggi</span>
+                        <span class="cv-chip" style="top:10%;left:5%;">Piring Keramik</span>
+                        <span class="cv-chip" style="top:15%;left:45%;">Tableware</span>
+                        <span class="cv-chip" style="top:12%;left:80%;">Mangkuk Porselen</span>
+                        <span class="cv-chip" style="top:35%;left:15%;">Food Grade</span>
+                        <span class="cv-chip" style="top:38%;left:50%;">HORECA Supplier</span>
+                        <span class="cv-chip" style="top:60%;left:5%;">Standar Resto</span>
+                        <span class="cv-chip" style="top:65%;left:40%;">Tahan Panas</span>
+                        <span class="cv-chip" style="top:62%;left:75%;">Bebas Gores</span>
                     </div>
                     <div class="cv-card-content push-bottom">
                         <div class="cv-card-label">Continents</div>
@@ -493,8 +492,7 @@
                     <div class="cv-card-content">
                         <div class="cv-card-label">Commitment to measurable</div>
                         <div class="cv-card-value">100%</div>
-                        <div class="cv-card-desc">Komitmen terhadap kualitas teruji &rarr; "Produk dengan formula premium
-                            yang memberikan perlindungan jangka panjang untuk kebutuhan industrial dan marine."</div>
+                        <div class="cv-card-desc">Komitmen terhadap kualitas teruji &rarr; "Produk keramik food-grade berstandar tinggi yang tahan lama untuk kebutuhan restoran, hotel, dan catering."</div>
                     </div>
                 </div>
 

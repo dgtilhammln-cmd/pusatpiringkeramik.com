@@ -79,6 +79,22 @@ class DatabaseSeeder extends Seeder
             // Footer
             ['key'=>'footer_desc', 'value'=>'Distributor piring keramik dan tableware premium terpercaya. Melayani kebutuhan hotel, restoran, catering, dan grosir seluruh Indonesia.','type'=>'text','group'=>'footer','label'=>'Footer Description'],
             ['key'=>'copyright',   'value'=>'© 2016–2026 Pusat Piring Keramik. All rights reserved.','type'=>'text','group'=>'footer','label'=>'Copyright'],
+            // Page Heroes (About, Product, Article, Contact)
+            ['key'=>'page_about_hero_label',  'value'=>'PROFIL PERUSAHAAN', 'type'=>'text','group'=>'page_hero','label'=>'About Hero Label'],
+            ['key'=>'page_about_hero_title',  'value'=>'Mitra Solusi Tableware & Piring Keramik Terpercaya', 'type'=>'text','group'=>'page_hero','label'=>'About Hero Title'],
+            ['key'=>'page_about_hero_desc',   'value'=>'UD. Sukses Makmur (Pusat Piring Keramik) hadir untuk menjawab kebutuhan produk piring keramik, porselen, dan tableware berkualitas tinggi di seluruh wilayah Indonesia dengan standar terbaik.', 'type'=>'text','group'=>'page_hero','label'=>'About Hero Description'],
+
+            ['key'=>'page_product_hero_label','value'=>'KATALOG PRODUK', 'type'=>'text','group'=>'page_hero','label'=>'Product Hero Label'],
+            ['key'=>'page_product_hero_title','value'=>'Katalog Piring Keramik & Tableware Berkualitas', 'type'=>'text','group'=>'page_hero','label'=>'Product Hero Title'],
+            ['key'=>'page_product_hero_desc', 'value'=>'Jelajahi koleksi piring keramik, mangkuk, cangkir, dan perlengkapan meja makan dari UD. Sukses Makmur untuk resto, hotel, cafe, dan rumah tangga.', 'type'=>'text','group'=>'page_hero','label'=>'Product Hero Description'],
+
+            ['key'=>'page_article_hero_label','value'=>'INFORMASI & WAWASAN', 'type'=>'text','group'=>'page_hero','label'=>'Article Hero Label'],
+            ['key'=>'page_article_hero_title','value'=>'Artikel, Tips & Wawasan Tableware Keramik', 'type'=>'text','group'=>'page_hero','label'=>'Article Hero Title'],
+            ['key'=>'page_article_hero_desc', 'value'=>'Temukan berbagai artikel menarik, panduan memilih piring keramik, serta tips perawatan tableware dari UD. Sukses Makmur.', 'type'=>'text','group'=>'page_hero','label'=>'Article Hero Description'],
+
+            ['key'=>'page_contact_hero_label','value'=>'KONTAK KAMI', 'type'=>'text','group'=>'page_hero','label'=>'Contact Hero Label'],
+            ['key'=>'page_contact_hero_title','value'=>'Hubungi UD. Sukses Makmur / Pusat Piring Keramik', 'type'=>'text','group'=>'page_hero','label'=>'Contact Hero Title'],
+            ['key'=>'page_contact_hero_desc', 'value'=>'Tim UD. Sukses Makmur siap membantu menemukan produk piring dan keramik terbaik untuk kebutuhan Anda. Hubungi kami sekarang - respon cepat!', 'type'=>'text','group'=>'page_hero','label'=>'Contact Hero Description'],
             // SEO
             ['key'=>'meta_title_home','value'=>'Pusat Piring Keramik — Distributor Piring Keramik & Tableware HORECA #1',  'type'=>'text','group'=>'seo','label'=>'Meta Title Home'],
             ['key'=>'meta_desc_home', 'value'=>'Distributor resmi piring keramik, mangkuk, dan tableware restoran & hotel. Melayani grosir & eceran seluruh Indonesia. Hubungi WA: 0856-2682-888.','type'=>'text','group'=>'seo','label'=>'Meta Desc Home'],
@@ -93,40 +109,40 @@ class DatabaseSeeder extends Seeder
         // ── Articles ─────────────────────────────────────────────────
         $articles = [
             [
-                'title'        => '5 Alasan Mengapa Cat Jotun Cocok untuk Proyek Maritim Indonesia',
-                'slug'         => 'cat-jotun-untuk-proyek-maritim',
-                'excerpt'      => 'Lingkungan laut yang korosif membutuhkan perlindungan ekstra. Ketahui mengapa cat Jotun menjadi pilihan utama untuk kapal dan struktur offshore di Indonesia.',
+                'title'        => '5 Tips Memilih Piring Keramik Food Grade untuk Restoran & Hotel',
+                'slug'         => 'tips-memilih-piring-keramik-food-grade',
+                'excerpt'      => 'Kualitas tableware menentukan keamanan dan kesan pertama restoran Anda. Ketahui 5 tips memilih piring keramik food grade berstandar internasional.',
                 'category'     => 'Tips Industri',
                 'is_published' => true,
                 'published_at' => now()->subDays(4),
-                'author'       => 'Tim CV. Bintang Energy Surabaya',
-                'meta_title'   => '5 Alasan Cat Jotun untuk Proyek Maritim | CV. Bintang Energy Surabaya',
-                'meta_desc'    => 'Kenapa Jotun jadi pilihan utama untuk cat maritim? Simak 5 alasan teknisnya di sini.',
+                'author'       => 'Tim UD. Sukses Makmur',
+                'meta_title'   => '5 Tips Memilih Piring Keramik Food Grade | UD. Sukses Makmur',
+                'meta_desc'    => 'Panduan memilih piring keramik food grade berkualitas untuk restoran, hotel, dan catering dari UD. Sukses Makmur.',
             ],
             [
-                'title'        => 'Perbedaan Epoxy, Polyurethane, dan Alkyd: Pilih yang Mana?',
-                'slug'         => 'perbedaan-epoxy-polyurethane-alkyd',
-                'excerpt'      => 'Banyak pelanggan bingung menentukan jenis coating yang tepat. Artikel ini membantu Anda memahami perbedaan karakteristik dan aplikasi masing-masing jenis.',
+                'title'        => 'Perbedaan Ceramic, Porcelain, dan Stoneware Tableware: Mana Yang Terbaik?',
+                'slug'         => 'perbedaan-ceramic-porcelain-stoneware',
+                'excerpt'      => 'Setiap material tableware memiliki keunggulan dan daya tahan berbeda. Pelajari perbedaan karakteristik keramik, porselen, dan stoneware sebelum membeli.',
                 'category'     => 'Edukasi',
                 'is_published' => true,
                 'published_at' => now()->subDays(11),
-                'author'       => 'Tim CV. Bintang Energy Surabaya',
-                'meta_title'   => 'Epoxy vs Polyurethane vs Alkyd: Perbedaan & Kegunaannya',
-                'meta_desc'    => 'Panduan memilih jenis coating yang tepat antara epoxy, polyurethane, dan alkyd untuk berbagai aplikasi industri.',
+                'author'       => 'Tim UD. Sukses Makmur',
+                'meta_title'   => 'Perbedaan Keramik, Porselen & Stoneware | UD. Sukses Makmur',
+                'meta_desc'    => 'Panduan lengkap membedakan tableware keramik, porselen, dan stoneware untuk kebutuhan bisnis F&B Anda.',
             ],
             [
-                'title'        => 'Cara Menghitung Kebutuhan Cat untuk Proyek Industri Skala Besar',
-                'slug'         => 'cara-menghitung-kebutuhan-cat-industri',
-                'excerpt'      => 'Salah menghitung kebutuhan cat bisa membuat proyek molor atau boros anggaran. Ikuti panduan teknis kami untuk estimasi yang akurat.',
+                'title'        => 'Cara Merawat Piring Keramik Agar Tahan Lama & Tidak Mudah Gores',
+                'slug'         => 'cara-merawat-piring-keramik-tahan-lama',
+                'excerpt'      => 'Perawatan yang tepat memperpanjang umur piring keramik dan menjaga kilau glazuur. Ikuti panduan praktis dari UD. Sukses Makmur.',
                 'category'     => 'Panduan',
                 'is_published' => true,
                 'published_at' => now()->subDays(19),
-                'author'       => 'Tim CV. Bintang Energy Surabaya',
-                'meta_title'   => 'Cara Menghitung Kebutuhan Cat Industri | CV. Bintang Energy Surabaya',
-                'meta_desc'    => 'Panduan teknis menghitung volume cat yang dibutuhkan berdasarkan luas permukaan, DFT, dan spreading rate.',
+                'author'       => 'Tim UD. Sukses Makmur',
+                'meta_title'   => 'Cara Merawat Piring Keramik Agar Tahan Lama | UD. Sukses Makmur',
+                'meta_desc'    => 'Tips dan trik merawat piring keramik restoran dan rumah tangga agar awet, mengkilap, dan bebas goresan.',
             ],
         ];
-        $contentTemplate = '<h2>Pendahuluan</h2><p>Pemilihan produk cat dan coating yang tepat adalah investasi jangka panjang yang menentukan umur aset Anda. CV. Bintang Energy Surabaya hadir sebagai mitra terpercaya dalam menyediakan solusi proteksi permukaan terbaik.</p><h2>Detail Pembahasan</h2><p>Sebagai distributor resmi cat industri dari merek-merek terkemuka dunia seperti <strong>Jotun</strong>, <strong>PPG Sigma</strong>, <strong>Hempel</strong>, dan <strong>AkzoNobel</strong>, kami memastikan setiap produk yang kami suplai memenuhi standar kualitas internasional dan sesuai dengan spesifikasi teknis proyek Anda.</p><p>Tim konsultan teknis kami yang berpengalaman siap membantu mulai dari pemilihan sistem coating yang tepat, kalkulasi kebutuhan material, hingga pendampingan teknis di lapangan.</p><h2>Kesimpulan</h2><p>Hubungi tim ahli CV. Bintang Energy Surabaya di <strong>0812-9656-5757</strong> untuk konsultasi gratis dan penawaran harga terbaik untuk kebutuhan proyek Anda.</p>';
+        $contentTemplate = '<h2>Pendahuluan</h2><p>Pemilihan piring keramik dan tableware yang tepat merupakan langkah vital untuk menghadirkan sajian yang estetis, higienis, dan berkesan bagi pelanggan. UD. Sukses Makmur (Pusat Piring Keramik) berkomitmen menghadirkan produk tableware berkualitas tinggi.</p><h2>Detail Pembahasan</h2><p>Sebagai supplier & distributor resmi tableware terpercaya di Indonesia, kami menyediakan koleksi lengkap <strong>piring keramik</strong>, <strong>mangkuk porselen</strong>, <strong>cangkir</strong>, dan <strong>piranti meja makan</strong> yang telah teruji food-grade dan tahan panas tinggi.</p><p>Tim kami berpengalaman melayani pemesanan grosir untuk HORECA (Hotel, Restaurant, Cafe, Catering) serta pengiriman aman dengan paking peti kayu ke seluruh wilayah Indonesia.</p><h2>Kesimpulan</h2><p>Hubungi tim UD. Sukses Makmur di <strong>0856-2682-888</strong> untuk konsultasi kebutuhan tableware dan katalog produk lengkap dengan penawaran harga grosir terbaik.</p>';
         foreach ($articles as $a) {
             Article::updateOrCreate(['slug'=>$a['slug']], array_merge($a, [
                 'content'=>$contentTemplate, 'views'=>rand(80,600),
