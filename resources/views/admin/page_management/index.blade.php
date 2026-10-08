@@ -800,18 +800,24 @@
             <div class="pm-card-title">Judul Utama & Header About Us</div>
           </div>
 
-          <div style="display:grid; grid-template-columns:1fr 2fr; gap:1.25rem;">
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.25rem;">
             <div>
-              <label class="pm-label">Sub-Judul / Badge Tag (Atas)</label>
+              <label class="pm-label">Badge Tag (Atas Section)</label>
               <input type="text" name="about_subtitle" class="pm-input"
                 value="{{ $settings['about_subtitle'] ?? 'ABOUT US' }}">
-              <div class="pm-help">Teks badge kecil di atas judul utama (Contoh: ABOUT US).</div>
+              <div class="pm-help">Teks badge kecil di atas judul (contoh: ABOUT US).</div>
             </div>
             <div>
-              <label class="pm-label">Judul Utama About Us (HTML Supported)</label>
-              <textarea name="about_heading" class="pm-input"
-                rows="2">{{ $settings['about_heading'] ?? 'Solusi Cat <span class="ab-icon-dark-red"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></span> Berkualitas Tinggi untuk <span class="ab-icon-red"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 3.18 1.66 6.02 4.14 7.69.41.27.68.73.68 1.22V22h8.36v-1.09c0-.49.27-.95.68-1.22 2.48-1.67 4.14-4.51 4.14-7.69 0-4.97-4.03-9-9-9zM12 18h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></span> Industri & Maritim' }}</textarea>
-              <div class="pm-help">Anda dapat mengubah teks judul utama atau menambahkan tag icon.</div>
+              <label class="pm-label">Headline Baris 1 (Normal)</label>
+              <input type="text" name="about_heading_line1" class="pm-input"
+                value="{{ $settings['about_heading_line1'] ?? 'Solusi Tableware Keramik' }}">
+              <div class="pm-help">Baris pertama judul, ditampilkan bobot normal.</div>
+            </div>
+            <div>
+              <label class="pm-label">Headline Baris 2 (Tebal / Bold)</label>
+              <input type="text" name="about_heading_line2" class="pm-input"
+                value="{{ $settings['about_heading_line2'] ?? 'Terpercaya untuk Bisnis F&B' }}">
+              <div class="pm-help">Baris kedua otomatis <strong>bold</strong>. Kosongkan jika 1 baris saja.</div>
             </div>
           </div>
         </div>
@@ -839,6 +845,11 @@
                   value="{{ $settings['about_c1_value'] ?? '10+ Tahun' }}">
               </div>
               <div>
+                <label class="pm-label">Deskripsi (opsional, tampil di bawah angka)</label>
+                <input type="text" name="about_c1_desc" class="pm-input"
+                  value="{{ $settings['about_c1_desc'] ?? '' }}" placeholder="Kosongkan jika tidak perlu">
+              </div>
+              <div>
                 <label class="pm-label">Keywords Tag Chips (Pisahkan dengan koma)</label>
                 <textarea name="about_c1_keywords" class="pm-input"
                   rows="3">{{ $settings['about_c1_keywords'] ?? 'Piring Keramik, Keramik Lantai, Porselen, Grosir Hotel, High Quality, Keramik Dinding, Tahan Lama, Food Safe' }}</textarea>
@@ -847,13 +858,13 @@
             </div>
           </div>
 
-          {{-- Card 2: Solid Accent Card --}}
+          {{-- Card 2: Gradient / Image / Solid --}}
           <div class="pm-card" style="margin-bottom:0;">
             <div class="pm-card-header">
               <span
                 style="background:#0F172A; color:#ffffff; font-weight:800; padding:2px 8px; border-radius:6px; font-size:.75rem;">Card
                 2</span>
-              <div class="pm-card-title">Komitmen Kualitas (Solid Card)</div>
+              <div class="pm-card-title">Komitmen Kualitas (Gradient / Gambar)</div>
             </div>
             <div style="display:flex; flex-direction:column; gap:1rem;">
               <div>
@@ -862,7 +873,7 @@
                   value="{{ $settings['about_c2_label'] ?? 'Komitmen Kualitas' }}">
               </div>
               <div>
-                <label class="pm-label">Nilai Persentase / Stat</label>
+                <label class="pm-label">Nilai / Stat Utama</label>
                 <input type="text" name="about_c2_value" class="pm-input"
                   value="{{ $settings['about_c2_value'] ?? '100%' }}">
               </div>
@@ -871,15 +882,71 @@
                 <textarea name="about_c2_desc" class="pm-input"
                   rows="2">{{ $settings['about_c2_desc'] ?? 'Memberikan solusi piring dan tableware keramik terbaik untuk usaha Anda.' }}</textarea>
               </div>
-              <div>
-                <label class="pm-label">Background Color Card 2</label>
-                <div class="pm-color-picker-wrap">
-                  <input type="color" value="{{ $settings['about_c2_bg'] ?? '#0A1930' }}"
-                    onchange="document.getElementById('c_c2_bg').value=this.value">
-                  <input type="text" name="about_c2_bg" id="c_c2_bg" class="pm-input"
-                    value="{{ $settings['about_c2_bg'] ?? '#0A1930' }}">
+
+              {{-- Background Mode --}}
+              <div style="background:#F8FAFC; border:1.5px solid #E2E8F0; border-radius:12px; padding:1rem;">
+                <div style="font-size:.8rem; font-weight:700; color:#0F172A; margin-bottom:.85rem;">&#127912; Background Card 2 &mdash; pilih salah satu mode:</div>
+
+                {{-- A: Solid Color --}}
+                <div style="margin-bottom:.85rem;">
+                  <label class="pm-label" style="color:#64748B;">A) Warna Solid (default/fallback)</label>
+                  <div class="pm-color-picker-wrap">
+                    <input type="color" value="{{ $settings['about_c2_bg'] ?? '#00875A' }}"
+                      onchange="document.getElementById('c_c2_bg').value=this.value">
+                    <input type="text" name="about_c2_bg" id="c_c2_bg" class="pm-input"
+                      value="{{ $settings['about_c2_bg'] ?? '#00875A' }}">
+                  </div>
+                </div>
+
+                {{-- B: Gradient --}}
+                <div style="margin-bottom:.85rem;">
+                  <label class="pm-label" style="color:#64748B;">B) Gradasi 2 Warna &mdash; <em>override warna solid jika diisi keduanya</em></label>
+                  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:.5rem; align-items:end;">
+                    <div>
+                      <label class="pm-label" style="font-size:.7rem;">Warna Awal</label>
+                      <div class="pm-color-picker-wrap">
+                        <input type="color" value="{{ $settings['about_c2_color_start'] ?? '#00A664' }}"
+                          onchange="document.getElementById('c_c2_cs').value=this.value">
+                        <input type="text" name="about_c2_color_start" id="c_c2_cs" class="pm-input"
+                          value="{{ $settings['about_c2_color_start'] ?? '' }}" placeholder="kosong=nonaktif">
+                      </div>
+                    </div>
+                    <div>
+                      <label class="pm-label" style="font-size:.7rem;">Warna Akhir</label>
+                      <div class="pm-color-picker-wrap">
+                        <input type="color" value="{{ $settings['about_c2_color_end'] ?? '#004D34' }}"
+                          onchange="document.getElementById('c_c2_ce').value=this.value">
+                        <input type="text" name="about_c2_color_end" id="c_c2_ce" class="pm-input"
+                          value="{{ $settings['about_c2_color_end'] ?? '' }}" placeholder="kosong=nonaktif">
+                      </div>
+                    </div>
+                    <div>
+                      <label class="pm-label" style="font-size:.7rem;">Arah Gradasi</label>
+                      <select name="about_c2_grad_dir" class="pm-input">
+                        @foreach(['135deg'=>'&#8600; Diagonal','to right'=>'&#8594; Kanan','to bottom'=>'&#8595; Bawah','to top'=>'&#8593; Atas','to left'=>'&#8592; Kiri'] as $v=>$l)
+                          <option value="{{ $v }}" {{ ($settings['about_c2_grad_dir'] ?? '135deg') == $v ? 'selected' : '' }}>{!! $l !!}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                  </div>
+                  <div class="pm-help">Isi kedua warna untuk mengaktifkan gradasi. Kosongkan salah satu untuk mematikan.</div>
+                </div>
+
+                {{-- C: Image --}}
+                <div>
+                  <label class="pm-label" style="color:#64748B;">C) Gambar Background (auto WebP) &mdash; <em>override gradasi &amp; solid jika ada gambar</em></label>
+                  @if(!empty($settings['about_c2_image']))
+                    <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem;">
+                      <img src="{{ asset('storage/' . $settings['about_c2_image']) }}"
+                        style="width:80px;height:50px;object-fit:cover;border-radius:8px;border:1px solid #E2E8F0;">
+                      <span style="font-size:.75rem;color:#10B981;font-weight:700;">&#10003; Gambar aktif</span>
+                    </div>
+                  @endif
+                  <input type="file" name="about_c2_image" class="pm-input" accept="image/*">
+                  <div class="pm-help">Upload gambar &rarr; otomatis dikonversi ke WebP. Gambar akan override gradasi &amp; warna solid.</div>
                 </div>
               </div>
+
             </div>
           </div>
 

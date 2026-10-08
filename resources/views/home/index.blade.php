@@ -58,8 +58,15 @@
         .cv-about-premium .ab-card-label {
             color: {{ $settings['page_home_about_text_color'] ?? '#64748b' }} !important;
         }
-        .cv-about-premium .ab-card-desc {
+        /* Desc color applies only to non-image cards — card-image always forces white */
+        .cv-about-premium .ab-card-gray .ab-card-desc,
+        .cv-about-premium .ab-card-accent .ab-card-desc {
             color: {{ $settings['page_home_about_text_color'] ?? '#64748b' }} !important;
+        }
+        .cv-about-premium .ab-card-image .ab-card-desc,
+        .cv-about-premium .ab-card-image .ab-card-label,
+        .cv-about-premium .ab-card-image .ab-card-value {
+            color: #ffffff !important;
         }
         .cv-about-premium .ab-card-gray .ab-card-value {
             color: {{ $settings['page_home_about_title_color'] ?? '#0A1930' }} !important;
@@ -1378,19 +1385,32 @@
         <div class="container">
             @php
                 $aboutSubtitle = $settings['about_subtitle'] ?? 'ABOUT US';
+                $aboutHeadLine1 = $settings['about_heading_line1'] ?? 'Solusi Tableware Keramik';
+                $aboutHeadLine2 = $settings['about_heading_line2'] ?? 'Terpercaya untuk Bisnis F&B';
                 $aboutC1Label = $settings['about_c1_label'] ?? 'Pengalaman';
                 $aboutC1Value = $settings['about_c1_value'] ?? (date('Y') - (\App\Models\Setting::get('founding_year') ?? 2013)) . '+ Tahun';
+                $aboutC1Desc  = $settings['about_c1_desc'] ?? '';
                 $aboutC1Keywords = array_filter(array_map('trim', explode(',', $settings['about_c1_keywords'] ?? 'Piring Keramik, Keramik Lantai, Porselen, Grosir Hotel, High Quality, Keramik Dinding, Tahan Lama, Food Safe')));
                 $aboutC2Label = $settings['about_c2_label'] ?? 'Komitmen Kualitas';
                 $aboutC2Value = $settings['about_c2_value'] ?? '100%';
-                $aboutC2Desc = $settings['about_c2_desc'] ?? 'Memberikan solusi piring dan tableware keramik terbaik untuk usaha Anda.';
-                $aboutC2Bg = $settings['about_c2_bg'] ?? '#0A1930';
+                $aboutC2Desc  = $settings['about_c2_desc'] ?? 'Memberikan solusi piring dan tableware keramik terbaik untuk usaha Anda.';
+                // Card 2 background: gradient takes priority, then image, then solid color
+                $aboutC2ColorStart = $settings['about_c2_color_start'] ?? '';
+                $aboutC2ColorEnd   = $settings['about_c2_color_end']   ?? '';
+                $aboutC2GradDir    = $settings['about_c2_grad_dir']    ?? '135deg';
+                $aboutC2Image      = $settings['about_c2_image']       ?? '';
+                if (!empty($aboutC2Image)) {
+                    $aboutC2BgStyle = "background:url('" . asset('storage/'.$aboutC2Image) . "') center/cover no-repeat;";
+                } elseif (!empty($aboutC2ColorStart) && !empty($aboutC2ColorEnd)) {
+                    $aboutC2BgStyle = "background:linear-gradient({$aboutC2GradDir},{$aboutC2ColorStart},{$aboutC2ColorEnd});";
+                } else {
+                    $aboutC2BgStyle = 'background:' . ($settings['about_c2_bg'] ?? '#00875A') . ';';
+                }
                 $aboutC3Value = $settings['about_c3_value'] ?? '500+';
-                $aboutC3Desc = $settings['about_c3_desc'] ?? 'Proyek suplai dan pengadaan diselesaikan di seluruh Indonesia.';
+                $aboutC3Desc  = $settings['about_c3_desc'] ?? 'Proyek suplai dan pengadaan diselesaikan di seluruh Indonesia.';
                 $aboutC4Label = $settings['about_c4_label'] ?? 'Distribusi Produk';
                 $aboutC4Value = $settings['about_c4_value'] ?? '1.000+';
-                $aboutC4Desc = $settings['about_c4_desc'] ?? 'Ribuan set tableware terdistribusi ke berbagai sektor Horeca.';
-                // positions for keyword chips
+                $aboutC4Desc  = $settings['about_c4_desc'] ?? 'Ribuan set tableware terdistribusi ke berbagai sektor Horeca.';
                 $chipPositions = ['top:10%;left:5%','top:15%;left:45%','top:12%;left:80%','top:35%;left:15%','top:38%;left:50%','top:60%;left:5%','top:65%;left:40%','top:62%;left:75%'];
             @endphp
 
@@ -1401,7 +1421,10 @@
                     {{ $aboutSubtitle }}
                 </div>
                 <h2 style="font-size:clamp(1.75rem, 3.5vw, 3rem); font-weight:500; line-height:1.15; letter-spacing:-0.02em;" class="about-premium-heading">
-                    {!! !empty($settings['about_heading']) ? $settings['about_heading'] : 'Solusi <strong>Tableware Keramik</strong> Terpercaya untuk Bisnis F&B' !!}
+                    {{ $aboutHeadLine1 }}
+                    @if($aboutHeadLine2)
+                        <br><strong>{{ $aboutHeadLine2 }}</strong>
+                    @endif
                 </h2>
             </div>
 
@@ -1418,17 +1441,22 @@
                     <div class="ab-card-content">
                         <div class="ab-card-label">{{ $aboutC1Label }}</div>
                         <div class="ab-card-value">{{ $aboutC1Value }}</div>
+                        @if($aboutC1Desc)
+                            <div class="ab-card-desc" style="margin-top:0.5rem;">{{ $aboutC1Desc }}</div>
+                        @endif
                     </div>
                 </div>
 
-                {{-- Card 2: Solid Accent (Navy) --}}
-                <div class="ab-card ab-card-accent" data-aos="fade-up" data-aos-delay="100" style="background:{{ $aboutC2Bg }};">
-                    <div class="ab-card-content" style="height: 100%; display: flex; flex-direction: column;">
+                {{-- Card 2: Gradient / Image / Solid Color --}}
+                <div class="ab-card ab-card-accent ab-card-c2" data-aos="fade-up" data-aos-delay="100" style="{{ $aboutC2BgStyle }} position:relative; overflow:hidden;">
+                    {{-- Dark overlay for image mode --}}
+                    @if(!empty($aboutC2Image))
+                        <div style="position:absolute;inset:0;background:rgba(0,0,0,0.45);z-index:1;"></div>
+                    @endif
+                    <div class="ab-card-content" style="position:relative;z-index:2;height:100%;display:flex;flex-direction:column;">
                         <div class="ab-card-label" style="color:rgba(255,255,255,0.9);">{{ $aboutC2Label }}</div>
                         <div class="ab-card-value" style="color:#ffffff;">{{ $aboutC2Value }}</div>
-                        <div class="ab-card-desc" style="margin-top:auto; color:rgba(255,255,255,0.9);">
-                            {{ $aboutC2Desc }}
-                        </div>
+                        <div class="ab-card-desc" style="margin-top:auto;color:rgba(255,255,255,0.9);">{{ $aboutC2Desc }}</div>
                     </div>
                 </div>
 
