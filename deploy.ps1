@@ -119,12 +119,17 @@ fi
 if [ -f "$DEPLOY_DIR/public/.htaccess" ]; then
     cp -f "$DEPLOY_DIR/public/.htaccess" "$DEPLOY_DIR/public_html/.htaccess"
 fi
-# Hapus file statis robots.txt & llms.txt agar route Laravel yang aktif
-rm -f "$DEPLOY_DIR/public/robots.txt"
-rm -f "$DEPLOY_DIR/public/llms.txt"
-rm -f "$DEPLOY_DIR/public_html/robots.txt"
-rm -f "$DEPLOY_DIR/public_html/llms.txt"
-echo "--- Removed static robots.txt & llms.txt (using Laravel routes)"
+# Copy robots.txt, llms.txt & sitemap.xsl to public_html
+if [ -f "$DEPLOY_DIR/public/robots.txt" ]; then
+    cp -f "$DEPLOY_DIR/public/robots.txt" "$DEPLOY_DIR/public_html/robots.txt"
+fi
+if [ -f "$DEPLOY_DIR/public/llms.txt" ]; then
+    cp -f "$DEPLOY_DIR/public/llms.txt" "$DEPLOY_DIR/public_html/llms.txt"
+fi
+if [ -f "$DEPLOY_DIR/public/sitemap.xsl" ]; then
+    cp -f "$DEPLOY_DIR/public/sitemap.xsl" "$DEPLOY_DIR/public_html/sitemap.xsl"
+fi
+echo "--- Copied robots.txt, llms.txt, and sitemap.xsl to public_html!"
 rm -f "$DEPLOY_DIR/public_html/storage"
 ln -s "$DEPLOY_DIR/storage/app/public" "$DEPLOY_DIR/public_html/storage"
 chmod -R 775 "$DEPLOY_DIR/storage" "$DEPLOY_DIR/bootstrap/cache"
