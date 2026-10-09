@@ -125,6 +125,34 @@
     </div>
 </div>
 
+{{-- Status Mode Lead Active Card --}}
+<div style="background:#0F172A; border:1px solid #1E293B; border-radius:14px; padding:1.25rem 1.5rem; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; box-shadow:0 10px 25px rgba(0,0,0,0.15);">
+    <div style="display:flex; align-items:center; gap:1rem;">
+        <div style="width:42px; height:42px; border-radius:12px; background:rgba(245,166,35,0.15); border:1px solid rgba(245,166,35,0.3); display:flex; align-items:center; justify-content:center; color:#F5A623;">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <div>
+            <div style="font-size:0.9375rem; font-weight:800; color:#FFFFFF;">
+                Mode Penangkapan Leads Aktif: 
+                <span style="color:#F5A623; letter-spacing:0.01em;">
+                    @if(($activeMode ?? 'popup') === 'wa_code')
+                        Mode Kode Referensi WA (Direct WA + Auto Sequence UDSM-xxxx)
+                    @else
+                        Mode Form Popup (Nama, No. Telp, Perusahaan, Kebutuhan)
+                    @endif
+                </span>
+            </div>
+            <div style="font-size:0.8rem; color:#94A3B8; margin-top:2px;">
+                Semua tombol WhatsApp di website saat ini merujuk ke sistem <strong>{{ ($activeMode ?? 'popup') === 'wa_code' ? 'Kode Referensi WhatsApp (Direct WA)' : 'Form Popup Leads' }}</strong>.
+            </div>
+        </div>
+    </div>
+    <a href="{{ route('admin.wa') }}" style="display:inline-flex; align-items:center; gap:0.5rem; background:#F5A623; color:#0F172A; font-size:0.8125rem; font-weight:800; padding:0.65rem 1.25rem; border-radius:10px; text-decoration:none; transition:all 0.2s; box-shadow:0 4px 12px rgba(245,166,35,0.3);" onmouseover="this.style.background='#FFB838';" onmouseout="this.style.background='#F5A623';">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Ubah / Switch Mode Lead di Sini
+    </a>
+</div>
+
 {{-- Stat Cards --}}
 <div class="stats-grid">
   @foreach([
