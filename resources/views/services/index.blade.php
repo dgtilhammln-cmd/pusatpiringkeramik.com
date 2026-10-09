@@ -378,7 +378,7 @@
         .sv-card-badge-top { top: 6px; left: 6px; right: 6px; }
         .sv-card-rating-badge { font-size: 0.6rem; padding: 2px 6px; }
         .sv-card-price-badge { font-size: 0.65rem; padding: 2px 6px; }
-        .sv-filter-wrap { padding: 0.5rem 0; top: 60px; }
+        .sv-filter-wrap { padding: 0.5rem 0; top: 85px; }
         .sv-filter-inner { padding: 0 0.75rem; gap: 0.5rem; }
         .sv-filter-select { max-width: 130px; font-size: 0.75rem; padding: 0.4rem 1.75rem 0.4rem 0.75rem; }
         .sv-pill-tab { font-size: 0.75rem; padding: 0.4rem 0.75rem; }

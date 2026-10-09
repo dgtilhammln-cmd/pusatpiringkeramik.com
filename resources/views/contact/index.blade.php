@@ -162,12 +162,12 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
 .ct-info-icon {
     width:48px; height:48px; border-radius:14px;
     display:flex; align-items:center; justify-content:center;
-    flex-shrink:0;
+    flex-shrink:0; background:#F1F5F9; color:var(--c-accent);
 }
-.ct-info-icon.blue { background:#F1F5F9; color:var(--c-accent); }
-.ct-info-icon.green { background:rgba(37,211,102,0.1); color:#25D366; }
-.ct-info-icon.purple { background:rgba(139,92,246,0.1); color:#7C3AED; }
-.ct-info-icon.orange { background:rgba(249,115,22,0.1); color:#EA580C; }
+.ct-info-icon.blue,
+.ct-info-icon.green,
+.ct-info-icon.purple,
+.ct-info-icon.orange { background:#F1F5F9; color:var(--c-accent); }
 .ct-info-body { flex:1; }
 .ct-info-label {
     font-size:0.65rem; font-weight:700; text-transform:uppercase;
@@ -341,15 +341,7 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
                         @error('phone')<span class="ct-error">{{ $message }}</span>@enderror
                     </div>
                 </div>
-                <div class="ct-field">
-                    <label class="ct-label">Produk yang Diminati</label>
-                    <select name="product" class="ct-select">
-                        <option value="">-- Pilih Produk --</option>
-                        @foreach(['Piring Keramik','Keramik Lantai','Keramik Dinding','Piring Porselen','Peralatan Makan','Aksesori Dapur','Pembelian Grosir','Konsultasi Produk','Lainnya'] as $p)
-                        <option value="{{ $p }}" {{ old('product')===$p?'selected':'' }}>{{ $p }}</option>
-                        @endforeach
-                    </select>
-                </div>
+
                 <div class="ct-field">
                     <label class="ct-label">Pesan <span class="ct-required">*</span></label>
                     <textarea name="message" class="ct-textarea" placeholder="Ceritakan kebutuhan Anda: produk yang dicari, jenis industri, lokasi, dan volume yang dibutuhkan." required>{{ old('message') }}</textarea>
