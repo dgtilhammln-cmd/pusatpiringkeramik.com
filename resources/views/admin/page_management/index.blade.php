@@ -1862,41 +1862,111 @@
         </div>
       </div>
 
-      {{-- SUB TAB 6: SECT KOTA --}}
+      {{-- SUB TAB 6: SECT KOTA (COVERAGE & JANGKAUAN) --}}
       <div id="sub-sect-kota" class="sub-tab-content"
         style="{{ ($activeTab ?? '') === 'sect-kota' ? '' : 'display:none;' }}">
-        <div class="pm-card">
+        
+        {{-- CARD 1: Tampilan & Skema Warna Section --}}
+        <div class="pm-card" style="margin-bottom:1.5rem;">
           <div class="pm-card-header">
             <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24">
-              <path
-                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
-            <div class="pm-card-title">Kustomisasi Section Jangkauan Kota</div>
+            <div>
+              <div class="pm-card-title">1. Tampilan & Skema Warna Section (Background & Icon)</div>
+              <div class="pm-help">Atur tipe background, gradasi warna, warna judul, warna deskripsi, dan warna icon stat.</div>
+            </div>
           </div>
 
-          <div
-            style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem; margin-bottom:1.5rem;">
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem;">
             <div>
-              <label class="pm-label">Background Section</label>
+              <label class="pm-label">Tipe Background Section</label>
+              <select name="kota_bg_type" class="pm-input">
+                <option value="solid" {{ ($settings['kota_bg_type'] ?? 'solid') === 'solid' ? 'selected' : '' }}>Warna Solid Single</option>
+                <option value="gradient" {{ ($settings['kota_bg_type'] ?? 'solid') === 'gradient' ? 'selected' : '' }}>Gradasi CSS (Gradient)</option>
+              </select>
+            </div>
+            <div>
+              <label class="pm-label">Warna Background Solid</label>
               <div class="pm-color-picker-wrap">
-                <input type="color" value="{{ $settings['page_home_kota_bg'] ?? '#0F172A' }}"
+                <input type="color" value="{{ strtok($settings['page_home_kota_bg'] ?? '#0F172A', ' ') }}"
                   onchange="document.getElementById('c_kota_bg').value=this.value">
                 <input type="text" name="page_home_kota_bg" id="c_kota_bg" class="pm-input"
                   value="{{ $settings['page_home_kota_bg'] ?? '#0F172A' }}">
               </div>
             </div>
+            <div style="grid-column: span 2;">
+              <label class="pm-label">Warna Background Gradasi CSS (Gradient)</label>
+              <input type="text" name="kota_bg_gradient" class="pm-input"
+                value="{{ $settings['kota_bg_gradient'] ?? 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)' }}"
+                placeholder="linear-gradient(135deg, #0F172A 0%, #1E293B 100%)">
+            </div>
+
             <div>
-              <label class="pm-label">Warna Judul Section</label>
+              <label class="pm-label">Warna Judul Utama</label>
               <div class="pm-color-picker-wrap">
-                <input type="color" value="{{ $settings['page_home_kota_title_color'] ?? '#FFFFFF' }}"
+                <input type="color" value="{{ strtok($settings['page_home_kota_title_color'] ?? '#FFFFFF', ' ') }}"
                   onchange="document.getElementById('c_kota_title').value=this.value">
                 <input type="text" name="page_home_kota_title_color" id="c_kota_title" class="pm-input"
                   value="{{ $settings['page_home_kota_title_color'] ?? '#FFFFFF' }}">
               </div>
             </div>
+
+            <div>
+              <label class="pm-label">Warna Deskripsi Paragraf</label>
+              <div class="pm-color-picker-wrap">
+                <input type="color" value="{{ strtok($settings['kota_desc_color'] ?? '#94A3B8', ' ') }}"
+                  onchange="document.getElementById('c_kota_desc').value=this.value">
+                <input type="text" name="kota_desc_color" id="c_kota_desc" class="pm-input"
+                  value="{{ $settings['kota_desc_color'] ?? '#94A3B8' }}">
+              </div>
+            </div>
+
+            <div>
+              <label class="pm-label">Warna Icon SVG Stat</label>
+              <div class="pm-color-picker-wrap">
+                <input type="color" value="{{ strtok($settings['kota_stat_icon_color'] ?? '#38BDF8', ' ') }}"
+                  onchange="document.getElementById('c_kota_stat_icon').value=this.value">
+                <input type="text" name="kota_stat_icon_color" id="c_kota_stat_icon" class="pm-input"
+                  value="{{ $settings['kota_stat_icon_color'] ?? '#38BDF8' }}">
+              </div>
+            </div>
+
+            <div>
+              <label class="pm-label">Warna Judul Stat Box</label>
+              <div class="pm-color-picker-wrap">
+                <input type="color" value="{{ strtok($settings['kota_stat_title_color'] ?? '#E2E8F0', ' ') }}"
+                  onchange="document.getElementById('c_kota_stat_title').value=this.value">
+                <input type="text" name="kota_stat_title_color" id="c_kota_stat_title" class="pm-input"
+                  value="{{ $settings['kota_stat_title_color'] ?? '#E2E8F0' }}">
+              </div>
+            </div>
+
+            <div>
+              <label class="pm-label">Warna Subtext / Deskripsi Stat</label>
+              <div class="pm-color-picker-wrap">
+                <input type="color" value="{{ strtok($settings['kota_stat_sub_color'] ?? '#64748B', ' ') }}"
+                  onchange="document.getElementById('c_kota_stat_sub').value=this.value">
+                <input type="text" name="kota_stat_sub_color" id="c_kota_stat_sub" class="pm-input"
+                  value="{{ $settings['kota_stat_sub_color'] ?? '#64748B' }}">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {{-- CARD 2: Copywriting Judul & Deskripsi --}}
+        <div class="pm-card" style="margin-bottom:1.5rem;">
+          <div class="pm-card-header">
+            <svg width="22" height="22" fill="none" stroke="#10B981" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+            </svg>
+            <div>
+              <div class="pm-card-title">2. Copywriting Judul Utama & Paragraf</div>
+              <div class="pm-help">Ubah teks headline dan deskripsi jangkauan pengiriman.</div>
+            </div>
           </div>
 
-          <div style="display:grid; grid-template-columns:1fr; gap:1.25rem; margin-bottom:1.5rem;">
+          <div style="display:grid; grid-template-columns:1fr; gap:1.25rem;">
             <div>
               <label class="pm-label">Judul Utama Jangkauan Kota</label>
               <input type="text" name="kota_section_title" class="pm-input"
@@ -1907,18 +1977,77 @@
               <textarea name="kota_section_desc" class="pm-input"
                 rows="3">{{ $settings['kota_section_desc'] ?? 'Pusat Piring Keramik bermitra dengan layanan ekspedisi kargo terpercaya untuk mendistribusikan produk piring keramik dan tableware berkualitas ke seluruh penjuru Nusantara secara cepat dan aman.' }}</textarea>
             </div>
+          </div>
+        </div>
+
+        {{-- CARD 3: Stat Items (3 Kartu Keunggulan Jangkauan) --}}
+        <div class="pm-card" style="margin-bottom:1.5rem;">
+          <div class="pm-card-header">
+            <svg width="22" height="22" fill="none" stroke="#F59E0B" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+            </svg>
             <div>
-              <label class="pm-label">Upload Gambar Peta Indonesia (Map Vector/PNG)</label>
-              @if(!empty($settings['coverage_map']))
-                <div style="max-width:200px; margin-bottom:.5rem;">
-                  <img src="{{ asset('storage/' . $settings['coverage_map']) }}"
-                    style="width:100%; border-radius:8px; border:1px solid #E2E8F0;">
-                </div>
-              @endif
-              <input type="file" name="coverage_map" class="pm-input" accept="image/*">
+              <div class="pm-card-title">3. Teks 3 Kartu Keunggulan (Stat Items)</div>
+              <div class="pm-help">Ubah judul dan deskripsi 3 poin statistik di bawah headline.</div>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:1.25rem;">
+            {{-- Stat 1 --}}
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:1rem; border-radius:10px;">
+              <div style="font-weight:700; font-size:.8rem; color:#475569; margin-bottom:.5rem;">Stat #1</div>
+              <label class="pm-label" style="font-size:.75rem;">Judul Stat 1</label>
+              <input type="text" name="kota_stat_1_title" class="pm-input" style="margin-bottom:.5rem;"
+                value="{{ $settings['kota_stat_1_title'] ?? ('Berdiri Sejak ' . (\App\Models\Setting::get('founding_year') ?? '2013')) }}">
+              <label class="pm-label" style="font-size:.75rem;">Deskripsi Stat 1</label>
+              <textarea name="kota_stat_1_sub" class="pm-input" rows="2">{{ $settings['kota_stat_1_sub'] ?? 'Berpengalaman lebih dari satu dekade melayani pengadaan tableware hotel, resto & catering.' }}</textarea>
+            </div>
+
+            {{-- Stat 2 --}}
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:1rem; border-radius:10px;">
+              <div style="font-weight:700; font-size:.8rem; color:#475569; margin-bottom:.5rem;">Stat #2</div>
+              <label class="pm-label" style="font-size:.75rem;">Judul Stat 2</label>
+              <input type="text" name="kota_stat_2_title" class="pm-input" style="margin-bottom:.5rem;"
+                value="{{ $settings['kota_stat_2_title'] ?? '500+ Klien Aktif' }}">
+              <label class="pm-label" style="font-size:.75rem;">Deskripsi Stat 2</label>
+              <textarea name="kota_stat_2_sub" class="pm-input" rows="2">{{ $settings['kota_stat_2_sub'] ?? 'Dipercaya oleh ratusan usaha F&B terkemuka di seluruh Indonesia.' }}</textarea>
+            </div>
+
+            {{-- Stat 3 --}}
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; padding:1rem; border-radius:10px;">
+              <div style="font-weight:700; font-size:.8rem; color:#475569; margin-bottom:.5rem;">Stat #3</div>
+              <label class="pm-label" style="font-size:.75rem;">Judul Stat 3</label>
+              <input type="text" name="kota_stat_3_title" class="pm-input" style="margin-bottom:.5rem;"
+                value="{{ $settings['kota_stat_3_title'] ?? 'Garansi Pecah Ganti Baru' }}">
+              <label class="pm-label" style="font-size:.75rem;">Deskripsi Stat 3</label>
+              <textarea name="kota_stat_3_sub" class="pm-input" rows="2">{{ $settings['kota_stat_3_sub'] ?? 'Jaminan garansi ganti baru jika terdapat kerusakan atau pecah saat pengiriman.' }}</textarea>
             </div>
           </div>
         </div>
+
+        {{-- CARD 4: Upload Peta --}}
+        <div class="pm-card">
+          <div class="pm-card-header">
+            <svg width="22" height="22" fill="none" stroke="#8B5CF6" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+            </svg>
+            <div>
+              <div class="pm-card-title">4. Upload Vektor Peta Indonesia</div>
+              <div class="pm-help">Upload gambar peta jangkauan format PNG atau SVG.</div>
+            </div>
+          </div>
+
+          <div>
+            @if(!empty($settings['coverage_map']))
+              <div style="max-width:260px; margin-bottom:.75rem;">
+                <img src="{{ asset('storage/' . $settings['coverage_map']) }}"
+                  style="width:100%; border-radius:8px; border:1px solid #E2E8F0; background:#0F172A; padding:.5rem;">
+              </div>
+            @endif
+            <input type="file" name="coverage_map" class="pm-input" accept="image/*">
+          </div>
+        </div>
+
       </div>
 
       {{-- SUB TAB 7: SECT FOOTER --}}

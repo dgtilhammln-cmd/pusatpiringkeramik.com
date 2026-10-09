@@ -981,13 +981,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--bg-2), var(--bg-3));
+            background: linear-gradient(135deg, #F1F5F9, #E2E8F0);
             border-radius: 10px;
         }
 
         .cv-gallery-placeholder-inner {
             text-align: center;
-            color: var(--text-3);
+            color: #64748B;
         }
 
         /* ── TESTIMONIALS ─────────────────── */
@@ -2819,8 +2819,23 @@
     </style>
 
     {{-- ════ COVERAGE (PREMIUM REDESIGN) ════ --}}
+    @php
+        $kotaBgType = $settings['kota_bg_type'] ?? 'solid';
+        $kotaBgSolid = $settings['page_home_kota_bg'] ?? '#0F172A';
+        $kotaBgGradient = $settings['kota_bg_gradient'] ?? 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)';
+        $effectiveKotaBgStyle = ($kotaBgType === 'gradient') ? "background: {$kotaBgGradient};" : "background-color: {$kotaBgSolid};";
+        
+        $kotaTitleColor = $settings['page_home_kota_title_color'] ?? '#FFFFFF';
+        $kotaDescColor = $settings['kota_desc_color'] ?? '#94A3B8';
+        
+        $kotaStatIconColor = $settings['kota_stat_icon_color'] ?? '#E2E8F0';
+        $kotaStatTitleColor = $settings['kota_stat_title_color'] ?? '#FFFFFF';
+        $kotaStatSubColor = $settings['kota_stat_sub_color'] ?? '#64748B';
+
+        $foundingYear = \App\Models\Setting::get('founding_year') ?? '2013';
+    @endphp
     <section class="cv-coverage-premium" id="jangkauan"
-        style="background-color: #0F172A; padding: 6rem 0 2rem 0; color: #fff; overflow: hidden; position: relative;">
+        style="{{ $effectiveKotaBgStyle }} padding: 6rem 0 2rem 0; color: #fff; overflow: hidden; position: relative;">
         <div class="cv-coverage-inner"
             style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 2;">
 
@@ -2828,7 +2843,7 @@
                 {{-- Left: Heading --}}
                 <div style="flex: 1; min-width: 300px;" data-aos="fade-right">
                     <h2
-                        style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 500; line-height: 1.2; letter-spacing: -0.03em; margin: 0;">
+                        style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 500; line-height: 1.2; letter-spacing: -0.03em; margin: 0; color: {{ $kotaTitleColor }};">
                         {!! nl2br(e($settings['kota_section_title'] ?? 'Melayani seluruh Indonesia dengan jangkauan 50+ Kota.')) !!}
                     </h2>
                 </div>
@@ -2836,8 +2851,8 @@
                 {{-- Right: Description --}}
                 <div style="flex: 1; min-width: 300px; max-width: 500px; display: flex; align-items: center;"
                     data-aos="fade-left">
-                    <p style="color: #94A3B8; font-size: 1.1rem; line-height: 1.6; margin: 0;">
-                        {{ $settings['kota_section_desc'] ?? $companyName . ' bermitra dengan ekspedisi terkemuka untuk mendistribusikan solusi perlindungan maritim dan industri kualitas premium ke seluruh pelosok Nusantara secara cepat dan aman.' }}
+                    <p style="color: {{ $kotaDescColor }}; font-size: 1.1rem; line-height: 1.6; margin: 0;">
+                        {{ $settings['kota_section_desc'] ?? $companyName . ' bermitra dengan layanan ekspedisi kargo terpercaya untuk mendistribusikan produk piring keramik dan tableware berkualitas ke seluruh penjuru Nusantara secara cepat dan aman.' }}
                     </p>
                 </div>
             </div>
@@ -2847,15 +2862,16 @@
                 style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 1rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
                 {{-- Stat 1 --}}
                 <div data-aos="fade-up" data-aos-delay="0">
-                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; color: #e2e8f0;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; color: {{ $kotaStatIconColor }};">
                         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path d="M2 22h20M12 2v20M5 22V10l7-8 7 8v12M8 14h8M8 18h8" />
                         </svg>
-                        <span style="font-weight: 600; font-size: 1.1rem;">Berdiri Sejak
-                            {{ \App\Models\Setting::get('founding_year') ?? '2013' }}</span>
+                        <span style="font-weight: 600; font-size: 1.1rem; color: {{ $kotaStatTitleColor }};">
+                            {{ $settings['kota_stat_1_title'] ?? 'Berdiri Sejak ' . $foundingYear }}
+                        </span>
                     </div>
-                    <p style="color: #64748B; font-size: 0.95rem; line-height: 1.5; margin: 0;">
-                        Berpengalaman lebih dari satu dekade menjadi andalan perusahaan BUMN dan swasta.
+                    <p style="color: {{ $kotaStatSubColor }}; font-size: 0.95rem; line-height: 1.5; margin: 0;">
+                        {{ $settings['kota_stat_1_sub'] ?? 'Berpengalaman lebih dari satu dekade menjadi andalan perusahaan BUMN dan swasta.' }}
                     </p>
                 </div>
 
@@ -2866,10 +2882,12 @@
                             <path
                                 d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 7a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
                         </svg>
-                        <span style="font-weight: 600; font-size: 1.1rem;">500+ Klien Aktif</span>
+                        <span style="font-weight: 600; font-size: 1.1rem; color: {{ $kotaStatTitleColor }};">
+                            {{ $settings['kota_stat_2_title'] ?? '500+ Klien Aktif' }}
+                        </span>
                     </div>
-                    <p style="color: #64748B; font-size: 0.95rem; line-height: 1.5; margin: 0;">
-                        Dipercaya oleh ratusan perusahaan terkemuka untuk melindungi aset strategis mereka.
+                    <p style="color: {{ $kotaStatSubColor }}; font-size: 0.95rem; line-height: 1.5; margin: 0;">
+                        {{ $settings['kota_stat_2_sub'] ?? 'Dipercaya oleh ratusan perusahaan terkemuka untuk melindungi aset strategis mereka.' }}
                     </p>
                 </div>
 
@@ -2880,10 +2898,12 @@
                             <circle cx="12" cy="8" r="7" />
                             <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
                         </svg>
-                        <span style="font-weight: 600; font-size: 1.1rem;">Garansi Terbaik</span>
+                        <span style="font-weight: 600; font-size: 1.1rem; color: {{ $kotaStatTitleColor }};">
+                            {{ $settings['kota_stat_3_title'] ?? 'Garansi Terbaik' }}
+                        </span>
                     </div>
-                    <p style="color: #64748B; font-size: 0.95rem; line-height: 1.5; margin: 0;">
-                        Jaminan kualitas dan performa maksimal untuk setiap produk pelapis yang kami sediakan.
+                    <p style="color: {{ $kotaStatSubColor }}; font-size: 0.95rem; line-height: 1.5; margin: 0;">
+                        {{ $settings['kota_stat_3_sub'] ?? 'Jaminan kualitas dan performa maksimal untuk setiap produk pelapis yang kami sediakan.' }}
                     </p>
                 </div>
             </div>
