@@ -158,6 +158,7 @@
                         ['Nomor Telepon / WA', $lead->phone],
                         ['Email', $lead->email ?: '-'],
                         ['Produk Diminati', $lead->product ?: '-'],
+                        ['Halaman Asal (URL)', $lead->page_url ? '<a href="'.$lead->page_url.'" target="_blank" style="color:#3B82F6;font-weight:700;">'.$lead->page_url.'</a>' : '-'],
                         ['Sumber Referensi', $lead->source],
                         ['UTM Source', $lead->utm_source ?: '-'],
                         ['UTM Medium', $lead->utm_medium ?: '-'],
@@ -168,7 +169,7 @@
                     ] as $row)
                     <div class="info-row">
                         <span class="info-label">{{ $row[0] }}</span>
-                        <span class="info-value">{{ $row[1] }}</span>
+                        <span class="info-value">{!! $row[1] !!}</span>
                     </div>
                     @endforeach
                 </div>

@@ -87,18 +87,31 @@ class LeadController extends Controller
         $refData = Lead::generateNextRefCode();
         $refCode = $refData['ref_code'];
 
-        // 3. Build WA Template Message
+        // 3. Determine Page URL & Page Path
+        $pageUrl = $request->input('page_url') ?? $request->header('Referer') ?? url()->previous();
+        $pagePath = parse_url($pageUrl, PHP_URL_PATH) ?: '/';
+
+        $sourceText = $request->input('source', 'Tombol WhatsApp');
+        if ($pagePath && $pagePath !== '/') {
+            $sourceText .= ' (' . $pagePath . ')';
+        }
+
+        // 4. Build WA Template Message
         $comp = \App\Models\Setting::get('company_name', config('app.name'));
-        $defaultTpl = "Halo {$comp}, saya tertarik dengan produk piring & tableware keramik. (Kode Referensi: {code})";
+        $defaultTpl = "Halo {$comp}, saya tertarik dengan produk piring & tableware keramik. (Kode Referensi: {code}, Halaman: {page})";
         $rawTpl = \App\Models\Setting::get('wa_template_text', $defaultTpl);
         if (empty(trim($rawTpl))) {
             $rawTpl = $defaultTpl;
         }
-        $msg = str_replace(['{code}', '{kode}'], $refCode, $rawTpl);
+        $msg = str_replace(
+            ['{code}', '{kode}', '{page}', '{halaman}', '{url}'],
+            [$refCode, $refCode, $pagePath, $pagePath, $pageUrl],
+            $rawTpl
+        );
 
         $waUrl = 'https://wa.me/' . ($nomor ?: '6281805890181') . '?text=' . urlencode($msg);
 
-        // 4. Instant millisecond logging to DB (preserves lead record even if visitor cancels opening WA)
+        // 5. Instant millisecond logging to DB (preserves lead record even if visitor cancels opening WA)
         $lead = Lead::create([
             'lead_type'   => 'wa_code',
             'ref_code'    => $refCode,
@@ -106,8 +119,8 @@ class LeadController extends Controller
             'name'        => 'WA Visitor (' . $refCode . ')',
             'phone'       => $nomor ? ('+' . $nomor) : '-',
             'company'     => '-',
-            'source'      => $request->input('source', 'Tombol WhatsApp'),
-            'page_url'    => $request->header('Referer'),
+            'source'      => $sourceText,
+            'page_url'    => $pageUrl,
             'ip_address'  => $request->ip(),
             'device_type' => AnalyticsEvent::detectDevice($request->userAgent() ?? ''),
             'wa_number'   => $nomor,
@@ -119,8 +132,8 @@ class LeadController extends Controller
             'utm_content' => $request->session()->get('utm_content'),
         ]);
 
-        // 5. Track Analytics
-        AnalyticsEvent::record('lead_wa_code', $request->header('Referer'), [
+        // 6. Track Analytics
+        AnalyticsEvent::record('lead_wa_code', $pageUrl, [
             'page_title' => 'WA Direct Click - ' . $refCode,
             'ref_code'   => $refCode,
         ]);
@@ -130,6 +143,7 @@ class LeadController extends Controller
             'wa_url'   => $waUrl,
             'ref_code' => $refCode,
             'lead_id'  => $lead->id,
+            'page_url' => $pageUrl,
         ]);
     }
 }

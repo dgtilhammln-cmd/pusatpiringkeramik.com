@@ -125,31 +125,37 @@
     </div>
 </div>
 
-{{-- Status Mode Lead Active Card --}}
-<div style="background:#0F172A; border:1px solid #1E293B; border-radius:14px; padding:1.25rem 1.5rem; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; box-shadow:0 10px 25px rgba(0,0,0,0.15);">
-    <div style="display:flex; align-items:center; gap:1rem;">
-        <div style="width:42px; height:42px; border-radius:12px; background:rgba(245,166,35,0.15); border:1px solid rgba(245,166,35,0.3); display:flex; align-items:center; justify-content:center; color:#F5A623;">
-            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+{{-- Status Mode Lead Active Banner (Light Compact) --}}
+<div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:12px; padding:0.875rem 1.25rem; margin-bottom:1.5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.875rem; box-shadow:0 1px 3px rgba(0,0,0,0.03);">
+    <div style="display:flex; align-items:center; gap:0.75rem;">
+        <div style="width:34px; height:34px; border-radius:8px; background:{{ ($activeMode ?? 'popup') === 'wa_code' ? 'rgba(16,185,129,0.1)' : 'rgba(139,92,246,0.1)' }}; color:{{ ($activeMode ?? 'popup') === 'wa_code' ? '#10B981' : '#8B5CF6' }}; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
         </div>
         <div>
-            <div style="font-size:0.9375rem; font-weight:800; color:#FFFFFF;">
-                Mode Penangkapan Leads Aktif: 
-                <span style="color:#F5A623; letter-spacing:0.01em;">
-                    @if(($activeMode ?? 'popup') === 'wa_code')
-                        Mode Kode Referensi WA (Direct WA + Auto Sequence UDSM-xxxx)
-                    @else
-                        Mode Form Popup (Nama, No. Telp, Perusahaan, Kebutuhan)
-                    @endif
-                </span>
+            <div style="font-size:0.8125rem; font-weight:700; color:#1E293B; display:flex; align-items:center; gap:0.5rem; flex-wrap:wrap;">
+                <span>Mode Lead Aktif:</span>
+                @if(($activeMode ?? 'popup') === 'wa_code')
+                    <span style="font-size:0.75rem; font-weight:800; color:#059669; background:#ECFDF5; padding:0.15rem 0.6rem; border-radius:50px; border:1px solid #A7F3D0;">
+                        Kode Referensi WA (Direct WA)
+                    </span>
+                @else
+                    <span style="font-size:0.75rem; font-weight:800; color:#6D28D9; background:#F5F3FF; padding:0.15rem 0.6rem; border-radius:50px; border:1px solid #DDD6FE;">
+                        Form Popup Lead
+                    </span>
+                @endif
             </div>
-            <div style="font-size:0.8rem; color:#94A3B8; margin-top:2px;">
-                Semua tombol WhatsApp di website saat ini merujuk ke sistem <strong>{{ ($activeMode ?? 'popup') === 'wa_code' ? 'Kode Referensi WhatsApp (Direct WA)' : 'Form Popup Leads' }}</strong>.
+            <div style="font-size:0.75rem; color:#64748B; margin-top:2px;">
+                @if(($activeMode ?? 'popup') === 'wa_code')
+                    Pengunjung yang mengklik WhatsApp langsung di-redirect dengan Kode Urut (<code style="color:#059669; font-weight:700;">UDSM-xxxx</code>) & tercatat otomatis di database.
+                @else
+                    Pengunjung mengisi nama, no. telp, dan perusahaan di modal form sebelum membuka WhatsApp.
+                @endif
             </div>
         </div>
     </div>
-    <a href="{{ route('admin.wa') }}" style="display:inline-flex; align-items:center; gap:0.5rem; background:#F5A623; color:#0F172A; font-size:0.8125rem; font-weight:800; padding:0.65rem 1.25rem; border-radius:10px; text-decoration:none; transition:all 0.2s; box-shadow:0 4px 12px rgba(245,166,35,0.3);" onmouseover="this.style.background='#FFB838';" onmouseout="this.style.background='#F5A623';">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-        Ubah / Switch Mode Lead di Sini
+    <a href="{{ route('admin.wa') }}" style="display:inline-flex; align-items:center; gap:0.4rem; background:#F1F5F9; color:#0F172A; font-size:0.75rem; font-weight:700; padding:0.5rem 0.875rem; border-radius:8px; border:1px solid #E2E8F0; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.background='#0F172A';this.style.color='#FFF';" onmouseout="this.style.background='#F1F5F9';this.style.color='#0F172A';">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Pengaturan Mode Lead
     </a>
 </div>
 
@@ -297,10 +303,19 @@
                 str_contains($src,'Floating') || str_contains($src,'WhatsApp') => '#22C55E',
                 default                       => '#64748B',
               };
+              $pagePath = $lead->page_url ? (parse_url($lead->page_url, PHP_URL_PATH) ?: '/') : null;
             @endphp
             <span style="font-size:.7rem;font-weight:600;padding:.25rem .625rem;border-radius:100px;background:{{ $srcColor }}15;color:{{ $srcColor }};white-space:nowrap;">
-              {{ Str::limit($src, 20) }}
+              {{ Str::limit($src, 25) }}
             </span>
+            @if($lead->page_url)
+              <div style="margin-top:4px;">
+                <a href="{{ $lead->page_url }}" target="_blank" title="{{ $lead->page_url }}" style="font-size:0.75rem;font-weight:700;color:#2563EB;text-decoration:none;display:inline-flex;align-items:center;gap:3px;background:#EFF6FF;border:1px solid #BFDBFE;padding:0.15rem 0.45rem;border-radius:4px;max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                  <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+                  {{ $pagePath }}
+                </a>
+              </div>
+            @endif
           </td>
           <td class="td-cell" style="font-size:.8rem;color:#64748B;white-space:nowrap;">
             <div style="display:flex;align-items:center;gap:0.35rem;">

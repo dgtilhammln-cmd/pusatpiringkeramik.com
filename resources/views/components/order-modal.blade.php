@@ -265,7 +265,11 @@
                         'X-CSRF-TOKEN': token,
                         'Accept': 'application/json'
                     },
-                    body: JSON.stringify({ source: source })
+                    body: JSON.stringify({
+                        source: source,
+                        page_url: window.location.href,
+                        page_title: document.title
+                    })
                 });
                 const data = await res.json();
                 if (data.success && data.wa_url) {
