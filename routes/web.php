@@ -62,23 +62,13 @@ Route::post('/request-order-wa', [LeadController::class, 'waRedirect'])->name('l
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 Route::get('/sitemap', [SitemapController::class, 'index'])->name('sitemap');
 Route::get('/robots.txt', function () {
-    // Always use config('app.url') as the canonical — don't trust DB app_url
-    // which could contain old data from a different project.
-    $siteUrl = rtrim(config('app.url', 'https://pusatpiringkeramik.hvmdigital.id'), '/');
-    // Validate it looks like a real URL; if not, fallback hard
-    if (!str_starts_with($siteUrl, 'http') || str_contains($siteUrl, 'cyclevent')) {
-        $siteUrl = 'https://pusatpiringkeramik.hvmdigital.id';
-    }
+    $siteUrl = \App\Models\Setting::getAppUrl();
     $content = "User-agent: *\nAllow: /\n\nSitemap: {$siteUrl}/sitemap.xml\nllms-txt: {$siteUrl}/llms.txt";
     return response($content, 200)->header('Content-Type', 'text/plain; charset=UTF-8');
 });
 
 Route::get('/llms.txt', function () {
-    // Always use config('app.url') as canonical domain
-    $siteUrl = rtrim(config('app.url', 'https://pusatpiringkeramik.hvmdigital.id'), '/');
-    if (!str_starts_with($siteUrl, 'http') || str_contains($siteUrl, 'cyclevent')) {
-        $siteUrl = 'https://pusatpiringkeramik.hvmdigital.id';
-    }
+    $siteUrl = \App\Models\Setting::getAppUrl();
     $comp = \App\Models\Setting::getAppName();
     // If company name still has cyclevent data, use the correct name
     if (str_contains(strtolower($comp), 'cyclevent') || str_contains(strtolower($comp), 'hiranatha')) {

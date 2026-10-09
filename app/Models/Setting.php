@@ -42,11 +42,15 @@ class Setting extends Model
      */
     public static function getAppUrl(): string
     {
+        $configUrl = config('app.url');
+        if (!empty($configUrl) && str_starts_with($configUrl, 'http')) {
+            return rtrim($configUrl, '/');
+        }
         $appUrl = static::get('app_url');
-        if (!empty(trim($appUrl))) {
+        if (!empty(trim($appUrl)) && str_starts_with($appUrl, 'http')) {
             return rtrim(trim($appUrl), '/');
         }
-        return rtrim(config('app.url', 'https://pusatpiringkeramik.hvmdigital.id'), '/');
+        return 'https://pusatpiringkeramik.com';
     }
 
     /**
