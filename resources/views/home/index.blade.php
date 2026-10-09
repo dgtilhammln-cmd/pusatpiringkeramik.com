@@ -2594,7 +2594,6 @@
     {{-- ════ PREMIUM COVERAGE CSS ════ --}}
     <style>
         .cv-coverage-premium {
-            background: #EAEBED;
             padding: 6rem 0 0;
             position: relative;
         }
@@ -2863,8 +2862,11 @@
                 {{-- Stat 1 --}}
                 <div data-aos="fade-up" data-aos-delay="0">
                     <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; color: {{ $kotaStatIconColor }};">
-                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M2 22h20M12 2v20M5 22V10l7-8 7 8v12M8 14h8M8 18h8" />
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
                         </svg>
                         <span style="font-weight: 600; font-size: 1.1rem; color: {{ $kotaStatTitleColor }};">
                             {{ $settings['kota_stat_1_title'] ?? 'Berdiri Sejak ' . $foundingYear }}
@@ -2877,7 +2879,7 @@
 
                 {{-- Stat 2 --}}
                 <div data-aos="fade-up" data-aos-delay="100">
-                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; color: #e2e8f0;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; color: {{ $kotaStatIconColor }};">
                         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path
                                 d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 7a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
@@ -2893,7 +2895,7 @@
 
                 {{-- Stat 3 --}}
                 <div data-aos="fade-up" data-aos-delay="200">
-                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; color: #e2e8f0;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; color: {{ $kotaStatIconColor }};">
                         <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <circle cx="12" cy="8" r="7" />
                             <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />

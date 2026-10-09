@@ -1881,12 +1881,13 @@
           <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem;">
             <div>
               <label class="pm-label">Tipe Background Section</label>
-              <select name="kota_bg_type" class="pm-input">
+              <select name="kota_bg_type" id="kota_bg_type" class="pm-input" onchange="toggleGradBuilder('kota')">
                 <option value="solid" {{ ($settings['kota_bg_type'] ?? 'solid') === 'solid' ? 'selected' : '' }}>Warna Solid Single</option>
-                <option value="gradient" {{ ($settings['kota_bg_type'] ?? 'solid') === 'gradient' ? 'selected' : '' }}>Gradasi CSS (Gradient)</option>
+                <option value="gradient" {{ ($settings['kota_bg_type'] ?? 'solid') === 'gradient' ? 'selected' : '' }}>Gradasi CSS (Gradient Interaktif)</option>
               </select>
             </div>
-            <div>
+
+            <div id="kota_solid_wrap" style="{{ ($settings['kota_bg_type'] ?? 'solid') === 'gradient' ? 'display:none;' : '' }}">
               <label class="pm-label">Warna Background Solid</label>
               <div class="pm-color-picker-wrap">
                 <input type="color" value="{{ strtok($settings['page_home_kota_bg'] ?? '#0F172A', ' ') }}"
@@ -1895,11 +1896,60 @@
                   value="{{ $settings['page_home_kota_bg'] ?? '#0F172A' }}">
               </div>
             </div>
-            <div style="grid-column: span 2;">
-              <label class="pm-label">Warna Background Gradasi CSS (Gradient)</label>
-              <input type="text" name="kota_bg_gradient" class="pm-input"
-                value="{{ $settings['kota_bg_gradient'] ?? 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)' }}"
-                placeholder="linear-gradient(135deg, #0F172A 0%, #1E293B 100%)">
+
+            <div id="kota_grad_wrap" style="grid-column: 1 / -1; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 1.25rem; {{ ($settings['kota_bg_type'] ?? 'solid') === 'gradient' ? '' : 'display:none;' }}">
+              <div style="font-weight: 700; font-size: 0.9rem; color: #0F172A; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                <svg width="18" height="18" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+                Builder Gradasi Interaktif (Jangkauan Kota)
+              </div>
+
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                <div>
+                  <label class="pm-label" style="font-size: 0.8rem;">Warna Gradasi 1 (Awal)</label>
+                  <div class="pm-color-picker-wrap">
+                    <input type="color" id="kota_c1_picker" value="#0F172A" onchange="syncGradColor('kota', 1, this.value)">
+                    <input type="text" id="kota_c1_txt" class="pm-input" value="#0F172A" onchange="syncGradColor('kota', 1, this.value)">
+                  </div>
+                </div>
+                <div>
+                  <label class="pm-label" style="font-size: 0.8rem;">Warna Gradasi 2 (Akhir)</label>
+                  <div class="pm-color-picker-wrap">
+                    <input type="color" id="kota_c2_picker" value="#1E293B" onchange="syncGradColor('kota', 2, this.value)">
+                    <input type="text" id="kota_c2_txt" class="pm-input" value="#1E293B" onchange="syncGradColor('kota', 2, this.value)">
+                  </div>
+                </div>
+                <div>
+                  <label class="pm-label" style="font-size: 0.8rem;">Arah / Angle Gradasi</label>
+                  <select id="kota_grad_dir" class="pm-input" onchange="updateGradResult('kota')">
+                    <option value="135deg">Diagonal (135°)</option>
+                    <option value="180deg">Atas ke Bawah (180°)</option>
+                    <option value="90deg">Kiri ke Kanan (90°)</option>
+                    <option value="45deg">Diagonal Naik (45°)</option>
+                    <option value="radial">Melingkar (Radial Glow)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="margin-bottom: 1rem;">
+                <label class="pm-label" style="font-size: 0.75rem; color: #64748B; margin-bottom: 0.375rem;">Preset Gradasi Cepat:</label>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                  <button type="button" class="pm-btn-sm" onclick="applyGradPreset('kota', '#0F172A', '#1E293B', '135deg')" style="background: linear-gradient(135deg, #0F172A, #1E293B); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌌 Dark Navy</button>
+                  <button type="button" class="pm-btn-sm" onclick="applyGradPreset('kota', '#0284C7', '#0F172A', '135deg')" style="background: linear-gradient(135deg, #0284C7, #0F172A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌊 Deep Blue</button>
+                  <button type="button" class="pm-btn-sm" onclick="applyGradPreset('kota', '#18181B', '#27272A', '135deg')" style="background: linear-gradient(135deg, #18181B, #27272A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌑 Midnight Charcoal</button>
+                  <button type="button" class="pm-btn-sm" onclick="applyGradPreset('kota', '#064E3B', '#0F172A', '135deg')" style="background: linear-gradient(135deg, #064E3B, #0F172A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌿 Emerald Dark</button>
+                  <button type="button" class="pm-btn-sm" onclick="applyGradPreset('kota', '#4C1D95', '#0F172A', '135deg')" style="background: linear-gradient(135deg, #4C1D95, #0F172A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🔮 Royal Purple</button>
+                </div>
+              </div>
+
+              <div>
+                <label class="pm-label" style="font-size: 0.8rem;">Pratinjau Hasil Gradasi (Live Preview):</label>
+                <div id="kota_bg_preview" style="height: 50px; border-radius: 8px; border: 1px solid #CBD5E1; background: {{ $settings['kota_bg_gradient'] ?? 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)' }}; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600; text-shadow: 0 1px 3px rgba(0,0,0,0.5); font-size: 0.85rem;">
+                  Hasil Gradasi Background Section
+                </div>
+                <input type="text" name="kota_bg_gradient" id="kota_bg_gradient" class="pm-input"
+                  value="{{ $settings['kota_bg_gradient'] ?? 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)' }}"
+                  placeholder="linear-gradient(135deg, #0F172A 0%, #1E293B 100%)" onchange="document.getElementById('kota_bg_preview').style.background=this.value">
+              </div>
             </div>
 
             <div>
@@ -2069,12 +2119,13 @@
           <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem;">
             <div>
               <label class="pm-label">Tipe Background Footer</label>
-              <select name="footer_bg_type" class="pm-input">
-                <option value="gradient" {{ ($settings['footer_bg_type'] ?? 'gradient') === 'gradient' ? 'selected' : '' }}>Gradasi CSS (Gradient)</option>
+              <select name="footer_bg_type" id="footer_bg_type" class="pm-input" onchange="toggleGradBuilder('footer')">
+                <option value="gradient" {{ ($settings['footer_bg_type'] ?? 'gradient') === 'gradient' ? 'selected' : '' }}>Gradasi CSS (Gradient Interaktif)</option>
                 <option value="solid" {{ ($settings['footer_bg_type'] ?? 'gradient') === 'solid' ? 'selected' : '' }}>Warna Solid Single</option>
               </select>
             </div>
-            <div>
+
+            <div id="footer_solid_wrap" style="{{ ($settings['footer_bg_type'] ?? 'gradient') === 'solid' ? '' : 'display:none;' }}">
               <label class="pm-label">Warna Background Solid</label>
               <div class="pm-color-picker-wrap">
                 <input type="color" value="{{ strtok($settings['footer_bg_color'] ?? '#0F172A', ' ') }}"
@@ -2083,11 +2134,60 @@
                   value="{{ $settings['footer_bg_color'] ?? '#0F172A' }}">
               </div>
             </div>
-            <div style="grid-column: span 2;">
-              <label class="pm-label">Warna Background Gradasi CSS (Gradient)</label>
-              <input type="text" name="footer_bg_gradient" class="pm-input"
-                value="{{ $settings['footer_bg_gradient'] ?? 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)' }}"
-                placeholder="linear-gradient(135deg, #0F172A 0%, #1E293B 100%)">
+
+            <div id="footer_grad_wrap" style="grid-column: 1 / -1; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 1.25rem; {{ ($settings['footer_bg_type'] ?? 'gradient') === 'solid' ? 'display:none;' : '' }}">
+              <div style="font-weight: 700; font-size: 0.9rem; color: #0F172A; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                <svg width="18" height="18" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+                Builder Gradasi Interaktif (Footer)
+              </div>
+
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                <div>
+                  <label class="pm-label" style="font-size: 0.8rem;">Warna Gradasi 1 (Awal)</label>
+                  <div class="pm-color-picker-wrap">
+                    <input type="color" id="footer_c1_picker" value="#0F172A" onchange="syncGradColor('footer', 1, this.value)">
+                    <input type="text" id="footer_c1_txt" class="pm-input" value="#0F172A" onchange="syncGradColor('footer', 1, this.value)">
+                  </div>
+                </div>
+                <div>
+                  <label class="pm-label" style="font-size: 0.8rem;">Warna Gradasi 2 (Akhir)</label>
+                  <div class="pm-color-picker-wrap">
+                    <input type="color" id="footer_c2_picker" value="#1E293B" onchange="syncGradColor('footer', 2, this.value)">
+                    <input type="text" id="footer_c2_txt" class="pm-input" value="#1E293B" onchange="syncGradColor('footer', 2, this.value)">
+                  </div>
+                </div>
+                <div>
+                  <label class="pm-label" style="font-size: 0.8rem;">Arah / Angle Gradasi</label>
+                  <select id="footer_grad_dir" class="pm-input" onchange="updateGradResult('footer')">
+                    <option value="135deg">Diagonal (135°)</option>
+                    <option value="180deg">Atas ke Bawah (180°)</option>
+                    <option value="90deg">Kiri ke Kanan (90°)</option>
+                    <option value="45deg">Diagonal Naik (45°)</option>
+                    <option value="radial">Melingkar (Radial Glow)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="margin-bottom: 1rem;">
+                <label class="pm-label" style="font-size: 0.75rem; color: #64748B; margin-bottom: 0.375rem;">Preset Gradasi Cepat:</label>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                  <button type="button" class="pm-btn-sm" onclick="applyGradPreset('footer', '#0F172A', '#1E293B', '135deg')" style="background: linear-gradient(135deg, #0F172A, #1E293B); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌌 Dark Navy</button>
+                  <button type="button" class="pm-btn-sm" onclick="applyGradPreset('footer', '#0284C7', '#0F172A', '135deg')" style="background: linear-gradient(135deg, #0284C7, #0F172A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌊 Deep Blue</button>
+                  <button type="button" class="pm-btn-sm" onclick="applyGradPreset('footer', '#18181B', '#27272A', '135deg')" style="background: linear-gradient(135deg, #18181B, #27272A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌑 Midnight Charcoal</button>
+                  <button type="button" class="pm-btn-sm" onclick="applyGradPreset('footer', '#064E3B', '#0F172A', '135deg')" style="background: linear-gradient(135deg, #064E3B, #0F172A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌿 Emerald Dark</button>
+                  <button type="button" class="pm-btn-sm" onclick="applyGradPreset('footer', '#4C1D95', '#0F172A', '135deg')" style="background: linear-gradient(135deg, #4C1D95, #0F172A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🔮 Royal Purple</button>
+                </div>
+              </div>
+
+              <div>
+                <label class="pm-label" style="font-size: 0.8rem;">Pratinjau Hasil Gradasi (Live Preview):</label>
+                <div id="footer_bg_preview" style="height: 50px; border-radius: 8px; border: 1px solid #CBD5E1; background: {{ $settings['footer_bg_gradient'] ?? 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)' }}; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600; text-shadow: 0 1px 3px rgba(0,0,0,0.5); font-size: 0.85rem;">
+                  Hasil Gradasi Background Footer
+                </div>
+                <input type="text" name="footer_bg_gradient" id="footer_bg_gradient" class="pm-input"
+                  value="{{ $settings['footer_bg_gradient'] ?? 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)' }}"
+                  placeholder="linear-gradient(135deg, #0F172A 0%, #1E293B 100%)" onchange="document.getElementById('footer_bg_preview').style.background=this.value">
+              </div>
             </div>
 
             <div>
@@ -2152,33 +2252,55 @@
           </div>
         </div>
 
-        {{-- CARD 2: Rating Box & Copywriting Footer --}}
+        {{-- CARD 2: Teks Umum, Rating Box & Copywriting Footer --}}
         <div class="pm-card" style="margin-bottom:1.5rem;">
           <div class="pm-card-header">
             <svg width="22" height="22" fill="none" stroke="#F59E0B" stroke-width="2" viewBox="0 0 24 24">
               <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
             </svg>
             <div>
-              <div class="pm-card-title">2. Card Rating Ulasan & Copywriting Text</div>
-              <div class="pm-help">Kustomisasi ulasan bintang, teks jumlah review, deskripsi brand, dan judul kolom.</div>
+              <div class="pm-card-title">2. Teks Umum & Copywriting Footer</div>
+              <div class="pm-help">Kustomisasi deskripsi perusahaan, copyright text, tahun berdiri, rating ulasan, dan judul kolom.</div>
             </div>
           </div>
 
+          {{-- Section Header: Teks Umum --}}
+          <div style="background:#F1F5F9; border:1px solid #E2E8F0; border-radius:8px; padding:0.6rem 1rem; margin-bottom:1.25rem; font-weight:700; font-size:0.85rem; color:#0F172A; display:flex; align-items:center; gap:0.5rem;">
+            <svg width="16" height="16" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            📄 Teks Umum (Deskripsi, Copyright & Tahun Berdiri)
+          </div>
+
           <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem;">
+            <div style="grid-column: 1 / -1;">
+              <label class="pm-label">Deskripsi Footer (Deskripsi Singkat Perusahaan)</label>
+              <textarea name="footer_desc" class="pm-input" rows="3">{{ $settings['footer_desc'] ?? ($settings['site_description'] ?? 'Distributor & Supplier Piring Keramik terpercaya di Indonesia. Melayani kebutuhan grosir restoran, hotel, dan catering.') }}</textarea>
+              <p style="font-size:.75rem; color:#64748B; margin-top:.25rem;">Tampil di footer website sebagai deskripsi singkat perusahaan.</p>
+            </div>
+
+            <div>
+              <label class="pm-label">Copyright Text</label>
+              <input type="text" name="footer_copyright" class="pm-input"
+                value="{{ $settings['footer_copyright'] ?? ($settings['copyright'] ?? ('© 2016–' . date('Y') . ' Pusat Piring Keramik. All rights reserved.')) }}">
+              <p style="font-size:.75rem; color:#64748B; margin-top:.25rem;">Tampil di bagian bawah footer.</p>
+            </div>
+
+            <div>
+              <label class="pm-label">📅 Tahun Berdiri</label>
+              <input type="number" name="founding_year" class="pm-input"
+                value="{{ $settings['founding_year'] ?? '2013' }}" placeholder="2013" min="1900" max="{{ date('Y') }}">
+              <p style="font-size:.75rem; color:#64748B; margin-top:.25rem;">Otomatis tersinkron ke semua halaman: hero, statistik, footer, dan badge "Sejak xxxx".</p>
+            </div>
+
             <div>
               <label class="pm-label">Nilai Rating Ulasan Footer</label>
               <input type="text" name="footer_rating_value" class="pm-input"
                 value="{{ $settings['footer_rating_value'] ?? '4.9 / 5.0' }}" placeholder="4.9 / 5.0">
             </div>
+
             <div>
               <label class="pm-label">Teks Jumlah Ulasan Terverifikasi</label>
               <input type="text" name="footer_rating_count_text" class="pm-input"
                 value="{{ $settings['footer_rating_count_text'] ?? '134+ Ulasan Terverifikasi' }}" placeholder="134+ Ulasan Terverifikasi">
-            </div>
-
-            <div style="grid-column: 1 / -1;">
-              <label class="pm-label">Deskripsi Singkat Perusahaan di Footer</label>
-              <textarea name="footer_desc" class="pm-input" rows="3">{{ $settings['footer_desc'] ?? 'Distributor & Supplier Piring Keramik terpercaya di Indonesia. Melayani kebutuhan grosir restoran, hotel, dan catering.' }}</textarea>
             </div>
 
             <div>
@@ -2195,12 +2317,6 @@
               <label class="pm-label">Judul Kolom 3 (Kontak)</label>
               <input type="text" name="footer_col_3_title" class="pm-input"
                 value="{{ $settings['footer_col_3_title'] ?? 'Kontak' }}" placeholder="Kontak">
-            </div>
-
-            <div style="grid-column: 1 / -1;">
-              <label class="pm-label">Teks Copyright Footer</label>
-              <input type="text" name="footer_copyright" class="pm-input"
-                value="{{ $settings['footer_copyright'] ?? ('© ' . date('Y') . ' Pusat Piring Keramik. All Rights Reserved.') }}">
             </div>
           </div>
         </div>
@@ -3160,6 +3276,65 @@
       const subContent = document.getElementById('sub-' + subKey);
       if (subContent) subContent.style.display = 'block';
       document.getElementById('active_tab_input').value = subKey;
+    }
+
+    function toggleGradBuilder(prefix) {
+      const selectEl = document.getElementById(prefix + '_bg_type');
+      const solidWrap = document.getElementById(prefix + '_solid_wrap');
+      const gradWrap = document.getElementById(prefix + '_grad_wrap');
+      if (!selectEl || !solidWrap || !gradWrap) return;
+
+      if (selectEl.value === 'gradient') {
+        solidWrap.style.display = 'none';
+        gradWrap.style.display = 'block';
+        updateGradResult(prefix);
+      } else {
+        solidWrap.style.display = 'block';
+        gradWrap.style.display = 'none';
+      }
+    }
+
+    function syncGradColor(prefix, num, val) {
+      const picker = document.getElementById(prefix + '_c' + num + '_picker');
+      const txt = document.getElementById(prefix + '_c' + num + '_txt');
+      if (picker) picker.value = val;
+      if (txt) txt.value = val;
+      updateGradResult(prefix);
+    }
+
+    function updateGradResult(prefix) {
+      const c1 = document.getElementById(prefix + '_c1_txt')?.value || '#0F172A';
+      const c2 = document.getElementById(prefix + '_c2_txt')?.value || '#1E293B';
+      const dir = document.getElementById(prefix + '_grad_dir')?.value || '135deg';
+
+      let gradStr = '';
+      if (dir === 'radial') {
+        gradStr = `radial-gradient(circle at center, ${c1} 0%, ${c2} 100%)`;
+      } else {
+        gradStr = `linear-gradient(${dir}, ${c1} 0%, ${c2} 100%)`;
+      }
+
+      const inputEl = document.getElementById(prefix + '_bg_gradient');
+      const previewEl = document.getElementById(prefix + '_bg_preview');
+      if (inputEl) inputEl.value = gradStr;
+      if (previewEl) previewEl.style.background = gradStr;
+    }
+
+    function applyGradPreset(prefix, c1, c2, dir) {
+      if (!dir) dir = '135deg';
+      const p1 = document.getElementById(prefix + '_c1_picker');
+      const t1 = document.getElementById(prefix + '_c1_txt');
+      const p2 = document.getElementById(prefix + '_c2_picker');
+      const t2 = document.getElementById(prefix + '_c2_txt');
+      const d = document.getElementById(prefix + '_grad_dir');
+
+      if (p1) p1.value = c1;
+      if (t1) t1.value = c1;
+      if (p2) p2.value = c2;
+      if (t2) t2.value = c2;
+      if (d) d.value = dir;
+
+      updateGradResult(prefix);
     }
 
     function openAddModal() {

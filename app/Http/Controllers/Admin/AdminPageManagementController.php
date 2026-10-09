@@ -56,6 +56,19 @@ class AdminPageManagementController extends Controller
             }
         }
 
+        // Sync footer copyright & description aliases
+        if ($request->has('footer_copyright')) {
+            $cpVal = $request->input('footer_copyright');
+            Setting::set('footer_copyright', $cpVal, 'text', 'page_management');
+            Setting::set('copyright', $cpVal, 'text', 'page_management');
+            Setting::set('copyright_text', $cpVal, 'text', 'page_management');
+        }
+        if ($request->has('footer_desc')) {
+            $fDescVal = $request->input('footer_desc');
+            Setting::set('footer_desc', $fDescVal, 'text', 'page_management');
+            Setting::set('site_description', $fDescVal, 'text', 'page_management');
+        }
+
         // Save image file uploads
         foreach ($request->allFiles() as $key => $file) {
             if (!$file->isValid()) continue;
