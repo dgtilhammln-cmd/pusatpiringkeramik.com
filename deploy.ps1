@@ -64,7 +64,7 @@ APP_NAME="Pusat Piring Keramik"
 APP_ENV=production
 APP_KEY=base64:8v7nZVLpqpXmf3DacvEgc4/ohLjd4ABdBqOc5hTG5rg=
 APP_DEBUG=false
-APP_URL=https://pusatpiringkeramik.hvmdigital.id
+APP_URL=https://pusatpiringkeramik.com
 APP_LOCALE=id
 APP_FALLBACK_LOCALE=en
 APP_FAKER_LOCALE=id_ID
@@ -98,9 +98,10 @@ ENVEOF
     php artisan key:generate --force
 fi
 
-# Ensure APP_DEBUG=false in existing .env file
+# Ensure APP_DEBUG=false and APP_URL=https://pusatpiringkeramik.com in existing .env file
 if [ -f "$DEPLOY_DIR/.env" ]; then
     sed -i 's/APP_DEBUG=true/APP_DEBUG=false/g' "$DEPLOY_DIR/.env"
+    sed -i 's|APP_URL=.*|APP_URL=https://pusatpiringkeramik.com|g' "$DEPLOY_DIR/.env"
 fi
 
 echo ""

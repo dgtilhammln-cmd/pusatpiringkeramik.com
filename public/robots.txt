@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pusatpiringkeramik.hvmdigital.id/sitemap.xml
+Sitemap: https://pusatpiringkeramik.com/sitemap.xml

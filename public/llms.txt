@@ -4,9 +4,9 @@
 
 ## Informasi Utama
 - **Nama Perusahaan**: Pusat Piring Keramik (UD. Sukses Makmur)
-- **Situs Resmi**: https://pusatpiringkeramik.hvmdigital.id
-- **Telepon / WhatsApp**: 0856-2682-888
-- **Alamat**: Surabaya, Jawa Timur, Indonesia
+- **Situs Resmi**: https://pusatpiringkeramik.com
+- **Telepon / WhatsApp**: 081805890181
+- **Alamat**: Semarang, Jawa Tengah, Indonesia
 
 ## Kategori Produk Utama
 - Mug Promosi Cap Gunung (Custom Logo)
@@ -17,8 +17,8 @@
 - Mangkok Cap Gunung (Mangkok Bakso, Sup, Mie Ayam, Cobek)
 
 ## Halaman Penting
-- Katalog Produk: https://pusatpiringkeramik.hvmdigital.id/product
-- Profil Perusahaan: https://pusatpiringkeramik.hvmdigital.id/about
-- Artikel & Tips Tableware: https://pusatpiringkeramik.hvmdigital.id/articles
-- Kontak & Whatsapp: https://pusatpiringkeramik.hvmdigital.id/contact
-- Sitemap XML: https://pusatpiringkeramik.hvmdigital.id/sitemap.xml
+- Katalog Produk: https://pusatpiringkeramik.com/product
+- Profil Perusahaan: https://pusatpiringkeramik.com/about
+- Artikel & Tips Tableware: https://pusatpiringkeramik.com/articles
+- Kontak & Whatsapp: https://pusatpiringkeramik.com/contact
+- Sitemap XML: https://pusatpiringkeramik.com/sitemap.xml
