@@ -442,56 +442,84 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
   {{-- Navigation --}}
   <nav class="sb-nav" id="sb-nav">
     <div class="sb-sec">Main</div>
+    @if(!isset($currentAdminUser) || $currentAdminUser->hasPermission('dashboard'))
     <a href="{{ route('admin.dashboard') }}" class="sb-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" title="Dashboard">
       <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
       <span class="sb-link-text">Dashboard</span>
     </a>
+    @endif
+    @if(!isset($currentAdminUser) || $currentAdminUser->hasPermission('analytics'))
     <a href="{{ route('admin.analytics') }}" class="sb-link {{ request()->routeIs('admin.analytics*') ? 'active' : '' }}" title="Analytics">
       <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
       <span class="sb-link-text">Analytics</span>
     </a>
+    @endif
 
     <div class="sb-sec">Konten</div>
-    <a href="{{ route('admin.services.index') }}" class="sb-link {{ request()->routeIs('admin.services*') ? 'active' : '' }}" title="Layanan">
+    @if(!isset($currentAdminUser) || $currentAdminUser->hasPermission('services'))
+    <a href="{{ route('admin.services.index') }}" class="sb-link {{ request()->routeIs('admin.services*') ? 'active' : '' }}" title="Produk & Layanan">
       <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
       <span class="sb-link-text">Layanan</span>
     </a>
+    @endif
+    @if(!isset($currentAdminUser) || $currentAdminUser->hasPermission('service_categories'))
     <a href="{{ route('admin.service-categories.index') }}" class="sb-link {{ request()->routeIs('admin.service-categories*') ? 'active' : '' }}" title="Kategori Produk">
       <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
       <span class="sb-link-text">Kategori Produk</span>
     </a>
+    @endif
+    @if(!isset($currentAdminUser) || $currentAdminUser->hasPermission('gallery'))
     <a href="{{ route('admin.gallery.index') }}" class="sb-link {{ request()->routeIs('admin.gallery*') ? 'active' : '' }}" title="Galeri">
       <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
       <span class="sb-link-text">Galeri</span>
     </a>
+    @endif
+    @if(!isset($currentAdminUser) || $currentAdminUser->hasPermission('articles'))
     <a href="{{ route('admin.articles.index') }}" class="sb-link {{ request()->routeIs('admin.articles*') ? 'active' : '' }}" title="Artikel">
       <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
       <span class="sb-link-text">Artikel</span>
     </a>
+    @endif
+    @if(!isset($currentAdminUser) || $currentAdminUser->hasPermission('testimonials'))
     <a href="{{ route('admin.testimonials.index') }}" class="sb-link {{ request()->routeIs('admin.testimonials*') ? 'active' : '' }}" title="Testimoni">
       <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
       <span class="sb-link-text">Testimoni</span>
     </a>
+    @endif
+    @if(!isset($currentAdminUser) || $currentAdminUser->hasPermission('leads'))
     @php $newLeads = \App\Models\Lead::where('status','new')->count(); @endphp
     <a href="{{ route('admin.leads.index') }}" class="sb-link {{ request()->routeIs('admin.leads*') ? 'active' : '' }}" title="Leads">
       <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       <span class="sb-link-text">Leads</span>
       @if($newLeads > 0)<span class="sb-badge">{{ $newLeads }}</span>@endif
     </a>
+    @endif
 
     <div class="sb-sec">Pengaturan</div>
+    @if(!isset($currentAdminUser) || $currentAdminUser->hasPermission('wa'))
     <a href="{{ route('admin.wa') }}" class="sb-link {{ request()->routeIs('admin.wa*') ? 'active' : '' }}" title=" Switch WA & Mode Lead">
       <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
       <span class="sb-link-text">WA & Mode Lead</span>
     </a>
+    @endif
+    @if(!isset($currentAdminUser) || $currentAdminUser->hasPermission('page_management'))
     <a href="{{ route('admin.page_management') }}" class="sb-link {{ request()->routeIs('admin.page_management*') || request()->routeIs('admin.hero_slides*') ? 'active' : '' }}" title="Page Management">
       <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
       <span class="sb-link-text">Page Management</span>
     </a>
+    @endif
+    @if(!isset($currentAdminUser) || $currentAdminUser->hasPermission('settings'))
     <a href="{{ route('admin.settings') }}" class="sb-link {{ request()->routeIs('admin.settings*') ? 'active' : '' }}" title="Pengaturan Situs">
       <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
       <span class="sb-link-text">Pengaturan Situs</span>
     </a>
+    @endif
+    @if(!isset($currentAdminUser) || $currentAdminUser->hasPermission('roles'))
+    <a href="{{ route('admin.roles') }}" class="sb-link {{ request()->routeIs('admin.roles*') ? 'active' : '' }}" title="Manajemen Peran & User">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span class="sb-link-text">Peran & User</span>
+    </a>
+    @endif
 
     <div class="sb-sec">Aksi</div>
     <a href="{{ route('home') }}" target="_blank" class="sb-link" title="Lihat Website">

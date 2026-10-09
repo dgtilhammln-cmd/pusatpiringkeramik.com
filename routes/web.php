@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\AdminLeadController;
 use App\Http\Controllers\Admin\AdminServiceCategoryController;
 use App\Http\Controllers\Admin\AdminHeroSlideController;
 use App\Http\Controllers\Admin\AdminPageManagementController;
+use App\Http\Controllers\Admin\AdminRoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -335,9 +336,12 @@ Route::prefix('admin')->group(function () {
             'destroy' => 'admin.hero_slides.destroy',
         ]);
 
-        // Roles & Hak Akses (Placeholder)
-        Route::get('/roles', function() {
-            return redirect()->back()->with('success', 'Halaman Role & Hak Akses dalam proses pengembangan.');
-        })->name('admin.roles.index');
+        // Roles & Admin User Management
+        Route::get('/roles', [AdminRoleController::class, 'index'])->name('admin.roles.index');
+        Route::get('/roles-alias', [AdminRoleController::class, 'index'])->name('admin.roles');
+        Route::post('/roles', [AdminRoleController::class, 'store'])->name('admin.roles.store');
+        Route::put('/roles/{user}', [AdminRoleController::class, 'update'])->name('admin.roles.update');
+        Route::post('/roles/{user}/change-password', [AdminRoleController::class, 'changePassword'])->name('admin.roles.change_password');
+        Route::delete('/roles/{user}', [AdminRoleController::class, 'destroy'])->name('admin.roles.destroy');
     });
 });
