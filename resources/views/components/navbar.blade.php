@@ -267,9 +267,10 @@
         {{-- ── CTA Actions ── --}}
         @if(($headerCtaShow ?? '1') == '1' || ($headerCtaShow ?? '1') === 'on')
         <div class="nav-pill-box nav-pill-actions">
-            @if($headerCtaType === 'wa' && $waNav)
+            @if($headerCtaType === 'wa')
                 @php
-                    $waNumber = preg_replace('/[^0-9]/', '', $waNav->nomor_wa ?? '');
+                    $waVal = $waNav ? $waNav->nomor_wa : (\App\Models\Setting::get('company_whatsapp') ?? '081805890181');
+                    $waNumber = preg_replace('/[^0-9]/', '', $waVal);
                     if(str_starts_with($waNumber, '0')) {
                         $waNumber = '62' . substr($waNumber, 1);
                     }

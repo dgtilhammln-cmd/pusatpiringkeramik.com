@@ -21,7 +21,7 @@
 
     // Global Phone & Location Fallbacks
     $primaryWaModel   = \App\Models\WaSetting::primary() ?? \App\Models\WaSetting::where('is_active', true)->first();
-    $rawWaPhone       = $primaryWaModel?->nomor_wa ?? \App\Models\Setting::get('phone', \App\Models\Setting::get('whatsapp', '08562682888'));
+    $rawWaPhone       = $primaryWaModel?->nomor_wa ?? \App\Models\Setting::get('company_whatsapp', \App\Models\Setting::get('phone', '081805890181'));
     $cleanWa          = preg_replace('/[^0-9]/', '', $rawWaPhone);
     if (str_starts_with($cleanWa, '0')) {
         $cleanWa = '62' . substr($cleanWa, 1);

@@ -1,7 +1,7 @@
 {{-- Floating WhatsApp Button --}}
 @php
     $wa = \App\Models\WaSetting::primary();
-    $waNumber = $wa ? $wa->nomor_wa : (\App\Models\Setting::get('phone') ?? '6281234567890');
+    $waNumber = $wa ? $wa->nomor_wa : (\App\Models\Setting::get('company_whatsapp') ?? \App\Models\Setting::get('phone') ?? '081805890181');
 @endphp
 <style>
     .wa-float {

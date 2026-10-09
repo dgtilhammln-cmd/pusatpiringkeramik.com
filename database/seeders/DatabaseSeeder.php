@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
         // ── WA Settings ─────────────────────────────────────────────
         if (\App\Models\WaSetting::count() === 0) {
             WaSetting::insert([
-                ['label'=>'WA Utama','nomor_wa'=>'081296565757','template_pesan'=>'Halo CV. Bintang Energy Surabaya, saya ingin menanyakan produk [nama produk]. Mohon informasi harga dan ketersediaannya. Terima kasih.','is_active'=>1,'is_primary'=>1,'order'=>1,'created_at'=>now(),'updated_at'=>now()],
+                ['label'=>'WA Utama','nomor_wa'=>'081805890181','template_pesan'=>'Halo Pusat Piring Keramik, saya ingin menanyakan produk [produk]. Mohon informasi harga dan ketersediaannya. Terima kasih.','is_active'=>1,'is_primary'=>1,'order'=>1,'created_at'=>now(),'updated_at'=>now()],
             ]);
         }
 
