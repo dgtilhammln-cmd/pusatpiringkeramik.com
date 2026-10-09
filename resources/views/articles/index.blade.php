@@ -1,6 +1,24 @@
 @extends('layouts.app')
 @section('content')
 
+@php
+    $cardBgStart   = !empty(trim($settings['page_articles_card_bg_start'] ?? '')) ? trim($settings['page_articles_card_bg_start']) : '#ffffff';
+    $cardBgEnd     = !empty(trim($settings['page_articles_card_bg_end'] ?? '')) ? trim($settings['page_articles_card_bg_end']) : $cardBgStart;
+    $cardTextColor = !empty(trim($settings['page_articles_card_text_color'] ?? '')) ? trim($settings['page_articles_card_text_color']) : '#0F172A';
+    $cardBgCss     = ($cardBgStart === $cardBgEnd) ? $cardBgStart : "linear-gradient(135deg, {$cardBgStart}, {$cardBgEnd})";
+
+    $sideLabel     = !empty(trim($settings['page_articles_side_card_label'] ?? '')) ? trim($settings['page_articles_side_card_label']) : 'KONSULTASI GRATIS';
+    $sideTitle     = !empty(trim($settings['page_articles_side_card_title'] ?? '')) ? trim($settings['page_articles_side_card_title']) : 'Butuh Tableware Keramik?';
+    $sideDesc      = !empty(trim($settings['page_articles_side_card_desc'] ?? '')) ? trim($settings['page_articles_side_card_desc']) : 'Tim kami siap membantu memilih produk piring & tableware keramik terbaik untuk kebutuhan usaha F&B atau rumah tangga Anda.';
+    $sideBtnText   = !empty(trim($settings['page_articles_side_card_btn_text'] ?? '')) ? trim($settings['page_articles_side_card_btn_text']) : 'Hubungi Kami';
+    $sideBtnUrl    = !empty(trim($settings['page_articles_side_card_btn_url'] ?? '')) ? trim($settings['page_articles_side_card_btn_url']) : url('/kontak');
+    $sideBgStart   = !empty(trim($settings['page_articles_side_card_bg_start'] ?? '')) ? trim($settings['page_articles_side_card_bg_start']) : '#0F172A';
+    $sideBgEnd     = !empty(trim($settings['page_articles_side_card_bg_end'] ?? '')) ? trim($settings['page_articles_side_card_bg_end']) : '#1E293B';
+    $sideBgDir     = !empty(trim($settings['page_articles_side_card_bg_dir'] ?? '')) ? trim($settings['page_articles_side_card_bg_dir']) : '135deg';
+    $sideTextColor = !empty(trim($settings['page_articles_side_card_text_color'] ?? '')) ? trim($settings['page_articles_side_card_text_color']) : '#FFFFFF';
+    $sideBgCss     = ($sideBgStart === $sideBgEnd) ? $sideBgStart : "linear-gradient({$sideBgDir}, {$sideBgStart}, {$sideBgEnd})";
+@endphp
+
 <style>
 /* ═══════════════════════════════════════
    DESIGN TOKENS — seragam dengan /about & /products & /gallery
@@ -90,7 +108,7 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
     gap:1.75rem;
 }
 .ar-card {
-    background: linear-gradient(135deg, {{ $settings['page_articles_card_bg_start'] ?? '#ffffff' }}, {{ $settings['page_articles_card_bg_end'] ?? '#ffffff' }});
+    background: {{ $cardBgCss }};
     border: 1.5px solid var(--c-border);
     border-radius: 20px;
     overflow: hidden;
@@ -138,13 +156,13 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
 }
 .ar-card-meta-sep { opacity:0.4; }
 .ar-card-title {
-    font-size:1.0625rem; font-weight:700; color:var(--c-text);
+    font-size:1.0625rem; font-weight:700; color: {{ $cardTextColor }};
     line-height:1.4; margin-bottom:0.6rem; font-family:var(--font);
     display:-webkit-box; -webkit-line-clamp:2;
     -webkit-box-orient:vertical; overflow:hidden;
 }
 .ar-card-excerpt {
-    font-size:0.875rem; color:var(--c-muted);
+    font-size:0.875rem; color: {{ $cardTextColor }}; opacity: 0.8;
     line-height:1.65; font-family:var(--font);
     display:-webkit-box; -webkit-line-clamp:3;
     -webkit-box-orient:vertical; overflow:hidden;
@@ -406,18 +424,7 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
         @endif
 
         {{-- CTA Mini --}}
-        @php
-            $sideLabel = $settings['page_articles_side_card_label'] ?? 'KONSULTASI GRATIS';
-            $sideTitle = $settings['page_articles_side_card_title'] ?? 'Butuh Tableware Keramik?';
-            $sideDesc = $settings['page_articles_side_card_desc'] ?? 'Tim kami siap membantu memilih produk piring & tableware keramik terbaik untuk kebutuhan usaha F&B atau rumah tangga Anda.';
-            $sideBtnText = $settings['page_articles_side_card_btn_text'] ?? 'Hubungi Kami';
-            $sideBtnUrl = $settings['page_articles_side_card_btn_url'] ?? url('/kontak');
-            $sideBgStart = $settings['page_articles_side_card_bg_start'] ?? '#0F172A';
-            $sideBgEnd = $settings['page_articles_side_card_bg_end'] ?? '#1E293B';
-            $sideBgDir = $settings['page_articles_side_card_bg_dir'] ?? '135deg';
-            $sideTextColor = $settings['page_articles_side_card_text_color'] ?? '#FFFFFF';
-        @endphp
-        <div class="ar-sidebar-card" style="background: linear-gradient({{ $sideBgDir }}, {{ $sideBgStart }}, {{ $sideBgEnd }}); border:none; color:{{ $sideTextColor }};" data-aos="fade-up" data-aos-delay="200">
+        <div class="ar-sidebar-card" style="background: {{ $sideBgCss }}; border:none; color:{{ $sideTextColor }};" data-aos="fade-up" data-aos-delay="200">
             <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:{{ $sideTextColor }};opacity:0.85;margin-bottom:0.75rem;font-family:var(--font);">{{ $sideLabel }}</div>
             <h3 style="font-size:1.125rem;font-weight:700;color:{{ $sideTextColor }};margin-bottom:0.75rem;line-height:1.3;font-family:var(--font);">{{ $sideTitle }}</h3>
             <p style="font-size:0.8125rem;color:{{ $sideTextColor }};opacity:0.85;line-height:1.6;margin-bottom:1.25rem;font-family:var(--font);">{{ $sideDesc }}</p>
