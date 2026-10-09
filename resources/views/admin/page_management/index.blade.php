@@ -2142,6 +2142,13 @@
               value="{{ $settings['seo_founder_name'] ?? 'UD. Sukses Makmur' }}" placeholder="UD. Sukses Makmur">
           </div>
 
+          <div>
+            <label class="pm-label">Nama Legal Perusahaan (legalName)</label>
+            <input type="text" name="company_legal_name" class="pm-input"
+              value="{{ $settings['company_legal_name'] ?? 'UD. Sukses Makmur' }}" placeholder="UD. Sukses Makmur">
+            <div class="pm-help">Disimpan terpisah dari brand `name` ("Pusat Piring Keramik") untuk Schema.org legalName.</div>
+          </div>
+
           <div style="grid-column: span 2;">
             <label class="pm-label">Topik Keahlian Entitas (knowsAbout)</label>
             <input type="text" name="seo_knows_about" class="pm-input"
