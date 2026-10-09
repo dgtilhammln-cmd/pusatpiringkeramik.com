@@ -292,6 +292,11 @@ Route::prefix('admin')->group(function () {
             'destroy' => 'admin.gallery.destroy',
         ]);
 
+        Route::post('articles/authors/update', [AdminArticleController::class, 'updateAuthor'])->name('admin.articles.authors.update');
+        Route::post('articles/authors/delete', [AdminArticleController::class, 'deleteAuthor'])->name('admin.articles.authors.delete');
+        Route::post('articles/categories/update', [AdminArticleController::class, 'updateCategory'])->name('admin.articles.categories.update');
+        Route::post('articles/categories/delete', [AdminArticleController::class, 'deleteCategory'])->name('admin.articles.categories.delete');
+
         Route::resource('articles', AdminArticleController::class)->names([
             'index'   => 'admin.articles.index',   'create'  => 'admin.articles.create',
             'store'   => 'admin.articles.store',   'show'    => 'admin.articles.show',

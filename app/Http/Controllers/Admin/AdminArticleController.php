@@ -210,4 +210,42 @@ class AdminArticleController extends Controller
         $article->delete();
         return back()->with('success', 'Artikel berhasil dihapus.');
     }
+
+    public function updateAuthor(Request $request)
+    {
+        $request->validate([
+            'old_author' => 'required|string',
+            'new_author' => 'required|string|max:100',
+        ]);
+        Article::where('author', $request->old_author)->update(['author' => $request->new_author]);
+        return response()->json(['success' => true, 'message' => 'Penulis berhasil diperbarui.']);
+    }
+
+    public function deleteAuthor(Request $request)
+    {
+        $request->validate([
+            'author' => 'required|string',
+        ]);
+        Article::where('author', $request->author)->update(['author' => null]);
+        return response()->json(['success' => true, 'message' => 'Penulis berhasil dihapus.']);
+    }
+
+    public function updateCategory(Request $request)
+    {
+        $request->validate([
+            'old_category' => 'required|string',
+            'new_category' => 'required|string|max:100',
+        ]);
+        Article::where('category', $request->old_category)->update(['category' => $request->new_category]);
+        return response()->json(['success' => true, 'message' => 'Kategori berhasil diperbarui.']);
+    }
+
+    public function deleteCategory(Request $request)
+    {
+        $request->validate([
+            'category' => 'required|string',
+        ]);
+        Article::where('category', $request->category)->update(['category' => null]);
+        return response()->json(['success' => true, 'message' => 'Kategori berhasil dihapus.']);
+    }
 }

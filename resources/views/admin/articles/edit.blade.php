@@ -459,11 +459,15 @@
                                 class="form-input">
                         </div>
                         <div class="form-group">
-                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.35rem;">
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.35rem;flex-wrap:wrap;gap:4px;">
                                 <label class="form-label" style="margin:0;">Penulis</label>
-                                <button type="button" onclick="promptNewAuthor()" style="font-size:0.75rem;font-weight:700;color:#3B82F6;background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:3px;">
-                                    + Tambah Penulis
-                                </button>
+                                <div style="display:flex;gap:6px;font-size:0.75rem;font-weight:700;">
+                                    <button type="button" onclick="promptNewAuthor()" style="color:#3B82F6;background:none;border:none;cursor:pointer;padding:0;" title="Tambah Penulis Baru">+ Tambah</button>
+                                    <span style="color:#CBD5E1;">|</span>
+                                    <button type="button" onclick="editSelectedAuthor()" style="color:#F59E0B;background:none;border:none;cursor:pointer;padding:0;" title="Edit Penulis Terpilih">Edit</button>
+                                    <span style="color:#CBD5E1;">|</span>
+                                    <button type="button" onclick="deleteSelectedAuthor()" style="color:#EF4444;background:none;border:none;cursor:pointer;padding:0;" title="Hapus Penulis Terpilih">Hapus</button>
+                                </div>
                             </div>
                             <select name="author" id="author-select" class="form-select">
                                 @foreach($authors ?? ['Tim Redaksi', 'Admin Utama'] as $auth)
@@ -474,11 +478,15 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.35rem;">
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.35rem;flex-wrap:wrap;gap:4px;">
                                 <label class="form-label" style="margin:0;">Kategori</label>
-                                <button type="button" onclick="promptNewCategory()" style="font-size:0.75rem;font-weight:700;color:#3B82F6;background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:3px;">
-                                    + Tambah Kategori
-                                </button>
+                                <div style="display:flex;gap:6px;font-size:0.75rem;font-weight:700;">
+                                    <button type="button" onclick="promptNewCategory()" style="color:#3B82F6;background:none;border:none;cursor:pointer;padding:0;" title="Tambah Kategori Baru">+ Tambah</button>
+                                    <span style="color:#CBD5E1;">|</span>
+                                    <button type="button" onclick="editSelectedCategory()" style="color:#F59E0B;background:none;border:none;cursor:pointer;padding:0;" title="Edit Kategori Terpilih">Edit</button>
+                                    <span style="color:#CBD5E1;">|</span>
+                                    <button type="button" onclick="deleteSelectedCategory()" style="color:#EF4444;background:none;border:none;cursor:pointer;padding:0;" title="Hapus Kategori Terpilih">Hapus</button>
+                                </div>
                             </div>
                             <select name="category" id="category-select" class="form-select">
                                 <option value="">-- Pilih Kategori --</option>
@@ -519,7 +527,7 @@
                         <h3 class="premium-card-header">Opsi Lainnya</h3>
                         <label class="switch-label">
                             <input type="hidden" name="show_toc" value="0">
-                            <input type="checkbox" name="show_toc" value="1" {{ old('show_toc', $a?->show_toc ?? 1) ? 'checked' : '' }} class="switch-input">
+                            <input type="checkbox" name="show_toc" value="1" {{ old('show_toc', $a ? $a->show_toc : 1) ? 'checked' : '' }} class="switch-input">
                             <span class="switch-text" style="font-size:.85rem;">Tampilkan Table of Contents (Daftar Isi
                                 otomatis dari H2/H3)</span>
                         </label>
@@ -737,6 +745,220 @@
                         sel.add(newOpt);
                     }
                 }
+            }
+
+            function editSelectedAuthor() {
+                const sel = document.getElementById('author-select');
+                const oldAuthor = sel.value;
+                if (!oldAuthor) {
+                    if (typeof Swal !== 'undefined') Swal.fire('Perhatian', 'Pilih penulis yang ingin diedit terlebih dahulu.', 'warning');
+                    else alert('Pilih penulis yang ingin diedit terlebih dahulu.');
+                    return;
+                }
+
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        title: 'Edit Nama Penulis',
+                        input: 'text',
+                        inputValue: oldAuthor,
+                        showCancelButton: true,
+                        confirmButtonText: 'Simpan',
+                        cancelButtonText: 'Batal',
+                        confirmButtonColor: '#3B82F6',
+                    }).then((result) => {
+                        if (result.isConfirmed && result.value && result.value.trim() !== '') {
+                            performEditAuthor(oldAuthor, result.value.trim());
+                        }
+                    });
+                } else {
+                    const val = prompt('Edit nama penulis:', oldAuthor);
+                    if (val && val.trim() !== '') performEditAuthor(oldAuthor, val.trim());
+                }
+            }
+
+            function performEditAuthor(oldAuthor, newAuthor) {
+                if (oldAuthor === newAuthor) return;
+                fetch('{{ route("admin.articles.authors.update") }}', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                    body: JSON.stringify({ old_author: oldAuthor, new_author: newAuthor })
+                })
+                .then(r => r.json())
+                .then(res => {
+                    if (res.success) {
+                        const sel = document.getElementById('author-select');
+                        for (let opt of sel.options) {
+                            if (opt.value === oldAuthor) {
+                                opt.value = newAuthor;
+                                opt.text = newAuthor;
+                                opt.selected = true;
+                            }
+                        }
+                        if (typeof Swal !== 'undefined') Swal.fire('Sukses', res.message, 'success');
+                        else alert(res.message);
+                    } else {
+                        if (typeof Swal !== 'undefined') Swal.fire('Gagal', res.message || 'Gagal mengubah penulis', 'error');
+                        else alert(res.message || 'Gagal mengubah penulis');
+                    }
+                })
+                .catch(() => { if (typeof Swal !== 'undefined') Swal.fire('Error', 'Terjadi kesalahan sistem', 'error'); });
+            }
+
+            function deleteSelectedAuthor() {
+                const sel = document.getElementById('author-select');
+                const author = sel.value;
+                if (!author) {
+                    if (typeof Swal !== 'undefined') Swal.fire('Perhatian', 'Pilih penulis yang ingin dihapus terlebih dahulu.', 'warning');
+                    else alert('Pilih penulis yang ingin dihapus terlebih dahulu.');
+                    return;
+                }
+
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        title: 'Hapus Penulis?',
+                        text: `Apakah Anda yakin ingin menghapus "${author}"? Penulis pada artikel terkait akan di-reset.`,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya, Hapus',
+                        cancelButtonText: 'Batal',
+                        confirmButtonColor: '#EF4444',
+                    }).then((result) => {
+                        if (result.isConfirmed) performDeleteAuthor(author);
+                    });
+                } else {
+                    if (confirm(`Hapus penulis "${author}"?`)) performDeleteAuthor(author);
+                }
+            }
+
+            function performDeleteAuthor(author) {
+                fetch('{{ route("admin.articles.authors.delete") }}', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                    body: JSON.stringify({ author: author })
+                })
+                .then(r => r.json())
+                .then(res => {
+                    if (res.success) {
+                        const sel = document.getElementById('author-select');
+                        for (let i = sel.options.length - 1; i >= 0; i--) {
+                            if (sel.options[i].value === author) sel.remove(i);
+                        }
+                        if (sel.options.length > 0) sel.selectedIndex = 0;
+                        if (typeof Swal !== 'undefined') Swal.fire('Sukses', res.message, 'success');
+                        else alert(res.message);
+                    } else {
+                        if (typeof Swal !== 'undefined') Swal.fire('Gagal', res.message || 'Gagal menghapus penulis', 'error');
+                        else alert(res.message || 'Gagal menghapus penulis');
+                    }
+                })
+                .catch(() => { if (typeof Swal !== 'undefined') Swal.fire('Error', 'Terjadi kesalahan sistem', 'error'); });
+            }
+
+            function editSelectedCategory() {
+                const sel = document.getElementById('category-select');
+                const oldCat = sel.value;
+                if (!oldCat) {
+                    if (typeof Swal !== 'undefined') Swal.fire('Perhatian', 'Pilih kategori yang ingin diedit terlebih dahulu.', 'warning');
+                    else alert('Pilih kategori yang ingin diedit terlebih dahulu.');
+                    return;
+                }
+
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        title: 'Edit Nama Kategori',
+                        input: 'text',
+                        inputValue: oldCat,
+                        showCancelButton: true,
+                        confirmButtonText: 'Simpan',
+                        cancelButtonText: 'Batal',
+                        confirmButtonColor: '#3B82F6',
+                    }).then((result) => {
+                        if (result.isConfirmed && result.value && result.value.trim() !== '') {
+                            performEditCategory(oldCat, result.value.trim());
+                        }
+                    });
+                } else {
+                    const val = prompt('Edit nama kategori:', oldCat);
+                    if (val && val.trim() !== '') performEditCategory(oldCat, val.trim());
+                }
+            }
+
+            function performEditCategory(oldCat, newCat) {
+                if (oldCat === newCat) return;
+                fetch('{{ route("admin.articles.categories.update") }}', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                    body: JSON.stringify({ old_category: oldCat, new_category: newCat })
+                })
+                .then(r => r.json())
+                .then(res => {
+                    if (res.success) {
+                        const sel = document.getElementById('category-select');
+                        for (let opt of sel.options) {
+                            if (opt.value === oldCat) {
+                                opt.value = newCat;
+                                opt.text = newCat;
+                                opt.selected = true;
+                            }
+                        }
+                        if (typeof Swal !== 'undefined') Swal.fire('Sukses', res.message, 'success');
+                        else alert(res.message);
+                    } else {
+                        if (typeof Swal !== 'undefined') Swal.fire('Gagal', res.message || 'Gagal mengubah kategori', 'error');
+                        else alert(res.message || 'Gagal mengubah kategori');
+                    }
+                })
+                .catch(() => { if (typeof Swal !== 'undefined') Swal.fire('Error', 'Terjadi kesalahan sistem', 'error'); });
+            }
+
+            function deleteSelectedCategory() {
+                const sel = document.getElementById('category-select');
+                const cat = sel.value;
+                if (!cat) {
+                    if (typeof Swal !== 'undefined') Swal.fire('Perhatian', 'Pilih kategori yang ingin dihapus terlebih dahulu.', 'warning');
+                    else alert('Pilih kategori yang ingin dihapus terlebih dahulu.');
+                    return;
+                }
+
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        title: 'Hapus Kategori?',
+                        text: `Apakah Anda yakin ingin menghapus "${cat}"? Kategori pada artikel terkait akan di-reset.`,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Ya, Hapus',
+                        cancelButtonText: 'Batal',
+                        confirmButtonColor: '#EF4444',
+                    }).then((result) => {
+                        if (result.isConfirmed) performDeleteCategory(cat);
+                    });
+                } else {
+                    if (confirm(`Hapus kategori "${cat}"?`)) performDeleteCategory(cat);
+                }
+            }
+
+            function performDeleteCategory(cat) {
+                fetch('{{ route("admin.articles.categories.delete") }}', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                    body: JSON.stringify({ category: cat })
+                })
+                .then(r => r.json())
+                .then(res => {
+                    if (res.success) {
+                        const sel = document.getElementById('category-select');
+                        for (let i = sel.options.length - 1; i >= 0; i--) {
+                            if (sel.options[i].value === cat) sel.remove(i);
+                        }
+                        if (sel.options.length > 0) sel.selectedIndex = 0;
+                        if (typeof Swal !== 'undefined') Swal.fire('Sukses', res.message, 'success');
+                        else alert(res.message);
+                    } else {
+                        if (typeof Swal !== 'undefined') Swal.fire('Gagal', res.message || 'Gagal menghapus kategori', 'error');
+                        else alert(res.message || 'Gagal menghapus kategori');
+                    }
+                })
+                .catch(() => { if (typeof Swal !== 'undefined') Swal.fire('Error', 'Terjadi kesalahan sistem', 'error'); });
             }
         </script>
     @endpush
