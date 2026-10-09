@@ -64,10 +64,23 @@ class SitemapController extends Controller
             ));
         }
 
-        // XML for crawlers — trim to ensure no whitespace before <?xml declaration
-        $content = ltrim(view('sitemap', compact('urls', 'companyName', 'siteUrl'))->render());
-        return response($content, 200)
-            ->header('Content-Type', 'application/xml; charset=utf-8')
+        // XML for crawlers — build directly in PHP (NO Blade) to guarantee
+        // ZERO whitespace before the <?xml declaration. Blade always risks
+        // injecting newlines / BOM that break XML parsers.
+        $xml  = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+        foreach ($urls as $u) {
+            $xml .= '  <url>' . "\n";
+            $xml .= '    <loc>'         . htmlspecialchars($u['url'])        . '</loc>'         . "\n";
+            $xml .= '    <lastmod>'     . htmlspecialchars($u['lastmod'])    . '</lastmod>'     . "\n";
+            $xml .= '    <changefreq>'  . htmlspecialchars($u['changefreq']) . '</changefreq>'  . "\n";
+            $xml .= '    <priority>'    . htmlspecialchars($u['priority'])   . '</priority>'    . "\n";
+            $xml .= '  </url>' . "\n";
+        }
+        $xml .= '</urlset>';
+
+        return response($xml, 200)
+            ->header('Content-Type', 'text/xml; charset=utf-8')
             ->header('X-Robots-Tag', 'noindex');
     }
 }

@@ -73,6 +73,8 @@ deploy_target() {
         [ -f "$TARGET_DIR/public/robots.txt" ] && cp -f "$TARGET_DIR/public/robots.txt" "$TARGET_DIR/public_html/robots.txt"
         [ -f "$TARGET_DIR/public/llms.txt" ] && cp -f "$TARGET_DIR/public/llms.txt" "$TARGET_DIR/public_html/llms.txt"
         [ -f "$TARGET_DIR/public/sitemap.xsl" ] && cp -f "$TARGET_DIR/public/sitemap.xsl" "$TARGET_DIR/public_html/sitemap.xsl"
+        # Force remove old sitemap (may be corrupt/wrong) then copy clean one
+        rm -f "$TARGET_DIR/public_html/sitemap.xml"
         [ -f "$TARGET_DIR/public/sitemap.xml" ] && cp -f "$TARGET_DIR/public/sitemap.xml" "$TARGET_DIR/public_html/sitemap.xml"
         rm -f "$TARGET_DIR/public_html/storage"
         ln -s "$TARGET_DIR/storage/app/public" "$TARGET_DIR/public_html/storage" 2>/dev/null || true
