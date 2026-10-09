@@ -20,7 +20,7 @@ class SitemapController extends Controller
         $companyName    = Setting::getAppName();
         $companyTagline = Setting::get('company_tagline', '');
         $addressFull    = Setting::get('address_full', '');
-        $siteUrl        = Setting::getAppUrl();
+        $siteUrl        = rtrim(config('app.url', 'https://pusatpiringkeramik.com'), '/');
 
         $staticPages = [
             ['url' => $siteUrl,                  'label' => 'Beranda',      'priority' => '1.0', 'changefreq' => 'weekly',  'lastmod' => now()->toDateString()],
@@ -66,6 +66,6 @@ class SitemapController extends Controller
 
         // XML for crawlers — pass company name for schema
         $content = view('sitemap', compact('urls', 'companyName', 'siteUrl'))->render();
-        return response($content, 200)->header('Content-Type', 'application/xml');
+        return response($content, 200)->header('Content-Type', 'text/xml; charset=utf-8');
     }
 }
