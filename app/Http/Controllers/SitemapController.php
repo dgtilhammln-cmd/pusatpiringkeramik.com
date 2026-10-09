@@ -64,8 +64,10 @@ class SitemapController extends Controller
             ));
         }
 
-        // XML for crawlers — pass company name for schema
-        $content = view('sitemap', compact('urls', 'companyName', 'siteUrl'))->render();
-        return response($content, 200)->header('Content-Type', 'text/xml; charset=utf-8');
+        // XML for crawlers — trim to ensure no whitespace before <?xml declaration
+        $content = ltrim(view('sitemap', compact('urls', 'companyName', 'siteUrl'))->render());
+        return response($content, 200)
+            ->header('Content-Type', 'application/xml; charset=utf-8')
+            ->header('X-Robots-Tag', 'noindex');
     }
 }
