@@ -17,7 +17,7 @@
         --c-white:   #ffffff;
         --radius-sm: 8px;
         --radius-md: 14px;
-        --radius-lg: 24px;
+        --radius-lg: 20px;
         --font:      'Montserrat', sans-serif;
         --ease:      cubic-bezier(0.22, 1, 0.36, 1);
     }
@@ -84,47 +84,77 @@
         color: var(--c-muted); line-height: 1.7; font-family: var(--font);
     }
 
-    /* FILTER TABS */
+    /* MINIMALIST FILTER BAR */
     .sv-filter-wrap {
-        background: var(--c-white);
+        background: #ffffff;
         border-bottom: 1px solid var(--c-border);
         position: sticky; top: 70px; z-index: 100;
+        padding: 0.75rem 0;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
     }
     .sv-filter-inner {
         max-width: 1200px; margin: 0 auto;
         padding: 0 1.5rem;
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 1rem;
+    }
+    .sv-filter-pills {
         display: flex; align-items: center; gap: 0.5rem;
         overflow-x: auto; scrollbar-width: none;
         -webkit-overflow-scrolling: touch;
-        scroll-behavior: smooth;
-        cursor: grab;
+        padding-bottom: 2px; flex-grow: 1;
     }
-    .sv-filter-inner:active { cursor: grabbing; }
-    .sv-filter-tab {
+    .sv-filter-pills::-webkit-scrollbar { display: none; }
+    .sv-pill-tab {
         flex-shrink: 0;
-        display: inline-flex; align-items: center; gap: 0.4rem;
-        padding: 1rem 1.25rem;
+        display: inline-flex; align-items: center; gap: 0.5rem;
+        padding: 0.5rem 1rem;
         font-size: 0.8125rem; font-weight: 600;
-        font-family: var(--font); color: var(--c-muted);
-        border-bottom: 2px solid transparent;
+        font-family: var(--font); color: #64748B;
+        background: #F8FAFC;
+        border: 1px solid #E2E8F0;
+        border-radius: 50px;
         text-decoration: none !important;
-        transition: all 0.2s;
+        transition: all 0.2s var(--ease);
         white-space: nowrap;
     }
-    .sv-filter-tab:hover { color: var(--c-accent); border-bottom-color: rgba(14,165,233,0.3); }
-    .sv-filter-tab.active { color: var(--c-accent); border-bottom-color: var(--c-accent); }
-    .sv-filter-tab .tab-count {
+    .sv-pill-tab:hover {
+        color: #0F172A; background: #F1F5F9; border-color: #CBD5E1;
+    }
+    .sv-pill-tab.active {
+        color: #ffffff; background: #0F172A; border-color: #0F172A;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+    }
+    .sv-pill-tab .pill-count {
         display: inline-flex; align-items: center; justify-content: center;
-        background: var(--c-surface);
-        color: var(--c-muted);
+        background: rgba(0, 0, 0, 0.06); color: inherit;
         font-size: 0.65rem; font-weight: 700;
-        padding: 0.15rem 0.45rem;
-        border-radius: 20px;
+        padding: 0.15rem 0.45rem; border-radius: 20px;
         transition: all 0.2s;
     }
-    .sv-filter-tab.active .tab-count {
-        background: rgba(14,165,233,0.1);
-        color: var(--c-accent);
+    .sv-pill-tab.active .pill-count {
+        background: rgba(255, 255, 255, 0.2); color: #ffffff;
+    }
+
+    /* DROPDOWN FILTER */
+    .sv-filter-dropdown-wrap {
+        position: relative; flex-shrink: 0;
+    }
+    .sv-filter-select {
+        appearance: none; -webkit-appearance: none;
+        background: #F8FAFC; border: 1px solid #E2E8F0;
+        border-radius: 50px; padding: 0.5rem 2.25rem 0.5rem 1rem;
+        font-size: 0.8125rem; font-weight: 600;
+        font-family: var(--font); color: #0F172A;
+        cursor: pointer; outline: none; transition: all 0.2s;
+        max-width: 220px;
+    }
+    .sv-filter-select:hover, .sv-filter-select:focus {
+        border-color: #0F172A; background: #ffffff;
+    }
+    .sv-select-icon {
+        position: absolute; right: 0.875rem; top: 50%;
+        transform: translateY(-50%); pointer-events: none; color: #64748B;
     }
 
     /* GRID */
@@ -146,24 +176,24 @@
         gap: 2rem;
     }
 
-    /* SERVICE CARD */
+    /* SERVICE CARD — ELEGAN FLOATING HOVER WITHOUT OUTLINE */
     .sv-card {
         display: flex; flex-direction: column;
         background: var(--c-card);
-        border: 1.5px solid var(--c-border);
+        border: 1px solid var(--c-border);
         border-radius: var(--radius-lg);
         overflow: hidden;
         text-decoration: none !important;
-        transition: all 0.4s var(--ease);
+        transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
         position: relative;
         outline: none !important;
     }
     .sv-card * { text-decoration: none !important; }
     .sv-card:hover, .sv-card:focus {
-        border-color: #10B981 !important;
+        border-color: transparent !important;
         outline: none !important;
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15);
+        transform: translateY(-8px) !important;
+        box-shadow: 0 24px 50px rgba(15, 23, 42, 0.12), 0 8px 20px rgba(15, 23, 42, 0.06) !important;
     }
     .sv-card-img {
         width: 100%; aspect-ratio: 16/10;
@@ -173,9 +203,9 @@
     .sv-card-img img {
         width: 100%; height: 100%;
         object-fit: cover;
-        transition: transform 0.6s var(--ease);
+        transition: transform 0.55s var(--ease);
     }
-    .sv-card:hover .sv-card-img img { transform: scale(1.08); }
+    .sv-card:hover .sv-card-img img { transform: scale(1.07); }
 
     /* CARD OVERLAY BADGES */
     .sv-card-badge-top {
@@ -204,7 +234,7 @@
     }
 
     .sv-card-body {
-        padding: 1.75rem; display: flex;
+        padding: 1.5rem; display: flex;
         flex-direction: column; flex-grow: 1;
     }
     .sv-card-cat {
@@ -214,21 +244,21 @@
         font-size: 0.65rem; font-weight: 700;
         letter-spacing: 0.1em; text-transform: uppercase;
         padding: 0.35rem 0.75rem; border-radius: 20px;
-        margin-bottom: 1rem; align-self: flex-start;
+        margin-bottom: 0.875rem; align-self: flex-start;
         font-family: var(--font);
     }
     .sv-card-cat svg { width: 10px; height: 10px; }
     .sv-card-name {
-        font-size: 1.1rem; font-weight: 700;
-        color: var(--c-text); margin-bottom: 0.75rem;
+        font-size: 1.05rem; font-weight: 700;
+        color: var(--c-text); margin-bottom: 0.6rem;
         line-height: 1.4; font-family: var(--font);
         transition: color 0.3s;
     }
     .sv-card:hover .sv-card-name { color: var(--c-accent); }
     .sv-card-desc {
-        font-size: 0.9rem; font-weight: 400;
+        font-size: 0.85rem; font-weight: 400;
         color: var(--c-muted); line-height: 1.6;
-        margin-bottom: 1.5rem; font-family: var(--font); flex-grow: 1;
+        margin-bottom: 1.25rem; font-family: var(--font); flex-grow: 1;
     }
     .sv-card-link {
         font-size: 0.8125rem; font-weight: 600;
@@ -236,7 +266,7 @@
         display: inline-flex; align-items: center; gap: 0.5rem;
         font-family: var(--font); transition: gap 0.3s;
         border-top: 1px solid var(--c-border);
-        padding-top: 1.25rem; margin-top: auto;
+        padding-top: 1rem; margin-top: auto;
     }
     .sv-card:hover .sv-card-link { gap: 0.75rem; }
 
@@ -324,13 +354,35 @@
     }
     .btn-outline-v2:hover { border-color: var(--c-text); color: var(--c-text) !important; }
 
-    /* RESPONSIVE */
-    @media (max-width: 1024px) { .sv-grid { grid-template-columns: repeat(2, 1fr); } }
+    /* RESPONSIVE & MOBILE 2 CARDS PER ROW */
+    @media (max-width: 1024px) {
+        .sv-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    }
     @media (max-width: 640px) {
-        .sv-grid { grid-template-columns: 1fr; }
-        .sv-hero-premium { padding: 7rem 1rem 4rem; }
-        .sv-section { padding: 2rem 1rem 5rem; }
-        .sv-cta-premium { padding: 4rem 1rem; }
+        .sv-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+        .sv-section { padding: 1.5rem 0.75rem 4rem; }
+        .sv-hero-premium { padding: 7rem 1rem 3.5rem; }
+        .sv-card { border-radius: 14px; }
+        .sv-card-body { padding: 0.875rem; }
+        .sv-card-name { font-size: 0.875rem; margin-bottom: 0.25rem; line-height: 1.3; }
+        .sv-card-desc {
+            font-size: 0.75rem; margin-bottom: 0.6rem;
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+            line-height: 1.4;
+        }
+        .sv-card-cat { font-size: 0.55rem; padding: 0.2rem 0.45rem; margin-bottom: 0.35rem; }
+        .sv-card-link { font-size: 0.72rem; padding-top: 0.5rem; }
+        .sv-card-badge-top { top: 6px; left: 6px; right: 6px; }
+        .sv-card-rating-badge { font-size: 0.6rem; padding: 2px 6px; }
+        .sv-card-price-badge { font-size: 0.65rem; padding: 2px 6px; }
+        .sv-filter-wrap { padding: 0.5rem 0; top: 60px; }
+        .sv-filter-inner { padding: 0 0.75rem; gap: 0.5rem; }
+        .sv-filter-select { max-width: 130px; font-size: 0.75rem; padding: 0.4rem 1.75rem 0.4rem 0.75rem; }
+        .sv-pill-tab { font-size: 0.75rem; padding: 0.4rem 0.75rem; }
+        .sv-cta-premium { padding: 3.5rem 1rem; }
         .sv-cta-btns { flex-direction: column; width: 100%; }
         .btn-primary-v2, .btn-outline-v2 { width: 100%; justify-content: center; }
     }
@@ -374,23 +426,43 @@
     </div>
 </section>
 
-{{-- ═══ FILTER TABS ═══ --}}
+{{-- ═══ MINIMALIST FILTER TABS & DROPDOWN ═══ --}}
 <div class="sv-filter-wrap">
     <div class="sv-filter-inner">
-        <a href="{{ route('products') }}"
-           class="sv-filter-tab {{ !$currentCat ? 'active' : '' }}"
-           id="filter-all">
-            Semua Produk
-            <span class="tab-count">{{ \App\Models\Service::active()->count() }}</span>
-        </a>
-        @foreach($categories as $cat)
-            <a href="{{ route('products.category', $cat->slug) }}"
-               class="sv-filter-tab {{ ($currentCat && $currentCat->slug === $cat->slug) ? 'active' : '' }}"
-               id="filter-{{ $cat->slug }}">
-                {{ $cat->name }}
-                <span class="tab-count">{{ $cat->services()->where('is_active', true)->count() }}</span>
+        {{-- Minimalist Pill Tabs --}}
+        <div class="sv-filter-pills">
+            <a href="{{ route('products') }}"
+               class="sv-pill-tab {{ !$currentCat ? 'active' : '' }}"
+               id="filter-all">
+                Semua Produk
+                <span class="pill-count">{{ \App\Models\Service::active()->count() }}</span>
             </a>
-        @endforeach
+            @foreach($categories as $cat)
+                <a href="{{ route('products.category', $cat->slug) }}"
+                   class="sv-pill-tab {{ ($currentCat && $currentCat->slug === $cat->slug) ? 'active' : '' }}"
+                   id="filter-{{ $cat->slug }}">
+                    {{ $cat->name }}
+                    <span class="pill-count">{{ $cat->services()->where('is_active', true)->count() }}</span>
+                </a>
+            @endforeach
+        </div>
+
+        {{-- Dropdown Feature Displaying All Categories --}}
+        <div class="sv-filter-dropdown-wrap">
+            <select class="sv-filter-select" onchange="if(this.value) window.location.href=this.value;" aria-label="Pilih Kategori Produk">
+                <option value="{{ route('products') }}" {{ !$currentCat ? 'selected' : '' }}>
+                    Semua Kategori ({{ \App\Models\Service::active()->count() }})
+                </option>
+                @foreach($categories as $cat)
+                    <option value="{{ route('products.category', $cat->slug) }}" {{ ($currentCat && $currentCat->slug === $cat->slug) ? 'selected' : '' }}>
+                        {{ $cat->name }} ({{ $cat->services()->where('is_active', true)->count() }})
+                    </option>
+                @endforeach
+            </select>
+            <svg class="sv-select-icon" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <polyline points="6 9 12 15 18 9"/>
+            </svg>
+        </div>
     </div>
 </div>
 
