@@ -33,7 +33,18 @@ class WaSetting extends Model
         return static::where('is_active', true)
             ->where('is_primary', true)
             ->first()
-            ?? static::where('is_active', true)->orderBy('order')->first();
+            ?? static::where('is_active', true)->orderBy('order')->first()
+            ?? static::firstOrCreate(
+                ['is_primary' => true],
+                [
+                    'label'          => 'CS Utama',
+                    'nomor_wa'       => '081805890181',
+                    'template_pesan' => 'Halo admin, saya ingin bertanya tentang [produk]',
+                    'is_active'      => true,
+                    'is_primary'     => true,
+                    'order'          => 1
+                ]
+            );
     }
 
     /**
