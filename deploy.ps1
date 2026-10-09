@@ -66,12 +66,14 @@ deploy_target() {
     if [ -d "$TARGET_DIR/.git" ]; then
         cd "$TARGET_DIR"
         php artisan migrate --force 2>/dev/null || true
+        php artisan sitemap:generate 2>/dev/null || true
         mkdir -p "$TARGET_DIR/public_html"
         [ -f "$TARGET_DIR/public/index.php" ] && cp -f "$TARGET_DIR/public/index.php" "$TARGET_DIR/public_html/index.php"
         [ -f "$TARGET_DIR/public/.htaccess" ] && cp -f "$TARGET_DIR/public/.htaccess" "$TARGET_DIR/public_html/.htaccess"
         [ -f "$TARGET_DIR/public/robots.txt" ] && cp -f "$TARGET_DIR/public/robots.txt" "$TARGET_DIR/public_html/robots.txt"
         [ -f "$TARGET_DIR/public/llms.txt" ] && cp -f "$TARGET_DIR/public/llms.txt" "$TARGET_DIR/public_html/llms.txt"
         [ -f "$TARGET_DIR/public/sitemap.xsl" ] && cp -f "$TARGET_DIR/public/sitemap.xsl" "$TARGET_DIR/public_html/sitemap.xsl"
+        [ -f "$TARGET_DIR/public/sitemap.xml" ] && cp -f "$TARGET_DIR/public/sitemap.xml" "$TARGET_DIR/public_html/sitemap.xml"
         rm -f "$TARGET_DIR/public_html/storage"
         ln -s "$TARGET_DIR/storage/app/public" "$TARGET_DIR/public_html/storage" 2>/dev/null || true
         chmod -R 775 "$TARGET_DIR/storage" "$TARGET_DIR/bootstrap/cache" 2>/dev/null || true
