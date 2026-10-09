@@ -2404,19 +2404,6 @@
       </div>
     </div>
 
-    {{-- STICKY SAVE BUTTON BAR --}}
-    <div style="position:fixed; bottom:24px; right:24px; z-index:999; display:flex; gap:0.75rem; background:rgba(15,23,42,0.92); backdrop-filter:blur(8px); padding:0.75rem 1.25rem; border-radius:100px; box-shadow:0 10px 30px rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.1);">
-      <button type="button" onclick="document.getElementById('page-management-form').submit()"
-        style="display:inline-flex;align-items:center;gap:.5rem;padding:.625rem 1.5rem;font-size:.875rem;font-weight:700;background:#3B82F6;color:#ffffff;border:none;border-radius:100px;cursor:pointer;transition:all .2s;font-family:'Montserrat',sans-serif;box-shadow:0 4px 14px rgba(59,130,246,0.4);">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-          <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z" />
-          <polyline points="17 21 17 13 7 13 7 21" />
-          <polyline points="7 3 7 8 15 8" />
-        </svg>
-        Simpan Perubahan
-      </button>
-    </div>
-
   </form>
 
   {{-- HERO SLIDE MODAL (ADD / EDIT) --}}

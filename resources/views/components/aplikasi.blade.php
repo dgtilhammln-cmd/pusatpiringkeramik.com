@@ -2,6 +2,13 @@
     if (!isset($settings)) {
         $settings = \App\Models\Setting::all()->pluck('value', 'key');
     }
+    $apkBg = $settings['page_home_aplikasi_bg'] ?? '#0F172A';
+    $apkCardBg = $settings['page_home_aplikasi_card_bg'] ?? '#1E293B';
+    $apkCardText = $settings['page_home_aplikasi_card_text'] ?? '#FFFFFF';
+    $apkLabelColor = $settings['page_home_aplikasi_label_color'] ?? '#94A3B8';
+    $apkTitleColor = $settings['page_home_aplikasi_title_color'] ?? '#FFFFFF';
+    $apkDescColor = $settings['page_home_aplikasi_desc_color'] ?? '#E2E8F0';
+
     $compName = $settings['company_name'] ?? 'Pusat Piring Keramik';
     $appsList = [
         [
@@ -33,41 +40,41 @@
 
 <section class="cv-apps-premium" id="aplikasi">
     <style>
-        .cv-apps-premium { background:#0F172A; padding:5rem 1.5rem; border-top:1px solid #1E293B; }
+        .cv-apps-premium { background: {{ $apkBg }} !important; padding:5rem 1.5rem; border-top:1px solid rgba(255,255,255,0.1); }
         .cv-apps-inner-comp { max-width:1200px; margin:0 auto; }
         .cv-apps-header-comp { max-width:650px; margin-bottom:3rem; }
         .cv-adv-section-label-comp {
             display:inline-flex; align-items:center; gap:0.5rem; font-size:0.75rem;
             font-weight:700; letter-spacing:0.15em; text-transform:uppercase;
-            color:#94A3B8; margin-bottom:0.75rem; font-family:'Montserrat', sans-serif;
+            color: {{ $apkLabelColor }} !important; margin-bottom:0.75rem; font-family:'Montserrat', sans-serif;
         }
         .cv-adv-section-label-comp::before {
-            content:''; display:block; width:5px; height:5px; background:#10B981; border-radius:50%;
+            content:''; display:block; width:5px; height:5px; background: {{ $apkLabelColor }} !important; border-radius:50%;
         }
         .cv-adv-section-title-comp {
-            font-size:clamp(1.75rem, 3vw, 2.5rem); font-weight:600; color:#ffffff;
+            font-size:clamp(1.75rem, 3vw, 2.5rem); font-weight:600; color: {{ $apkTitleColor }} !important;
             line-height:1.2; letter-spacing:-0.03em; margin:0; font-family:'Montserrat', sans-serif;
         }
         .cv-apps-grid-comp {
             display:grid; grid-template-columns:repeat(4, 1fr); gap:1.5rem;
         }
         .cv-app-card-comp {
-            background:#1E293B; border:1px solid #334155; border-radius:20px;
+            background: {{ $apkCardBg }} !important; border:1px solid rgba(255,255,255,0.15); border-radius:20px;
             overflow:hidden; display:flex; flex-direction:column; transition:all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
             outline: none !important;
         }
-        .cv-app-card-comp:hover { transform:translateY(-8px); border-color:#10B981; box-shadow:0 20px 40px rgba(0,0,0,0.4); outline: none !important; }
-        .cv-app-img-wrapper-comp { width:100%; aspect-ratio:16/10; overflow:hidden; background:#0F172A; }
+        .cv-app-card-comp:hover { transform:translateY(-8px); border-color:#10B981; box-shadow:0 20px 40px rgba(0,0,0,0.3); outline: none !important; }
+        .cv-app-img-wrapper-comp { width:100%; aspect-ratio:16/10; overflow:hidden; background: {{ $apkBg }} !important; }
         .cv-app-img-wrapper-comp img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease; display:block; }
         .cv-app-card-comp:hover .cv-app-img-wrapper-comp img { transform:scale(1.06); }
         .cv-app-card-body-comp { padding:1.5rem; display:flex; flex-direction:column; gap:0.875rem; flex:1; }
         .cv-app-icon-circle-comp {
-            width:44px; height:44px; background:rgba(16,185,129,0.12); border-radius:12px;
-            display:flex; align-items:center; justify-content:center; color:#10B981; flex-shrink:0; transition:all 0.3s ease;
+            width:44px; height:44px; background:rgba(255,255,255,0.12); border-radius:12px;
+            display:flex; align-items:center; justify-content:center; color: {{ $apkCardText }} !important; flex-shrink:0; transition:all 0.3s ease;
         }
-        .cv-app-card-comp:hover .cv-app-icon-circle-comp { background:#10B981; color:#ffffff; }
-        .cv-app-card-title-comp { font-size:1.05rem; font-weight:600; color:#ffffff; margin:0; font-family:'Montserrat', sans-serif; line-height:1.3; }
-        .cv-app-card-desc-comp { font-size:0.85rem; color:#94A3B8; line-height:1.65; margin:0; font-family:'Montserrat', sans-serif; }
+        .cv-app-card-comp:hover .cv-app-icon-circle-comp { background:#10B981; color:#ffffff !important; }
+        .cv-app-card-title-comp { font-size:1.05rem; font-weight:600; color: {{ $apkCardText }} !important; margin:0; font-family:'Montserrat', sans-serif; line-height:1.3; }
+        .cv-app-card-desc-comp { font-size:0.85rem; color: {{ $apkCardText }} !important; opacity:0.85; line-height:1.65; margin:0; font-family:'Montserrat', sans-serif; }
 
         @media (max-width: 1024px) { .cv-apps-grid-comp { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 640px) {
@@ -92,7 +99,7 @@
             <h2 class="cv-adv-section-title-comp">
                 {!! nl2br(e($settings['aplikasi_section_title'] ?? "Cocok untuk\nBerbagai Industri")) !!}
             </h2>
-            <p style="margin-top:1rem; font-size:0.875rem; color:#94A3B8; line-height:1.65; font-family:'Montserrat', sans-serif;">
+            <p style="margin-top:1rem; font-size:0.875rem; color: {{ $apkDescColor }} !important; line-height:1.65; font-family:'Montserrat', sans-serif;">
                 {{ $settings['aplikasi_section_desc'] ?? 'Pusat Piring Keramik menyediakan perlengkapan meja makan dan tableware premium yang dirancang khusus untuk memenuhi standar operasional berbagai sektor bisnis F&B.' }}
             </p>
         </div>
