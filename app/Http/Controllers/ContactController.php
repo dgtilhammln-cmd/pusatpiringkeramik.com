@@ -24,12 +24,48 @@ class ContactController extends Controller
             'canonical'   => route('contact'),
         ];
 
-        $faq = [
-            ['q' => "Di mana lokasi utama {$comp}?", 'a' => "Kami berlokasi di lokasi strategis dan melayani pengiriman piring keramik ke seluruh wilayah Indonesia."],
-            ['q' => 'Apakah konsultasi ventilasi gratis?', 'a' => 'Ya, kami menyediakan konsultasi gratis. Tim ahli kami akan membantu menghitung kebutuhan sirkulasi udara untuk bangunan Anda.'],
-            ['q' => 'Apakah ada layanan survei lokasi?', 'a' => 'Ya, kami melayani survei lokasi secara langsung untuk menentukan jumlah dan tipe ventilator yang paling optimal untuk bangunan Anda.'],
-            ['q' => 'Berapa lama proses pemasangan ventilator?', 'a' => 'Proses instalasi sangat bergantung pada jumlah unit dan tingkat kesulitan atap. Namun, tim teknisi kami sangat berpengalaman untuk menyelesaikan dengan cepat dan rapi.'],
+        $defaultFaqs = [
+            [
+                'q' => 'Apakah Pusat Piring Keramik melayani pemesanan grosir untuk restoran, cafe, dan hotel?',
+                'a' => 'Ya, kami melayani pengadaan piring keramik & tableware secara grosir dengan harga pabrik langsung. Kami rutin memasok kebutuhan peralatan makan untuk restoran, kafe, hotel, catering, dan usaha F&B di seluruh Indonesia.'
+            ],
+            [
+                'q' => 'Apakah piring keramik dijamin aman untuk microwave, oven, dan dishwasher (Food Grade)?',
+                'a' => 'Tentu saja. Seluruh piring keramik dan tableware kami terbuat dari material porselen/stoneware berkualitas tinggi yang 100% Food Grade, bebas timbal & cadmium, serta tahan panas aman digunakan di microwave, oven, maupun mesin cuci piring.'
+            ],
+            [
+                'q' => 'Apakah pengiriman piring keramik aman dan garansi pecah saat perjalanan luar kota?',
+                'a' => 'Pengiriman kami sangat aman. Setiap produk dikemas rapi memakai bubble wrap tebal, dus khusus, dan palet/peti kayu kuat. Kami memberikan garansi pecah saat pengiriman — jika produk diterima pecah, akan langsung kami ganti baru.'
+            ],
+            [
+                'q' => 'Berapa minimal order (MOQ) untuk pembelian grosir atau cetak custom logo?',
+                'a' => 'Untuk produk ready stock, kami menerima pemesanan grosir tanpa minimum order yang memberatkan. Khusus pemesanan custom logo resto atau desain khusus, MOQ menyesuaikan dengan tipe produk dan teknik cetak yang diinginkan.'
+            ],
+            [
+                'q' => 'Bagaimana cara meminta penawaran harga (pricelist) atau sampel produk?',
+                'a' => 'Anda dapat dengan mudah menghubungi tim customer service kami melalui tombol WhatsApp yang tersedia atau mengisi form kontak di halaman ini. Tim kami akan segera mengirimkan katalog digital beserta daftar harga grosir terbaik.'
+            ]
         ];
+
+        $rawContactFaqs = $settings['contact_faq_json'] ?? null;
+        $faq = [];
+        if (!empty($rawContactFaqs)) {
+            $parsed = is_string($rawContactFaqs) ? json_decode($rawContactFaqs, true) : $rawContactFaqs;
+            if (is_array($parsed) && count($parsed) > 0) {
+                foreach (array_slice($parsed, 0, 5) as $item) {
+                    $q = $item['q'] ?? ($item['question'] ?? '');
+                    $a = $item['a'] ?? ($item['answer'] ?? '');
+                    $show = $item['show'] ?? '1';
+                    if (!empty($q) && !empty($a) && ($show == '1' || $show === true || $show === 'on')) {
+                        $faq[] = ['q' => $q, 'a' => $a];
+                    }
+                }
+            }
+        }
+
+        if (empty($faq)) {
+            $faq = $defaultFaqs;
+        }
 
         $schema = json_encode([
             '@context' => 'https://schema.org',

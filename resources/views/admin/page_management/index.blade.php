@@ -1924,43 +1924,172 @@
       {{-- SUB TAB 7: SECT FOOTER --}}
       <div id="sub-sect-footer" class="sub-tab-content"
         style="{{ ($activeTab ?? '') === 'sect-footer' ? '' : 'display:none;' }}">
-        <div class="pm-card">
+        
+        {{-- CARD 1: Tampilan & Warna Footer --}}
+        <div class="pm-card" style="margin-bottom:1.5rem;">
           <div class="pm-card-header">
             <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24">
-              <path
-                d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5z M4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6z M16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+              <path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
             </svg>
-            <div class="pm-card-title">Kustomisasi Section Footer</div>
-          </div>
-
-          <div
-            style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem; margin-bottom:1.5rem;">
             <div>
-              <label class="pm-label">Background Footer</label>
-              <div class="pm-color-picker-wrap">
-                <input type="color" value="{{ $settings['page_home_footer_bg'] ?? '#0A1930' }}"
-                  onchange="document.getElementById('c_ftr_bg').value=this.value">
-                <input type="text" name="page_home_footer_bg" id="c_ftr_bg" class="pm-input"
-                  value="{{ $settings['page_home_footer_bg'] ?? '#0A1930' }}">
-              </div>
-            </div>
-            <div>
-              <label class="pm-label">Warna Teks Footer</label>
-              <div class="pm-color-picker-wrap">
-                <input type="color" value="{{ $settings['page_home_footer_text_color'] ?? '#94A3B8' }}"
-                  onchange="document.getElementById('c_ftr_text').value=this.value">
-                <input type="text" name="page_home_footer_text_color" id="c_ftr_text" class="pm-input"
-                  value="{{ $settings['page_home_footer_text_color'] ?? '#94A3B8' }}">
-              </div>
+              <div class="pm-card-title">1. Tampilan & Skema Warna Footer (Gradasi / Solid)</div>
+              <div class="pm-help">Atur tipe background, gradasi warna, warna font, warna icon, dan warna bintang ulasan.</div>
             </div>
           </div>
 
-          <div>
-            <label class="pm-label">Teks Copyright Footer</label>
-            <input type="text" name="footer_copyright" class="pm-input"
-              value="{{ $settings['footer_copyright'] ?? '© ' . date('Y') . ' Pusat Piring Keramik. All Rights Reserved.' }}">
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem;">
+            <div>
+              <label class="pm-label">Tipe Background Footer</label>
+              <select name="footer_bg_type" class="pm-input">
+                <option value="gradient" {{ ($settings['footer_bg_type'] ?? 'gradient') === 'gradient' ? 'selected' : '' }}>Gradasi CSS (Gradient)</option>
+                <option value="solid" {{ ($settings['footer_bg_type'] ?? 'gradient') === 'solid' ? 'selected' : '' }}>Warna Solid Single</option>
+              </select>
+            </div>
+            <div>
+              <label class="pm-label">Warna Background Solid</label>
+              <div class="pm-color-picker-wrap">
+                <input type="color" value="{{ strtok($settings['footer_bg_color'] ?? '#0F172A', ' ') }}"
+                  onchange="document.getElementById('c_ftr_bg_sol').value=this.value">
+                <input type="text" name="footer_bg_color" id="c_ftr_bg_sol" class="pm-input"
+                  value="{{ $settings['footer_bg_color'] ?? '#0F172A' }}">
+              </div>
+            </div>
+            <div style="grid-column: span 2;">
+              <label class="pm-label">Warna Background Gradasi CSS (Gradient)</label>
+              <input type="text" name="footer_bg_gradient" class="pm-input"
+                value="{{ $settings['footer_bg_gradient'] ?? 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)' }}"
+                placeholder="linear-gradient(135deg, #0F172A 0%, #1E293B 100%)">
+            </div>
+
+            <div>
+              <label class="pm-label">Warna Judul & Brand (Headings)</label>
+              <div class="pm-color-picker-wrap">
+                <input type="color" value="{{ strtok($settings['footer_heading_color'] ?? '#FFFFFF', ' ') }}"
+                  onchange="document.getElementById('c_ftr_head').value=this.value">
+                <input type="text" name="footer_heading_color" id="c_ftr_head" class="pm-input"
+                  value="{{ $settings['footer_heading_color'] ?? '#FFFFFF' }}">
+              </div>
+            </div>
+
+            <div>
+              <label class="pm-label">Warna Teks Paragraf & Subtitle</label>
+              <div class="pm-color-picker-wrap">
+                <input type="color" value="{{ strtok($settings['footer_text_color'] ?? '#94A3B8', ' ') }}"
+                  onchange="document.getElementById('c_ftr_txt').value=this.value">
+                <input type="text" name="footer_text_color" id="c_ftr_txt" class="pm-input"
+                  value="{{ $settings['footer_text_color'] ?? '#94A3B8' }}">
+              </div>
+            </div>
+
+            <div>
+              <label class="pm-label">Warna Tautan / Links (Normal)</label>
+              <div class="pm-color-picker-wrap">
+                <input type="color" value="{{ strtok($settings['footer_link_color'] ?? '#CBD5E1', ' ') }}"
+                  onchange="document.getElementById('c_ftr_link').value=this.value">
+                <input type="text" name="footer_link_color" id="c_ftr_link" class="pm-input"
+                  value="{{ $settings['footer_link_color'] ?? '#CBD5E1' }}">
+              </div>
+            </div>
+
+            <div>
+              <label class="pm-label">Warna Link saat Hover (Hover Accent)</label>
+              <div class="pm-color-picker-wrap">
+                <input type="color" value="{{ strtok($settings['footer_link_hover_color'] ?? '#38BDF8', ' ') }}"
+                  onchange="document.getElementById('c_ftr_hover').value=this.value">
+                <input type="text" name="footer_link_hover_color" id="c_ftr_hover" class="pm-input"
+                  value="{{ $settings['footer_link_hover_color'] ?? '#38BDF8' }}">
+              </div>
+            </div>
+
+            <div>
+              <label class="pm-label">Warna Icon SVG Kontak & Sosmed</label>
+              <div class="pm-color-picker-wrap">
+                <input type="color" value="{{ strtok($settings['footer_icon_color'] ?? '#38BDF8', ' ') }}"
+                  onchange="document.getElementById('c_ftr_icon').value=this.value">
+                <input type="text" name="footer_icon_color" id="c_ftr_icon" class="pm-input"
+                  value="{{ $settings['footer_icon_color'] ?? '#38BDF8' }}">
+              </div>
+            </div>
+
+            <div>
+              <label class="pm-label">Warna Bintang Ulasan (Rating Stars)</label>
+              <div class="pm-color-picker-wrap">
+                <input type="color" value="{{ strtok($settings['footer_star_color'] ?? '#F59E0B', ' ') }}"
+                  onchange="document.getElementById('c_ftr_star').value=this.value">
+                <input type="text" name="footer_star_color" id="c_ftr_star" class="pm-input"
+                  value="{{ $settings['footer_star_color'] ?? '#F59E0B' }}">
+              </div>
+            </div>
           </div>
         </div>
+
+        {{-- CARD 2: Rating Box & Copywriting Footer --}}
+        <div class="pm-card" style="margin-bottom:1.5rem;">
+          <div class="pm-card-header">
+            <svg width="22" height="22" fill="none" stroke="#F59E0B" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+            </svg>
+            <div>
+              <div class="pm-card-title">2. Card Rating Ulasan & Copywriting Text</div>
+              <div class="pm-help">Kustomisasi ulasan bintang, teks jumlah review, deskripsi brand, dan judul kolom.</div>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem;">
+            <div>
+              <label class="pm-label">Nilai Rating Ulasan Footer</label>
+              <input type="text" name="footer_rating_value" class="pm-input"
+                value="{{ $settings['footer_rating_value'] ?? '4.9 / 5.0' }}" placeholder="4.9 / 5.0">
+            </div>
+            <div>
+              <label class="pm-label">Teks Jumlah Ulasan Terverifikasi</label>
+              <input type="text" name="footer_rating_count_text" class="pm-input"
+                value="{{ $settings['footer_rating_count_text'] ?? '134+ Ulasan Terverifikasi' }}" placeholder="134+ Ulasan Terverifikasi">
+            </div>
+
+            <div style="grid-column: 1 / -1;">
+              <label class="pm-label">Deskripsi Singkat Perusahaan di Footer</label>
+              <textarea name="footer_desc" class="pm-input" rows="3">{{ $settings['footer_desc'] ?? 'Distributor & Supplier Piring Keramik terpercaya di Indonesia. Melayani kebutuhan grosir restoran, hotel, dan catering.' }}</textarea>
+            </div>
+
+            <div>
+              <label class="pm-label">Judul Kolom 1 (Kategori)</label>
+              <input type="text" name="footer_col_1_title" class="pm-input"
+                value="{{ $settings['footer_col_1_title'] ?? 'Kategori Produk' }}" placeholder="Kategori Produk">
+            </div>
+            <div>
+              <label class="pm-label">Judul Kolom 2 (Navigasi)</label>
+              <input type="text" name="footer_col_2_title" class="pm-input"
+                value="{{ $settings['footer_col_2_title'] ?? 'Navigasi' }}" placeholder="Navigasi">
+            </div>
+            <div>
+              <label class="pm-label">Judul Kolom 3 (Kontak)</label>
+              <input type="text" name="footer_col_3_title" class="pm-input"
+                value="{{ $settings['footer_col_3_title'] ?? 'Kontak' }}" placeholder="Kontak">
+            </div>
+
+            <div style="grid-column: 1 / -1;">
+              <label class="pm-label">Teks Copyright Footer</label>
+              <input type="text" name="footer_copyright" class="pm-input"
+                value="{{ $settings['footer_copyright'] ?? ('© ' . date('Y') . ' Pusat Piring Keramik. All Rights Reserved.') }}">
+            </div>
+          </div>
+        </div>
+
+        {{-- CARD 3: Info Fallback Kontak --}}
+        <div class="pm-card" style="background:#F8FAFC; border-color:#CBD5E1;">
+          <div style="display:flex; align-items:center; gap:.75rem;">
+            <svg width="20" height="20" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="16" x2="12" y2="12" />
+              <line x1="12" y1="8" x2="12.01" y2="8" />
+            </svg>
+            <div style="font-size:.8125rem; color:#334155; line-height:1.5;">
+              <strong>Informasi Kontak Footer:</strong> Data Alamat, Nomor Telepon, Nomor WhatsApp, Email, dan Jam Operasional di kolom Kontak Footer otomatis diambil secara dinamis dari <strong>Pengaturan Situs (Admin Settings → Kontak & Sosmed)</strong>.
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -2525,11 +2654,11 @@
 
     {{-- KONTAK PAGE CONTAINER --}}
     <div id="page-kontak" style="{{ $isKontakTab ? 'display:block;' : 'display:none;' }}">
-      <div class="pm-card">
+      <div class="pm-card" style="margin-bottom:1.5rem;">
         <div class="pm-card-header">
           <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
           <div>
-            <div class="pm-card-title">Halaman Kontak Kami</div>
+            <div class="pm-card-title">1. Hero Section Halaman Kontak Kami</div>
             <div class="pm-help">Kustomisasi judul, badge label, dan deskripsi hero section pada halaman /contact.</div>
           </div>
         </div>
@@ -2546,6 +2675,96 @@
             <label class="pm-label">Deskripsi / Subtitle Hero</label>
             <textarea name="page_contact_hero_desc" class="pm-input" rows="3" placeholder="Deskripsi halaman kontak">{{ $settings['page_contact_hero_desc'] ?? 'Tim UD. Sukses Makmur siap membantu menemukan produk piring dan keramik terbaik untuk kebutuhan Anda. Hubungi kami sekarang - respon cepat!' }}</textarea>
           </div>
+        </div>
+      </div>
+
+      {{-- CARD 2: FAQ Manager Halaman Kontak (Maksimal 5 FAQ) --}}
+      <div class="pm-card">
+        <div class="pm-card-header" style="justify-content:space-between;">
+          <div style="display:flex; align-items:center; gap:.75rem;">
+            <svg width="22" height="22" fill="none" stroke="#8B5CF6" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div>
+              <div class="pm-card-title">2. Kelola FAQ Halaman Kontak (Maksimal 5 FAQ)</div>
+              <div class="pm-help">Pertanyaan dan jawaban ini tampil di halaman kontak dan terhubung langsung ke Schema FAQPage (AI & Google Search).</div>
+            </div>
+          </div>
+          <button type="button" onclick="addContactFaqItem()"
+            style="display:inline-flex;align-items:center;gap:.375rem;padding:.5rem 1rem;font-size:.8125rem;font-weight:700;background:#0F172A;color:#ffffff;border:none;border-radius:10px;cursor:pointer;transition:all .2s;">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            Tambah FAQ Kontak
+          </button>
+        </div>
+
+        @php
+          $rawContactFaqs = $settings['contact_faq_json'] ?? null;
+          $defaultContactFaqs = [
+            [
+              'q' => 'Apakah Pusat Piring Keramik melayani pemesanan grosir untuk restoran, cafe, dan hotel?',
+              'a' => 'Ya, kami melayani pengadaan piring keramik & tableware secara grosir dengan harga pabrik langsung. Kami rutin memasok kebutuhan peralatan makan untuk restoran, kafe, hotel, catering, dan usaha F&B di seluruh Indonesia.',
+              'show' => '1'
+            ],
+            [
+              'q' => 'Apakah piring keramik dijamin aman untuk microwave, oven, dan dishwasher (Food Grade)?',
+              'a' => 'Tentu saja. Seluruh piring keramik dan tableware kami terbuat dari material porselen/stoneware berkualitas tinggi yang 100% Food Grade, bebas timbal & cadmium, serta tahan panas aman digunakan di microwave, oven, maupun mesin cuci piring.',
+              'show' => '1'
+            ],
+            [
+              'q' => 'Apakah pengiriman piring keramik aman dan garansi pecah saat perjalanan luar kota?',
+              'a' => 'Pengiriman kami sangat aman. Setiap produk dikemas rapi memakai bubble wrap tebal, dus khusus, dan palet/peti kayu kuat. Kami memberikan garansi pecah saat pengiriman — jika produk diterima pecah, akan langsung kami ganti baru.',
+              'show' => '1'
+            ],
+            [
+              'q' => 'Berapa minimal order (MOQ) untuk pembelian grosir atau cetak custom logo?',
+              'a' => 'Untuk produk ready stock, kami menerima pemesanan grosir tanpa minimum order yang memberatkan. Khusus pemesanan custom logo resto atau desain khusus, MOQ menyesuaikan dengan tipe produk dan teknik cetak yang diinginkan.',
+              'show' => '1'
+            ],
+            [
+              'q' => 'Bagaimana cara meminta penawaran harga (pricelist) atau sampel produk?',
+              'a' => 'Anda dapat dengan mudah menghubungi tim customer service kami melalui tombol WhatsApp yang tersedia atau mengisi form kontak di halaman ini. Tim kami akan segera mengirimkan katalog digital beserta daftar harga grosir terbaik.',
+              'show' => '1'
+            ]
+          ];
+          if (!empty($rawContactFaqs)) {
+            $contactFaqsArr = is_string($rawContactFaqs) ? json_decode($rawContactFaqs, true) : $rawContactFaqs;
+            if (!is_array($contactFaqsArr) || count($contactFaqsArr) === 0) {
+              $contactFaqsArr = $defaultContactFaqs;
+            }
+          } else {
+            $contactFaqsArr = $defaultContactFaqs;
+          }
+        @endphp
+
+        <div id="contact-faq-list-container" style="display:flex; flex-direction:column; gap:1rem;">
+          @foreach($contactFaqsArr as $index => $faqItem)
+            <div class="contact-faq-item-row" style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:12px; padding:1.25rem; position:relative;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:.75rem;">
+                <span style="font-size:.75rem; font-weight:800; color:#475569; text-transform:uppercase; letter-spacing:.05em;">FAQ Kontak #<span class="contact-faq-num">{{ $index + 1 }}</span></span>
+                <div style="display:flex; align-items:center; gap:1rem;">
+                  <label style="display:flex; align-items:center; gap:.375rem; font-size:.75rem; font-weight:600; color:#475569; cursor:pointer;">
+                    <input type="checkbox" name="contact_faq[{{ $index }}][show]" value="1" {{ ($faqItem['show'] ?? '1') == '1' ? 'checked' : '' }}> Tampilkan di Halaman Kontak
+                  </label>
+                  <button type="button" onclick="removeContactFaqRow(this)" style="background:none; border:none; color:#EF4444; cursor:pointer; font-size:.8rem; font-weight:700; display:flex; align-items:center; gap:.25rem;">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg> Hapus
+                  </button>
+                </div>
+              </div>
+              <div style="display:grid; grid-template-columns:1fr; gap:.75rem;">
+                <div>
+                  <label class="pm-label" style="font-size:.75rem;">Pertanyaan (Q)</label>
+                  <input type="text" name="contact_faq[{{ $index }}][q]" class="pm-input" value="{{ $faqItem['q'] ?? ($faqItem['question'] ?? '') }}" placeholder="Tuliskan pertanyaan...">
+                </div>
+                <div>
+                  <label class="pm-label" style="font-size:.75rem;">Jawaban (A)</label>
+                  <textarea name="contact_faq[{{ $index }}][a]" class="pm-input" rows="2" placeholder="Tuliskan jawaban lengkap...">{{ $faqItem['a'] ?? ($faqItem['answer'] ?? '') }}</textarea>
+                </div>
+              </div>
+            </div>
+          @endforeach
         </div>
       </div>
     </div>
@@ -2744,6 +2963,63 @@
           `;
       container.appendChild(row);
       seoFaqIndex++;
+    }
+
+    let contactFaqIndex = {{ isset($contactFaqsArr) ? count($contactFaqsArr) : 10 }};
+    function addContactFaqItem() {
+      const container = document.getElementById('contact-faq-list-container');
+      if (!container) return;
+      
+      const rowCount = container.querySelectorAll('.contact-faq-item-row').length;
+      if (rowCount >= 5) {
+        alert('Maksimal 5 FAQ untuk halaman kontak.');
+        return;
+      }
+      
+      const row = document.createElement('div');
+      row.className = 'contact-faq-item-row';
+      row.style.cssText = 'background:#F8FAFC; border:1px solid #E2E8F0; border-radius:12px; padding:1.25rem; position:relative;';
+      row.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:.75rem;">
+          <span style="font-size:.75rem; font-weight:800; color:#475569; text-transform:uppercase; letter-spacing:.05em;">FAQ Kontak #<span class="contact-faq-num">${rowCount + 1}</span></span>
+          <div style="display:flex; align-items:center; gap:1rem;">
+            <label style="display:flex; align-items:center; gap:.375rem; font-size:.75rem; font-weight:600; color:#475569; cursor:pointer;">
+              <input type="checkbox" name="contact_faq[${contactFaqIndex}][show]" value="1" checked> Tampilkan di Halaman Kontak
+            </label>
+            <button type="button" onclick="removeContactFaqRow(this)" style="background:none; border:none; color:#EF4444; cursor:pointer; font-size:.8rem; font-weight:700; display:flex; align-items:center; gap:.25rem;">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg> Hapus
+            </button>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr; gap:.75rem;">
+          <div>
+            <label class="pm-label" style="font-size:.75rem;">Pertanyaan (Q)</label>
+            <input type="text" name="contact_faq[${contactFaqIndex}][q]" class="pm-input" value="" placeholder="Tuliskan pertanyaan...">
+          </div>
+          <div>
+            <label class="pm-label" style="font-size:.75rem;">Jawaban (A)</label>
+            <textarea name="contact_faq[${contactFaqIndex}][a]" class="pm-input" rows="2" placeholder="Tuliskan jawaban lengkap..."></textarea>
+          </div>
+        </div>
+      `;
+      container.appendChild(row);
+      contactFaqIndex++;
+      updateContactFaqNumbers();
+    }
+
+    function removeContactFaqRow(btn) {
+      btn.closest('.contact-faq-item-row').remove();
+      updateContactFaqNumbers();
+    }
+
+    function updateContactFaqNumbers() {
+      const container = document.getElementById('contact-faq-list-container');
+      if (!container) return;
+      const rows = container.querySelectorAll('.contact-faq-item-row');
+      rows.forEach((r, idx) => {
+        const numEl = r.querySelector('.contact-faq-num');
+        if (numEl) numEl.innerText = idx + 1;
+      });
     }
 
     function switchSubTab(subKey) {

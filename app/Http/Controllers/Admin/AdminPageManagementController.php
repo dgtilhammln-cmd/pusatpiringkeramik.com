@@ -29,6 +29,21 @@ class AdminPageManagementController extends Controller
 
         // Save normal input fields & JSON arrays
         foreach ($data as $key => $value) {
+            if ($key === 'contact_faq' || $key === 'contact_faq_json') {
+                $cleanFaqs = [];
+                foreach ((array)$value as $item) {
+                    if (is_array($item) && (!empty($item['q']) || !empty($item['question']))) {
+                        $cleanFaqs[] = [
+                            'q'    => $item['q'] ?? ($item['question'] ?? ''),
+                            'a'    => $item['a'] ?? ($item['answer'] ?? ''),
+                            'show' => isset($item['show']) ? (string)$item['show'] : '1'
+                        ];
+                    }
+                }
+                Setting::set('contact_faq_json', json_encode($cleanFaqs), 'text', 'page_management');
+                continue;
+            }
+
             if (is_array($value)) {
                 // Encode array inputs (cards/items) to JSON string
                 $value = json_encode(array_values(array_filter($value)));
