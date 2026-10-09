@@ -66,16 +66,16 @@ deploy_target() {
     if [ -d "$TARGET_DIR/.git" ]; then
         cd "$TARGET_DIR"
         php artisan migrate --force 2>/dev/null || true
-        php artisan sitemap:generate 2>/dev/null || true
         mkdir -p "$TARGET_DIR/public_html"
-        [ -f "$TARGET_DIR/public/index.php" ] && cp -f "$TARGET_DIR/public/index.php" "$TARGET_DIR/public_html/index.php"
-        [ -f "$TARGET_DIR/public/.htaccess" ] && cp -f "$TARGET_DIR/public/.htaccess" "$TARGET_DIR/public_html/.htaccess"
-        [ -f "$TARGET_DIR/public/robots.txt" ] && cp -f "$TARGET_DIR/public/robots.txt" "$TARGET_DIR/public_html/robots.txt"
-        [ -f "$TARGET_DIR/public/llms.txt" ] && cp -f "$TARGET_DIR/public/llms.txt" "$TARGET_DIR/public_html/llms.txt"
-        [ -f "$TARGET_DIR/public/sitemap.xsl" ] && cp -f "$TARGET_DIR/public/sitemap.xsl" "$TARGET_DIR/public_html/sitemap.xsl"
-        # Force remove old sitemap (may be corrupt/wrong) then copy clean one
-        rm -f "$TARGET_DIR/public_html/sitemap.xml"
+        [ -f "$TARGET_DIR/public/index.php" ]  && cp -f "$TARGET_DIR/public/index.php"  "$TARGET_DIR/public_html/index.php"
+        [ -f "$TARGET_DIR/public/.htaccess" ]  && cp -f "$TARGET_DIR/public/.htaccess"   "$TARGET_DIR/public_html/.htaccess"
+        [ -f "$TARGET_DIR/public/robots.txt" ] && cp -f "$TARGET_DIR/public/robots.txt"  "$TARGET_DIR/public_html/robots.txt"
+        [ -f "$TARGET_DIR/public/llms.txt" ]   && cp -f "$TARGET_DIR/public/llms.txt"    "$TARGET_DIR/public_html/llms.txt"
+        # Force overwrite sitemap.xml with clean version from repo
+        rm -f "$TARGET_DIR/public_html/sitemap.xml" "$TARGET_DIR/public_html/sitemap.xsl"
         [ -f "$TARGET_DIR/public/sitemap.xml" ] && cp -f "$TARGET_DIR/public/sitemap.xml" "$TARGET_DIR/public_html/sitemap.xml"
+        # Remove old Google Search Console verification file
+        rm -f "$TARGET_DIR/public_html/google2d6265e5f3ef15fd.html" 2>/dev/null || true
         rm -f "$TARGET_DIR/public_html/storage"
         ln -s "$TARGET_DIR/storage/app/public" "$TARGET_DIR/public_html/storage" 2>/dev/null || true
         chmod -R 775 "$TARGET_DIR/storage" "$TARGET_DIR/bootstrap/cache" 2>/dev/null || true
@@ -106,17 +106,21 @@ fi
 if [ -f "$DEPLOY_DIR/public/.htaccess" ]; then
     cp -f "$DEPLOY_DIR/public/.htaccess" "$DEPLOY_DIR/public_html/.htaccess"
 fi
-# Copy robots.txt, llms.txt & sitemap.xsl to public_html
+# Copy robots.txt, llms.txt & sitemap.xml to public_html
 if [ -f "$DEPLOY_DIR/public/robots.txt" ]; then
     cp -f "$DEPLOY_DIR/public/robots.txt" "$DEPLOY_DIR/public_html/robots.txt"
 fi
 if [ -f "$DEPLOY_DIR/public/llms.txt" ]; then
     cp -f "$DEPLOY_DIR/public/llms.txt" "$DEPLOY_DIR/public_html/llms.txt"
 fi
-if [ -f "$DEPLOY_DIR/public/sitemap.xsl" ]; then
-    cp -f "$DEPLOY_DIR/public/sitemap.xsl" "$DEPLOY_DIR/public_html/sitemap.xsl"
+# Force overwrite sitemap.xml — remove old/corrupt file first
+rm -f "$DEPLOY_DIR/public_html/sitemap.xml" "$DEPLOY_DIR/public_html/sitemap.xsl"
+if [ -f "$DEPLOY_DIR/public/sitemap.xml" ]; then
+    cp -f "$DEPLOY_DIR/public/sitemap.xml" "$DEPLOY_DIR/public_html/sitemap.xml"
 fi
-echo "--- Copied robots.txt, llms.txt, and sitemap.xsl to public_html!"
+# Remove old Google Search Console verification file
+rm -f "$DEPLOY_DIR/public_html/google2d6265e5f3ef15fd.html" 2>/dev/null || true
+echo "--- Copied robots.txt, llms.txt, sitemap.xml to public_html!"
 rm -f "$DEPLOY_DIR/public_html/storage"
 ln -s "$DEPLOY_DIR/storage/app/public" "$DEPLOY_DIR/public_html/storage"
 chmod -R 775 "$DEPLOY_DIR/storage" "$DEPLOY_DIR/bootstrap/cache"

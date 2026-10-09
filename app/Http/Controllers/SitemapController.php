@@ -5,82 +5,65 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\Article;
-use App\Models\Setting;
-use Illuminate\Http\Request;
 
 class SitemapController extends Controller
 {
-    public function index(Request $request)
+    public function xml()
     {
-        $categories = ServiceCategory::all(['slug', 'name', 'updated_at']);
-        $services   = Service::active()->ordered()->get(['slug', 'name', 'updated_at']);
-        $articles   = Article::published()->latest()->get(['slug', 'title', 'updated_at']);
+        $base = rtrim(config('app.url', 'https://pusatpiringkeramik.com'), '/');
+        $today = now()->toDateString();
 
-        // Dynamic app & company info from settings
-        $companyName    = Setting::getAppName();
-        $companyTagline = Setting::get('company_tagline', '');
-        $addressFull    = Setting::get('address_full', '');
-        $siteUrl        = rtrim(config('app.url', 'https://pusatpiringkeramik.com'), '/');
-
-        $staticPages = [
-            ['url' => $siteUrl,                  'label' => 'Beranda',      'priority' => '1.0', 'changefreq' => 'weekly',  'lastmod' => now()->toDateString()],
-            ['url' => $siteUrl . '/about',       'label' => 'Tentang Kami', 'priority' => '0.8', 'changefreq' => 'monthly', 'lastmod' => now()->toDateString()],
-            ['url' => $siteUrl . '/product',     'label' => 'Produk',       'priority' => '0.9', 'changefreq' => 'weekly',  'lastmod' => now()->toDateString()],
-            ['url' => $siteUrl . '/articles',    'label' => 'Artikel',      'priority' => '0.8', 'changefreq' => 'daily',   'lastmod' => now()->toDateString()],
-            ['url' => $siteUrl . '/contact',     'label' => 'Kontak',       'priority' => '0.7', 'changefreq' => 'monthly', 'lastmod' => now()->toDateString()],
+        // Static pages
+        $entries = [
+            [$base,                  '1.0', 'weekly',  $today],
+            [$base . '/about',       '0.8', 'monthly', $today],
+            [$base . '/product',     '0.9', 'weekly',  $today],
+            [$base . '/articles',    '0.8', 'daily',   $today],
+            [$base . '/contact',     '0.7', 'monthly', $today],
         ];
 
-        $categoryUrls = $categories->map(fn($c) => [
-            'url'        => $siteUrl . '/k/' . $c->slug,
-            'label'      => 'Kategori: ' . $c->name,
-            'priority'   => '0.85',
-            'changefreq' => 'weekly',
-            'lastmod'    => $c->updated_at ? $c->updated_at->toDateString() : now()->toDateString(),
-        ])->toArray();
-
-        $serviceUrls = $services->map(fn($s) => [
-            'url'        => $siteUrl . '/product/' . $s->slug,
-            'label'      => $s->name,
-            'priority'   => '0.85',
-            'changefreq' => 'monthly',
-            'lastmod'    => $s->updated_at->toDateString(),
-        ])->toArray();
-
-        $articleUrls = $articles->map(fn($a) => [
-            'url'        => $siteUrl . '/articles/' . $a->slug,
-            'label'      => $a->title,
-            'priority'   => '0.7',
-            'changefreq' => 'monthly',
-            'lastmod'    => $a->updated_at->toDateString(),
-        ])->toArray();
-
-        $urls = array_merge($staticPages, $categoryUrls, $serviceUrls, $articleUrls);
-
-        // HTML view
-        if ($request->is('sitemap')) {
-            return view('sitemap-html', compact(
-                'staticPages', 'categoryUrls', 'serviceUrls', 'articleUrls', 'urls',
-                'companyName', 'companyTagline', 'addressFull', 'siteUrl'
-            ));
+        // Dynamic pages — wrapped in try/catch so sitemap still works if DB is down
+        try {
+            foreach (ServiceCategory::all(['slug', 'updated_at']) as $c) {
+                $entries[] = [
+                    $base . '/k/' . $c->slug,
+                    '0.85', 'weekly',
+                    $c->updated_at ? $c->updated_at->toDateString() : $today,
+                ];
+            }
+            foreach (Service::active()->ordered()->get(['slug', 'updated_at']) as $s) {
+                $entries[] = [
+                    $base . '/product/' . $s->slug,
+                    '0.85', 'monthly',
+                    $s->updated_at ? $s->updated_at->toDateString() : $today,
+                ];
+            }
+            foreach (Article::published()->latest()->get(['slug', 'updated_at']) as $a) {
+                $entries[] = [
+                    $base . '/articles/' . $a->slug,
+                    '0.7', 'monthly',
+                    $a->updated_at ? $a->updated_at->toDateString() : $today,
+                ];
+            }
+        } catch (\Throwable $e) {
+            // DB unavailable — static pages only, no crash
         }
 
-        // XML for crawlers — build directly in PHP (NO Blade) to guarantee
-        // ZERO whitespace before the <?xml declaration. Blade always risks
-        // injecting newlines / BOM that break XML parsers.
-        $xml  = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
-        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
-        foreach ($urls as $u) {
-            $xml .= '  <url>' . "\n";
-            $xml .= '    <loc>'         . htmlspecialchars($u['url'])        . '</loc>'         . "\n";
-            $xml .= '    <lastmod>'     . htmlspecialchars($u['lastmod'])    . '</lastmod>'     . "\n";
-            $xml .= '    <changefreq>'  . htmlspecialchars($u['changefreq']) . '</changefreq>'  . "\n";
-            $xml .= '    <priority>'    . htmlspecialchars($u['priority'])   . '</priority>'    . "\n";
-            $xml .= '  </url>' . "\n";
+        // Build XML — pure PHP string, absolutely zero whitespace before <?xml
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>' . "\n"
+             . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+
+        foreach ($entries as [$loc, $priority, $changefreq, $lastmod]) {
+            $xml .= '  <url>' . "\n"
+                  . '    <loc>'         . htmlspecialchars($loc, ENT_XML1) . '</loc>'         . "\n"
+                  . '    <lastmod>'     . $lastmod                         . '</lastmod>'     . "\n"
+                  . '    <changefreq>'  . $changefreq                      . '</changefreq>'  . "\n"
+                  . '    <priority>'    . $priority                        . '</priority>'    . "\n"
+                  . '  </url>' . "\n";
         }
+
         $xml .= '</urlset>';
 
-        return response($xml, 200)
-            ->header('Content-Type', 'text/xml; charset=utf-8')
-            ->header('X-Robots-Tag', 'noindex');
+        return response($xml, 200)->header('Content-Type', 'text/xml; charset=utf-8');
     }
 }

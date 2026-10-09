@@ -58,9 +58,8 @@ Route::middleware(['track.pageview'])->group(function () {
 Route::post('/request-order', [LeadController::class, 'store'])->name('lead.store');
 Route::post('/request-order-wa', [LeadController::class, 'waRedirect'])->name('lead.wa_redirect');
 
-// Sitemap & robots
-Route::get('/sitemap.xml', [SitemapController::class, 'index']);
-Route::get('/sitemap', [SitemapController::class, 'index'])->name('sitemap');
+// Sitemap
+Route::get('/sitemap.xml', [SitemapController::class, 'xml'])->name('sitemap');
 Route::get('/robots.txt', function () {
     $siteUrl = \App\Models\Setting::getAppUrl();
     $content = "User-agent: *\nAllow: /\n\nSitemap: {$siteUrl}/sitemap.xml\nllms-txt: {$siteUrl}/llms.txt";
