@@ -328,9 +328,11 @@
         .cv-hero-banner-wrap {
             position: relative;
             width: 100%;
+            max-width: 1280px;
+            margin: 0.4rem auto 0;
             overflow: hidden;
             padding: 0.25rem 0 0.5rem;
-            margin-top: 0.4rem;
+            box-sizing: border-box;
         }
 
         .cv-hero-banner-wrap::before,
@@ -571,12 +573,12 @@
             /* Section becomes the banner — full-height, image as background */
             .cv-hero-modern {
                 position: relative;
-                padding: 0 !important;
+                padding: 4.5rem 0 2rem !important;
                 overflow: hidden;
-                min-height: 90dvh;
+                min-height: 80dvh;
                 display: flex;
                 flex-direction: column;
-                justify-content: flex-end;
+                justify-content: center;
                 background-color: #030712 !important;
             }
 

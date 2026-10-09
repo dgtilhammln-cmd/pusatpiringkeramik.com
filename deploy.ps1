@@ -37,72 +37,54 @@ Write-Host "[3/3] Deploy ke Hosting..." -ForegroundColor Yellow
 # Semua $ di sini adalah milik bash, bukan PowerShell
 $bashScript = @'
 #!/bin/bash
-DEPLOY_DIR="/home/u664715641/domains/pusatpiringkeramik.hvmdigital.id"
+DEPLOY_DIR="/home/u664715641/domains/pusatpiringkeramik.com"
+ALT_DEPLOY_DIR="/home/u664715641/domains/pusatpiringkeramik.hvmdigital.id"
 REPO_URL="https://github.com/dgtilhammln-cmd/pusatpiringkeramik.com.git"
 
-echo "=== Cek direktori hosting ==="
+deploy_target() {
+    TARGET_DIR="$1"
+    echo "=== Deploying to target: $TARGET_DIR ==="
+    if [ -d "$TARGET_DIR/.git" ]; then
+        echo "--- [UPDATE] Repo ada, menarik update dari GitHub..."
+        cd "$TARGET_DIR"
+        git fetch origin main
+        git reset --hard origin/main
+    elif [ -d "$TARGET_DIR" ]; then
+        echo "--- Setup repo di $TARGET_DIR..."
+        cd "$TARGET_DIR"
+        git init
+        git remote add origin "$REPO_URL" 2>/dev/null || true
+        git fetch origin main
+        git reset --hard origin/main
+    fi
 
-if [ -d "$DEPLOY_DIR/.git" ]; then
-    echo "--- [UPDATE] Repo sudah ada, menarik update dari GitHub..."
-    cd "$DEPLOY_DIR"
-    git fetch origin main
-    git reset --hard origin/main
-    echo "--- Update selesai!"
-else
-    echo "--- [SETUP PERTAMA] Membuat folder dan clone dari GitHub..."
-    mkdir -p "$DEPLOY_DIR"
-    cd "$DEPLOY_DIR"
-    git init
-    git remote add origin "$REPO_URL"
-    git fetch origin main
-    git reset --hard origin/main
-    echo "--- Clone selesai!"
+    if [ -f "$TARGET_DIR/.env" ]; then
+        sed -i 's/APP_DEBUG=false/APP_DEBUG=true/g' "$TARGET_DIR/.env"
+        sed -i 's|APP_URL=.*|APP_URL=https://pusatpiringkeramik.com|g' "$TARGET_DIR/.env"
+    fi
 
-    echo "--- Membuat file .env..."
-    cat > "$DEPLOY_DIR/.env" << 'ENVEOF'
-APP_NAME="Pusat Piring Keramik"
-APP_ENV=production
-APP_KEY=base64:8v7nZVLpqpXmf3DacvEgc4/ohLjd4ABdBqOc5hTG5rg=
-APP_DEBUG=false
-APP_URL=https://pusatpiringkeramik.com
-APP_LOCALE=id
-APP_FALLBACK_LOCALE=en
-APP_FAKER_LOCALE=id_ID
-APP_MAINTENANCE_DRIVER=file
-BCRYPT_ROUNDS=12
-LOG_CHANNEL=stack
-LOG_STACK=single
-LOG_LEVEL=debug
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=u664715641_PIRINGKERAMIK
-DB_USERNAME=u664715641_PIRINGKERAMIK
-DB_PASSWORD=Piringkeramik23
-SESSION_DRIVER=file
-SESSION_LIFETIME=120
-SESSION_ENCRYPT=false
-SESSION_PATH=/
-SESSION_DOMAIN=null
-FILESYSTEM_DISK=public
-QUEUE_CONNECTION=database
-CACHE_STORE=file
-MAIL_MAILER=log
-MAIL_HOST=127.0.0.1
-MAIL_PORT=2525
-MAIL_FROM_ADDRESS=admin@pusatpiringkeramik.com
-MAIL_FROM_NAME="Pusat Piring Keramik"
-ENVEOF
-    echo "--- .env berhasil dibuat!"
-    cd "$DEPLOY_DIR"
-    php artisan key:generate --force
-fi
+    if [ -d "$TARGET_DIR/.git" ]; then
+        cd "$TARGET_DIR"
+        php artisan migrate --force 2>/dev/null || true
+        mkdir -p "$TARGET_DIR/public_html"
+        [ -f "$TARGET_DIR/public/index.php" ] && cp -f "$TARGET_DIR/public/index.php" "$TARGET_DIR/public_html/index.php"
+        [ -f "$TARGET_DIR/public/.htaccess" ] && cp -f "$TARGET_DIR/public/.htaccess" "$TARGET_DIR/public_html/.htaccess"
+        [ -f "$TARGET_DIR/public/robots.txt" ] && cp -f "$TARGET_DIR/public/robots.txt" "$TARGET_DIR/public_html/robots.txt"
+        [ -f "$TARGET_DIR/public/llms.txt" ] && cp -f "$TARGET_DIR/public/llms.txt" "$TARGET_DIR/public_html/llms.txt"
+        [ -f "$TARGET_DIR/public/sitemap.xsl" ] && cp -f "$TARGET_DIR/public/sitemap.xsl" "$TARGET_DIR/public_html/sitemap.xsl"
+        rm -f "$TARGET_DIR/public_html/storage"
+        ln -s "$TARGET_DIR/storage/app/public" "$TARGET_DIR/public_html/storage" 2>/dev/null || true
+        chmod -R 775 "$TARGET_DIR/storage" "$TARGET_DIR/bootstrap/cache" 2>/dev/null || true
+        php artisan view:clear
+        php artisan cache:clear
+        php artisan route:clear
+        php artisan config:clear
+        php artisan optimize
+    fi
+}
 
-# Ensure APP_DEBUG=false and APP_URL=https://pusatpiringkeramik.com in existing .env file
-if [ -f "$DEPLOY_DIR/.env" ]; then
-    sed -i 's/APP_DEBUG=true/APP_DEBUG=false/g' "$DEPLOY_DIR/.env"
-    sed -i 's|APP_URL=.*|APP_URL=https://pusatpiringkeramik.com|g' "$DEPLOY_DIR/.env"
-fi
+deploy_target "$DEPLOY_DIR"
+[ -d "$ALT_DEPLOY_DIR" ] && deploy_target "$ALT_DEPLOY_DIR"
 
 echo ""
 echo "--- Menjalankan artisan commands..."
