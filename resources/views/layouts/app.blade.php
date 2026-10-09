@@ -21,6 +21,8 @@
         $brandColor      = !empty($layoutSettings['brand_color']) ? $layoutSettings['brand_color'] : $headerAccent;
         $preloaderAccent = $layoutSettings['preloader_accent_color'] ?? $headerAccent;
         $preloaderEnable = $layoutSettings['preloader_enable'] ?? '1';
+        $scrollbarThumb  = $layoutSettings['scrollbar_thumb_color'] ?? '#00875A';
+        $scrollbarTrack  = $layoutSettings['scrollbar_track_color'] ?? '#F1F5F9';
     @endphp
 
     {{-- SEO Component --}}
@@ -69,6 +71,16 @@
             @if($tMain)   --bg-base: {{ $tMain }} !important; --bg-1: {{ $tMain }} !important; @endif
             @if($tText)   --text-1: {{ $tText }} !important; @endif
         }
+        /* ── Global Scrollbar ───────────────── */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: {{ $scrollbarTrack }}; }
+        ::-webkit-scrollbar-thumb {
+            background: {{ $scrollbarThumb }};
+            border-radius: 99px;
+            border: 2px solid {{ $scrollbarTrack }};
+        }
+        ::-webkit-scrollbar-thumb:hover { background: {{ $scrollbarThumb }}; filter: brightness(0.85); }
+        * { scrollbar-width: thin; scrollbar-color: {{ $scrollbarThumb }} {{ $scrollbarTrack }}; }
     </style>
 
     {{-- Breadcrumb / Page Hero Background --}}

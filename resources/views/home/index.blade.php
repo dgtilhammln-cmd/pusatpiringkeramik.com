@@ -1153,9 +1153,9 @@
         }
 
         .cv-article-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-6px);
-            box-shadow: 0 20px 56px rgba(56, 189, 248, 0.12);
+            border-color: transparent;
+            transform: translateY(-8px);
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.15), 0 8px 20px rgba(15, 23, 42, 0.08);
         }
 
         .cv-article-thumb {
@@ -3090,9 +3090,9 @@
         }
 
         .cv-article-card-v2:hover {
-            border-color: var(--brand);
+            border-color: transparent;
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.08);
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18), 0 8px 24px rgba(15, 23, 42, 0.1);
         }
 
         .cv-article-img-wrap {

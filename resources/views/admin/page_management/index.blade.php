@@ -369,7 +369,46 @@
         </div>
       </div>
 
-      {{-- CARD 3: Pengaturan Navigasi Header (Tambah, Sembunyikan, Edit Menu & Tujuan) --}}
+      {{-- CARD 3: Warna Scrollbar Global --}}
+      <div class="pm-card">
+        <div class="pm-card-header">
+          <svg width="22" height="22" fill="none" stroke="#6366F1" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="17" y="2" width="5" height="20" rx="2.5"/>
+            <rect x="2" y="6" width="5" height="12" rx="2.5"/>
+            <line x1="19.5" y1="6" x2="19.5" y2="10"/>
+          </svg>
+          <div>
+            <div class="pm-card-title">Warna Scrollbar Global</div>
+            <div class="pm-help">Atur warna scrollbar (thumb & track) yang tampil di semua halaman website.</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:1.25rem;">
+          <div>
+            <label class="pm-label">Warna Thumb Scrollbar (Batang)</label>
+            <div class="pm-color-picker-wrap">
+              <input type="color" value="{{ $settings['scrollbar_thumb_color'] ?? '#00875A' }}"
+                onchange="document.getElementById('c_scrollbar_thumb').value=this.value">
+              <input type="text" name="scrollbar_thumb_color" id="c_scrollbar_thumb" class="pm-input"
+                value="{{ $settings['scrollbar_thumb_color'] ?? '#00875A' }}">
+            </div>
+            <div class="pm-help">Warna batang geser scrollbar. Default: hijau brand #00875A</div>
+          </div>
+
+          <div>
+            <label class="pm-label">Warna Track Scrollbar (Latar)</label>
+            <div class="pm-color-picker-wrap">
+              <input type="color" value="{{ $settings['scrollbar_track_color'] ?? '#F1F5F9' }}"
+                onchange="document.getElementById('c_scrollbar_track').value=this.value">
+              <input type="text" name="scrollbar_track_color" id="c_scrollbar_track" class="pm-input"
+                value="{{ $settings['scrollbar_track_color'] ?? '#F1F5F9' }}">
+            </div>
+            <div class="pm-help">Warna latar track/rel scrollbar. Default: abu muda #F1F5F9</div>
+          </div>
+        </div>
+      </div>
+
+      {{-- CARD 4: Pengaturan Navigasi Header (Tambah, Sembunyikan, Edit Menu & Tujuan) --}}
       <div class="pm-card">
         <div class="pm-card-header" style="justify-content:space-between;">
           <div style="display:flex; align-items:center; gap:.75rem;">

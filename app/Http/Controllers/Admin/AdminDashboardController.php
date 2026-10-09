@@ -92,12 +92,15 @@ class AdminDashboardController extends Controller
 
             $recentLeads = Lead::orderByDesc('created_at')->limit(8)->get();
 
-            return compact('stats', 'labels', 'values', 'visitorValues', 'waValues', 'topPages', 'counts', 'recentLeads');
+            return compact('stats', 'labels', 'values', 'visitorValues', 'waValues', 'topPages', 'counts');
         });
 
+        $recentLeads = Lead::orderByDesc('created_at')->limit(8)->get();
+
         return view('admin.dashboard.index', array_merge($data, [
-            'start_date' => $start_date,
-            'end_date'   => $end_date,
+            'start_date'   => $start_date,
+            'end_date'     => $end_date,
+            'recentLeads'  => $recentLeads,
         ]));
     }
 }
