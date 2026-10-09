@@ -136,6 +136,11 @@ php artisan config:clear
 php artisan optimize
 php artisan view:cache
 php artisan event:cache
+
+echo ""
+echo "--- Konversi gambar ke WebP (batch)..."
+php artisan images:optimize-webp 2>/dev/null || echo "(WebP batch: skip, sudah dikonversi)"
+
 echo ""
 echo "--- DEPLOY SELESAI! ---"
 '@

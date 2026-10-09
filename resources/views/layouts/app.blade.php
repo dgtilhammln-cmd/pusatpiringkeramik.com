@@ -33,21 +33,21 @@
     <link rel="shortcut icon" href="{{ $favicon }}">
     <link rel="apple-touch-icon" href="{{ $favicon }}">
 
-    {{-- Google Fonts: Montserrat — Non-blocking --}}
+    {{-- Resource Hints: Preconnect & DNS Prefetch for fast CDN lookups --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&display=swap" rel="stylesheet"></noscript>
-
-    {{-- AOS Animate on Scroll — Non-blocking --}}
-    <link rel="preload" as="style" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"></noscript>
-
-    {{-- Swiper — preconnect for faster CDN lookup --}}
     <link rel="dns-prefetch" href="https://unpkg.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://api.whatsapp.com">
+
+    {{-- Google Fonts: Montserrat — Non-blocking --}}
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800&display=swap" onload="this.rel='stylesheet'" crossorigin>
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800&display=swap" rel="stylesheet"></noscript>
+
+    {{-- AOS Animate on Scroll — Non-blocking (deferred via media trick) --}}
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"></noscript>
 
     {{-- App CSS (Inlined for 99+ Lighthouse Score) --}}
     @if(file_exists(public_path('build/assets')) && count(glob(public_path('build/assets/*.css'))) > 0)
@@ -118,6 +118,9 @@
     @endif
 
     @stack('styles')
+
+    {{-- Performance: Critical rendering path meta --}}
+    <meta name="theme-color" content="{{ $brandColor }}">
 
     {{-- Custom Head Scripts (e.g. GTM, Analytics) --}}
     {!! $headScripts !!}
@@ -229,8 +232,26 @@
     <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js" onload="
         var fb = document.getElementById('aos-fallback');
         if(fb) fb.remove();
-        AOS.init({ duration: 700, once: true, offset: 80, easing: 'ease-out-cubic', disable: function(){ return window.innerWidth < 768; } });
+        AOS.init({ duration: 600, once: true, offset: 60, easing: 'ease-out-cubic', disable: function(){ return window.innerWidth < 768; } });
     "></script>
+
+    {{-- Intersection Observer Lazy Load: enable native lazy load fallback --}}
+    <script>
+    if ('loading' in HTMLImageElement.prototype) {
+        // Browser supports native lazy loading — already handled by loading="lazy" attributes
+    } else {
+        // Fallback: dynamically load lozad.js for older browsers
+        var s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js';
+        s.onload = function() {
+            var observer = lozad('[data-src]', {
+                loaded: function(el) { el.classList.add('loaded'); }
+            });
+            observer.observe();
+        };
+        document.head.appendChild(s);
+    }
+    </script>
 
     {{-- Global WA Link Interceptor --}}
     <script>

@@ -1380,7 +1380,8 @@
 
         {{-- Mobile background image element (hidden on desktop) --}}
         @if($mobBgUrl)
-            <img id="cv-hero-mob-bg-img" class="cv-hero-mob-bg" src="{{ $mobBgUrl }}" alt="Banner" aria-hidden="true">
+            <img id="cv-hero-mob-bg-img" class="cv-hero-mob-bg" src="{{ $mobBgUrl }}" alt="Banner" aria-hidden="true"
+                 loading="eager" fetchpriority="high" decoding="auto">
         @else
             <div id="cv-hero-mob-bg-img" class="cv-hero-mob-bg" style="background: linear-gradient(135deg, #005F41 0%, #00875A 50%, #004D34 100%);"></div>
         @endif
@@ -1482,7 +1483,8 @@
                                                 <source media="(max-width: 768px)" srcset="{{ asset('storage/' . $slide->image_mobile) }}">
                                             @endif
                                             <img src="{{ asset('storage/' . ($slide->image ?? $slide->image_mobile)) }}" class="cv-banner-uploaded-img"
-                                                alt="{{ $slide->title }}">
+                                                alt="{{ $slide->title }}"
+                                                @if($loop->first) loading="eager" fetchpriority="high" decoding="auto" @else loading="lazy" decoding="async" @endif>
                                         </picture>
                                     @else
                                         <div class="cv-banner-bg"

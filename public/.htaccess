@@ -1,3 +1,8 @@
+# =============================================
+# PERFORMANCE-OPTIMIZED .htaccess
+# Target: Lighthouse 95+ / PageSpeed 95+
+# =============================================
+
 # PHP Upload & Memory Limits
 <IfModule mod_php.c>
     php_value upload_max_filesize 64M
@@ -7,6 +12,114 @@
     php_value max_input_time 300
 </IfModule>
 
+# ── GZIP Compression ──────────────────────────────────────────────────────────
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+    AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE application/json application/xml application/rss+xml
+    AddOutputFilterByType DEFLATE image/svg+xml font/woff font/woff2 application/font-woff2
+    AddOutputFilterByType DEFLATE application/x-font-ttf application/vnd.ms-fontobject
+
+    # Remove broken encoding from old browsers
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+
+    # Don't compress already-compressed formats
+    SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|webp|avif|woff2?|mp4|mkv|avi|mov)$ no-gzip dont-vary
+</IfModule>
+
+# ── Brotli Compression (Hostinger/LiteSpeed) ──────────────────────────────────
+<IfModule mod_brotli.c>
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css
+    AddOutputFilterByType BROTLI_COMPRESS text/javascript application/javascript application/json
+    AddOutputFilterByType BROTLI_COMPRESS image/svg+xml font/woff2
+</IfModule>
+
+# ── Browser Caching / Expires Headers ─────────────────────────────────────────
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    # HTML — short cache (dynamic pages)
+    ExpiresByType text/html                  "access plus 2 hours"
+
+    # Images — very long cache (content-addressed via cache-busting)
+    ExpiresByType image/webp                 "access plus 1 year"
+    ExpiresByType image/jpeg                 "access plus 1 year"
+    ExpiresByType image/png                  "access plus 1 year"
+    ExpiresByType image/gif                  "access plus 1 year"
+    ExpiresByType image/avif                 "access plus 1 year"
+    ExpiresByType image/svg+xml             "access plus 1 year"
+    ExpiresByType image/x-icon              "access plus 1 year"
+
+    # CSS / JS — 1 month (with cache busting via versioned filenames)
+    ExpiresByType text/css                  "access plus 1 month"
+    ExpiresByType text/javascript           "access plus 1 month"
+    ExpiresByType application/javascript    "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+
+    # Fonts — 1 year
+    ExpiresByType font/woff                 "access plus 1 year"
+    ExpiresByType font/woff2                "access plus 1 year"
+    ExpiresByType application/font-woff2   "access plus 1 year"
+    ExpiresByType application/x-font-ttf   "access plus 6 months"
+    ExpiresByType application/vnd.ms-fontobject "access plus 6 months"
+
+    # Video / Audio
+    ExpiresByType video/mp4                 "access plus 1 year"
+
+    # Data
+    ExpiresByType application/json          "access plus 0 seconds"
+    ExpiresByType application/xml           "access plus 0 seconds"
+
+    ExpiresDefault                          "access plus 1 month"
+</IfModule>
+
+# ── Cache-Control Headers ──────────────────────────────────────────────────────
+<IfModule mod_headers.c>
+    # Immutable assets (hashed filenames)
+    <FilesMatch "\.(webp|jpe?g|png|gif|avif|svg|ico|woff2?|ttf|eot)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+
+    # CSS/JS
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "public, max-age=2592000, stale-while-revalidate=86400"
+    </FilesMatch>
+
+    # HTML pages
+    <FilesMatch "\.html$">
+        Header set Cache-Control "public, max-age=7200, must-revalidate"
+    </FilesMatch>
+
+    # Security headers (performance + security)
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+
+    # Vary for compressed responses
+    Header append Vary Accept-Encoding
+</IfModule>
+
+# ── Serve WebP to Supporting Browsers ─────────────────────────────────────────
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Serve .webp if browser accepts it and .webp file exists
+    RewriteCond %{HTTP_ACCEPT} image/webp
+    RewriteCond %{REQUEST_FILENAME} .(jpe?g|png)$
+    RewriteCond %{REQUEST_FILENAME}.webp -f
+    RewriteRule ^(.+)\.(jpe?g|png)$ $1.$2.webp [T=image/webp,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.(jpe?g|png)\.webp$">
+        Header set Vary Accept
+    </FilesMatch>
+</IfModule>
+
+# ── Laravel Routing ────────────────────────────────────────────────────────────
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
@@ -24,29 +137,25 @@
     RewriteCond %{HTTP:x-xsrf-token} .
     RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-Token}]
 
-    # Redirect Trailing Slashes If Not A Folder...
+    # Redirect Trailing Slashes If Not A Folder
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
-    # Send Requests To Front Controller...
+    # Send Requests To Front Controller
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
 
-<IfModule mod_expires.c>
-    ExpiresActive On
-    ExpiresDefault "access plus 1 month"
-    ExpiresByType image/webp "access plus 1 year"
-    ExpiresByType image/jpeg "access plus 1 year"
-    ExpiresByType image/png "access plus 1 year"
-    ExpiresByType image/gif "access plus 1 year"
-    ExpiresByType image/svg+xml "access plus 1 year"
-    ExpiresByType image/x-icon "access plus 1 year"
-    ExpiresByType text/css "access plus 1 month"
-    ExpiresByType text/javascript "access plus 1 month"
-    ExpiresByType application/javascript "access plus 1 month"
-    ExpiresByType application/x-javascript "access plus 1 month"
-    ExpiresByType font/woff2 "access plus 1 year"
+# ── Keep-Alive (connection reuse) ─────────────────────────────────────────────
+<IfModule mod_headers.c>
+    Header set Connection keep-alive
 </IfModule>
+
+# ── ETag ──────────────────────────────────────────────────────────────────────
+FileETag MTime Size
+
+# ── Disable Server Signature ───────────────────────────────────────────────────
+ServerSignature Off
+

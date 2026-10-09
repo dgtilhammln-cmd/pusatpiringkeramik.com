@@ -37,7 +37,7 @@ class AdminServiceCategoryController extends Controller
         $data['slug'] = $request->slug ?: Str::slug($request->name);
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('categories', 'public');
+            $data['image'] = \App\Services\ImageOptimizer::optimizeUpload($request->file('image'), 'categories');
         }
 
         ServiceCategory::create($data);
@@ -70,7 +70,7 @@ class AdminServiceCategoryController extends Controller
             if ($serviceCategory->image) {
                 Storage::disk('public')->delete($serviceCategory->image);
             }
-            $data['image'] = $request->file('image')->store('categories', 'public');
+            $data['image'] = \App\Services\ImageOptimizer::optimizeUpload($request->file('image'), 'categories');
         }
 
         $serviceCategory->update($data);
