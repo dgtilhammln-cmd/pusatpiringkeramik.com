@@ -1452,8 +1452,8 @@
                             <span>{{ trim($tag) }}</span>
                         @endforeach
                     @else
-                        <span>Keramik Lantai</span>
-                        <span>Keramik Dinding</span>
+                        <span>Piring Keramik</span>
+                        <span>Tableware</span>
                         <span>Porselen</span>
                         <span>High Quality</span>
                         <span>Food Safe</span>
@@ -1626,7 +1626,7 @@
                 $aboutC1Label = $settings['about_c1_label'] ?? 'Pengalaman';
                 $aboutC1Value = $settings['about_c1_value'] ?? (date('Y') - (\App\Models\Setting::get('founding_year') ?? 2013)) . '+ Tahun';
                 $aboutC1Desc = $settings['about_c1_desc'] ?? '';
-                $aboutC1Keywords = array_filter(array_map('trim', explode(',', $settings['about_c1_keywords'] ?? 'Piring Keramik, Keramik Lantai, Porselen, Grosir Hotel, High Quality, Keramik Dinding, Tahan Lama, Food Safe')));
+                $aboutC1Keywords = array_filter(array_map('trim', explode(',', $settings['about_c1_keywords'] ?? 'Piring Keramik, Tableware, Porselen, Grosir Hotel, High Quality, Keramik Dinding, Tahan Lama, Food Safe')));
                 $aboutC2Label = $settings['about_c2_label'] ?? 'Komitmen Kualitas';
                 $aboutC2Value = $settings['about_c2_value'] ?? '100%';
                 $aboutC2Desc = $settings['about_c2_desc'] ?? 'Memberikan solusi piring dan tableware keramik terbaik untuk usaha Anda.';

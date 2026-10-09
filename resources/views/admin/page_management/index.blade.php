@@ -261,31 +261,33 @@
         </svg>
         Homepage
       </button>
-      <button type="button" class="pm-main-tab-btn {{ $isAboutTab ? 'active' : '' }}"
-        onclick="switchMainTab('about')" id="main-tab-about">
+      <button type="button" class="pm-main-tab-btn {{ $isAboutTab ? 'active' : '' }}" onclick="switchMainTab('about')"
+        id="main-tab-about">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
         About
       </button>
-      <button type="button" class="pm-main-tab-btn {{ $isProdukTab ? 'active' : '' }}"
-        onclick="switchMainTab('produk')" id="main-tab-produk">
+      <button type="button" class="pm-main-tab-btn {{ $isProdukTab ? 'active' : '' }}" onclick="switchMainTab('produk')"
+        id="main-tab-produk">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
         </svg>
         Produk
       </button>
-      <button type="button" class="pm-main-tab-btn {{ $isArtikelTab ? 'active' : '' }}"
-        onclick="switchMainTab('artikel')" id="main-tab-artikel">
+      <button type="button" class="pm-main-tab-btn {{ $isArtikelTab ? 'active' : '' }}" onclick="switchMainTab('artikel')"
+        id="main-tab-artikel">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6m-6 4h6" />
+          <path
+            d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6m-6 4h6" />
         </svg>
         Artikel
       </button>
-      <button type="button" class="pm-main-tab-btn {{ $isKontakTab ? 'active' : '' }}"
-        onclick="switchMainTab('kontak')" id="main-tab-kontak">
+      <button type="button" class="pm-main-tab-btn {{ $isKontakTab ? 'active' : '' }}" onclick="switchMainTab('kontak')"
+        id="main-tab-kontak">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          <path
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
         Kontak
       </button>
@@ -373,9 +375,9 @@
       <div class="pm-card">
         <div class="pm-card-header">
           <svg width="22" height="22" fill="none" stroke="#6366F1" stroke-width="2" viewBox="0 0 24 24">
-            <rect x="17" y="2" width="5" height="20" rx="2.5"/>
-            <rect x="2" y="6" width="5" height="12" rx="2.5"/>
-            <line x1="19.5" y1="6" x2="19.5" y2="10"/>
+            <rect x="17" y="2" width="5" height="20" rx="2.5" />
+            <rect x="2" y="6" width="5" height="12" rx="2.5" />
+            <line x1="19.5" y1="6" x2="19.5" y2="10" />
           </svg>
           <div>
             <div class="pm-card-title">Warna Scrollbar Global</div>
@@ -647,13 +649,25 @@
 
           {{-- Mobile Hero Button & Overlay Styling --}}
           <div style="margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px dashed #CBD5E1;">
-            <div style="font-weight: 700; font-size: 0.9rem; color: #0F172A; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-              <svg width="18" height="18" fill="none" stroke="#00A664" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="3"/></svg>
+            <div
+              style="font-weight: 700; font-size: 0.9rem; color: #0F172A; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+              <svg width="18" height="18" fill="none" stroke="#00A664" stroke-width="2" viewBox="0 0 24 24">
+                <rect x="5" y="2" width="14" height="20" rx="3" />
+                <line x1="12" y1="18" x2="12.01" y2="18" stroke-width="3" />
+              </svg>
               Pengaturan Tombol & Background Hero Mobile (Capsule Gradient)
             </div>
-            <div class="pm-help" style="margin-bottom: 1.25rem; background: #F0FDF4; border: 1px solid #BBF7D0; color: #166534; padding: 0.75rem 1rem; border-radius: 10px; font-size: 0.82rem; line-height: 1.5; display: flex; align-items: flex-start; gap: 0.5rem;">
-              <svg width="18" height="18" fill="none" stroke="#166534" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0; margin-top:2px;"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-              <div><strong>Panduan Mobile:</strong> Pada layar smartphone, Hero Section akan tampil modern dengan layout full background & 2 tombol capsule (Utama: Lihat Katalog & Sekunder: Hubungi Kami). Warna gradasi dihasilkan dari perpaduan <em>Warna Awal</em> & <em>Warna Akhir</em>.</div>
+            <div class="pm-help"
+              style="margin-bottom: 1.25rem; background: #F0FDF4; border: 1px solid #BBF7D0; color: #166534; padding: 0.75rem 1rem; border-radius: 10px; font-size: 0.82rem; line-height: 1.5; display: flex; align-items: flex-start; gap: 0.5rem;">
+              <svg width="18" height="18" fill="none" stroke="#166534" stroke-width="2" viewBox="0 0 24 24"
+                style="flex-shrink:0; margin-top:2px;">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 16v-4" />
+                <path d="M12 8h.01" />
+              </svg>
+              <div><strong>Panduan Mobile:</strong> Pada layar smartphone, Hero Section akan tampil modern dengan layout
+                full background & 2 tombol capsule (Utama: Lihat Katalog & Sekunder: Hubungi Kami). Warna gradasi
+                dihasilkan dari perpaduan <em>Warna Awal</em> & <em>Warna Akhir</em>.</div>
             </div>
 
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem;">
@@ -725,8 +739,10 @@
                 <label class="pm-label">Kegelapan Background Overlay (Mobile)</label>
                 <select name="hero_mob_overlay_darkness" class="pm-input">
                   <option value="ultra" {{ ($settings['hero_mob_overlay_darkness'] ?? 'ultra') == 'ultra' ? 'selected' : '' }}>Sangat Gelap (Ultra Dark - 95% Opacity - Rekomendasi)</option>
-                  <option value="dark" {{ ($settings['hero_mob_overlay_darkness'] ?? '') == 'dark' ? 'selected' : '' }}>Gelap (Dark - 80% Opacity)</option>
-                  <option value="medium" {{ ($settings['hero_mob_overlay_darkness'] ?? '') == 'medium' ? 'selected' : '' }}>Sedang (Medium - 60% Opacity)</option>
+                  <option value="dark" {{ ($settings['hero_mob_overlay_darkness'] ?? '') == 'dark' ? 'selected' : '' }}>
+                    Gelap (Dark - 80% Opacity)</option>
+                  <option value="medium" {{ ($settings['hero_mob_overlay_darkness'] ?? '') == 'medium' ? 'selected' : '' }}>
+                    Sedang (Medium - 60% Opacity)</option>
                 </select>
                 <div class="pm-help">Memastikan teks putih & tombol capsule selalu kontras dan terbaca jelas.</div>
               </div>
@@ -1141,7 +1157,7 @@
               <div>
                 <label class="pm-label">Keywords Tag Chips (Pisahkan dengan koma)</label>
                 <textarea name="about_c1_keywords" class="pm-input"
-                  rows="3">{{ $settings['about_c1_keywords'] ?? 'Piring Keramik, Keramik Lantai, Porselen, Grosir Hotel, High Quality, Keramik Dinding, Tahan Lama, Food Safe' }}</textarea>
+                  rows="3">{{ $settings['about_c1_keywords'] ?? 'Piring Keramik, Tableware, Porselen, Grosir Hotel, High Quality, Keramik Dinding, Tahan Lama, Food Safe' }}</textarea>
                 <div class="pm-help">Keyword mengapung yang tampil di background Card 1.</div>
               </div>
             </div>
@@ -1216,7 +1232,8 @@
                       <select name="about_c2_grad_dir" class="pm-input">
                         @foreach(['135deg' => '&#8600; Diagonal', 'to right' => '&#8594; Kanan', 'to bottom' => '&#8595; Bawah', 'to top' => '&#8593; Atas', 'to left' => '&#8592; Kiri'] as $v => $l)
                           <option value="{{ $v }}" {{ ($settings['about_c2_grad_dir'] ?? '135deg') == $v ? 'selected' : '' }}>
-                            {!! $l !!}</option>
+                            {!! $l !!}
+                          </option>
                         @endforeach
                       </select>
                     </div>
@@ -1904,16 +1921,18 @@
       {{-- SUB TAB 6: SECT KOTA (COVERAGE & JANGKAUAN) --}}
       <div id="sub-sect-kota" class="sub-tab-content"
         style="{{ ($activeTab ?? '') === 'sect-kota' ? '' : 'display:none;' }}">
-        
+
         {{-- CARD 1: Tampilan & Skema Warna Section --}}
         <div class="pm-card" style="margin-bottom:1.5rem;">
           <div class="pm-card-header">
             <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path
+                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
             </svg>
             <div>
               <div class="pm-card-title">1. Tampilan & Skema Warna Section (Background & Icon)</div>
-              <div class="pm-help">Atur tipe background, gradasi warna, warna judul, warna deskripsi, dan warna icon stat.</div>
+              <div class="pm-help">Atur tipe background, gradasi warna, warna judul, warna deskripsi, dan warna icon stat.
+              </div>
             </div>
           </div>
 
@@ -1921,12 +1940,15 @@
             <div>
               <label class="pm-label">Tipe Background Section</label>
               <select name="kota_bg_type" id="kota_bg_type" class="pm-input" onchange="toggleGradBuilder('kota')">
-                <option value="solid" {{ ($settings['kota_bg_type'] ?? 'solid') === 'solid' ? 'selected' : '' }}>Warna Solid Single</option>
-                <option value="gradient" {{ ($settings['kota_bg_type'] ?? 'solid') === 'gradient' ? 'selected' : '' }}>Gradasi CSS (Gradient Interaktif)</option>
+                <option value="solid" {{ ($settings['kota_bg_type'] ?? 'solid') === 'solid' ? 'selected' : '' }}>Warna Solid
+                  Single</option>
+                <option value="gradient" {{ ($settings['kota_bg_type'] ?? 'solid') === 'gradient' ? 'selected' : '' }}>
+                  Gradasi CSS (Gradient Interaktif)</option>
               </select>
             </div>
 
-            <div id="kota_solid_wrap" style="{{ ($settings['kota_bg_type'] ?? 'solid') === 'gradient' ? 'display:none;' : '' }}">
+            <div id="kota_solid_wrap"
+              style="{{ ($settings['kota_bg_type'] ?? 'solid') === 'gradient' ? 'display:none;' : '' }}">
               <label class="pm-label">Warna Background Solid</label>
               <div class="pm-color-picker-wrap">
                 <input type="color" value="{{ strtok($settings['page_home_kota_bg'] ?? '#0F172A', ' ') }}"
@@ -1936,25 +1958,35 @@
               </div>
             </div>
 
-            <div id="kota_grad_wrap" style="grid-column: 1 / -1; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 1.25rem; {{ ($settings['kota_bg_type'] ?? 'solid') === 'gradient' ? '' : 'display:none;' }}">
-              <div style="font-weight: 700; font-size: 0.9rem; color: #0F172A; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-                <svg width="18" height="18" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+            <div id="kota_grad_wrap"
+              style="grid-column: 1 / -1; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 1.25rem; {{ ($settings['kota_bg_type'] ?? 'solid') === 'gradient' ? '' : 'display:none;' }}">
+              <div
+                style="font-weight: 700; font-size: 0.9rem; color: #0F172A; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                <svg width="18" height="18" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24">
+                  <path
+                    d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                </svg>
                 Builder Gradasi Interaktif (Jangkauan Kota)
               </div>
 
-              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+              <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
                 <div>
                   <label class="pm-label" style="font-size: 0.8rem;">Warna Gradasi 1 (Awal)</label>
                   <div class="pm-color-picker-wrap">
-                    <input type="color" id="kota_c1_picker" value="#0F172A" onchange="syncGradColor('kota', 1, this.value)">
-                    <input type="text" id="kota_c1_txt" class="pm-input" value="#0F172A" onchange="syncGradColor('kota', 1, this.value)">
+                    <input type="color" id="kota_c1_picker" value="#0F172A"
+                      onchange="syncGradColor('kota', 1, this.value)">
+                    <input type="text" id="kota_c1_txt" class="pm-input" value="#0F172A"
+                      onchange="syncGradColor('kota', 1, this.value)">
                   </div>
                 </div>
                 <div>
                   <label class="pm-label" style="font-size: 0.8rem;">Warna Gradasi 2 (Akhir)</label>
                   <div class="pm-color-picker-wrap">
-                    <input type="color" id="kota_c2_picker" value="#1E293B" onchange="syncGradColor('kota', 2, this.value)">
-                    <input type="text" id="kota_c2_txt" class="pm-input" value="#1E293B" onchange="syncGradColor('kota', 2, this.value)">
+                    <input type="color" id="kota_c2_picker" value="#1E293B"
+                      onchange="syncGradColor('kota', 2, this.value)">
+                    <input type="text" id="kota_c2_txt" class="pm-input" value="#1E293B"
+                      onchange="syncGradColor('kota', 2, this.value)">
                   </div>
                 </div>
                 <div>
@@ -1970,24 +2002,42 @@
               </div>
 
               <div style="margin-bottom: 1rem;">
-                <label class="pm-label" style="font-size: 0.75rem; color: #64748B; margin-bottom: 0.375rem;">Preset Gradasi Cepat:</label>
+                <label class="pm-label" style="font-size: 0.75rem; color: #64748B; margin-bottom: 0.375rem;">Preset
+                  Gradasi Cepat:</label>
                 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                  <button type="button" class="pm-btn-sm" onclick="applyGradPreset('kota', '#0F172A', '#1E293B', '135deg')" style="background: linear-gradient(135deg, #0F172A, #1E293B); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌌 Dark Navy</button>
-                  <button type="button" class="pm-btn-sm" onclick="applyGradPreset('kota', '#0284C7', '#0F172A', '135deg')" style="background: linear-gradient(135deg, #0284C7, #0F172A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌊 Deep Blue</button>
-                  <button type="button" class="pm-btn-sm" onclick="applyGradPreset('kota', '#18181B', '#27272A', '135deg')" style="background: linear-gradient(135deg, #18181B, #27272A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌑 Midnight Charcoal</button>
-                  <button type="button" class="pm-btn-sm" onclick="applyGradPreset('kota', '#064E3B', '#0F172A', '135deg')" style="background: linear-gradient(135deg, #064E3B, #0F172A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌿 Emerald Dark</button>
-                  <button type="button" class="pm-btn-sm" onclick="applyGradPreset('kota', '#4C1D95', '#0F172A', '135deg')" style="background: linear-gradient(135deg, #4C1D95, #0F172A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🔮 Royal Purple</button>
+                  <button type="button" class="pm-btn-sm"
+                    onclick="applyGradPreset('kota', '#0F172A', '#1E293B', '135deg')"
+                    style="background: linear-gradient(135deg, #0F172A, #1E293B); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌌
+                    Dark Navy</button>
+                  <button type="button" class="pm-btn-sm"
+                    onclick="applyGradPreset('kota', '#0284C7', '#0F172A', '135deg')"
+                    style="background: linear-gradient(135deg, #0284C7, #0F172A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌊
+                    Deep Blue</button>
+                  <button type="button" class="pm-btn-sm"
+                    onclick="applyGradPreset('kota', '#18181B', '#27272A', '135deg')"
+                    style="background: linear-gradient(135deg, #18181B, #27272A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌑
+                    Midnight Charcoal</button>
+                  <button type="button" class="pm-btn-sm"
+                    onclick="applyGradPreset('kota', '#064E3B', '#0F172A', '135deg')"
+                    style="background: linear-gradient(135deg, #064E3B, #0F172A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌿
+                    Emerald Dark</button>
+                  <button type="button" class="pm-btn-sm"
+                    onclick="applyGradPreset('kota', '#4C1D95', '#0F172A', '135deg')"
+                    style="background: linear-gradient(135deg, #4C1D95, #0F172A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🔮
+                    Royal Purple</button>
                 </div>
               </div>
 
               <div>
                 <label class="pm-label" style="font-size: 0.8rem;">Pratinjau Hasil Gradasi (Live Preview):</label>
-                <div id="kota_bg_preview" style="height: 50px; border-radius: 8px; border: 1px solid #CBD5E1; background: {{ $settings['kota_bg_gradient'] ?? 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)' }}; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600; text-shadow: 0 1px 3px rgba(0,0,0,0.5); font-size: 0.85rem;">
+                <div id="kota_bg_preview"
+                  style="height: 50px; border-radius: 8px; border: 1px solid #CBD5E1; background: {{ $settings['kota_bg_gradient'] ?? 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)' }}; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600; text-shadow: 0 1px 3px rgba(0,0,0,0.5); font-size: 0.85rem;">
                   Hasil Gradasi Background Section
                 </div>
                 <input type="text" name="kota_bg_gradient" id="kota_bg_gradient" class="pm-input"
                   value="{{ $settings['kota_bg_gradient'] ?? 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)' }}"
-                  placeholder="linear-gradient(135deg, #0F172A 0%, #1E293B 100%)" onchange="document.getElementById('kota_bg_preview').style.background=this.value">
+                  placeholder="linear-gradient(135deg, #0F172A 0%, #1E293B 100%)"
+                  onchange="document.getElementById('kota_bg_preview').style.background=this.value">
               </div>
             </div>
 
@@ -2047,7 +2097,8 @@
         <div class="pm-card" style="margin-bottom:1.5rem;">
           <div class="pm-card-header">
             <svg width="22" height="22" fill="none" stroke="#10B981" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              <path
+                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
             </svg>
             <div>
               <div class="pm-card-title">2. Copywriting Judul Utama & Paragraf</div>
@@ -2073,7 +2124,8 @@
         <div class="pm-card" style="margin-bottom:1.5rem;">
           <div class="pm-card-header">
             <svg width="22" height="22" fill="none" stroke="#F59E0B" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+              <path
+                d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
             </svg>
             <div>
               <div class="pm-card-title">3. Teks 3 Kartu Keunggulan (Stat Items)</div>
@@ -2089,7 +2141,8 @@
               <input type="text" name="kota_stat_1_title" class="pm-input" style="margin-bottom:.5rem;"
                 value="{{ $settings['kota_stat_1_title'] ?? ('Berdiri Sejak ' . (\App\Models\Setting::get('founding_year') ?? '2013')) }}">
               <label class="pm-label" style="font-size:.75rem;">Deskripsi Stat 1</label>
-              <textarea name="kota_stat_1_sub" class="pm-input" rows="2">{{ $settings['kota_stat_1_sub'] ?? 'Berpengalaman lebih dari satu dekade melayani pengadaan tableware hotel, resto & catering.' }}</textarea>
+              <textarea name="kota_stat_1_sub" class="pm-input"
+                rows="2">{{ $settings['kota_stat_1_sub'] ?? 'Berpengalaman lebih dari satu dekade melayani pengadaan tableware hotel, resto & catering.' }}</textarea>
             </div>
 
             {{-- Stat 2 --}}
@@ -2099,7 +2152,8 @@
               <input type="text" name="kota_stat_2_title" class="pm-input" style="margin-bottom:.5rem;"
                 value="{{ $settings['kota_stat_2_title'] ?? '500+ Klien Aktif' }}">
               <label class="pm-label" style="font-size:.75rem;">Deskripsi Stat 2</label>
-              <textarea name="kota_stat_2_sub" class="pm-input" rows="2">{{ $settings['kota_stat_2_sub'] ?? 'Dipercaya oleh ratusan usaha F&B terkemuka di seluruh Indonesia.' }}</textarea>
+              <textarea name="kota_stat_2_sub" class="pm-input"
+                rows="2">{{ $settings['kota_stat_2_sub'] ?? 'Dipercaya oleh ratusan usaha F&B terkemuka di seluruh Indonesia.' }}</textarea>
             </div>
 
             {{-- Stat 3 --}}
@@ -2109,7 +2163,8 @@
               <input type="text" name="kota_stat_3_title" class="pm-input" style="margin-bottom:.5rem;"
                 value="{{ $settings['kota_stat_3_title'] ?? 'Garansi Pecah Ganti Baru' }}">
               <label class="pm-label" style="font-size:.75rem;">Deskripsi Stat 3</label>
-              <textarea name="kota_stat_3_sub" class="pm-input" rows="2">{{ $settings['kota_stat_3_sub'] ?? 'Jaminan garansi ganti baru jika terdapat kerusakan atau pecah saat pengiriman.' }}</textarea>
+              <textarea name="kota_stat_3_sub" class="pm-input"
+                rows="2">{{ $settings['kota_stat_3_sub'] ?? 'Jaminan garansi ganti baru jika terdapat kerusakan atau pecah saat pengiriman.' }}</textarea>
             </div>
           </div>
         </div>
@@ -2118,7 +2173,8 @@
         <div class="pm-card">
           <div class="pm-card-header">
             <svg width="22" height="22" fill="none" stroke="#8B5CF6" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+              <path
+                d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
             </svg>
             <div>
               <div class="pm-card-title">4. Upload Vektor Peta Indonesia</div>
@@ -2142,16 +2198,18 @@
       {{-- SUB TAB 7: SECT FOOTER --}}
       <div id="sub-sect-footer" class="sub-tab-content"
         style="{{ ($activeTab ?? '') === 'sect-footer' ? '' : 'display:none;' }}">
-        
+
         {{-- CARD 1: Tampilan & Warna Footer --}}
         <div class="pm-card" style="margin-bottom:1.5rem;">
           <div class="pm-card-header">
             <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+              <path
+                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
             </svg>
             <div>
               <div class="pm-card-title">1. Tampilan & Skema Warna Footer (Gradasi / Solid)</div>
-              <div class="pm-help">Atur tipe background, gradasi warna, warna font, warna icon, dan warna bintang ulasan.</div>
+              <div class="pm-help">Atur tipe background, gradasi warna, warna font, warna icon, dan warna bintang ulasan.
+              </div>
             </div>
           </div>
 
@@ -2159,12 +2217,15 @@
             <div>
               <label class="pm-label">Tipe Background Footer</label>
               <select name="footer_bg_type" id="footer_bg_type" class="pm-input" onchange="toggleGradBuilder('footer')">
-                <option value="gradient" {{ ($settings['footer_bg_type'] ?? 'gradient') === 'gradient' ? 'selected' : '' }}>Gradasi CSS (Gradient Interaktif)</option>
-                <option value="solid" {{ ($settings['footer_bg_type'] ?? 'gradient') === 'solid' ? 'selected' : '' }}>Warna Solid Single</option>
+                <option value="gradient" {{ ($settings['footer_bg_type'] ?? 'gradient') === 'gradient' ? 'selected' : '' }}>
+                  Gradasi CSS (Gradient Interaktif)</option>
+                <option value="solid" {{ ($settings['footer_bg_type'] ?? 'gradient') === 'solid' ? 'selected' : '' }}>Warna
+                  Solid Single</option>
               </select>
             </div>
 
-            <div id="footer_solid_wrap" style="{{ ($settings['footer_bg_type'] ?? 'gradient') === 'solid' ? '' : 'display:none;' }}">
+            <div id="footer_solid_wrap"
+              style="{{ ($settings['footer_bg_type'] ?? 'gradient') === 'solid' ? '' : 'display:none;' }}">
               <label class="pm-label">Warna Background Solid</label>
               <div class="pm-color-picker-wrap">
                 <input type="color" value="{{ strtok($settings['footer_bg_color'] ?? '#0F172A', ' ') }}"
@@ -2174,25 +2235,35 @@
               </div>
             </div>
 
-            <div id="footer_grad_wrap" style="grid-column: 1 / -1; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 1.25rem; {{ ($settings['footer_bg_type'] ?? 'gradient') === 'solid' ? 'display:none;' : '' }}">
-              <div style="font-weight: 700; font-size: 0.9rem; color: #0F172A; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
-                <svg width="18" height="18" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+            <div id="footer_grad_wrap"
+              style="grid-column: 1 / -1; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 1.25rem; {{ ($settings['footer_bg_type'] ?? 'gradient') === 'solid' ? 'display:none;' : '' }}">
+              <div
+                style="font-weight: 700; font-size: 0.9rem; color: #0F172A; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                <svg width="18" height="18" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24">
+                  <path
+                    d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                </svg>
                 Builder Gradasi Interaktif (Footer)
               </div>
 
-              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+              <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
                 <div>
                   <label class="pm-label" style="font-size: 0.8rem;">Warna Gradasi 1 (Awal)</label>
                   <div class="pm-color-picker-wrap">
-                    <input type="color" id="footer_c1_picker" value="#0F172A" onchange="syncGradColor('footer', 1, this.value)">
-                    <input type="text" id="footer_c1_txt" class="pm-input" value="#0F172A" onchange="syncGradColor('footer', 1, this.value)">
+                    <input type="color" id="footer_c1_picker" value="#0F172A"
+                      onchange="syncGradColor('footer', 1, this.value)">
+                    <input type="text" id="footer_c1_txt" class="pm-input" value="#0F172A"
+                      onchange="syncGradColor('footer', 1, this.value)">
                   </div>
                 </div>
                 <div>
                   <label class="pm-label" style="font-size: 0.8rem;">Warna Gradasi 2 (Akhir)</label>
                   <div class="pm-color-picker-wrap">
-                    <input type="color" id="footer_c2_picker" value="#1E293B" onchange="syncGradColor('footer', 2, this.value)">
-                    <input type="text" id="footer_c2_txt" class="pm-input" value="#1E293B" onchange="syncGradColor('footer', 2, this.value)">
+                    <input type="color" id="footer_c2_picker" value="#1E293B"
+                      onchange="syncGradColor('footer', 2, this.value)">
+                    <input type="text" id="footer_c2_txt" class="pm-input" value="#1E293B"
+                      onchange="syncGradColor('footer', 2, this.value)">
                   </div>
                 </div>
                 <div>
@@ -2208,24 +2279,42 @@
               </div>
 
               <div style="margin-bottom: 1rem;">
-                <label class="pm-label" style="font-size: 0.75rem; color: #64748B; margin-bottom: 0.375rem;">Preset Gradasi Cepat:</label>
+                <label class="pm-label" style="font-size: 0.75rem; color: #64748B; margin-bottom: 0.375rem;">Preset
+                  Gradasi Cepat:</label>
                 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                  <button type="button" class="pm-btn-sm" onclick="applyGradPreset('footer', '#0F172A', '#1E293B', '135deg')" style="background: linear-gradient(135deg, #0F172A, #1E293B); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌌 Dark Navy</button>
-                  <button type="button" class="pm-btn-sm" onclick="applyGradPreset('footer', '#0284C7', '#0F172A', '135deg')" style="background: linear-gradient(135deg, #0284C7, #0F172A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌊 Deep Blue</button>
-                  <button type="button" class="pm-btn-sm" onclick="applyGradPreset('footer', '#18181B', '#27272A', '135deg')" style="background: linear-gradient(135deg, #18181B, #27272A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌑 Midnight Charcoal</button>
-                  <button type="button" class="pm-btn-sm" onclick="applyGradPreset('footer', '#064E3B', '#0F172A', '135deg')" style="background: linear-gradient(135deg, #064E3B, #0F172A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌿 Emerald Dark</button>
-                  <button type="button" class="pm-btn-sm" onclick="applyGradPreset('footer', '#4C1D95', '#0F172A', '135deg')" style="background: linear-gradient(135deg, #4C1D95, #0F172A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🔮 Royal Purple</button>
+                  <button type="button" class="pm-btn-sm"
+                    onclick="applyGradPreset('footer', '#0F172A', '#1E293B', '135deg')"
+                    style="background: linear-gradient(135deg, #0F172A, #1E293B); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌌
+                    Dark Navy</button>
+                  <button type="button" class="pm-btn-sm"
+                    onclick="applyGradPreset('footer', '#0284C7', '#0F172A', '135deg')"
+                    style="background: linear-gradient(135deg, #0284C7, #0F172A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌊
+                    Deep Blue</button>
+                  <button type="button" class="pm-btn-sm"
+                    onclick="applyGradPreset('footer', '#18181B', '#27272A', '135deg')"
+                    style="background: linear-gradient(135deg, #18181B, #27272A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌑
+                    Midnight Charcoal</button>
+                  <button type="button" class="pm-btn-sm"
+                    onclick="applyGradPreset('footer', '#064E3B', '#0F172A', '135deg')"
+                    style="background: linear-gradient(135deg, #064E3B, #0F172A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🌿
+                    Emerald Dark</button>
+                  <button type="button" class="pm-btn-sm"
+                    onclick="applyGradPreset('footer', '#4C1D95', '#0F172A', '135deg')"
+                    style="background: linear-gradient(135deg, #4C1D95, #0F172A); color: #fff; border: none; padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem;">🔮
+                    Royal Purple</button>
                 </div>
               </div>
 
               <div>
                 <label class="pm-label" style="font-size: 0.8rem;">Pratinjau Hasil Gradasi (Live Preview):</label>
-                <div id="footer_bg_preview" style="height: 50px; border-radius: 8px; border: 1px solid #CBD5E1; background: {{ $settings['footer_bg_gradient'] ?? 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)' }}; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600; text-shadow: 0 1px 3px rgba(0,0,0,0.5); font-size: 0.85rem;">
+                <div id="footer_bg_preview"
+                  style="height: 50px; border-radius: 8px; border: 1px solid #CBD5E1; background: {{ $settings['footer_bg_gradient'] ?? 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)' }}; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600; text-shadow: 0 1px 3px rgba(0,0,0,0.5); font-size: 0.85rem;">
                   Hasil Gradasi Background Footer
                 </div>
                 <input type="text" name="footer_bg_gradient" id="footer_bg_gradient" class="pm-input"
                   value="{{ $settings['footer_bg_gradient'] ?? 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)' }}"
-                  placeholder="linear-gradient(135deg, #0F172A 0%, #1E293B 100%)" onchange="document.getElementById('footer_bg_preview').style.background=this.value">
+                  placeholder="linear-gradient(135deg, #0F172A 0%, #1E293B 100%)"
+                  onchange="document.getElementById('footer_bg_preview').style.background=this.value">
               </div>
             </div>
 
@@ -2295,25 +2384,35 @@
         <div class="pm-card" style="margin-bottom:1.5rem;">
           <div class="pm-card-header">
             <svg width="22" height="22" fill="none" stroke="#F59E0B" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+              <path
+                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
             </svg>
             <div>
               <div class="pm-card-title">2. Teks Umum & Copywriting Footer</div>
-              <div class="pm-help">Kustomisasi deskripsi perusahaan, copyright text, tahun berdiri, rating ulasan, dan judul kolom.</div>
+              <div class="pm-help">Kustomisasi deskripsi perusahaan, copyright text, tahun berdiri, rating ulasan, dan
+                judul kolom.</div>
             </div>
           </div>
 
           {{-- Section Header: Teks Umum --}}
-          <div style="background:#F1F5F9; border:1px solid #E2E8F0; border-radius:8px; padding:0.6rem 1rem; margin-bottom:1.25rem; font-weight:700; font-size:0.85rem; color:#0F172A; display:flex; align-items:center; gap:0.5rem;">
-            <svg width="16" height="16" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <div
+            style="background:#F1F5F9; border:1px solid #E2E8F0; border-radius:8px; padding:0.6rem 1rem; margin-bottom:1.25rem; font-weight:700; font-size:0.85rem; color:#0F172A; display:flex; align-items:center; gap:0.5rem;">
+            <svg width="16" height="16" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+            </svg>
             📄 Teks Umum (Deskripsi, Copyright & Tahun Berdiri)
           </div>
 
           <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem;">
             <div style="grid-column: 1 / -1;">
               <label class="pm-label">Deskripsi Footer (Deskripsi Singkat Perusahaan)</label>
-              <textarea name="footer_desc" class="pm-input" rows="3">{{ $settings['footer_desc'] ?? ($settings['site_description'] ?? 'Distributor & Supplier Piring Keramik terpercaya di Indonesia. Melayani kebutuhan grosir restoran, hotel, dan catering.') }}</textarea>
-              <p style="font-size:.75rem; color:#64748B; margin-top:.25rem;">Tampil di footer website sebagai deskripsi singkat perusahaan.</p>
+              <textarea name="footer_desc" class="pm-input"
+                rows="3">{{ $settings['footer_desc'] ?? ($settings['site_description'] ?? 'Distributor & Supplier Piring Keramik terpercaya di Indonesia. Melayani kebutuhan grosir restoran, hotel, dan catering.') }}</textarea>
+              <p style="font-size:.75rem; color:#64748B; margin-top:.25rem;">Tampil di footer website sebagai deskripsi
+                singkat perusahaan.</p>
             </div>
 
             <div>
@@ -2327,7 +2426,8 @@
               <label class="pm-label">📅 Tahun Berdiri</label>
               <input type="number" name="founding_year" class="pm-input"
                 value="{{ $settings['founding_year'] ?? '2013' }}" placeholder="2013" min="1900" max="{{ date('Y') }}">
-              <p style="font-size:.75rem; color:#64748B; margin-top:.25rem;">Otomatis tersinkron ke semua halaman: hero, statistik, footer, dan badge "Sejak xxxx".</p>
+              <p style="font-size:.75rem; color:#64748B; margin-top:.25rem;">Otomatis tersinkron ke semua halaman: hero,
+                statistik, footer, dan badge "Sejak xxxx".</p>
             </div>
 
             <div>
@@ -2339,7 +2439,8 @@
             <div>
               <label class="pm-label">Teks Jumlah Ulasan Terverifikasi</label>
               <input type="text" name="footer_rating_count_text" class="pm-input"
-                value="{{ $settings['footer_rating_count_text'] ?? '134+ Ulasan Terverifikasi' }}" placeholder="134+ Ulasan Terverifikasi">
+                value="{{ $settings['footer_rating_count_text'] ?? '134+ Ulasan Terverifikasi' }}"
+                placeholder="134+ Ulasan Terverifikasi">
             </div>
 
             <div>
@@ -2369,7 +2470,9 @@
               <line x1="12" y1="8" x2="12.01" y2="8" />
             </svg>
             <div style="font-size:.8125rem; color:#334155; line-height:1.5;">
-              <strong>Informasi Kontak Footer:</strong> Data Alamat, Nomor Telepon, Nomor WhatsApp, Email, dan Jam Operasional di kolom Kontak Footer otomatis diambil secara dinamis dari <strong>Pengaturan Situs (Admin Settings → Kontak & Sosmed)</strong>.
+              <strong>Informasi Kontak Footer:</strong> Data Alamat, Nomor Telepon, Nomor WhatsApp, Email, dan Jam
+              Operasional di kolom Kontak Footer otomatis diambil secara dinamis dari <strong>Pengaturan Situs (Admin
+                Settings → Kontak & Sosmed)</strong>.
             </div>
           </div>
         </div>
@@ -2559,7 +2662,8 @@
             <label class="pm-label">Nama Legal Perusahaan (legalName)</label>
             <input type="text" name="company_legal_name" class="pm-input"
               value="{{ $settings['company_legal_name'] ?? 'UD. Sukses Makmur' }}" placeholder="UD. Sukses Makmur">
-            <div class="pm-help">Disimpan terpisah dari brand `name` ("Pusat Piring Keramik") untuk Schema.org legalName.</div>
+            <div class="pm-help">Disimpan terpisah dari brand `name` ("Pusat Piring Keramik") untuk Schema.org legalName.
+            </div>
           </div>
 
           <div style="grid-column: span 2;">
@@ -2720,7 +2824,9 @@
     <div id="page-about" style="{{ $isAboutTab ? 'display:block;' : 'display:none;' }}">
       <div class="pm-card">
         <div class="pm-card-header">
-          <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
           <div>
             <div class="pm-card-title">Halaman About Us (Tentang Kami)</div>
             <div class="pm-help">Kustomisasi judul, badge label, dan deskripsi hero section pada halaman /about.</div>
@@ -2729,15 +2835,19 @@
         <div style="display:grid; grid-template-columns: 1fr; gap:1.25rem;">
           <div>
             <label class="pm-label">Label / Badge Hero (Di atas Judul)</label>
-            <input type="text" name="page_about_hero_label" class="pm-input" value="{{ $settings['page_about_hero_label'] ?? 'PROFIL PERUSAHAAN' }}" placeholder="Contoh: PROFIL PERUSAHAAN">
+            <input type="text" name="page_about_hero_label" class="pm-input"
+              value="{{ $settings['page_about_hero_label'] ?? 'PROFIL PERUSAHAAN' }}"
+              placeholder="Contoh: PROFIL PERUSAHAAN">
           </div>
           <div>
             <label class="pm-label">Judul Utama Hero (Gunakan Enter untuk Baris Baru)</label>
-            <textarea name="page_about_hero_title" class="pm-input" rows="2" placeholder="Judul halaman about">{{ $settings['page_about_hero_title'] ?? "Mitra Solusi Tableware & Piring Keramik Terpercaya" }}</textarea>
+            <textarea name="page_about_hero_title" class="pm-input" rows="2"
+              placeholder="Judul halaman about">{{ $settings['page_about_hero_title'] ?? "Mitra Solusi Tableware & Piring Keramik Terpercaya" }}</textarea>
           </div>
           <div>
             <label class="pm-label">Deskripsi / Subtitle Hero</label>
-            <textarea name="page_about_hero_desc" class="pm-input" rows="3" placeholder="Deskripsi halaman about">{{ $settings['page_about_hero_desc'] ?? 'UD. Sukses Makmur (Pusat Piring Keramik) hadir untuk menjawab kebutuhan produk berkualitas di seluruh wilayah Indonesia dengan standar terbaik.' }}</textarea>
+            <textarea name="page_about_hero_desc" class="pm-input" rows="3"
+              placeholder="Deskripsi halaman about">{{ $settings['page_about_hero_desc'] ?? 'UD. Sukses Makmur (Pusat Piring Keramik) hadir untuk menjawab kebutuhan produk berkualitas di seluruh wilayah Indonesia dengan standar terbaik.' }}</textarea>
           </div>
         </div>
       </div>
@@ -2747,24 +2857,30 @@
     <div id="page-produk" style="{{ $isProdukTab ? 'display:block;' : 'display:none;' }}">
       <div class="pm-card">
         <div class="pm-card-header">
-          <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
           <div>
             <div class="pm-card-title">Halaman Katalog Produk</div>
-            <div class="pm-help">Kustomisasi judul, badge label, dan deskripsi hero section pada halaman /product (katalog produk).</div>
+            <div class="pm-help">Kustomisasi judul, badge label, dan deskripsi hero section pada halaman /product (katalog
+              produk).</div>
           </div>
         </div>
         <div style="display:grid; grid-template-columns: 1fr; gap:1.25rem;">
           <div>
             <label class="pm-label">Label / Badge Hero (Di atas Judul)</label>
-            <input type="text" name="page_product_hero_label" class="pm-input" value="{{ $settings['page_product_hero_label'] ?? 'KATALOG PRODUK' }}" placeholder="Contoh: KATALOG PRODUK">
+            <input type="text" name="page_product_hero_label" class="pm-input"
+              value="{{ $settings['page_product_hero_label'] ?? 'KATALOG PRODUK' }}" placeholder="Contoh: KATALOG PRODUK">
           </div>
           <div>
             <label class="pm-label">Judul Utama Hero (Gunakan Enter untuk Baris Baru)</label>
-            <textarea name="page_product_hero_title" class="pm-input" rows="2" placeholder="Judul katalog produk">{{ $settings['page_product_hero_title'] ?? "Katalog Piring Keramik & Tableware Berkualitas" }}</textarea>
+            <textarea name="page_product_hero_title" class="pm-input" rows="2"
+              placeholder="Judul katalog produk">{{ $settings['page_product_hero_title'] ?? "Katalog Piring Keramik & Tableware Berkualitas" }}</textarea>
           </div>
           <div>
             <label class="pm-label">Deskripsi / Subtitle Hero</label>
-            <textarea name="page_product_hero_desc" class="pm-input" rows="3" placeholder="Deskripsi katalog produk">{{ $settings['page_product_hero_desc'] ?? 'Jelajahi koleksi piring keramik, mangkuk, cangkir, dan perlengkapan meja makan dari UD. Sukses Makmur untuk resto, hotel, cafe, dan rumah tangga.' }}</textarea>
+            <textarea name="page_product_hero_desc" class="pm-input" rows="3"
+              placeholder="Deskripsi katalog produk">{{ $settings['page_product_hero_desc'] ?? 'Jelajahi koleksi piring keramik, mangkuk, cangkir, dan perlengkapan meja makan dari UD. Sukses Makmur untuk resto, hotel, cafe, dan rumah tangga.' }}</textarea>
           </div>
         </div>
       </div>
@@ -2775,7 +2891,10 @@
       {{-- CARD 1: Hero Section Artikel --}}
       <div class="pm-card" style="margin-bottom:1.5rem;">
         <div class="pm-card-header">
-          <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6m-6 4h6"/></svg>
+          <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24">
+            <path
+              d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6m-6 4h6" />
+          </svg>
           <div>
             <div class="pm-card-title">1. Hero Section Artikel</div>
             <div class="pm-help">Kustomisasi judul, badge label, dan deskripsi hero section pada halaman /articles.</div>
@@ -2784,15 +2903,19 @@
         <div style="display:grid; grid-template-columns: 1fr; gap:1.25rem;">
           <div>
             <label class="pm-label">Label / Badge Hero (Di atas Judul)</label>
-            <input type="text" name="page_article_hero_label" class="pm-input" value="{{ $settings['page_article_hero_label'] ?? 'INFORMASI & WAWASAN' }}" placeholder="Contoh: INFORMASI & WAWASAN">
+            <input type="text" name="page_article_hero_label" class="pm-input"
+              value="{{ $settings['page_article_hero_label'] ?? 'INFORMASI & WAWASAN' }}"
+              placeholder="Contoh: INFORMASI & WAWASAN">
           </div>
           <div>
             <label class="pm-label">Judul Utama Hero (Gunakan Enter untuk Baris Baru)</label>
-            <textarea name="page_article_hero_title" class="pm-input" rows="2" placeholder="Judul halaman artikel">{{ $settings['page_article_hero_title'] ?? "Artikel, Tips & Wawasan Tableware Keramik" }}</textarea>
+            <textarea name="page_article_hero_title" class="pm-input" rows="2"
+              placeholder="Judul halaman artikel">{{ $settings['page_article_hero_title'] ?? "Artikel, Tips & Wawasan Tableware Keramik" }}</textarea>
           </div>
           <div>
             <label class="pm-label">Deskripsi / Subtitle Hero</label>
-            <textarea name="page_article_hero_desc" class="pm-input" rows="3" placeholder="Deskripsi halaman artikel">{{ $settings['page_article_hero_desc'] ?? 'Temukan berbagai artikel menarik, panduan memilih piring keramik, serta tips perawatan tableware dari Pusat Piring Keramik.' }}</textarea>
+            <textarea name="page_article_hero_desc" class="pm-input" rows="3"
+              placeholder="Deskripsi halaman artikel">{{ $settings['page_article_hero_desc'] ?? 'Temukan berbagai artikel menarik, panduan memilih piring keramik, serta tips perawatan tableware dari Pusat Piring Keramik.' }}</textarea>
           </div>
         </div>
       </div>
@@ -2800,56 +2923,72 @@
       {{-- CARD 2: Card CTA Samping (Sidebar Mini CTA) --}}
       <div class="pm-card" style="margin-bottom:1.5rem;">
         <div class="pm-card-header">
-          <svg width="22" height="22" fill="none" stroke="#00A664" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          <svg width="22" height="22" fill="none" stroke="#00A664" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="3" y="4" width="18" height="16" rx="2" />
+            <path d="M16 2v4M8 2v4M3 10h18" />
+          </svg>
           <div>
             <div class="pm-card-title">2. Card CTA Samping (Sidebar Mini CTA)</div>
-            <div class="pm-help">Pengaturan copywriting, tombol, dan warna gradasi card konsultasi di sidebar artikel.</div>
+            <div class="pm-help">Pengaturan copywriting, tombol, dan warna gradasi card konsultasi di sidebar artikel.
+            </div>
           </div>
         </div>
         <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem;">
           <div>
             <label class="pm-label">Label / Subtitle Card</label>
-            <input type="text" name="page_articles_side_card_label" class="pm-input" value="{{ $settings['page_articles_side_card_label'] ?? 'KONSULTASI GRATIS' }}">
+            <input type="text" name="page_articles_side_card_label" class="pm-input"
+              value="{{ $settings['page_articles_side_card_label'] ?? 'KONSULTASI GRATIS' }}">
           </div>
           <div>
             <label class="pm-label">Judul Card Samping</label>
-            <input type="text" name="page_articles_side_card_title" class="pm-input" value="{{ $settings['page_articles_side_card_title'] ?? 'Butuh Tableware Keramik?' }}">
+            <input type="text" name="page_articles_side_card_title" class="pm-input"
+              value="{{ $settings['page_articles_side_card_title'] ?? 'Butuh Tableware Keramik?' }}">
           </div>
           <div style="grid-column: 1 / -1;">
             <label class="pm-label">Deskripsi Card Samping</label>
-            <textarea name="page_articles_side_card_desc" class="pm-input" rows="2">{{ $settings['page_articles_side_card_desc'] ?? 'Tim kami siap membantu memilih produk piring & tableware keramik terbaik untuk kebutuhan usaha F&B atau rumah tangga Anda.' }}</textarea>
+            <textarea name="page_articles_side_card_desc" class="pm-input"
+              rows="2">{{ $settings['page_articles_side_card_desc'] ?? 'Tim kami siap membantu memilih produk piring & tableware keramik terbaik untuk kebutuhan usaha F&B atau rumah tangga Anda.' }}</textarea>
           </div>
           <div>
             <label class="pm-label">Teks Tombol Card</label>
-            <input type="text" name="page_articles_side_card_btn_text" class="pm-input" value="{{ $settings['page_articles_side_card_btn_text'] ?? 'Hubungi Kami' }}">
+            <input type="text" name="page_articles_side_card_btn_text" class="pm-input"
+              value="{{ $settings['page_articles_side_card_btn_text'] ?? 'Hubungi Kami' }}">
           </div>
           <div>
             <label class="pm-label">Link/URL Tombol Card</label>
-            <input type="text" name="page_articles_side_card_btn_url" class="pm-input" value="{{ $settings['page_articles_side_card_btn_url'] ?? '/kontak' }}">
+            <input type="text" name="page_articles_side_card_btn_url" class="pm-input"
+              value="{{ $settings['page_articles_side_card_btn_url'] ?? '/kontak' }}">
           </div>
           <div>
             <label class="pm-label">Card Background: Start Color</label>
             <div class="pm-color-picker-wrap">
-              <input type="color" value="{{ strtok($settings['page_articles_side_card_bg_start'] ?? '#0F172A', ' ') }}" onchange="document.getElementById('c_art_side_bg_start').value=this.value">
-              <input type="text" name="page_articles_side_card_bg_start" id="c_art_side_bg_start" class="pm-input" value="{{ $settings['page_articles_side_card_bg_start'] ?? '#0F172A' }}">
+              <input type="color" value="{{ strtok($settings['page_articles_side_card_bg_start'] ?? '#0F172A', ' ') }}"
+                onchange="document.getElementById('c_art_side_bg_start').value=this.value">
+              <input type="text" name="page_articles_side_card_bg_start" id="c_art_side_bg_start" class="pm-input"
+                value="{{ $settings['page_articles_side_card_bg_start'] ?? '#0F172A' }}">
             </div>
           </div>
           <div>
             <label class="pm-label">Card Background: End Color (Gradasi)</label>
             <div class="pm-color-picker-wrap">
-              <input type="color" value="{{ strtok($settings['page_articles_side_card_bg_end'] ?? '#1E293B', ' ') }}" onchange="document.getElementById('c_art_side_bg_end').value=this.value">
-              <input type="text" name="page_articles_side_card_bg_end" id="c_art_side_bg_end" class="pm-input" value="{{ $settings['page_articles_side_card_bg_end'] ?? '#1E293B' }}">
+              <input type="color" value="{{ strtok($settings['page_articles_side_card_bg_end'] ?? '#1E293B', ' ') }}"
+                onchange="document.getElementById('c_art_side_bg_end').value=this.value">
+              <input type="text" name="page_articles_side_card_bg_end" id="c_art_side_bg_end" class="pm-input"
+                value="{{ $settings['page_articles_side_card_bg_end'] ?? '#1E293B' }}">
             </div>
           </div>
           <div>
             <label class="pm-label">Sudut Gradasi Card Samping</label>
-            <input type="text" name="page_articles_side_card_bg_dir" class="pm-input" value="{{ $settings['page_articles_side_card_bg_dir'] ?? '135deg' }}" placeholder="135deg">
+            <input type="text" name="page_articles_side_card_bg_dir" class="pm-input"
+              value="{{ $settings['page_articles_side_card_bg_dir'] ?? '135deg' }}" placeholder="135deg">
           </div>
           <div>
             <label class="pm-label">Warna Teks Card Samping</label>
             <div class="pm-color-picker-wrap">
-              <input type="color" value="{{ $settings['page_articles_side_card_text_color'] ?? '#FFFFFF' }}" onchange="document.getElementById('c_art_side_text_color').value=this.value">
-              <input type="text" name="page_articles_side_card_text_color" id="c_art_side_text_color" class="pm-input" value="{{ $settings['page_articles_side_card_text_color'] ?? '#FFFFFF' }}">
+              <input type="color" value="{{ $settings['page_articles_side_card_text_color'] ?? '#FFFFFF' }}"
+                onchange="document.getElementById('c_art_side_text_color').value=this.value">
+              <input type="text" name="page_articles_side_card_text_color" id="c_art_side_text_color" class="pm-input"
+                value="{{ $settings['page_articles_side_card_text_color'] ?? '#FFFFFF' }}">
             </div>
           </div>
         </div>
@@ -2858,7 +2997,10 @@
       {{-- CARD 3: Warna Card Artikel (Grid List) --}}
       <div class="pm-card">
         <div class="pm-card-header">
-          <svg width="22" height="22" fill="none" stroke="#6366F1" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <svg width="22" height="22" fill="none" stroke="#6366F1" stroke-width="2" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <path d="M3 9h18M9 21V9" />
+          </svg>
           <div>
             <div class="pm-card-title">3. Warna Card Artikel (Grid List)</div>
             <div class="pm-help">Pengaturan warna background card artikel dan warna font teks.</div>
@@ -2868,22 +3010,28 @@
           <div>
             <label class="pm-label">Card Artikel Background: Start Color</label>
             <div class="pm-color-picker-wrap">
-              <input type="color" value="{{ strtok($settings['page_articles_card_bg_start'] ?? '#FFFFFF', ' ') }}" onchange="document.getElementById('c_art_card_bg_start').value=this.value">
-              <input type="text" name="page_articles_card_bg_start" id="c_art_card_bg_start" class="pm-input" value="{{ $settings['page_articles_card_bg_start'] ?? '#FFFFFF' }}">
+              <input type="color" value="{{ strtok($settings['page_articles_card_bg_start'] ?? '#FFFFFF', ' ') }}"
+                onchange="document.getElementById('c_art_card_bg_start').value=this.value">
+              <input type="text" name="page_articles_card_bg_start" id="c_art_card_bg_start" class="pm-input"
+                value="{{ $settings['page_articles_card_bg_start'] ?? '#FFFFFF' }}">
             </div>
           </div>
           <div>
             <label class="pm-label">Card Artikel Background: End Color (Gradasi)</label>
             <div class="pm-color-picker-wrap">
-              <input type="color" value="{{ strtok($settings['page_articles_card_bg_end'] ?? '#FFFFFF', ' ') }}" onchange="document.getElementById('c_art_card_bg_end').value=this.value">
-              <input type="text" name="page_articles_card_bg_end" id="c_art_card_bg_end" class="pm-input" value="{{ $settings['page_articles_card_bg_end'] ?? '#FFFFFF' }}">
+              <input type="color" value="{{ strtok($settings['page_articles_card_bg_end'] ?? '#FFFFFF', ' ') }}"
+                onchange="document.getElementById('c_art_card_bg_end').value=this.value">
+              <input type="text" name="page_articles_card_bg_end" id="c_art_card_bg_end" class="pm-input"
+                value="{{ $settings['page_articles_card_bg_end'] ?? '#FFFFFF' }}">
             </div>
           </div>
           <div>
             <label class="pm-label">Warna Teks Judul & Excerpt Artikel</label>
             <div class="pm-color-picker-wrap">
-              <input type="color" value="{{ $settings['page_articles_card_text_color'] ?? '#0F172A' }}" onchange="document.getElementById('c_art_card_text_color').value=this.value">
-              <input type="text" name="page_articles_card_text_color" id="c_art_card_text_color" class="pm-input" value="{{ $settings['page_articles_card_text_color'] ?? '#0F172A' }}">
+              <input type="color" value="{{ $settings['page_articles_card_text_color'] ?? '#0F172A' }}"
+                onchange="document.getElementById('c_art_card_text_color').value=this.value">
+              <input type="text" name="page_articles_card_text_color" id="c_art_card_text_color" class="pm-input"
+                value="{{ $settings['page_articles_card_text_color'] ?? '#0F172A' }}">
             </div>
           </div>
         </div>
@@ -2894,7 +3042,10 @@
     <div id="page-kontak" style="{{ $isKontakTab ? 'display:block;' : 'display:none;' }}">
       <div class="pm-card" style="margin-bottom:1.5rem;">
         <div class="pm-card-header">
-          <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24">
+            <path
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
           <div>
             <div class="pm-card-title">1. Hero Section Halaman Kontak Kami</div>
             <div class="pm-help">Kustomisasi judul, badge label, dan deskripsi hero section pada halaman /contact.</div>
@@ -2903,15 +3054,18 @@
         <div style="display:grid; grid-template-columns: 1fr; gap:1.25rem;">
           <div>
             <label class="pm-label">Label / Badge Hero (Di atas Judul)</label>
-            <input type="text" name="page_contact_hero_label" class="pm-input" value="{{ $settings['page_contact_hero_label'] ?? 'KONTAK KAMI' }}" placeholder="Contoh: KONTAK KAMI">
+            <input type="text" name="page_contact_hero_label" class="pm-input"
+              value="{{ $settings['page_contact_hero_label'] ?? 'KONTAK KAMI' }}" placeholder="Contoh: KONTAK KAMI">
           </div>
           <div>
             <label class="pm-label">Judul Utama Hero (Gunakan Enter untuk Baris Baru)</label>
-            <textarea name="page_contact_hero_title" class="pm-input" rows="2" placeholder="Judul halaman kontak">{{ $settings['page_contact_hero_title'] ?? "Hubungi UD. Sukses Makmur / Pusat Piring Keramik" }}</textarea>
+            <textarea name="page_contact_hero_title" class="pm-input" rows="2"
+              placeholder="Judul halaman kontak">{{ $settings['page_contact_hero_title'] ?? "Hubungi UD. Sukses Makmur / Pusat Piring Keramik" }}</textarea>
           </div>
           <div>
             <label class="pm-label">Deskripsi / Subtitle Hero</label>
-            <textarea name="page_contact_hero_desc" class="pm-input" rows="3" placeholder="Deskripsi halaman kontak">{{ $settings['page_contact_hero_desc'] ?? 'Tim UD. Sukses Makmur siap membantu menemukan produk piring dan keramik terbaik untuk kebutuhan Anda. Hubungi kami sekarang - respon cepat!' }}</textarea>
+            <textarea name="page_contact_hero_desc" class="pm-input" rows="3"
+              placeholder="Deskripsi halaman kontak">{{ $settings['page_contact_hero_desc'] ?? 'Tim UD. Sukses Makmur siap membantu menemukan produk piring dan keramik terbaik untuk kebutuhan Anda. Hubungi kami sekarang - respon cepat!' }}</textarea>
           </div>
         </div>
       </div>
@@ -2921,11 +3075,13 @@
         <div class="pm-card-header" style="justify-content:space-between;">
           <div style="display:flex; align-items:center; gap:.75rem;">
             <svg width="22" height="22" fill="none" stroke="#8B5CF6" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <path
+                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <div>
               <div class="pm-card-title">2. Kelola FAQ Halaman Kontak (Maksimal 5 FAQ)</div>
-              <div class="pm-help">Pertanyaan dan jawaban ini tampil di halaman kontak dan terhubung langsung ke Schema FAQPage (AI & Google Search).</div>
+              <div class="pm-help">Pertanyaan dan jawaban ini tampil di halaman kontak dan terhubung langsung ke Schema
+                FAQPage (AI & Google Search).</div>
             </div>
           </div>
           <button type="button" onclick="addContactFaqItem()"
@@ -2979,26 +3135,36 @@
 
         <div id="contact-faq-list-container" style="display:flex; flex-direction:column; gap:1rem;">
           @foreach($contactFaqsArr as $index => $faqItem)
-            <div class="contact-faq-item-row" style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:12px; padding:1.25rem; position:relative;">
+            <div class="contact-faq-item-row"
+              style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:12px; padding:1.25rem; position:relative;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:.75rem;">
-                <span style="font-size:.75rem; font-weight:800; color:#475569; text-transform:uppercase; letter-spacing:.05em;">FAQ Kontak #<span class="contact-faq-num">{{ $index + 1 }}</span></span>
+                <span
+                  style="font-size:.75rem; font-weight:800; color:#475569; text-transform:uppercase; letter-spacing:.05em;">FAQ
+                  Kontak #<span class="contact-faq-num">{{ $index + 1 }}</span></span>
                 <div style="display:flex; align-items:center; gap:1rem;">
-                  <label style="display:flex; align-items:center; gap:.375rem; font-size:.75rem; font-weight:600; color:#475569; cursor:pointer;">
+                  <label
+                    style="display:flex; align-items:center; gap:.375rem; font-size:.75rem; font-weight:600; color:#475569; cursor:pointer;">
                     <input type="checkbox" name="contact_faq[{{ $index }}][show]" value="1" {{ ($faqItem['show'] ?? '1') == '1' ? 'checked' : '' }}> Tampilkan di Halaman Kontak
                   </label>
-                  <button type="button" onclick="removeContactFaqRow(this)" style="background:none; border:none; color:#EF4444; cursor:pointer; font-size:.8rem; font-weight:700; display:flex; align-items:center; gap:.25rem;">
-                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg> Hapus
+                  <button type="button" onclick="removeContactFaqRow(this)"
+                    style="background:none; border:none; color:#EF4444; cursor:pointer; font-size:.8rem; font-weight:700; display:flex; align-items:center; gap:.25rem;">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg> Hapus
                   </button>
                 </div>
               </div>
               <div style="display:grid; grid-template-columns:1fr; gap:.75rem;">
                 <div>
                   <label class="pm-label" style="font-size:.75rem;">Pertanyaan (Q)</label>
-                  <input type="text" name="contact_faq[{{ $index }}][q]" class="pm-input" value="{{ $faqItem['q'] ?? ($faqItem['question'] ?? '') }}" placeholder="Tuliskan pertanyaan...">
+                  <input type="text" name="contact_faq[{{ $index }}][q]" class="pm-input"
+                    value="{{ $faqItem['q'] ?? ($faqItem['question'] ?? '') }}" placeholder="Tuliskan pertanyaan...">
                 </div>
                 <div>
                   <label class="pm-label" style="font-size:.75rem;">Jawaban (A)</label>
-                  <textarea name="contact_faq[{{ $index }}][a]" class="pm-input" rows="2" placeholder="Tuliskan jawaban lengkap...">{{ $faqItem['a'] ?? ($faqItem['answer'] ?? '') }}</textarea>
+                  <textarea name="contact_faq[{{ $index }}][a]" class="pm-input" rows="2"
+                    placeholder="Tuliskan jawaban lengkap...">{{ $faqItem['a'] ?? ($faqItem['answer'] ?? '') }}</textarea>
                 </div>
               </div>
             </div>
@@ -3047,7 +3213,7 @@
           <div style="grid-column: span 2;">
             <label class="pm-label">Tag Chips (Pisahkan dengan koma)</label>
             <input type="text" name="tags" id="slide_tags" class="pm-input"
-              placeholder="Piring Keramik, Keramik Lantai, Porselen, Food Grade">
+              placeholder="Piring Keramik, Tableware, Porselen, Food Grade">
           </div>
           <div style="grid-column: span 2;">
             <label class="pm-label">Gambar Slide Hero Desktop (WebP / JPG / PNG)</label>
@@ -3063,14 +3229,16 @@
                 <line x1="12" y1="16" x2="12" y2="12" />
                 <line x1="12" y1="8" x2="12.01" y2="8" />
               </svg>
-              <span><strong>Rekomendasi Ukuran Banner Desktop:</strong> <strong>3448 x 914 px</strong> (Rasio ~3.77:1), maks 10MB.</span>
+              <span><strong>Rekomendasi Ukuran Banner Desktop:</strong> <strong>3448 x 914 px</strong> (Rasio ~3.77:1),
+                maks 10MB.</span>
             </div>
           </div>
 
           <div style="grid-column: span 2;">
             <label class="pm-label">Gambar Banner Mobile (WebP / JPG / PNG) - (Opsional)</label>
             <div id="slide_img_mobile_preview" style="margin-bottom:.5rem; display:none;">
-              <img id="slide_img_mobile_src" src="" style="max-height:120px; border-radius:10px; border:1px solid #E2E8F0;">
+              <img id="slide_img_mobile_src" src=""
+                style="max-height:120px; border-radius:10px; border:1px solid #E2E8F0;">
             </div>
             <input type="file" name="image_mobile" class="pm-input" accept="image/*">
             <div
@@ -3081,7 +3249,9 @@
                 <line x1="12" y1="16" x2="12" y2="12" />
                 <line x1="12" y1="8" x2="12.01" y2="8" />
               </svg>
-              <span><strong>Rekomendasi Banner Mobile:</strong> <strong>1080 x 1080 px</strong> atau <strong>800 x 1000 px</strong> (Maks 10MB). Tampil khusus pada smartphone. Kosongkan jika ingin memakai banner desktop.</span>
+              <span><strong>Rekomendasi Banner Mobile:</strong> <strong>1080 x 1080 px</strong> atau <strong>800 x 1000
+                  px</strong> (Maks 10MB). Tampil khusus pada smartphone. Kosongkan jika ingin memakai banner
+                desktop.</span>
             </div>
           </div>
 
@@ -3141,28 +3311,28 @@
       row.className = 'pm-menu-item-row';
       row.style.cssText = 'display:grid; grid-template-columns: 2fr 3fr 1.2fr 40px; gap:0.75rem; align-items:center; background:#F8FAFC; padding:0.75rem 1rem; border-radius:12px; border:1px solid #E2E8F0;';
       row.innerHTML = `
-            <div>
-              <label class="pm-label" style="font-size:0.75rem;">Label Menu</label>
-              <input type="text" name="header_menus[${headerMenuIndex}][label]" class="pm-input" value="" placeholder="Menu Baru">
-            </div>
-            <div>
-              <label class="pm-label" style="font-size:0.75rem;">Tujuan Link / URL</label>
-              <input type="text" name="header_menus[${headerMenuIndex}][url]" class="pm-input" value="#" placeholder="/halaman-tujuan">
-            </div>
-            <div>
-              <label class="pm-label" style="font-size:0.75rem;">Status Tampil</label>
-              <select name="header_menus[${headerMenuIndex}][show]" class="pm-input" style="padding:.75rem .5rem !important;">
-                <option value="1" selected>Tampil</option>
-                <option value="0">Sembunyi</option>
-              </select>
-            </div>
-            <div style="padding-top:1.25rem;">
-              <button type="button" onclick="this.closest('.pm-menu-item-row').remove()"
-                style="background:#F1F5F9; border:none; color:#334155; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;" title="Hapus Menu">
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-              </button>
-            </div>
-          `;
+                <div>
+                  <label class="pm-label" style="font-size:0.75rem;">Label Menu</label>
+                  <input type="text" name="header_menus[${headerMenuIndex}][label]" class="pm-input" value="" placeholder="Menu Baru">
+                </div>
+                <div>
+                  <label class="pm-label" style="font-size:0.75rem;">Tujuan Link / URL</label>
+                  <input type="text" name="header_menus[${headerMenuIndex}][url]" class="pm-input" value="#" placeholder="/halaman-tujuan">
+                </div>
+                <div>
+                  <label class="pm-label" style="font-size:0.75rem;">Status Tampil</label>
+                  <select name="header_menus[${headerMenuIndex}][show]" class="pm-input" style="padding:.75rem .5rem !important;">
+                    <option value="1" selected>Tampil</option>
+                    <option value="0">Sembunyi</option>
+                  </select>
+                </div>
+                <div style="padding-top:1.25rem;">
+                  <button type="button" onclick="this.closest('.pm-menu-item-row').remove()"
+                    style="background:#F1F5F9; border:none; color:#334155; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;" title="Hapus Menu">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                  </button>
+                </div>
+              `;
       container.appendChild(row);
       headerMenuIndex++;
     }
@@ -3175,30 +3345,30 @@
       row.className = 'pm-faq-item-row';
       row.style.cssText = 'background:#F8FAFC; padding:1rem; border-radius:14px; border:1px solid #E2E8F0; display:flex; flex-direction:column; gap:0.75rem;';
       row.innerHTML = `
-            <div style="display:grid; grid-template-columns: 1fr 120px 40px; gap:0.75rem; align-items:center;">
-              <div>
-                <label class="pm-label" style="font-size:0.75rem;">Pertanyaan (Question)</label>
-                <input type="text" name="seo_faq_json[${seoFaqIndex}][question]" class="pm-input" value="" placeholder="Pertanyaan FAQ Baru">
-              </div>
-              <div>
-                <label class="pm-label" style="font-size:0.75rem;">Status</label>
-                <select name="seo_faq_json[${seoFaqIndex}][show]" class="pm-input" style="padding:.75rem .5rem !important;">
-                  <option value="1" selected>Tampil</option>
-                  <option value="0">Sembunyi</option>
-                </select>
-              </div>
-              <div style="padding-top:1.25rem;">
-                <button type="button" onclick="this.closest('.pm-faq-item-row').remove()"
-                  style="background:#F1F5F9; border:none; color:#334155; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;" title="Hapus FAQ">
-                  <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-                </button>
-              </div>
-            </div>
-            <div>
-              <label class="pm-label" style="font-size:0.75rem;">Jawaban (Answer)</label>
-              <textarea name="seo_faq_json[${seoFaqIndex}][answer]" class="pm-input" rows="2" placeholder="Jawaban lengkap FAQ"></textarea>
-            </div>
-          `;
+                <div style="display:grid; grid-template-columns: 1fr 120px 40px; gap:0.75rem; align-items:center;">
+                  <div>
+                    <label class="pm-label" style="font-size:0.75rem;">Pertanyaan (Question)</label>
+                    <input type="text" name="seo_faq_json[${seoFaqIndex}][question]" class="pm-input" value="" placeholder="Pertanyaan FAQ Baru">
+                  </div>
+                  <div>
+                    <label class="pm-label" style="font-size:0.75rem;">Status</label>
+                    <select name="seo_faq_json[${seoFaqIndex}][show]" class="pm-input" style="padding:.75rem .5rem !important;">
+                      <option value="1" selected>Tampil</option>
+                      <option value="0">Sembunyi</option>
+                    </select>
+                  </div>
+                  <div style="padding-top:1.25rem;">
+                    <button type="button" onclick="this.closest('.pm-faq-item-row').remove()"
+                      style="background:#F1F5F9; border:none; color:#334155; width:36px; height:36px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center;" title="Hapus FAQ">
+                      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <label class="pm-label" style="font-size:0.75rem;">Jawaban (Answer)</label>
+                  <textarea name="seo_faq_json[${seoFaqIndex}][answer]" class="pm-input" rows="2" placeholder="Jawaban lengkap FAQ"></textarea>
+                </div>
+              `;
       container.appendChild(row);
       seoFaqIndex++;
     }
@@ -3207,39 +3377,39 @@
     function addContactFaqItem() {
       const container = document.getElementById('contact-faq-list-container');
       if (!container) return;
-      
+
       const rowCount = container.querySelectorAll('.contact-faq-item-row').length;
       if (rowCount >= 5) {
         alert('Maksimal 5 FAQ untuk halaman kontak.');
         return;
       }
-      
+
       const row = document.createElement('div');
       row.className = 'contact-faq-item-row';
       row.style.cssText = 'background:#F8FAFC; border:1px solid #E2E8F0; border-radius:12px; padding:1.25rem; position:relative;';
       row.innerHTML = `
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:.75rem;">
-          <span style="font-size:.75rem; font-weight:800; color:#475569; text-transform:uppercase; letter-spacing:.05em;">FAQ Kontak #<span class="contact-faq-num">${rowCount + 1}</span></span>
-          <div style="display:flex; align-items:center; gap:1rem;">
-            <label style="display:flex; align-items:center; gap:.375rem; font-size:.75rem; font-weight:600; color:#475569; cursor:pointer;">
-              <input type="checkbox" name="contact_faq[${contactFaqIndex}][show]" value="1" checked> Tampilkan di Halaman Kontak
-            </label>
-            <button type="button" onclick="removeContactFaqRow(this)" style="background:none; border:none; color:#EF4444; cursor:pointer; font-size:.8rem; font-weight:700; display:flex; align-items:center; gap:.25rem;">
-              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg> Hapus
-            </button>
-          </div>
-        </div>
-        <div style="display:grid; grid-template-columns:1fr; gap:.75rem;">
-          <div>
-            <label class="pm-label" style="font-size:.75rem;">Pertanyaan (Q)</label>
-            <input type="text" name="contact_faq[${contactFaqIndex}][q]" class="pm-input" value="" placeholder="Tuliskan pertanyaan...">
-          </div>
-          <div>
-            <label class="pm-label" style="font-size:.75rem;">Jawaban (A)</label>
-            <textarea name="contact_faq[${contactFaqIndex}][a]" class="pm-input" rows="2" placeholder="Tuliskan jawaban lengkap..."></textarea>
-          </div>
-        </div>
-      `;
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:.75rem;">
+              <span style="font-size:.75rem; font-weight:800; color:#475569; text-transform:uppercase; letter-spacing:.05em;">FAQ Kontak #<span class="contact-faq-num">${rowCount + 1}</span></span>
+              <div style="display:flex; align-items:center; gap:1rem;">
+                <label style="display:flex; align-items:center; gap:.375rem; font-size:.75rem; font-weight:600; color:#475569; cursor:pointer;">
+                  <input type="checkbox" name="contact_faq[${contactFaqIndex}][show]" value="1" checked> Tampilkan di Halaman Kontak
+                </label>
+                <button type="button" onclick="removeContactFaqRow(this)" style="background:none; border:none; color:#EF4444; cursor:pointer; font-size:.8rem; font-weight:700; display:flex; align-items:center; gap:.25rem;">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg> Hapus
+                </button>
+              </div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr; gap:.75rem;">
+              <div>
+                <label class="pm-label" style="font-size:.75rem;">Pertanyaan (Q)</label>
+                <input type="text" name="contact_faq[${contactFaqIndex}][q]" class="pm-input" value="" placeholder="Tuliskan pertanyaan...">
+              </div>
+              <div>
+                <label class="pm-label" style="font-size:.75rem;">Jawaban (A)</label>
+                <textarea name="contact_faq[${contactFaqIndex}][a]" class="pm-input" rows="2" placeholder="Tuliskan jawaban lengkap..."></textarea>
+              </div>
+            </div>
+          `;
       container.appendChild(row);
       contactFaqIndex++;
       updateContactFaqNumbers();
