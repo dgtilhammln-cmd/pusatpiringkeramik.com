@@ -90,20 +90,21 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
     gap:1.75rem;
 }
 .ar-card {
-    background:var(--c-card);
-    border:1.5px solid var(--c-border);
-    border-radius:20px;
-    overflow:hidden;
-    display:flex;
-    flex-direction:column;
-    text-decoration:none !important;
-    transition:all 0.35s var(--ease);
+    background: linear-gradient(135deg, {{ $settings['page_articles_card_bg_start'] ?? '#ffffff' }}, {{ $settings['page_articles_card_bg_end'] ?? '#ffffff' }});
+    border: 1.5px solid var(--c-border);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none !important;
+    transition: all 0.35s var(--ease);
 }
-.ar-card * { text-decoration:none !important; }
+.ar-card * { text-decoration: none !important; }
 .ar-card:hover {
-    border-color:var(--c-accent);
-    transform:translateY(-6px);
-    box-shadow:0 20px 40px rgba(14,165,233,0.09);
+    border-color: rgba(0, 0, 0, 0.05) !important;
+    transform: translateY(-8px) !important;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12) !important;
+    outline: none !important;
 }
 .ar-card-img {
     width:100%; aspect-ratio:16/10;
@@ -405,12 +406,23 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
         @endif
 
         {{-- CTA Mini --}}
-        <div class="ar-sidebar-card" style="background:var(--c-accent);border-color:var(--c-accent);" data-aos="fade-up" data-aos-delay="200">
-            <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:rgba(255,255,255,0.8);margin-bottom:0.75rem;font-family:var(--font);">Konsultasi Gratis</div>
-            <h3 style="font-size:1.125rem;font-weight:700;color:#fff;margin-bottom:0.75rem;line-height:1.3;font-family:var(--font);">Butuh Saran Ventilasi?</h3>
-            <p style="font-size:0.8125rem;color:rgba(255,255,255,0.85);line-height:1.6;margin-bottom:1.25rem;font-family:var(--font);">Tim kami siap membantu memilih produk cat terbaik untuk kebutuhan proyek Anda.</p>
-            <a href="{{ route('contact') }}" style="display:inline-flex;align-items:center;gap:0.5rem;background:#fff;color:var(--c-accent);font-size:0.8125rem;font-weight:700;padding:0.75rem 1.5rem;border-radius:50px;text-decoration:none !important;font-family:var(--font);transition:opacity 0.2s;" onmouseover="this.style.opacity=0.9" onmouseout="this.style.opacity=1">
-                Hubungi Kami
+        @php
+            $sideLabel = $settings['page_articles_side_card_label'] ?? 'KONSULTASI GRATIS';
+            $sideTitle = $settings['page_articles_side_card_title'] ?? 'Butuh Tableware Keramik?';
+            $sideDesc = $settings['page_articles_side_card_desc'] ?? 'Tim kami siap membantu memilih produk piring & tableware keramik terbaik untuk kebutuhan usaha F&B atau rumah tangga Anda.';
+            $sideBtnText = $settings['page_articles_side_card_btn_text'] ?? 'Hubungi Kami';
+            $sideBtnUrl = $settings['page_articles_side_card_btn_url'] ?? url('/kontak');
+            $sideBgStart = $settings['page_articles_side_card_bg_start'] ?? '#0F172A';
+            $sideBgEnd = $settings['page_articles_side_card_bg_end'] ?? '#1E293B';
+            $sideBgDir = $settings['page_articles_side_card_bg_dir'] ?? '135deg';
+            $sideTextColor = $settings['page_articles_side_card_text_color'] ?? '#FFFFFF';
+        @endphp
+        <div class="ar-sidebar-card" style="background: linear-gradient({{ $sideBgDir }}, {{ $sideBgStart }}, {{ $sideBgEnd }}); border:none; color:{{ $sideTextColor }};" data-aos="fade-up" data-aos-delay="200">
+            <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:{{ $sideTextColor }};opacity:0.85;margin-bottom:0.75rem;font-family:var(--font);">{{ $sideLabel }}</div>
+            <h3 style="font-size:1.125rem;font-weight:700;color:{{ $sideTextColor }};margin-bottom:0.75rem;line-height:1.3;font-family:var(--font);">{{ $sideTitle }}</h3>
+            <p style="font-size:0.8125rem;color:{{ $sideTextColor }};opacity:0.85;line-height:1.6;margin-bottom:1.25rem;font-family:var(--font);">{{ $sideDesc }}</p>
+            <a href="{{ $sideBtnUrl }}" style="display:inline-flex;align-items:center;gap:0.5rem;background:#ffffff;color:#0F172A;font-size:0.8125rem;font-weight:700;padding:0.75rem 1.5rem;border-radius:50px;text-decoration:none !important;font-family:var(--font);transition:opacity 0.2s;" onmouseover="this.style.opacity=0.9" onmouseout="this.style.opacity=1">
+                {{ $sideBtnText }}
                 <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
             </a>
         </div>
@@ -418,12 +430,20 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
 </div>
 
 {{-- ════ CTA ════ --}}
-<section class="sv-cta-premium" data-aos="fade-up">
+@php
+    $ctaLabel = $settings['page_articles_cta_label'] ?? 'SIAP MEMULAI?';
+    $ctaTitle = $settings['page_articles_cta_title'] ?? 'Temukan Tableware Keramik Premium yang Tepat untuk Bisnis Anda';
+    $ctaDesc = $settings['page_articles_cta_desc'] ?? 'Tim Pusat Piring Keramik siap membantu memenuhi kebutuhan pengadaan tableware keramik & memberikan penawaran harga grosir terbaik.';
+    $ctaBgStart = $settings['page_articles_cta_bg_start'] ?? '#0F172A';
+    $ctaBgEnd = $settings['page_articles_cta_bg_end'] ?? '#0F172A';
+    $ctaTextColor = $settings['page_articles_cta_text_color'] ?? '#FFFFFF';
+@endphp
+<section class="sv-cta-premium" style="background: linear-gradient(135deg, {{ $ctaBgStart }}, {{ $ctaBgEnd }}); color: {{ $ctaTextColor }};" data-aos="fade-up">
     <div class="sv-cta-glow"></div>
     <div class="sv-cta-inner">
-        <div class="sv-label" style="margin-bottom:1rem;">Siap Memulai?</div>
-        <h2 class="sv-cta-h2">Temukan Produk Cat<br>yang Tepat untuk Proyek Anda</h2>
-        <p class="sv-cta-sub">Tim teknis {{ $companyName }} siap membantu menghitung kebutuhan dan memberikan solusi terbaik untuk proyek Anda.</p>
+        <div class="sv-label" style="margin-bottom:1rem; color: {{ $ctaTextColor }}; opacity: 0.85;">{{ $ctaLabel }}</div>
+        <h2 class="sv-cta-h2" style="color: {{ $ctaTextColor }};">{!! nl2br(e($ctaTitle)) !!}</h2>
+        <p class="sv-cta-sub" style="color: {{ $ctaTextColor }}; opacity: 0.88;">{{ $ctaDesc }}</p>
         <div class="sv-cta-btns">
             @php $wa = \App\Models\WaSetting::primary(); @endphp
             @if($wa)
@@ -432,7 +452,7 @@ body { background: var(--c-bg); font-family: var(--font); color: var(--c-text); 
                 Konsultasi via WhatsApp
             </a>
             @endif
-            <a href="{{ route('contact') }}" class="btn-outline-v2">
+            <a href="{{ route('contact') }}" class="btn-outline-v2" style="border-color: rgba(255,255,255,0.4); color: {{ $ctaTextColor }};">
                 <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                 Hubungi Kami
             </a>

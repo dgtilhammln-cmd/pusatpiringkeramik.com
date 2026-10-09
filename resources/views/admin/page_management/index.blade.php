@@ -2352,11 +2352,12 @@
 
     {{-- ARTIKEL PAGE CONTAINER --}}
     <div id="page-artikel" style="{{ $isArtikelTab ? 'display:block;' : 'display:none;' }}">
-      <div class="pm-card">
+      {{-- CARD 1: Hero Section Artikel --}}
+      <div class="pm-card" style="margin-bottom:1.5rem;">
         <div class="pm-card-header">
           <svg width="22" height="22" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6m-6 4h6"/></svg>
           <div>
-            <div class="pm-card-title">Halaman Artikel & Blog</div>
+            <div class="pm-card-title">1. Hero Section Artikel</div>
             <div class="pm-help">Kustomisasi judul, badge label, dan deskripsi hero section pada halaman /articles.</div>
           </div>
         </div>
@@ -2371,7 +2372,145 @@
           </div>
           <div>
             <label class="pm-label">Deskripsi / Subtitle Hero</label>
-            <textarea name="page_article_hero_desc" class="pm-input" rows="3" placeholder="Deskripsi halaman artikel">{{ $settings['page_article_hero_desc'] ?? 'Temukan berbagai artikel menarik, panduan memilih piring keramik, serta tips perawatan tableware dari UD. Sukses Makmur.' }}</textarea>
+            <textarea name="page_article_hero_desc" class="pm-input" rows="3" placeholder="Deskripsi halaman artikel">{{ $settings['page_article_hero_desc'] ?? 'Temukan berbagai artikel menarik, panduan memilih piring keramik, serta tips perawatan tableware dari Pusat Piring Keramik.' }}</textarea>
+          </div>
+        </div>
+      </div>
+
+      {{-- CARD 2: Card CTA Samping (Sidebar Mini CTA) --}}
+      <div class="pm-card" style="margin-bottom:1.5rem;">
+        <div class="pm-card-header">
+          <svg width="22" height="22" fill="none" stroke="#00A664" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          <div>
+            <div class="pm-card-title">2. Card CTA Samping (Sidebar Mini CTA)</div>
+            <div class="pm-help">Pengaturan copywriting, tombol, dan warna gradasi card konsultasi di sidebar artikel.</div>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem;">
+          <div>
+            <label class="pm-label">Label / Subtitle Card</label>
+            <input type="text" name="page_articles_side_card_label" class="pm-input" value="{{ $settings['page_articles_side_card_label'] ?? 'KONSULTASI GRATIS' }}">
+          </div>
+          <div>
+            <label class="pm-label">Judul Card Samping</label>
+            <input type="text" name="page_articles_side_card_title" class="pm-input" value="{{ $settings['page_articles_side_card_title'] ?? 'Butuh Tableware Keramik?' }}">
+          </div>
+          <div style="grid-column: 1 / -1;">
+            <label class="pm-label">Deskripsi Card Samping</label>
+            <textarea name="page_articles_side_card_desc" class="pm-input" rows="2">{{ $settings['page_articles_side_card_desc'] ?? 'Tim kami siap membantu memilih produk piring & tableware keramik terbaik untuk kebutuhan usaha F&B atau rumah tangga Anda.' }}</textarea>
+          </div>
+          <div>
+            <label class="pm-label">Teks Tombol Card</label>
+            <input type="text" name="page_articles_side_card_btn_text" class="pm-input" value="{{ $settings['page_articles_side_card_btn_text'] ?? 'Hubungi Kami' }}">
+          </div>
+          <div>
+            <label class="pm-label">Link/URL Tombol Card</label>
+            <input type="text" name="page_articles_side_card_btn_url" class="pm-input" value="{{ $settings['page_articles_side_card_btn_url'] ?? '/kontak' }}">
+          </div>
+          <div>
+            <label class="pm-label">Card Background: Start Color</label>
+            <div class="pm-color-picker-wrap">
+              <input type="color" value="{{ strtok($settings['page_articles_side_card_bg_start'] ?? '#0F172A', ' ') }}" onchange="document.getElementById('c_art_side_bg_start').value=this.value">
+              <input type="text" name="page_articles_side_card_bg_start" id="c_art_side_bg_start" class="pm-input" value="{{ $settings['page_articles_side_card_bg_start'] ?? '#0F172A' }}">
+            </div>
+          </div>
+          <div>
+            <label class="pm-label">Card Background: End Color (Gradasi)</label>
+            <div class="pm-color-picker-wrap">
+              <input type="color" value="{{ strtok($settings['page_articles_side_card_bg_end'] ?? '#1E293B', ' ') }}" onchange="document.getElementById('c_art_side_bg_end').value=this.value">
+              <input type="text" name="page_articles_side_card_bg_end" id="c_art_side_bg_end" class="pm-input" value="{{ $settings['page_articles_side_card_bg_end'] ?? '#1E293B' }}">
+            </div>
+          </div>
+          <div>
+            <label class="pm-label">Sudut Gradasi Card Samping</label>
+            <input type="text" name="page_articles_side_card_bg_dir" class="pm-input" value="{{ $settings['page_articles_side_card_bg_dir'] ?? '135deg' }}" placeholder="135deg">
+          </div>
+          <div>
+            <label class="pm-label">Warna Teks Card Samping</label>
+            <div class="pm-color-picker-wrap">
+              <input type="color" value="{{ $settings['page_articles_side_card_text_color'] ?? '#FFFFFF' }}" onchange="document.getElementById('c_art_side_text_color').value=this.value">
+              <input type="text" name="page_articles_side_card_text_color" id="c_art_side_text_color" class="pm-input" value="{{ $settings['page_articles_side_card_text_color'] ?? '#FFFFFF' }}">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{-- CARD 3: Section Bottom CTA Artikel --}}
+      <div class="pm-card" style="margin-bottom:1.5rem;">
+        <div class="pm-card-header">
+          <svg width="22" height="22" fill="none" stroke="#F59E0B" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <div>
+            <div class="pm-card-title">3. Section Bottom CTA Artikel (Siap Memulai?)</div>
+            <div class="pm-help">Pengaturan copywriting dan warna section ajakan bertindak di bagian bawah artikel.</div>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem;">
+          <div>
+            <label class="pm-label">Label / Badge CTA</label>
+            <input type="text" name="page_articles_cta_label" class="pm-input" value="{{ $settings['page_articles_cta_label'] ?? 'SIAP MEMULAI?' }}">
+          </div>
+          <div style="grid-column: 1 / -1;">
+            <label class="pm-label">Judul Utama Bottom CTA</label>
+            <input type="text" name="page_articles_cta_title" class="pm-input" value="{{ $settings['page_articles_cta_title'] ?? 'Temukan Tableware Keramik Premium yang Tepat untuk Bisnis Anda' }}">
+          </div>
+          <div style="grid-column: 1 / -1;">
+            <label class="pm-label">Deskripsi Bottom CTA</label>
+            <textarea name="page_articles_cta_desc" class="pm-input" rows="2">{{ $settings['page_articles_cta_desc'] ?? 'Tim Pusat Piring Keramik siap membantu memenuhi kebutuhan pengadaan tableware keramik & memberikan penawaran harga grosir terbaik.' }}</textarea>
+          </div>
+          <div>
+            <label class="pm-label">CTA Background: Start Color</label>
+            <div class="pm-color-picker-wrap">
+              <input type="color" value="{{ strtok($settings['page_articles_cta_bg_start'] ?? '#0F172A', ' ') }}" onchange="document.getElementById('c_art_cta_bg_start').value=this.value">
+              <input type="text" name="page_articles_cta_bg_start" id="c_art_cta_bg_start" class="pm-input" value="{{ $settings['page_articles_cta_bg_start'] ?? '#0F172A' }}">
+            </div>
+          </div>
+          <div>
+            <label class="pm-label">CTA Background: End Color (Gradasi)</label>
+            <div class="pm-color-picker-wrap">
+              <input type="color" value="{{ strtok($settings['page_articles_cta_bg_end'] ?? '#0F172A', ' ') }}" onchange="document.getElementById('c_art_cta_bg_end').value=this.value">
+              <input type="text" name="page_articles_cta_bg_end" id="c_art_cta_bg_end" class="pm-input" value="{{ $settings['page_articles_cta_bg_end'] ?? '#0F172A' }}">
+            </div>
+          </div>
+          <div>
+            <label class="pm-label">Warna Teks Judul & Deskripsi CTA</label>
+            <div class="pm-color-picker-wrap">
+              <input type="color" value="{{ $settings['page_articles_cta_text_color'] ?? '#FFFFFF' }}" onchange="document.getElementById('c_art_cta_text_color').value=this.value">
+              <input type="text" name="page_articles_cta_text_color" id="c_art_cta_text_color" class="pm-input" value="{{ $settings['page_articles_cta_text_color'] ?? '#FFFFFF' }}">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {{-- CARD 4: Warna Card Artikel (Grid List) --}}
+      <div class="pm-card">
+        <div class="pm-card-header">
+          <svg width="22" height="22" fill="none" stroke="#6366F1" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <div>
+            <div class="pm-card-title">4. Warna Card Artikel (Grid List)</div>
+            <div class="pm-help">Pengaturan warna background card artikel dan warna font teks.</div>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem;">
+          <div>
+            <label class="pm-label">Card Artikel Background: Start Color</label>
+            <div class="pm-color-picker-wrap">
+              <input type="color" value="{{ strtok($settings['page_articles_card_bg_start'] ?? '#FFFFFF', ' ') }}" onchange="document.getElementById('c_art_card_bg_start').value=this.value">
+              <input type="text" name="page_articles_card_bg_start" id="c_art_card_bg_start" class="pm-input" value="{{ $settings['page_articles_card_bg_start'] ?? '#FFFFFF' }}">
+            </div>
+          </div>
+          <div>
+            <label class="pm-label">Card Artikel Background: End Color (Gradasi)</label>
+            <div class="pm-color-picker-wrap">
+              <input type="color" value="{{ strtok($settings['page_articles_card_bg_end'] ?? '#FFFFFF', ' ') }}" onchange="document.getElementById('c_art_card_bg_end').value=this.value">
+              <input type="text" name="page_articles_card_bg_end" id="c_art_card_bg_end" class="pm-input" value="{{ $settings['page_articles_card_bg_end'] ?? '#FFFFFF' }}">
+            </div>
+          </div>
+          <div>
+            <label class="pm-label">Warna Teks Judul & Excerpt Artikel</label>
+            <div class="pm-color-picker-wrap">
+              <input type="color" value="{{ $settings['page_articles_card_text_color'] ?? '#0F172A' }}" onchange="document.getElementById('c_art_card_text_color').value=this.value">
+              <input type="text" name="page_articles_card_text_color" id="c_art_card_text_color" class="pm-input" value="{{ $settings['page_articles_card_text_color'] ?? '#0F172A' }}">
+            </div>
           </div>
         </div>
       </div>

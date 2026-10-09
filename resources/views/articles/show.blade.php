@@ -360,9 +360,10 @@ a { text-decoration: none; color: inherit; }
     text-decoration:none !important; transition:all 0.35s var(--ease);
 }
 .ar-related-card:hover {
-    border-color:var(--c-accent);
-    transform:translateY(-5px);
-    box-shadow:0 16px 40px rgba(14,165,233,0.09);
+    border-color: rgba(0, 0, 0, 0.05) !important;
+    transform: translateY(-8px) !important;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12) !important;
+    outline: none !important;
 }
 .ar-related-card-img { aspect-ratio:16/10; overflow:hidden; background:var(--c-surface); }
 .ar-related-card-img img {

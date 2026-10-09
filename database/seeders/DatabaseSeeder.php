@@ -92,7 +92,25 @@ class DatabaseSeeder extends Seeder
 
             ['key'=>'page_article_hero_label','value'=>'INFORMASI & WAWASAN', 'type'=>'text','group'=>'page_hero','label'=>'Article Hero Label'],
             ['key'=>'page_article_hero_title','value'=>'Artikel, Tips & Wawasan Tableware Keramik', 'type'=>'text','group'=>'page_hero','label'=>'Article Hero Title'],
-            ['key'=>'page_article_hero_desc', 'value'=>'Temukan berbagai artikel menarik, panduan memilih piring keramik, serta tips perawatan tableware dari UD. Sukses Makmur.', 'type'=>'text','group'=>'page_hero','label'=>'Article Hero Description'],
+            ['key'=>'page_article_hero_desc', 'value'=>'Temukan berbagai artikel menarik, panduan memilih piring keramik, serta tips perawatan tableware dari Pusat Piring Keramik.', 'type'=>'text','group'=>'page_hero','label'=>'Article Hero Description'],
+
+            // Article Side Card & Bottom CTA settings
+            ['key'=>'page_articles_side_card_label', 'value'=>'KONSULTASI GRATIS', 'type'=>'text','group'=>'page_hero','label'=>'Article Side Card Label'],
+            ['key'=>'page_articles_side_card_title', 'value'=>'Butuh Tableware Keramik?', 'type'=>'text','group'=>'page_hero','label'=>'Article Side Card Title'],
+            ['key'=>'page_articles_side_card_desc',  'value'=>'Tim kami siap membantu memilih produk piring & tableware keramik terbaik untuk kebutuhan usaha F&B atau rumah tangga Anda.', 'type'=>'text','group'=>'page_hero','label'=>'Article Side Card Description'],
+            ['key'=>'page_articles_side_card_btn_text', 'value'=>'Hubungi Kami', 'type'=>'text','group'=>'page_hero','label'=>'Article Side Card Button Text'],
+            ['key'=>'page_articles_side_card_btn_url',  'value'=>'/kontak', 'type'=>'text','group'=>'page_hero','label'=>'Article Side Card Button URL'],
+            ['key'=>'page_articles_side_card_bg_start','value'=>'#0F172A', 'type'=>'text','group'=>'page_hero','label'=>'Article Side Card Start Color'],
+            ['key'=>'page_articles_side_card_bg_end',  'value'=>'#1E293B', 'type'=>'text','group'=>'page_hero','label'=>'Article Side Card End Color'],
+            ['key'=>'page_articles_side_card_bg_dir',  'value'=>'135deg', 'type'=>'text','group'=>'page_hero','label'=>'Article Side Card Angle'],
+            ['key'=>'page_articles_side_card_text_color','value'=>'#FFFFFF', 'type'=>'text','group'=>'page_hero','label'=>'Article Side Card Text Color'],
+
+            ['key'=>'page_articles_cta_label',  'value'=>'SIAP MEMULAI?', 'type'=>'text','group'=>'page_hero','label'=>'Article Bottom CTA Label'],
+            ['key'=>'page_articles_cta_title',  'value'=>'Temukan Tableware Keramik Premium yang Tepat untuk Bisnis Anda', 'type'=>'text','group'=>'page_hero','label'=>'Article Bottom CTA Title'],
+            ['key'=>'page_articles_cta_desc',   'value'=>'Tim Pusat Piring Keramik siap membantu memenuhi kebutuhan pengadaan tableware keramik & memberikan penawaran harga grosir terbaik.', 'type'=>'text','group'=>'page_hero','label'=>'Article Bottom CTA Description'],
+            ['key'=>'page_articles_cta_bg_start','value'=>'#0F172A', 'type'=>'text','group'=>'page_hero','label'=>'Article Bottom CTA Start Color'],
+            ['key'=>'page_articles_cta_bg_end',  'value'=>'#0F172A', 'type'=>'text','group'=>'page_hero','label'=>'Article Bottom CTA End Color'],
+            ['key'=>'page_articles_cta_text_color','value'=>'#FFFFFF', 'type'=>'text','group'=>'page_hero','label'=>'Article Bottom CTA Text Color'],
 
             ['key'=>'page_contact_hero_label','value'=>'KONTAK KAMI', 'type'=>'text','group'=>'page_hero','label'=>'Contact Hero Label'],
             ['key'=>'page_contact_hero_title','value'=>'Hubungi UD. Sukses Makmur / Pusat Piring Keramik', 'type'=>'text','group'=>'page_hero','label'=>'Contact Hero Title'],
@@ -117,9 +135,9 @@ class DatabaseSeeder extends Seeder
                 'category'     => 'Tips Industri',
                 'is_published' => true,
                 'published_at' => now()->subDays(4),
-                'author'       => 'Tim UD. Sukses Makmur',
-                'meta_title'   => '5 Tips Memilih Piring Keramik Food Grade | UD. Sukses Makmur',
-                'meta_desc'    => 'Panduan memilih piring keramik food grade berkualitas untuk restoran, hotel, dan catering dari UD. Sukses Makmur.',
+                'author'       => 'Tim Pusat Piring Keramik',
+                'meta_title'   => '5 Tips Memilih Piring Keramik Food Grade | Pusat Piring Keramik',
+                'meta_desc'    => 'Panduan memilih piring keramik food grade berkualitas untuk restoran, hotel, dan catering dari Pusat Piring Keramik.',
             ],
             [
                 'title'        => 'Perbedaan Ceramic, Porcelain, dan Stoneware Tableware: Mana Yang Terbaik?',
@@ -128,23 +146,23 @@ class DatabaseSeeder extends Seeder
                 'category'     => 'Edukasi',
                 'is_published' => true,
                 'published_at' => now()->subDays(11),
-                'author'       => 'Tim UD. Sukses Makmur',
-                'meta_title'   => 'Perbedaan Keramik, Porselen & Stoneware | UD. Sukses Makmur',
+                'author'       => 'Tim Pusat Piring Keramik',
+                'meta_title'   => 'Perbedaan Keramik, Porselen & Stoneware | Pusat Piring Keramik',
                 'meta_desc'    => 'Panduan lengkap membedakan tableware keramik, porselen, dan stoneware untuk kebutuhan bisnis F&B Anda.',
             ],
             [
                 'title'        => 'Cara Merawat Piring Keramik Agar Tahan Lama & Tidak Mudah Gores',
                 'slug'         => 'cara-merawat-piring-keramik-tahan-lama',
-                'excerpt'      => 'Perawatan yang tepat memperpanjang umur piring keramik dan menjaga kilau glazuur. Ikuti panduan praktis dari UD. Sukses Makmur.',
+                'excerpt'      => 'Perawatan yang tepat memperpanjang umur piring keramik dan menjaga kilau glazuur. Ikuti panduan praktis dari Pusat Piring Keramik.',
                 'category'     => 'Panduan',
                 'is_published' => true,
                 'published_at' => now()->subDays(19),
-                'author'       => 'Tim UD. Sukses Makmur',
-                'meta_title'   => 'Cara Merawat Piring Keramik Agar Tahan Lama | UD. Sukses Makmur',
+                'author'       => 'Tim Pusat Piring Keramik',
+                'meta_title'   => 'Cara Merawat Piring Keramik Agar Tahan Lama | Pusat Piring Keramik',
                 'meta_desc'    => 'Tips dan trik merawat piring keramik restoran dan rumah tangga agar awet, mengkilap, dan bebas goresan.',
             ],
         ];
-        $contentTemplate = '<h2>Pendahuluan</h2><p>Pemilihan piring keramik dan tableware yang tepat merupakan langkah vital untuk menghadirkan sajian yang estetis, higienis, dan berkesan bagi pelanggan. UD. Sukses Makmur (Pusat Piring Keramik) berkomitmen menghadirkan produk tableware berkualitas tinggi.</p><h2>Detail Pembahasan</h2><p>Sebagai supplier & distributor resmi tableware terpercaya di Indonesia, kami menyediakan koleksi lengkap <strong>piring keramik</strong>, <strong>mangkuk porselen</strong>, <strong>cangkir</strong>, dan <strong>piranti meja makan</strong> yang telah teruji food-grade dan tahan panas tinggi.</p><p>Tim kami berpengalaman melayani pemesanan grosir untuk HORECA (Hotel, Restaurant, Cafe, Catering) serta pengiriman aman dengan paking peti kayu ke seluruh wilayah Indonesia.</p><h2>Kesimpulan</h2><p>Hubungi tim UD. Sukses Makmur di <strong>0856-2682-888</strong> untuk konsultasi kebutuhan tableware dan katalog produk lengkap dengan penawaran harga grosir terbaik.</p>';
+        $contentTemplate = '<h2>Pendahuluan</h2><p>Pemilihan piring keramik dan tableware yang tepat merupakan langkah vital untuk menghadirkan sajian yang estetis, higienis, dan berkesan bagi pelanggan. Pusat Piring Keramik berkomitmen menghadirkan produk tableware berkualitas tinggi.</p><h2>Detail Pembahasan</h2><p>Sebagai supplier & distributor resmi tableware terpercaya di Indonesia, kami menyediakan koleksi lengkap <strong>piring keramik</strong>, <strong>mangkuk porselen</strong>, <strong>cangkir</strong>, dan <strong>piranti meja makan</strong> yang telah teruji food-grade dan tahan panas tinggi.</p><p>Tim kami berpengalaman melayani pemesanan grosir untuk HORECA (Hotel, Restaurant, Cafe, Catering) serta pengiriman aman dengan paking peti kayu ke seluruh wilayah Indonesia.</p><h2>Kesimpulan</h2><p>Hubungi tim Pusat Piring Keramik di <strong>0856-2682-888</strong> untuk konsultasi kebutuhan tableware dan katalog produk lengkap dengan penawaran harga grosir terbaik.</p>';
         foreach ($articles as $a) {
             Article::updateOrCreate(['slug'=>$a['slug']], array_merge($a, [
                 'content'=>$contentTemplate, 'views'=>rand(80,600),
@@ -154,14 +172,10 @@ class DatabaseSeeder extends Seeder
 
         // ── Clients ──────────────────────────────────────────────────
         $clients = [
-            ['name'=>'PT. Pertamina (Persero)',         'city'=>'Jakarta',      'order'=>1],
-            ['name'=>'PT. PLN (Persero)',                'city'=>'Jakarta',      'order'=>2],
-            ['name'=>'PT. Pelabuhan Indonesia III',      'city'=>'Surabaya',     'order'=>3],
-            ['name'=>'PT. Wijaya Karya (Persero)',       'city'=>'Jakarta',      'order'=>4],
-            ['name'=>'PT. Astra Daihatsu Motor',         'city'=>'Karawang',     'order'=>5],
-            ['name'=>'PT. Chandra Asri Petrochemical',   'city'=>'Cilegon',      'order'=>6],
-            ['name'=>'PT. Semen Indonesia (Persero)',    'city'=>'Gresik',       'order'=>7],
-            ['name'=>'PT. Krakatau Steel (Persero)',     'city'=>'Cilegon',      'order'=>8],
+            ['name'=>'PT. Hotel Indonesia Natour',      'city'=>'Jakarta',      'order'=>1],
+            ['name'=>'PT. Aerofood Indonesia',         'city'=>'Jakarta',      'order'=>2],
+            ['name'=>'PT. Sari Reksa Restora',          'city'=>'Surabaya',     'order'=>3],
+            ['name'=>'PT. Boga Group Indonesia',       'city'=>'Jakarta',      'order'=>4],
         ];
         foreach ($clients as $c) {
             Client::updateOrCreate(['name'=>$c['name']], array_merge($c, [
@@ -173,24 +187,24 @@ class DatabaseSeeder extends Seeder
         if (\App\Models\Testimonial::count() === 0) {
             Testimonial::insert([
                 [
-                    'name'=>'Ir. Bambang Sutrisno',
-                    'company'=>'PT. Pelabuhan Indonesia III',
-                    'position'=>'Project Manager',
-                    'content'=>'CV. Bintang Energy Surabaya membuktikan diri sebagai mitra yang sangat profesional. Produk cat anti korosi Jotun yang mereka suplai terbukti tahan di lingkungan pelabuhan yang sangat korosif. Pengiriman tepat waktu dan tim teknisnya sangat responsif.',
+                    'name'=>'Bambang Sutrisno',
+                    'company'=>'Hotel Grand Surabaya',
+                    'position'=>'Executive Chef',
+                    'content'=>'Pusat Piring Keramik membuktikan diri sebagai supplier tableware keramik yang sangat profesional. Produk piring dan mangkuk berstandar bintang lima yang mereka suplai sangat kokoh, tebal, dan memiliki glazuur mengkilap tahan gores.',
                     'rating'=>5,'is_active'=>1,'order'=>1,'created_at'=>now(),'updated_at'=>now()
                 ],
                 [
-                    'name'=>'Drs. Hendra Wijaya',
-                    'company'=>'PT. Chandra Asri Petrochemical',
-                    'position'=>'Maintenance Superintendent',
-                    'content'=>'Sudah 5 tahun kami mempercayakan kebutuhan coating untuk unit kilang kami ke CV. Bintang Energy Surabaya. Kualitas produk dan konsistensi layanan mereka tidak perlu diragukan lagi. Sangat direkomendasikan untuk proyek oil & gas.',
+                    'name'=>'Hendra Wijaya',
+                    'company'=>'Resto Nusantara Bistro',
+                    'position'=>'Operational Manager',
+                    'content'=>'Sudah 3 tahun kami mempercayakan suplai piring keramik dan cangkir porselen ke Pusat Piring Keramik. Kualitas barang konsisten, kemasan peti kayu sangat aman, dan harga grosirnya terbaik untuk bisnis F&B.',
                     'rating'=>5,'is_active'=>1,'order'=>2,'created_at'=>now(),'updated_at'=>now()
                 ],
                 [
-                    'name'=>'Agus Firmansyah, ST.',
-                    'company'=>'PT. Wijaya Karya (Persero)',
-                    'position'=>'Site Engineer',
-                    'content'=>'Kami menggunakan produk PPG Sigma dari CV. Bintang Energy Surabaya untuk proyek jembatan di Jawa Timur. Hasilnya sangat memuaskan — adhesion kuat, tidak mudah terkelupas, dan warnanya tetap terjaga meski terpapar cuaca ekstrem.',
+                    'name'=>'Agus Firmansyah',
+                    'company'=>'Berkah Catering Surabaya',
+                    'position'=>'Owner',
+                    'content'=>'Pengadaan piranti makan untuk catering pernikahan kami dilayani dengan sangat cepat oleh Pusat Piring Keramik. Piringnya food-grade, tahan bentur, dan tampilan meja prasmanan jadi sangat berkelas.',
                     'rating'=>5,'is_active'=>1,'order'=>3,'created_at'=>now(),'updated_at'=>now()
                 ],
             ]);
