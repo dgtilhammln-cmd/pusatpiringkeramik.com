@@ -2855,58 +2855,12 @@
         </div>
       </div>
 
-      {{-- CARD 3: Section Bottom CTA Artikel --}}
-      <div class="pm-card" style="margin-bottom:1.5rem;">
-        <div class="pm-card-header">
-          <svg width="22" height="22" fill="none" stroke="#F59E0B" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-          <div>
-            <div class="pm-card-title">3. Section Bottom CTA Artikel (Siap Memulai?)</div>
-            <div class="pm-help">Pengaturan copywriting dan warna section ajakan bertindak di bagian bawah artikel.</div>
-          </div>
-        </div>
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem;">
-          <div>
-            <label class="pm-label">Label / Badge CTA</label>
-            <input type="text" name="page_articles_cta_label" class="pm-input" value="{{ $settings['page_articles_cta_label'] ?? 'SIAP MEMULAI?' }}">
-          </div>
-          <div style="grid-column: 1 / -1;">
-            <label class="pm-label">Judul Utama Bottom CTA</label>
-            <input type="text" name="page_articles_cta_title" class="pm-input" value="{{ $settings['page_articles_cta_title'] ?? 'Temukan Tableware Keramik Premium yang Tepat untuk Bisnis Anda' }}">
-          </div>
-          <div style="grid-column: 1 / -1;">
-            <label class="pm-label">Deskripsi Bottom CTA</label>
-            <textarea name="page_articles_cta_desc" class="pm-input" rows="2">{{ $settings['page_articles_cta_desc'] ?? 'Tim Pusat Piring Keramik siap membantu memenuhi kebutuhan pengadaan tableware keramik & memberikan penawaran harga grosir terbaik.' }}</textarea>
-          </div>
-          <div>
-            <label class="pm-label">CTA Background: Start Color</label>
-            <div class="pm-color-picker-wrap">
-              <input type="color" value="{{ strtok($settings['page_articles_cta_bg_start'] ?? '#0F172A', ' ') }}" onchange="document.getElementById('c_art_cta_bg_start').value=this.value">
-              <input type="text" name="page_articles_cta_bg_start" id="c_art_cta_bg_start" class="pm-input" value="{{ $settings['page_articles_cta_bg_start'] ?? '#0F172A' }}">
-            </div>
-          </div>
-          <div>
-            <label class="pm-label">CTA Background: End Color (Gradasi)</label>
-            <div class="pm-color-picker-wrap">
-              <input type="color" value="{{ strtok($settings['page_articles_cta_bg_end'] ?? '#0F172A', ' ') }}" onchange="document.getElementById('c_art_cta_bg_end').value=this.value">
-              <input type="text" name="page_articles_cta_bg_end" id="c_art_cta_bg_end" class="pm-input" value="{{ $settings['page_articles_cta_bg_end'] ?? '#0F172A' }}">
-            </div>
-          </div>
-          <div>
-            <label class="pm-label">Warna Teks Judul & Deskripsi CTA</label>
-            <div class="pm-color-picker-wrap">
-              <input type="color" value="{{ $settings['page_articles_cta_text_color'] ?? '#FFFFFF' }}" onchange="document.getElementById('c_art_cta_text_color').value=this.value">
-              <input type="text" name="page_articles_cta_text_color" id="c_art_cta_text_color" class="pm-input" value="{{ $settings['page_articles_cta_text_color'] ?? '#FFFFFF' }}">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {{-- CARD 4: Warna Card Artikel (Grid List) --}}
+      {{-- CARD 3: Warna Card Artikel (Grid List) --}}
       <div class="pm-card">
         <div class="pm-card-header">
           <svg width="22" height="22" fill="none" stroke="#6366F1" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
           <div>
-            <div class="pm-card-title">4. Warna Card Artikel (Grid List)</div>
+            <div class="pm-card-title">3. Warna Card Artikel (Grid List)</div>
             <div class="pm-help">Pengaturan warna background card artikel dan warna font teks.</div>
           </div>
         </div>
