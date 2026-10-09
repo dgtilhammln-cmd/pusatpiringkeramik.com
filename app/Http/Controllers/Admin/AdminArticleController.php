@@ -128,11 +128,6 @@ class AdminArticleController extends Controller
         return redirect()->route('admin.articles.index')->with('success', 'Artikel berhasil ditambahkan.');
     }
 
-    public function edit(Article $article)
-    {
-        return view('admin.articles.edit', compact('article'));
-    }
-
     public function update(Request $request, Article $article)
     {
         $validated = $request->validate([

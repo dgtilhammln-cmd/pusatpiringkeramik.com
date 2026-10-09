@@ -100,15 +100,16 @@ fi
 
 # Ensure APP_DEBUG=false in existing .env file
 if [ -f "$DEPLOY_DIR/.env" ]; then
-    sed -i 's/APP_DEBUG=false/APP_DEBUG=true/g' "$DEPLOY_DIR/.env"
+    sed -i 's/APP_DEBUG=true/APP_DEBUG=false/g' "$DEPLOY_DIR/.env"
 fi
 
 echo ""
 echo "--- Menjalankan artisan commands..."
 cd "$DEPLOY_DIR"
 php artisan migrate --force
-php artisan db:seed --class=DatabaseSeeder --force
-php artisan db:seed --class=HeroSlideSeeder --force
+# Note: Seeders disabled during normal deploys to preserve custom data:
+# php artisan db:seed --class=DatabaseSeeder --force
+# php artisan db:seed --class=HeroSlideSeeder --force
 
 echo "--- Fix storage symlink & sync public_html..."
 mkdir -p "$DEPLOY_DIR/public_html"
