@@ -235,13 +235,13 @@ $adminName = session('admin_name', 'Administrator');
       
       <!-- Weather & Location Details -->
       <div id="weather-info" style="font-size: 0.775rem; display: flex; align-items: center; flex-wrap: wrap; gap: 4px; color: #E2E8F0;">
-        <span style="color:#FBBF24;">☀️</span> 
+        <span style="color:#FBBF24;"><svg width="15" height="15" fill="none" stroke="#FBBF24" stroke-width="2" viewBox="0 0 24 24" style="vertical-align:-2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M7.05 16.95l-1.414 1.414M16.95 16.95l1.414 1.414M7.05 7.05L5.636 5.636M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg></span> 
         <strong style="color:#FFFFFF; font-weight:700;">28°C</strong> 
         <span style="color:#E2E8F0; font-weight:500;">Cerah</span> 
         <span style="color:rgba(255,255,255,0.25); margin: 0 2px;">·</span> 
-        <span style="color:#CBD5E1; font-weight:500;">💧 77%</span> 
+        <span style="color:#CBD5E1; font-weight:500; display:inline-flex; align-items:center; gap:3px;"><svg width="14" height="14" fill="none" stroke="#38BDF8" stroke-width="2" viewBox="0 0 24 24" style="vertical-align:-2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg> 77%</span> 
         <span style="color:rgba(255,255,255,0.25); margin: 0 2px;">·</span> 
-        <span style="color:#94A3B8; font-weight:500;">📍 Surabaya, Jawa Timur</span>
+        <span style="color:#94A3B8; font-weight:500; display:inline-flex; align-items:center; gap:3px;"><svg width="14" height="14" fill="none" stroke="#94A3B8" stroke-width="2" viewBox="0 0 24 24" style="vertical-align:-2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg> Surabaya, Jawa Timur</span>
       </div>
     </div>
   </div>
@@ -499,15 +499,19 @@ function updateDashboardClock() {
 }
 
 function getWeatherIconAndDesc(code) {
-    if (code === 0) return { icon: '☀️', desc: 'Cerah' };
-    if (code >= 1 && code <= 3) return { icon: '⛅', desc: 'Cerah Berawan' };
-    if (code === 45 || code === 48) return { icon: '🌫️', desc: 'Berkabut' };
-    if (code >= 51 && code <= 57) return { icon: '🌧️', desc: 'Gerimis' };
-    if (code >= 61 && code <= 67) return { icon: '🌧️', desc: 'Hujan' };
-    if (code >= 71 && code <= 77) return { icon: '❄️', desc: 'Salju' };
-    if (code >= 80 && code <= 82) return { icon: '🌧️', desc: 'Hujan Lebat' };
-    if (code >= 95 && code <= 99) return { icon: '⛈️', desc: 'Hujan Petir' };
-    return { icon: '🌤️', desc: 'Cerah' };
+    const sunSvg = `<svg width="15" height="15" fill="none" stroke="#FBBF24" stroke-width="2" viewBox="0 0 24 24" style="vertical-align:-2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M7.05 16.95l-1.414 1.414M16.95 16.95l1.414 1.414M7.05 7.05L5.636 5.636M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>`;
+    const cloudSvg = `<svg width="15" height="15" fill="none" stroke="#94A3B8" stroke-width="2" viewBox="0 0 24 24" style="vertical-align:-2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>`;
+    const rainSvg = `<svg width="15" height="15" fill="none" stroke="#38BDF8" stroke-width="2" viewBox="0 0 24 24" style="vertical-align:-2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M20 16.2A4.5 4.5 0 0017.5 8h-1.8A7 7 0 104 14.9M16 14v6m-4-4v6m-4-4v6"/></svg>`;
+
+    if (code === 0) return { icon: sunSvg, desc: 'Cerah' };
+    if (code >= 1 && code <= 3) return { icon: cloudSvg, desc: 'Cerah Berawan' };
+    if (code === 45 || code === 48) return { icon: cloudSvg, desc: 'Berkabut' };
+    if (code >= 51 && code <= 57) return { icon: rainSvg, desc: 'Gerimis' };
+    if (code >= 61 && code <= 67) return { icon: rainSvg, desc: 'Hujan' };
+    if (code >= 71 && code <= 77) return { icon: cloudSvg, desc: 'Salju' };
+    if (code >= 80 && code <= 82) return { icon: rainSvg, desc: 'Hujan Lebat' };
+    if (code >= 95 && code <= 99) return { icon: rainSvg, desc: 'Hujan Petir' };
+    return { icon: sunSvg, desc: 'Cerah' };
 }
 
 async function loadWeatherAndLocation(lat, lon, fallbackCity = null) {
@@ -555,9 +559,9 @@ async function loadWeatherAndLocation(lat, lon, fallbackCity = null) {
                     <strong style="color:#FFFFFF; font-weight:700;">${temp}°C</strong> 
                     <span style="color:#E2E8F0; font-weight:500;">${wInfo.desc}</span> 
                     <span style="color:rgba(255,255,255,0.25); margin: 0 2px;">·</span> 
-                    <span style="color:#CBD5E1; font-weight:500;">💧 ${humidity}%</span> 
+                    <span style="color:#CBD5E1; font-weight:500; display:inline-flex; align-items:center; gap:3px;"><svg width="14" height="14" fill="none" stroke="#38BDF8" stroke-width="2" viewBox="0 0 24 24" style="vertical-align:-2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg> ${humidity}%</span> 
                     <span style="color:rgba(255,255,255,0.25); margin: 0 2px;">·</span> 
-                    <span style="color:#94A3B8; font-weight:500;">📍 ${locationLabel}</span>
+                    <span style="color:#94A3B8; font-weight:500; display:inline-flex; align-items:center; gap:3px;"><svg width="14" height="14" fill="none" stroke="#94A3B8" stroke-width="2" viewBox="0 0 24 24" style="vertical-align:-2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg> ${locationLabel}</span>
                 `;
             }
         }

@@ -147,14 +147,17 @@
 
 {{-- Filter Tabs for Modes --}}
 <div style="display:flex; gap:0.5rem; margin-bottom:1rem; flex-wrap:wrap;">
-    <a href="{{ route('admin.leads', ['type' => 'all']) }}" style="padding:0.6rem 1.25rem; border-radius:50px; font-size:0.8125rem; font-weight:700; text-decoration:none; transition:all 0.2s; {{ $currentType === 'all' ? 'background:#0F172A; color:#FFF;' : 'background:#F1F5F9; color:#64748B;' }}">
-        📋 Semua Leads ({{ $stats['total'] }})
+    <a href="{{ route('admin.leads.index', ['type' => 'all']) }}" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.6rem 1.25rem; border-radius:50px; font-size:0.8125rem; font-weight:700; text-decoration:none; transition:all 0.2s; {{ $currentType === 'all' ? 'background:#0F172A; color:#FFF;' : 'background:#F1F5F9; color:#64748B;' }}">
+        <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 002-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+        Semua Leads ({{ $stats['total'] }})
     </a>
-    <a href="{{ route('admin.leads', ['type' => 'popup']) }}" style="padding:0.6rem 1.25rem; border-radius:50px; font-size:0.8125rem; font-weight:700; text-decoration:none; transition:all 0.2s; {{ $currentType === 'popup' ? 'background:#0F172A; color:#FFF;' : 'background:#F1F5F9; color:#64748B;' }}">
-        📝 Mode Popup Form ({{ $stats['popup'] }})
+    <a href="{{ route('admin.leads.index', ['type' => 'popup']) }}" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.6rem 1.25rem; border-radius:50px; font-size:0.8125rem; font-weight:700; text-decoration:none; transition:all 0.2s; {{ $currentType === 'popup' ? 'background:#0F172A; color:#FFF;' : 'background:#F1F5F9; color:#64748B;' }}">
+        <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+        Mode Popup Form ({{ $stats['popup'] }})
     </a>
-    <a href="{{ route('admin.leads', ['type' => 'wa_code']) }}" style="padding:0.6rem 1.25rem; border-radius:50px; font-size:0.8125rem; font-weight:700; text-decoration:none; transition:all 0.2s; {{ $currentType === 'wa_code' ? 'background:#0F172A; color:#FFF;' : 'background:#F1F5F9; color:#64748B;' }}">
-        ⚡ Mode Kode WA ({{ $stats['wa_code'] }})
+    <a href="{{ route('admin.leads.index', ['type' => 'wa_code']) }}" style="display:inline-flex;align-items:center;gap:0.4rem;padding:0.6rem 1.25rem; border-radius:50px; font-size:0.8125rem; font-weight:700; text-decoration:none; transition:all 0.2s; {{ $currentType === 'wa_code' ? 'background:#0F172A; color:#FFF;' : 'background:#F1F5F9; color:#64748B;' }}">
+        <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+        Mode Kode WA ({{ $stats['wa_code'] }})
     </a>
 </div>
 
@@ -226,9 +229,13 @@
             {{-- Mode All / Rekap --}}
             <td class="td-cell">
               @if($lead->lead_type === 'wa_code')
-                <span style="font-size:0.65rem;font-weight:800;color:#10B981;background:rgba(16,185,129,0.12);padding:0.2rem 0.5rem;border-radius:50px;">⚡ Kode WA</span>
+                <span style="display:inline-flex;align-items:center;gap:0.25rem;font-size:0.65rem;font-weight:800;color:#10B981;background:rgba(16,185,129,0.12);padding:0.2rem 0.5rem;border-radius:50px;">
+                  <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg> Kode WA
+                </span>
               @else
-                <span style="font-size:0.65rem;font-weight:800;color:#8B5CF6;background:rgba(139,92,246,0.12);padding:0.2rem 0.5rem;border-radius:50px;">📝 Popup Form</span>
+                <span style="display:inline-flex;align-items:center;gap:0.25rem;font-size:0.65rem;font-weight:800;color:#8B5CF6;background:rgba(139,92,246,0.12);padding:0.2rem 0.5rem;border-radius:50px;">
+                  <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg> Popup Form
+                </span>
               @endif
             </td>
             <td class="td-cell">

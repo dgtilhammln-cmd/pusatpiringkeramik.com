@@ -268,6 +268,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/leads/export-pdf', [AdminLeadController::class, 'exportPdf'])->name('admin.leads.export_pdf');
         Route::post('/leads/mark-read', [AdminLeadController::class, 'markAllRead'])->name('admin.leads.mark_read');
         Route::get('/leads', [AdminLeadController::class, 'index'])->name('admin.leads.index');
+        Route::get('/leads-alias', [AdminLeadController::class, 'index'])->name('admin.leads');
         Route::get('/leads/{lead}', [AdminLeadController::class, 'show'])->name('admin.leads.show');
         Route::post('/leads/{lead}/status', [AdminLeadController::class, 'updateStatus'])->name('admin.leads.status');
         Route::post('/leads/{lead}/notes', [AdminLeadController::class, 'updateNote'])->name('admin.leads.notes');
@@ -312,6 +313,7 @@ Route::prefix('admin')->group(function () {
         ]);
 
         Route::get('/wa-settings', [AdminWaController::class, 'index'])->name('admin.wa.index');
+        Route::get('/wa', [AdminWaController::class, 'index'])->name('admin.wa');
         Route::post('/wa-settings', [AdminWaController::class, 'update'])->name('admin.wa.update');
         Route::post('/wa-settings/add', [AdminWaController::class, 'store'])->name('admin.wa.store');
         Route::delete('/wa-settings/{id}', [AdminWaController::class, 'destroy'])->name('admin.wa.destroy');

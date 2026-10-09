@@ -398,7 +398,10 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
         <p style="font-size:.7rem;color:#94A3B8;margin:.375rem 0 0;">Tampil di bagian bawah footer.</p>
       </div>
       <div>
-        <label class="form-label" for="s-founding_year">📅 Tahun Berdiri</label>
+        <label class="form-label" for="s-founding_year" style="display:inline-flex;align-items:center;gap:0.3rem;">
+          <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+          Tahun Berdiri
+        </label>
         <input type="number" name="founding_year" id="s-founding_year" class="form-input" value="{{ $settings['founding_year'] ?? '2013' }}" placeholder="2013" min="1900" max="{{ date('Y') }}" style="max-width:180px;">
         <p style="font-size:.7rem;color:#94A3B8;margin:.375rem 0 0;">Otomatis tersinkron ke semua halaman: hero, statistik, footer, dan badge "Sejak xxxx".</p>
       </div>
@@ -410,7 +413,7 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
 <div id="tab-seo" class="tab-section" style="display:none;">
   <div style="display:flex;flex-direction:column;gap:1.25rem;">
 
-    {{-- ⚡ KONFIGURASI DOMAIN, NAMA APP & LLM (AI SEO) --}}
+    {{-- KONFIGURASI DOMAIN, NAMA APP & LLM (AI SEO) --}}
     <div style="background:#FFFFFF;border:1.5px solid #3B82F6;box-shadow:0 8px 25px rgba(59,130,246,0.08);border-radius:14px;padding:1.75rem;">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid #F1F5F9;flex-wrap:wrap;gap:1rem;">
         <div style="display:flex;align-items:center;gap:.625rem;">
@@ -441,7 +444,10 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem;">
         {{-- 1. URL Domain --}}
         <div>
-          <label class="form-label" for="s-app_url">🌐 URL Domain (App URL)</label>
+          <label class="form-label" for="s-app_url" style="display:inline-flex;align-items:center;gap:0.3rem;">
+            <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0zM3.6 9h16.8M3.6 15h16.8M12 3a15.3 15.3 0 014 9 15.3 15.3 0 01-4 9 15.3 15.3 0 01-4-9 15.3 15.3 0 014-9z"></path></svg>
+            URL Domain (App URL)
+          </label>
           <input type="url" name="app_url" id="s-app_url" class="form-input" 
                  value="{{ $settings['app_url'] ?? config('app.url', 'https://pusatpiringkeramik.hvmdigital.id') }}" 
                  placeholder="https://pusatpiringkeramik.hvmdigital.id">
@@ -452,7 +458,10 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
 
         {{-- 2. App Name --}}
         <div>
-          <label class="form-label" for="s-app_name">🏷️ Nama Aplikasi (App Name)</label>
+          <label class="form-label" for="s-app_name" style="display:inline-flex;align-items:center;gap:0.3rem;">
+            <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path></svg>
+            Nama Aplikasi (App Name)
+          </label>
           <input type="text" name="app_name" id="s-app_name" class="form-input" 
                  value="{{ $settings['app_name'] ?? '' }}" 
                  placeholder="{{ $settings['company_name'] ?? 'Pusat Piring Keramik' }}">
@@ -464,8 +473,9 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
 
       {{-- 3. Form llms.txt --}}
       <div>
-        <label class="form-label" for="s-llms_txt">
-          🤖 Konten <code>llms.txt</code> (Format Informasi AI Search Engines)
+        <label class="form-label" for="s-llms_txt" style="display:inline-flex;align-items:center;gap:0.3rem;">
+          <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          Konten <code>llms.txt</code> (Format Informasi AI Search Engines)
         </label>
         @php
           $siteUrlDefault = $settings['app_url'] ?? config('app.url', 'https://pusatpiringkeramik.hvmdigital.id');

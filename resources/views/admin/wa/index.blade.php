@@ -6,7 +6,10 @@
 
     {{-- CARD: Mode Penangkapan Leads & Kode Referensi WA --}}
     <div class="admin-card">
-        <h3 style="font-size:0.875rem;font-weight:700;color:#F5A623;text-transform:uppercase;margin:0 0 1rem;">⚡ Mode Penangkapan Leads & Direct WA</h3>
+        <h3 style="display:inline-flex;align-items:center;gap:0.4rem;font-size:0.875rem;font-weight:700;color:#F5A623;text-transform:uppercase;margin:0 0 1rem;">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            Mode Penangkapan Leads & Direct WA
+        </h3>
         <p style="font-size:0.8125rem;color:#A1A1AA;margin-bottom:1.5rem;line-height:1.6;">
             Pilih mode aksi ketika pengunjung mengklik tombol WhatsApp atau Konsultasi di seluruh website.
         </p>
