@@ -605,6 +605,94 @@
               </div>
             </div>
           </div>
+
+          {{-- Mobile Hero Button & Overlay Styling --}}
+          <div style="margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px dashed #CBD5E1;">
+            <div style="font-weight: 700; font-size: 0.9rem; color: #0F172A; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+              <svg width="18" height="18" fill="none" stroke="#00A664" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="3"/></svg>
+              Pengaturan Tombol & Background Hero Mobile (Capsule Gradient)
+            </div>
+            <div class="pm-help" style="margin-bottom: 1.25rem; background: #F0FDF4; border: 1px solid #BBF7D0; color: #166534; padding: 0.75rem 1rem; border-radius: 10px; font-size: 0.82rem; line-height: 1.5; display: flex; align-items: flex-start; gap: 0.5rem;">
+              <svg width="18" height="18" fill="none" stroke="#166534" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0; margin-top:2px;"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              <div><strong>Panduan Mobile:</strong> Pada layar smartphone, Hero Section akan tampil modern dengan layout full background & 2 tombol capsule (Utama: Lihat Katalog & Sekunder: Hubungi Kami). Warna gradasi dihasilkan dari perpaduan <em>Warna Awal</em> & <em>Warna Akhir</em>.</div>
+            </div>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem;">
+              {{-- Primary Button Start Color --}}
+              <div>
+                <label class="pm-label">Tombol Utama: Warna Awal (Start Color)</label>
+                <div class="pm-color-picker-wrap">
+                  <input type="color" value="{{ $settings['hero_btn_primary_start'] ?? '#00D68F' }}"
+                    onchange="document.getElementById('c_hero_btn_primary_start').value=this.value">
+                  <input type="text" name="hero_btn_primary_start" id="c_hero_btn_primary_start" class="pm-input"
+                    value="{{ $settings['hero_btn_primary_start'] ?? '#00D68F' }}">
+                </div>
+              </div>
+
+              {{-- Primary Button End Color --}}
+              <div>
+                <label class="pm-label">Tombol Utama: Warna Akhir (Gradasi End)</label>
+                <div class="pm-color-picker-wrap">
+                  <input type="color" value="{{ $settings['hero_btn_primary_end'] ?? '#00A664' }}"
+                    onchange="document.getElementById('c_hero_btn_primary_end').value=this.value">
+                  <input type="text" name="hero_btn_primary_end" id="c_hero_btn_primary_end" class="pm-input"
+                    value="{{ $settings['hero_btn_primary_end'] ?? '#00A664' }}">
+                </div>
+              </div>
+
+              {{-- Primary Button Gradient Angle --}}
+              <div>
+                <label class="pm-label">Sudut Gradasi Tombol Utama</label>
+                <input type="text" name="hero_btn_primary_dir" class="pm-input"
+                  value="{{ $settings['hero_btn_primary_dir'] ?? '135deg' }}" placeholder="135deg">
+                <div class="pm-help">Contoh: 135deg, 90deg, to right</div>
+              </div>
+
+              {{-- Secondary Button Color/Start --}}
+              <div>
+                <label class="pm-label">Tombol Sekunder: Gradasi Start Color</label>
+                <div class="pm-color-picker-wrap">
+                  <input type="color" value="#1E293B"
+                    onchange="document.getElementById('c_hero_btn_sec_start').value=this.value">
+                  <input type="text" name="hero_btn_secondary_start" id="c_hero_btn_sec_start" class="pm-input"
+                    value="{{ $settings['hero_btn_secondary_start'] ?? 'rgba(255,255,255,0.18)' }}">
+                </div>
+              </div>
+
+              {{-- Secondary Button End Color --}}
+              <div>
+                <label class="pm-label">Tombol Sekunder: Gradasi End Color</label>
+                <div class="pm-color-picker-wrap">
+                  <input type="color" value="#0F172A"
+                    onchange="document.getElementById('c_hero_btn_sec_end').value=this.value">
+                  <input type="text" name="hero_btn_secondary_end" id="c_hero_btn_sec_end" class="pm-input"
+                    value="{{ $settings['hero_btn_secondary_end'] ?? 'rgba(255,255,255,0.08)' }}">
+                </div>
+              </div>
+
+              {{-- Secondary Button Border Color --}}
+              <div>
+                <label class="pm-label">Tombol Sekunder: Warna Border</label>
+                <div class="pm-color-picker-wrap">
+                  <input type="color" value="#ffffff"
+                    onchange="document.getElementById('c_hero_btn_sec_border').value=this.value">
+                  <input type="text" name="hero_btn_secondary_border" id="c_hero_btn_sec_border" class="pm-input"
+                    value="{{ $settings['hero_btn_secondary_border'] ?? 'rgba(255,255,255,0.45)' }}">
+                </div>
+              </div>
+
+              {{-- Hero Mobile Background Darkness / Overlay --}}
+              <div>
+                <label class="pm-label">Kegelapan Background Overlay (Mobile)</label>
+                <select name="hero_mob_overlay_darkness" class="pm-input">
+                  <option value="ultra" {{ ($settings['hero_mob_overlay_darkness'] ?? 'ultra') == 'ultra' ? 'selected' : '' }}>Sangat Gelap (Ultra Dark - 95% Opacity - Rekomendasi)</option>
+                  <option value="dark" {{ ($settings['hero_mob_overlay_darkness'] ?? '') == 'dark' ? 'selected' : '' }}>Gelap (Dark - 80% Opacity)</option>
+                  <option value="medium" {{ ($settings['hero_mob_overlay_darkness'] ?? '') == 'medium' ? 'selected' : '' }}>Sedang (Medium - 60% Opacity)</option>
+                </select>
+                <div class="pm-help">Memastikan teks putih & tombol capsule selalu kontras dan terbaca jelas.</div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {{-- HERO SLIDES CRUD MANAGER (1 - MAX 5 SLIDES) --}}

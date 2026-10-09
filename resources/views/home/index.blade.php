@@ -577,7 +577,7 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-end;
-                background-color: #0A1930 !important;
+                background-color: #030712 !important;
             }
 
             /* Full-bleed background image layer */
@@ -592,17 +592,17 @@
                 z-index: 0;
             }
 
-            /* Dark gradient: bottom-left corner → upper right */
+            /* Dark gradient overlay: Extra dark for maximum legibility */
             .cv-hero-mob-grad {
                 position: absolute;
                 inset: 0;
                 z-index: 1;
                 background: linear-gradient(
-                    145deg,
-                    rgba(6, 14, 30, 0.88) 0%,
-                    rgba(6, 14, 30, 0.72) 35%,
-                    rgba(6, 14, 30, 0.18) 70%,
-                    transparent 100%
+                    160deg,
+                    rgba(1, 4, 10, 0.98) 0%,
+                    rgba(3, 8, 20, 0.92) 40%,
+                    rgba(5, 12, 26, 0.80) 75%,
+                    rgba(5, 12, 26, 0.50) 100%
                 );
                 pointer-events: none;
             }
@@ -640,7 +640,7 @@
                 font-weight: 700;
                 letter-spacing: 0.1em;
                 text-transform: uppercase;
-                color: rgba(255,255,255,0.75);
+                color: rgba(255,255,255,0.85);
             }
 
             .cv-hero-mob-badge::before {
@@ -660,12 +660,12 @@
                 letter-spacing: -0.025em;
                 margin: 0;
                 white-space: pre-line;
-                text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+                text-shadow: 0 2px 14px rgba(0,0,0,0.5);
             }
 
             .cv-hero-mob-desc {
                 font-size: 0.83rem;
-                color: rgba(255,255,255,0.78);
+                color: rgba(255,255,255,0.85);
                 line-height: 1.55;
                 margin: 0;
                 padding-left: 0.85rem;
@@ -673,7 +673,7 @@
                 max-width: 90%;
             }
 
-            /* Capsule buttons */
+            /* Capsule buttons with dynamic gradient support */
             .cv-hero-mob-ctas {
                 display: flex;
                 flex-direction: column;
@@ -693,33 +693,31 @@
                 text-decoration: none;
                 transition: all 0.22s ease;
                 letter-spacing: 0.01em;
-                border: 2px solid transparent;
             }
 
             .cv-hero-mob-btn-primary {
-                background: #00A664;
-                color: #ffffff;
-                border-color: #00A664;
-                box-shadow: 0 4px 18px rgba(0,166,100,0.4);
+                background: linear-gradient({{ $settings['hero_btn_primary_dir'] ?? '135deg' }}, {{ $settings['hero_btn_primary_start'] ?? '#00D68F' }}, {{ $settings['hero_btn_primary_end'] ?? '#00A664' }});
+                color: #ffffff !important;
+                border: none;
+                box-shadow: 0 6px 20px rgba(0,166,100,0.45);
             }
 
             .cv-hero-mob-btn-primary:hover {
-                background: #00875A;
-                color: #ffffff;
+                filter: brightness(1.08);
                 transform: translateY(-1px);
             }
 
             .cv-hero-mob-btn-outline {
-                background: rgba(255,255,255,0.12);
-                color: #ffffff;
-                border-color: rgba(255,255,255,0.45);
+                background: linear-gradient(135deg, {{ $settings['hero_btn_secondary_start'] ?? 'rgba(255,255,255,0.18)' }}, {{ $settings['hero_btn_secondary_end'] ?? 'rgba(255,255,255,0.08)' }});
+                color: #ffffff !important;
+                border: 1.5px solid {{ $settings['hero_btn_secondary_border'] ?? 'rgba(255,255,255,0.45)' }};
                 backdrop-filter: blur(8px);
                 -webkit-backdrop-filter: blur(8px);
             }
 
             .cv-hero-mob-btn-outline:hover {
-                background: rgba(255,255,255,0.22);
-                color: #ffffff;
+                background: rgba(255,255,255,0.25);
+                color: #ffffff !important;
             }
 
             /* Pagination dots — still visible at bottom on mobile */
@@ -1226,29 +1224,11 @@
         /* ── ELEGANT MINIMALIST CLIENT BAR ──────────── */
         .cv-clients-section {
             background: #ffffff;
-            padding: 3rem 0 3.5rem;
+            padding: 1.5rem 0 1.75rem;
             border-top: 1px solid #F1F5F9;
             border-bottom: 1px solid #F1F5F9;
             overflow: hidden;
             position: relative;
-        }
-
-        .cv-clients-header {
-            max-width: 1200px;
-            margin: 0 auto 2rem;
-            padding: 0 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .cv-clients-label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: #94A3B8;
         }
 
         .cv-marquee-container {
@@ -1279,7 +1259,7 @@
             background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
         }
 
-        @keyframes scrollLeft {
+        @keyframes scrollLeftSlow {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
@@ -1287,10 +1267,10 @@
         .cv-marquee-track {
             display: flex;
             align-items: center;
-            gap: 3.5rem;
-            padding: 0.75rem 1rem;
+            gap: 4rem;
+            padding: 0.5rem 1rem;
             width: max-content;
-            animation: scrollLeft 35s linear infinite;
+            animation: scrollLeftSlow 35s linear infinite;
         }
 
         .cv-marquee-container:hover .cv-marquee-track {
@@ -1301,21 +1281,21 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 52px;
+            height: 48px;
             padding: 0 0.5rem;
             transition: transform 0.3s ease;
             flex-shrink: 0;
         }
 
         .cv-client-logo-img {
-            max-height: 48px;
-            max-width: 160px;
+            max-height: 44px;
+            max-width: 150px;
             width: auto;
             height: auto;
             object-fit: contain;
             filter: grayscale(100%);
-            opacity: 0.55;
-            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            opacity: 0.6;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
             display: block;
         }
 
@@ -1325,30 +1305,12 @@
             transform: scale(1.08);
         }
 
-        .cv-client-text-name {
-            font-size: 1.05rem;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-            color: #64748B;
-            opacity: 0.75;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .cv-client-minimal-item:hover .cv-client-text-name {
-            color: #0F172A;
-            opacity: 1;
-            transform: scale(1.06);
-        }
-
         @media (max-width: 768px) {
-            .cv-clients-section { padding: 2.25rem 0 2.5rem; }
-            .cv-clients-header { margin-bottom: 1.5rem; }
-            .cv-marquee-track { gap: 2rem; animation-duration: 25s; }
-            .cv-client-minimal-item { height: 42px; }
-            .cv-client-logo-img { max-height: 38px; max-width: 130px; }
-            .cv-client-text-name { font-size: 0.9rem; }
-            .cv-marquee-container::before, .cv-marquee-container::after { width: 60px; }
+            .cv-clients-section { padding: 1.25rem 0 1.5rem; }
+            .cv-marquee-track { gap: 2.25rem; animation-duration: 25s; }
+            .cv-client-minimal-item { height: 38px; }
+            .cv-client-logo-img { max-height: 36px; max-width: 120px; }
+            .cv-marquee-container::before, .cv-marquee-container::after { width: 50px; }
         }
 
         /* RESPONSIVE */
@@ -1627,29 +1589,23 @@
         </div>
     </section>
 
-    {{-- ════ PREMIUM CLIENTS BAR (MINIMALIST & ELEGANT) ════ --}}
-    @if(isset($clients) && $clients->filter(fn($c) => !empty($c->logo) || !empty($c->name))->count() > 0)
+    {{-- ════ PREMIUM CLIENTS BAR (MINIMALIST & ELEGANT SLOW MARQUEE) ════ --}}
+    @php
+        $logoClients = isset($clients) ? $clients->filter(fn($c) => !empty($c->logo)) : collect();
+    @endphp
+    @if($logoClients->count() > 0)
         @php
             $clientSectionBg = \App\Models\Setting::get('page_home_client_bg') ?? '#FFFFFF';
-            $clientSectionLabel = \App\Models\Setting::get('client_section_label') ?? 'DIPERCAYA OLEH PERUSAHAAN TERKEMUKA';
         @endphp
         <section class="cv-clients-section" style="background: {{ $clientSectionBg }};">
-            <div class="cv-clients-header">
-                <span class="cv-clients-label">{{ $clientSectionLabel }}</span>
-            </div>
-
             <div class="cv-marquee-container">
                 <div class="cv-marquee-track">
                     {{-- Loop twice to create seamless infinite scroll effect --}}
                     @foreach([1, 2] as $loopGroup)
-                        @foreach($clients as $client)
+                        @foreach($logoClients as $client)
                             <div class="cv-client-minimal-item">
-                                @if($client->logo)
-                                    <img src="{{ asset('storage/' . $client->logo) }}" alt="{{ $client->auto_alt }}"
-                                        class="cv-client-logo-img" title="{{ $client->name }}" loading="lazy">
-                                @else
-                                    <span class="cv-client-text-name">{{ $client->name }}</span>
-                                @endif
+                                <img src="{{ asset('storage/' . $client->logo) }}" alt="{{ $client->auto_alt }}"
+                                    class="cv-client-logo-img" title="{{ $client->name }}" loading="lazy">
                             </div>
                         @endforeach
                     @endforeach
