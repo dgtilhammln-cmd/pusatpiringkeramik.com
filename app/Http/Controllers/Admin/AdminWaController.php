@@ -12,11 +12,19 @@ class AdminWaController extends Controller
     public function index()
     {
         $waSettings = WaSetting::ordered()->get();
-        return view('admin.wa.index', compact('waSettings'));
+        $settings   = Setting::getAllAsArray();
+        return view('admin.wa.index', compact('waSettings', 'settings'));
     }
 
     public function update(Request $request)
     {
+        if ($request->has('lead_mode')) {
+            Setting::set('lead_mode', $request->input('lead_mode', 'popup'), 'text', 'general');
+        }
+        if ($request->has('wa_template_text')) {
+            Setting::set('wa_template_text', $request->input('wa_template_text', ''), 'text', 'general');
+        }
+
         $ids = array_filter((array) $request->input('ids', []));
         $primaryId = $request->input('primary');
 
@@ -60,10 +68,10 @@ class AdminWaController extends Controller
             Setting::set('company_whatsapp', $primaryWa->nomor_wa, 'text');
             Setting::set('phone', $primaryWa->nomor_wa, 'text');
             Setting::set('whatsapp', $primaryWa->nomor_wa, 'text');
-            Setting::clearCache();
         }
+        Setting::clearCache();
 
-        return back()->with('success', 'Pengaturan WhatsApp berhasil disimpan.');
+        return back()->with('success', 'Pengaturan WhatsApp & Lead Mode berhasil disimpan.');
     }
 
     public function store(Request $request)

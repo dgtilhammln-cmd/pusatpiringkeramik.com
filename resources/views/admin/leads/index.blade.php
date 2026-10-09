@@ -129,8 +129,8 @@
 <div class="stats-grid">
   @foreach([
     ['Total Leads', $stats['total'], '#3B82F6', 'rgba(59,130,246,0.1)', 'M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z M22,6 12,13 2,6'],
-    ['Hari Ini', $stats['today'], '#10B981', 'rgba(16,213,129,0.1)', 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'],
-    ['Bulan Ini', $stats['this_month'], '#8B5CF6', 'rgba(139,92,246,0.1)', 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z'],
+    ['Mode Popup Form', $stats['popup'], '#8B5CF6', 'rgba(139,92,246,0.1)', 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'],
+    ['Mode Kode WA', $stats['wa_code'], '#10B981', 'rgba(16,185,129,0.1)', 'M12 4v16m8-8H4'],
     ['Belum Ditindak', $stats['new'], '#F59E0B', 'rgba(245,158,11,0.1)', 'M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9'],
   ] as $sc)
   <div class="stat-card">
@@ -145,51 +145,122 @@
   @endforeach
 </div>
 
+{{-- Filter Tabs for Modes --}}
+<div style="display:flex; gap:0.5rem; margin-bottom:1rem; flex-wrap:wrap;">
+    <a href="{{ route('admin.leads', ['type' => 'all']) }}" style="padding:0.6rem 1.25rem; border-radius:50px; font-size:0.8125rem; font-weight:700; text-decoration:none; transition:all 0.2s; {{ $currentType === 'all' ? 'background:#0F172A; color:#FFF;' : 'background:#F1F5F9; color:#64748B;' }}">
+        📋 Semua Leads ({{ $stats['total'] }})
+    </a>
+    <a href="{{ route('admin.leads', ['type' => 'popup']) }}" style="padding:0.6rem 1.25rem; border-radius:50px; font-size:0.8125rem; font-weight:700; text-decoration:none; transition:all 0.2s; {{ $currentType === 'popup' ? 'background:#0F172A; color:#FFF;' : 'background:#F1F5F9; color:#64748B;' }}">
+        📝 Mode Popup Form ({{ $stats['popup'] }})
+    </a>
+    <a href="{{ route('admin.leads', ['type' => 'wa_code']) }}" style="padding:0.6rem 1.25rem; border-radius:50px; font-size:0.8125rem; font-weight:700; text-decoration:none; transition:all 0.2s; {{ $currentType === 'wa_code' ? 'background:#0F172A; color:#FFF;' : 'background:#F1F5F9; color:#64748B;' }}">
+        ⚡ Mode Kode WA ({{ $stats['wa_code'] }})
+    </a>
+</div>
+
 {{-- Leads Table --}}
 <div class="table-card">
   <div class="table-header-row">
     <div>
-      <div style="font-size:1.125rem;font-weight:800;color:#1E293B;letter-spacing:-.01em;">Semua Leads</div>
-      <div style="font-size:.8rem;color:#64748B;margin-top:.15rem;">{{ $leads->total() }} total entri data</div>
+      <div style="font-size:1.125rem;font-weight:800;color:#1E293B;letter-spacing:-.01em;">
+        @if($currentType === 'wa_code') Rekap Mode Kode Referensi WA
+        @elseif($currentType === 'popup') Rekap Mode Popup Form
+        @else Rekap Semua Leads
+        @endif
+      </div>
+      <div style="font-size:.8rem;color:#64748B;margin-top:.15rem;">{{ $leads->total() }} entri data ditemukan</div>
     </div>
   </div>
   <div style="overflow-x:auto;">
     <table style="width:100%;border-collapse:collapse;">
       <thead>
         <tr>
-          @foreach(['#','Nama & Perusahaan','Telepon / Email','Produk','Sumber','Perangkat','Waktu','Status','Aksi'] as $h)
-          <th class="th-cell">{{ $h }}</th>
-          @endforeach
+          @if($currentType === 'wa_code')
+            @foreach(['#','Nomor Urut / Unique Code','Waktu Klik WA','Nomor Tujuan WA','Sumber Halaman','Perangkat','Status','Aksi'] as $h)
+            <th class="th-cell">{{ $h }}</th>
+            @endforeach
+          @elseif($currentType === 'popup')
+            @foreach(['#','Nama & Perusahaan','Telepon / Email','Kebutuhan / Produk','Sumber','Perangkat','Waktu','Status','Aksi'] as $h)
+            <th class="th-cell">{{ $h }}</th>
+            @endforeach
+          @else
+            @foreach(['#','Tipe Mode','Identitas / Unique Code','Kontak / WA','Kebutuhan / Pesan','Sumber','Perangkat','Waktu','Status','Aksi'] as $h)
+            <th class="th-cell">{{ $h }}</th>
+            @endforeach
+          @endif
         </tr>
       </thead>
       <tbody>
         @forelse($leads as $lead)
         <tr class="tr-row">
           <td class="td-cell" style="font-size:.75rem;color:#94A3B8;font-weight:600;">{{ $lead->id }}</td>
-          <td class="td-cell">
-            <div style="font-size:.875rem;font-weight:700;color:#1E293B;">{{ $lead->name }}</div>
-            @if($lead->company)<div style="font-size:.75rem;color:#64748B;margin-top:2px;">{{ $lead->company }}</div>@endif
-          </td>
-          <td class="td-cell">
-            <div style="font-size:.85rem;color:#334155;font-weight:600;white-space:nowrap;">{{ $lead->phone }}</div>
-            @if($lead->email)<div style="font-size:.75rem;color:#3B82F6;margin-top:2px;">{{ $lead->email }}</div>@endif
-          </td>
-          <td class="td-cell" style="font-size:.85rem;color:#475569;max-width:160px;">
-            <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block;">{{ $lead->product ?: '—' }}</span>
-          </td>
+          
+          @if($currentType === 'wa_code')
+            {{-- Mode Kode Referensi WA Columns --}}
+            <td class="td-cell">
+              <span style="font-size:0.9rem;font-weight:800;color:#10B981;font-family:monospace;background:rgba(16,185,129,0.1);padding:0.25rem 0.625rem;border-radius:6px;">
+                {{ $lead->ref_code ?? ('UDSM-' . str_pad((string)$lead->seq_number, 4, '0', STR_PAD_LEFT)) }}
+              </span>
+            </td>
+            <td class="td-cell" style="font-size:.8rem;color:#475569;white-space:nowrap;font-weight:500;">
+              {{ $lead->created_at->diffForHumans() }}
+              <div style="font-size:0.7rem;color:#94A3B8;margin-top:2px;font-weight:400;">{{ $lead->created_at->format('d/m/Y H:i:s') }}</div>
+            </td>
+            <td class="td-cell" style="font-size:.85rem;color:#334155;font-weight:600;white-space:nowrap;">
+              {{ $lead->wa_number ? ('+' . $lead->wa_number) : '-' }}
+            </td>
+          @elseif($currentType === 'popup')
+            {{-- Mode Popup Form Columns --}}
+            <td class="td-cell">
+              <div style="font-size:.875rem;font-weight:700;color:#1E293B;">{{ $lead->name }}</div>
+              @if($lead->company)<div style="font-size:.75rem;color:#64748B;margin-top:2px;">{{ $lead->company }}</div>@endif
+            </td>
+            <td class="td-cell">
+              <div style="font-size:.85rem;color:#334155;font-weight:600;white-space:nowrap;">{{ $lead->phone }}</div>
+              @if($lead->email)<div style="font-size:.75rem;color:#3B82F6;margin-top:2px;">{{ $lead->email }}</div>@endif
+            </td>
+            <td class="td-cell" style="font-size:.85rem;color:#475569;max-width:160px;">
+              <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block;">{{ $lead->product ?: ($lead->message ?: '—') }}</span>
+            </td>
+          @else
+            {{-- Mode All / Rekap --}}
+            <td class="td-cell">
+              @if($lead->lead_type === 'wa_code')
+                <span style="font-size:0.65rem;font-weight:800;color:#10B981;background:rgba(16,185,129,0.12);padding:0.2rem 0.5rem;border-radius:50px;">⚡ Kode WA</span>
+              @else
+                <span style="font-size:0.65rem;font-weight:800;color:#8B5CF6;background:rgba(139,92,246,0.12);padding:0.2rem 0.5rem;border-radius:50px;">📝 Popup Form</span>
+              @endif
+            </td>
+            <td class="td-cell">
+              @if($lead->lead_type === 'wa_code')
+                <span style="font-size:0.875rem;font-weight:800;color:#10B981;font-family:monospace;">{{ $lead->ref_code ?? ('UDSM-' . str_pad((string)$lead->seq_number, 4, '0', STR_PAD_LEFT)) }}</span>
+              @else
+                <div style="font-size:.875rem;font-weight:700;color:#1E293B;">{{ $lead->name }}</div>
+                @if($lead->company)<div style="font-size:.75rem;color:#64748B;">{{ $lead->company }}</div>@endif
+              @endif
+            </td>
+            <td class="td-cell">
+              <div style="font-size:.85rem;color:#334155;font-weight:600;white-space:nowrap;">{{ $lead->phone ?: ($lead->wa_number ? '+'.$lead->wa_number : '-') }}</div>
+              @if($lead->email)<div style="font-size:.75rem;color:#3B82F6;">{{ $lead->email }}</div>@endif
+            </td>
+            <td class="td-cell" style="font-size:.85rem;color:#475569;max-width:140px;">
+              <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block;">{{ $lead->product ?: ($lead->message ?: '—') }}</span>
+            </td>
+          @endif
+
           <td class="td-cell">
             @php
               $src = $lead->source ?? 'Website';
               $srcColor = match(true) {
-                str_contains($src,'Hero')     => '#EAB308', // Yellow
-                str_contains($src,'Navbar')   => '#3B82F6', // Blue
-                str_contains($src,'Footer')   => '#8B5CF6', // Purple
-                str_contains($src,'Artikel')  => '#F97316', // Orange
-                str_contains($src,'Layanan')  => '#10B981', // Green
-                str_contains($src,'Galeri')   => '#EC4899', // Pink
-                str_contains($src,'Kontak')   => '#06B6D4', // Cyan
-                str_contains($src,'Floating') => '#22C55E', // WhatsApp Green
-                default                       => '#64748B', // Slate
+                str_contains($src,'Hero')     => '#EAB308',
+                str_contains($src,'Navbar')   => '#3B82F6',
+                str_contains($src,'Footer')   => '#8B5CF6',
+                str_contains($src,'Artikel')  => '#F97316',
+                str_contains($src,'Layanan')  => '#10B981',
+                str_contains($src,'Galeri')   => '#EC4899',
+                str_contains($src,'Kontak')   => '#06B6D4',
+                str_contains($src,'Floating') || str_contains($src,'WhatsApp') => '#22C55E',
+                default                       => '#64748B',
               };
             @endphp
             <span style="font-size:.7rem;font-weight:600;padding:.25rem .625rem;border-radius:100px;background:{{ $srcColor }}15;color:{{ $srcColor }};white-space:nowrap;">
@@ -228,7 +299,7 @@
               </a>
               
               @if($lead->wa_customer)
-              <a href="https://wa.me/{{ $lead->wa_customer }}?text={{ urlencode('Follow up lead: '.$lead->name.' - '.$lead->phone) }}" target="_blank" style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:rgba(34,197,94,0.1);color:#16A34A;border-radius:8px;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='#22C55E';this.style.color='#fff';" onmouseout="this.style.background='rgba(34,197,94,0.1)';this.style.color='#16A34A';">
+              <a href="https://wa.me/{{ $lead->wa_customer }}?text={{ urlencode('Follow up lead: '.($lead->ref_code ? $lead->ref_code : $lead->name).' - '.$lead->phone) }}" target="_blank" style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:rgba(34,197,94,0.1);color:#16A34A;border-radius:8px;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='#22C55E';this.style.color='#fff';" onmouseout="this.style.background='rgba(34,197,94,0.1)';this.style.color='#16A34A';">
                 <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" title="WhatsApp"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
               </a>
               @endif
@@ -244,12 +315,12 @@
         </tr>
         @empty
         <tr>
-          <td colspan="9" style="padding:4rem;text-align:center;color:#94A3B8;">
+          <td colspan="10" style="padding:4rem;text-align:center;color:#94A3B8;">
             <div style="width:64px;height:64px;background:#F8FAFC;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
                 <svg width="32" height="32" fill="none" stroke="#CBD5E1" stroke-width="2" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
             </div>
             <div style="font-size:1.125rem;font-weight:700;color:#475569;margin-bottom:0.25rem;">Belum Ada Leads Masuk</div>
-            <p style="font-size:0.875rem;margin:0;">Saat ini belum ada data permintaan order atau pesan yang masuk.</p>
+            <p style="font-size:0.875rem;margin:0;">Saat ini belum ada data permintaan order atau pesan yang masuk pada filter ini.</p>
           </td>
         </tr>
         @endforelse
@@ -264,6 +335,8 @@
 
 @push('scripts')
 <script>
+const currentLeadType = "{{ $currentType }}";
+
 function downloadLeads(format) {
     const start = document.getElementById('lead-start').value;
     const end = document.getElementById('lead-end').value;
@@ -272,9 +345,9 @@ function downloadLeads(format) {
         return;
     }
     if (format === 'xls') {
-        window.location.href = `/admin/leads/export?start_date=${start}&end_date=${end}`;
+        window.location.href = `/admin/leads/export?start_date=${start}&end_date=${end}&type=${currentLeadType}`;
     } else {
-        window.open(`/admin/leads/export-pdf?start_date=${start}&end_date=${end}`, '_blank');
+        window.open(`/admin/leads/export-pdf?start_date=${start}&end_date=${end}&type=${currentLeadType}`, '_blank');
     }
 }
 </script>

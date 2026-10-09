@@ -148,36 +148,74 @@
 <table>
     <thead>
         <tr>
-            <th>#</th>
-            <th>Tanggal</th>
-            <th>Bulan</th>
-            <th>Tahun</th>
-            <th>Waktu</th>
-            <th>Nama</th>
-            <th>Perusahaan</th>
-            <th>Email</th>
-            <th>Telepon</th>
-            <th>Produk</th>
-            <th>Sumber</th>
-            <th>Perangkat</th>
-            <th>Status</th>
+            @if(($type ?? 'all') === 'wa_code')
+                <th>#</th>
+                <th>Nomor Urut / Unique Code</th>
+                <th>Tanggal & Waktu Klik</th>
+                <th>Nomor WA Tujuan</th>
+                <th>Sumber Halaman</th>
+                <th>Perangkat</th>
+                <th>Status</th>
+            @elseif(($type ?? 'all') === 'popup')
+                <th>#</th>
+                <th>Nama Lengkap</th>
+                <th>Perusahaan</th>
+                <th>Email</th>
+                <th>Telepon / WA</th>
+                <th>Produk / Kebutuhan</th>
+                <th>Sumber</th>
+                <th>Perangkat</th>
+                <th>Tanggal & Waktu</th>
+                <th>Status</th>
+            @else
+                <th>#</th>
+                <th>Tipe Mode</th>
+                <th>Identitas / Unique Code</th>
+                <th>Kontak / WA</th>
+                <th>Kebutuhan</th>
+                <th>Sumber</th>
+                <th>Perangkat</th>
+                <th>Tanggal & Waktu</th>
+                <th>Status</th>
+            @endif
         </tr>
     </thead>
     <tbody>
         @forelse($leads as $i => $lead)
         <tr>
             <td style="color:#aaa; text-align:center;">{{ $i + 1 }}</td>
-            <td style="text-align:center; font-weight:700;">{{ $lead->created_at->format('d') }}</td>
-            <td style="white-space:nowrap;">{{ $lead->created_at->format('M') }}</td>
-            <td>{{ $lead->created_at->format('Y') }}</td>
-            <td style="white-space:nowrap; color:#555;">{{ $lead->created_at->format('H:i') }}</td>
-            <td style="font-weight:700; color:#111;">{{ $lead->name }}</td>
-            <td style="color:#555;">{{ $lead->company ?: '-' }}</td>
-            <td style="color:#3B82F6;">{{ $lead->email ?: '-' }}</td>
-            <td style="white-space:nowrap; font-weight:600;">{{ $lead->phone }}</td>
-            <td style="color:#555; max-width:120px;">{{ $lead->product ?: '-' }}</td>
-            <td style="font-size:0.6rem;">{{ $lead->source ?: 'Website' }}</td>
-            <td style="font-size:0.6rem; white-space:nowrap;">{{ $lead->device_type ?: '-' }}</td>
+
+            @if(($type ?? 'all') === 'wa_code')
+                <td style="font-weight:800; color:#10B981; font-family:monospace;">
+                    {{ $lead->ref_code ?? ('UDSM-' . str_pad((string)$lead->seq_number, 4, '0', STR_PAD_LEFT)) }}
+                </td>
+                <td style="white-space:nowrap; color:#333;">{{ $lead->created_at->format('d/m/Y H:i:s') }}</td>
+                <td style="white-space:nowrap; font-weight:600;">{{ $lead->wa_number ? ('+' . $lead->wa_number) : '-' }}</td>
+                <td style="font-size:0.6rem;">{{ $lead->source ?: 'Tombol WhatsApp' }}</td>
+                <td style="font-size:0.6rem; white-space:nowrap;">{{ $lead->device_type ?: '-' }}</td>
+            @elseif(($type ?? 'all') === 'popup')
+                <td style="font-weight:700; color:#111;">{{ $lead->name }}</td>
+                <td style="color:#555;">{{ $lead->company ?: '-' }}</td>
+                <td style="color:#3B82F6;">{{ $lead->email ?: '-' }}</td>
+                <td style="white-space:nowrap; font-weight:600;">{{ $lead->phone }}</td>
+                <td style="color:#555; max-width:140px;">{{ $lead->product ?: ($lead->message ?: '-') }}</td>
+                <td style="font-size:0.6rem;">{{ $lead->source ?: 'Website' }}</td>
+                <td style="font-size:0.6rem; white-space:nowrap;">{{ $lead->device_type ?: '-' }}</td>
+                <td style="white-space:nowrap; color:#333;">{{ $lead->created_at->format('d/m/Y H:i') }}</td>
+            @else
+                <td style="font-weight:700; font-size:0.65rem; color:{{ $lead->lead_type === 'wa_code' ? '#10B981' : '#8B5CF6' }};">
+                    {{ $lead->lead_type === 'wa_code' ? 'Kode WA' : 'Popup Form' }}
+                </td>
+                <td style="font-weight:700; color:#111;">
+                    {{ $lead->ref_code ?? $lead->name }}
+                </td>
+                <td style="white-space:nowrap; font-weight:600;">{{ $lead->phone ?: ($lead->wa_number ? '+'.$lead->wa_number : '-') }}</td>
+                <td style="color:#555; max-width:140px;">{{ $lead->product ?: ($lead->message ?: '-') }}</td>
+                <td style="font-size:0.6rem;">{{ $lead->source ?: 'Website' }}</td>
+                <td style="font-size:0.6rem; white-space:nowrap;">{{ $lead->device_type ?: '-' }}</td>
+                <td style="white-space:nowrap; color:#333;">{{ $lead->created_at->format('d/m/Y H:i') }}</td>
+            @endif
+
             <td>
                 @if($lead->status === 'new')
                     <span class="status-badge status-new">Baru</span>
@@ -190,7 +228,7 @@
         </tr>
         @empty
         <tr>
-            <td colspan="13" style="text-align:center; padding:2rem; color:#aaa;">Tidak ada data untuk periode ini.</td>
+            <td colspan="10" style="text-align:center; padding:2rem; color:#aaa;">Tidak ada data leads untuk periode dan filter ini.</td>
         </tr>
         @endforelse
     </tbody>

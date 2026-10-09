@@ -69,4 +69,67 @@ class LeadController extends Controller
             'lead_id' => $lead->id,
         ]);
     }
+
+    /**
+     * Direct WA Redirect with Unique Reference Code (Mode Kode WA: UDSM-0001, UDSM-9999, UDSM-10000...)
+     */
+    public function waRedirect(Request $request)
+    {
+        // 1. Get primary WA setting
+        $wa = WaSetting::primary();
+        $nomor = null;
+        if ($wa && $wa->nomor_wa) {
+            $nomor = preg_replace('/[^0-9]/', '', $wa->nomor_wa);
+            if (str_starts_with($nomor, '0')) $nomor = '62' . substr($nomor, 1);
+        }
+
+        // 2. Generate atomic continuous ref code (UDSM-0001, UDSM-9999, UDSM-10000...)
+        $refData = Lead::generateNextRefCode();
+        $refCode = $refData['ref_code'];
+
+        // 3. Build WA Template Message
+        $comp = \App\Models\Setting::get('company_name', config('app.name'));
+        $defaultTpl = "Halo {$comp}, saya tertarik dengan produk piring & tableware keramik. (Kode Referensi: {code})";
+        $rawTpl = \App\Models\Setting::get('wa_template_text', $defaultTpl);
+        if (empty(trim($rawTpl))) {
+            $rawTpl = $defaultTpl;
+        }
+        $msg = str_replace(['{code}', '{kode}'], $refCode, $rawTpl);
+
+        $waUrl = 'https://wa.me/' . ($nomor ?: '6281805890181') . '?text=' . urlencode($msg);
+
+        // 4. Instant millisecond logging to DB (preserves lead record even if visitor cancels opening WA)
+        $lead = Lead::create([
+            'lead_type'   => 'wa_code',
+            'ref_code'    => $refCode,
+            'seq_number'  => $refData['seq_number'],
+            'name'        => 'WA Visitor (' . $refCode . ')',
+            'phone'       => $nomor ? ('+' . $nomor) : '-',
+            'company'     => '-',
+            'source'      => $request->input('source', 'Tombol WhatsApp'),
+            'page_url'    => $request->header('Referer'),
+            'ip_address'  => $request->ip(),
+            'device_type' => AnalyticsEvent::detectDevice($request->userAgent() ?? ''),
+            'wa_number'   => $nomor,
+            'status'      => 'new',
+            'utm_source'  => $request->session()->get('utm_source'),
+            'utm_medium'  => $request->session()->get('utm_medium'),
+            'utm_campaign'=> $request->session()->get('utm_campaign'),
+            'utm_term'    => $request->session()->get('utm_term'),
+            'utm_content' => $request->session()->get('utm_content'),
+        ]);
+
+        // 5. Track Analytics
+        AnalyticsEvent::record('lead_wa_code', $request->header('Referer'), [
+            'page_title' => 'WA Direct Click - ' . $refCode,
+            'ref_code'   => $refCode,
+        ]);
+
+        return response()->json([
+            'success'  => true,
+            'wa_url'   => $waUrl,
+            'ref_code' => $refCode,
+            'lead_id'  => $lead->id,
+        ]);
+    }
 }

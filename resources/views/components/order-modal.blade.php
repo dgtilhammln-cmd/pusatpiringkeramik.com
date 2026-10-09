@@ -247,8 +247,36 @@
         } catch (e) { }
     }
 
-    function openOrderModal(source = 'Website') {
+    @php
+        $currentLeadMode = \App\Models\Setting::get('lead_mode', 'popup');
+    @endphp
+    const CURRENT_LEAD_MODE = "{{ $currentLeadMode }}";
+
+    async function openOrderModal(source = 'Website') {
         trackModalWaClick();
+
+        if (CURRENT_LEAD_MODE === 'wa_code') {
+            try {
+                const token = document.querySelector('meta[name="csrf-token"]')?.content;
+                const res = await fetch('/request-order-wa', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': token,
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({ source: source })
+                });
+                const data = await res.json();
+                if (data.success && data.wa_url) {
+                    window.open(data.wa_url, '_blank') || (window.location.href = data.wa_url);
+                    return;
+                }
+            } catch (e) {
+                console.error('WA redirect error:', e);
+            }
+        }
+
         const o = document.getElementById('order-modal-overlay');
         const sourceInput = document.getElementById('order-source');
         if (sourceInput) sourceInput.value = source;

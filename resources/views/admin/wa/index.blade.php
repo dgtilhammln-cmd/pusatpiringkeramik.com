@@ -4,6 +4,58 @@
 @section('content')
 <div style="max-width:900px;display:flex;flex-direction:column;gap:2rem;">
 
+    {{-- CARD: Mode Penangkapan Leads & Kode Referensi WA --}}
+    <div class="admin-card">
+        <h3 style="font-size:0.875rem;font-weight:700;color:#F5A623;text-transform:uppercase;margin:0 0 1rem;">⚡ Mode Penangkapan Leads & Direct WA</h3>
+        <p style="font-size:0.8125rem;color:#A1A1AA;margin-bottom:1.5rem;line-height:1.6;">
+            Pilih mode aksi ketika pengunjung mengklik tombol WhatsApp atau Konsultasi di seluruh website.
+        </p>
+
+        @php
+            $activeMode = $settings['lead_mode'] ?? 'popup';
+            $defaultTpl = "Halo UD. Sukses Makmur, saya tertarik dengan produk piring & tableware keramik. (Kode Referensi: {code})";
+            $tplText    = $settings['wa_template_text'] ?? $defaultTpl;
+        @endphp
+
+        <form method="POST" action="{{ route('admin.wa.update') }}">
+            @csrf
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem;">
+                <label style="border:2px solid {{ $activeMode === 'popup' ? '#F5A623' : '#27272A' }};padding:1.25rem;border-radius:12px;background:#0A0A0A;cursor:pointer;display:flex;flex-direction:column;gap:0.5rem;transition:all 0.2s;">
+                    <div style="display:flex;align-items:center;gap:0.5rem;">
+                        <input type="radio" name="lead_mode" value="popup" {{ $activeMode === 'popup' ? 'checked' : '' }} style="accent-color:#F5A623;">
+                        <strong style="color:#FFF;font-size:0.9375rem;">1. Mode Form Popup</strong>
+                    </div>
+                    <span style="font-size:0.8rem;color:#A1A1AA;line-height:1.45;">
+                        Pengunjung mengisi Form Popup (Nama, No. Telepon, Perusahaan, Kebutuhan) sebelum diarahkan ke WA.
+                    </span>
+                </label>
+
+                <label style="border:2px solid {{ $activeMode === 'wa_code' ? '#F5A623' : '#27272A' }};padding:1.25rem;border-radius:12px;background:#0A0A0A;cursor:pointer;display:flex;flex-direction:column;gap:0.5rem;transition:all 0.2s;">
+                    <div style="display:flex;align-items:center;gap:0.5rem;">
+                        <input type="radio" name="lead_mode" value="wa_code" {{ $activeMode === 'wa_code' ? 'checked' : '' }} style="accent-color:#F5A623;">
+                        <strong style="color:#FFF;font-size:0.9375rem;">2. Mode Kode Referensi WA</strong>
+                    </div>
+                    <span style="font-size:0.8rem;color:#A1A1AA;line-height:1.45;">
+                        Direct Redirect ke WA dengan Kode Unik Kontinu (<code style="color:#F5A623;">UDSM-0001</code>, <code style="color:#F5A623;">UDSM-9999</code>). Instant Logging milidetik di DB.
+                    </span>
+                </label>
+            </div>
+
+            <div style="margin-bottom:1.5rem;">
+                <label class="form-label" style="display:flex;justify-content:space-between;align-items:center;">
+                    <span>Template Pesan WhatsApp (Mode Kode)</span>
+                    <span style="font-size:0.75rem;color:#F5A623;font-weight:600;">Gunakan Tag: {code}</span>
+                </label>
+                <textarea name="wa_template_text" class="form-input" rows="3" placeholder="Halo, saya tertarik dengan produk piring keramik. (Kode Referensi: {code})">{{ $tplText }}</textarea>
+                <span style="font-size:0.75rem;color:#71717A;margin-top:0.35rem;display:block;">
+                    Tag <code style="color:#F5A623;">{code}</code> akan otomatis diganti menjadi nomor urut unik tanpa reset (contoh: UDSM-0001, UDSM-9999, dst).
+                </span>
+            </div>
+
+            <button type="submit" class="btn-primary">Simpan Mode Leads</button>
+        </form>
+    </div>
+
     {{-- Existing WA Numbers --}}
     <div class="admin-card">
         <h3 style="font-size:0.875rem;font-weight:700;color:#F5A623;text-transform:uppercase;margin:0 0 1.5rem;">Nomor WhatsApp Aktif</h3>

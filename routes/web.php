@@ -55,6 +55,7 @@ Route::middleware(['track.pageview'])->group(function () {
 
 // Lead / Request Order (AJAX - no page tracking)
 Route::post('/request-order', [LeadController::class, 'store'])->name('lead.store');
+Route::post('/request-order-wa', [LeadController::class, 'waRedirect'])->name('lead.wa_redirect');
 
 // Sitemap & robots
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
