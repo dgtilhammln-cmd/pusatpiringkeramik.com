@@ -460,14 +460,35 @@
                                 class="form-input">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Penulis</label>
-                            <input type="text" name="author" value="{{ old('author', $a?->author ?? 'Tim Redaksi') }}"
-                                class="form-input">
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.35rem;">
+                                <label class="form-label" style="margin:0;">Penulis</label>
+                                <button type="button" onclick="promptNewAuthor()" style="font-size:0.75rem;font-weight:700;color:#3B82F6;background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:3px;">
+                                    + Tambah Penulis
+                                </button>
+                            </div>
+                            <select name="author" id="author-select" class="form-select">
+                                @foreach($authors ?? ['Tim Redaksi', 'Admin Utama'] as $auth)
+                                    <option value="{{ $auth }}" {{ old('author', $a?->author ?? 'Tim Redaksi') == $auth ? 'selected' : '' }}>
+                                        {{ $auth }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Kategori</label>
-                            <input type="text" name="category" value="{{ old('category', $a?->category) }}"
-                                class="form-input" placeholder="Tips & Panduan">
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.35rem;">
+                                <label class="form-label" style="margin:0;">Kategori</label>
+                                <button type="button" onclick="promptNewCategory()" style="font-size:0.75rem;font-weight:700;color:#3B82F6;background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:3px;">
+                                    + Tambah Kategori
+                                </button>
+                            </div>
+                            <select name="category" id="category-select" class="form-select">
+                                <option value="">-- Pilih Kategori --</option>
+                                @foreach($categories ?? ['Tips & Panduan', 'Berita & Edukasi', 'Katalog & Produk'] as $cat)
+                                    <option value="{{ $cat }}" {{ old('category', $a?->category) == $cat ? 'selected' : '' }}>
+                                        {{ $cat }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group" style="margin:0;">
                             <label class="form-label">Tags <span class="hint">(pisah dengan koma)</span></label>
@@ -491,21 +512,7 @@
                                 style="padding:0.6rem;background:#fff;" onchange="previewImg(this,'img-prev')">
                         </div>
                         <p style="font-size:.75rem;color:#94A3B8;margin:.75rem 0 0;line-height:1.5;">Otomatis diubah menjadi
-                            WebP dan dijadikan OpenGraph (OG) image jika OG terpisah tidak diupload.</p>
-                    </div>
-
-                    {{-- OG Image --}}
-                    <div class="premium-card">
-                        <h3 class="premium-card-header">OG Image <span class="hint"
-                                style="text-transform:none;font-weight:400;margin-left:auto;">Opsional (1200×630)</span>
-                        </h3>
-                        @if($a?->og_image)
-                            <img src="{{ asset('storage/' . $a->og_image) }}" id="og-prev" class="img-preview">
-                        @else
-                            <img id="og-prev" class="img-preview" style="display:none;">
-                        @endif
-                        <input type="file" name="og_image" accept="image/*" class="form-input"
-                            style="padding:0.6rem;background:#fff;" onchange="previewImg(this,'og-prev')">
+                            WebP dan dijadikan OpenGraph (OG) image secara otomatis.</p>
                     </div>
 
                     {{-- Options --}}
@@ -513,7 +520,7 @@
                         <h3 class="premium-card-header">Opsi Lainnya</h3>
                         <label class="switch-label">
                             <input type="hidden" name="show_toc" value="0">
-                            <input type="checkbox" name="show_toc" value="1" {{ old('show_toc', $a?->show_toc) ? 'checked' : '' }} class="switch-input">
+                            <input type="checkbox" name="show_toc" value="1" {{ old('show_toc', $a?->show_toc ?? 1) ? 'checked' : '' }} class="switch-input">
                             <span class="switch-text" style="font-size:.85rem;">Tampilkan Table of Contents (Daftar Isi
                                 otomatis dari H2/H3)</span>
                         </label>
@@ -653,6 +660,84 @@
                                                 </div>
                                             `;
                 list.insertAdjacentHTML('beforeend', html);
+            }
+
+            function promptNewAuthor() {
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        title: 'Tambah Penulis Baru',
+                        input: 'text',
+                        inputPlaceholder: 'Ketik nama penulis...',
+                        showCancelButton: true,
+                        confirmButtonText: 'Tambah',
+                        cancelButtonText: 'Batal',
+                        confirmButtonColor: '#3B82F6',
+                    }).then((result) => {
+                        if (result.isConfirmed && result.value && result.value.trim() !== '') {
+                            const name = result.value.trim();
+                            const sel = document.getElementById('author-select');
+                            let exists = false;
+                            for (let opt of sel.options) {
+                                if (opt.value.toLowerCase() === name.toLowerCase()) {
+                                    opt.selected = true;
+                                    exists = true;
+                                    break;
+                                }
+                            }
+                            if (!exists) {
+                                const newOpt = new Option(name, name, true, true);
+                                sel.add(newOpt);
+                            }
+                        }
+                    });
+                } else {
+                    const val = prompt('Masukkan nama Penulis baru:');
+                    if (val && val.trim() !== '') {
+                        const name = val.trim();
+                        const sel = document.getElementById('author-select');
+                        const newOpt = new Option(name, name, true, true);
+                        sel.add(newOpt);
+                    }
+                }
+            }
+
+            function promptNewCategory() {
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        title: 'Tambah Kategori Baru',
+                        input: 'text',
+                        inputPlaceholder: 'Ketik nama kategori...',
+                        showCancelButton: true,
+                        confirmButtonText: 'Tambah',
+                        cancelButtonText: 'Batal',
+                        confirmButtonColor: '#3B82F6',
+                    }).then((result) => {
+                        if (result.isConfirmed && result.value && result.value.trim() !== '') {
+                            const name = result.value.trim();
+                            const sel = document.getElementById('category-select');
+                            let exists = false;
+                            for (let opt of sel.options) {
+                                if (opt.value.toLowerCase() === name.toLowerCase()) {
+                                    opt.selected = true;
+                                    exists = true;
+                                    break;
+                                }
+                            }
+                            if (!exists) {
+                                const newOpt = new Option(name, name, true, true);
+                                sel.add(newOpt);
+                            }
+                        }
+                    });
+                } else {
+                    const val = prompt('Masukkan Kategori baru:');
+                    if (val && val.trim() !== '') {
+                        const name = val.trim();
+                        const sel = document.getElementById('category-select');
+                        const newOpt = new Option(name, name, true, true);
+                        sel.add(newOpt);
+                    }
+                }
             }
         </script>
     @endpush

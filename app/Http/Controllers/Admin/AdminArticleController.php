@@ -20,7 +20,35 @@ class AdminArticleController extends Controller
 
     public function create()
     {
-        return view('admin.articles.create');
+        $categories = Article::whereNotNull('category')->where('category', '!=', '')->distinct()->pluck('category')->toArray();
+        $authors    = Article::whereNotNull('author')->where('author', '!=', '')->distinct()->pluck('author')->toArray();
+
+        if (!in_array('Tips & Panduan', $categories)) array_unshift($categories, 'Tips & Panduan');
+        if (!in_array('Berita & Edukasi', $categories)) $categories[] = 'Berita & Edukasi';
+        if (!in_array('Katalog & Produk', $categories)) $categories[] = 'Katalog & Produk';
+
+        if (!in_array('Tim Redaksi', $authors)) array_unshift($authors, 'Tim Redaksi');
+        if (!in_array('Admin Utama', $authors)) $authors[] = 'Admin Utama';
+
+        return view('admin.articles.create', compact('categories', 'authors'));
+    }
+
+    public function edit(Article $article)
+    {
+        $categories = Article::whereNotNull('category')->where('category', '!=', '')->distinct()->pluck('category')->toArray();
+        $authors    = Article::whereNotNull('author')->where('author', '!=', '')->distinct()->pluck('author')->toArray();
+
+        if (!in_array('Tips & Panduan', $categories)) array_unshift($categories, 'Tips & Panduan');
+        if (!in_array('Tim Redaksi', $authors)) array_unshift($authors, 'Tim Redaksi');
+
+        if ($article->category && !in_array($article->category, $categories)) {
+            $categories[] = $article->category;
+        }
+        if ($article->author && !in_array($article->author, $authors)) {
+            $authors[] = $article->author;
+        }
+
+        return view('admin.articles.edit', compact('article', 'categories', 'authors'));
     }
 
     public function store(Request $request)
