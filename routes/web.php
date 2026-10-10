@@ -7,7 +7,6 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\Admin\AdminAuthController;
@@ -58,51 +57,8 @@ Route::middleware(['track.pageview'])->group(function () {
 Route::post('/request-order', [LeadController::class, 'store'])->name('lead.store');
 Route::post('/request-order-wa', [LeadController::class, 'waRedirect'])->name('lead.wa_redirect');
 
-// Sitemap
-Route::get('/sitemap.xml', [SitemapController::class, 'xml'])->name('sitemap');
-Route::get('/robots.txt', function () {
-    $siteUrl = \App\Models\Setting::getAppUrl();
-    $content = "User-agent: *\nAllow: /\n\nSitemap: {$siteUrl}/sitemap.xml\nllms-txt: {$siteUrl}/llms.txt";
-    return response($content, 200)->header('Content-Type', 'text/plain; charset=UTF-8');
-});
-
-Route::get('/llms.txt', function () {
-    $siteUrl = \App\Models\Setting::getAppUrl();
-    $comp = \App\Models\Setting::getAppName();
-    // If company name still has cyclevent data, use the correct name
-    if (str_contains(strtolower($comp), 'cyclevent') || str_contains(strtolower($comp), 'hiranatha')) {
-        $comp = 'Pusat Piring Keramik';
-    }
-
-    $defaultContent = "# {$comp}\n\n"
-        . "> Distributor resmi & supplier piring keramik, mangkuk, tableware, dan peralatan makan HORECA terpercaya di Indonesia.\n\n"
-        . "## Informasi Utama\n"
-        . "- **Nama Perusahaan**: {$comp}\n"
-        . "- **Situs Resmi**: {$siteUrl}\n"
-        . "- **Telepon / WhatsApp**: 0856-2682-888\n"
-        . "- **Alamat**: Surabaya, Jawa Timur, Indonesia\n\n"
-        . "## Kategori Produk Utama\n"
-        . "- Mug Promosi Cap Gunung (Custom Logo)\n"
-        . "- Kaibon (Porcelain & Ceramic Tableware)\n"
-        . "- Toyoki (Japanese Style Stoneware & Fine Dining)\n"
-        . "- Cap Gunung (Stainless Ware Peralatan Makan)\n"
-        . "- Piring Cap Gunung (Piring Cekung, Ceper, List Mas, Porselen)\n"
-        . "- Mangkok Cap Gunung (Mangkok Bakso, Sup, Mie Ayam, Cobek)\n\n"
-        . "## Halaman Penting\n"
-        . "- Katalog Produk: {$siteUrl}/product\n"
-        . "- Profil Perusahaan: {$siteUrl}/about\n"
-        . "- Artikel & Tips Tableware: {$siteUrl}/articles\n"
-        . "- Kontak & WhatsApp: {$siteUrl}/contact\n"
-        . "- Sitemap XML: {$siteUrl}/sitemap.xml\n";
-
-    // If the stored llms_txt still has cyclevent data, ignore it and use default
-    $stored = \App\Models\Setting::get('llms_txt', '');
-    $content = (!empty($stored) && !str_contains(strtolower($stored), 'cyclevent'))
-        ? $stored
-        : $defaultContent;
-
-    return response($content, 200)->header('Content-Type', 'text/plain; charset=UTF-8');
-});
+// sitemap.xml, robots.txt, llms.txt
+// → Static files di public/ — diakses langsung oleh Apache, tidak perlu route.
 
 // Deployment Helper Route untuk Hostinger (Hapus route ini setelah selesai deploy!)
 Route::get('/deploy-hostinger', function () {

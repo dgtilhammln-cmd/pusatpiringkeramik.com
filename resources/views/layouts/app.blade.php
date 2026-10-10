@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {{-- Google Search Console Verification (set via Admin > Pengaturan) --}}
+    @if(!empty($googleVerif))
+        {!! $googleVerif !!}
+    @endif
 
     @php
         // Single cached DB call for ALL settings — prevents N+1 queries per page load
@@ -23,6 +27,7 @@
         $preloaderEnable = $layoutSettings['preloader_enable'] ?? '1';
         $scrollbarThumb  = $layoutSettings['scrollbar_thumb_color'] ?? '#00875A';
         $scrollbarTrack  = $layoutSettings['scrollbar_track_color'] ?? '#F1F5F9';
+        $googleVerif     = $layoutSettings['google_verification'] ?? '';
     @endphp
 
     {{-- SEO Component --}}

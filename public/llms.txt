@@ -20,5 +20,5 @@
 - Katalog Produk: https://pusatpiringkeramik.com/product
 - Profil Perusahaan: https://pusatpiringkeramik.com/about
 - Artikel & Tips Tableware: https://pusatpiringkeramik.com/articles
-- Kontak & Whatsapp: https://pusatpiringkeramik.com/contact
+- Kontak & WhatsApp: https://pusatpiringkeramik.com/contact
 - Sitemap XML: https://pusatpiringkeramik.com/sitemap.xml

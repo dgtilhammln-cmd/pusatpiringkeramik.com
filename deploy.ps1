@@ -74,8 +74,8 @@ deploy_target() {
         # Force overwrite sitemap.xml with clean version from repo
         rm -f "$TARGET_DIR/public_html/sitemap.xml" "$TARGET_DIR/public_html/sitemap.xsl"
         [ -f "$TARGET_DIR/public/sitemap.xml" ] && cp -f "$TARGET_DIR/public/sitemap.xml" "$TARGET_DIR/public_html/sitemap.xml"
-        # Google verification file — do NOT auto-delete (may still be needed for Search Console)
-        # rm -f "$TARGET_DIR/public_html/google2d6265e5f3ef15fd.html" 2>/dev/null || true
+        # Delete old Google HTML verification file — use meta tag in admin panel instead
+        rm -f "$TARGET_DIR/public_html/google2d6265e5f3ef15fd.html" 2>/dev/null || true
         rm -f "$TARGET_DIR/public_html/storage"
         ln -s "$TARGET_DIR/storage/app/public" "$TARGET_DIR/public_html/storage" 2>/dev/null || true
         chmod -R 775 "$TARGET_DIR/storage" "$TARGET_DIR/bootstrap/cache" 2>/dev/null || true
