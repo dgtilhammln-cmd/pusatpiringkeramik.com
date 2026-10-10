@@ -7,9 +7,9 @@ FOOTER COMPONENT — {{ $companyName }}
     $companyTagline = $s['company_tagline'] ?? '';
 
     // Contact Info Fallbacks from Admin Settings
-    $addressFull   = !empty($s['address_full']) ? $s['address_full'] : (!empty($s['address_street']) ? $s['address_street'] : 'Pergudangan Legundi Business Park Blok D-11, Gresik - Jawa Timur');
-    $phoneDisplay  = !empty($s['phone']) ? $s['phone'] : '031-7890123';
-    $emailDisplay  = !empty($s['email']) ? $s['email'] : (!empty($s['contact_email']) ? $s['contact_email'] : 'info@pusatpiringkeramik.com');
+    $addressFull   = !empty($s['address_full']) ? $s['address_full'] : (!empty($s['address_street']) ? $s['address_street'] : 'Semarang, Jawa Tengah, Indonesia');
+    $phoneDisplay  = !empty($s['phone']) ? $s['phone'] : '0818-0589-0181';
+    $emailDisplay  = !empty($s['email']) ? $s['email'] : (!empty($s['contact_email']) ? $s['contact_email'] : 'admin@pusatpiringkeramik.com');
     $hoursDisplay  = !empty($s['business_hours']) ? $s['business_hours'] : 'Senin – Sabtu, 08.00 – 17.00 WIB';
 
     // WA Setting
@@ -437,7 +437,7 @@ FOOTER COMPONENT — {{ $companyName }}
                 @endphp
                 @if($categories->count())
                     @foreach($categories as $cat)
-                        <li><a href="{{ route('products', ['category' => $cat->slug]) }}">{{ $cat->name }}</a></li>
+                        <li><a href="{{ route('products.category', $cat->slug) }}">{{ $cat->name }}</a></li>
                     @endforeach
                 @else
                     <li><a href="{{ route('products') }}">Semua Produk</a></li>
@@ -480,9 +480,16 @@ FOOTER COMPONENT — {{ $companyName }}
                         <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.5 12.05a19.79 19.79 0 01-3.07-8.67A2 2 0 012.41 1.5h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.4a16 16 0 006.69 6.69l1.27-.76a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
                     </svg>
                 </div>
+                @php
+                    $cleanTel = preg_replace('/[^0-9]/', '', $phoneDisplay);
+                    if (str_starts_with($cleanTel, '0')) {
+                        $cleanTel = '62' . substr($cleanTel, 1);
+                    }
+                    $telHref = '+' . ltrim($cleanTel, '+');
+                @endphp
                 <div class="cv-footer-v2-contact-text">
                     <span class="cv-footer-v2-contact-label">Telepon</span>
-                    <a href="tel:{{ preg_replace('/[^0-9+]/', '', $phoneDisplay) }}">{{ $phoneDisplay }}</a>
+                    <a href="tel:{{ $telHref }}">{{ $phoneDisplay }}</a>
                 </div>
             </div>
 

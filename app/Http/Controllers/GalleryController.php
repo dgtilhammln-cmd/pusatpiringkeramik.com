@@ -17,12 +17,11 @@ class GalleryController extends Controller
         $comp = Setting::get('company_name', config('app.name'));
 
         $seo = [
-            'title'      => $settings['meta_title_gallery'] ?? ('Galeri Proyek & Produk | ' . $comp),
+            'title'      => $settings['meta_title_gallery'] ?? ('Galeri Pengerjaan & Produk | ' . $comp),
             'description'=> $settings['meta_desc_gallery'] ?? ('Dokumentasi produk dan pengiriman ' . $comp . ' di seluruh Indonesia.'),
             'keywords'   => $settings['meta_keywords_gallery'] ?? '',
             'og_image'   => !empty($settings['og_image_default']) ? asset('storage/'.$settings['og_image_default']) : (!empty($settings['logo']) ? asset('storage/'.$settings['logo']) : asset('images/og-default.jpg')),
             'canonical'  => route('gallery'),
-            'robots'     => 'noindex, nofollow',
         ];
 
         return view('gallery.index', compact('gallery', 'categories', 'category', 'settings', 'seo'));

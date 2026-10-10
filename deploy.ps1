@@ -76,6 +76,10 @@ deploy_target() {
         # sitemap.xml — copy freshly generated file (from sitemap:generate above)
         rm -f "$TARGET_DIR/public_html/sitemap.xml" "$TARGET_DIR/public_html/sitemap.xsl"
         [ -f "$TARGET_DIR/public/sitemap.xml" ] && cp -f "$TARGET_DIR/public/sitemap.xml" "$TARGET_DIR/public_html/sitemap.xml"
+        # Copy proper favicon files (ICO + PNG for modern browsers)
+        [ -f "$TARGET_DIR/public/favicon.ico" ]      && cp -f "$TARGET_DIR/public/favicon.ico"      "$TARGET_DIR/public_html/favicon.ico"
+        [ -f "$TARGET_DIR/public/favicon-32x32.png" ] && cp -f "$TARGET_DIR/public/favicon-32x32.png" "$TARGET_DIR/public_html/favicon-32x32.png"
+        [ -f "$TARGET_DIR/public/favicon-16x16.png" ] && cp -f "$TARGET_DIR/public/favicon-16x16.png" "$TARGET_DIR/public_html/favicon-16x16.png"
         # Delete old Google HTML verification file
         rm -f "$TARGET_DIR/public_html/google2d6265e5f3ef15fd.html" 2>/dev/null || true
         rm -f "$TARGET_DIR/public_html/storage"
@@ -123,9 +127,13 @@ fi
 # This is served DIRECTLY by Apache (correct Content-Type, no middleware)
 rm -f "$DEPLOY_DIR/public_html/sitemap.xml" "$DEPLOY_DIR/public_html/sitemap.xsl"
 [ -f "$DEPLOY_DIR/public/sitemap.xml" ] && cp -f "$DEPLOY_DIR/public/sitemap.xml" "$DEPLOY_DIR/public_html/sitemap.xml"
+# Copy proper favicon files (ICO + PNG for modern browsers)
+[ -f "$DEPLOY_DIR/public/favicon.ico" ]       && cp -f "$DEPLOY_DIR/public/favicon.ico"       "$DEPLOY_DIR/public_html/favicon.ico"
+[ -f "$DEPLOY_DIR/public/favicon-32x32.png" ] && cp -f "$DEPLOY_DIR/public/favicon-32x32.png" "$DEPLOY_DIR/public_html/favicon-32x32.png"
+[ -f "$DEPLOY_DIR/public/favicon-16x16.png" ] && cp -f "$DEPLOY_DIR/public/favicon-16x16.png" "$DEPLOY_DIR/public_html/favicon-16x16.png"
 # Remove old Google Search Console HTML verification file
 rm -f "$DEPLOY_DIR/public_html/google2d6265e5f3ef15fd.html" 2>/dev/null || true
-echo "--- Copied robots.txt, llms.txt, sitemap.xml to public_html!"
+echo "--- Copied robots.txt, llms.txt, sitemap.xml, favicon files to public_html!"
 rm -f "$DEPLOY_DIR/public_html/storage"
 ln -s "$DEPLOY_DIR/storage/app/public" "$DEPLOY_DIR/public_html/storage"
 chmod -R 775 "$DEPLOY_DIR/storage" "$DEPLOY_DIR/bootstrap/cache"

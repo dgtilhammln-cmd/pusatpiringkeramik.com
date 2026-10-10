@@ -1376,8 +1376,12 @@
                     ? asset('storage/' . $firstSlide->image_mobile)
                     : ($firstSlide->image ? asset('storage/' . $firstSlide->image) : '');
             }
-            $waPhone = !empty($settings['phone_number']) ? preg_replace('/[^0-9]/', '', $settings['phone_number'])
-                     : (!empty($settings['company_phone']) ? preg_replace('/[^0-9]/', '', $settings['company_phone']) : '');
+            $rawHeroPhone = !empty($settings['phone_number']) ? $settings['phone_number'] : (!empty($settings['company_phone']) ? $settings['company_phone'] : (\App\Models\Setting::get('company_whatsapp') ?? '081805890181'));
+            $cleanHeroWa = preg_replace('/[^0-9]/', '', $rawHeroPhone);
+            if (str_starts_with($cleanHeroWa, '0')) {
+                $cleanHeroWa = '62' . substr($cleanHeroWa, 1);
+            }
+            $waPhone = $cleanHeroWa;
         @endphp
 
         {{-- Mobile background image element (hidden on desktop) --}}
@@ -1402,7 +1406,7 @@
                     {{ $firstSlide->description ?? 'Distributor resmi peralatan makan keramik & stainless untuk usaha, bisnis, dan rumah tangga.' }}
                 </p>
                 <div class="cv-hero-mob-ctas">
-                    <a href="{{ url('/produk') }}" class="cv-hero-mob-btn cv-hero-mob-btn-primary">
+                    <a href="{{ route('products') }}" class="cv-hero-mob-btn cv-hero-mob-btn-primary">
                         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
                         Lihat Katalog
                     </a>
@@ -1524,17 +1528,23 @@
                                                     <span>{{ request()->getHost() ?? 'pusatpiringkeramik.com' }}</span>
                                                 </a>
 
-                                                @if(!empty($settings['phone_number']) || !empty($settings['company_phone']))
-                                                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['phone_number'] ?? $settings['company_phone']) }}"
-                                                        target="_blank" class="cv-banner-pill">
-                                                        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"
-                                                            viewBox="0 0 24 24">
-                                                            <path
-                                                                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
-                                                        </svg>
-                                                        <span>{{ $settings['phone_number'] ?? $settings['company_phone'] }}</span>
-                                                    </a>
-                                                @endif
+                                                @php
+                                                    $pillPhoneRaw = !empty($settings['phone_number']) ? $settings['phone_number'] : (!empty($settings['company_phone']) ? $settings['company_phone'] : '081805890181');
+                                                    $pillPhoneClean = preg_replace('/[^0-9]/', '', $pillPhoneRaw);
+                                                    if (str_starts_with($pillPhoneClean, '0')) {
+                                                        $pillPhoneClean = '62' . substr($pillPhoneClean, 1);
+                                                    }
+                                                    $pillPhoneDisplay = !empty($settings['phone_number']) ? $settings['phone_number'] : (!empty($settings['company_phone']) ? $settings['company_phone'] : '0818-0589-0181');
+                                                @endphp
+                                                <a href="https://wa.me/{{ $pillPhoneClean }}"
+                                                    target="_blank" class="cv-banner-pill">
+                                                    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"
+                                                        viewBox="0 0 24 24">
+                                                        <path
+                                                            d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+                                                    </svg>
+                                                    <span>{{ $pillPhoneDisplay }}</span>
+                                                </a>
                                             </div>
                                         </div>
                                     @endif
@@ -1571,17 +1581,15 @@
                                             </svg>
                                             <span>{{ request()->getHost() ?? 'pusatpiringkeramik.com' }}</span>
                                         </a>
-                                        @if(!empty($settings['phone_number']) || !empty($settings['company_phone']))
-                                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $settings['phone_number'] ?? $settings['company_phone']) }}"
-                                                target="_blank" class="cv-banner-pill">
-                                                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
-                                                </svg>
-                                                <span>{{ $settings['phone_number'] ?? $settings['company_phone'] }}</span>
-                                            </a>
-                                        @endif
+                                        <a href="https://wa.me/{{ $pillPhoneClean }}"
+                                            target="_blank" class="cv-banner-pill">
+                                            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"
+                                                viewBox="0 0 24 24">
+                                                <path
+                                                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+                                            </svg>
+                                            <span>{{ $pillPhoneDisplay }}</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -1628,7 +1636,7 @@
                 $aboutC1Label = $settings['about_c1_label'] ?? 'Pengalaman';
                 $aboutC1Value = $settings['about_c1_value'] ?? (date('Y') - (\App\Models\Setting::get('founding_year') ?? 2013)) . '+ Tahun';
                 $aboutC1Desc = $settings['about_c1_desc'] ?? '';
-                $aboutC1Keywords = array_filter(array_map('trim', explode(',', $settings['about_c1_keywords'] ?? 'Piring Keramik, Tableware, Porselen, Grosir Hotel, High Quality, Keramik Dinding, Tahan Lama, Food Safe')));
+                $aboutC1Keywords = array_filter(array_map('trim', explode(',', str_replace(['Keramik Dinding', 'Keramik Lantai'], ['Mangkok Keramik', 'Piring Keramik'], $settings['about_c1_keywords'] ?? 'Piring Keramik, Tableware, Porselen, Grosir Hotel, High Quality, Mangkok Keramik, Tahan Lama, Food Safe'))));
                 $aboutC2Label = $settings['about_c2_label'] ?? 'Komitmen Kualitas';
                 $aboutC2Value = $settings['about_c2_value'] ?? '100%';
                 $aboutC2Desc = $settings['about_c2_desc'] ?? 'Memberikan solusi piring dan tableware keramik terbaik untuk usaha Anda.';
@@ -2196,7 +2204,7 @@
         <div class="cv-catalog-header">
             <h2 class="cv-catalog-title">{!! nl2br(e($settings['product_section_title'] ?? "Katalog Produk\nKami")) !!}</h2>
             <div class="cv-catalog-right-info">
-                <p>{{ $settings['product_section_desc'] ?? 'Solusi tableware keramik premium terpercaya untuk berbagai skala bisnis F&B di Indonesia.' }}
+                <p>{{ !empty($settings['product_section_desc']) && !str_contains(strtolower($settings['product_section_desc']), 'coating') && !str_contains(strtolower($settings['product_section_desc']), 'solusi cat') ? $settings['product_section_desc'] : 'Solusi piring keramik dan tableware premium terpercaya untuk hotel, restoran, dan katering di Indonesia.' }}
                 </p>
                 <small>{{ $settings['product_section_note'] ?? 'Tersedia berbagai varian dan spesifikasi' }}</small>
             </div>
@@ -2258,7 +2266,13 @@
 
         {{-- Footer: Single CTA Button left, Nav arrows right --}}
         <div class="cv-catalog-footer">
-            <a href="{{ $settings['product_cta1_url'] ?? route('products') }}" class="cv-catalog-btn-single">
+            @php
+                $catalogBtnUrl = trim($settings['product_cta1_url'] ?? '');
+                if (empty($catalogBtnUrl) || $catalogBtnUrl === '/produk' || $catalogBtnUrl === '#') {
+                    $catalogBtnUrl = route('products');
+                }
+            @endphp
+            <a href="{{ $catalogBtnUrl }}" class="cv-catalog-btn-single">
                 {{ $settings['product_cta1_text'] ?? 'Ke Katalog Produk' }}
                 <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                     <polyline points="9 18 15 12 9 6" />
@@ -3280,7 +3294,7 @@
                                             {{ $companyName }}</span>
                                     </div>
                                 @endif
-                                <div class="cv-article-cat-badge">{{ $article->category ?? 'Cat & Coating' }}</div>
+                                <div class="cv-article-cat-badge">{{ $article->category ?? 'Tableware & Keramik' }}</div>
                             </div>
 
                             <div class="cv-article-content-v2">

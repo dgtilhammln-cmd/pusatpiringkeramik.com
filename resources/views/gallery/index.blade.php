@@ -623,7 +623,7 @@
                     </h3>
                     <p
                         style="font-size:0.9rem; color:#B45309; line-height:1.7; margin-bottom:1.5rem; font-family:'Montserrat',sans-serif;">
-                        Foto-foto proyek instalasi kami sedang dalam proses penambahan.
+                        Foto-foto produk dan pengadaan tableware kami sedang dalam proses penambahan.
                         Segera hadir! Sementara itu, hubungi kami untuk informasi lebih lanjut.
                     </p>
                     <a href="{{ route('contact') }}" style="
@@ -645,11 +645,10 @@
     <section class="sv-cta-premium" data-aos="fade-up">
         <div class="sv-cta-glow"></div>
         <div class="sv-cta-inner">
-            <div class="sv-label" style="margin-bottom:1rem;">Butuh Instalasi?</div>
-            <h2 class="sv-cta-h2">Wujudkan Proyek<br>Ventilasi Anda Bersama Kami</h2>
+            <div class="sv-label" style="margin-bottom:1rem;">Kebutuhan Tableware?</div>
+            <h2 class="sv-cta-h2">Wujudkan Kebutuhan<br>Tableware & Piring Keramik Anda</h2>
             <p class="sv-cta-sub">
-                Tim teknis {{ $companyName }} siap membantu merencanakan dan memasang sistem
-                solusi cat dan pelapis terbaik untuk kebutuhan Anda.
+                Tim {{ $companyName }} siap membantu pengadaan piring keramik dan tableware berkualitas tinggi untuk hotel, restoran, kafe, dan katering Anda.
             </p>
             <div class="sv-cta-btns">
                 @php $wa = \App\Models\WaSetting::primary(); @endphp

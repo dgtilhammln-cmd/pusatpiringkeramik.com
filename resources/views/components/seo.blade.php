@@ -65,9 +65,9 @@
     // Phone International Format
     $seoPhoneIntl     = \App\Models\Setting::get('phone_international');
     $phoneIntl        = $cleanText(!empty(trim($seoPhoneIntl)) ? $seoPhoneIntl : $defaultPhoneIntl);
-    if (empty($phoneIntl)) $phoneIntl = '+628562682888';
+    if (empty($phoneIntl)) $phoneIntl = '+6281805890181';
 
-    $companyEmail     = $cleanText(\App\Models\Setting::get('email', 'info@pusatpiringkeramik.com'));
+    $companyEmail     = $cleanText(\App\Models\Setting::get('email', 'admin@pusatpiringkeramik.com'));
 
     // Geo Coordinates Fix (Only output if numeric & valid!)
     $rawLat           = trim(\App\Models\Setting::get('geo_latitude', ''));
@@ -136,6 +136,10 @@
 
     $rawCanonical     = $seoData['canonical'] ?? url()->current();
     $canonical        = preg_replace('#^https?://[^/]+#', $appUrl, $rawCanonical);
+    $canonical        = rtrim($canonical, '/');
+    if ($canonical === $appUrl . '' || empty($canonical)) {
+        $canonical = $appUrl;
+    }
 
     $logoPath         = \App\Models\Setting::get('logo');
     $logoUrl          = $logoPath ? $appUrl . '/storage/' . ltrim($logoPath, '/') : $appUrl . '/favicon.ico';
@@ -233,7 +237,7 @@ $graph[] = [
     'publisher'       => ['@id' => $appUrl . '/#organization'],
     'potentialAction' => [
         '@type'       => 'SearchAction',
-        'target'      => $appUrl . '/produk?q={search_term_string}',
+        'target'      => $appUrl . '/product?q={search_term_string}',
         'query-input' => 'required name=search_term_string'
     ]
 ];

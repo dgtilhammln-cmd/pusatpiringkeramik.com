@@ -1441,7 +1441,7 @@
               <div>
                 <label class="pm-label">URL Tujuan Tombol</label>
                 <input type="text" name="product_cta1_url" class="pm-input"
-                  value="{{ $settings['product_cta1_url'] ?? '' }}" placeholder="/produk atau URL lengkap">
+                  value="{{ $settings['product_cta1_url'] ?? '' }}" placeholder="/product atau URL lengkap">
                 <div class="pm-help">Kosongkan = otomatis ke halaman katalog produk.</div>
               </div>
               <div>

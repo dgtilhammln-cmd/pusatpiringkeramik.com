@@ -492,9 +492,9 @@ button[style*="background:rgba(37,211,102,.15)"]:hover {
 "
               . "- **Situs Resmi**: {$siteUrlDefault}
 "
-              . "- **Telepon / WhatsApp**: 0856-2682-888
+              . "- **Telepon / WhatsApp**: 0818-0589-0181
 "
-              . "- **Alamat**: Surabaya, Jawa Timur, Indonesia
+              . "- **Alamat**: Semarang, Jawa Tengah, Indonesia
 
 "
               . "## Kategori Produk Utama

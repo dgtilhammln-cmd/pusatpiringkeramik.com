@@ -106,8 +106,8 @@
 
                 {{-- CTA Card --}}
                 <div style="background:linear-gradient(135deg,rgba(255,215,0,0.08),rgba(255,215,0,0.03));border:1px solid rgba(255,215,0,0.2);padding:1.75rem;">
-                    <h3 style="font-size:1rem;font-weight:700;color:#fff;margin:0 0 0.5rem;">Butuh Proyek Serupa?</h3>
-                    <p style="font-size:0.875rem;color:var(--text-3);margin:0 0 1.25rem;line-height:1.7;">Konsultasikan kebutuhan crane & lift Anda dengan tim kami. Gratis!</p>
+                    <h3 style="font-size:1rem;font-weight:700;color:#fff;margin:0 0 0.5rem;">Butuh Pengadaan Tableware?</h3>
+                    <p style="font-size:0.875rem;color:var(--text-3);margin:0 0 1.25rem;line-height:1.7;">Konsultasikan kebutuhan piring keramik & tableware Anda dengan tim kami. Gratis!</p>
                     <button onclick="openOrderModal()" class="btn-primary" style="width:100%;justify-content:center;margin-bottom:0.75rem;">
                         Request Order Sekarang
                     </button>

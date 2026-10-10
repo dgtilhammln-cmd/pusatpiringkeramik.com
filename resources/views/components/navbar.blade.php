@@ -325,9 +325,10 @@
     </nav>
     <div style="margin-top:auto;">
         @if(($headerCtaShow ?? '1') == '1' || ($headerCtaShow ?? '1') === 'on')
-            @if($headerCtaType === 'wa' && $waNav)
+            @if($headerCtaType === 'wa')
                 @php
-                    $waNumberMobile = preg_replace('/[^0-9]/', '', $waNav->nomor_wa ?? '');
+                    $waValMobile = $waNav ? $waNav->nomor_wa : (\App\Models\Setting::get('company_whatsapp') ?? \App\Models\Setting::get('phone') ?? '081805890181');
+                    $waNumberMobile = preg_replace('/[^0-9]/', '', $waValMobile);
                     if(str_starts_with($waNumberMobile, '0')) {
                         $waNumberMobile = '62' . substr($waNumberMobile, 1);
                     }

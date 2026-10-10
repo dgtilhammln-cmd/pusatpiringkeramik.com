@@ -1,7 +1,11 @@
 {{-- Floating WhatsApp Button --}}
 @php
     $wa = \App\Models\WaSetting::primary();
-    $waNumber = $wa ? $wa->nomor_wa : (\App\Models\Setting::get('company_whatsapp') ?? \App\Models\Setting::get('phone') ?? '081805890181');
+    $rawWa = $wa ? $wa->nomor_wa : (\App\Models\Setting::get('company_whatsapp') ?? \App\Models\Setting::get('phone') ?? '081805890181');
+    $cleanWa = preg_replace('/[^0-9]/', '', $rawWa);
+    if (str_starts_with($cleanWa, '0')) {
+        $cleanWa = '62' . substr($cleanWa, 1);
+    }
 @endphp
 <style>
     .wa-float {
@@ -69,7 +73,7 @@
     <div class="wa-pulse"></div>
     <span class="wa-float-label">Konsultasi Gratis</span>
     <button
-        onclick="typeof openOrderModal === 'function' ? openOrderModal('Floating Button') : window.open('https://wa.me/{{ preg_replace('/[^0-9]/', '', $waNumber) }}', '_blank')"
+        onclick="typeof openOrderModal === 'function' ? openOrderModal('Floating Button') : window.open('https://wa.me/{{ $cleanWa }}', '_blank')"
         class="wa-float-btn"
         aria-label="Chat via WhatsApp">
         <svg width="28" height="28" fill="white" viewBox="0 0 24 24">

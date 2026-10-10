@@ -43,8 +43,8 @@ class HomeController extends Controller
             HeroSlide::create([
                 'title'        => "Keramik Berkualitas\nuntuk Setiap Kebutuhan",
                 'subtitle'     => 'Distributor Resmi Keramik Premium',
-                'description'  => 'Dari keramik lantai, dinding, hingga tableware porselen — kami hadir sebagai mitra terpercaya untuk kebutuhan keramik bisnis dan hunian Anda.',
-                'tags'         => 'Keramik Lantai, Keramik Dinding, Porselen, High Quality, Food Safe',
+                'description'  => 'Dari piring keramik, mangkok, mug promosi, hingga tableware stainless — kami hadir sebagai mitra terpercaya untuk kebutuhan tableware hotel, resto, dan katering.',
+                'tags'         => 'Piring Keramik, Mangkok, Mug Promosi, Stainless Ware, Grosir',
                 'stat_1_value' => '1.000+',
                 'stat_1_label' => 'Produk Tersedia',
                 'stat_2_value' => '100%',

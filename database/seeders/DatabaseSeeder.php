@@ -45,8 +45,8 @@ class DatabaseSeeder extends Seeder
             // Company
             ['key'=>'company_name',     'value'=>'Pusat Piring Keramik',                       'type'=>'text','group'=>'general','label'=>'Nama Perusahaan'],
             ['key'=>'app_name',         'value'=>'Pusat Piring Keramik',                       'type'=>'text','group'=>'seo','label'=>'Nama Aplikasi'],
-            ['key'=>'app_url',          'value'=>'https://pusatpiringkeramik.hvmdigital.id',   'type'=>'text','group'=>'seo','label'=>'URL Domain'],
-            ['key'=>'company_phone',    'value'=>'0856-2682-888',                              'type'=>'text','group'=>'contact','label'=>'Telepon / WA Utama'],
+            ['key'=>'app_url',          'value'=>'https://pusatpiringkeramik.com',              'type'=>'text','group'=>'seo','label'=>'URL Domain'],
+            ['key'=>'company_phone',    'value'=>'0818-0589-0181',                              'type'=>'text','group'=>'contact','label'=>'Telepon / WA Utama'],
             // Hero
             ['key'=>'hero_headline',    'value'=>'Distributor Piring Keramik & Tableware Premium #1', 'type'=>'text','group'=>'hero','label'=>'Hero Headline'],
             ['key'=>'hero_subheadline', 'value'=>'Pusat Piring Keramik — distributor resmi piring keramik, mangkuk, piranti porselen, dan stainless steel terpercaya untuk HORECA, catering, dan grosir di seluruh Indonesia.','type'=>'text','group'=>'hero','label'=>'Hero Sub-headline'],
@@ -74,10 +74,10 @@ class DatabaseSeeder extends Seeder
             ['key'=>'stat_products', 'value'=>'1.000+',             'type'=>'text','group'=>'stats','label'=>'SKU Produk'],
             ['key'=>'stat_coverage', 'value'=>'50+ Kota Indonesia', 'type'=>'text','group'=>'stats','label'=>'Jangkauan Kota'],
             // Contact
-            ['key'=>'phone',    'value'=>'0856-2682-888',                                          'type'=>'text','group'=>'contact','label'=>'Telepon'],
-            ['key'=>'wa1',      'value'=>'08562682888',                                            'type'=>'text','group'=>'contact','label'=>'WhatsApp Utama'],
-            ['key'=>'email',    'value'=>'info@pusatpiringkeramik.com',                            'type'=>'text','group'=>'contact','label'=>'Email'],
-            ['key'=>'address',  'value'=>'Pusat Piring Keramik - Surabaya, Jawa Timur, Indonesia', 'type'=>'text','group'=>'contact','label'=>'Alamat'],
+            ['key'=>'phone',    'value'=>'0818-0589-0181',                                          'type'=>'text','group'=>'contact','label'=>'Telepon'],
+            ['key'=>'wa1',      'value'=>'081805890181',                                            'type'=>'text','group'=>'contact','label'=>'WhatsApp Utama'],
+            ['key'=>'email',    'value'=>'admin@pusatpiringkeramik.com',                            'type'=>'text','group'=>'contact','label'=>'Email'],
+            ['key'=>'address',  'value'=>'Pusat Piring Keramik - Semarang, Jawa Tengah, Indonesia', 'type'=>'text','group'=>'contact','label'=>'Alamat'],
             // Footer
             ['key'=>'footer_desc', 'value'=>'Distributor piring keramik dan tableware premium terpercaya. Melayani kebutuhan hotel, restoran, catering, dan grosir seluruh Indonesia.','type'=>'text','group'=>'footer','label'=>'Footer Description'],
             ['key'=>'copyright',   'value'=>'© 2016–2026 Pusat Piring Keramik. All rights reserved.','type'=>'text','group'=>'footer','label'=>'Copyright'],
@@ -117,7 +117,7 @@ class DatabaseSeeder extends Seeder
             ['key'=>'page_contact_hero_desc', 'value'=>'Tim UD. Sukses Makmur siap membantu menemukan produk piring dan keramik terbaik untuk kebutuhan Anda. Hubungi kami sekarang - respon cepat!', 'type'=>'text','group'=>'page_hero','label'=>'Contact Hero Description'],
             // SEO
             ['key'=>'meta_title_home','value'=>'Pusat Piring Keramik — Distributor Piring Keramik & Tableware HORECA #1',  'type'=>'text','group'=>'seo','label'=>'Meta Title Home'],
-            ['key'=>'meta_desc_home', 'value'=>'Distributor resmi piring keramik, mangkuk, dan tableware restoran & hotel. Melayani grosir & eceran seluruh Indonesia. Hubungi WA: 0856-2682-888.','type'=>'text','group'=>'seo','label'=>'Meta Desc Home'],
+            ['key'=>'meta_desc_home', 'value'=>'Distributor resmi piring keramik, mangkuk, dan tableware restoran & hotel. Melayani grosir & eceran seluruh Indonesia. Hubungi WA: 0818-0589-0181.','type'=>'text','group'=>'seo','label'=>'Meta Desc Home'],
         ];
         foreach ($settings as $s) {
             Setting::updateOrCreate(['key' => $s['key']], array_merge($s, ['created_at'=>now(),'updated_at'=>now()]));
@@ -162,7 +162,7 @@ class DatabaseSeeder extends Seeder
                 'meta_desc'    => 'Tips dan trik merawat piring keramik restoran dan rumah tangga agar awet, mengkilap, dan bebas goresan.',
             ],
         ];
-        $contentTemplate = '<h2>Pendahuluan</h2><p>Pemilihan piring keramik dan tableware yang tepat merupakan langkah vital untuk menghadirkan sajian yang estetis, higienis, dan berkesan bagi pelanggan. Pusat Piring Keramik berkomitmen menghadirkan produk tableware berkualitas tinggi.</p><h2>Detail Pembahasan</h2><p>Sebagai supplier & distributor resmi tableware terpercaya di Indonesia, kami menyediakan koleksi lengkap <strong>piring keramik</strong>, <strong>mangkuk porselen</strong>, <strong>cangkir</strong>, dan <strong>piranti meja makan</strong> yang telah teruji food-grade dan tahan panas tinggi.</p><p>Tim kami berpengalaman melayani pemesanan grosir untuk HORECA (Hotel, Restaurant, Cafe, Catering) serta pengiriman aman dengan paking peti kayu ke seluruh wilayah Indonesia.</p><h2>Kesimpulan</h2><p>Hubungi tim Pusat Piring Keramik di <strong>0856-2682-888</strong> untuk konsultasi kebutuhan tableware dan katalog produk lengkap dengan penawaran harga grosir terbaik.</p>';
+        $contentTemplate = '<h2>Pendahuluan</h2><p>Pemilihan piring keramik dan tableware yang tepat merupakan langkah vital untuk menghadirkan sajian yang estetis, higienis, dan berkesan bagi pelanggan. Pusat Piring Keramik berkomitmen menghadirkan produk tableware berkualitas tinggi.</p><h2>Detail Pembahasan</h2><p>Sebagai supplier & distributor resmi tableware terpercaya di Indonesia, kami menyediakan koleksi lengkap <strong>piring keramik</strong>, <strong>mangkuk porselen</strong>, <strong>cangkir</strong>, dan <strong>piranti meja makan</strong> yang telah teruji food-grade dan tahan panas tinggi.</p><p>Tim kami berpengalaman melayani pemesanan grosir untuk HORECA (Hotel, Restaurant, Cafe, Catering) serta pengiriman aman dengan paking peti kayu ke seluruh wilayah Indonesia.</p><h2>Kesimpulan</h2><p>Hubungi tim Pusat Piring Keramik di <strong>0818-0589-0181</strong> untuk konsultasi kebutuhan tableware dan katalog produk lengkap dengan penawaran harga grosir terbaik.</p>';
         foreach ($articles as $a) {
             Article::updateOrCreate(['slug'=>$a['slug']], array_merge($a, [
                 'content'=>$contentTemplate, 'views'=>rand(80,600),
