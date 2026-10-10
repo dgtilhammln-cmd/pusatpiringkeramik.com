@@ -7,6 +7,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\Admin\AdminAuthController;
@@ -57,8 +58,10 @@ Route::middleware(['track.pageview'])->group(function () {
 Route::post('/request-order', [LeadController::class, 'store'])->name('lead.store');
 Route::post('/request-order-wa', [LeadController::class, 'waRedirect'])->name('lead.wa_redirect');
 
-// sitemap.xml, robots.txt, llms.txt
-// → Static files di public/ — diakses langsung oleh Apache, tidak perlu route.
+// sitemap.xml — dynamic, includes all products/categories/articles from DB
+Route::get('/sitemap.xml', [SitemapController::class, 'xml'])->name('sitemap');
+
+// robots.txt & llms.txt — served as static files from public/ by Apache
 
 // Deployment Helper Route untuk Hostinger (Hapus route ini setelah selesai deploy!)
 Route::get('/deploy-hostinger', function () {

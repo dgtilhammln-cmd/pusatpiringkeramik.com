@@ -71,10 +71,9 @@ deploy_target() {
         [ -f "$TARGET_DIR/public/.htaccess" ]  && cp -f "$TARGET_DIR/public/.htaccess"   "$TARGET_DIR/public_html/.htaccess"
         [ -f "$TARGET_DIR/public/robots.txt" ] && cp -f "$TARGET_DIR/public/robots.txt"  "$TARGET_DIR/public_html/robots.txt"
         [ -f "$TARGET_DIR/public/llms.txt" ]   && cp -f "$TARGET_DIR/public/llms.txt"    "$TARGET_DIR/public_html/llms.txt"
-        # Force overwrite sitemap.xml with clean version from repo
+        # sitemap.xml = HANDLED BY LARAVEL (dynamic) — must NOT exist as static file
         rm -f "$TARGET_DIR/public_html/sitemap.xml" "$TARGET_DIR/public_html/sitemap.xsl"
-        [ -f "$TARGET_DIR/public/sitemap.xml" ] && cp -f "$TARGET_DIR/public/sitemap.xml" "$TARGET_DIR/public_html/sitemap.xml"
-        # Delete old Google HTML verification file — use meta tag in admin panel instead
+        # Delete old Google HTML verification file
         rm -f "$TARGET_DIR/public_html/google2d6265e5f3ef15fd.html" 2>/dev/null || true
         rm -f "$TARGET_DIR/public_html/storage"
         ln -s "$TARGET_DIR/storage/app/public" "$TARGET_DIR/public_html/storage" 2>/dev/null || true
@@ -113,14 +112,11 @@ fi
 if [ -f "$DEPLOY_DIR/public/llms.txt" ]; then
     cp -f "$DEPLOY_DIR/public/llms.txt" "$DEPLOY_DIR/public_html/llms.txt"
 fi
-# Force overwrite sitemap.xml — remove old/corrupt file first
+# sitemap.xml = DYNAMIC via Laravel route — must NOT be a static file in public_html
 rm -f "$DEPLOY_DIR/public_html/sitemap.xml" "$DEPLOY_DIR/public_html/sitemap.xsl"
-if [ -f "$DEPLOY_DIR/public/sitemap.xml" ]; then
-    cp -f "$DEPLOY_DIR/public/sitemap.xml" "$DEPLOY_DIR/public_html/sitemap.xml"
-fi
-# Remove old Google Search Console verification file
+# Remove old Google Search Console HTML verification file
 rm -f "$DEPLOY_DIR/public_html/google2d6265e5f3ef15fd.html" 2>/dev/null || true
-echo "--- Copied robots.txt, llms.txt, sitemap.xml to public_html!"
+echo "--- Copied robots.txt, llms.txt. Sitemap served dynamically by Laravel!"
 rm -f "$DEPLOY_DIR/public_html/storage"
 ln -s "$DEPLOY_DIR/storage/app/public" "$DEPLOY_DIR/public_html/storage"
 chmod -R 775 "$DEPLOY_DIR/storage" "$DEPLOY_DIR/bootstrap/cache"
