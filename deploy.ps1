@@ -66,13 +66,16 @@ deploy_target() {
     if [ -d "$TARGET_DIR/.git" ]; then
         cd "$TARGET_DIR"
         php artisan migrate --force 2>/dev/null || true
+        # Generate physical sitemap.xml (DB-driven, dynamic)
+        php artisan sitemap:generate 2>/dev/null || true
         mkdir -p "$TARGET_DIR/public_html"
         [ -f "$TARGET_DIR/public/index.php" ]  && cp -f "$TARGET_DIR/public/index.php"  "$TARGET_DIR/public_html/index.php"
         [ -f "$TARGET_DIR/public/.htaccess" ]  && cp -f "$TARGET_DIR/public/.htaccess"   "$TARGET_DIR/public_html/.htaccess"
         [ -f "$TARGET_DIR/public/robots.txt" ] && cp -f "$TARGET_DIR/public/robots.txt"  "$TARGET_DIR/public_html/robots.txt"
         [ -f "$TARGET_DIR/public/llms.txt" ]   && cp -f "$TARGET_DIR/public/llms.txt"    "$TARGET_DIR/public_html/llms.txt"
-        # sitemap.xml = HANDLED BY LARAVEL (dynamic) — must NOT exist as static file
+        # sitemap.xml — copy freshly generated file (from sitemap:generate above)
         rm -f "$TARGET_DIR/public_html/sitemap.xml" "$TARGET_DIR/public_html/sitemap.xsl"
+        [ -f "$TARGET_DIR/public/sitemap.xml" ] && cp -f "$TARGET_DIR/public/sitemap.xml" "$TARGET_DIR/public_html/sitemap.xml"
         # Delete old Google HTML verification file
         rm -f "$TARGET_DIR/public_html/google2d6265e5f3ef15fd.html" 2>/dev/null || true
         rm -f "$TARGET_DIR/public_html/storage"
@@ -93,6 +96,10 @@ echo ""
 echo "--- Menjalankan artisan commands..."
 cd "$DEPLOY_DIR"
 php artisan migrate --force
+
+echo "--- Generating dynamic sitemap.xml..."
+php artisan sitemap:generate
+echo "--- Sitemap generated!"
 # Note: Seeders disabled during normal deploys to preserve custom data:
 # php artisan db:seed --class=DatabaseSeeder --force
 # php artisan db:seed --class=HeroSlideSeeder --force
@@ -112,11 +119,13 @@ fi
 if [ -f "$DEPLOY_DIR/public/llms.txt" ]; then
     cp -f "$DEPLOY_DIR/public/llms.txt" "$DEPLOY_DIR/public_html/llms.txt"
 fi
-# sitemap.xml = DYNAMIC via Laravel route — must NOT be a static file in public_html
+# sitemap.xml — copy freshly generated physical file to public_html
+# This is served DIRECTLY by Apache (correct Content-Type, no middleware)
 rm -f "$DEPLOY_DIR/public_html/sitemap.xml" "$DEPLOY_DIR/public_html/sitemap.xsl"
+[ -f "$DEPLOY_DIR/public/sitemap.xml" ] && cp -f "$DEPLOY_DIR/public/sitemap.xml" "$DEPLOY_DIR/public_html/sitemap.xml"
 # Remove old Google Search Console HTML verification file
 rm -f "$DEPLOY_DIR/public_html/google2d6265e5f3ef15fd.html" 2>/dev/null || true
-echo "--- Copied robots.txt, llms.txt. Sitemap served dynamically by Laravel!"
+echo "--- Copied robots.txt, llms.txt, sitemap.xml to public_html!"
 rm -f "$DEPLOY_DIR/public_html/storage"
 ln -s "$DEPLOY_DIR/storage/app/public" "$DEPLOY_DIR/public_html/storage"
 chmod -R 775 "$DEPLOY_DIR/storage" "$DEPLOY_DIR/bootstrap/cache"
