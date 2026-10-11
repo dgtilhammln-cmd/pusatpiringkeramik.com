@@ -92,6 +92,12 @@
         Header set Cache-Control "public, max-age=7200, must-revalidate"
     </FilesMatch>
 
+    # Sitemap XML — Ensure Google Search Console receives correct MIME type
+    <Files "sitemap.xml">
+        Header set Content-Type "application/xml; charset=UTF-8"
+        Header set Cache-Control "public, max-age=3600"
+    </Files>
+
     # Security headers (performance + security)
     Header always set X-Content-Type-Options "nosniff"
     Header always set X-Frame-Options "SAMEORIGIN"
