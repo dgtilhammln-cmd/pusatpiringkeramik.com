@@ -74,32 +74,172 @@ Route::get('/deploy-hostinger', function () {
     }
 });
 
-// TEMP: Seed semua produk Cap Gunung (DELETE setelah seeder berhasil jalan!)
+// Update route /seed-cap-gunung agar mandiri (self-contained)
 Route::get('/seed-cap-gunung', function () {
     $log = [];
     if (function_exists('opcache_reset')) {
         opcache_reset();
         $log[] = '✓ OPcache reset';
     }
+    $log[] = '=== MULAI SEEDING CAP GUNUNG ===';
+    $log[] = date('Y-m-d H:i:s');
+
     try {
-        $log[] = '=== MULAI SEEDING CAP GUNUNG ===';
-        $log[] = date('Y-m-d H:i:s');
-        $seederPath = database_path('seeders/CapGunungProductSeeder.php');
-        $log[] = 'Seeder file modified: ' . date('Y-m-d H:i:s', filemtime($seederPath));
-        \Illuminate\Support\Facades\Artisan::call('db:seed', [
-            '--class' => 'CapGunungProductSeeder',
-            '--force' => true,
-        ]);
-        $output = \Illuminate\Support\Facades\Artisan::output();
-        $log[] = $output ?: '(no artisan output)';
-        $log[] = '';
-        $log[] = '=== SELESAI ===';
-        $count = \App\Models\Service::count();
-        $log[] = "Total produk di DB sekarang: {$count}";
+        // 1. Pastikan kategori Cap Gunung ada
+        $cat = ServiceCategory::updateOrCreate(
+            ['slug' => 'cap-gunung'],
+            [
+                'name'          => 'Cap Gunung',
+                'description'   => 'Koleksi lengkap piranti makan keramik, porcelain, dan stoneware merk Cap Gunung.',
+                'meta_title'    => 'Distributor Resmi Piring & Mangkok Keramik Cap Gunung Grosir',
+                'meta_desc'     => 'Pusat grosir piranti makan keramik Cap Gunung asli terlengkap.',
+                'meta_keywords' => 'piring cap gunung, mangkok cap gunung, grosir keramik cap gunung, cutlery stainless cap gunung',
+                'parent_id'     => null,
+            ]
+        );
+        $log[] = "✓ Kategori 'Cap Gunung' ID: {$cat->id}";
+
+        // 2. Daftar 3 Produk Cutlery Stainless Baru
+        $cutlery = [
+            [
+                'name' => 'Sendok Makan Stainless 303 (32 gr) Cap Gunung',
+                'slug' => 'sendok-makan-stainless-303-32gr-cap-gunung',
+                'short_desc' => 'Sendok makan stainless steel seri 303 tebal 32 gram Cap Gunung standar HORECA untuk restoran, cafe, katering, dan hotel.',
+                'description' => '<p><strong>Sendok Makan Stainless 303 (32 gr) Cap Gunung</strong> merupakan piranti makan cutlery stainless unggulan dari <strong>Cap Gunung</strong> yang didistribusikan resmi oleh <strong>UD. Sukses Makmur (Pusat Piring Keramik)</strong>. Dirancang khusus untuk kebutuhan operasional industri HORECA (Hotel, Restaurant, Cafe, Catering) serta rumah makan skala besar dengan standar ketahanan tinggi.</p><p>Material stainless steel food grade, ketebalan optimal 32 gram per pieces, dan finishing mirror polish kilap halus.</p>',
+                'image' => 'services/cap-gunung/sendok-stainless-303-32gr-cap-gunung-1.webp',
+                'gallery' => [],
+                'specs' => [
+                    ['key' => 'Brand / Merk', 'value' => 'Cap Gunung (Stainless Ware)'],
+                    ['key' => 'Tipe Produk', 'value' => 'Sendok Makan Stainless (Dinner Spoon)'],
+                    ['key' => 'Seri / Model', 'value' => 'Seri 303 Cap Gunung'],
+                    ['key' => 'Berat Bersih', 'value' => '32 gram / pcs'],
+                    ['key' => 'Material', 'value' => 'Stainless Steel Food Grade Berkualitas'],
+                    ['key' => 'Finishing', 'value' => 'Mirror Polish Kilap Halus'],
+                    ['key' => 'Ketahanan', 'value' => 'Anti Karat, Tahan Asam & Dishwasher Safe'],
+                    ['key' => 'Kemasan Grosir', 'value' => '1 Lusin (12 pcs) / Master Box Karton'],
+                    ['key' => 'Peruntukan', 'value' => 'Restoran, Rumah Makan, Hotel, Katering, Cafe'],
+                ],
+                'faqs' => [
+                    ['q' => 'Apakah sendok stainless Cap Gunung ini sudah food grade dan aman untuk makanan kuah panas?', 'a' => 'Ya, sendok makan Cap Gunung 303 diproduksi menggunakan material stainless steel food grade yang tahan terhadap suhu panas, kuah asam, serta tidak mengubah rasa makanan.'],
+                    ['q' => 'Berapa minimal order untuk pembelian grosir sendok makan Cap Gunung 303?', 'a' => 'Kami melayani pembelian mulai dari beberapa lusin hingga partai besar puluhan karton untuk pengadaan restoran, katering, maupun toko reseller perlengkapan dapur.'],
+                ],
+                'meta_title' => 'Grosir Sendok Makan Stainless 303 32gr Cap Gunung Restoran',
+                'meta_desc' => 'Distributor sendok makan stainless steel seri 303 32 gram merk Cap Gunung.',
+                'meta_keywords' => 'sendok stainless cap gunung, sendok makan stainless 303, sendok 32gr cap gunung, grosir sendok restoran',
+                'order' => 23,
+            ],
+            [
+                'name' => 'Garpu Makan Stainless 303 (32 gr) Cap Gunung',
+                'slug' => 'garpu-makan-stainless-303-32gr-cap-gunung',
+                'short_desc' => 'Garpu makan stainless steel seri 303 berat 32 gram Cap Gunung yang kokoh, seimbang, dan anti-bengkok untuk operasional kuliner profesional.',
+                'description' => '<p><strong>Garpu Makan Stainless 303 (32 gr) Cap Gunung</strong> adalah pasangan ideal untuk sendok seri 303, dirancang dengan ketahanan tinggi untuk memenuhi tuntutan sirkulasi penggunaan harian industri HORECA.</p><p>Material stainless steel kokoh anti-bengkok, ujung gigi presisi halus tidak melukai bibir, dan tahan dishwasher komersial.</p>',
+                'image' => 'services/cap-gunung/garpu-stainless-303-32gr-cap-gunung-1.webp',
+                'gallery' => [],
+                'specs' => [
+                    ['key' => 'Brand / Merk', 'value' => 'Cap Gunung (Stainless Ware)'],
+                    ['key' => 'Tipe Produk', 'value' => 'Garpu Makan Stainless (Dinner Fork)'],
+                    ['key' => 'Seri / Model', 'value' => 'Seri 303 Cap Gunung'],
+                    ['key' => 'Berat Bersih', 'value' => '32 gram / pcs'],
+                    ['key' => 'Material', 'value' => 'Stainless Steel Food Grade Berkualitas'],
+                    ['key' => 'Desain Gigi', 'value' => 'Presisi, Rapi & Nyaman di Mulut'],
+                    ['key' => 'Finishing', 'value' => 'Mirror Polish Halus'],
+                    ['key' => 'Ketahanan', 'value' => 'Kokoh Anti Bengkok & Dishwasher Safe'],
+                    ['key' => 'Kemasan Grosir', 'value' => '1 Lusin (12 pcs) / Master Box Karton'],
+                    ['key' => 'Peruntukan', 'value' => 'HORECA (Hotel, Restaurant, Cafe, Catering)'],
+                ],
+                'faqs' => [
+                    ['q' => 'Apakah garpu makan Cap Gunung seri 303 kokoh dan tidak mudah melengkung?', 'a' => 'Dengan formulasi ketebalan presisi dan bobot 32 gram, garpu ini memiliki kekuatan mekanis tinggi yang tahan terhadap tekanan pemakaian harian.'],
+                    ['q' => 'Apakah garpu ini tahan dicuci berulang dengan mesin cuci piring (dishwasher)?', 'a' => 'Sangat tahan. Material stainless steel Cap Gunung tahan karat dan aman terhadap deterjen komersial.'],
+                ],
+                'meta_title' => 'Distributor Garpu Makan Stainless 303 32gr Cap Gunung Grosir',
+                'meta_desc' => 'Pusat grosir garpu makan stainless steel seri 303 32 gram Cap Gunung.',
+                'meta_keywords' => 'garpu stainless cap gunung, garpu makan stainless 303, garpu 32gr cap gunung, grosir garpu hotel restoran',
+                'order' => 24,
+            ],
+            [
+                'name' => 'Pisau Meja Stainless Steel Cap Gunung',
+                'slug' => 'pisau-meja-stainless-steel-cap-gunung',
+                'short_desc' => 'Pisau steak dan pisau meja stainless steel Cap Gunung berkualitas tinggi dengan bilah bergerigi halus untuk sajian daging, roti, dan hidangan barat.',
+                'description' => '<p><strong>Pisau Meja Stainless Steel Cap Gunung (Table / Steak Knife)</strong> dirancang untuk melengkapi koleksi alat makan premium di restoran bergaya western, steakhouse, bistro cafe, dan jamuan perhotelan.</p><p>Bilah gerigi mikro presisi memudahkan pemotongan hidangan daging atau roti, gagang ergonomis mantap, dan higienis memenuhi standar komersial.</p>',
+                'image' => 'services/cap-gunung/pisau-stainless-cap-gunung-1.webp',
+                'gallery' => [
+                    'services/cap-gunung/pisau-stainless-cap-gunung-2.webp',
+                    'services/cap-gunung/pisau-stainless-cap-gunung-3.webp',
+                ],
+                'specs' => [
+                    ['key' => 'Brand / Merk', 'value' => 'Cap Gunung (Stainless Ware)'],
+                    ['key' => 'Tipe Produk', 'value' => 'Pisau Meja / Pisau Steak (Table / Steak Knife)'],
+                    ['key' => 'Seri / Brand', 'value' => 'Cap Gunung Stainless Ware'],
+                    ['key' => 'Material', 'value' => 'Stainless Steel Food Grade Berkualitas Tinggi'],
+                    ['key' => 'Jenis Bilah', 'value' => 'Serrated Edge (Gerigi Mikro Presisi)'],
+                    ['key' => 'Gagang / Handle', 'value' => 'Ergonomis, Solid & Nyaman Digenggam'],
+                    ['key' => 'Finishing', 'value' => 'Mirror Finish Kilap & Higienis'],
+                    ['key' => 'Ketahanan', 'value' => 'Anti Karat, Tahan Asam Makanan & Dishwasher Safe'],
+                    ['key' => 'Kemasan Grosir', 'value' => 'Pack Lusinan / Box Karton Pabrik'],
+                    ['key' => 'Peruntukan', 'value' => 'Restoran Steak, Cafe Western, Hotel, Jamuan Formal'],
+                ],
+                'faqs' => [
+                    ['q' => 'Apakah bilah pisau steak Cap Gunung ini tajam untuk memotong hidangan daging?', 'a' => 'Ya, pisau meja Cap Gunung dirancang dengan gerigi mikro presisi yang tajam dan awet, mampu memotong steak daging atau roti secara rapi.'],
+                    ['q' => 'Apakah pisau ini tahan terhadap karat dan asam makanan?', 'a' => 'Material stainless steel berkualitas tinggi yang digunakan memiliki ketahanan korosi yang sangat baik.'],
+                ],
+                'meta_title' => 'Grosir Pisau Meja & Steak Stainless Steel Cap Gunung HORECA',
+                'meta_desc' => 'Supplier pisau meja dan pisau steak stainless steel merk Cap Gunung.',
+                'meta_keywords' => 'pisau stainless cap gunung, pisau steak restoran, pisau meja stainless horeca, supplier pisau makan hotel',
+                'order' => 25,
+            ],
+        ];
+
+        foreach ($cutlery as $p) {
+            $svc = Service::updateOrCreate(
+                ['slug' => $p['slug']],
+                [
+                    'service_category_id' => $cat->id,
+                    'name'                => $p['name'],
+                    'short_desc'          => $p['short_desc'],
+                    'description'         => $p['description'],
+                    'image'               => $p['image'],
+                    'gallery'             => $p['gallery'],
+                    'specifications'      => $p['specs'],
+                    'faqs'                => $p['faqs'],
+                    'price'               => null,
+                    'rating'              => 5.0,
+                    'sold_count'          => null,
+                    'order'               => $p['order'],
+                    'is_active'           => true,
+                    'meta_title'          => $p['meta_title'],
+                    'meta_desc'           => $p['meta_desc'],
+                    'meta_keywords'       => $p['meta_keywords'],
+                ]
+            );
+            $log[] = "+ SEEDED: {$svc->name} (ID: {$svc->id})";
+        }
+
+        // Coba jalankan seeder full juga
+        try {
+            \Illuminate\Support\Facades\Artisan::call('db:seed', [
+                '--class' => 'CapGunungProductSeeder',
+                '--force' => true,
+            ]);
+            $log[] = "✓ CapGunungProductSeeder full seeder executed.";
+        } catch (\Exception $eSeeder) {
+            $log[] = "Note on full seeder: " . $eSeeder->getMessage();
+        }
+
+        \Illuminate\Support\Facades\Cache::forget('home_page_data');
+        \Illuminate\Support\Facades\Cache::forget('services_page_data');
+        $log[] = '✓ Cache cleared';
+
+        $totalCapGunung = Service::where('service_category_id', $cat->id)->count();
+        $totalAll = Service::count();
+        $log[] = "=== SELESAI SUKSES ===";
+        $log[] = "Total Produk Kategori Cap Gunung: {$totalCapGunung}";
+        $log[] = "Total Semua Produk di Web: {$totalAll}";
+
     } catch (\Exception $e) {
         $log[] = 'ERROR: ' . $e->getMessage();
         $log[] = $e->getTraceAsString();
     }
+
     return '<pre style="font-family:monospace;background:#111;color:#0f0;padding:2rem;margin:0;min-height:100vh">'
         . implode("\n", $log)
         . '</pre>';
