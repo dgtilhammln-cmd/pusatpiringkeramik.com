@@ -195,12 +195,7 @@
         <input type="number" name="order" value="{{ old('order',$s?->order??0) }}" min="0"
           style="width:100%;padding:.625rem .875rem;background:#F8FAFC;border:1.5px solid #E4E7F0;border-radius:10px;font-size:.9rem;color:#1E293B;font-family:inherit;outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='#3B82F6';this.style.background='#fff'" onblur="this.style.borderColor='#E4E7F0';this.style.background='#F8FAFC'">
       </div>
-      <div>
-        <label style="display:block;font-size:.8rem;font-weight:700;color:#374151;margin-bottom:.5rem;">Icon (opsional)</label>
-        <input type="text" name="icon" value="{{ old('icon',$s?->icon) }}" placeholder="crane, hoist, lift..."
-          style="width:100%;padding:.625rem .875rem;background:#F8FAFC;border:1.5px solid #E4E7F0;border-radius:10px;font-size:.875rem;color:#1E293B;font-family:inherit;outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='#3B82F6';this.style.background='#fff'" onblur="this.style.borderColor='#E4E7F0';this.style.background='#F8FAFC'">
-        <p style="font-size:.72rem;color:#94A3B8;margin:.375rem 0 0;">Nama ikon atau SVG path identifier</p>
-      </div>
+
     </div>
   </div>
 
@@ -272,9 +267,6 @@
 
   {{-- Foto Utama --}}
   @include('admin.partials.image-upload', ['item'=>$s,'field'=>'image','label'=>'Foto Utama Layanan'])
-
-  {{-- OG Image --}}
-  @include('admin.partials.image-upload', ['item'=>$s,'field'=>'og_image','label'=>'OG Image (Share Preview)'])
 
   {{-- Brosur --}}
   <div style="background:#fff;border-radius:20px;padding:1.5rem;box-shadow:0 2px 20px rgba(0,0,0,0.04);">
