@@ -242,46 +242,128 @@ class AdminServiceController extends Controller
         return back()->with('success', 'Layanan berhasil dihapus.');
     }
 
-    /* ─────────────────────────────────────────
-     | CSV IMPORT  (no extra package needed)
+        /* ─────────────────────────────────────────
+     | CSV IMPORT & TEMPLATE (Enhanced with Category & Product Fields)
      ───────────────────────────────────────── */
     public function importCsv(Request $request)
     {
         $request->validate([
-            'csv_file' => 'required|file|mimes:csv,txt|max:2048',
+            'csv_file' => 'required|file|max:5120',
         ]);
 
         $file    = $request->file('csv_file');
-        $handle  = fopen($file->getRealPath(), 'r');
+        $path    = $file->getRealPath();
+
+        // Deteksi delimiter: koma (,) atau titik-koma (;) Excel Indonesia
+        $sampleLine = '';
+        $fDetect = fopen($path, 'r');
+        if ($fDetect) {
+            $sampleLine = fgets($fDetect) ?: '';
+            fclose($fDetect);
+        }
+        $delimiter = (substr_count($sampleLine, ';') > substr_count($sampleLine, ',')) ? ';' : ',';
+
+        $handle  = fopen($path, 'r');
         $headers = null;
         $imported = 0;
         $skipped  = 0;
         $errors   = [];
         $order    = Service::max('order') ?? 0;
 
-        while (($row = fgetcsv($handle, 0, ',')) !== false) {
+        while (($row = fgetcsv($handle, 0, $delimiter)) !== false) {
             // First row = headers
             if (!$headers) {
-                $headers = array_map('trim', $row);
+                // Strip UTF-8 BOM jika ada
+                if (isset($row[0])) {
+                    $row[0] = preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $row[0]);
+                }
+                $headers = array_map(function($h) {
+                    return strtolower(trim($h));
+                }, $row);
                 continue;
+            }
+
+            if (empty(array_filter($row))) {
+                continue; // baris kosong
+            }
+
+            // Pastikan jumlah kolom cocok
+            if (count($headers) > count($row)) {
+                $row = array_pad($row, count($headers), '');
+            } elseif (count($row) > count($headers)) {
+                $row = array_slice($row, 0, count($headers));
             }
 
             $data = array_combine($headers, $row);
 
             // Name is required
-            $name = trim($data['name'] ?? '');
-            if (empty($name)) { $skipped++; continue; }
+            $name = trim($data['name'] ?? $data['nama'] ?? $data['nama_produk'] ?? '');
+            if (empty($name)) { 
+                $skipped++; 
+                continue; 
+            }
+
+            // Category matching / auto-create
+            $categoryName = trim($data['category'] ?? $data['kategori'] ?? $data['kategori_produk'] ?? $data['category_name'] ?? '');
+            $categoryId   = null;
+
+            if (!empty($categoryName)) {
+                $cat = ServiceCategory::whereRaw('LOWER(name) = ?', [strtolower($categoryName)])
+                    ->orWhere('slug', Str::slug($categoryName))
+                    ->first();
+
+                if (!$cat) {
+                    $cat = ServiceCategory::create([
+                        'name'       => $categoryName,
+                        'slug'       => Str::slug($categoryName),
+                        'meta_title' => $categoryName . ' - ' . config('app.name'),
+                    ]);
+                }
+                $categoryId = $cat->id;
+            }
+
+            // Parse Harga (Price)
+            $rawPrice = trim($data['price'] ?? $data['harga'] ?? $data['harga_produk'] ?? '');
+            $price = null;
+            if (!empty($rawPrice)) {
+                $cleanPrice = preg_replace('/[^0-9]/', '', $rawPrice);
+                if (is_numeric($cleanPrice)) {
+                    $price = (float) $cleanPrice;
+                }
+            }
+
+            // Parse Rating & Sold Count
+            $rawRating = trim($data['rating'] ?? '');
+            $rating = 5.0;
+            if (!empty($rawRating)) {
+                $parsedR = (float) str_replace(',', '.', $rawRating);
+                if ($parsedR > 0) $rating = min(5.0, $parsedR);
+            }
+
+            $rawSold = trim($data['sold_count'] ?? $data['terjual'] ?? '');
+            $soldCount = (!empty($rawSold) && is_numeric($rawSold)) ? (int) $rawSold : null;
+
+            // Marketplace links
+            $shopeeLink    = trim($data['shopee_link'] ?? $data['shopee'] ?? '');
+            $tokopediaLink = trim($data['tokopedia_link'] ?? $data['tokopedia'] ?? '');
+            $tiktokLink    = trim($data['tiktok_link'] ?? $data['tiktok'] ?? '');
 
             // Generate / clean slug
             $slug = !empty($data['slug']) ? Str::slug(trim($data['slug'])) : Str::slug($name);
-            $base = $slug; $i = 1;
-            while (Service::where('slug', $slug)->exists()) { $slug = $base.'-'.$i++; }
+            $base = $slug; 
+            $i = 1;
+            while (Service::where('slug', $slug)->exists()) { 
+                $slug = $base . '-' . $i++; 
+            }
 
-            // Parse Specs (format: Key1:Value1|Key2:Value2)
+            // Parse Specs (format: Key1:Value1|Key2:Value2 atau dipisah baris)
             $specs = [];
-            if (!empty($data['specs'])) {
-                $pairs = explode('|', $data['specs']);
+            $rawSpecs = trim($data['specs'] ?? $data['spesifikasi'] ?? '');
+            if (!empty($rawSpecs)) {
+                $pairs = preg_split('/[|\r\n]+/', $rawSpecs);
                 foreach ($pairs as $pair) {
+                    $pair = trim($pair);
+                    if (!$pair) continue;
                     $kv = explode(':', $pair, 2);
                     if (count($kv) === 2) {
                         $specs[] = ['key' => trim($kv[0]), 'value' => trim($kv[1])];
@@ -291,9 +373,12 @@ class AdminServiceController extends Controller
 
             // Parse FAQs (format: Q1:A1|Q2:A2)
             $faqs = [];
-            if (!empty($data['faqs'])) {
-                $pairs = explode('|', $data['faqs']);
+            $rawFaqs = trim($data['faqs'] ?? $data['faq'] ?? '');
+            if (!empty($rawFaqs)) {
+                $pairs = preg_split('/[|\r\n]+/', $rawFaqs);
                 foreach ($pairs as $pair) {
+                    $pair = trim($pair);
+                    if (!$pair) continue;
                     $kv = explode(':', $pair, 2);
                     if (count($kv) === 2) {
                         $faqs[] = ['q' => trim($kv[0]), 'a' => trim($kv[1])];
@@ -301,21 +386,30 @@ class AdminServiceController extends Controller
                 }
             }
 
+            $shortDesc = trim($data['short_desc'] ?? $data['deskripsi_singkat'] ?? '');
+            $desc      = trim($data['description'] ?? $data['deskripsi'] ?? '');
+
             try {
                 Service::create([
-                    'name'          => $name,
-                    'slug'          => $slug,
-                    'short_desc'    => trim($data['short_desc']    ?? ''),
-                    'description'   => trim($data['description']   ?? ''),
-                    'icon'          => trim($data['icon']          ?? ''),
-                    'order'         => is_numeric($data['order'] ?? '') ? (int)$data['order'] : ++$order,
-                    'is_active'     => true,
-                    'meta_title'    => trim($data['meta_title']    ?? '') ?: $name,
-                    'meta_desc'     => trim($data['meta_desc']     ?? ''),
-                    'meta_keywords' => trim($data['meta_keywords'] ?? ''),
-                    'gallery'       => [],
-                    'specifications'=> $specs,
-                    'faqs'          => $faqs,
+                    'service_category_id' => $categoryId,
+                    'name'                => $name,
+                    'slug'                => $slug,
+                    'short_desc'          => $shortDesc,
+                    'description'         => $desc,
+                    'price'               => $price,
+                    'rating'              => $rating,
+                    'sold_count'          => $soldCount,
+                    'shopee_link'         => $shopeeLink ?: null,
+                    'tokopedia_link'      => $tokopediaLink ?: null,
+                    'tiktok_link'         => $tiktokLink ?: null,
+                    'order'               => is_numeric($data['order'] ?? '') ? (int)$data['order'] : ++$order,
+                    'is_active'           => true,
+                    'meta_title'          => trim($data['meta_title'] ?? '') ?: $name,
+                    'meta_desc'           => trim($data['meta_desc'] ?? '') ?: $shortDesc,
+                    'meta_keywords'       => trim($data['meta_keywords'] ?? ''),
+                    'gallery'             => [],
+                    'specifications'      => $specs,
+                    'faqs'                => $faqs,
                 ]);
                 $imported++;
             } catch (\Exception $e) {
@@ -326,10 +420,11 @@ class AdminServiceController extends Controller
 
         Cache::forget('home_page_data');
         Cache::forget('services_page_data');
+        Cache::forget('sitemap_xml_content');
 
-        $msg = "Import selesai: $imported produk berhasil ditambahkan";
+        $msg = "Import selesai: $imported produk/layanan berhasil ditambahkan";
         if ($skipped) $msg .= ", $skipped baris dilewati (nama kosong)";
-        if ($errors)  $msg .= ". Error: " . implode(' | ', $errors);
+        if ($errors)  $msg .= ". Error: " . implode(' | ', array_slice($errors, 0, 5));
 
         return redirect()->route('admin.services.index')->with('success', $msg);
     }
@@ -338,20 +433,92 @@ class AdminServiceController extends Controller
     {
         $headers = [
             'Content-Type'        => 'text/csv; charset=UTF-8',
-            'Content-Disposition' => 'attachment; filename="template-produk.csv"',
+            'Content-Disposition' => 'attachment; filename="template-produk-layanan.csv"',
         ];
 
-        $columns = ['name','slug','short_desc','description','icon','order','meta_title','meta_desc','meta_keywords','specs','faqs'];
+        $columns = [
+            'name',
+            'category',
+            'price',
+            'short_desc',
+            'description',
+            'rating',
+            'sold_count',
+            'shopee_link',
+            'tokopedia_link',
+            'tiktok_link',
+            'specs',
+            'faqs',
+            'order',
+            'meta_title',
+            'meta_desc',
+            'meta_keywords',
+        ];
 
         $callback = function () use ($columns) {
             $h = fopen('php://output', 'w');
-            // BOM for Excel UTF-8
+            // BOM for Excel UTF-8 agar huruf dan tanda baca terbaca rapi
             fprintf($h, chr(0xEF).chr(0xBB).chr(0xBF));
             fputcsv($h, $columns);
-            // 3 example rows
-            fputcsv($h, ['Cat Epoxy Primer', 'cat-epoxy-primer', 'Deskripsi singkat produk', 'Deskripsi panjang produk', '', '1', '', '', 'cat, epoxy, primer', 'Warna:Abu-abu|Kemasan:20Kg', 'Berapa lapis?:2 lapis|Kering sentuh?:30 menit']);
-            fputcsv($h, ['Cat Polyurethane', 'cat-polyurethane', '', '', '', '2', '', '', '', '', '']);
-            fputcsv($h, ['Thinner Industrial', '', '', '', '', '3', '', '', '', '', '']);
+
+            // 3 baris contoh produk keramik riil
+            fputcsv($h, [
+                'Piring Keramik Makan Polos 9 Inch',
+                'Piring Keramik',
+                '25000',
+                'Piring makan keramik putih polos standar hotel & resto',
+                'Piring makan keramik berkualitas tinggi dengan glasur halus, tahan microwave dan dishwasher safe.',
+                '4.9',
+                '250',
+                'https://shopee.co.id/pusatpiringkeramik',
+                'https://tokopedia.com/pusatpiringkeramik',
+                '',
+                'Material:Keramik Porselen SNI|Diameter:23 cm (9 inch)|Warna:Putih Glossy|Microwave Safe:Ya',
+                'Apakah bisa beli grosir?:Bisa, tersedia harga khusus pembelian di atas 50 pcs|Apakah aman kirim luar kota?:Sangat aman dengan packing bubble tebal dan peti kayu',
+                '1',
+                'Piring Keramik Makan Polos 9 Inch Grosir',
+                'Jual piring makan keramik polos 9 inch kualitas terbaik untuk resto dan hotel.',
+                'piring keramik, piring makan keramik, piring hotel'
+            ]);
+
+            fputcsv($h, [
+                'Mangkok Keramik Sup Ramen 7 Inch',
+                'Mangkok Keramik',
+                '32000',
+                'Mangkok keramik tebal untuk sup, ramen, dan bakso',
+                'Mangkok keramik tahan panas dengan desain elegan cocok untuk usaha kuliner maupun sajian rumah tangga.',
+                '5.0',
+                '180',
+                '',
+                '',
+                '',
+                'Material:Stoneware Keramik|Kapasitas:800 ml|Diameter:18 cm|Tinggi:8 cm',
+                'Apakah bisa custom logo sablon?:Bisa, silakan hubungi tim kami via WhatsApp',
+                '2',
+                'Mangkok Keramik Sup Ramen 7 Inch',
+                'Mangkok keramik sup ramen tebal dan tahan panas.',
+                'mangkok keramik, mangkok ramen, mangkok sup'
+            ]);
+
+            fputcsv($h, [
+                'Mug Keramik Kopi Cangkir Souvenir',
+                'Mug & Cangkir',
+                '18000',
+                'Mug keramik 300ml untuk kopi dan souvenir pernikahan / event',
+                'Mug keramik polos siap cetak sablon decal custom kualitas premium dan tahan cuci berkali-kali.',
+                '4.8',
+                '500',
+                '',
+                '',
+                '',
+                'Material:Porcelain Keramik|Volume:330 ml (11 oz)|Warna:Putih Polos',
+                'Minimal order untuk sablon berapa pcs?:Minimal order cetak custom 50 pcs',
+                '3',
+                'Mug Keramik Kopi Cangkir Souvenir Custom',
+                'Mug keramik polos dan custom souvenir untuk kantor atau pernikahan.',
+                'mug keramik, cangkir souvenir, souvenir keramik'
+            ]);
+
             fclose($h);
         };
 

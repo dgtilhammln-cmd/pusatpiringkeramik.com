@@ -178,11 +178,16 @@
       <div style="padding:2rem;">
         <div
           style="background:#F8FAFC;border:1px dashed #CBD5E1;border-radius:12px;padding:1.25rem;text-align:center;margin-bottom:1.5rem;">
-          <p style="margin:0 0 .5rem;font-size:.875rem;color:#475569;">Gunakan template CSV agar struktur kolom sesuai.
+          <p style="margin:0 0 .625rem;font-size:.875rem;color:#475569;">Gunakan template CSV agar struktur kolom dan format kategori sesuai.
           </p>
           <a href="{{ route('admin.services.template') }}"
-            style="display:inline-block;font-size:.8rem;font-weight:700;color:#3B82F6;text-decoration:none;padding:.375rem .75rem;background:#EFF6FF;border-radius:8px;">Unduh
-            Template CSV</a>
+            style="display:inline-flex;align-items:center;gap:.375rem;font-size:.8rem;font-weight:700;color:#3B82F6;text-decoration:none;padding:.5rem 1rem;background:#EFF6FF;border-radius:8px;border:1px solid rgba(59,130,246,0.2);">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Unduh Template CSV Terbaru</a>
+          <div style="font-size:.72rem;color:#64748B;line-height:1.4;margin-top:.75rem;text-align:left;background:#fff;padding:.625rem .75rem;border-radius:8px;border:1px solid #E2E8F0;">
+            <strong style="color:#1E293B;">Kolom CSV:</strong> <code>name</code>, <code>category</code>, <code>price</code>, <code>short_desc</code>, <code>description</code>, <code>rating</code>, <code>sold_count</code>, <code>shopee_link</code>, <code>tokopedia_link</code>, <code>specs</code>, <code>faqs</code>.<br>
+            <span style="color:#10B981;font-weight:600;">✓</span> Kolom <code>category</code> otomatis mencocokkan atau membuat kategori baru di database.
+          </div>
         </div>
 
         <form action="{{ route('admin.services.import') }}" method="POST" enctype="multipart/form-data">
