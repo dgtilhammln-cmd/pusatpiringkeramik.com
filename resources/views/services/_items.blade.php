@@ -62,3 +62,4 @@
         <p>Tidak ada produk yang cocok dengan pencarian atau filter yang Anda pilih.</p>
     </div>
 @endforelse
+
