@@ -355,6 +355,19 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 .user-dropdown-item.danger:hover svg {
   color: #334155;
 }
+#notif-container {
+  position: relative;
+  display: inline-block;
+}
+#notif-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 14px;
+  display: block;
+}
 #main {
   flex: 1;
   margin-left: 88px;
@@ -570,7 +583,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
         $newLeadsCount = \App\Models\Lead::where('status', 'new')->count();
         $recentLeads = \App\Models\Lead::where('status', 'new')->latest()->take(5)->get();
       @endphp
-      <div style="position:relative;" id="notif-container">
+      <div style="position:relative;" id="notif-container" onmouseenter="showNotif()" onmouseleave="hideNotif(180)">
         <button id="notif-btn" title="{{ $newLeadsCount }} lead baru" onclick="toggleNotif(event)" style="position:relative;width:38px;height:38px;border-radius:12px;border:1.5px solid var(--border,#E4E7F0);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.04);">
           <svg width="16" height="16" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
           @if($newLeadsCount > 0)
@@ -728,35 +741,67 @@ function sbSearch(q){
     l.style.display=l.textContent.toLowerCase().includes(q)?'flex':'none';
   });
 }
-function toggleNotif(e) {
-  e.stopPropagation();
+let notifTimeout = null;
+
+function showNotif() {
+  clearTimeout(notifTimeout);
   const dropdown = document.getElementById('notif-dropdown');
   const btn = document.getElementById('notif-btn');
-  const isHidden = dropdown.style.display === 'none' || dropdown.style.display === '';
-  if (isHidden) {
-    dropdown.style.display = 'block';
-    requestAnimationFrame(() => {
-      dropdown.style.opacity = '1';
-      dropdown.style.transform = 'translateY(0)';
-    });
+  if (!dropdown) return;
+  dropdown.style.display = 'block';
+  requestAnimationFrame(() => {
+    dropdown.style.opacity = '1';
+    dropdown.style.transform = 'translateY(0)';
+  });
+  if (btn) {
     btn.style.background = '#EFF6FF';
     btn.style.borderColor = '#BFDBFE';
-  } else {
-    dropdown.style.opacity = '0';
-    dropdown.style.transform = 'translateY(-8px)';
-    setTimeout(() => { dropdown.style.display = 'none'; }, 200);
-    btn.style.background = '#fff';
-    btn.style.borderColor = 'var(--border, #E4E7F0)';
   }
 }
-window.addEventListener('click', function(e) {
-  const dropdown = document.getElementById('notif-dropdown');
-  const btn = document.getElementById('notif-btn');
-  if (dropdown && !e.target.closest('#notif-container')) {
+
+function hideNotif(delay = 180) {
+  clearTimeout(notifTimeout);
+  notifTimeout = setTimeout(() => {
+    const dropdown = document.getElementById('notif-dropdown');
+    const btn = document.getElementById('notif-btn');
+    if (!dropdown) return;
     dropdown.style.opacity = '0';
     dropdown.style.transform = 'translateY(-8px)';
-    setTimeout(() => { dropdown.style.display = 'none'; }, 200);
-    if (btn) { btn.style.background = '#fff'; btn.style.borderColor = 'var(--border, #E4E7F0)'; }
+    setTimeout(() => {
+      if (dropdown.style.opacity === '0') {
+        dropdown.style.display = 'none';
+      }
+    }, 200);
+    if (btn) {
+      btn.style.background = '#fff';
+      btn.style.borderColor = 'var(--border, #E4E7F0)';
+    }
+  }, delay);
+}
+
+function toggleNotif(e) {
+  if (e) e.stopPropagation();
+  const dropdown = document.getElementById('notif-dropdown');
+  const isVisible = dropdown && dropdown.style.display === 'block' && dropdown.style.opacity === '1';
+  if (isVisible) {
+    hideNotif(0);
+  } else {
+    showNotif();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const notifContainer = document.getElementById('notif-container');
+  if (notifContainer) {
+    notifContainer.addEventListener('mouseenter', () => showNotif());
+    notifContainer.addEventListener('mouseleave', () => hideNotif(180));
+  }
+});
+
+window.addEventListener('click', function(e) {
+  const dropdown = document.getElementById('notif-dropdown');
+  if (dropdown && !e.target.closest('#notif-container')) {
+    hideNotif(0);
   }
 });
 </script>
