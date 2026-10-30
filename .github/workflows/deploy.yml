@@ -46,7 +46,7 @@ jobs:
         timeout: 120s
         strip_components: 0
 
-    - name: Extract & Deploy on Server
+    - name: Extract, Migrate & Seed on Server
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.SSH_HOST }}
@@ -57,46 +57,25 @@ jobs:
         script: |
           cd /home/u664715641
 
-          # 1. DEPLOY KE DOMAIN UTAMA: pusatpiringkeramik.com
-          if [ -d "domains/pusatpiringkeramik.com" ]; then
-            echo "=== [1/2] Deploy ke pusatpiringkeramik.com ==="
-            tar -xzf deploy_patch.tar.gz -C domains/pusatpiringkeramik.com/ 2>&1
-            DEPLOY_MAIN="/home/u664715641/domains/pusatpiringkeramik.com"
-            
-            # Symlink storage
-            rm -rf "$DEPLOY_MAIN/public_html/storage"
-            ln -s "$DEPLOY_MAIN/storage/app/public" "$DEPLOY_MAIN/public_html/storage"
-            chmod -R 775 "$DEPLOY_MAIN/storage" "$DEPLOY_MAIN/bootstrap/cache" 2>/dev/null || true
-            
-            cd "$DEPLOY_MAIN"
-            php artisan migrate --force 2>&1 || true
-            php artisan db:seed --class=CapGunungProductSeeder --force 2>&1 || true
-            
-            php artisan optimize:clear 2>&1 || true
-            php artisan view:cache 2>&1 || true
-            echo "--- pusatpiringkeramik.com OK!"
-          fi
+          for DIR in domains/pusatpiringkeramik.hvmdigital.id domains/pusatpiringkeramik.com; do
+            if [ -d "$DIR" ]; then
+              echo "=== Deploying to $DIR ==="
+              tar -xzf deploy_patch.tar.gz -C "$DIR/" 2>&1 || true
+              
+              # Fix storage symlink
+              rm -rf "$DIR/public_html/storage"
+              ln -s "$DIR/storage/app/public" "$DIR/public_html/storage" 2>/dev/null || true
+              chmod -R 775 "$DIR/storage" "$DIR/bootstrap/cache" 2>/dev/null || true
+              
+              cd "/home/u664715641/$DIR"
+              php artisan migrate --force 2>&1 || true
+              php artisan db:seed --class=CapGunungProductSeeder --force 2>&1 || true
+              php artisan optimize:clear 2>&1 || true
+              php artisan view:cache 2>&1 || true
+              cd /home/u664715641
+              echo "=== $DIR OK ==="
+            fi
+          done
 
-          # 2. DEPLOY KE SUBDOMAIN / STAGING: pusatpiringkeramik.hvmdigital.id
-          if [ -d "domains/pusatpiringkeramik.hvmdigital.id" ]; then
-            echo "=== [2/2] Deploy ke pusatpiringkeramik.hvmdigital.id ==="
-            tar -xzf deploy_patch.tar.gz -C domains/pusatpiringkeramik.hvmdigital.id/ 2>&1
-            DEPLOY_ALT="/home/u664715641/domains/pusatpiringkeramik.hvmdigital.id"
-            
-            # Symlink storage
-            rm -rf "$DEPLOY_ALT/public_html/storage"
-            ln -s "$DEPLOY_ALT/storage/app/public" "$DEPLOY_ALT/public_html/storage"
-            chmod -R 775 "$DEPLOY_ALT/storage" "$DEPLOY_ALT/bootstrap/cache" 2>/dev/null || true
-            
-            cd "$DEPLOY_ALT"
-            php artisan migrate --force 2>&1 || true
-            php artisan db:seed --class=CapGunungProductSeeder --force 2>&1 || true
-            
-            php artisan optimize:clear 2>&1 || true
-            php artisan view:cache 2>&1 || true
-            echo "--- pusatpiringkeramik.hvmdigital.id OK!"
-          fi
-
-          # Bersihkan tar
-          rm -f /home/u664715641/deploy_patch.tar.gz
-          echo "=== SEMUA DEPLOY SELESAI DENGAN SUKSES ==="
+          rm -f deploy_patch.tar.gz
+          echo "=== SEMUA DEPLOY SELESAI ==="
