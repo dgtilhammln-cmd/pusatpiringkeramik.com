@@ -15,17 +15,41 @@ class ServiceController extends Controller
         $categories = ServiceCategory::all();
         $query = Service::active()->ordered();
 
+        // 1. Search filter
+        $search = trim(request('q', ''));
+        if ($search !== '') {
+            $query->where(function($w) use ($search) {
+                $w->where('name', 'like', "%{$search}%")
+                  ->orWhere('short_desc', 'like', "%{$search}%")
+                  ->orWhere('description', 'like', "%{$search}%");
+            });
+        }
+
         if (request()->has('category')) {
             $catSlug = request()->get('category');
             if ($catSlug !== 'all') {
                 $categoryExists = ServiceCategory::where('slug', $catSlug)->exists();
                 if ($categoryExists) {
-                    return redirect()->route('products.category', $catSlug, 301);
+                    return redirect()->route('products.category', array_merge(['slug' => $catSlug], request()->query()), 301);
                 }
             }
         }
 
         $services = $query->paginate(12)->withQueryString();
+
+        // AJAX / Infinite Scroll / Live Search response
+        if (request()->ajax() || request()->wantsJson() || request('ajax') == '1') {
+            return response()->json([
+                'html'         => view('services._items', compact('services'))->render(),
+                'hasMorePages' => $services->hasMorePages(),
+                'nextPageUrl'  => $services->nextPageUrl(),
+                'total'        => $services->total(),
+                'countText'    => $services->total() > 0 
+                    ? "Menampilkan <strong>" . ($services->firstItem() ?? 0) . "–" . ($services->lastItem() ?? 0) . "</strong> dari <strong>{$services->total()}</strong> produk"
+                    : "Tidak ada produk ditemukan",
+            ]);
+        }
+
         $settings = Setting::getAllAsArray();
 
         $comp    = Setting::get('company_name', config('app.name'));
@@ -61,12 +85,35 @@ class ServiceController extends Controller
     {
         $activeCategory = ServiceCategory::where('slug', $slug)->firstOrFail();
         $categories     = ServiceCategory::all();
-        $services       = Service::active()->ordered()
+        $query          = Service::active()->ordered()
             ->whereHas('category', function($q) use ($slug) {
                 $q->where('slug', $slug);
-            })
-            ->paginate(12)
-            ->withQueryString();
+            });
+
+        // Search filter within category
+        $search = trim(request('q', ''));
+        if ($search !== '') {
+            $query->where(function($w) use ($search) {
+                $w->where('name', 'like', "%{$search}%")
+                  ->orWhere('short_desc', 'like', "%{$search}%")
+                  ->orWhere('description', 'like', "%{$search}%");
+            });
+        }
+
+        $services = $query->paginate(12)->withQueryString();
+
+        // AJAX / Infinite Scroll / Live Search response
+        if (request()->ajax() || request()->wantsJson() || request('ajax') == '1') {
+            return response()->json([
+                'html'         => view('services._items', compact('services'))->render(),
+                'hasMorePages' => $services->hasMorePages(),
+                'nextPageUrl'  => $services->nextPageUrl(),
+                'total'        => $services->total(),
+                'countText'    => $services->total() > 0 
+                    ? "Menampilkan <strong>" . ($services->firstItem() ?? 0) . "–" . ($services->lastItem() ?? 0) . "</strong> dari <strong>{$services->total()}</strong> produk"
+                    : "Tidak ada produk ditemukan",
+            ]);
+        }
 
         $settings = Setting::getAllAsArray();
         $comp     = Setting::get('company_name', config('app.name'));

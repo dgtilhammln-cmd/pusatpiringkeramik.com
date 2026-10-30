@@ -540,6 +540,154 @@
         .sv-cta-btns { flex-direction: column; width: 100%; }
         .btn-primary-v2, .btn-outline-v2 { width: 100%; justify-content: center; }
     }
+
+    /* ═══ SEARCH BAR (PREMIUM MINIMALIST) ═══ */
+    .sv-search-wrap {
+        margin: 0 auto 2rem;
+        max-width: 680px;
+        position: relative;
+    }
+    .sv-search-box {
+        position: relative;
+        display: flex;
+        align-items: center;
+        background: #ffffff;
+        border: 1.5px solid #E2E8F0;
+        border-radius: 50px;
+        padding: 0.35rem 0.5rem 0.35rem 1.25rem;
+        box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .sv-search-box:focus-within {
+        border-color: #0F172A;
+        box-shadow: 0 8px 30px -4px rgba(15, 23, 42, 0.12), 0 0 0 3px rgba(15, 23, 42, 0.05);
+        background: #ffffff;
+    }
+    .sv-search-icon {
+        color: #94A3B8;
+        flex-shrink: 0;
+        margin-right: 0.75rem;
+        transition: color 0.2s;
+    }
+    .sv-search-box:focus-within .sv-search-icon {
+        color: #0F172A;
+    }
+    .sv-search-input {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-family: var(--font);
+        font-size: 0.9375rem;
+        color: #0F172A;
+        background: transparent;
+        padding: 0.5rem 0;
+    }
+    .sv-search-input::placeholder {
+        color: #94A3B8;
+        font-weight: 400;
+    }
+    .sv-search-clear {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #F1F5F9;
+        color: #64748B;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-right: 0.35rem;
+    }
+    .sv-search-clear:hover {
+        background: #E2E8F0;
+        color: #0F172A;
+    }
+    .sv-search-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        background: #0F172A;
+        color: #ffffff;
+        font-family: var(--font);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        padding: 0.6rem 1.25rem;
+        border-radius: 50px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+        flex-shrink: 0;
+    }
+    .sv-search-btn:hover {
+        background: #1E293B;
+        transform: translateY(-1px);
+    }
+
+    /* ═══ INFINITE SCROLL LOADER & STATES ═══ */
+    .sv-infinite-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2.5rem 0 1rem;
+        width: 100%;
+        text-align: center;
+    }
+    .sv-spinner {
+        width: 32px;
+        height: 32px;
+        border: 2.5px solid rgba(15, 23, 42, 0.1);
+        border-top-color: #0F172A;
+        border-radius: 50%;
+        animation: svSpin 0.75s linear infinite;
+        margin-bottom: 0.75rem;
+    }
+    @keyframes svSpin {
+        to { transform: rotate(360deg); }
+    }
+    .sv-infinite-text {
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: #64748B;
+        font-family: var(--font);
+        letter-spacing: 0.01em;
+    }
+    .sv-infinite-end {
+        padding: 2.5rem 0;
+        text-align: center;
+        color: #94A3B8;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        font-family: var(--font);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+    .sv-infinite-end::before,
+    .sv-infinite-end::after {
+        content: '';
+        height: 1px;
+        width: 60px;
+        background: #E2E8F0;
+    }
+    .sv-card.sv-fade-in {
+        animation: svCardFadeIn 0.35s ease-out forwards;
+    }
+    @keyframes svCardFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(14px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
 </style>
 
 @php
@@ -656,6 +804,24 @@
 
 {{-- ═══ PRODUCTS GRID ═══ --}}
 <section class="sv-section">
+    <div class="sv-search-wrap">
+        <form id="productSearchForm" onsubmit="event.preventDefault(); window.triggerSearch();">
+            <div class="sv-search-box">
+                <svg class="sv-search-icon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="productSearchInput" class="sv-search-input" placeholder="Cari nama piring, mangkok, cangkir, cutlery..." value="{{ request('q') }}" autocomplete="off">
+                <button type="button" id="productSearchClear" class="sv-search-clear" title="Hapus pencarian">
+                    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                <button type="submit" class="sv-search-btn">
+                    Cari
+                </button>
+            </div>
+        </form>
+    </div>
+
     <div class="sv-grid-header">
         <p class="sv-grid-count">
             Menampilkan <strong>{{ $services->firstItem() ?? 0 }}–{{ $services->lastItem() ?? 0 }}</strong>
@@ -663,133 +829,186 @@
         </p>
     </div>
 
-    <div class="sv-grid">
-        @forelse($services as $i => $service)
-            <a href="{{ route('products.show', $service->slug) }}"
-               class="sv-card"
-               data-aos="fade-up"
-               data-aos-delay="{{ ($i % 3) * 100 }}">
-
-                <div class="sv-card-img">
-                    <img src="{{ $service->image_url }}"
-                         alt="{{ $service->alt_text }}"
-                         loading="{{ $i < 6 ? 'eager' : 'lazy' }}"
-                         style="width:100%;height:100%;object-fit:cover;">
-
-                    @if(($service->rating && $service->rating > 0) || !empty($service->sold_count) || ($service->price && $service->price > 0))
-                        <div class="sv-card-badge-top">
-                            @if(($service->rating && $service->rating > 0) || !empty($service->sold_count))
-                                <div class="sv-card-rating-badge">
-                                    @if($service->rating && $service->rating > 0)
-                                        <span class="sv-rating-star">★</span>
-                                        <span class="sv-rating-val">{{ number_format($service->rating, 1) }}</span>
-                                    @endif
-                                    @if(($service->rating && $service->rating > 0) && !empty($service->sold_count))
-                                        <span class="sv-rating-sep">•</span>
-                                    @endif
-                                    @if(!empty($service->sold_count))
-                                        <span class="sv-sold-val">{{ $service->sold_count }} terjual</span>
-                                    @endif
-                                </div>
-                            @endif
-
-                            @if($service->price && $service->price > 0)
-                                <div class="sv-card-price-badge">
-                                    {{ $service->formatted_price }}
-                                </div>
-                            @endif
-                        </div>
-                    @endif
-                </div>
-
-                <div class="sv-card-body">
-                    {{-- Category Label (replaces Tipe #99) --}}
-                    <div class="sv-card-cat">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M5.5 7A1.5 1.5 0 014 5.5 1.5 1.5 0 015.5 4 1.5 1.5 0 017 5.5 1.5 1.5 0 015.5 7m15.91 4.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.11 0-2 .89-2 2v7c0 .55.22 1.05.59 1.41l9 9c.36.37.86.59 1.41.59.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41.01-.56-.22-1.06-.59-1.42z"/>
-                        </svg>
-                        {{ $service->category?->name ?? 'Produk Unggulan' }}
-                    </div>
-                    <h2 class="sv-card-name">{{ $service->name }}</h2>
-                    <p class="sv-card-desc">{{ Str::limit($service->short_desc, 90) }}</p>
-                    <span class="sv-card-link">
-                        Lihat Detail
-                        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                        </svg>
-                    </span>
-                </div>
-            </a>
-        @empty
-            <div class="sv-empty">
-                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                </svg>
-                <h3>Belum ada produk</h3>
-                <p>Belum ada produk di kategori ini. Coba pilih kategori lain.</p>
-            </div>
-        @endforelse
+    <div class="sv-grid" id="productsGrid">
+        @include('services._items', ['services' => $services])
     </div>
 
-    {{-- PAGINATION --}}
-    @if($services->hasPages())
-        <div class="sv-pagination">
-            {{-- Prev --}}
-            @if($services->onFirstPage())
-                <span class="disabled">&lsaquo;</span>
-            @else
-                <a href="{{ $services->previousPageUrl() }}">&lsaquo;</a>
-            @endif
+    {{-- Infinite Scroll Sentinel & Loading Indicator --}}
+    <div id="infiniteSentinel" style="height: 20px; margin-top: 1.5rem;"></div>
 
-            {{-- Page Numbers --}}
-            @foreach($services->getUrlRange(max(1, $services->currentPage()-2), min($services->lastPage(), $services->currentPage()+2)) as $page => $url)
-                @if($page == $services->currentPage())
-                    <span class="active-page">{{ $page }}</span>
-                @else
-                    <a href="{{ $url }}">{{ $page }}</a>
-                @endif
-            @endforeach
+    <div id="infiniteLoader" class="sv-infinite-wrap" style="display: none;">
+        <div class="sv-spinner"></div>
+        <span class="sv-infinite-text">Memuat produk lainnya...</span>
+    </div>
 
-            {{-- Next --}}
-            @if($services->hasMorePages())
-                <a href="{{ $services->nextPageUrl() }}">&rsaquo;</a>
-            @else
-                <span class="disabled">&rsaquo;</span>
-            @endif
-        </div>
-    @endif
+    <div id="infiniteEnd" class="sv-infinite-end" style="{{ !$services->hasMorePages() && $services->total() > 0 ? 'display:flex;' : 'display:none;' }}">
+        <span>Semua produk telah ditampilkan</span>
+    </div>
 </section>
 
 
 @push('scripts')
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const wrap = document.getElementById('svCategoryDropdown');
-    const btn = document.getElementById('svCatToggleBtn');
-    if (!wrap || !btn) return;
+    // 1. Kategori Dropdown Toggle
+    const catWrap = document.getElementById('svCategoryDropdown');
+    const catBtn = document.getElementById('svCatToggleBtn');
+    if (catWrap && catBtn) {
+        catBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const isOpen = catWrap.classList.toggle('is-open');
+            catBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+        document.addEventListener('click', function (e) {
+            if (!catWrap.contains(e.target)) {
+                catWrap.classList.remove('is-open');
+                catBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
 
-    btn.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        const isOpen = wrap.classList.toggle('is-open');
-        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
+    // 2. INFINITE SCROLLING & LIVE SEARCH
+    const grid = document.getElementById('productsGrid');
+    const sentinel = document.getElementById('infiniteSentinel');
+    const loader = document.getElementById('infiniteLoader');
+    const endNotice = document.getElementById('infiniteEnd');
+    const searchInput = document.getElementById('productSearchInput');
+    const searchClear = document.getElementById('productSearchClear');
+    const gridCount = document.querySelector('.sv-grid-count');
 
-    document.addEventListener('click', function (e) {
-        if (!wrap.contains(e.target)) {
-            wrap.classList.remove('is-open');
-            btn.setAttribute('aria-expanded', 'false');
+    let nextPageUrl = @json($services->nextPageUrl());
+    let isLoading = false;
+    let searchDebounceTimer = null;
+    let currentSearch = @json(request('q', ''));
+
+    function updateClearButton() {
+        if (searchClear && searchInput) {
+            searchClear.style.display = searchInput.value.trim().length > 0 ? 'inline-flex' : 'none';
         }
-    });
+    }
+    updateClearButton();
 
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-            wrap.classList.remove('is-open');
-            btn.setAttribute('aria-expanded', 'false');
+    // Fetch products (for search or initial page reset)
+    window.triggerSearch = function () {
+        const query = searchInput ? searchInput.value.trim() : '';
+        currentSearch = query;
+        updateClearButton();
+
+        // Update browser URL query param without reload
+        const url = new URL(window.location.href);
+        if (query) {
+            url.searchParams.set('q', query);
+        } else {
+            url.searchParams.delete('q');
         }
-    });
+        url.searchParams.delete('page');
+        window.history.replaceState({}, '', url.toString());
+
+        // Perform AJAX request
+        url.searchParams.set('ajax', '1');
+        if (loader) loader.style.display = 'flex';
+        if (endNotice) endNotice.style.display = 'none';
+
+        fetch(url.toString(), {
+            headers: { 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'application/json' }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (loader) loader.style.display = 'none';
+            if (grid) grid.innerHTML = data.html;
+            if (gridCount && data.countText) gridCount.innerHTML = data.countText;
+            nextPageUrl = data.nextPageUrl;
+
+            if (!data.hasMorePages && data.total > 0) {
+                if (endNotice) endNotice.style.display = 'flex';
+            } else {
+                if (endNotice) endNotice.style.display = 'none';
+            }
+        })
+        .catch(err => {
+            console.error('Search error:', err);
+            if (loader) loader.style.display = 'none';
+        });
+    };
+
+    if (searchInput) {
+        searchInput.addEventListener('input', function () {
+            updateClearButton();
+            clearTimeout(searchDebounceTimer);
+            searchDebounceTimer = setTimeout(window.triggerSearch, 350);
+        });
+    }
+
+    if (searchClear) {
+        searchClear.addEventListener('click', function () {
+            if (searchInput) {
+                searchInput.value = '';
+                searchInput.focus();
+                window.triggerSearch();
+            }
+        });
+    }
+
+    // Infinite Scroll IntersectionObserver
+    function loadMoreProducts() {
+        if (!nextPageUrl || isLoading) return;
+        isLoading = true;
+        if (loader) loader.style.display = 'flex';
+
+        const fetchUrl = new URL(nextPageUrl, window.location.origin);
+        fetchUrl.searchParams.set('ajax', '1');
+
+        fetch(fetchUrl.toString(), {
+            headers: { 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'application/json' }
+        })
+        .then(res => res.json())
+        .then(data => {
+            isLoading = false;
+            if (loader) loader.style.display = 'none';
+
+            if (data.html && grid) {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = data.html;
+                const newCards = tempDiv.querySelectorAll('.sv-card');
+                newCards.forEach(card => {
+                    card.classList.add('sv-fade-in');
+                    grid.appendChild(card);
+                });
+            }
+
+            if (gridCount && data.countText) gridCount.innerHTML = data.countText;
+            nextPageUrl = data.nextPageUrl;
+
+            if (!data.hasMorePages) {
+                if (endNotice) endNotice.style.display = 'flex';
+            }
+        })
+        .catch(err => {
+            console.error('Infinite scroll error:', err);
+            isLoading = false;
+            if (loader) loader.style.display = 'none';
+        });
+    }
+
+    if ('IntersectionObserver' in window && sentinel) {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && nextPageUrl && !isLoading) {
+                    loadMoreProducts();
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '400px 0px',
+            threshold: 0.05
+        });
+        observer.observe(sentinel);
+    }
 });
 </script>
+
 @endpush
 
 @endsection
