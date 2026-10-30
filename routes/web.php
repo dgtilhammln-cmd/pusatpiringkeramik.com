@@ -245,6 +245,44 @@ Route::get('/seed-cap-gunung', function () {
         . '</pre>';
 });
 
+// Route /seed-kaibon agar bisa dieksekusi via browser
+Route::get('/seed-kaibon', function () {
+    $log = [];
+    if (function_exists('opcache_reset')) {
+        opcache_reset();
+        $log[] = '✓ OPcache reset';
+    }
+    $log[] = '=== MULAI SEEDING KAIBON ===';
+    $log[] = date('Y-m-d H:i:s');
+
+    try {
+        \Illuminate\Support\Facades\Artisan::call('db:seed', [
+            '--class' => 'KaibonProductSeeder',
+            '--force' => true,
+        ]);
+        $output = \Illuminate\Support\Facades\Artisan::output();
+        $log[] = $output ?: '✓ KaibonProductSeeder executed';
+
+        \Illuminate\Support\Facades\Cache::forget('home_page_data');
+        \Illuminate\Support\Facades\Cache::forget('services_page_data');
+        $log[] = '✓ Cache cleared';
+
+        $catKaibon = \App\Models\ServiceCategory::where('slug', 'kaibon')->first();
+        $totalKaibon = $catKaibon ? \App\Models\Service::where('service_category_id', $catKaibon->id)->count() : 0;
+        $totalAll = \App\Models\Service::count();
+        $log[] = "=== SELESAI SUKSES ===";
+        $log[] = "Total Produk Kategori Kaibon: {$totalKaibon}";
+        $log[] = "Total Semua Produk di Web: {$totalAll}";
+    } catch (\Exception $e) {
+        $log[] = 'ERROR: ' . $e->getMessage();
+        $log[] = $e->getTraceAsString();
+    }
+
+    return '<pre style="font-family:monospace;background:#111;color:#0f0;padding:2rem;margin:0;min-height:100vh">'
+        . implode("\n", $log)
+        . '</pre>';
+});
+
 // FIX: Bersihkan data lama dari proyek lain & aktifkan debug mode
 // Kunjungi sekali: https://pusatpiringkeramik.hvmdigital.id/fix-env-debug
 Route::get('/fix-env-debug', function () {

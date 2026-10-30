@@ -70,6 +70,7 @@ jobs:
               cd "/home/u664715641/$DIR"
               php artisan migrate --force 2>&1 || true
               php artisan db:seed --class=CapGunungProductSeeder --force 2>&1 || true
+              php artisan db:seed --class=KaibonProductSeeder --force 2>&1 || true
               php artisan optimize:clear 2>&1 || true
               php artisan view:cache 2>&1 || true
               cd /home/u664715641

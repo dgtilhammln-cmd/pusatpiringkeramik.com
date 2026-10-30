@@ -22,4 +22,5 @@ storage/framework/*.php
 storage/framework/lsp-*.php
 
 Cap Gunung/
+Kaibon/
 __pycache__/
