@@ -7,6 +7,8 @@ use App\Models\ServiceCategory;
 use App\Models\Article;
 use App\Models\GalleryProject;
 use App\Models\Setting;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class SitemapController extends Controller
 {
@@ -45,6 +47,8 @@ class SitemapController extends Controller
 
         // ── Dynamic pages from DB ────────────────────────────────────────────
         $today = date('Y-m-d');
+
+        // 1. Categories
         try {
             foreach (ServiceCategory::all(['slug', 'updated_at']) as $c) {
                 if (!empty($c->slug)) {
@@ -56,7 +60,12 @@ class SitemapController extends Controller
                     ];
                 }
             }
+        } catch (\Throwable $e) {
+            Log::warning('Sitemap categories fetch error: ' . $e->getMessage());
+        }
 
+        // 2. Products
+        try {
             foreach (Service::active()->ordered()->get(['slug', 'updated_at']) as $s) {
                 if (!empty($s->slug)) {
                     $entries[] = [
@@ -67,7 +76,12 @@ class SitemapController extends Controller
                     ];
                 }
             }
+        } catch (\Throwable $e) {
+            Log::warning('Sitemap products fetch error: ' . $e->getMessage());
+        }
 
+        // 3. Articles (Published)
+        try {
             foreach (Article::published()->latest()->get(['slug', 'updated_at', 'published_at']) as $a) {
                 if (!empty($a->slug)) {
                     $lastmod = optional($a->updated_at ?? $a->published_at)->toDateString() ?? $today;
@@ -79,7 +93,12 @@ class SitemapController extends Controller
                     ];
                 }
             }
+        } catch (\Throwable $e) {
+            Log::warning('Sitemap articles fetch error: ' . $e->getMessage());
+        }
 
+        // 4. Gallery Projects
+        try {
             foreach (GalleryProject::active()->published()->ordered()->get(['slug', 'updated_at']) as $g) {
                 if (!empty($g->slug)) {
                     $entries[] = [
@@ -91,7 +110,7 @@ class SitemapController extends Controller
                 }
             }
         } catch (\Throwable $e) {
-            // DB fallback: keep static pages
+            Log::warning('Sitemap gallery fetch error: ' . $e->getMessage());
         }
 
         // ── Build XML string ─────────────────────────────────────────────────
@@ -121,12 +140,12 @@ class SitemapController extends Controller
             ob_end_clean();
         }
 
-        $xml = self::buildXml();
+        $xml = Cache::remember('sitemap_xml_content', 300, function () {
+            return self::buildXml();
+        });
 
         return response($xml, 200)
             ->header('Content-Type', 'application/xml; charset=UTF-8')
-            ->header('Cache-Control', 'public, max-age=3600');
+            ->header('Cache-Control', 'public, max-age=300, must-revalidate');
     }
 }
-
-

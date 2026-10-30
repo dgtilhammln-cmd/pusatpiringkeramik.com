@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 
 class Service extends Model
 {
@@ -53,6 +54,12 @@ class Service extends Model
                 $model->slug = Str::slug($model->name);
             }
         });
+        static::saved(function () {
+            Cache::forget('sitemap_xml_content');
+        });
+        static::deleted(function () {
+            Cache::forget('sitemap_xml_content');
+        });
     }
 
     public function scopeActive(Builder $query): Builder { return $query->where('is_active', true); }
@@ -70,12 +77,9 @@ class Service extends Model
         }
         // 3. Return brand-based SVG placeholder URL
         $name = strtolower($this->name ?? '');
-        if (str_contains($name, 'jotun'))       return asset('images/brand-jotun.svg');
-        if (str_contains($name, 'hempel'))      return asset('images/brand-hempel.svg');
-        if (str_contains($name, 'sigma') || str_contains($name, 'ppg')) return asset('images/brand-sigma.svg');
-        if (str_contains($name, 'international')) return asset('images/brand-international.svg');
-        if (str_contains($name, 'chugoku'))     return asset('images/brand-chugoku.svg');
-        if (str_contains($name, 'agatha'))      return asset('images/brand-agatha.svg');
+        if (str_contains($name, 'cap gunung'))  return asset('images/brand-cap-gunung.svg');
+        if (str_contains($name, 'kaibon'))      return asset('images/brand-kaibon.svg');
+        if (str_contains($name, 'toyoki'))      return asset('images/brand-toyoki.svg');
         return asset('images/brand-default.svg');
     }
     public function getAltTextAttribute($v): string

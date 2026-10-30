@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class ServiceCategory extends Model
 {
@@ -19,6 +20,17 @@ class ServiceCategory extends Model
         'meta_desc',
         'meta_keywords',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::saved(function () {
+            Cache::forget('sitemap_xml_content');
+        });
+        static::deleted(function () {
+            Cache::forget('sitemap_xml_content');
+        });
+    }
 
     public function parent()
     {

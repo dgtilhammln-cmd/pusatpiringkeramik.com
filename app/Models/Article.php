@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 
 class Article extends Model
 {
@@ -48,12 +49,21 @@ class Article extends Model
                 $model->slug = $slug;
             }
         });
+        static::saved(function () {
+            Cache::forget('sitemap_xml_content');
+        });
+        static::deleted(function () {
+            Cache::forget('sitemap_xml_content');
+        });
     }
 
     public function scopePublished(Builder $query): Builder
     {
         return $query->where('is_published', true)
-            ->where('published_at', '<=', now());
+            ->where(function ($q) {
+                $q->whereNull('published_at')
+                  ->orWhere('published_at', '<=', now());
+            });
     }
 
     public function scopeByCategory(Builder $query, ?string $cat): Builder

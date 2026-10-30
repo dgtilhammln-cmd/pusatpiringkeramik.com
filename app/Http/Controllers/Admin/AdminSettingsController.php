@@ -66,18 +66,25 @@ class AdminSettingsController extends Controller
             if ($key === 'favicon') {
                 try {
                     $ext  = strtolower($file->getClientOriginalExtension());
-                    $path = 'settings/favicon.' . ($ext ?: 'ico');
+                    $path = 'settings/favicon.' . ($ext ?: 'png');
                     Storage::disk('public')->put($path, file_get_contents($file->getRealPath()));
                     Setting::set($key, $path, 'image');
 
-                    $pubHtmlFavicon = base_path('public_html/favicon.ico');
-                    $pubFavicon     = public_path('favicon.ico');
+                    $targets = [
+                        public_path('favicon.ico'),
+                        public_path('favicon.png'),
+                        public_path('favicon-32x32.png'),
+                        public_path('favicon-16x16.png'),
+                        base_path('public_html/favicon.ico'),
+                        base_path('public_html/favicon.png'),
+                        base_path('public_html/favicon-32x32.png'),
+                        base_path('public_html/favicon-16x16.png'),
+                    ];
 
-                    if (file_exists(base_path('public_html'))) {
-                        @copy($file->getRealPath(), $pubHtmlFavicon);
-                    }
-                    if (file_exists(public_path())) {
-                        @copy($file->getRealPath(), $pubFavicon);
+                    foreach ($targets as $target) {
+                        if (file_exists(dirname($target))) {
+                            @copy($file->getRealPath(), $target);
+                        }
                     }
                 } catch (\Throwable $e) {
                     \Illuminate\Support\Facades\Log::error('Favicon upload error: ' . $e->getMessage());

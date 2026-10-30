@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Cache;
 
 class GalleryProject extends Model
 {
@@ -33,6 +34,12 @@ class GalleryProject extends Model
                 while (static::where('slug', $slug)->exists()) { $slug = $base.'-'.$i++; }
                 $model->slug = $slug;
             }
+        });
+        static::saved(function () {
+            Cache::forget('sitemap_xml_content');
+        });
+        static::deleted(function () {
+            Cache::forget('sitemap_xml_content');
         });
     }
 

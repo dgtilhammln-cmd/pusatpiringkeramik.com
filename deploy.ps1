@@ -66,18 +66,16 @@ deploy_target() {
     if [ -d "$TARGET_DIR/.git" ]; then
         cd "$TARGET_DIR"
         php artisan migrate --force 2>/dev/null || true
-        # Generate physical sitemap.xml (DB-driven, dynamic)
-        php artisan sitemap:generate 2>/dev/null || true
+        # Remove any static sitemap.xml so Laravel dynamically generates /sitemap.xml from DB
+        rm -f "$TARGET_DIR/public/sitemap.xml" "$TARGET_DIR/public_html/sitemap.xml" "$TARGET_DIR/public_html/sitemap.xsl"
         mkdir -p "$TARGET_DIR/public_html"
         [ -f "$TARGET_DIR/public/index.php" ]  && cp -f "$TARGET_DIR/public/index.php"  "$TARGET_DIR/public_html/index.php"
         [ -f "$TARGET_DIR/public/.htaccess" ]  && cp -f "$TARGET_DIR/public/.htaccess"   "$TARGET_DIR/public_html/.htaccess"
         [ -f "$TARGET_DIR/public/robots.txt" ] && cp -f "$TARGET_DIR/public/robots.txt"  "$TARGET_DIR/public_html/robots.txt"
         [ -f "$TARGET_DIR/public/llms.txt" ]   && cp -f "$TARGET_DIR/public/llms.txt"    "$TARGET_DIR/public_html/llms.txt"
-        # sitemap.xml — copy freshly generated file (from sitemap:generate above)
-        rm -f "$TARGET_DIR/public_html/sitemap.xml" "$TARGET_DIR/public_html/sitemap.xsl"
-        [ -f "$TARGET_DIR/public/sitemap.xml" ] && cp -f "$TARGET_DIR/public/sitemap.xml" "$TARGET_DIR/public_html/sitemap.xml"
-        # Copy proper favicon files (ICO + PNG for modern browsers)
-        [ -f "$TARGET_DIR/public/favicon.ico" ]      && cp -f "$TARGET_DIR/public/favicon.ico"      "$TARGET_DIR/public_html/favicon.ico"
+        # Copy proper favicon files (generated from storage/settings/favicon.png)
+        [ -f "$TARGET_DIR/public/favicon.ico" ]       && cp -f "$TARGET_DIR/public/favicon.ico"       "$TARGET_DIR/public_html/favicon.ico"
+        [ -f "$TARGET_DIR/public/favicon.png" ]       && cp -f "$TARGET_DIR/public/favicon.png"       "$TARGET_DIR/public_html/favicon.png"
         [ -f "$TARGET_DIR/public/favicon-32x32.png" ] && cp -f "$TARGET_DIR/public/favicon-32x32.png" "$TARGET_DIR/public_html/favicon-32x32.png"
         [ -f "$TARGET_DIR/public/favicon-16x16.png" ] && cp -f "$TARGET_DIR/public/favicon-16x16.png" "$TARGET_DIR/public_html/favicon-16x16.png"
         # Delete old Google HTML verification file
@@ -101,9 +99,6 @@ echo "--- Menjalankan artisan commands..."
 cd "$DEPLOY_DIR"
 php artisan migrate --force
 
-echo "--- Generating dynamic sitemap.xml..."
-php artisan sitemap:generate
-echo "--- Sitemap generated!"
 # Note: Seeders disabled during normal deploys to preserve custom data:
 # php artisan db:seed --class=DatabaseSeeder --force
 # php artisan db:seed --class=HeroSlideSeeder --force
@@ -116,24 +111,23 @@ fi
 if [ -f "$DEPLOY_DIR/public/.htaccess" ]; then
     cp -f "$DEPLOY_DIR/public/.htaccess" "$DEPLOY_DIR/public_html/.htaccess"
 fi
-# Copy robots.txt, llms.txt & sitemap.xml to public_html
+# Copy robots.txt & llms.txt to public_html
 if [ -f "$DEPLOY_DIR/public/robots.txt" ]; then
     cp -f "$DEPLOY_DIR/public/robots.txt" "$DEPLOY_DIR/public_html/robots.txt"
 fi
 if [ -f "$DEPLOY_DIR/public/llms.txt" ]; then
     cp -f "$DEPLOY_DIR/public/llms.txt" "$DEPLOY_DIR/public_html/llms.txt"
 fi
-# sitemap.xml — copy freshly generated physical file to public_html
-# This is served DIRECTLY by Apache (correct Content-Type, no middleware)
-rm -f "$DEPLOY_DIR/public_html/sitemap.xml" "$DEPLOY_DIR/public_html/sitemap.xsl"
-[ -f "$DEPLOY_DIR/public/sitemap.xml" ] && cp -f "$DEPLOY_DIR/public/sitemap.xml" "$DEPLOY_DIR/public_html/sitemap.xml"
-# Copy proper favicon files (ICO + PNG for modern browsers)
+# Remove any static sitemap.xml so Laravel dynamically generates /sitemap.xml from DB
+rm -f "$DEPLOY_DIR/public/sitemap.xml" "$DEPLOY_DIR/public_html/sitemap.xml" "$DEPLOY_DIR/public_html/sitemap.xsl"
+# Copy proper favicon files (generated from storage/settings/favicon.png)
 [ -f "$DEPLOY_DIR/public/favicon.ico" ]       && cp -f "$DEPLOY_DIR/public/favicon.ico"       "$DEPLOY_DIR/public_html/favicon.ico"
+[ -f "$DEPLOY_DIR/public/favicon.png" ]       && cp -f "$DEPLOY_DIR/public/favicon.png"       "$DEPLOY_DIR/public_html/favicon.png"
 [ -f "$DEPLOY_DIR/public/favicon-32x32.png" ] && cp -f "$DEPLOY_DIR/public/favicon-32x32.png" "$DEPLOY_DIR/public_html/favicon-32x32.png"
 [ -f "$DEPLOY_DIR/public/favicon-16x16.png" ] && cp -f "$DEPLOY_DIR/public/favicon-16x16.png" "$DEPLOY_DIR/public_html/favicon-16x16.png"
 # Remove old Google Search Console HTML verification file
 rm -f "$DEPLOY_DIR/public_html/google2d6265e5f3ef15fd.html" 2>/dev/null || true
-echo "--- Copied robots.txt, llms.txt, sitemap.xml, favicon files to public_html!"
+echo "--- Copied robots.txt, llms.txt, favicon files to public_html!"
 rm -f "$DEPLOY_DIR/public_html/storage"
 ln -s "$DEPLOY_DIR/storage/app/public" "$DEPLOY_DIR/public_html/storage"
 chmod -R 775 "$DEPLOY_DIR/storage" "$DEPLOY_DIR/bootstrap/cache"
