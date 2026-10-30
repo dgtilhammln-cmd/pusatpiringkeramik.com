@@ -433,7 +433,7 @@
             align-items: center;
             justify-content: center;
             gap: .6rem;
-            background: var(--accent);
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
             color: #fff !important;
             font-size: .9375rem;
             font-weight: 600;
@@ -443,17 +443,39 @@
             cursor: pointer;
             text-decoration: none !important;
             transition: all .3s var(--ease);
-            box-shadow: 0 6px 18px rgba(14, 165, 233, .25);
+            box-shadow: 0 6px 18px rgba(37, 211, 102, .35);
             width: 100%;
             margin-top: 1.5rem;
             margin-bottom: .625rem;
         }
 
         .sh-btn-primary:hover {
-            background: var(--accent2);
+            background: linear-gradient(135deg, #22C55E 0%, #0E7461 100%);
             transform: translateY(-2px);
-            box-shadow: 0 10px 24px rgba(14, 165, 233, .35);
+            box-shadow: 0 10px 24px rgba(37, 211, 102, .45);
         }
+
+        /* Star badge overlay on product image */
+        .sh-img-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            z-index: 10;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(15, 23, 42, 0.72);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            color: #fff;
+            font-size: .8rem;
+            font-weight: 700;
+            padding: 5px 11px;
+            border-radius: 30px;
+            letter-spacing: .01em;
+            pointer-events: none;
+        }
+        .sh-img-badge .star { color: #F59E0B; font-size: .95rem; }
 
         .sh-btn-outline {
             display: flex;
@@ -1409,27 +1431,11 @@
                 <p class="sh-short-desc">{{ $service->short_desc }}</p>
             @endif
 
-            @if(($service->rating && $service->rating > 0) || !empty($service->sold_count) || ($service->price && $service->price > 0))
+            @if($service->price && $service->price > 0)
                 <div style="display:flex; align-items:center; justify-content:center; gap:12px; margin-top:1.5rem; flex-wrap:wrap;">
-                    @if($service->price && $service->price > 0)
-                        <div style="font-size: 1.5rem; font-weight: 800; color: #0F172A; background: #ffffff; padding: 6px 18px; border-radius: 30px; border: 1.5px solid #E2E8F0; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
-                            {{ $service->formatted_price }}
-                        </div>
-                    @endif
-                    @if(($service->rating && $service->rating > 0) || !empty($service->sold_count))
-                        <div style="display:inline-flex; align-items:center; gap:6px; background:#ffffff; padding:8px 16px; border-radius:30px; font-size:0.875rem; font-weight:600; color:#334155; border:1.5px solid #E2E8F0;">
-                            @if($service->rating && $service->rating > 0)
-                                <span style="color:#F59E0B; font-size:1.1rem;">★</span>
-                                <span>{{ number_format($service->rating, 1) }}</span>
-                            @endif
-                            @if(($service->rating && $service->rating > 0) && !empty($service->sold_count))
-                                <span style="opacity:0.4; margin:0 2px;">•</span>
-                            @endif
-                            @if(!empty($service->sold_count))
-                                <span>{{ $service->sold_count }} Terjual</span>
-                            @endif
-                        </div>
-                    @endif
+                    <div style="font-size: 1.5rem; font-weight: 800; color: #0F172A; background: #ffffff; padding: 6px 18px; border-radius: 30px; border: 1.5px solid #E2E8F0; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+                        {{ $service->formatted_price }}
+                    </div>
                 </div>
             @endif
         </div>
@@ -1466,6 +1472,17 @@
                     @if(count($imgs) > 1)
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
+                    @endif
+                    {{-- Star rating badge overlay: top-left of photo --}}
+                    @if($service->rating && $service->rating > 0)
+                        <div class="sh-img-badge">
+                            <span class="star">★</span>
+                            <span>{{ number_format($service->rating, 1) }}</span>
+                            @if(!empty($service->sold_count))
+                                <span style="opacity:.55; margin:0 1px;">·</span>
+                                <span>{{ $service->sold_count }} terjual</span>
+                            @endif
+                        </div>
                     @endif
                 </div>
 

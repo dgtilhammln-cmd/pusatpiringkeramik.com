@@ -626,37 +626,121 @@
         transform: translateY(-1px);
     }
 
-    /* ═══ INFINITE SCROLL LOADER & STATES ═══ */
-    .sv-infinite-wrap {
+    /* ═══ SKELETON SHIMMER LOADING (PERSIS LAYOUT PRODUK) ═══ */
+    .sv-skeleton-container {
+        width: 100%;
+        margin-top: 1.5rem;
+    }
+    .sv-skeleton-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        width: 100%;
+    }
+    @media (max-width: 1024px) {
+        .sv-skeleton-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    }
+    @media (max-width: 640px) {
+        .sv-skeleton-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+    }
+    .sv-skeleton-card {
+        background: #ffffff;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(226, 232, 240, 0.7);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.02);
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 2.5rem 0 1rem;
-        width: 100%;
-        text-align: center;
+        position: relative;
     }
-    .sv-spinner {
-        width: 32px;
-        height: 32px;
-        border: 2.5px solid rgba(15, 23, 42, 0.1);
-        border-top-color: #0F172A;
-        border-radius: 50%;
-        animation: svSpin 0.75s linear infinite;
+    @media (max-width: 640px) {
+        .sv-skeleton-card { border-radius: 14px; }
+    }
+    .sv-shimmer {
+        background: linear-gradient(90deg, #F1F5F9 0%, #E2E8F0 50%, #F1F5F9 100%);
+        background-size: 200% 100%;
+        animation: svShimmer 1.4s ease-in-out infinite;
+    }
+    @keyframes svShimmer {
+        0%   { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+    }
+    .sv-skel-img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        min-height: 180px;
+    }
+    @media (max-width: 640px) {
+        .sv-skel-img { min-height: 120px; }
+    }
+    .sv-skel-body {
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+    @media (max-width: 640px) {
+        .sv-skel-body { padding: 0.875rem; }
+    }
+    .sv-skel-cat {
+        width: 75px;
+        height: 14px;
+        border-radius: 20px;
         margin-bottom: 0.75rem;
     }
-    @keyframes svSpin {
-        to { transform: rotate(360deg); }
+    @media (max-width: 640px) {
+        .sv-skel-cat { width: 55px; height: 11px; margin-bottom: 0.4rem; }
     }
-    .sv-infinite-text {
-        font-size: 0.8125rem;
-        font-weight: 500;
-        color: #64748B;
-        font-family: var(--font);
-        letter-spacing: 0.01em;
+    .sv-skel-title-1 {
+        width: 92%;
+        height: 16px;
+        border-radius: 5px;
+        margin-bottom: 0.45rem;
     }
+    .sv-skel-title-2 {
+        width: 65%;
+        height: 16px;
+        border-radius: 5px;
+        margin-bottom: 0.85rem;
+    }
+    @media (max-width: 640px) {
+        .sv-skel-title-1 { height: 13px; margin-bottom: 0.3rem; }
+        .sv-skel-title-2 { height: 13px; margin-bottom: 0.6rem; }
+    }
+    .sv-skel-desc-1 {
+        width: 100%;
+        height: 11px;
+        border-radius: 4px;
+        margin-bottom: 0.35rem;
+    }
+    .sv-skel-desc-2 {
+        width: 78%;
+        height: 11px;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+    }
+    @media (max-width: 640px) {
+        .sv-skel-desc-1 { height: 9px; margin-bottom: 0.25rem; }
+        .sv-skel-desc-2 { height: 9px; margin-bottom: 0.75rem; }
+    }
+    .sv-skel-link {
+        width: 75px;
+        height: 12px;
+        border-radius: 4px;
+        margin-top: auto;
+        padding-top: 0.75rem;
+        border-top: 1px solid #F1F5F9;
+    }
+    @media (max-width: 640px) {
+        .sv-skel-link { width: 60px; height: 10px; }
+    }
+
     .sv-infinite-end {
-        padding: 2.5rem 0;
+        padding: 3rem 0 1rem;
         text-align: center;
         color: #94A3B8;
         font-size: 0.8125rem;
@@ -674,6 +758,7 @@
         width: 60px;
         background: #E2E8F0;
     }
+    
     .sv-card.sv-fade-in {
         animation: svCardFadeIn 0.35s ease-out forwards;
     }
@@ -836,9 +921,23 @@
     {{-- Infinite Scroll Sentinel & Loading Indicator --}}
     <div id="infiniteSentinel" style="height: 20px; margin-top: 1.5rem;"></div>
 
-    <div id="infiniteLoader" class="sv-infinite-wrap" style="display: none;">
-        <div class="sv-spinner"></div>
-        <span class="sv-infinite-text">Memuat produk lainnya...</span>
+    {{-- Skeleton Shimmer Loading (Persis Layout Produk Asli, Mobile-Friendly) --}}
+    <div id="infiniteSkeleton" class="sv-skeleton-container" style="display: none;">
+        <div class="sv-skeleton-grid">
+            @for($k = 0; $k < 6; $k++)
+                <div class="sv-skeleton-card">
+                    <div class="sv-skel-img sv-shimmer"></div>
+                    <div class="sv-skel-body">
+                        <div class="sv-skel-cat sv-shimmer"></div>
+                        <div class="sv-skel-title-1 sv-shimmer"></div>
+                        <div class="sv-skel-title-2 sv-shimmer"></div>
+                        <div class="sv-skel-desc-1 sv-shimmer"></div>
+                        <div class="sv-skel-desc-2 sv-shimmer"></div>
+                        <div class="sv-skel-link sv-shimmer"></div>
+                    </div>
+                </div>
+            @endfor
+        </div>
     </div>
 
     <div id="infiniteEnd" class="sv-infinite-end" style="{{ !$services->hasMorePages() && $services->total() > 0 ? 'display:flex;' : 'display:none;' }}">
@@ -872,7 +971,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // 2. INFINITE SCROLLING & LIVE SEARCH
     const grid = document.getElementById('productsGrid');
     const sentinel = document.getElementById('infiniteSentinel');
-    const loader = document.getElementById('infiniteLoader');
+    const skeleton = document.getElementById('infiniteSkeleton');
     const endNotice = document.getElementById('infiniteEnd');
     const searchInput = document.getElementById('productSearchInput');
     const searchClear = document.getElementById('productSearchClear');
@@ -908,7 +1007,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Perform AJAX request
         url.searchParams.set('ajax', '1');
-        if (loader) loader.style.display = 'flex';
+        if (skeleton) skeleton.style.display = 'block';
         if (endNotice) endNotice.style.display = 'none';
 
         fetch(url.toString(), {
@@ -916,7 +1015,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(res => res.json())
         .then(data => {
-            if (loader) loader.style.display = 'none';
+            if (skeleton) skeleton.style.display = 'none';
             if (grid) grid.innerHTML = data.html;
             if (gridCount && data.countText) gridCount.innerHTML = data.countText;
             nextPageUrl = data.nextPageUrl;
@@ -929,7 +1028,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .catch(err => {
             console.error('Search error:', err);
-            if (loader) loader.style.display = 'none';
+            if (skeleton) skeleton.style.display = 'none';
         });
     };
 
@@ -955,7 +1054,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function loadMoreProducts() {
         if (!nextPageUrl || isLoading) return;
         isLoading = true;
-        if (loader) loader.style.display = 'flex';
+        if (skeleton) skeleton.style.display = 'block';
 
         const fetchUrl = new URL(nextPageUrl, window.location.origin);
         fetchUrl.searchParams.set('ajax', '1');
@@ -966,7 +1065,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(res => res.json())
         .then(data => {
             isLoading = false;
-            if (loader) loader.style.display = 'none';
+            if (skeleton) skeleton.style.display = 'none';
 
             if (data.html && grid) {
                 const tempDiv = document.createElement('div');
@@ -988,7 +1087,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(err => {
             console.error('Infinite scroll error:', err);
             isLoading = false;
-            if (loader) loader.style.display = 'none';
+            if (skeleton) skeleton.style.display = 'none';
         });
     }
 

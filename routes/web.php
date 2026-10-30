@@ -86,7 +86,7 @@ Route::get('/seed-cap-gunung', function () {
 
     try {
         // 1. Pastikan kategori Cap Gunung ada
-        $cat = ServiceCategory::updateOrCreate(
+        $cat = \App\Models\ServiceCategory::updateOrCreate(
             ['slug' => 'cap-gunung'],
             [
                 'name'          => 'Cap Gunung',
@@ -190,7 +190,7 @@ Route::get('/seed-cap-gunung', function () {
         ];
 
         foreach ($cutlery as $p) {
-            $svc = Service::updateOrCreate(
+            $svc = \App\Models\Service::updateOrCreate(
                 ['slug' => $p['slug']],
                 [
                     'service_category_id' => $cat->id,
@@ -229,8 +229,8 @@ Route::get('/seed-cap-gunung', function () {
         \Illuminate\Support\Facades\Cache::forget('services_page_data');
         $log[] = '✓ Cache cleared';
 
-        $totalCapGunung = Service::where('service_category_id', $cat->id)->count();
-        $totalAll = Service::count();
+        $totalCapGunung = \App\Models\Service::where('service_category_id', $cat->id)->count();
+        $totalAll = \App\Models\Service::count();
         $log[] = "=== SELESAI SUKSES ===";
         $log[] = "Total Produk Kategori Cap Gunung: {$totalCapGunung}";
         $log[] = "Total Semua Produk di Web: {$totalAll}";
