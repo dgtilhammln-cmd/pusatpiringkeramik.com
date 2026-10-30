@@ -77,9 +77,15 @@ Route::get('/deploy-hostinger', function () {
 // TEMP: Seed semua produk Cap Gunung (DELETE setelah seeder berhasil jalan!)
 Route::get('/seed-cap-gunung', function () {
     $log = [];
+    if (function_exists('opcache_reset')) {
+        opcache_reset();
+        $log[] = '✓ OPcache reset';
+    }
     try {
         $log[] = '=== MULAI SEEDING CAP GUNUNG ===';
         $log[] = date('Y-m-d H:i:s');
+        $seederPath = database_path('seeders/CapGunungProductSeeder.php');
+        $log[] = 'Seeder file modified: ' . date('Y-m-d H:i:s', filemtime($seederPath));
         \Illuminate\Support\Facades\Artisan::call('db:seed', [
             '--class' => 'CapGunungProductSeeder',
             '--force' => true,
