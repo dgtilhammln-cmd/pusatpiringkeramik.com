@@ -1137,13 +1137,15 @@ class CapGunungProductSeeder extends Seeder
                 'name' => 'Sendok Makan Stainless 303 (32 gr) Cap Gunung',
                 'slug' => 'sendok-makan-stainless-303-32gr-cap-gunung',
                 'short_desc' => 'Sendok makan stainless steel seri 303 tebal 32 gram Cap Gunung standar HORECA untuk restoran, cafe, katering, dan hotel.',
+                'description' => '<p><strong>Sendok Makan Stainless 303 (32 gr) Cap Gunung</strong> merupakan piranti makan cutlery stainless unggulan dari <strong>Cap Gunung</strong> yang didistribusikan resmi oleh <strong>UD. Sukses Makmur (Pusat Piring Keramik)</strong>. Dirancang khusus untuk kebutuhan operasional industri HORECA (Hotel, Restaurant, Cafe, Catering) serta rumah makan skala besar dengan standar ketahanan tinggi.</p>\n\n<h3>Keunggulan & Karakteristik Produk</h3>\n<ul>\n    <li><strong>Material Stainless Steel Food Grade:</strong> Aman bersentuhan langsung dengan makanan panas, kuah bersantan, maupun hidangan asam tanpa risiko pelepasan zat berbahaya (BPA Free, Lead-Free).</li>\n    <li><strong>Bobot 32 Gram yang Pas & Kokoh:</strong> Memiliki ketebalan optimal 32 gram per pieces, memberikan bobot yang mantap di genggaman, tidak terasa ringan murahan, dan tidak mudah bengkok saat dipakai.</li>\n    <li><strong>Finishing Mirror Polish:</strong> Permukaan sendok dipoles mengkilap halus tanpa tepian tajam, memberikan impresi mewah dan bersih pada meja saji restoran Anda.</li>\n    <li><strong>Dishwasher Safe:</strong> Sangat tahan terhadap deterjen pencuci komersial dan pencucian suhu tinggi mesin dishwasher tanpa kusam atau timbul karat.</li>\n</ul>\n\n<h3>Pengadaan Grosir & Pasokan Restoran B2B</h3>\n<p>Tersedia dalam kemasan pack lusinan dan karton pabrik partai besar untuk pembukaan cabang restoran, peremajaan cutlery hotel, pengadaan katering, hingga toko grosir pecah belah. Pengiriman kargo ke seluruh Indonesia dikemas aman dengan proteksi ganda.</p>\n\n<div style="background:#F8FAFC;border-left:4px solid #3B82F6;padding:1.25rem;border-radius:0 12px 12px 0;margin:1.5rem 0;">\n    <h4 style="margin:0 0 .5rem;color:#1E293B;font-size:1rem;">Informasi Harga Grosir & Konsultasi Pengadaan</h4>\n    <p style="margin:0 0 .75rem;font-size:.875rem;color:#475569;">Untuk penawaran harga grosir volume besar, ketersediaan stok, dan konsultasi ekspedisi kargo terbaik ke kota Anda, silakan hubungi customer service kami via tombol WhatsApp.</p>\n</div>',
                 'image' => 'services/cap-gunung/sendok-stainless-303-32gr-cap-gunung-1.webp',
                 'gallery' => [],
                 'specs' => [
+                    ['key' => 'Brand / Merk', 'value' => 'Cap Gunung (Stainless Ware)'],
                     ['key' => 'Tipe Produk', 'value' => 'Sendok Makan Stainless (Dinner Spoon)'],
                     ['key' => 'Seri / Model', 'value' => 'Seri 303 Cap Gunung'],
                     ['key' => 'Berat Bersih', 'value' => '32 gram / pcs'],
-                    ['key' => 'Material', 'value' => 'Stainless Steel Food Grade'],
+                    ['key' => 'Material', 'value' => 'Stainless Steel Food Grade Berkualitas'],
                     ['key' => 'Finishing', 'value' => 'Mirror Polish Kilap Halus'],
                     ['key' => 'Ketahanan', 'value' => 'Anti Karat, Tahan Asam & Dishwasher Safe'],
                     ['key' => 'Kemasan Grosir', 'value' => '1 Lusin (12 pcs) / Master Box Karton'],
@@ -1157,14 +1159,17 @@ class CapGunungProductSeeder extends Seeder
                 'meta_title' => 'Grosir Sendok Makan Stainless 303 32gr Cap Gunung Restoran',
                 'meta_desc' => 'Distributor sendok makan stainless steel seri 303 32 gram merk Cap Gunung. Kuat, tebal, anti karat, dan elegan untuk kebutuhan hotel, resto, dan katering.',
                 'meta_keywords' => 'sendok stainless cap gunung, sendok makan stainless 303, sendok 32gr cap gunung, grosir sendok restoran, distributor cutlery horeca semarang surabaya',
+                'order' => 23,
             ],
             [
                 'name' => 'Garpu Makan Stainless 303 (32 gr) Cap Gunung',
                 'slug' => 'garpu-makan-stainless-303-32gr-cap-gunung',
                 'short_desc' => 'Garpu makan stainless steel seri 303 berat 32 gram Cap Gunung yang kokoh, seimbang, dan anti-bengkok untuk operasional kuliner profesional.',
+                'description' => '<p><strong>Garpu Makan Stainless 303 (32 gr) Cap Gunung</strong> adalah pasangan ideal untuk sendok seri 303, dirancang dengan ketahanan tinggi untuk memenuhi tuntutan sirkulasi penggunaan harian industri HORECA. Terbuat dari material stainless steel pilihan yang kuat, elegan, dan tahan lama.</p>\n\n<h3>Keunggulan & Karakteristik Produk</h3>\n<ul>\n    <li><strong>Konstruksi Solid Anti Bengkok:</strong> Dengan bobot 32 gram, garpu ini tidak mudah tertekuk saat digunakan menusuk daging tebal atau hidangan padat lainnya.</li>\n    <li><strong>Ujung Gigi Presisi & Aman:</strong> Gigi garpu diasah secara presisi sehingga tajam saat menusuk makanan, namun tetap nyaman dan tidak melukai bibir atau rongga mulut konsumen.</li>\n    <li><strong>Higienis & Anti Karat:</strong> Formulasi stainless steel tahan terhadap zat asam makanan dan korosi kelembaban, menjaga kebersihan standar sanitasi restoran berbintang.</li>\n    <li><strong>Finishing Halus Mengkilap:</strong> Polesan cermin (mirror polish) memberikan kesan profesional dan berkelas pada set meja makan restoran Anda.</li>\n</ul>\n\n<h3>Pengadaan Grosir & Pasokan B2B</h3>\n<p>Melayani pemenuhan pasokan skala besar untuk pengadaan hotel, wedding organizer catering, kafe, restoran waralaba, dan distributor perlengkapan meja makan di seluruh pelosok Indonesia.</p>\n\n<div style="background:#F8FAFC;border-left:4px solid #3B82F6;padding:1.25rem;border-radius:0 12px 12px 0;margin:1.5rem 0;">\n    <h4 style="margin:0 0 .5rem;color:#1E293B;font-size:1rem;">Informasi Harga Grosir & Konsultasi Pengadaan</h4>\n    <p style="margin:0 0 .75rem;font-size:.875rem;color:#475569;">Dapatkan penawaran harga grosir pabrik terbaik untuk kuantiti karton dengan menghubungi konsultan pengadaan kami via WhatsApp.</p>\n</div>',
                 'image' => 'services/cap-gunung/garpu-stainless-303-32gr-cap-gunung-1.webp',
                 'gallery' => [],
                 'specs' => [
+                    ['key' => 'Brand / Merk', 'value' => 'Cap Gunung (Stainless Ware)'],
                     ['key' => 'Tipe Produk', 'value' => 'Garpu Makan Stainless (Dinner Fork)'],
                     ['key' => 'Seri / Model', 'value' => 'Seri 303 Cap Gunung'],
                     ['key' => 'Berat Bersih', 'value' => '32 gram / pcs'],
@@ -1183,17 +1188,20 @@ class CapGunungProductSeeder extends Seeder
                 'meta_title' => 'Distributor Garpu Makan Stainless 303 32gr Cap Gunung Grosir',
                 'meta_desc' => 'Pusat grosir garpu makan stainless steel seri 303 32 gram Cap Gunung. Desain kokoh anti karat untuk operasional hotel, restoran, dan usaha katering.',
                 'meta_keywords' => 'garpu stainless cap gunung, garpu makan stainless 303, garpu 32gr cap gunung, grosir garpu hotel restoran, supplier sendok garpu stainless horeca',
+                'order' => 24,
             ],
             [
                 'name' => 'Pisau Meja Stainless Steel Cap Gunung',
                 'slug' => 'pisau-meja-stainless-steel-cap-gunung',
                 'short_desc' => 'Pisau steak dan pisau meja stainless steel Cap Gunung berkualitas tinggi dengan bilah bergerigi halus untuk sajian daging, roti, dan hidangan barat.',
+                'description' => '<p><strong>Pisau Meja Stainless Steel Cap Gunung (Table / Steak Knife)</strong> dirancang untuk melengkapi koleksi alat makan premium di restoran bergaya western, steakhouse, bistro cafe, dan jamuan perhotelan. Menggabungkan ketajaman fungsional dengan keindahan visual meja makan modern.</p>\n\n<h3>Keunggulan & Karakteristik Produk</h3>\n<ul>\n    <li><strong>Bilah Gerigi Mikro Presisi (Micro-Serrated Blade):</strong> Didesain dengan gerigi halus yang mampu memotong irisan daging steak, hidangan panggang, roti artisan, dan sayuran secara mulus tanpa mencabik tekstur makanan.</li>\n    <li><strong>Keseimbangan Ergonomis:</strong> Distribusi bobot antara gagang dan bilah sangat presisi, memberikan kontrol genggaman yang stabil dan nyaman saat konsumen menikmati hidangan.</li>\n    <li><strong>Stainless Steel Padat Food Grade:</strong> Tidak berkarat, tidak bereaksi terhadap bumbu asam, dan higienis memenuhi standar inspeksi keamanan pangan komersial.</li>\n    <li><strong>Ketahanan Siklus Komersial:</strong> Tahan dicuci menggunakan mesin pembersih piring komersial suhu tinggi tanpa merusak ketajaman gerigi bilah.</li>\n</ul>\n\n<h3>Solusi Pengadaan B2B Steakhouse & Hotel</h3>\n<p>Melayani pemesanan partai besar untuk restoran baru, penggantian perlengkapan jamuan hotel, hingga suplier grosir peralatan perhotelan dan restoran di seluruh Indonesia.</p>\n\n<div style="background:#F8FAFC;border-left:4px solid #3B82F6;padding:1.25rem;border-radius:0 12px 12px 0;margin:1.5rem 0;">\n    <h4 style="margin:0 0 .5rem;color:#1E293B;font-size:1rem;">Informasi Harga Grosir & Konsultasi Pengadaan</h4>\n    <p style="margin:0 0 .75rem;font-size:.875rem;color:#475569;">Untuk pemesanan volume besar, ketersediaan sampel cutlery, serta faktur resmi pengadaan, silakan hubungi tim sales kami melalui tombol WhatsApp.</p>\n</div>',
                 'image' => 'services/cap-gunung/pisau-stainless-cap-gunung-1.webp',
                 'gallery' => [
                     'services/cap-gunung/pisau-stainless-cap-gunung-2.webp',
                     'services/cap-gunung/pisau-stainless-cap-gunung-3.webp',
                 ],
                 'specs' => [
+                    ['key' => 'Brand / Merk', 'value' => 'Cap Gunung (Stainless Ware)'],
                     ['key' => 'Tipe Produk', 'value' => 'Pisau Meja / Pisau Steak (Table / Steak Knife)'],
                     ['key' => 'Seri / Brand', 'value' => 'Cap Gunung Stainless Ware'],
                     ['key' => 'Material', 'value' => 'Stainless Steel Food Grade Berkualitas Tinggi'],
@@ -1212,6 +1220,7 @@ class CapGunungProductSeeder extends Seeder
                 'meta_title' => 'Grosir Pisau Meja & Steak Stainless Steel Cap Gunung HORECA',
                 'meta_desc' => 'Supplier pisau meja dan pisau steak stainless steel merk Cap Gunung. Bilah gerigi presisi, kokoh, dan elegan untuk restoran steak, cafe, dan hotel bintang.',
                 'meta_keywords' => 'pisau stainless cap gunung, pisau steak restoran, pisau meja stainless horeca, supplier pisau makan hotel, grosir pisau daging stainless semarang surabaya',
+                'order' => 25,
             ],
         ];
 
