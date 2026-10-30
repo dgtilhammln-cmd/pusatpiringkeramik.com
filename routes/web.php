@@ -74,6 +74,31 @@ Route::get('/deploy-hostinger', function () {
     }
 });
 
+// TEMP: Seed semua produk Cap Gunung (DELETE setelah seeder berhasil jalan!)
+Route::get('/seed-cap-gunung', function () {
+    $log = [];
+    try {
+        $log[] = '=== MULAI SEEDING CAP GUNUNG ===';
+        $log[] = date('Y-m-d H:i:s');
+        \Illuminate\Support\Facades\Artisan::call('db:seed', [
+            '--class' => 'CapGunungProductSeeder',
+            '--force' => true,
+        ]);
+        $output = \Illuminate\Support\Facades\Artisan::output();
+        $log[] = $output ?: '(no artisan output)';
+        $log[] = '';
+        $log[] = '=== SELESAI ===';
+        $count = \App\Models\Service::count();
+        $log[] = "Total produk di DB sekarang: {$count}";
+    } catch (\Exception $e) {
+        $log[] = 'ERROR: ' . $e->getMessage();
+        $log[] = $e->getTraceAsString();
+    }
+    return '<pre style="font-family:monospace;background:#111;color:#0f0;padding:2rem;margin:0;min-height:100vh">'
+        . implode("\n", $log)
+        . '</pre>';
+});
+
 // FIX: Bersihkan data lama dari proyek lain & aktifkan debug mode
 // Kunjungi sekali: https://pusatpiringkeramik.hvmdigital.id/fix-env-debug
 Route::get('/fix-env-debug', function () {

@@ -10,7 +10,7 @@ jobs:
   deploy:
     name: Deploy to Hostinger
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
     - name: Checkout Repository
@@ -46,31 +46,30 @@ jobs:
         timeout: 120s
         strip_components: 0
 
-    - name: Extract & Clear Cache on Server
+    - name: Extract & Deploy on Server (pusatpiringkeramik.hvmdigital.id)
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.SSH_HOST }}
         port: ${{ secrets.SSH_PORT }}
         username: ${{ secrets.SSH_USERNAME }}
         password: ${{ secrets.SSH_PASSWORD }}
-        command_timeout: 120s
+        command_timeout: 180s
         script: |
           set -e
           cd /home/u664715641
 
           # Extract ke folder web (tanpa menimpa .env dan vendor)
           tar -xzf deploy_patch.tar.gz -C domains/pusatpiringkeramik.hvmdigital.id/ 2>&1
-          rm -f deploy_patch.tar.gz
 
-          # Pastikan symlink storage selalu benar (tidak pernah rusak)
           DEPLOY_DIR="/home/u664715641/domains/pusatpiringkeramik.hvmdigital.id"
+
+          # Pastikan symlink storage selalu benar
           STORAGE_LINK="$DEPLOY_DIR/public_html/storage"
           STORAGE_TARGET="$DEPLOY_DIR/storage/app/public"
           rm -rf "$STORAGE_LINK"
           ln -s "$STORAGE_TARGET" "$STORAGE_LINK"
           echo "Storage symlink OK: $(ls -la $STORAGE_LINK)"
 
-          # Migrate & seed & clear cache
           cd "$DEPLOY_DIR"
           php artisan migrate --force 2>&1
 
@@ -83,7 +82,58 @@ jobs:
             echo "--- Hero slides sudah ada ($SLIDE_COUNT slide), skip seeder."
           fi
 
+          # Seed Cap Gunung products (updateOrCreate = aman diulang)
+          echo "--- Menjalankan CapGunungProductSeeder..."
+          php artisan db:seed --class=CapGunungProductSeeder --force 2>&1
+          PROD_COUNT=$(php artisan tinker --execute="echo \App\Models\Service::count();" 2>/dev/null | tail -1 || echo "?")
+          echo "--- Total produk setelah seeding: $PROD_COUNT"
+
           php artisan optimize:clear 2>&1
           php artisan view:cache 2>&1
 
-          echo "Deploy selesai!"
+          echo "Deploy hvmdigital.id selesai!"
+
+    - name: Copy to pusatpiringkeramik.com & run seeder
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        port: ${{ secrets.SSH_PORT }}
+        username: ${{ secrets.SSH_USERNAME }}
+        password: ${{ secrets.SSH_PASSWORD }}
+        command_timeout: 180s
+        script: |
+          set -e
+          cd /home/u664715641
+
+          # Cek apakah domain pusatpiringkeramik.com ada
+          if [ -d "domains/pusatpiringkeramik.com" ]; then
+            echo "--- Deploy ke pusatpiringkeramik.com..."
+            tar -xzf deploy_patch.tar.gz -C domains/pusatpiringkeramik.com/ 2>&1 || true
+
+            DEPLOY_DIR2="/home/u664715641/domains/pusatpiringkeramik.com"
+
+            # Symlink storage
+            STORAGE_LINK2="$DEPLOY_DIR2/public_html/storage"
+            STORAGE_TARGET2="$DEPLOY_DIR2/storage/app/public"
+            rm -rf "$STORAGE_LINK2"
+            ln -s "$STORAGE_TARGET2" "$STORAGE_LINK2"
+            echo "Storage symlink pusatpiringkeramik.com OK"
+
+            cd "$DEPLOY_DIR2"
+            php artisan migrate --force 2>&1 || true
+
+            # Seed Cap Gunung products
+            echo "--- Menjalankan CapGunungProductSeeder di pusatpiringkeramik.com..."
+            php artisan db:seed --class=CapGunungProductSeeder --force 2>&1 || true
+            PROD_COUNT2=$(php artisan tinker --execute="echo \App\Models\Service::count();" 2>/dev/null | tail -1 || echo "?")
+            echo "--- Total produk pusatpiringkeramik.com: $PROD_COUNT2"
+
+            php artisan optimize:clear 2>&1 || true
+            echo "Deploy pusatpiringkeramik.com selesai!"
+          else
+            echo "--- Folder pusatpiringkeramik.com tidak ditemukan, skip."
+          fi
+
+          # Hapus tar setelah semua selesai
+          rm -f /home/u664715641/deploy_patch.tar.gz
+          echo "=== SEMUA DEPLOY SELESAI ==="
