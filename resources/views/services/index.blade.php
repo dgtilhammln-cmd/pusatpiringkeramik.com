@@ -136,25 +136,177 @@
         background: rgba(255, 255, 255, 0.2); color: #ffffff;
     }
 
-    /* DROPDOWN FILTER */
+    /* CUSTOM PREMIUM CATEGORY DROPDOWN */
     .sv-filter-dropdown-wrap {
-        position: relative; flex-shrink: 0;
+        position: relative;
+        flex-shrink: 0;
     }
-    .sv-filter-select {
-        appearance: none; -webkit-appearance: none;
-        background: #F8FAFC; border: 1px solid #E2E8F0;
-        border-radius: 50px; padding: 0.5rem 2.25rem 0.5rem 1rem;
-        font-size: 0.8125rem; font-weight: 600;
-        font-family: var(--font); color: #0F172A;
-        cursor: pointer; outline: none; transition: all 0.2s;
-        max-width: 220px;
+    .sv-cat-dropdown-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: #ffffff;
+        border: 1px solid #E2E8F0;
+        border-radius: 50px;
+        padding: 0.5rem 1rem;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        font-family: var(--font);
+        color: #0F172A;
+        cursor: pointer;
+        outline: none;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        user-select: none;
+        white-space: nowrap;
     }
-    .sv-filter-select:hover, .sv-filter-select:focus {
-        border-color: #0F172A; background: #ffffff;
+    .sv-cat-dropdown-btn:hover {
+        border-color: #CBD5E1;
+        background: #F8FAFC;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
     }
-    .sv-select-icon {
-        position: absolute; right: 0.875rem; top: 50%;
-        transform: translateY(-50%); pointer-events: none; color: #64748B;
+    .sv-cat-btn-label {
+        color: #0F172A;
+    }
+    .sv-cat-btn-count {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #F1F5F9;
+        color: #475569;
+        font-size: 0.6875rem;
+        font-weight: 700;
+        padding: 0.15rem 0.5rem;
+        border-radius: 20px;
+        transition: all 0.2s;
+    }
+    .sv-cat-chevron {
+        width: 14px;
+        height: 14px;
+        color: #64748B;
+        transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        flex-shrink: 0;
+    }
+    .sv-filter-dropdown-wrap:hover .sv-cat-chevron,
+    .sv-filter-dropdown-wrap.is-open .sv-cat-chevron {
+        transform: rotate(180deg);
+        color: #0F172A;
+    }
+    
+    /* Bridge so hover doesn't break when cursor moves to menu */
+    .sv-cat-dropdown-menu-bridge {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        height: 12px;
+        display: block;
+    }
+
+    .sv-cat-dropdown-menu {
+        position: absolute;
+        right: 0;
+        top: calc(100% + 6px);
+        min-width: 250px;
+        max-width: 320px;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(226, 232, 240, 0.9);
+        border-radius: 16px;
+        box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.14), 0 0 0 1px rgba(15, 23, 42, 0.04);
+        padding: 0.5rem;
+        z-index: 1050;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(6px) scale(0.98);
+        transform-origin: top right;
+        transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                    visibility 0.2s;
+        pointer-events: none;
+    }
+    .sv-filter-dropdown-wrap:hover .sv-cat-dropdown-menu,
+    .sv-filter-dropdown-wrap.is-open .sv-cat-dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+    }
+    .sv-cat-menu-header {
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: #94A3B8;
+        padding: 0.35rem 0.6rem 0.45rem;
+        border-bottom: 1px solid #F1F5F9;
+        margin-bottom: 0.35rem;
+    }
+    .sv-cat-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-height: 280px;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-width: thin;
+        scrollbar-color: #E2E8F0 transparent;
+    }
+    .sv-cat-list::-webkit-scrollbar {
+        width: 4px;
+    }
+    .sv-cat-list::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .sv-cat-list::-webkit-scrollbar-thumb {
+        background: #CBD5E1;
+        border-radius: 4px;
+    }
+    .sv-cat-item-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 0.55rem 0.75rem;
+        border-radius: 10px;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: #334155;
+        text-decoration: none !important;
+        transition: all 0.15s ease;
+    }
+    .sv-cat-item-link:hover {
+        background: #F8FAFC;
+        color: #0F172A;
+        transform: translateX(2px);
+    }
+    .sv-cat-item-link.is-active {
+        background: #0F172A;
+        color: #ffffff;
+        font-weight: 600;
+    }
+    .sv-cat-item-name {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .sv-cat-item-count {
+        flex-shrink: 0;
+        font-size: 0.6875rem;
+        font-weight: 600;
+        padding: 0.15rem 0.45rem;
+        border-radius: 12px;
+        background: #F1F5F9;
+        color: #64748B;
+        transition: all 0.15s;
+    }
+    .sv-cat-item-link.is-active .sv-cat-item-count {
+        background: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
     }
 
     /* GRID */
@@ -380,7 +532,9 @@
         .sv-card-price-badge { font-size: 0.65rem; padding: 2px 6px; }
         .sv-filter-wrap { padding: 0.5rem 0; top: 85px; }
         .sv-filter-inner { padding: 0 0.75rem; gap: 0.5rem; }
-        .sv-filter-select { max-width: 130px; font-size: 0.75rem; padding: 0.4rem 1.75rem 0.4rem 0.75rem; }
+        .sv-cat-dropdown-btn { max-width: 160px; font-size: 0.75rem; padding: 0.4rem 0.75rem; gap: 0.35rem; }
+        .sv-cat-btn-label { max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .sv-cat-dropdown-menu { min-width: 220px; max-width: calc(100vw - 2rem); right: -0.5rem; }
         .sv-pill-tab { font-size: 0.75rem; padding: 0.4rem 0.75rem; }
         .sv-cta-premium { padding: 3.5rem 1rem; }
         .sv-cta-btns { flex-direction: column; width: 100%; }
@@ -447,21 +601,55 @@
             @endforeach
         </div>
 
-        {{-- Dropdown Feature Displaying All Categories --}}
-        <div class="sv-filter-dropdown-wrap">
-            <select class="sv-filter-select" onchange="if(this.value) window.location.href=this.value;" aria-label="Pilih Kategori Produk">
-                <option value="{{ route('products') }}" {{ !$currentCat ? 'selected' : '' }}>
-                    Semua Kategori ({{ \App\Models\Service::active()->count() }})
-                </option>
-                @foreach($categories as $cat)
-                    <option value="{{ route('products.category', $cat->slug) }}" {{ ($currentCat && $currentCat->slug === $cat->slug) ? 'selected' : '' }}>
-                        {{ $cat->name }} ({{ $cat->services()->where('is_active', true)->count() }})
-                    </option>
-                @endforeach
-            </select>
-            <svg class="sv-select-icon" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <polyline points="6 9 12 15 18 9"/>
-            </svg>
+        {{-- Custom Premium Category Dropdown (Hover on Desktop, Tap on Mobile) --}}
+        <div class="sv-filter-dropdown-wrap" id="svCategoryDropdown">
+            <button type="button" class="sv-cat-dropdown-btn" id="svCatToggleBtn" aria-haspopup="true" aria-expanded="false" title="Pilih Kategori">
+                <span class="sv-cat-btn-label">
+                    {{ $currentCat ? $currentCat->name : 'Semua Kategori' }}
+                </span>
+                <span class="sv-cat-btn-count">
+                    {{ $currentCat ? $currentCat->services()->where('is_active', true)->count() : \App\Models\Service::active()->count() }}
+                </span>
+                <svg class="sv-cat-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </button>
+
+            <div class="sv-cat-dropdown-menu-bridge"></div>
+
+            <div class="sv-cat-dropdown-menu" id="svCatMenu" role="menu">
+                <div class="sv-cat-menu-header">Kategori Produk</div>
+                <ul class="sv-cat-list">
+                    <li>
+                        <a href="{{ route('products') }}" class="sv-cat-item-link {{ !$currentCat ? 'is-active' : '' }}" role="menuitem">
+                            <span class="sv-cat-item-name">
+                                @if(!$currentCat)
+                                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                                @endif
+                                Semua Kategori
+                            </span>
+                            <span class="sv-cat-item-count">{{ \App\Models\Service::active()->count() }}</span>
+                        </a>
+                    </li>
+                    @foreach($categories as $cat)
+                        @php
+                            $catCount = $cat->services()->where('is_active', true)->count();
+                            $isActive = ($currentCat && $currentCat->slug === $cat->slug);
+                        @endphp
+                        <li>
+                            <a href="{{ route('products.category', $cat->slug) }}" class="sv-cat-item-link {{ $isActive ? 'is-active' : '' }}" role="menuitem">
+                                <span class="sv-cat-item-name">
+                                    @if($isActive)
+                                        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                                    @endif
+                                    {{ $cat->name }}
+                                </span>
+                                <span class="sv-cat-item-count">{{ $catCount }}</span>
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
         </div>
     </div>
 </div>
@@ -571,5 +759,37 @@
         </div>
     @endif
 </section>
+
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const wrap = document.getElementById('svCategoryDropdown');
+    const btn = document.getElementById('svCatToggleBtn');
+    if (!wrap || !btn) return;
+
+    btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const isOpen = wrap.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', function (e) {
+        if (!wrap.contains(e.target)) {
+            wrap.classList.remove('is-open');
+            btn.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            wrap.classList.remove('is-open');
+            btn.setAttribute('aria-expanded', 'false');
+        }
+    });
+});
+</script>
+@endpush
 
 @endsection

@@ -62,6 +62,20 @@
           onfocus="this.style.borderColor='#3B82F6';this.style.background='#fff'" onblur="this.style.borderColor='#E4E7F0';this.style.background='#F8FAFC'"
           placeholder="Deskripsi singkat tampil di halaman listing...">{{ old('short_desc',$s->short_desc) }}</textarea>
       </div>
+      {{-- Category --}}
+      <div>
+        <label style="display:block;font-size:.8rem;font-weight:700;color:#374151;margin-bottom:.5rem;">Kategori Produk/Layanan</label>
+        <select name="service_category_id"
+          style="width:100%;padding:.75rem 1rem;background:#F8FAFC;border:1.5px solid #E4E7F0;border-radius:10px;font-size:.9rem;color:#1E293B;font-family:inherit;outline:none;box-sizing:border-box;transition:border-color .2s;"
+          onfocus="this.style.borderColor='#3B82F6';this.style.background='#fff'" onblur="this.style.borderColor='#E4E7F0';this.style.background='#F8FAFC'">
+          <option value="">-- Tanpa Kategori --</option>
+          @foreach(\App\Models\ServiceCategory::orderBy('name')->get() as $cat)
+            <option value="{{ $cat->id }}" {{ old('service_category_id', $s->service_category_id) == $cat->id ? 'selected' : '' }}>
+              {{ $cat->name }}
+            </option>
+          @endforeach
+        </select>
+      </div>
     </div>
   </div>
 
