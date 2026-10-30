@@ -20,3 +20,6 @@ deploy_patch.tar.gz
 
 storage/framework/*.php
 storage/framework/lsp-*.php
+
+Cap Gunung/
+__pycache__/

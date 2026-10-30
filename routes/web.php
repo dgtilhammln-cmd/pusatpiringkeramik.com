@@ -74,6 +74,24 @@ Route::get('/deploy-hostinger', function () {
     }
 });
 
+Route::get('/seed-cap-gunung', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('db:seed', [
+            '--class' => 'Database\\Seeders\\CapGunungProductSeeder',
+            '--force' => true,
+        ]);
+        $output = \Illuminate\Support\Facades\Artisan::output();
+        return '<pre style="background:#0F172A;color:#10B981;padding:2rem;font-family:monospace;border-radius:12px;">'
+            . "=== HASIL SEEDING CAP GUNUNG ===\n\n"
+            . htmlspecialchars($output)
+            . '</pre>';
+    } catch (\Exception $e) {
+        return '<pre style="background:#0F172A;color:#EF4444;padding:2rem;font-family:monospace;border-radius:12px;">'
+            . "ERROR SEEDING: " . htmlspecialchars($e->getMessage())
+            . '</pre>';
+    }
+});
+
 // FIX: Bersihkan data lama dari proyek lain & aktifkan debug mode
 // Kunjungi sekali: https://pusatpiringkeramik.hvmdigital.id/fix-env-debug
 Route::get('/fix-env-debug', function () {
