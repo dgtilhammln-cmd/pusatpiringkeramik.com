@@ -1,12 +1,12 @@
 @extends('layouts.admin')
-@section('title', 'Kelola Services')
-@section('page-title', 'Services')
+@section('title', 'Kelola Produk/Layanan')
+@section('page-title', 'Produk/Layanan')
 @section('content')
 
   {{-- PAGE HEADER --}}
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;">
     <div>
-      <h1 style="font-size:1.5rem;font-weight:800;color:#1E293B;margin:0 0 .25rem;letter-spacing:-.02em;">Kelola Produk
+      <h1 style="font-size:1.5rem;font-weight:800;color:#1E293B;margin:0 0 .25rem;letter-spacing:-.02em;">Kelola Produk/Layanan
       </h1>
       <p style="font-size:.875rem;color:#94A3B8;margin:0;">{{ $services->count() }} produk/layanan terdaftar</p>
     </div>
@@ -28,7 +28,7 @@
           <line x1="12" y1="5" x2="12" y2="19" />
           <line x1="5" y1="12" x2="19" y2="12" />
         </svg>
-        Tambah Service
+        Tambah Produk/Layanan
       </a>
     </div>
   </div>
@@ -46,7 +46,7 @@
             Gambar</th>
           <th
             style="padding:1rem 1.5rem;text-align:left;font-size:.75rem;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid #F1F5F9;">
-            Nama Produk</th>
+            Nama Produk/Layanan</th>
           <th
             style="padding:1rem 1.5rem;text-align:left;font-size:.75rem;font-weight:700;color:#94A3B8;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid #F1F5F9;">
             Slug</th>
@@ -123,7 +123,7 @@
                   </svg>
                 </a>
                 <form method="POST" action="{{ route('admin.services.destroy', $s) }}"
-                  onsubmit="return confirm('Hapus produk ini? Tindakan tidak dapat dibatalkan.')">
+                  onsubmit="return confirm('Hapus produk/layanan ini? Tindakan tidak dapat dibatalkan.')">
                   @csrf @method('DELETE')
                   <button type="submit" title="Hapus"
                     style="display:flex;align-items:center;justify-content:center;width:34px;height:34px;background:rgba(15, 23, 42,0.08);border-radius:8px;color:#334155;border:none;cursor:pointer;transition:all .2s;"
@@ -149,8 +149,8 @@
                     d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
                 </svg>
               </div>
-              <div style="font-size:.9rem;font-weight:700;color:#334155;">Belum ada produk</div>
-              <div style="font-size:.8rem;color:#94A3B8;margin-top:.25rem;">Klik tombol "Tambah Service" untuk mulai.</div>
+              <div style="font-size:.9rem;font-weight:700;color:#334155;">Belum ada produk/layanan</div>
+              <div style="font-size:.8rem;color:#94A3B8;margin-top:.25rem;">Klik tombol "Tambah Produk/Layanan" untuk mulai.</div>
             </td>
           </tr>
         @endif
@@ -165,7 +165,7 @@
       style="background:#fff;width:100%;max-width:500px;border-radius:24px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.25);overflow:hidden;animation:modalIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);">
       <div
         style="padding:1.5rem 2rem;border-bottom:1px solid #F1F5F9;display:flex;justify-content:space-between;align-items:center;">
-        <h3 style="margin:0;font-size:1.1rem;font-weight:800;color:#0F172A;">Import Produk via CSV</h3>
+        <h3 style="margin:0;font-size:1.1rem;font-weight:800;color:#0F172A;">Import Produk/Layanan via CSV</h3>
         <button onclick="document.getElementById('importModal').style.display='none'"
           style="background:none;border:none;color:#94A3B8;cursor:pointer;padding:4px;"
           onmouseover="this.style.color='#334155'" onmouseout="this.style.color='#94A3B8'">

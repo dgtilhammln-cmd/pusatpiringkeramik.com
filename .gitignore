@@ -17,3 +17,6 @@ yarn-error.log
 /.vscode
 *.sqlite
 deploy_patch.tar.gz
+
+storage/framework/*.php
+storage/framework/lsp-*.php

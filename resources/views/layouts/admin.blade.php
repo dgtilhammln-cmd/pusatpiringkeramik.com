@@ -472,7 +472,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
     @if(!isset($currentAdminUser) || $currentAdminUser->hasPermission('services'))
     <a href="{{ route('admin.services.index') }}" class="sb-link {{ request()->routeIs('admin.services*') ? 'active' : '' }}" title="Produk & Layanan">
       <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-      <span class="sb-link-text">Layanan</span>
+      <span class="sb-link-text">Produk/Layanan</span>
     </a>
     @endif
     @if(!isset($currentAdminUser) || $currentAdminUser->hasPermission('service_categories'))
@@ -581,7 +581,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
       </a>
       @php
         $newLeadsCount = \App\Models\Lead::where('status', 'new')->count();
-        $recentLeads = \App\Models\Lead::where('status', 'new')->latest()->take(5)->get();
+        $recentLeads = \App\Models\Lead::where('status', 'new')->latest()->take(25)->get();
       @endphp
       <div style="position:relative;" id="notif-container" onmouseenter="showNotif()" onmouseleave="hideNotif(180)">
         <button id="notif-btn" title="{{ $newLeadsCount }} lead baru" onclick="toggleNotif(event)" style="position:relative;width:38px;height:38px;border-radius:12px;border:1.5px solid var(--border,#E4E7F0);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.04);">
@@ -601,9 +601,9 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
           {{-- Segmented Tabs --}}
           <div style="padding:0 1.25rem 1rem;">
             <div style="display:flex;align-items:center;background:#F1F5F9;padding:.25rem;border-radius:12px;gap:.25rem;" id="notif-tabs">
-              <div onclick="switchNotifTab(this)" class="notif-tab active" style="flex:1;text-align:center;padding:.375rem 0;background:#fff;border-radius:8px;font-size:.7rem;font-weight:600;color:#0F172A;box-shadow:0 1px 2px rgba(0,0,0,0.05);cursor:pointer;transition:all .2s;">Hari Ini</div>
-              <div onclick="switchNotifTab(this)" class="notif-tab" style="flex:1;text-align:center;padding:.375rem 0;font-size:.7rem;font-weight:500;color:#64748B;cursor:pointer;transition:all .2s;">Minggu Ini</div>
-              <div onclick="switchNotifTab(this)" class="notif-tab" style="flex:1;text-align:center;padding:.375rem 0;font-size:.7rem;font-weight:500;color:#64748B;cursor:pointer;transition:all .2s;">Sebelumnya</div>
+              <div onclick="switchNotifTab(this, 'today')" class="notif-tab active" style="flex:1;text-align:center;padding:.375rem 0;background:#fff;border-radius:8px;font-size:.7rem;font-weight:600;color:#0F172A;box-shadow:0 1px 2px rgba(0,0,0,0.05);cursor:pointer;transition:all .2s;">Hari Ini</div>
+              <div onclick="switchNotifTab(this, 'week')" class="notif-tab" style="flex:1;text-align:center;padding:.375rem 0;font-size:.7rem;font-weight:500;color:#64748B;cursor:pointer;transition:all .2s;">Minggu Ini</div>
+              <div onclick="switchNotifTab(this, 'earlier')" class="notif-tab" style="flex:1;text-align:center;padding:.375rem 0;font-size:.7rem;font-weight:500;color:#64748B;cursor:pointer;transition:all .2s;">Sebelumnya</div>
             </div>
           </div>
 
@@ -611,7 +611,17 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
           <div style="max-height:350px;overflow-y:auto;" class="notif-scroll">
             @if($newLeadsCount > 0)
               @foreach($recentLeads as $lead)
-                <a href="{{ route('admin.leads.show', $lead) }}" style="display:flex;align-items:flex-start;gap:.875rem;padding:1.125rem 1.25rem;border-bottom:1px solid #F1F5F9;text-decoration:none;transition:background .15s;" onmouseover="this.style.background='#F8FAFC'" onmouseout="this.style.background='transparent'">
+                @php
+                  $cDate = \Carbon\Carbon::parse($lead->created_at);
+                  if ($cDate->isToday()) {
+                    $leadTab = 'today';
+                  } elseif ($cDate->isCurrentWeek()) {
+                    $leadTab = 'week';
+                  } else {
+                    $leadTab = 'earlier';
+                  }
+                @endphp
+                <a href="{{ route('admin.leads.show', $lead) }}" class="notif-item" data-tab="{{ $leadTab }}" style="display:flex;align-items:flex-start;gap:.875rem;padding:1.125rem 1.25rem;border-bottom:1px solid #F1F5F9;text-decoration:none;transition:background .15s;" onmouseover="this.style.background='#F8FAFC'" onmouseout="this.style.background='transparent'">
                   {{-- Icon badge --}}
                   <div style="width:38px;height:38px;border-radius:50%;background:#fff;border:1.5px solid #F1F5F9;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                     <svg width="18" height="18" fill="none" stroke="#64748B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -631,6 +641,13 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
                   </div>
                 </a>
               @endforeach
+              <div id="notif-tab-empty" style="display:none;padding:2.5rem 1.25rem;text-align:center;">
+                <div style="width:40px;height:40px;background:#fff;border:1px solid #F1F5F9;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
+                  <svg width="18" height="18" fill="none" stroke="#94A3B8" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <div style="font-size:.875rem;font-weight:500;color:#0F172A;" id="notif-empty-title">Tidak ada notifikasi</div>
+                <div style="font-size:.75rem;color:#64748B;margin-top:.25rem;" id="notif-empty-desc">Tidak ada notifikasi baru hari ini.</div>
+              </div>
             @else
               <div style="padding:2.5rem 1.25rem;text-align:center;">
                 <div style="width:40px;height:40px;background:#fff;border:1px solid #F1F5F9;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
@@ -721,17 +738,55 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 
 @stack('scripts')
 <script>
-function switchNotifTab(el) {
+let currentNotifTab = 'today';
+function switchNotifTab(el, tab) {
+  currentNotifTab = tab || 'today';
   document.querySelectorAll('#notif-tabs .notif-tab').forEach(t => {
     t.style.background = 'transparent';
     t.style.boxShadow = 'none';
     t.style.color = '#64748B';
     t.style.fontWeight = '500';
   });
-  el.style.background = '#fff';
-  el.style.boxShadow = '0 1px 2px rgba(0,0,0,0.05)';
-  el.style.color = '#0F172A';
-  el.style.fontWeight = '600';
+  if (el) {
+    el.style.background = '#fff';
+    el.style.boxShadow = '0 1px 2px rgba(0,0,0,0.05)';
+    el.style.color = '#0F172A';
+    el.style.fontWeight = '600';
+  }
+
+  let visibleCount = 0;
+  document.querySelectorAll('.notif-item').forEach(item => {
+    const itemTab = item.getAttribute('data-tab');
+    let show = false;
+    if (currentNotifTab === 'today') {
+      show = (itemTab === 'today');
+    } else if (currentNotifTab === 'week') {
+      show = (itemTab === 'today' || itemTab === 'week');
+    } else if (currentNotifTab === 'earlier') {
+      show = (itemTab === 'earlier');
+    }
+    if (show) {
+      item.style.display = 'flex';
+      visibleCount++;
+    } else {
+      item.style.display = 'none';
+    }
+  });
+
+  const emptyDiv = document.getElementById('notif-tab-empty');
+  if (emptyDiv) {
+    if (visibleCount === 0) {
+      emptyDiv.style.display = 'block';
+      const desc = document.getElementById('notif-empty-desc');
+      if (desc) {
+        if (currentNotifTab === 'today') desc.textContent = 'Tidak ada notifikasi baru hari ini.';
+        else if (currentNotifTab === 'week') desc.textContent = 'Tidak ada notifikasi baru minggu ini.';
+        else desc.textContent = 'Tidak ada notifikasi sebelumnya.';
+      }
+    } else {
+      emptyDiv.style.display = 'none';
+    }
+  }
 }
 function toggleSb(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sb-overlay').classList.toggle('open')}
 function closeSb(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sb-overlay').classList.remove('open')}
@@ -744,6 +799,8 @@ function sbSearch(q){
 let notifTimeout = null;
 
 function showNotif() {
+  const activeTabEl = document.querySelector('#notif-tabs .notif-tab.active');
+  switchNotifTab(activeTabEl, currentNotifTab);
   clearTimeout(notifTimeout);
   const dropdown = document.getElementById('notif-dropdown');
   const btn = document.getElementById('notif-btn');

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
-@section('title', isset($service) ? 'Edit Layanan' : 'Tambah Layanan')
-@section('page-title', isset($service) ? 'Edit Layanan' : 'Tambah Layanan')
+@section('title', isset($service) ? 'Edit Produk/Layanan' : 'Tambah Produk/Layanan')
+@section('page-title', isset($service) ? 'Edit Produk/Layanan' : 'Tambah Produk/Layanan')
 @section('content')
 @php $s = $service ?? null; @endphp
 
@@ -10,8 +10,8 @@
     <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
   </a>
   <div>
-    <h1 style="font-size:1.375rem;font-weight:800;color:#1E293B;margin:0 0 .1rem;letter-spacing:-.02em;">{{ $s ? 'Edit Layanan' : 'Tambah Layanan Baru' }}</h1>
-    <p style="font-size:.8rem;color:#94A3B8;margin:0;">{{ $s ? 'Perbarui informasi dan konten layanan' : 'Isi detail lengkap layanan/produk baru' }}</p>
+    <h1 style="font-size:1.375rem;font-weight:800;color:#1E293B;margin:0 0 .1rem;letter-spacing:-.02em;">{{ $s ? 'Edit Produk/Layanan' : 'Tambah Produk/Layanan Baru' }}</h1>
+    <p style="font-size:.8rem;color:#94A3B8;margin:0;">{{ $s ? 'Perbarui informasi dan konten produk/layanan' : 'Isi detail lengkap layanan/produk baru' }}</p>
   </div>
 </div>
 
@@ -23,17 +23,17 @@
 {{-- ═══════════════ LEFT COLUMN ═══════════════ --}}
 <div style="display:flex;flex-direction:column;gap:1.5rem;">
 
-  {{-- Informasi Layanan --}}
+  {{-- Informasi Produk/Layanan --}}
   <div style="background:#fff;border-radius:20px;padding:1.75rem;box-shadow:0 2px 20px rgba(0,0,0,0.04);">
     <div style="display:flex;align-items:center;gap:.625rem;margin-bottom:1.5rem;">
       <div style="width:32px;height:32px;background:rgba(59,130,246,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;">
         <svg width="16" height="16" fill="none" stroke="#3B82F6" stroke-width="2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
       </div>
-      <h3 style="font-size:.875rem;font-weight:800;color:#1E293B;margin:0;">Informasi Layanan</h3>
+      <h3 style="font-size:.875rem;font-weight:800;color:#1E293B;margin:0;">Informasi Produk/Layanan</h3>
     </div>
     <div style="display:flex;flex-direction:column;gap:1.125rem;">
       <div>
-        <label style="display:block;font-size:.8rem;font-weight:700;color:#374151;margin-bottom:.5rem;">Nama Layanan <span style="color:#334155;">*</span></label>
+        <label style="display:block;font-size:.8rem;font-weight:700;color:#374151;margin-bottom:.5rem;">Nama Produk/Layanan <span style="color:#334155;">*</span></label>
         <input type="text" name="name" id="svc-name" value="{{ old('name',$s?->name) }}" required oninput="svcAutoSlug()"
           style="width:100%;padding:.75rem 1rem;background:#F8FAFC;border:1.5px solid #E4E7F0;border-radius:10px;font-size:.9rem;color:#1E293B;font-family:inherit;outline:none;box-sizing:border-box;transition:border-color .2s;"
           onfocus="this.style.borderColor='#3B82F6';this.style.background='#fff'" onblur="this.style.borderColor='#E4E7F0';this.style.background='#F8FAFC'"
@@ -90,14 +90,14 @@
     </div>
   </div>
 
-  {{-- Spesifikasi Produk --}}
+  {{-- Spesifikasi Produk/Layanan --}}
   <div style="background:#fff;border-radius:20px;padding:1.75rem;box-shadow:0 2px 20px rgba(0,0,0,0.04);">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
       <div style="display:flex;align-items:center;gap:.625rem;">
         <div style="width:32px;height:32px;background:rgba(245,158,11,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;">
           <svg width="16" height="16" fill="none" stroke="#F59E0B" stroke-width="2" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
         </div>
-        <h3 style="font-size:.875rem;font-weight:800;color:#1E293B;margin:0;">Spesifikasi Produk</h3>
+        <h3 style="font-size:.875rem;font-weight:800;color:#1E293B;margin:0;">Spesifikasi Produk/Layanan</h3>
       </div>
       <button type="button" onclick="addSpec()" style="display:inline-flex;align-items:center;gap:.375rem;font-size:.78rem;font-weight:700;color:#3B82F6;background:rgba(59,130,246,0.08);border:none;border-radius:8px;padding:.4rem .875rem;cursor:pointer;transition:background .2s;" onmouseover="this.style.background='rgba(59,130,246,0.15)'" onmouseout="this.style.background='rgba(59,130,246,0.08)'">
         <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
@@ -162,7 +162,7 @@
   <div style="background:#fff;border-radius:20px;padding:1.25rem;box-shadow:0 2px 20px rgba(0,0,0,0.04);">
     <button type="submit" style="width:100%;display:flex;align-items:center;justify-content:center;gap:.5rem;background:#3B82F6;color:#fff;font-size:.9rem;font-weight:700;padding:.875rem 1.5rem;border-radius:12px;border:none;cursor:pointer;transition:all .2s;box-shadow:0 4px 14px rgba(59,130,246,0.3);" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 6px 20px rgba(59,130,246,0.4)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 14px rgba(59,130,246,0.3)'">
       <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
-      {{ $s ? 'Update Layanan' : 'Simpan Layanan' }}
+      {{ $s ? 'Update Produk/Layanan' : 'Simpan Produk/Layanan' }}
     </button>
     <a href="{{ route('admin.services.index') }}" style="display:flex;align-items:center;justify-content:center;margin-top:.625rem;font-size:.85rem;font-weight:600;color:#64748B;text-decoration:none;padding:.625rem;border-radius:10px;transition:background .2s;" onmouseover="this.style.background='#F8FAFC'" onmouseout="this.style.background='transparent'">Batal</a>
   </div>
@@ -266,7 +266,7 @@
   </div>
 
   {{-- Foto Utama --}}
-  @include('admin.partials.image-upload', ['item'=>$s,'field'=>'image','label'=>'Foto Utama Layanan'])
+  @include('admin.partials.image-upload', ['item'=>$s,'field'=>'image','label'=>'Foto Utama Produk/Layanan'])
 
   {{-- Brosur --}}
   <div style="background:#fff;border-radius:20px;padding:1.5rem;box-shadow:0 2px 20px rgba(0,0,0,0.04);">
