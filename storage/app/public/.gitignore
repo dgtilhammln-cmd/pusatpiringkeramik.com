@@ -1,2 +1,6 @@
 *
 !.gitignore
+!services/
+!services/**
+!settings/
+!settings/**
