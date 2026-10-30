@@ -25,13 +25,13 @@ jobs:
           --exclude='vendor' \
           --exclude='node_modules' \
           --exclude='.env' \
-          --exclude='Cap Gunung' \
           --exclude='storage/logs' \
           --exclude='storage/framework/cache' \
           --exclude='storage/framework/sessions' \
           --exclude='storage/framework/views' \
           --exclude='public_html/storage' \
           . || true
+        # Verify the archive was actually created
         ls -lh deploy_patch.tar.gz
 
     - name: Upload tar to Hostinger via SCP
@@ -46,59 +46,44 @@ jobs:
         timeout: 120s
         strip_components: 0
 
-    - name: Extract, Migrate, Seed & Clear Cache on Server
+    - name: Extract & Clear Cache on Server
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.SSH_HOST }}
         port: ${{ secrets.SSH_PORT }}
         username: ${{ secrets.SSH_USERNAME }}
         password: ${{ secrets.SSH_PASSWORD }}
-        command_timeout: 180s
+        command_timeout: 120s
         script: |
           set -e
           cd /home/u664715641
 
-          # Target direktori yang ada di hosting
-          TARGETS=()
-          [ -d "domains/pusatpiringkeramik.com" ] && TARGETS+=("domains/pusatpiringkeramik.com")
-          [ -d "domains/pusatpiringkeramik.hvmdigital.id" ] && TARGETS+=("domains/pusatpiringkeramik.hvmdigital.id")
+          # Extract ke folder web (tanpa menimpa .env dan vendor)
+          tar -xzf deploy_patch.tar.gz -C domains/pusatpiringkeramik.hvmdigital.id/ 2>&1
+          rm -f deploy_patch.tar.gz
 
-          if [ ${#TARGETS[@]} -eq 0 ]; then
-            echo "[WARN] Domain target tidak ditemukan, fallback ke domains/pusatpiringkeramik.hvmdigital.id"
-            TARGETS+=("domains/pusatpiringkeramik.hvmdigital.id")
+          # Pastikan symlink storage selalu benar (tidak pernah rusak)
+          DEPLOY_DIR="/home/u664715641/domains/pusatpiringkeramik.hvmdigital.id"
+          STORAGE_LINK="$DEPLOY_DIR/public_html/storage"
+          STORAGE_TARGET="$DEPLOY_DIR/storage/app/public"
+          rm -rf "$STORAGE_LINK"
+          ln -s "$STORAGE_TARGET" "$STORAGE_LINK"
+          echo "Storage symlink OK: $(ls -la $STORAGE_LINK)"
+
+          # Migrate & seed & clear cache
+          cd "$DEPLOY_DIR"
+          php artisan migrate --force 2>&1
+
+          # Seed hero slides hanya jika tabel masih kosong
+          SLIDE_COUNT=$(php artisan tinker --execute="echo \App\Models\HeroSlide::count();" 2>/dev/null | tail -1 || echo "0")
+          if [ "$SLIDE_COUNT" = "0" ] || [ -z "$SLIDE_COUNT" ]; then
+            echo "--- Hero slides kosong, menjalankan HeroSlideSeeder..."
+            php artisan db:seed --class=HeroSlideSeeder --force 2>&1
+          else
+            echo "--- Hero slides sudah ada ($SLIDE_COUNT slide), skip seeder."
           fi
 
-          for TARGET_DIR in "${TARGETS[@]}"; do
-            echo "=============================================="
-            echo ">>> Deploying to: $TARGET_DIR"
-            echo "=============================================="
-            mkdir -p "$TARGET_DIR"
-            tar -xzf deploy_patch.tar.gz -C "$TARGET_DIR/" 2>&1
+          php artisan optimize:clear 2>&1
+          php artisan view:cache 2>&1
 
-            # Fix symlink storage
-            rm -rf "$TARGET_DIR/public_html/storage"
-            mkdir -p "$TARGET_DIR/storage/app/public"
-            ln -sf "$TARGET_DIR/storage/app/public" "$TARGET_DIR/public_html/storage"
-
-            # Sync index.php dan .htaccess
-            [ -f "$TARGET_DIR/public/index.php" ] && cp -f "$TARGET_DIR/public/index.php" "$TARGET_DIR/public_html/index.php"
-            [ -f "$TARGET_DIR/public/.htaccess" ] && cp -f "$TARGET_DIR/public/.htaccess" "$TARGET_DIR/public_html/.htaccess"
-            [ -f "$TARGET_DIR/public/robots.txt" ] && cp -f "$TARGET_DIR/public/robots.txt" "$TARGET_DIR/public_html/robots.txt"
-            [ -f "$TARGET_DIR/public/llms.txt" ] && cp -f "$TARGET_DIR/public/llms.txt" "$TARGET_DIR/public_html/llms.txt"
-
-            # Remove static sitemap so dynamic route works
-            rm -f "$TARGET_DIR/public/sitemap.xml" "$TARGET_DIR/public_html/sitemap.xml" "$TARGET_DIR/public_html/sitemap.xsl"
-
-            # Run artisan commands
-            cd "/home/u664715641/$TARGET_DIR"
-            php artisan migrate --force 2>&1
-            php artisan db:seed --class=CapGunungProductSeeder --force 2>&1 || true
-            php artisan optimize:clear 2>&1
-            php artisan view:cache 2>&1
-            cd /home/u664715641
-          done
-
-          rm -f deploy_patch.tar.gz
-          echo "=============================================="
-          echo ">>> DEPLOY & SEEDING BERHASIL DI SEMUA TARGET!"
-          echo "=============================================="
+          echo "Deploy selesai!"
