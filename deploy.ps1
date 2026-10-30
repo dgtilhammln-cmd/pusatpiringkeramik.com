@@ -66,6 +66,7 @@ deploy_target() {
     if [ -d "$TARGET_DIR/.git" ]; then
         cd "$TARGET_DIR"
         php artisan migrate --force 2>/dev/null || true
+        php artisan db:seed --class=CapGunungProductSeeder --force 2>/dev/null || true
         # Remove any static sitemap.xml so Laravel dynamically generates /sitemap.xml from DB
         rm -f "$TARGET_DIR/public/sitemap.xml" "$TARGET_DIR/public_html/sitemap.xml" "$TARGET_DIR/public_html/sitemap.xsl"
         mkdir -p "$TARGET_DIR/public_html"
@@ -102,6 +103,7 @@ php artisan migrate --force
 # Note: Seeders disabled during normal deploys to preserve custom data:
 # php artisan db:seed --class=DatabaseSeeder --force
 # php artisan db:seed --class=HeroSlideSeeder --force
+php artisan db:seed --class=CapGunungProductSeeder --force 2>/dev/null || true
 
 echo "--- Fix storage symlink & sync public_html..."
 mkdir -p "$DEPLOY_DIR/public_html"
