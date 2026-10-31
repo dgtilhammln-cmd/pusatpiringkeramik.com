@@ -9,7 +9,7 @@
         @endif
     @endpush
     {{-- ════════════════════════════════════════════════
-    HOME PAGE — {{ $companyName }}
+    HOME PAGE - {{ $companyName }}
     ════════════════════════════════════════════════ --}}
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -96,7 +96,7 @@
                 !important;
         }
 
-        /* Desc color applies only to non-image cards — card-image always forces white */
+        /* Desc color applies only to non-image cards - card-image always forces white */
         .cv-about-premium .ab-card-gray .ab-card-desc,
         .cv-about-premium .ab-card-accent .ab-card-desc {
             color:
@@ -375,7 +375,7 @@
             transform: scale(1.01);
         }
 
-        /* Banner card — placeholder: proportional to 3448/914 on desktop, safe height on mobile */
+        /* Banner card - placeholder: proportional to 3448/914 on desktop, safe height on mobile */
         .cv-banner-card {
             position: relative;
             width: 100%;
@@ -389,7 +389,7 @@
             align-items: center;
         }
 
-        /* Uploaded image card — same ratio, image fills entirely */
+        /* Uploaded image card - same ratio, image fills entirely */
         .cv-banner-card.has-image {
             align-items: stretch;
         }
@@ -566,184 +566,228 @@
         }
 
         /* ═══════════════════════════════════════
-           MOBILE HERO — Full Bleed Image Layout
+           MOBILE HERO - Responsive Slider & Layout
            ═══════════════════════════════════════ */
         @media (max-width: 768px) {
-
-            /* Section becomes the banner — full-height, image as background */
             .cv-hero-modern {
                 position: relative;
-                padding: 4.5rem 0 2rem !important;
-                overflow: hidden;
-                min-height: 80dvh;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                background-color: #030712 !important;
+                padding-top: calc(70px + 1.25rem) !important;
+                padding-bottom: 2rem !important;
+                min-height: auto !important;
+                display: block !important;
+                background-color: {{ $settings['page_home_hero_bg'] ?? '#FAFAFA' }} !important;
             }
 
-            /* Full-bleed background image layer */
-            .cv-hero-mob-bg {
-                position: absolute;
-                inset: 0;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: center top;
-                display: block;
-                z-index: 0;
+            /* Sembunyikan overlay mobile lama */
+            .cv-hero-mob-bg,
+            .cv-hero-mob-grad,
+            .cv-hero-mob-content {
+                display: none !important;
             }
 
-            /* Dark gradient overlay: Extra dark for maximum legibility */
-            .cv-hero-mob-grad {
-                position: absolute;
-                inset: 0;
-                z-index: 1;
-                background: linear-gradient(
-                    160deg,
-                    rgba(1, 4, 10, 0.98) 0%,
-                    rgba(3, 8, 20, 0.92) 40%,
-                    rgba(5, 12, 26, 0.80) 75%,
-                    rgba(5, 12, 26, 0.50) 100%
-                );
-                pointer-events: none;
-            }
-
-            /* Content sits on top */
+            /* Konten Hero asli tetap tampil di mobile */
             .cv-hero-grid {
                 position: relative;
                 z-index: 2;
-                padding: 0 1.25rem calc(env(safe-area-inset-bottom, 0px) + 2.5rem);
+                padding: 0 1rem;
                 width: 100%;
                 max-width: 100%;
+                box-sizing: border-box;
             }
 
-            /* Hide desktop elements on mobile */
-            .cv-hero-top,
-            .cv-hero-mid,
-            .cv-hero-banner-wrap,
+            .cv-hero-top {
+                display: flex !important;
+                flex-direction: column;
+                gap: 0.35rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .cv-hero-top-left {
+                max-width: 100% !important;
+            }
+
+            .cv-hero-badge {
+                font-size: 0.72rem;
+                margin-bottom: 0.2rem;
+            }
+
+            .cv-hero-title,
+            h2.cv-hero-title {
+                font-size: clamp(1.4rem, 5.5vw, 1.85rem) !important;
+                line-height: 1.25 !important;
+                letter-spacing: -0.02em;
+                margin: 0;
+                color: {{ $settings['page_home_hero_title_color'] ?? '#0A1930' }} !important;
+            }
+
             .cv-static-logo-badge {
                 display: none !important;
             }
 
-            /* Mobile-only content block */
-            .cv-hero-mob-content {
+            .cv-hero-mid {
                 display: flex !important;
                 flex-direction: column;
-                gap: 1.25rem;
-                padding-bottom: 0;
+                align-items: flex-start;
+                gap: 0.6rem;
+                margin-bottom: 0.75rem;
             }
 
-            .cv-hero-mob-badge {
+            .cv-hero-desc {
+                max-width: 100% !important;
+                font-size: 0.8125rem;
+                line-height: 1.5;
+                padding-left: 0.75rem;
+                color: {{ $settings['page_home_hero_text_color'] ?? '#64748B' }} !important;
+                border-left: 3px solid var(--brand, #00A664);
+            }
+
+            .cv-hero-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.35rem;
+            }
+
+            .cv-hero-tags span {
+                font-size: 0.6875rem;
+                padding: 0.2rem 0.55rem;
+            }
+
+            /* CTA buttons on mobile */
+            .cv-hero-actions-mob {
+                display: flex !important;
+                gap: 0.5rem;
+                width: 100%;
+                margin: 0.5rem 0 0.85rem;
+            }
+
+            .cv-hero-actions-mob .cv-hero-btn {
+                flex: 1;
                 display: inline-flex;
                 align-items: center;
+                justify-content: center;
                 gap: 0.45rem;
-                font-size: 0.72rem;
-                font-weight: 700;
-                letter-spacing: 0.1em;
-                text-transform: uppercase;
-                color: rgba(255,255,255,0.85);
+                padding: 0.65rem 1rem;
+                border-radius: 50px;
+                font-size: 0.8125rem;
+                font-weight: 600;
+                text-decoration: none !important;
+                transition: all 0.2s;
             }
 
-            .cv-hero-mob-badge::before {
-                content: '';
-                width: 20px;
-                height: 2px;
-                background: #00D68F;
-                border-radius: 2px;
-                flex-shrink: 0;
+            .cv-hero-btn-primary {
+                background: var(--brand, #00A664);
+                color: #ffffff !important;
+                box-shadow: 0 4px 14px rgba(0, 166, 100, 0.25);
             }
 
-            .cv-hero-mob-title {
-                font-size: 2.25rem;
-                font-weight: 500;
-                color: #ffffff;
-                line-height: 1.18;
-                letter-spacing: -0.025em;
-                margin: 0;
-                white-space: pre-line;
-                text-shadow: 0 2px 14px rgba(0,0,0,0.5);
+            .cv-hero-btn-outline {
+                background: #ffffff;
+                color: #0F172A !important;
+                border: 1px solid #E2E8F0;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
             }
 
-            .cv-hero-mob-desc {
-                font-size: 0.83rem;
-                color: rgba(255,255,255,0.85);
-                line-height: 1.55;
-                margin: 0;
-                padding-left: 0.85rem;
-                border-left: 2.5px solid #00D68F;
-                max-width: 90%;
-            }
-
-            /* Capsule buttons with dynamic gradient support */
-            .cv-hero-mob-ctas {
-                display: flex;
-                flex-direction: column;
-                gap: 0.65rem;
+            /* Banner Carousel - VISIBLE & INTERACTIVE ON MOBILE */
+            .cv-hero-banner-wrap {
+                display: block !important;
+                position: relative;
                 width: 100%;
+                padding: 0 0 1.5rem;
+                margin: 0 auto;
+                overflow: hidden;
+                box-sizing: border-box;
             }
 
-            .cv-hero-mob-btn {
+            .cv-hero-banner-wrap::before,
+            .cv-hero-banner-wrap::after {
+                display: none !important;
+            }
+
+            .hero-banner-swiper {
+                width: 100%;
+                overflow: hidden !important;
+                padding: 0 0.75rem;
+                box-sizing: border-box;
+            }
+
+            .hero-banner-swiper .swiper-slide {
+                opacity: 1 !important;
+                transform: none !important;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .cv-banner-card {
+                width: 100%;
+                aspect-ratio: 2 / 1;
+                min-height: 170px;
+                border-radius: 16px !important;
+                overflow: hidden !important;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+                position: relative;
                 display: flex;
                 align-items: center;
-                justify-content: center;
-                gap: 0.55rem;
-                padding: 0.85rem 1.5rem;
-                border-radius: 100px;
-                font-size: 0.88rem;
-                font-weight: 600;
-                text-decoration: none;
-                transition: all 0.22s ease;
-                letter-spacing: 0.01em;
             }
 
-            .cv-hero-mob-btn-primary {
-                background: linear-gradient({{ $settings['hero_btn_primary_dir'] ?? '135deg' }}, {{ $settings['hero_btn_primary_start'] ?? '#00D68F' }}, {{ $settings['hero_btn_primary_end'] ?? '#00A664' }});
-                color: #ffffff !important;
-                border: none;
-                box-shadow: 0 6px 20px rgba(0,166,100,0.45);
+            .cv-banner-uploaded-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 16px !important;
+                display: block;
             }
 
-            .cv-hero-mob-btn-primary:hover {
-                filter: brightness(1.08);
-                transform: translateY(-1px);
+            .cv-banner-content {
+                padding: 1.25rem 1rem;
+                max-width: 100%;
+                gap: 0.5rem;
             }
 
-            .cv-hero-mob-btn-outline {
-                background: linear-gradient(135deg, {{ $settings['hero_btn_secondary_start'] ?? 'rgba(255,255,255,0.18)' }}, {{ $settings['hero_btn_secondary_end'] ?? 'rgba(255,255,255,0.08)' }});
-                color: #ffffff !important;
-                border: 1.5px solid {{ $settings['hero_btn_secondary_border'] ?? 'rgba(255,255,255,0.45)' }};
-                backdrop-filter: blur(8px);
-                -webkit-backdrop-filter: blur(8px);
+            .cv-banner-headline {
+                font-size: 1.05rem;
+                line-height: 1.35;
+                color: #ffffff;
             }
 
-            .cv-hero-mob-btn-outline:hover {
-                background: rgba(255,255,255,0.25);
-                color: #ffffff !important;
-            }
-
-            /* Pagination dots — still visible at bottom on mobile */
-            .cv-hero-mob-dots {
+            .cv-banner-pills {
                 display: flex;
+                gap: 0.4rem;
+                flex-wrap: wrap;
+            }
+
+            .cv-banner-pill {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.65rem;
+            }
+
+            .hero-banner-swiper-pagination {
+                position: relative !important;
+                bottom: auto !important;
+                margin-top: 0.75rem !important;
+                display: flex !important;
                 justify-content: center;
-                gap: 5px;
-                margin-top: 1rem;
+                align-items: center;
+                gap: 6px;
+                z-index: 10;
             }
 
-            .cv-hero-mob-dots span {
-                width: 6px; height: 6px;
+            .hero-banner-swiper-pagination .swiper-pagination-bullet {
+                width: 8px;
+                height: 8px;
                 border-radius: 50%;
-                background: rgba(255,255,255,0.35);
-                display: inline-block;
-                transition: all 0.3s;
+                background: #CBD5E1;
+                opacity: 1;
+                transition: all 0.3s ease;
+                cursor: pointer;
             }
 
-            .cv-hero-mob-dots span.active {
-                width: 18px;
+            .hero-banner-swiper-pagination .swiper-pagination-bullet-active {
+                width: 22px;
                 border-radius: 10px;
-                background: #ffffff;
+                background: var(--brand, #00A664) !important;
             }
         }
+
 
         /* ── PRODUCTS ─────────────────────── */
         .cv-products {
@@ -1470,6 +1514,20 @@
                     {{ $firstSlide->description ?? 'Distributor resmi peralatan makan keramik dan stainless terpercaya untuk kebutuhan usaha, bisnis, & rumah tangga.' }}
                 </div>
             </div>
+
+            {{-- Mobile CTA buttons --}}
+            <div class="cv-hero-actions-mob" style="display:none;">
+                <a href="{{ route('products') }}" class="cv-hero-btn cv-hero-btn-primary">
+                    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                    Lihat Katalog
+                </a>
+                @if($waPhone)
+                    <a href="https://wa.me/{{ $waPhone }}" target="_blank" rel="noopener" class="cv-hero-btn cv-hero-btn-outline">
+                        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                        Hubungi Kami
+                    </a>
+                @endif
+            </div>
         </div>
 
         {{-- Banner Carousel with Side-Peeking & Left/Right Edge Fade Gradients --}}
@@ -2022,7 +2080,7 @@
             z-index: 1;
         }
 
-        /* Skeleton shimmer — matches the card size exactly */
+        /* Skeleton shimmer - matches the card size exactly */
         @keyframes cv-skeleton-shimmer {
             0% {
                 background-position: -200% 0;
@@ -2252,11 +2310,11 @@
                 @else
                     @for($i = 1; $i <= 4; $i++)
                         <a href="{{ route('products') }}" class="cv-cat-card">
-                            {{-- White skeleton shimmer — fills the whole card, no text --}}
+                            {{-- White skeleton shimmer - fills the whole card, no text --}}
                             <div class="cv-cat-card-placeholder"></div>
                             <div class="cv-cat-card-overlay"></div>
                             <div class="cv-cat-card-body">
-                                <div class="cv-cat-card-name" style="opacity:0;">—</div>
+                                <div class="cv-cat-card-name" style="opacity:0;">-</div>
                             </div>
                         </a>
                     @endfor
@@ -3390,9 +3448,17 @@
                 dots.forEach((d, i) => d.classList.toggle('active', i === realIdx));
             }
 
-            /* Desktop text update */
+            /* Desktop & mobile text update */
             function updateHeroText(swiper) {
-                const slide = swiper.slides[swiper.activeIndex];
+                if (!swiper || !swiper.slides) return;
+                let slide = swiper.slides[swiper.activeIndex];
+                if (!slide || slide.classList.contains('swiper-slide-duplicate')) {
+                    const realIdx = swiper.realIndex ?? 0;
+                    const nonDupes = document.querySelectorAll('.hero-banner-swiper .swiper-slide:not(.swiper-slide-duplicate)');
+                    if (nonDupes && nonDupes[realIdx]) {
+                        slide = nonDupes[realIdx];
+                    }
+                }
                 if (!slide) return;
 
                 const title    = slide.dataset.title    || '';
@@ -3418,18 +3484,24 @@
             const autoplayConfig = autoplayDelay > 0 ? { delay: autoplayDelay, disableOnInteraction: false } : false;
 
             const heroSwiper = new Swiper('.hero-banner-swiper', {
-                loop: false,
+                loop: true,
                 centeredSlides: true,
-                spaceBetween: 24,
+                spaceBetween: 16,
+                grabCursor: true,
+                allowTouchMove: true,
+                touchRatio: 1,
+                touchAngle: 45,
                 autoplay: autoplayConfig,
                 pagination: {
                     el: '.hero-banner-swiper-pagination',
                     clickable: true,
                 },
                 on: {
-                    slideChangeTransitionStart: updateHeroText,
-                    init: function(swiper) {
-                        updateHeroText(swiper);
+                    slideChangeTransitionStart: function() {
+                        updateHeroText(this);
+                    },
+                    init: function() {
+                        updateHeroText(this);
                     }
                 },
                 breakpoints: {
@@ -3439,7 +3511,7 @@
                         centeredSlides: true,
                     },
                     640: {
-                        slidesPerView: 1.06,
+                        slidesPerView: 1.05,
                         spaceBetween: 16,
                         centeredSlides: true,
                     },
