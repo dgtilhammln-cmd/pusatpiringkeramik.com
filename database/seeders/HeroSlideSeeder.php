@@ -35,7 +35,7 @@ class HeroSlideSeeder extends Seeder
             [
                 'title'        => "Keramik Berkualitas\nuntuk Setiap Kebutuhan",
                 'subtitle'     => 'Distributor Resmi Keramik Premium',
-                'description'  => 'Dari piring keramik, mangkok, mug promosi, hingga tableware stainless — kami hadir sebagai mitra terpercaya untuk kebutuhan tableware hotel, resto, dan katering.',
+                'description'  => 'Dari piring keramik, mangkok, mug promosi, hingga tableware stainless - kami hadir sebagai mitra terpercaya untuk kebutuhan tableware hotel, resto, dan katering.',
                 'tags'         => 'Piring Keramik, Mangkok, Mug Promosi, Stainless Ware, Grosir',
                 'stat_1_value' => '1.000+',
                 'stat_1_label' => 'Produk Tersedia',

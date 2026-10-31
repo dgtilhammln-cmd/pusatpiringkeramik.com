@@ -165,8 +165,30 @@
         background: #F8FAFC;
         box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
     }
+    .sv-cat-btn-left {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        min-width: 0;
+    }
+    .sv-cat-btn-icon {
+        color: #64748B;
+        flex-shrink: 0;
+    }
+    .sv-cat-btn-prefix {
+        color: #64748B;
+        font-weight: 500;
+        font-size: 0.8125rem;
+    }
     .sv-cat-btn-label {
         color: #0F172A;
+        font-weight: 600;
+    }
+    .sv-cat-btn-right {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        flex-shrink: 0;
     }
     .sv-cat-btn-count {
         display: inline-flex;
@@ -328,7 +350,7 @@
         gap: 2rem;
     }
 
-    /* SERVICE CARD — ELEGAN FLOATING HOVER WITHOUT OUTLINE */
+    /* SERVICE CARD: ELEGAN FLOATING HOVER WITHOUT OUTLINE */
     .sv-card {
         display: flex; flex-direction: column;
         background: var(--c-card);
@@ -510,6 +532,143 @@
     @media (max-width: 1024px) {
         .sv-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
     }
+    @media (max-width: 768px) {
+        .sv-filter-wrap {
+            padding: 0.65rem 0;
+            top: 70px;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .sv-filter-inner {
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: stretch;
+            gap: 0;
+        }
+        /* HILANGKAN TAB HORIZONTAL DI MOBILE: Mencegah tampilan double-double dan sesak */
+        .sv-filter-pills {
+            display: none !important;
+        }
+        .sv-filter-dropdown-wrap {
+            width: 100%;
+            flex: 1;
+            position: relative;
+        }
+        .sv-cat-dropdown-btn {
+            width: 100% !important;
+            max-width: 100% !important;
+            display: flex !important;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1.25rem !important;
+            font-size: 0.875rem !important;
+            border-radius: 50px;
+            background: #ffffff;
+            border: 1.5px solid #E2E8F0;
+            box-shadow: 0 2px 10px rgba(15, 23, 42, 0.05);
+            box-sizing: border-box;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .sv-cat-dropdown-btn:active {
+            background: #F8FAFC;
+            transform: scale(0.99);
+        }
+        .sv-cat-btn-left {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            min-width: 0;
+            overflow: hidden;
+        }
+        .sv-cat-btn-icon {
+            color: #0F172A;
+            flex-shrink: 0;
+        }
+        .sv-cat-btn-prefix {
+            display: inline !important;
+            color: #64748B;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+        .sv-cat-btn-label {
+            max-width: none !important;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-weight: 700;
+            color: #0F172A;
+        }
+        .sv-cat-btn-right {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-shrink: 0;
+            margin-left: 0.5rem;
+        }
+        .sv-cat-btn-count {
+            background: #0F172A;
+            color: #ffffff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+        }
+        .sv-cat-dropdown-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            right: 0;
+            width: 100% !important;
+            min-width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box;
+            border-radius: 18px;
+            background: #ffffff;
+            border: 1px solid rgba(226, 232, 240, 0.95);
+            box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.05);
+            max-height: 340px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 0.6rem;
+        }
+        .sv-cat-menu-header {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #94A3B8;
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid #F1F5F9;
+            margin-bottom: 0.4rem;
+        }
+        .sv-cat-item-link {
+            padding: 0.75rem 0.85rem !important;
+            font-size: 0.875rem !important;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .sv-search-wrap {
+            margin: 0.75rem auto 1.5rem;
+            padding: 0 0.25rem;
+        }
+        .sv-search-box {
+            padding: 0.35rem 0.45rem 0.35rem 1rem;
+        }
+        .sv-search-input {
+            font-size: 0.875rem;
+        }
+        .sv-search-btn {
+            padding: 0.55rem 1.15rem;
+            font-size: 0.8125rem;
+        }
+    }
     @media (max-width: 640px) {
         .sv-grid {
             grid-template-columns: repeat(2, 1fr);
@@ -530,12 +689,6 @@
         .sv-card-badge-top { top: 6px; left: 6px; right: 6px; }
         .sv-card-rating-badge { font-size: 0.6rem; padding: 2px 6px; }
         .sv-card-price-badge { font-size: 0.65rem; padding: 2px 6px; }
-        .sv-filter-wrap { padding: 0.5rem 0; top: 85px; }
-        .sv-filter-inner { padding: 0 0.75rem; gap: 0.5rem; }
-        .sv-cat-dropdown-btn { max-width: 160px; font-size: 0.75rem; padding: 0.4rem 0.75rem; gap: 0.35rem; }
-        .sv-cat-btn-label { max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        .sv-cat-dropdown-menu { min-width: 220px; max-width: calc(100vw - 2rem); right: -0.5rem; }
-        .sv-pill-tab { font-size: 0.75rem; padding: 0.4rem 0.75rem; }
         .sv-cta-premium { padding: 3.5rem 1rem; }
         .sv-cta-btns { flex-direction: column; width: 100%; }
         .btn-primary-v2, .btn-outline-v2 { width: 100%; justify-content: center; }
@@ -837,15 +990,25 @@
         {{-- Custom Premium Category Dropdown (Hover on Desktop, Tap on Mobile) --}}
         <div class="sv-filter-dropdown-wrap" id="svCategoryDropdown">
             <button type="button" class="sv-cat-dropdown-btn" id="svCatToggleBtn" aria-haspopup="true" aria-expanded="false" title="Pilih Kategori">
-                <span class="sv-cat-btn-label">
-                    {{ $currentCat ? $currentCat->name : 'Semua Kategori' }}
+                <span class="sv-cat-btn-left">
+                    <svg class="sv-cat-btn-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" y1="6" x2="20" y2="6"/>
+                        <line x1="4" y1="12" x2="14" y2="12"/>
+                        <line x1="4" y1="18" x2="18" y2="18"/>
+                    </svg>
+                    <span class="sv-cat-btn-prefix">Kategori:</span>
+                    <span class="sv-cat-btn-label">
+                        {{ $currentCat ? $currentCat->name : 'Semua Kategori' }}
+                    </span>
                 </span>
-                <span class="sv-cat-btn-count">
-                    {{ $currentCat ? $currentCat->services()->where('is_active', true)->count() : \App\Models\Service::active()->count() }}
+                <span class="sv-cat-btn-right">
+                    <span class="sv-cat-btn-count">
+                        {{ $currentCat ? $currentCat->services()->where('is_active', true)->count() : \App\Models\Service::active()->count() }}
+                    </span>
+                    <svg class="sv-cat-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
                 </span>
-                <svg class="sv-cat-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <polyline points="6 9 12 15 18 9"/>
-                </svg>
             </button>
 
             <div class="sv-cat-dropdown-menu-bridge"></div>
@@ -896,7 +1059,7 @@
                     <circle cx="11" cy="11" r="8"></circle>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
-                <input type="text" id="productSearchInput" class="sv-search-input" placeholder="Cari nama piring, mangkok, cangkir, cutlery..." value="{{ request('q') }}" autocomplete="off">
+                <input type="text" id="productSearchInput" class="sv-search-input" placeholder="Cari piring, mangkok, cangkir..." value="{{ request('q') }}" autocomplete="off">
                 <button type="button" id="productSearchClear" class="sv-search-clear" title="Hapus pencarian">
                     <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
@@ -909,7 +1072,7 @@
 
     <div class="sv-grid-header">
         <p class="sv-grid-count">
-            Menampilkan <strong>{{ $services->firstItem() ?? 0 }}–{{ $services->lastItem() ?? 0 }}</strong>
+            Menampilkan <strong>{{ $services->firstItem() ?? 0 }}-{{ $services->lastItem() ?? 0 }}</strong>
             dari <strong>{{ $services->total() }}</strong> produk
         </p>
     </div>
