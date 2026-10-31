@@ -148,3 +148,4 @@ for slug, files in MAPPING.items():
             print(f"  ERROR {fname}: {e}")
 
 print(f"\n\nSELESAI -- total {total_processed} file WebP berhasil diproses.")
+
