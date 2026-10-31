@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             SeoSeeder::class,
             CapGunungProductSeeder::class,
             KaibonProductSeeder::class,
+            ToyokiProductSeeder::class,
         ]);
 
         // ── Admin user ──────────────────────────────────────────────

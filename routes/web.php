@@ -283,6 +283,44 @@ Route::get('/seed-kaibon', function () {
         . '</pre>';
 });
 
+// Route /seed-toyoki agar bisa dieksekusi via browser
+Route::get('/seed-toyoki', function () {
+    $log = [];
+    if (function_exists('opcache_reset')) {
+        opcache_reset();
+        $log[] = 'v OPcache reset';
+    }
+    $log[] = '=== MULAI SEEDING TOYOKI ===';
+    $log[] = date('Y-m-d H:i:s');
+
+    try {
+        \Illuminate\Support\Facades\Artisan::call('db:seed', [
+            '--class' => 'ToyokiProductSeeder',
+            '--force' => true,
+        ]);
+        $output = \Illuminate\Support\Facades\Artisan::output();
+        $log[] = $output ?: 'v ToyokiProductSeeder executed';
+
+        \Illuminate\Support\Facades\Cache::forget('home_page_data');
+        \Illuminate\Support\Facades\Cache::forget('services_page_data');
+        $log[] = 'v Cache cleared';
+
+        $catToyoki = \App\Models\ServiceCategory::where('slug', 'toyoki')->first();
+        $totalToyoki = $catToyoki ? \App\Models\Service::where('service_category_id', $catToyoki->id)->count() : 0;
+        $totalAll = \App\Models\Service::count();
+        $log[] = '=== SELESAI SUKSES ===';
+        $log[] = "Total Produk Kategori Toyoki: {$totalToyoki}";
+        $log[] = "Total Semua Produk di Web: {$totalAll}";
+    } catch (\Exception $e) {
+        $log[] = 'ERROR: ' . $e->getMessage();
+        $log[] = $e->getTraceAsString();
+    }
+
+    return '<pre style="font-family:monospace;background:#111;color:#0f0;padding:2rem;margin:0;min-height:100vh">'
+        . implode("\n", $log)
+        . '</pre>';
+});
+
 // FIX: Bersihkan data lama dari proyek lain & aktifkan debug mode
 // Kunjungi sekali: https://pusatpiringkeramik.hvmdigital.id/fix-env-debug
 Route::get('/fix-env-debug', function () {
