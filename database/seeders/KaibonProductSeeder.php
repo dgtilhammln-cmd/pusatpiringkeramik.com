@@ -522,9 +522,9 @@ class KaibonProductSeeder extends Seeder
                     'short_desc'          => $p['short_desc'],
                     'description'         => $p['description'],
                     'image'               => $p['image'],
-                    'gallery'             => json_encode($p['gallery']),
-                    'specifications'      => json_encode($p['specs']),
-                    'faqs'                => json_encode($p['faqs']),
+                    'gallery'             => $p['gallery'],
+                    'specifications'      => $p['specs'],
+                    'faqs'                => $p['faqs'],
                     'meta_title'          => $p['meta_title'],
                     'meta_desc'           => $p['meta_desc'],
                     'meta_keywords'       => $p['meta_keywords'],
@@ -532,8 +532,7 @@ class KaibonProductSeeder extends Seeder
                     'rating'              => 5.0,
                     'sold_count'          => null,
                     'price'               => null,
-                    'status'              => 'active',
-                    'alt_text'            => $p['name'] . ' — Distributor Resmi Pusat Piring Keramik',
+                    'is_active'           => true,
                 ]
             );
             $count++;
